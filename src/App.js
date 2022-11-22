@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense, useState } from 'react';
+import {Routes, Route,} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Login = lazy(()=> import( './pages/authentications/login/'));
+const Signup = lazy(()=> import( './pages/authentications/sign-up'));
+// const ValidateBVN = lazy(()=> import( './screens/validatebvn'));
+// const SuccesfulValidation = lazy(()=> import( './screens/succesfulvalidation'));
+// const ForgetPassword = lazy(()=> import( './screens/Forgetpassword'));
+// const ResetPassword = lazy(()=> import( './screens/resetpassword'));
+// const ValidatePhoneNumber = lazy(()=> import( './screens/validatephonenumber'));
+// const DashboardHome = lazy(()=> import( './screens/dashboard/index'));
+
+function pages(id) {
+  return [
+    { path: '/', element: <Login /> },
+    { path: '/sign-up', element: <Signup /> },
+  ].map(({ path, element }, id) => {
+    return <Route key={id} path={path} element={element}></Route>
+  });
 }
+export default function App() {
+  return (
+    <main className='bg-white'>
+      {/* <registeredUserContext.Provider value={{ id, setId }}> */}
+        <Suspense fallback={<div>Loading...</div>}>
 
-export default App;
+      <Routes>
+       {pages()}
+      </Routes>
+        </Suspense>
+      {/* </registeredUserContext.Provider> */}
+      {/* <Toaster /> */}
+    </main>
+  )
+}
