@@ -1,43 +1,81 @@
-import Logo from '../../../assets/logo.svg';
 import User from '../../../assets/Avatar.svg';
-import {Button, Input, Label} from '../../../ui'
+import { Button } from '../../../ui'
+import { Link } from 'react-router-dom';
+import AuthComp, { AuthHeader, CheckBox, InputContainer } from '../component';
+import { useFormik } from 'formik';
+import { LoginSchema } from '../../../yup';
 
-function InputContainer(props) {
-    const {name, placeholder } = props;
-    return <div className="mb-6 w-[344px]">
-        <Label name={name} styles="block mb-2 text-sm font-medium text-gray-900" />
-        <Input placeholder={placeholder} />
-    </div>
-}
 
 const Login = () => {
+
+    const { values, errors, touched, handleChange, handleSubmit, isSubmitting } = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            check: false
+        },
+        validationSchema: LoginSchema,
+        onSubmit: (values) => {
+            console.log(values)
+        },
+    });
+
+    const props = {
+        email: {
+            name: 'Email',
+            id: 'email',
+            placeholder: 'Enter your email address',
+            value:values.email,
+            onChange: handleChange,
+            error: errors.email,
+            touched:touched.email
+
+
+        },
+        password: {
+            name: 'Password',
+            id: 'password',
+            placeholder: 'Enter your password',
+            value:values.password,
+            onChange: handleChange,
+            error: errors.password,
+            touched:touched.password
+
+
+        },
+    }
+
     return <section>
         <article className="container mx-auto h-screen w-screen flex">
-            <div className="w-1/2 h-full ">
-                <div>
-                    <img src={Logo} alt="logo"  className='py-4'/>
-                </div>
-                <div className='h-[90%] flex flex-col items-center justify-center'>
-
-                    <div className='h-56'>
-                        <img src={User} alt="user" className='mx-auto mb-6 h-36 w-36 rounded-full object-cover' />
-                        <h1 className='text-2xl font-black text-center text-[#111827]'>Welcome Back</h1>
+            <AuthComp>
+                <div className='mt-8'>
+                    <div className='h-52 '>
+                        <img src={User} alt="user" className='mx-auto mb-6 h-28 w-28 rounded-full object-cover' />
+                        {/*  */}
+                        <AuthHeader name="Welcome Back"/>
                     </div>
-                    <form>
-                        <InputContainer name='Email' placeholder='Enter your email address' />
-                        <InputContainer name='Password' placeholder='Enter your password'/>
+                    <form className='flex flex-col items-center justify-center' onSubmit={handleSubmit}>
+                        <InputContainer {...props.email} />
+                        <InputContainer {...props.password} />
                     
-                        <div className="flex items-start mb-6">
-                            <div className="flex items-center h-5">
-                                <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300" />
-                            </div>
+                            <CheckBox name="Remember me on this device" />
                            
-                            <Label name="Remember me on this device" styles='ml-2 text-sm font-medium text-[#111827]'/>
+                          
+                        <div className='mt-12'>
+
+                        <Button name='LOG IN' loading={isSubmitting} />
                         </div>
-                       <Button name='LOG IN'/>
+                    <div className='my-4'>
+                        
+                        <Link to='/' className=' underline text-base font-bold text-[#3B6979]'>Forgot password?</Link>
+                    </div>
+                    <div>
+                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/sign-up font-black'>Sign up</Link>
+                        </p>
+                    </div>
                     </form>
                 </div>
-            </div>
+            </AuthComp>
             <div className="w-1/2 h-full bg-yellow-800"></div>
         </article>
     </section>

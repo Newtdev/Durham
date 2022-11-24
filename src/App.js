@@ -4,7 +4,9 @@ import {Routes, Route,} from 'react-router-dom';
 
 const Login = lazy(()=> import( './pages/authentications/login/'));
 const Signup = lazy(()=> import( './pages/authentications/sign-up'));
-// const ValidateBVN = lazy(()=> import( './screens/validatebvn'));
+const ResetPassword = lazy(() =>
+	import("./pages/authentications/change-password")
+);
 // const SuccesfulValidation = lazy(()=> import( './screens/succesfulvalidation'));
 // const ForgetPassword = lazy(()=> import( './screens/Forgetpassword'));
 // const ResetPassword = lazy(()=> import( './screens/resetpassword'));
@@ -13,11 +15,12 @@ const Signup = lazy(()=> import( './pages/authentications/sign-up'));
 
 function pages(id) {
   return [
-    { path: '/', element: <Login /> },
-    { path: '/sign-up', element: <Signup /> },
-  ].map(({ path, element }, id) => {
-    return <Route key={id} path={path} element={element}></Route>
-  });
+		{ path: "/", element: <Login /> },
+		{ path: "/sign-up", element: <Signup /> },
+		{ path: "/reset-password", element: <ResetPassword /> },
+	].map(({ path, element }, id) => {
+		return <Route key={id} path={path} element={element}></Route>;
+	});
 }
 export default function App() {
   return (
