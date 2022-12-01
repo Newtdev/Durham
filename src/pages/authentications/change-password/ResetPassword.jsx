@@ -56,7 +56,7 @@ const ResetPassword = () => {
                     <Button name='RESET PASSWORD' loading={isSubmitting} />
                     </div>
                 <div>
-                    <p className='text-base text-gray-800 font-light'>Don't have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/log-up font-black'>Log in</Link>
+                    <p className='text-base text-gray-800 font-light'>already have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/'>Log in</Link>
                     </p>
                 </div>
                 </form>

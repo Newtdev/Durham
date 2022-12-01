@@ -1,9 +1,8 @@
-import { Button } from "../../../ui";
+import { Button, } from "../../../ui";
 import AuthComp, { AuthHeader, CheckBox, ImageSideContainer, InputContainer } from "../component";
 import { Link } from 'react-router-dom';
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../../yup";
-import { Spinner } from "../../../assets";
 
 const SignUp = () => {
 
@@ -89,7 +88,8 @@ const SignUp = () => {
     };
 
 return <section>
-    <article className="container mx-auto h-screen w-screen flex">
+    <article className="mx-10 px-4 mx-auto h-screen w-screen flex">
+        
         <AuthComp>
             <div className='mt-8'>
                     <div className='h-16'>
@@ -113,7 +113,7 @@ return <section>
                         <Button name='SIGN UP' loading={isSubmitting} disablebtn={!props.check.value} />
                         </div>
                     <div>
-                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link to='/log-in' className=' underline font-extrabold  text-[#3B6979] font-bold'>Log in</Link>
+                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link to='/' className=' underline  text-[#3B6979] font-bold'>Log in</Link>
                         </p>
                     </div>
                     </form>

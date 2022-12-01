@@ -1,12 +1,15 @@
 import User from '../../../assets/Avatar.svg';
-import { Button } from '../../../ui'
+import { Button, ModalOverlay } from '../../../ui'
 import { Link } from 'react-router-dom';
-import AuthComp, { AuthHeader, CheckBox, InputContainer } from '../component';
+import AuthComp, { AuthHeader, CheckBox, ImageSideContainer, InputContainer } from '../component';
 import { useFormik } from 'formik';
 import { LoginSchema } from '../../../yup';
+import { ForgetPasswordModal, ResendPasswordLink } from '../change-password/Components';
+import { useState } from 'react';
 
 
 const Login = () => {
+    const [showModal, setShowModal] = useState(false);
 
     const { values, errors, touched, handleChange, handleSubmit, isSubmitting } = useFormik({
         initialValues: {
@@ -16,7 +19,7 @@ const Login = () => {
         },
         validationSchema: LoginSchema,
         onSubmit: (values) => {
-            console.log(values)
+            console.log(values);
         },
     });
 
@@ -46,7 +49,8 @@ const Login = () => {
     }
 
     return <section>
-        <article className="container mx-auto h-screen w-screen flex">
+        <article className="mx-10 px-4 mx-auto h-screen w-screen flex">
+    
             <AuthComp>
                 <div className='mt-8'>
                     <div className='h-52 '>
@@ -67,16 +71,20 @@ const Login = () => {
                         </div>
                     <div className='my-4'>
                         
-                        <Link to='/' className=' underline text-base font-bold text-[#3B6979]'>Forgot password?</Link>
+                        <span role='button' onClick={()=> setShowModal(true)} className=' underline text-base font-bold text-[#3B6979]'>Forgot password?</span>
                     </div>
                     <div>
-                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/sign-up font-black'>Sign up</Link>
+                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/sign-up'>Sign up</Link>
                         </p>
                     </div>
                     </form>
                 </div>
             </AuthComp>
-            <div className="w-1/2 h-full bg-yellow-800"></div>
+            <ImageSideContainer />
+            <ModalOverlay show={showModal} close={() => setShowModal(false)} >
+                <ForgetPasswordModal close={() => setShowModal(false)}/>
+                {/* <ResendPasswordLink email={values.email} /> */}
+        </ModalOverlay> 
         </article>
     </section>
 };
