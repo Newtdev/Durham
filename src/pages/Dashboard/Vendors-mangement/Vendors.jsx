@@ -2,8 +2,21 @@ import { useState } from "react";
 import { Button, ModalOverlay } from "../../../ui";
 import { ButtonWhiteBG } from "../../../ui";
 import { DeletePopup } from "../../../ui";
-import { DashboardButton, DashboardNav, PageHeader, Pagination, Search, Sort, TableHeader } from "../Components";
-import { AddVendor, VendorsContent, VendorsHeader, VendorTableBody } from "./VendorsComponents";
+import {
+  DashboardButton,
+  DashboardNav,
+  PageHeader,
+  Pagination,
+  Search,
+  Sort,
+  TableHeader,
+} from "../Components";
+import {
+  AddVendor,
+  VendorsContent,
+  VendorsHeader,
+  VendorTableBody,
+} from "./VendorsComponents";
 
 const Vendors = () => {
   const [showVendorModal, setShowVendorModal] = useState(true);
@@ -12,46 +25,41 @@ const Vendors = () => {
     <section className=''>
       <article>
         {/* <!-- Navbar --> */}
-        <DashboardNav/>
-        
+        <DashboardNav />
       </article>
       <main className='pt-6 bg-[#fafafa]'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
-          <PageHeader name='Vendors'/>
-            <DashboardButton name="ADD NEW VENDOR" width='w-[211px]' />
+            <PageHeader name='Vendors' />
+            <DashboardButton name='ADD NEW VENDOR' width='w-[211px]' />
           </div>
           <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
             {/* <!-- Sort --> */}
-            <Sort/>
-            
+            <Sort />
 
             {/* <!-- Search --> */}
-            <Search/>
-            
+            <Search />
           </div>
           {/* <!-- Table --> */}
           <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 '>
             <table className='w-full text-sm text-left text-gray-900'>
               <TableHeader dataArray={VendorsHeader} />
-              <VendorTableBody dataArray={VendorsContent}/>
+              <VendorTableBody dataArray={VendorsContent} />
             </table>
           </div>
           {/* PAGINATION */}
-          <Pagination/>
-          
-          
+          <Pagination />
         </div>
       </main>
 
       {/* Add Vendor Modal */}
-      <article>
-        {/* Main modal */}
-        
-      </article>
-      <ModalOverlay show={showVendorModal} close={()=> setShowVendorModal(false)}>
-        <AddVendor/>
-</ModalOverlay>
+      <article>{/* Main modal */}</article>
+      <ModalOverlay
+        show={showVendorModal}
+        close={() => setShowVendorModal(false)}
+      >
+        <AddVendor />
+      </ModalOverlay>
       {/*  Vendor Succesfully Added Popup */}
       <article>
         {/* Main modal */}
