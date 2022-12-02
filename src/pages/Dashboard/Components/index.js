@@ -15,19 +15,22 @@ export function DashboardNav() {
 	function LinkList() {
 		return (
 			<ul className="flex gap-8">
-				{["Dashboard", "Forms", "Project Managers", "Vendors"].map(
-					(name, id) => {
-						return (
-							<li key={id}>
-								<Link
-									to={`/dashboard/${name}`}
-									className="block py-2 pl-3 pr-4 text-gray-700 text-base font-bold md:bg-transparent md:p-0">
-									{name}
-								</Link>
-							</li>
-						);
-					}
-				)}
+				{[
+					{ id: 1, name: "Dashboard", link: "dashboard" },
+					{ id: 2, name: "Forms", link: "forms" },
+					{ id: 3, name: "Projects Manager", link: "product-manager" },
+					{ id: 4, name: "Vendors", link: "vendors" },
+				].map(({ name, id, link }) => {
+					return (
+						<li key={id}>
+							<Link
+								to={`/dashboard/${link}`}
+								className="block py-2 pl-3 pr-4 text-gray-700 text-base font-bold md:bg-transparent md:p-0">
+								{name}
+							</Link>
+						</li>
+					);
+				})}
 			</ul>
 		);
 	}

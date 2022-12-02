@@ -65,10 +65,10 @@ export function Error({ message }) {
 }
 
 export function ModalOverlay({ children, show, close }) {
-	const showModal = show ? "top-0" : "bottom-full";
+	const showModal = show ? "top-0" : "top-full";
 	return (
 		<div
-			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-10 h-full w-full`}
+			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-10 h-full w-full overflow-y-hidden`}
 			onClick={close}>
 			{children}
 		</div>

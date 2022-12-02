@@ -1,6 +1,5 @@
-import React, { lazy, Suspense, useState } from 'react';
-import {Routes, Route,} from 'react-router-dom';
-
+import React, { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Vendors from "./pages/Dashboard/Vendors-mangement/Vendors";
 import Settings from "./pages/Dashboard/Settings-Durham-Settings/Settings/Settings";
@@ -37,17 +36,14 @@ function pages(id) {
 	});
 }
 export default function App() {
-  return (
-    <main className='bg-white'>
-      {/* <registeredUserContext.Provider value={{ id, setId }}> */}
-        <Suspense fallback={<div>Loading...</div>}>
-
-      <Routes>
-       {pages()}
-      </Routes>
-        </Suspense>
-      {/* </registeredUserContext.Provider> */}
-      {/* <Toaster /> */}
-    </main>
-  )
+	return (
+		<main className="bg-white">
+			{/* <registeredUserContext.Provider value={{ id, setId }}> */}
+			<Suspense fallback={<div>Loading...</div>}>
+				<Routes>{pages()}</Routes>
+			</Suspense>
+			{/* </registeredUserContext.Provider> */}
+			{/* <Toaster /> */}
+		</main>
+	);
 }

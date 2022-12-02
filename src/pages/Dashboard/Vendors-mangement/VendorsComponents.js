@@ -298,7 +298,7 @@ export function AddVendor({ close }) {
 				</div>
 				<div className="py-3 px-6 lg:px-8">
 					<form className="space-y-6 " onSubmit={handleSubmit}>
-						<div className="h-[30rem] w-full overflow-auto">
+						<div className="h-[30rem] w-full overflow-x-hidden overflow-y-auto">
 							<div>
 								<SelectContainer {...props.title}>
 									<option value="">Select Representative Title</option>
