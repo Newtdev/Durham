@@ -1,9 +1,11 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import { Button, ButtonWhiteBG } from "../../../ui";
+import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
 import {
+	Close,
 	DashboardButton,
 	DashboardInput,
 	SelectContainer,
@@ -170,35 +172,40 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 	);
 }
 
-export function AddVendor({ close }) {
-	const { values, errors, touched, handleChange, handleSubmit } = useFormik({
-		initialValues: {
-			representive: "",
-			firstName: "",
-			lastName: "",
-			companyName: "",
-			address: "",
-			president: "",
-			secretary: "",
-			industry: "",
-		},
+/**********VENDOR INFORMATION COMPONENTS************/
+
+const VendorInformationComponents = ({
+	close,
+	onSuccess,
+	onSuccessClose,
+	button_name,
+	initialValues,
+	onSubmit,
+}) => {
+	const {
+		values,
+		errors,
+		touched,
+		handleChange,
+		handleSubmit,
+		isSubmitting,
+		handleReset,
+	} = useFormik({
+		initialValues,
 		validateOnChange: true,
 		validationSchema: AddVendorsSchema,
-
-		onSubmit: (values) => {
-			console.log(values);
-		},
+		onSubmit,
 	});
 
 	const props = {
 		title: {
 			name: "Representative Title",
-			id: "repTitle",
+			id: "representive",
 			placeholder: "Representative Title",
-			value: values.title,
+			value: values.representive,
 			onChange: handleChange,
-			error: errors.title,
-			touched: touched.title,
+			error: errors.representive,
+			touched: touched.representive,
 			option: "together",
 		},
 		repFirstName: {
@@ -266,10 +273,14 @@ export function AddVendor({ close }) {
 		},
 	};
 
+	const HandleClose = () => {
+		close();
+		handleReset();
+		onSuccessClose();
+	};
+
 	return (
-		<div
-			className="relative w-[490px] h-screen md:h-auto mx-auto mt-14"
-			onClick={(e) => e.stopPropagation()}>
+		<div className="relative w-[490px] h-screen md:h-auto mx-auto mt-14">
 			{/* Modal content */}
 			<div className="relative bg-white rounded-lg shadow pb-4 md:pb-0">
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
@@ -278,35 +289,26 @@ export function AddVendor({ close }) {
 						<h4 className="text-gray-700">Add Vendor's information</h4>
 					</div>
 					<button
-						onClick={close}
+						onClick={HandleClose}
+						disabled={isSubmitting ? true : false}
 						type="button"
 						className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 						data-modal-toggle="small-modal">
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								fill-rule="evenodd"
-								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-								clip-rule="evenodd"></path>
-						</svg>
-						<span className="sr-only">Close modal</span>
+						<Close />
 					</button>
 				</div>
 				<div className="py-3 px-6 lg:px-8">
 					<form className="space-y-6 " onSubmit={handleSubmit}>
-						<div className="h-[30rem] w-full overflow-x-hidden overflow-y-auto">
+						<div className="h-[30rem] w-full overflow-x-hidden overflow-y-auto pr-2">
 							<div>
-								<SelectContainer {...props.title}>
+								{/* <SelectContainer {...props.title}>
 									<option value="">Select Representative Title</option>
 
 									{["MR.", "MRS", "MISS"].map((cur, index) => (
 										<option key={index}>{cur}</option>
 									))}
-								</SelectContainer>
+								</SelectContainer> */}
+								<DashboardInput {...props.title} />
 							</div>
 							<div>
 								<DashboardInput {...props.repFirstName} />
@@ -347,15 +349,210 @@ export function AddVendor({ close }) {
 
 						{/* Buttons */}
 						<div className="mt-24 flex gap-4 justify-end items-center">
-							<ButtonWhiteBG name="cancel" onClick={close} />
+							<ButtonWhiteBG
+								name="cancel"
+								// onClick={onSuccess}
+								onClick={HandleClose}
+								disabled={isSubmitting}
+							/>
+
 							<DashboardButton
-								name="ADD VENDOR"
+								name={button_name}
 								hidden
 								type="submit"
+								loading={isSubmitting}
 								width="w-[136px]"
 							/>
 						</div>
 					</form>
+				</div>
+			</div>
+		</div>
+	);
+};
+/**********ADD VENDOR************/
+export function AddVendor({ close }) {
+	const [success, setSuccess] = useState(false);
+
+	const vendorInfo = {
+		onSuccess: () => setSuccess(true),
+		onSuccessClose: () => setSuccess(false),
+		close,
+		button_name: "ADD VENDOR",
+		initialValues: {
+			representive: "",
+			firstName: "",
+			lastName: "",
+			companyName: "",
+			address: "",
+			president: "",
+			secretary: "",
+			industry: "",
+		},
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	};
+
+	if (success) {
+		return (
+			<SuccessModal
+				close={vendorInfo.close}
+				reset={vendorInfo.onSuccessClose}
+			/>
+		);
+	}
+	return <VendorInformationComponents {...vendorInfo} />;
+}
+
+/************SUCCESS MODAL******************* */
+
+function SuccessModal({ close, reset }) {
+	return (
+		<article>
+			{/* Main modal */}
+			<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14">
+				{/* Modal content */}
+				<div className="relative bg-white rounded-lg shadow pb-4">
+					<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
+						<div>
+							<h3 className="text-lg font-bold text-gray-900">
+								New Vendor Added Successfully
+							</h3>
+						</div>
+						<button
+							type="button"
+							onClick={() => {
+								close();
+								reset();
+							}}
+							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+							data-modal-toggle="small-modal">
+							<Close />
+						</button>
+					</div>
+					<div className="py-3 px-5">
+						<p className="text-base text-gray-600">
+							You’ve successfully added a new user to Durham system. Please
+							inform them to check their email for their log in information.
+						</p>
+					</div>
+
+					{/* Buttons */}
+					<div className="mt-12 mr-5 flex gap-4 justify-end">
+						<DashboardButton name="PROCEED" hidden width="78px" />
+					</div>
+				</div>
+			</div>
+		</article>
+	);
+}
+
+/*****EDIT VENDOR INFORMATION******* */
+export function EditVendorModal({ close, vendorInitValue }) {
+	const [showVendorInfo, setShowVendorInfo] = useState(false);
+
+	const vendorInfo = {
+		onSuccess: () => setShowVendorInfo(true),
+		onSuccessClose: () => setShowVendorInfo(false),
+		close,
+		button_name: "EDIT VENDOR",
+		initialValues: {
+			representive: "",
+			firstName: "",
+			lastName: "",
+			companyName: "",
+			address: "",
+			president: "",
+			secretary: "",
+			industry: "",
+		},
+		// initialValue: { ...vendorInitValue },
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	};
+
+	if (showVendorInfo) {
+		return <VendorInformationComponents {...vendorInfo} />;
+	}
+
+	return (
+		<article>
+			{/* Main modal */}
+
+			<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14">
+				{/* Modal content */}
+				<div className="relative bg-white rounded-lg shadow pb-4">
+					<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
+						<div>
+							<h3 className="text-lg font-bold text-gray-900">
+								Are you sure you want to edit this vendor’s information?
+							</h3>
+						</div>
+						<button
+							onClick={close}
+							type="button"
+							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+							data-modal-toggle="small-modal">
+							<Close />
+						</button>
+					</div>
+					<div className="py-3 px-6 lg:px-8">
+						<p className="text-base text-gray-600">
+							Lorem ipsum dolor sit amet consectetur. Consectetur bibendum ut
+							nec malesuada sit ante ultrices orci libero.
+						</p>
+					</div>
+
+					{/* Buttons */}
+					<div className="mt-2 mr-5 flex gap-4 justify-end items-center">
+						<ButtonWhiteBG name="NO, CANCEL" onClick={close} />
+						<DashboardButton
+							name="YES, EDIT"
+							hidden
+							width="78px"
+							onClick={vendorInfo.onSuccess}
+						/>
+					</div>
+				</div>
+			</div>
+		</article>
+	);
+}
+
+export function DeleteVendorModal({ close }) {
+	return (
+		<div
+			className="relative w-full max-w-md md:h-auto mx-auto mt-14"
+			onClick={(e) => e.stopPropagation()}>
+			{/* Modal content */}
+			<div className="relative bg-white  rounded-lg shadow pb-4">
+				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
+					<div>
+						<h3 className="text-base font-extrabold text-gray-900">
+							Are you sure you want to delete this Project Manager information?
+						</h3>
+					</div>
+					<button
+						type="button"
+						className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+						data-modal-toggle="small-modal"
+						onClick={close}>
+						<Close />
+					</button>
+				</div>
+				<div className="py-3 px-6 lg:px-8">
+					<p className="text-base text-gray-600">
+						Lorem ipsum dolor sit amet consectetur. Consectetur bibendum ut nec
+						malesuada sit ante ultrices orci libero.
+					</p>
+				</div>
+
+				{/* Buttons */}
+				<div className="mt-2 mr-5 flex gap-4 justify-end">
+					<ButtonWhiteBG name="no, cancel" onClick={close} />
+					<ButtonRedBG name="yes, delete" />
 				</div>
 			</div>
 		</div>

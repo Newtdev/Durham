@@ -27,6 +27,7 @@ export function AuthHeader({ name }) {
 
 export function InputContainer(props) {
 	const { name, error, touched } = props;
+
 	return (
 		<div className="mb-4 w-[360px]">
 			<Label
@@ -34,6 +35,7 @@ export function InputContainer(props) {
 				styles="block mb-2 text-sm font-medium text-gray-900"
 			/>
 			<Input {...props} />
+			{/* {console.log(error)} */}
 			{error && touched && <Error message={error} />}
 		</div>
 	);

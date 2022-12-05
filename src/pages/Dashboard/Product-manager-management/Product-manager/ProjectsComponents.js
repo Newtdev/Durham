@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../../ui";
 import { AddProjectSchema } from "../../../../yup";
-import { DashboardButton, DashboardInput } from "../../Components";
+import { Close, DashboardButton, DashboardInput } from "../../Components";
 
 export const ProductHeader = ["Full Name", "Email", "Phone Number", ""];
 
@@ -69,18 +69,25 @@ export const productContent = [
 ];
 
 export function AddPojectsManagerModal({ close }) {
-	const { values, errors, touched, handleChange, handleSubmit, isSubmitting } =
-		useFormik({
-			initialValues: {
-				name: "",
-				email: "",
-				phone: "",
-			},
-			validationSchema: AddProjectSchema,
-			onSubmit: (values) => {
-				console.log(values);
-			},
-		});
+	const {
+		values,
+		errors,
+		touched,
+		handleChange,
+		handleSubmit,
+		handleReset,
+		isSubmitting,
+	} = useFormik({
+		initialValues: {
+			name: "",
+			email: "",
+			phone: "",
+		},
+		validationSchema: AddProjectSchema,
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	});
 
 	const props = {
 		email: {
@@ -112,6 +119,11 @@ export function AddPojectsManagerModal({ close }) {
 		},
 	};
 
+	const HandleClose = () => {
+		close();
+		handleReset();
+	};
+
 	return (
 		<div
 			className="relative w-full max-w-lg h-screen md:h-auto mx-auto mt-14"
@@ -131,19 +143,8 @@ export function AddPojectsManagerModal({ close }) {
 						type="button"
 						className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 						data-modal-toggle="small-modal"
-						onClick={close}>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								fill-rule="evenodd"
-								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-								clip-rule="evenodd"></path>
-						</svg>
-						<span className="sr-only">Close modal</span>
+						onClick={HandleClose}>
+						<Close />
 					</button>
 				</div>
 				<div className="py-3 px-6 lg:px-8">
@@ -160,12 +161,17 @@ export function AddPojectsManagerModal({ close }) {
 
 						{/* Buttons */}
 						<div className="mt-24 flex gap-4 items-center justify-end">
-							<ButtonWhiteBG name="cancel" onClick={close} />
+							<ButtonWhiteBG
+								name="cancel"
+								onClick={HandleClose}
+								disabled={isSubmitting ? true : false}
+							/>
 							<DashboardButton
 								name="ADD NEW PROJECT MANAGER"
 								hidden
 								type="submit"
-								width="w-[250px]"
+								width=""
+								loading={isSubmitting}
 							/>
 						</div>
 					</form>
@@ -193,18 +199,7 @@ export function DeleteProjectModal({ close }) {
 						className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 						data-modal-toggle="small-modal"
 						onClick={close}>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								fill-rule="evenodd"
-								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-								clip-rule="evenodd"></path>
-						</svg>
-						<span className="sr-only">Close modal</span>
+						<Close />
 					</button>
 				</div>
 				<div className="py-3 px-6 lg:px-8">

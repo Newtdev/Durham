@@ -46,9 +46,7 @@ export const AddProjectSchema = Yup.object().shape({
 	email: Yup.string()
 		.required("Email is required!")
 		.email("provided is not correct!"),
-	phone: Yup.string()
-		.required("Phone number is required!")
-		.phone("US", true, "Add the +1 at the beginning of your phone number"),
+	phone: Yup.string().required("Phone number is required!").phone("US", false),
 });
 
 export const AddVendorsSchema = Yup.object().shape({
@@ -58,4 +56,15 @@ export const AddVendorsSchema = Yup.object().shape({
 	companyName: Yup.string().required("Company name is required!"),
 	address: Yup.string().required("Address is required!"),
 	industry: Yup.string().required("Industry is required!"),
+});
+
+export const EditProfileDetailsSchema = Yup.object().shape({
+	fullName: Yup.string().required("Full name is required"),
+	email: Yup.string()
+		.required("Email is required!")
+		.email("provided is not correct!"),
+	phone: Yup.string().required("Phone number is required!").phone("US", false),
+	password: Yup.string()
+		.min(6, "must be atleast 6 characters long ")
+		.required("Password is required!"),
 });

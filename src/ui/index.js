@@ -54,7 +54,7 @@ export function Select(props) {
 		</select>
 	);
 }
-  
+
 export function Error({ message }) {
 	return (
 		<div className="flex">
@@ -64,12 +64,11 @@ export function Error({ message }) {
 	);
 }
 
-export function ModalOverlay({ children, show, close }) {
-	const showModal = show ? "top-0" : "top-full";
+export function ModalOverlay({ children, show }) {
+	const showModal = show ? "top-0" : "bottom-full";
 	return (
 		<div
-			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-10 h-full w-full overflow-y-hidden`}
-			onClick={close}>
+			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-hidden`}>
 			{children}
 		</div>
 	);
@@ -146,13 +145,14 @@ export function DeletePopup({ text }) {
 }
 
 export function ButtonWhiteBG(props) {
-	const { name, onClick } = props;
+	const { name, onClick, disabled } = props;
 	// const cursor = disablebtn ? "cursor-not-allowed" : "cursor-pointer";
 	return (
 		<button
 			onClick={onClick}
+			disabled={disabled ? true : false}
 			type="button"
-			className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white">
+			className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">
 			{name}
 		</button>
 	);

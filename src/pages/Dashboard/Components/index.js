@@ -9,6 +9,7 @@ import Edit from "../../../assets/edit.svg";
 
 import { Link } from "react-router-dom";
 import { ButtonWhiteBG, Error, Label, Select } from "../../../ui";
+import { Spinner } from "../../../assets";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -18,7 +19,11 @@ export function DashboardNav() {
 				{[
 					{ id: 1, name: "Dashboard", link: "dashboard" },
 					{ id: 2, name: "Forms", link: "forms" },
-					{ id: 3, name: "Projects Manager", link: "product-manager" },
+					{
+						id: 3,
+						name: "Projects Manager",
+						link: "product-manager",
+					},
 					{ id: 4, name: "Vendors", link: "vendors" },
 				].map(({ name, id, link }) => {
 					return (
@@ -54,11 +59,11 @@ export function DashboardNav() {
 	}
 
 	return (
-		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4">
+		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
 			<div className="container flex flex-wrap items-center justify-start mx-auto">
-				<a href="/" className="w-20 mr-8">
+				<span className="w-20 mr-8">
 					<img src={Logo} className="w-full" alt="Durham Logo" />
-				</a>
+				</span>
 				<div className="flex items-center ml-auto md:order-2">
 					<button
 						type="button"
@@ -117,14 +122,21 @@ export function DashboardNav() {
 
 /****************** DASHBOARD BUTTON *************/
 
-export function DashboardButton({ name, width, hidden, type, onClick }) {
+export function DashboardButton({
+	name,
+	width,
+	hidden,
+	type,
+	onClick,
+	loading,
+}) {
 	return (
 		<button
 			onClick={onClick}
-			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:bg-transparent hover:border text-center border-[#3B6979] hover:text-[#3B6979] font-bold rounded-md text-sm px-5 py-3 text-center flex items-center `}
+			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:bg-transparent hover:border text-center border-[#3B6979] hover:text-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center `}
 			type={type}>
 			{!hidden && <img src={Plus} alt="" className="mr-4" />}
-			{name}
+			{loading && <Spinner />} {loading ? "Loading..." : name}
 		</button>
 	);
 }
@@ -243,8 +255,9 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 	return (
 		<tbody className="text-xs bg-white font-medium">
 			{dataArray.map(({ id, name, email, phone }) => {
+				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
-					<tr key={id} className="bg-gray-50 border-b">
+					<tr key={id} className={`${strip} border-b`}>
 						<th
 							scope="row"
 							className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
@@ -272,7 +285,7 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 export function Pagination() {
 	return (
 		<nav
-			className="mt-4 mb-28 flex justify-center items-center pt-4"
+			className="mt-1 flex justify-center items-center pt-4"
 			aria-label="Table navigation">
 			<ul className="inline-flex items-center -space-x-px gap-3">
 				<li>
@@ -409,5 +422,23 @@ export function SelectContainer(props) {
 			<Select {...props} />
 			{error && touched && <Error message={error} />}
 		</div>
+	);
+}
+
+/********CLOSE ICON FOR MODAL******** */
+
+export function Close() {
+	return (
+		<svg
+			aria-hidden="true"
+			className="w-5 h-5"
+			fill="currentColor"
+			viewBox="0 0 20 20"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				fill-rule="evenodd"
+				d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+				clip-rule="evenodd"></path>
+		</svg>
 	);
 }

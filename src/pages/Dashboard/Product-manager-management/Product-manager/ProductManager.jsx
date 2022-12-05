@@ -1,6 +1,6 @@
 import { DeletePopup,SuccessPopup } from "../../../../ui";
 import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, Pagination, PageHeader } from "../../Components";
-import { Td, Th, AddPojectsManagerModal,DeleteProjectModal} from "./ProjectsComponents";
+import { AddPojectsManagerModal,DeleteProjectModal} from "./ProjectsComponents";
 import { ModalOverlay } from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
@@ -8,8 +8,13 @@ import { ProductHeader, productContent } from './ProjectsComponents';
 
 const ProductManager = () => {
   const [showModal, setShowModal] = useState(false);
-  const [tableButton, setTableButton]= useState({delete:false, edit:false})
+  const [tableButton, setTableButton] = useState({ delete: false, edit: false });
 
+  const ProductManagerProps = {
+    onDelete: () => setTableButton({ ...tableButton, delete: true }),
+    onEdit: () => setTableButton({ ...tableButton, edit: true }),
+    dataArray:productContent
+  };
 
   return (
     <section>
@@ -18,7 +23,7 @@ const ProductManager = () => {
        <DashboardNav/>
       </article>
 
-      <main className='pt-6 bg-[#fafafa] h-screen'>
+      <main className='pt-6 bg-[#fafafa] max-h-screen overflow-y-hidden'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
            <PageHeader name='Project Manager'/>
@@ -36,7 +41,7 @@ const ProductManager = () => {
             <table className='w-full text-sm text-left text-gray-900'>
               <TableHeader dataArray={ProductHeader}>
               </TableHeader>
-              <TableBody dataArray={productContent} onDelete={() => setTableButton({...tableButton, delete:true})} onEdit={() => setTableButton({...tableButton, edit:true})}>
+              <TableBody {...ProductManagerProps}>
               </TableBody>
             </table>
           </div>
@@ -48,7 +53,7 @@ const ProductManager = () => {
       {/* Add PM Modal */}
       <article>
         {/* Main modal */}
-        <ModalOverlay show={showModal} close={() => setShowModal(false)}>
+        <ModalOverlay show={showModal}>
           <AddPojectsManagerModal close={() => setShowModal(false)}/>
         </ModalOverlay>
       </article>
@@ -56,14 +61,14 @@ const ProductManager = () => {
       {/*  Delete PM Modal */}
       <article>
         {/* Main modal */}
-        <ModalOverlay show={tableButton.delete} close={()=>setTableButton({...tableButton, delete:false})}>
+        <ModalOverlay show={tableButton.delete}>
           <DeleteProjectModal close={() => setTableButton({...tableButton, delete:false})}/> 
 
         </ModalOverlay>
       </article>
 
       {/* PM added successfully */}
-      <article>
+      {/* <article>
         <div
           tabindex='-1'
           className='hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full bg-transparent'
@@ -72,10 +77,10 @@ const ProductManager = () => {
             <SuccessPopup text='Project Manager added successfully' />
           </div>
         </div>
-      </article>
+      </article> */}
 
       {/* PM deleted successfully */}
-      <article>
+      {/* <article>
         <div
           tabindex='-1'
           className='hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full bg-transparent'
@@ -84,7 +89,7 @@ const ProductManager = () => {
             <DeletePopup text='Project Manager deleted successfully' />
           </div>
         </div>
-      </article>
+      </article> */}
     </section>
   );
 };
