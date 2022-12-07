@@ -19,6 +19,21 @@ export function Input(props) {
   );
 }
 
+// REUSABLE Textarea
+export function Textarea(props) {
+  const { placeholder, id, onChange, values } = props;
+  return (
+    <textarea
+      className='bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5'
+      name={id}
+      placeholder={placeholder}
+      type='text'
+      value={values}
+      onChange={onChange}
+    />
+  );
+}
+
 // REUSABLE LABEL COMP
 
 export function Label(props) {
@@ -28,13 +43,13 @@ export function Label(props) {
 // REUSABLE BUTTON COMP
 
 export function Button(props) {
-  const { name, disablebtn, loading } = props;
+  const { name, width, disablebtn, loading } = props;
   const cursor =
     disablebtn || loading ? "cursor-not-allowed" : "cursor-pointer";
   return (
     <button
       type='submit'
-      className={`${cursor} text-white text-center text-base w-[344px] bg-[#3B6979] border-[#3B6979] hover:border hover:bg-blue-800 hover:text-[#3B6979] font-bold rounded-md px-5 py-3 transition-all`}
+      className={`${cursor} uppercase text-white text-center text-base ${width} bg-[#3B6979] hover:bg-blue-800 font-bold rounded h-10 transition-all`}
       disabled={disablebtn || loading ? true : false}
     >
       {loading && <Spinner />} {loading ? "Loading..." : name}
@@ -47,7 +62,7 @@ export function Select(props) {
   return (
     <select
       onChange={onChange}
-      className='cursor-pointer bg-white border border-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-[424px] p-2.5'
+      className='cursor-pointer bg-white border border-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5'
       name={id}
       type='text'
       value={values}
@@ -79,12 +94,12 @@ export function ModalOverlay({ children, show, close }) {
 }
 
 export function ButtonRedBG(props) {
-  const { name, disablebtn, loading } = props;
+  const { name, width, disablebtn, loading } = props;
   // const cursor = disablebtn ? "cursor-not-allowed" : "cursor-pointer";
   return (
     <button
       type='submit'
-      className='uppercase bg-red-500 text-white font-semibold px-4 h-[38px] hover:border hover:border-red-500 rounded hover:bg-white hover:text-red-500'
+      className={`uppercase bg-red-500 text-white font-semibold ${width}  h-[40px] hover:bg-blue-800 rounded`}
       disabled={disablebtn ? true : false}
     >
       {loading && <Spinner />} {loading ? "Loading..." : name}
@@ -128,7 +143,7 @@ export function SuccessPopup({ text }) {
 
 export function DeletePopup({ text }) {
   return (
-    <div className='bg-red-900 rounded-lg border border-[#FCDADA] p-4 text-[#601B1B] text-base w-full max-w-md flex items-center justify-between'>
+    <div className='bg-[#FDECEC] rounded-lg border border-[#FCDADA] p-4 text-[#601B1B] text-base w-full max-w-md flex items-center justify-between'>
       <div className='flex items-center'>
         <img src={DeleteIcon} alt='delete' className='mr-4' />
         <p>{text}</p>
@@ -152,13 +167,13 @@ export function DeletePopup({ text }) {
 }
 
 export function ButtonWhiteBG(props) {
-  const { name, onClick } = props;
+  const { name, width, onClick } = props;
   // const cursor = disablebtn ? "cursor-not-allowed" : "cursor-pointer";
   return (
     <button
       onClick={onClick}
       type='button'
-      className='uppercase bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-gray-50'
+      className={`uppercase bg-white text-[#3b6979] font-semibold px-4 h-10 border border-[#3b6979] rounded hover:bg-gray-50 ${width}`}
     >
       {name}
     </button>
