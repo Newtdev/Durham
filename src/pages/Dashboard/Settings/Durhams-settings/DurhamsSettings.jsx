@@ -1,104 +1,144 @@
-import User from "../../../../assets/Avatar.svg";
-import Logo from "../../../../assets/logo.svg";
-import ChevronDown from "../../../../assets/chevronDown.svg";
-import PenEdit from "../../../../assets/penEdit.svg";
-
-// import { InputContainer } from "../../../../authentications/component";
-import { useFormik } from "formik";
-import { Button } from "../../../../ui";
-import { ButtonWhiteBG } from "../../../../ui";
 import { DashboardNav } from "../../Components";
+import { ProfileDetails } from "../Profile-settings/ProfileSettingsComponent";
+import {useUpdateDurhamDetailsMutation,
+	useFetchDurhamQuery} from '../../../../features/services/api'
+import { toast } from "react-toastify";
+import { PageNavigation } from "../components";
+import { useState } from "react";
 
-/****
-   * v
-                className='z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow'
-                id='user-dropdown'
-              >
-                <div className='px-4 py-3'>
-                  <span className='block text-sm text-gray-900 dark:text-white'>
-                    Bonnie Green
-                  </span>
-                  <span className='block text-sm font-medium text-gray-500 truncate dark:text-gray-400'>
-                    name@flowbite.com
-                  </span>
-                </div>
-                <ul className='py-1' aria-labelledby='user-menu-button'>
-                  <li>
-                    <a
-                      href='/'
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                    >
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href='/'
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                    >
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href='/'
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                    >
-                      Earnings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href='/'
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                    >
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div>
-   * 
-   * 
-   * 
-   * 
-   */
+
 
 const DurhamSettings = () => {
-  const { values, errors, touched, handleChange, handleSubmit, isSubmitting } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-        check: false,
-      },
+  const result = useFetchDurhamQuery()
+  const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
+  const [value, setValue] = useState({});
+
+  const HandleRequest = async (values) => {
+
+    const response = await updateDurhamDetails({...values});
+    
+    if (response) {
+      if (response.error) {
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success(response?.data?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			}
+    }
+  }
+ 
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValue({ [name]: value })
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    Object.entries(value).forEach((cur) => {
+      const [name, value] = [cur[0], cur[1]];
+              
+      if (!value) {
+        return
+      } else {
+        
+        HandleRequest({ name, value })
+      }
+    
+  
     });
+  }
 
   const props = {
-    email: {
-      name: "Email Address",
-      id: "email",
-      placeholder: "johndoe@email.com",
-      value: values.email,
-      onChange: handleChange,
-      error: errors.email,
-      touched: touched.email,
+    chair_board_education: {
+    indx:0,
+      name: "Chair,DPS Board of Education",
+      id: "chair_board_education",
+      placeholder: "Chair,DPS Board of Education",
+      onChange,
+      onSubmit
     },
-    officer: {
+    chief_finance_officer: {
+      indx:1,
+
       name: "Chief Finance Officer",
-      id: "officer",
+      id: "chair_finance_officer",
       placeholder: "John Doe",
-      value: values.officer,
-      onChange: handleChange,
-      error: errors.officer,
-      touched: touched.officer,
+      onChange,
+      onSubmit
+     
     },
-  };
+    construction_interim_director: {
+      indx:2,
+
+      name: "Construction & Capital Planning Interim Executive Director",
+      id: "construction_interim_director",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    business_Manager: {
+      indx:3,
+
+      name: "Construction & Capital Planning Business Manager",
+      id: "business_Manager",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    project_manager: {
+      indx:4,
+
+      name: " Construction & Capital Planning Project Manager",
+      id: "project_manager",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    project_manager_phone: {
+      indx:5,
+
+      name: "Construction & Capital Planning Project Manager's Phone Number",
+      id: "project_manager_phone",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    director_construction: {
+      indx:6,
+
+      name: " Director of Construction and Sustainability",
+      id: "director_construction",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    director_design: {
+      indx:7,
+
+      name: " Director of Design and Construction",
+      id: "director_design",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+    director_durham: {
+      indx:8,
+
+      name: " Executive Director Durham Public Schools Building Services",
+      id: "director_durham",
+      placeholder: "John Doe",
+      onChange,
+      onSubmit
+    },
+   };
 
   
 
   return (
-    <section>
-      {/* NavBar */}
+    <section>   
 
       <article>
         <DashboardNav/>
@@ -111,113 +151,13 @@ const DurhamSettings = () => {
       {/* Durham Info */}
       <article className=' pt-6'>
         <div className='container mx-auto px-4 lg:px-24'>
-          <div className='mb-6'>
-            <p className='mb-4 text-gray-900'>
-              Settings &#62;
-              <span className='font-bold'> Durham Information</span>
-            </p>
-            <h1 className='text-gray-900 font-semibold text-3xl'>
-              Durham Information
-            </h1>
-          </div>
+          <PageNavigation next='Durham Information'/>
+         
 
           {/* Details */}
           <div className='w-full lg:w-[552px]'>
-            <div className='mt-12 mb-4 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Chair,DPS Board of Education
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Jane Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
+            <ProfileDetails data={props} loading={isLoading}  />
             </div>
-            <div className='mb-4 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>Chief Finance Officer</p>
-                <p className='font-semibold text-[#3B6979]'>John Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-4 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>Chief Finance Officer</p>
-                <p className='hidden font-semibold text-[#3B6979]'>John Doe</p>
-
-                {/* Editting */}
-                <div className='mt-4'>
-                  {/* <InputContainer {...props.officer} /> */}
-                </div>
-
-                <div className='mt-2 flex gap-4 justify-items-start'>
-                  <Button name='save changes' />
-                  <ButtonWhiteBG name='cancel' />
-                </div>
-              </div>
-              <p className='hidden uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-12 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Construction & Capital Planning Business Manager
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-12 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Construction & Capital Planning Project Manager
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-12 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Director of Construction and Sustainability
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-12 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Director of Design and Construction
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-            <div className='mb-12 pb-4 border-b border-b-gray-200 flex flex-col md:flex-row md:items-center md:justify-between'>
-              <div>
-                <p className='font-bold text-gray-900'>
-                  Executive Director Durham Public Schools Building Services
-                </p>
-                <p className='font-semibold text-[#3B6979]'>Doe</p>
-              </div>
-              <p className='uppercase cursor-pointer  font-semibold text-[#3B6979] hover:underline text-end'>
-                Edit
-              </p>
-            </div>
-          </div>
         </div>
       </article>
 

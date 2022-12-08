@@ -10,9 +10,12 @@ import Edit from "../../../assets/edit.svg";
 import { Link } from "react-router-dom";
 import { ButtonWhiteBG, Error, Label, Select } from "../../../ui";
 import { Spinner } from "../../../assets";
+import { useState } from "react";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
+	const [show, setShow] = useState(false);
+
 	function LinkList() {
 		return (
 			<ul className="flex gap-8">
@@ -42,13 +45,13 @@ export function DashboardNav() {
 
 	function UserList() {
 		return (
-			<ul className="py-1" aria-labelledby="user-menu-button">
-				{["Settings", "Sign out"].map((name, id) => {
+			<ul className={` py-1`} aria-labelledby="user-menu-button">
+				{["Settings"].map((name, id) => {
 					return (
 						<li key={id}>
 							<Link
-								to=""
-								className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+								to="/dashboard/settings"
+								className="block  px-4 py-2 text-sm text-gray-900 hover:bg-gray-100">
 								{name}
 							</Link>
 						</li>
@@ -60,11 +63,13 @@ export function DashboardNav() {
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
-			<div className="container flex flex-wrap items-center justify-start mx-auto">
+			<div
+				className="container flex flex-wrap items-center justify-start mx-auto"
+				onClick={() => setShow(!show)}>
 				<span className="w-20 mr-8">
 					<img src={Logo} className="w-full" alt="Durham Logo" />
 				</span>
-				<div className="flex items-center ml-auto md:order-2">
+				<div className=" ml-auto md:order-2 relative">
 					<button
 						type="button"
 						className="flex items-center gap-2 "
@@ -77,16 +82,10 @@ export function DashboardNav() {
 					</button>
 					{/* <!-- Dropdown menu --> */}
 					<div
-						className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
-						id="user-dropdown">
-						<div className="px-4 py-3">
-							<span className="block text-sm text-gray-900 dark:text-white">
-								Bonnie Green
-							</span>
-							<span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
-								name@flowbite.com
-							</span>
-						</div>
+						className={`z-50 ${
+							show ? "visible" : "invisible"
+						} absolute top-5  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+						id="user-dropdown`}>
 						<UserList />
 					</div>
 					<button
@@ -254,22 +253,30 @@ export function TableHeader({ dataArray }) {
 export function TableBody({ dataArray, onDelete, onEdit }) {
 	return (
 		<tbody className="text-xs bg-white font-medium">
-			{dataArray.map(({ id, name, email, phone }) => {
+			{dataArray.map((manager) => {
+				const { id, last_name, first_name, email, phone } = manager;
 				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr key={id} className={`${strip} border-b`}>
 						<th
 							scope="row"
 							className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							{name}
+							{first_name}
+						</th>
+						<th
+							scope="row"
+							className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							{last_name}
 						</th>
 						<td className="py-3 px-4">{email}</td>
 						<td className="py-3 px-4 whitespace-nowrap">{phone}</td>
 						<td className="py-3 px-4 flex items-center justify-start gap-3">
-							<span className="w-4 cursor-pointer" onClick={onDelete}>
+							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>
-							<span className="w-4 cursor-pointer" onClick={onEdit}>
+							<span
+								className="w-4 cursor-pointer"
+								onClick={() => onEdit(manager)}>
 								<img className="w-full" src={Edit} alt="edit" />
 							</span>
 						</td>
@@ -380,14 +387,14 @@ export function Pagination() {
 }
 
 export function Input(props) {
-	const { placeholder, id, onChange, values } = props;
+	const { placeholder, id, onChange, value } = props;
 	return (
 		<input
 			className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979] block w-[424px] p-2.5"
 			name={id}
 			placeholder={placeholder}
 			type="text"
-			value={values}
+			value={value}
 			onChange={onChange}
 		/>
 	);

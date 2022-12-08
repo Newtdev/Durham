@@ -6,14 +6,14 @@ import DeleteIcon from "../assets/deleteIcon.svg";
 
 // REUSABLE INPUT COMP
 export function Input(props) {
-	const { placeholder, id, onChange, values } = props;
+	const { placeholder, id, onChange, value } = props;
 	return (
 		<input
 			className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 			name={id}
 			placeholder={placeholder}
 			type="text"
-			value={values}
+			value={value}
 			onChange={onChange}
 		/>
 	);
@@ -64,21 +64,24 @@ export function Error({ message }) {
 	);
 }
 
-export function ModalOverlay({ children, show }) {
+export function ModalOverlay({ children, show, close }) {
 	const showModal = show ? "top-0" : "bottom-full";
 	return (
 		<div
-			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-hidden`}>
+			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-hidden`}
+			onClick={close}>
 			{children}
 		</div>
 	);
 }
 
 export function ButtonRedBG(props) {
-	const { name, disablebtn, loading } = props;
+	const { name, disablebtn, loading, onClick } = props;
+	console.log(loading);
 	// const cursor = disablebtn ? "cursor-not-allowed" : "cursor-pointer";
 	return (
 		<button
+			onClick={onClick}
 			type="submit"
 			className="uppercase bg-red-500 text-white font-semibold px-4 h-[38px] hover:border hover:border-red-500 rounded hover:bg-white hover:text-red-500"
 			disabled={disablebtn ? true : false}>

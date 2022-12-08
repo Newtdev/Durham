@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
+import { useAddVendorMutation } from "../../../features/services/api";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
 import {
@@ -12,162 +14,163 @@ import {
 } from "../Components";
 
 export const VendorsHeader = [
-	"Representative",
-	"Name",
+	"First name",
+	"Last name",
 	"Title",
 	"Company Name",
 	"Address",
 	"President/Vp",
 	"Secretary",
-	"Profession",
+	"Industry",
 	"",
 ];
 
 export const VendorsContent = [
 	{
 		id: 1,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Engineering",
 	},
 	{
 		id: 2,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 3,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 4,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 5,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 6,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 7,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 8,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 	{
 		id: 9,
-		representative: "Kathryn Murphy",
-		name: "John Doe Inc.",
-		title: "MR.",
-		companyName: "Big Kahuna Burger Ltd.",
+		first_name: "John",
+		last_name: "Doe",
+		title: "Manager",
+		company_name: "Big Kahuna Burger Ltd.",
 		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
 		president: "Marvin McKinney",
 		secretary: "Esther Howard",
-		profession: "Design Consultant",
+		industry: "Design Consultant",
 	},
 ];
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 	return (
-		<tbody className="text-xs bg-white font-medium">
-			{dataArray.map(
-				({
+		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
+			{dataArray.map((vendor) => {
+				const {
 					id,
-					representative,
-					name,
+					first_name,
+					last_name,
 					title,
-					companyName,
+					company_name,
 					address,
 					president,
 					secretary,
-					profession,
-				}) => {
-					const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+					industry,
+				} = vendor;
+				// const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 
-					return (
-						<tr key={id} className={`${strip} border-b`}>
-							<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-								{representative}
-							</td>
-							<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-								{name}
-							</td>
-							<td className="py-3 px-4">{title}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{companyName}</td>
-							<td className="py-3 px-4 whitespace-wrap">{address}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{president}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{secretary}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{profession}</td>
-							<td className="py-3 px-4 flex items-center justify-start gap-3">
-								<span className="w-4 cursor-pointer" onClick={onDelete}>
-									<img className="w-full" src={Delete} alt="delete" />
-								</span>
-								<span className="w-4 cursor-pointer" onClick={onEdit}>
-									<img className="w-full" src={Edit} alt="edit" />
-								</span>
-							</td>
-						</tr>
-					);
-				}
-			)}
+				return (
+					<tr key={id} className={`border-b`}>
+						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							{first_name}
+						</td>
+						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							{last_name}
+						</td>
+						<td className="py-3 px-4">{title}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{company_name}</td>
+						<td className="py-3 px-4 whitespace-wrap">{address}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{president}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{secretary}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{industry}</td>
+						<td className="py-3 px-4 flex items-center justify-start gap-3">
+							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
+								<img className="w-full" src={Delete} alt="delete" />
+							</span>
+							<span
+								className="w-4 cursor-pointer"
+								onClick={() => onEdit(vendor)}>
+								<img className="w-full" src={Edit} alt="edit" />
+							</span>
+						</td>
+					</tr>
+				);
+			})}
 		</tbody>
 	);
 }
@@ -181,6 +184,8 @@ const VendorInformationComponents = ({
 	button_name,
 	initialValues,
 	onSubmit,
+	loading,
+	vendorInitValue,
 }) => {
 	const {
 		values,
@@ -190,52 +195,59 @@ const VendorInformationComponents = ({
 		handleSubmit,
 		isSubmitting,
 		handleReset,
+		setValues,
 	} = useFormik({
 		initialValues,
 		validateOnChange: true,
 		validationSchema: AddVendorsSchema,
+
 		onSubmit,
 	});
+
+	useEffect(() => {
+		if (!vendorInitValue) return;
+		setValues(vendorInitValue);
+	}, [setValues, vendorInitValue]);
 
 	const props = {
 		title: {
 			name: "Representative Title",
-			id: "representive",
+			id: "title",
 			placeholder: "Representative Title",
-			value: values.representive,
+			value: values.title,
 			onChange: handleChange,
-			error: errors.representive,
-			touched: touched.representive,
+			error: errors.title,
+			touched: touched.title,
 			option: "together",
 		},
-		repFirstName: {
+		first_name: {
 			name: "Representative First Name",
-			id: "firstName",
+			id: "first_name",
 			placeholder: "Representative First Name",
-			value: values.firstName,
+			value: values.first_name,
 			onChange: handleChange,
-			error: errors.firstName,
-			touched: touched.firstName,
+			error: errors.first_name,
+			touched: touched.first_name,
 		},
-		repLastName: {
+		last_name: {
 			name: "Representative Last Name",
-			id: "lastName",
+			id: "last_name",
 			placeholder: "Representative Last Name",
-			value: values.lastName,
+			value: values.last_name,
 			onChange: handleChange,
-			error: errors.lastName,
-			touched: touched.lastName,
+			error: errors.last_name,
+			touched: touched.last_name,
 		},
-		companyName: {
+		company_name: {
 			name: "Company Name",
-			id: "companyName",
+			id: "company_name",
 			placeholder: "Company Name",
-			value: values.companyName,
+			value: values.company_name,
 			onChange: handleChange,
-			error: errors.companyName,
-			touched: touched.companyName,
+			error: errors.company_name,
+			touched: touched.company_name,
 		},
-		companyAddress: {
+		address: {
 			name: "Company Address",
 			id: "address",
 			placeholder: "Ccompany Address",
@@ -244,7 +256,7 @@ const VendorInformationComponents = ({
 			error: errors.address,
 			touched: touched.address,
 		},
-		presidentVP: {
+		president: {
 			name: "President/VP",
 			id: "president",
 			placeholder: "President/VP",
@@ -282,10 +294,11 @@ const VendorInformationComponents = ({
 	return (
 		<div className="relative w-[490px] h-screen md:h-auto mx-auto mt-14">
 			{/* Modal content */}
+			{console.log(values)}
 			<div className="relative bg-white rounded-lg shadow pb-4 md:pb-0">
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 					<div>
-						<h3 className="text-lg font-bold text-gray-900">Add New Vendor</h3>
+						<h3 className="text-lg font-bold text-gray-900">{button_name}</h3>
 						<h4 className="text-gray-700">Add Vendor's information</h4>
 					</div>
 					<button
@@ -311,27 +324,27 @@ const VendorInformationComponents = ({
 								<DashboardInput {...props.title} />
 							</div>
 							<div>
-								<DashboardInput {...props.repFirstName} />
+								<DashboardInput {...props.first_name} />
 							</div>
 							<div>
-								<DashboardInput {...props.repLastName} />
+								<DashboardInput {...props.last_name} />
 							</div>
 							<div>
-								<DashboardInput {...props.companyName} />
+								<DashboardInput {...props.company_name} />
 							</div>
 							<div>
-								<DashboardInput {...props.companyAddress} />
+								<DashboardInput {...props.address} />
 							</div>
 							<div>
-								<DashboardInput {...props.presidentVP} />
+								<DashboardInput {...props.president} />
 							</div>
 							<div>
 								<DashboardInput {...props.secretary} />
 							</div>
 							<div>
 								<SelectContainer {...props.industry}>
-									<option selected value="">
-										Select Industry
+									<option value={!values.industry ? "" : values.industry}>
+										{!values.industry ? "Select Industry" : values.industry}
 									</option>
 									{[
 										"Design Consultant",
@@ -353,14 +366,14 @@ const VendorInformationComponents = ({
 								name="cancel"
 								// onClick={onSuccess}
 								onClick={HandleClose}
-								disabled={isSubmitting}
+								disabled={loading}
 							/>
 
 							<DashboardButton
 								name={button_name}
 								hidden
 								type="submit"
-								loading={isSubmitting}
+								loading={loading}
 								width="w-[136px]"
 							/>
 						</div>
@@ -373,24 +386,45 @@ const VendorInformationComponents = ({
 /**********ADD VENDOR************/
 export function AddVendor({ close }) {
 	const [success, setSuccess] = useState(false);
+	const [addVendor, { isLoading }] = useAddVendorMutation();
+
+	const HandleRequest = async (value) => {
+		try {
+			const response = await addVendor({ ...value });
+			if (response?.error) {
+				console.log(response?.error);
+				close();
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				// setShowSuccess(false)
+			} else if (response?.data) {
+				setSuccess(true);
+				// onSuccess show the modal and ask the manager to login
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const vendorInfo = {
 		onSuccess: () => setSuccess(true),
 		onSuccessClose: () => setSuccess(false),
+		loading: isLoading,
 		close,
 		button_name: "ADD VENDOR",
 		initialValues: {
-			representive: "",
-			firstName: "",
-			lastName: "",
-			companyName: "",
+			title: "",
+			first_name: "",
+			last_name: "",
+			company_name: "",
 			address: "",
 			president: "",
 			secretary: "",
 			industry: "",
 		},
 		onSubmit: (values) => {
-			console.log(values);
+			HandleRequest(values);
 		},
 	};
 
@@ -399,6 +433,7 @@ export function AddVendor({ close }) {
 			<SuccessModal
 				close={vendorInfo.close}
 				reset={vendorInfo.onSuccessClose}
+				name="New Vendor Added Successfully"
 			/>
 		);
 	}
@@ -407,7 +442,7 @@ export function AddVendor({ close }) {
 
 /************SUCCESS MODAL******************* */
 
-function SuccessModal({ close, reset }) {
+export function SuccessModal({ close, reset, name }) {
 	return (
 		<article>
 			{/* Main modal */}
@@ -416,9 +451,7 @@ function SuccessModal({ close, reset }) {
 				<div className="relative bg-white rounded-lg shadow pb-4">
 					<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 						<div>
-							<h3 className="text-lg font-bold text-gray-900">
-								New Vendor Added Successfully
-							</h3>
+							<h3 className="text-lg font-bold text-gray-900">{name}</h3>
 						</div>
 						<button
 							type="button"
@@ -433,8 +466,8 @@ function SuccessModal({ close, reset }) {
 					</div>
 					<div className="py-3 px-5">
 						<p className="text-base text-gray-600">
-							You’ve successfully added a new user to Durham system. Please
-							inform them to check their email for their log in information.
+							You’ve successfully added to Durham system. Please inform them to
+							check their email for their log in information.
 						</p>
 					</div>
 
@@ -449,7 +482,12 @@ function SuccessModal({ close, reset }) {
 }
 
 /*****EDIT VENDOR INFORMATION******* */
-export function EditVendorModal({ close, vendorInitValue }) {
+export function EditVendorModal({
+	close,
+	vendorInitValue,
+	handleRequest,
+	isLoading,
+}) {
 	const [showVendorInfo, setShowVendorInfo] = useState(false);
 
 	const vendorInfo = {
@@ -457,19 +495,20 @@ export function EditVendorModal({ close, vendorInitValue }) {
 		onSuccessClose: () => setShowVendorInfo(false),
 		close,
 		button_name: "EDIT VENDOR",
+		loading: isLoading,
 		initialValues: {
-			representive: "",
-			firstName: "",
-			lastName: "",
-			companyName: "",
+			title: "",
+			first_name: "",
+			last_name: "",
+			company_name: "",
 			address: "",
 			president: "",
 			secretary: "",
 			industry: "",
 		},
-		// initialValue: { ...vendorInitValue },
+		vendorInitValue,
 		onSubmit: (values) => {
-			console.log(values);
+			handleRequest(values);
 		},
 	};
 
@@ -521,7 +560,7 @@ export function EditVendorModal({ close, vendorInitValue }) {
 	);
 }
 
-export function DeleteVendorModal({ close }) {
+export function DeleteVendorModal({ close, onClick, isLoading }) {
 	return (
 		<div
 			className="relative w-full max-w-md md:h-auto mx-auto mt-14"
@@ -552,7 +591,11 @@ export function DeleteVendorModal({ close }) {
 				{/* Buttons */}
 				<div className="mt-2 mr-5 flex gap-4 justify-end">
 					<ButtonWhiteBG name="no, cancel" onClick={close} />
-					<ButtonRedBG name="yes, delete" />
+					<ButtonRedBG
+						name="yes, delete"
+						onClick={onClick}
+						loading={isLoading}
+					/>
 				</div>
 			</div>
 		</div>

@@ -4,35 +4,41 @@ import { useFormik } from "formik";
 import { DashboardNav } from "../../Components";
 import { ProfileDetails } from "./ProfileSettingsComponent";
 import { EditProfileDetailsSchema } from "../../../../yup";
-import { EditComponent } from "../components";
+import { PageNavigation } from "../components";
+import { useFetchSingleProjectManagerQuery, useUpdateProductManagerDetailsMutation } from "../../../../features/services/api";
+import { toast } from "react-toastify";
 
 
-const details = [{
-    id: 0,
-    name: 'Jane Cooper',
-    label: 'Full Name',
-},
-{
-    id: 1,
-    name: 'johndoe@email.com',
-    label: 'Email'
-},
-{
-    id: 2,
-    name: '+61 412 345 678',
-    label: 'Phone Number'
-},
-{
-    id: 3,
-    name: '*************',
-    label: 'Password'
-}
-];
+
 const ProfileSettings = () => {
 
-    const {values,errors, touched, handleReset,handleChange, handleSubmit, isSubmitting } = useFormik({
+    // PASS IN THE ID
+    const result = useFetchSingleProjectManagerQuery(2);
+    // PASS IN A ID
+    const [updateProjectManageDetails, {isLoading}] = useUpdateProductManagerDetailsMutation()
+
+    const HandleRequest = async (values) => {
+        const response = await updateProjectManageDetails({...values});
+        
+        if (response) {
+          if (response.error) {
+                    toast.error(response?.error?.message, {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                } else {
+                    toast.success(response?.data?.message, {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                }
+        }
+      }
+
+
+    const {values,errors, touched,handleChange, handleSubmit } = useFormik({
         initialValues: {
             fullName: "Jane Cooper",
+            first_name: 'Jane',
+            last_name: 'Cooper',
 			email: "johndoe@email.com",
             phone: "+61 412 345 678",
             password:"**********"
@@ -40,45 +46,60 @@ const ProfileSettings = () => {
         validateOnChange:true,
         validationSchema: EditProfileDetailsSchema,
 
-        onSubmit:(values) => {
-            console.log(values)
+        onSubmit: (values) => {
+            const { password } = values;
+            if (password) {
+                // console.log('password')
+            }
+            console.log(password)
+            // HandleRequest(values)
+        
         }
     });
     const profileProps = {
-        fullName: {
+        first_name: {
             indx:0,
-            name:'Full Name',
-            id: "fullName",
-            error: errors.fullName,
-            touched: touched.fullName,
-            values: values.fullName,
+            name:'First Name',
+            id: "first_name",
+            error: errors.first_name,
+            touched: touched.first_name,
+            value: values.first_name,
+            onChange: handleChange,
+        },
+        last_name: {
+            indx:1,
+            name:'Last Name',
+            id: "last_name",
+            error: errors.last_name,
+            touched: touched.last_name,
+            value: values.last_name,
             onChange: handleChange,
         },
         email: {
-            indx:1,
+            indx:2,
             name:'Email',
             id: "email",
             error: errors.email,
             touched: touched.email,
-            values: values.email,
+            value: values.email,
             onChange: handleChange,
         },
         phone: {
-            indx:2,
+            indx:3,
             name:'Phone',
             id: "phone",
             error: errors.phone,
             touched: touched.phone,
-            values: values.phone,
+            value: values.phone,
             onChange: handleChange,
         },
         password: {
-            indx:3,
+            indx:4,
             name: 'Password',
             id: "password",
             error: errors.password,
             touched: touched.password,
-            values: values.password,
+            value: values.password,
             onChange: handleChange,
         },
     };
@@ -88,13 +109,7 @@ const ProfileSettings = () => {
         <article className='hidde pt-6'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='ml-4 mb-6'>
-            <p className='mb-4 text-gray-900'>
-              Settings &#62;
-              <span className='font-bold'> Profile Details</span>
-            </p>
-            <h1 className='text-gray-900 font-semibold text-3xl'>
-              Profile Details
-            </h1>
+          <PageNavigation next='Profile Details'/>
 
             <div className='mt-6 relative w-12 h-12 rounded-full'>
               <img className='w-full' src={User} alt='user' />
@@ -105,7 +120,7 @@ const ProfileSettings = () => {
           {/* Details */}
           <div className='w-full lg:w-[552px]'>
             
-       <ProfileDetails data={profileProps} onSubmit={handleSubmit} loading={isSubmitting} />
+       <ProfileDetails data={profileProps} onSubmit={handleSubmit} loading={isLoading} hidden />
           </div>
         </div>
       </article>

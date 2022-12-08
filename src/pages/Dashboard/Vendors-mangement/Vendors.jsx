@@ -1,28 +1,74 @@
 import { useState } from "react";
-import { DeletePopup, ModalOverlay } from "../../../ui";
+import { toast } from "react-toastify";
+import { useDeleteVendorMutation, useEditVendorMutation, useFetchVendorsQuery } from "../../../features/services/api";
+import { ModalOverlay } from "../../../ui";
 import { DashboardButton, DashboardNav, PageHeader, Pagination, Search, Sort, TableHeader } from "../Components";
 import { EditVendorModal } from './VendorsComponents';
 import { AddVendor, DeleteVendorModal, VendorsContent, VendorsHeader, VendorTableBody } from "./VendorsComponents";
 
 const Vendors = () => {
   const [showVendorModal, setShowVendorModal] = useState(false);
-  const [showActionModal, setShowActionModal] = useState({delete:false, edit:false});
+  const [showActionModal, setShowActionModal] = useState({ delete: false, edit: false, id: null, data:{} });
+  
+  const [deleteVendor, { isLoading }] = useDeleteVendorMutation();
+  const [editVendor, result] = useEditVendorMutation()
+  const apiResponse = useFetchVendorsQuery();
+  console.log(apiResponse)
+
+
+/***********HANDLE DELETE REQUEST AND RESPONSE ********************** */
+const HandleRequest = async () => {
+  const response = await deleteVendor(showActionModal.id);
+  
+  if (response) {
+    onDeleteClose()
+    if (response.error) {
+      toast.error(response?.error?.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      toast.success(response?.data?.message, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  }
+}
+
+  /***********HANDLE EDIT REQUEST AND RESPONSE ********************** */
+  
+  const HandleEditRequest = async () => {
+    const response = await editVendor(showActionModal.data);
+    
+    if (response) {
+      onEditClose()
+      if (response.error) {
+        toast.error(response?.error?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.success(response?.data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
+  }
 
   
   const close = () => { setShowVendorModal(false) };
 
-  const onDelete = () => setShowActionModal((prev) => {
-    return { ...prev, delete: true }
+  const onDelete = (id) => setShowActionModal((prev) => {
+    return { ...prev, delete: true, id: id }
   });
-  const onEdit = () => setShowActionModal((prev) => {
-    return { ...prev, edit: true }
+  const onEdit = (data) => setShowActionModal((prev) => {
+    return { ...prev, edit: true, data:data }
   });
 
   const onDeleteClose = () => setShowActionModal((prev) => {
-    return { ...prev, delete: false }
+    return { ...prev, delete: false, id: null }
   });
+
   const onEditClose = () => setShowActionModal((prev) => {
-    return { ...prev, edit: false }
+    return { ...prev, edit: false, data: {} }
   });
 
 
@@ -32,22 +78,22 @@ const Vendors = () => {
     <section className='max-h-screen overflow-y-hidden'>
       <article>
         {/* <!-- Navbar --> */}
-        <DashboardNav/>
+        <DashboardNav />
         
       </article>
       <main className='pt-6 bg-[#fafafa]'>
         <div className='container mx-auto px-4 lg:px-24 '>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
-          <PageHeader name='Vendors'/>
-            <DashboardButton name="ADD NEW VENDOR" width='w-[211px]' onClick={()=> setShowVendorModal(true)} />
+            <PageHeader name='Vendors' />
+            <DashboardButton name="ADD NEW VENDOR" width='w-[211px]' onClick={() => setShowVendorModal(true)} />
           </div>
           <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
             {/* <!-- Sort --> */}
-            <Sort/>
+            <Sort />
             
 
             {/* <!-- Search --> */}
-            <Search/>
+            <Search />
             
           </div>
           {/* <!-- Table --> */}
@@ -58,7 +104,7 @@ const Vendors = () => {
             </table>
           </div>
           {/* PAGINATION */}
-          <Pagination/>
+          <Pagination />
           
           
         </div>
@@ -78,23 +124,14 @@ const Vendors = () => {
 
       {/*  Edit Vendor Info Modal */}
       <ModalOverlay show={showActionModal.edit}>
-        <EditVendorModal close={onEditClose} />
+        <EditVendorModal close={onEditClose} vendorInitValue={showActionModal.data} handleRequest={HandleEditRequest} isLoading={ result.isLoading} />
       </ModalOverlay>
 
       {/* Vendor deleted successfully */}
       <ModalOverlay show={showActionModal.delete}>
-        <DeleteVendorModal close={onDeleteClose} />
-</ModalOverlay>
-      <article>
-        <div
-          tabindex='-1'
-          className='hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full bg-transparent'
-        >
-          <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-2'>
-            <DeletePopup text='Vendor infromation deleted successfully' />
-          </div>
-        </div>
-      </article>
+        <DeleteVendorModal close={onDeleteClose} onClick={HandleRequest} isLoading={isLoading} />
+      </ModalOverlay>
+      
     </section>
   );
 };

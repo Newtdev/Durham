@@ -1,20 +1,61 @@
-import { DeletePopup,SuccessPopup } from "../../../../ui";
 import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, Pagination, PageHeader } from "../../Components";
-import { AddPojectsManagerModal,DeleteProjectModal} from "./ProjectsComponents";
+import { AddPojectsManagerModal,DeleteProjectModal, EditPojectsManagerModal} from "./ProjectsComponents";
 import { ModalOverlay } from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
+import { useDeleteProductManagerMutation } from "../../../../features/services/api";
+import { toast } from "react-toastify";
 
 
 const ProductManager = () => {
   const [showModal, setShowModal] = useState(false);
-  const [tableButton, setTableButton] = useState({ delete: false, edit: false });
+  const [tableButton, setTableButton] = useState({ delete: false, edit: false, id: null, initialData:{} });
+  const [deleteProductManager, result] = useDeleteProductManagerMutation();
+  
+
+  const HandleRequest = async () => {
+    
+    const response = await deleteProductManager(tableButton.id);
+    
+    if (response) {
+      HandleClose()
+      if (response.error) {
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success(response?.data?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			}
+    }
+  }
+  
+  const onClose = () => {
+    setShowModal(false)
+  }
+
+  function HandleClose() {
+    setTableButton({ ...tableButton, delete: false })
+  };
 
   const ProductManagerProps = {
-    onDelete: () => setTableButton({ ...tableButton, delete: true }),
-    onEdit: () => setTableButton({ ...tableButton, edit: true }),
+    onDelete: (id) => {
+      
+      setTableButton({ ...tableButton, delete: true, id: id })
+    },
+    
+    onEdit: (data) => {
+      console.log(data)
+      setTableButton({ ...tableButton, edit: true, initialData:data })
+    },
     dataArray:productContent
   };
+
+  const onEditClose= () => {
+    
+    setTableButton({ ...tableButton, edit: false, initialData: {} })
+  }
 
   return (
     <section>
@@ -54,7 +95,13 @@ const ProductManager = () => {
       <article>
         {/* Main modal */}
         <ModalOverlay show={showModal}>
-          <AddPojectsManagerModal close={() => setShowModal(false)}/>
+          <AddPojectsManagerModal close={onClose}/>
+        </ModalOverlay>
+      </article>
+      <article>
+        {/* Edit modal */}
+        <ModalOverlay  show={tableButton.edit}>
+          <EditPojectsManagerModal close={onEditClose} data={tableButton.initialData} />
         </ModalOverlay>
       </article>
 
@@ -62,34 +109,12 @@ const ProductManager = () => {
       <article>
         {/* Main modal */}
         <ModalOverlay show={tableButton.delete}>
-          <DeleteProjectModal close={() => setTableButton({...tableButton, delete:false})}/> 
+          <DeleteProjectModal HandleRequest={HandleRequest} close={() => setTableButton({ ...tableButton, delete: false })} isLoading={result.isLoading } /> 
 
         </ModalOverlay>
       </article>
 
-      {/* PM added successfully */}
-      {/* <article>
-        <div
-          tabindex='-1'
-          className='hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full bg-transparent'
-        >
-          <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-2'>
-            <SuccessPopup text='Project Manager added successfully' />
-          </div>
-        </div>
-      </article> */}
-
-      {/* PM deleted successfully */}
-      {/* <article>
-        <div
-          tabindex='-1'
-          className='hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full bg-transparent'
-        >
-          <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-2'>
-            <DeletePopup text='Project Manager deleted successfully' />
-          </div>
-        </div>
-      </article> */}
+      
     </section>
   );
 };
