@@ -220,7 +220,7 @@ const Settings = () => {
       </article>
 
       {/* Profile Settings */}
-      <article className='hidde pt-6'>
+      <article className='hidden pt-6'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='mb-6'>
             <p className='mb-4 text-gray-900'>

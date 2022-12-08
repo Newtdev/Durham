@@ -53,13 +53,13 @@ const Vendors = () => {
       </main>
 
       {/* Add Vendor Modal */}
-      <article>{/* Main modal */}</article>
       <ModalOverlay
         show={showVendorModal}
         close={() => setShowVendorModal(false)}
       >
         <AddVendor />
       </ModalOverlay>
+
       {/*  Vendor Succesfully Added Popup */}
       <article>
         {/* Main modal */}
@@ -107,7 +107,7 @@ const Vendors = () => {
 
               {/* Buttons */}
               <div className='mt-12 mr-5 flex gap-4 justify-end'>
-                <Button name='proceed' />
+                <Button name='proceed' width='w-[110px]' />
               </div>
             </div>
           </div>

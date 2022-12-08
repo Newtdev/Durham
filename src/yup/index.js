@@ -62,7 +62,11 @@ export const AddVendorsSchema = Yup.object().shape({
 
 export const AddUsersSchema = Yup.object().shape({
   fullName: Yup.string().required("Full name is required!"),
-  emailAddress: Yup.string().required("Email address is required!"),
+  emailAddress: Yup.string()
+    .required("Email address is required!")
+    .email("provided is not correct!"),
   phoneNumber: Yup.string().required("Phone Number is required!"),
-  password: Yup.string().required("Password name is required!"),
+  password: Yup.string()
+    .required("Password name is required!")
+    .phone("US", true, "Add the +1 at the beginning of your phone number"),
 });

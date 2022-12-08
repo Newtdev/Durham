@@ -218,7 +218,143 @@ export function AddUsers({ close }) {
                 name='ADD USER'
                 hidden
                 type='submit'
-                width='w-[136px]'
+                width='w-[116px]'
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function EditUsers({ close }) {
+  const { values, errors, touched, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      fullName: "",
+      emailAddress: "",
+      phoneNumber: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validateOnChange: true,
+    validationSchema: AddUsersSchema,
+
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
+  const props = {
+    fullName: {
+      name: "Full Name",
+      id: "fullName",
+      placeholder: "Full Name",
+      value: values.fullName,
+      onChange: handleChange,
+      error: errors.fullName,
+      touched: touched.fullName,
+    },
+    emailAddress: {
+      name: "Email Address",
+      id: "emailAddress",
+      placeholder: "Email Address",
+      value: values.emailAddress,
+      onChange: handleChange,
+      error: errors.emailAddress,
+      touched: touched.emailAddress,
+    },
+    phoneNumber: {
+      name: "Phone Number",
+      id: "phoneNumber",
+      placeholder: "Phone Number",
+      value: values.phoneNumber,
+      onChange: handleChange,
+      error: errors.phoneNumber,
+      touched: touched.phoneNumber,
+    },
+    password: {
+      name: "Password",
+      id: "password",
+      placeholder: "Password",
+      value: values.password,
+      onChange: handleChange,
+      error: errors.password,
+      touched: touched.password,
+    },
+    confirmPassword: {
+      name: "Confirm Password",
+      id: "confirmPassword",
+      placeholder: "Password",
+      value: values.confirmPassword,
+      onChange: handleChange,
+      error: errors.confirmPassword,
+      touched: touched.confirmPassword,
+    },
+  };
+
+  return (
+    <div
+      className='relative w-[490px] h-screen md:h-auto mx-auto mt-14'
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Modal content */}
+      <div className='relative bg-white rounded-lg shadow pb-4 md:pb-0'>
+        <div className='flex justify-between items-baseline px-6 py-3 rounded-t border-b'>
+          <div>
+            <h3 className='text-lg font-bold text-gray-900'>Edit User</h3>
+            <h4 className='text-gray-700'>Edit user's information</h4>
+          </div>
+          <button
+            onClick={close}
+            type='button'
+            className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
+            data-modal-toggle='small-modal'
+          >
+            <svg
+              aria-hidden='true'
+              className='w-5 h-5'
+              fill='currentColor'
+              viewBox='0 0 20 20'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                fill-rule='evenodd'
+                d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+            <span className='sr-only'>Close modal</span>
+          </button>
+        </div>
+        <div className='py-3 px-6 lg:px-8'>
+          <form className='space-y-6 ' onSubmit={handleSubmit}>
+            <div className='h-[30rem] w-full overflow-auto'>
+              <div>
+                <DashboardInput {...props.fullName} />
+              </div>
+              <div>
+                <DashboardInput {...props.emailAddress} />
+              </div>
+              <div>
+                <DashboardInput {...props.phoneNumber} />
+              </div>
+              <div>
+                <DashboardInput {...props.password} />
+              </div>
+              <div>
+                <DashboardInput {...props.confirmPassword} />
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className='mt-24 flex gap-4 justify-end items-center'>
+              <ButtonWhiteBG name='cancel' onClick={close} />
+              <DashboardButton
+                name='NEXT'
+                hidden
+                type='submit'
+                width='w-[77px]'
               />
             </div>
           </form>

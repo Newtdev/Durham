@@ -120,13 +120,134 @@ export function DashboardNav() {
   );
 }
 
+export function OverviewNav() {
+  function LinkList() {
+    return (
+      <ul className='flex gap-8'>
+        {["Dashboard", "Project Managers", "Vendors", "Users"].map(
+          (name, id) => {
+            return (
+              <li key={id}>
+                <Link
+                  to={`/dashboard/${name}`}
+                  className='block py-2 pl-3 pr-4 text-gray-700 text-base font-bold md:bg-transparent md:p-0'
+                >
+                  {name}
+                </Link>
+              </li>
+            );
+          }
+        )}
+      </ul>
+    );
+  }
+
+  function UserList() {
+    return (
+      <ul className='py-1' aria-labelledby='user-menu-button'>
+        {["Settings", "Sign out"].map((name, id) => {
+          return (
+            <li key={id}>
+              <Link
+                to=''
+                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+              >
+                {name}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  return (
+    <nav className='bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4'>
+      <div className='container flex flex-wrap items-center justify-start mx-auto'>
+        <a href='/' className='w-20 mr-8'>
+          <img src={Logo} className='w-full' alt='Durham Logo' />
+        </a>
+        <div className='flex items-center ml-auto md:order-2'>
+          <button
+            type='button'
+            className='flex items-center gap-2 '
+            id='user-menu-button'
+            aria-expanded='false'
+            data-dropdown-toggle='user-dropdown'
+            data-dropdown-placement='bottom'
+          >
+            <img className='w-8 h-8 rounded-full' src={User} alt='user' />
+            <img className='w-2' src={ChevronDown} alt='dropdown button' />
+          </button>
+          {/* <!-- Dropdown menu --> */}
+          <div
+            className='z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow'
+            id='user-dropdown'
+          >
+            <div className='px-4 py-3'>
+              <span className='block text-sm text-gray-900 dark:text-white'>
+                Bonnie Green
+              </span>
+              <span className='block text-sm font-medium text-gray-500 truncate dark:text-gray-400'>
+                name@flowbite.com
+              </span>
+            </div>
+            <UserList />
+          </div>
+          <button
+            data-collapse-toggle='mobile-menu-2'
+            type='button'
+            className='inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
+            aria-controls='mobile-menu-2'
+            aria-expanded='false'
+          >
+            <span className='sr-only'>Open main menu</span>
+            <svg
+              className='w-6 h-6'
+              aria-hidden='true'
+              fill='currentColor'
+              viewBox='0 0 20 20'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                fill-rule='evenodd'
+                d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+          </button>
+        </div>
+        {/* Main menu list */}
+        <div
+          className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
+          id='mobile-menu-2'
+        >
+          <LinkList />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export function ProjectOverviewNav() {
+  return (
+    <nav className='bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 h-20'>
+      <div className='container flex flex-wrap items-center justify-start mx-auto'>
+        <a href='/' className='w-40 mr-6'>
+          <img src={Logo} className='w-full' alt='Durham Logo' />
+        </a>
+      </div>
+    </nav>
+  );
+}
+
 /****************** DASHBOARD BUTTON *************/
 
 export function DashboardButton({ name, width, hidden, type, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`text-white text-sm font-normal ${width} hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center font-bold rounded-md text-sm px-5 py-3 flex items-center `}
+      className={`text-white text-sm font-semibold ${width} hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center rounded px-4 h-10`}
       type={type}
     >
       {!hidden && <img src={Plus} alt='' className='mr-4' />}
@@ -148,6 +269,37 @@ export function Sort() {
         >
           <img className='mr-1' src={SortIcon} alt='sort' />
           Name (A-Z)
+          <svg
+            className='ml-2 w-3 h-3'
+            aria-hidden='true'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M19 9l-7 7-7-7'
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export function Filter() {
+  return (
+    <div className='flex items-center justify-center'>
+      <p className='mr-4 font-bold text-gray-700'>Filter By:</p>
+      <div>
+        <button
+          className='inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979]'
+          type='button'
+        >
+          Select Filter
           <svg
             className='ml-2 w-3 h-3'
             aria-hidden='true'

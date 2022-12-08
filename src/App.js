@@ -1,9 +1,11 @@
 import React, { lazy, Suspense, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+// import Overview from ".pages/Dashboard/Overview-dashboard/Overview";
 import Users from "./pages/Dashboard/Users/Users";
 import Vendors from "./pages/Dashboard/Vendors-mangement/Vendors";
 import Settings from "./pages/Dashboard/Settings-Durham-Settings/Settings/Settings";
+import Overview from "./pages/Dashboard/Overview-dashboard";
 const Login = lazy(() => import("./pages/authentications/login/"));
 const Signup = lazy(() => import("./pages/authentications/sign-up"));
 const ResetPassword = lazy(() =>
@@ -24,6 +26,10 @@ function pages(id) {
     { path: "/sign-up", element: <Signup /> },
     { path: "/reset-password", element: <ResetPassword /> },
     { path: "/dashboard/product-manager", element: <ProductManager /> },
+    {
+      path: "/dashboard/overview",
+      element: <Overview />,
+    },
     {
       path: "/dashboard/users",
       element: <Users />,
