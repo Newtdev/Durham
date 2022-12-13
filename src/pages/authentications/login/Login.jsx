@@ -56,7 +56,7 @@ const Login = () => {
         },
         validationSchema: LoginSchema,
         onSubmit: (values) => {
-            HandleRequest(values)
+            HandleRequest(values);
             
         },
     });

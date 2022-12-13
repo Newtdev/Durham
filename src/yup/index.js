@@ -70,18 +70,35 @@ export const EditProfileDetailsSchema = Yup.object().shape({
 		.required("Password is required!"),
 });
 
-export const EditDurhamProfileSchema = Yup.object().shape({
-	// chair_board_education: Yup.string().required("field is required"),
-	// chief_finance_officer: Yup.string().required("field is required"),
-	// construction_interim_director: Yup.string().required("field is required"),
-	// business_Manager: Yup.string().required("field is required"),
-	// project_manager: Yup.string().required("field is required"),
-	// director_design: Yup.string().required("field is required"),
-	// director_construction: Yup.string().required("field is required"),
-	// project_manager_phone: Yup.string()
-	// 	.required("field is required")
-	// 	.phone("US", true),
-	// director_durham: Yup.string().required("field is required"),
-});
+
+export const AddNewProjectSchema = [
+	Yup.object().shape({
+		project_name: Yup.string().required("field is required"),
+		project_number: Yup.string().required("field is required"),
+		project_description: Yup.string().required("field is required"),
+		// project_project_manager: Yup.string().required("field is required"),
+	}),
+
+	Yup.object().shape({
+		// awardee: Yup.string().required("field is required"),
+		design_consultant: Yup.string().required("field is required"),
+		consultant_name: Yup.string().required("field is required"),
+		corporate_secretary: Yup.string().required("field is required"),
+		consultant_address: Yup.string().required("field is required"),
+		corporate_president: Yup.string().required("field is required"),
+		company_representative_name: Yup.string().required("field is required"),
+		company_representative_title: Yup.string().required("field is required"),
+	})
+]
+
+// export const AddNewProjectSchema = Yup.object().shape({
+	
+// 	awardee: Yup.string().required("field is required"),
+// 	design_consultant: Yup.string().required("field is required"),
+// 	consultant_name: Yup.string().required("field is required"),
+// 	corporate_secretary: Yup.string().required("field is required"),
+// 	company_representative_name: Yup.string().required("field is required"),
+// 	company_representative_title: Yup.string().required("field is required"),
+// });
 
 

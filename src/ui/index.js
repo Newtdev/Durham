@@ -19,6 +19,21 @@ export function Input(props) {
 	);
 }
 
+// REUSABLE Textarea
+export function Textarea(props) {
+  const { placeholder, id, onChange, values } = props;
+  return (
+    <textarea
+      className='bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5'
+      name={id}
+      placeholder={placeholder}
+      type='text'
+      value={values}
+      onChange={onChange}
+    />
+  );
+}
+
 // REUSABLE LABEL COMP
 
 export function Label(props) {
@@ -158,5 +173,44 @@ export function ButtonWhiteBG(props) {
 			className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">
 			{name}
 		</button>
+	);
+}
+
+
+export function ChevronDown() {
+	return (
+		<svg
+			data-accordion-icon
+			className="w-6 h-6 shrink-0"
+			fill="currentColor"
+			viewBox="0 0 20 20"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				fillRule="evenodd"
+				d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+				clipRule="evenodd"></path>
+		</svg>
+	);
+}
+
+export function ChevronUp({ close }) {
+	return (
+		<svg
+			onClick={(e) => {
+				e.stopPropagation();
+				close();
+			}}
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={1.5}
+			stroke="currentColor"
+			className="w-6 h-6">
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M4.5 15.75l7.5-7.5 7.5 7.5"
+			/>
+		</svg>
 	);
 }

@@ -63,14 +63,13 @@ export function DashboardNav() {
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
-			<div
-				className="container flex flex-wrap items-center justify-start mx-auto"
-				onClick={() => setShow(!show)}>
+			<div className="container flex flex-wrap items-center justify-start mx-auto">
 				<span className="w-20 mr-8">
 					<img src={Logo} className="w-full" alt="Durham Logo" />
 				</span>
 				<div className=" ml-auto md:order-2 relative">
 					<button
+						onClick={() => setShow(!show)}
 						type="button"
 						className="flex items-center gap-2 "
 						id="user-menu-button"
@@ -132,7 +131,7 @@ export function DashboardButton({
 	return (
 		<button
 			onClick={onClick}
-			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:bg-transparent hover:border text-center border-[#3B6979] hover:text-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center `}
+			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
 			type={type}>
 			{!hidden && <img src={Plus} alt="" className="mr-4" />}
 			{loading && <Spinner />} {loading ? "Loading..." : name}
@@ -447,5 +446,67 @@ export function Close() {
 				d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
 				clip-rule="evenodd"></path>
 		</svg>
+	);
+}
+
+export function OverviewNav() {
+	function LinkList() {
+		return (
+			<ul className="flex gap-8">
+				{["Dashboard", "Project Managers", "Vendors", "Users"].map(
+					(name, id) => {
+						return (
+							<li key={id}>
+								<Link
+									to={`/dashboard/${name}`}
+									className="block py-2 pl-3 pr-4 text-gray-700 text-base font-bold md:bg-transparent md:p-0">
+									{name}
+								</Link>
+							</li>
+						);
+					}
+				)}
+			</ul>
+		);
+	}
+}
+
+export function ProjectOverviewNav() {
+	return (
+		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 h-20">
+			<div className="container flex flex-wrap items-center justify-start mx-auto">
+				<a href="/" className="w-40 mr-6">
+					<img src={Logo} className="w-full" alt="Durham Logo" />
+				</a>
+			</div>
+		</nav>
+	);
+}
+
+export function Filter() {
+	return (
+		<div className="flex items-center justify-center">
+			<p className="mr-4 font-bold text-gray-700">Filter By:</p>
+			<div>
+				<button
+					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979]"
+					type="button">
+					Select Filter
+					<svg
+						className="ml-2 w-3 h-3"
+						aria-hidden="true"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
 	);
 }
