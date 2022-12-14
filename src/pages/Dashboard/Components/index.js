@@ -20,7 +20,7 @@ export function DashboardNav() {
 		return (
 			<ul className="flex gap-8">
 				{[
-					{ id: 1, name: "Dashboard", link: "dashboard" },
+					{ id: 1, name: "Dashboard", link: "" },
 					{ id: 2, name: "Forms", link: "forms" },
 					{
 						id: 3,

@@ -1,122 +1,37 @@
-import { useFormik } from "formik";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import { Label, Error, Textarea, Select } from "../../../ui";
+import { Label, Error, Textarea } from "../../../ui";
 // import { AddUsersSchema } from "../../../yup";
 import { SelectContainer } from "../Components";
-
-export const OverviewTableHeader = [
-	"Project Name",
-	"Awardee",
-	"Company Rep",
-	"Project Manager",
-	"Date",
-	"",
-];
-
-export const OverviewContent = [
-	{
-		id: 1,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 2,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 3,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 4,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 5,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 6,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 7,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 8,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 9,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-];
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
-			{dataArray.map(
-				({ id, projectName, awardee, companyRep, projectManager, date }) => {
-					const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+			{dataArray.map((data) => {
+				const { id, projectName, awardee, companyRep, projectManager, date } =
+					data;
+				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 
-					return (
-						<tr key={id} className={`${strip} border-b`}>
-							<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-								{projectName}
-							</td>
-							<td className="py-3 px-4">{awardee}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{companyRep}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{projectManager}</td>
-							<td className="py-3 px-4 whitespace-nowrap">{date}</td>
-							<td className="py-3 px-4 flex items-center justify-start gap-3">
-								<span className="w-4 cursor-pointer" onClick={onDelete}>
-									<img className="w-full" src={Delete} alt="delete" />
-								</span>
-								<span className="w-4 cursor-pointer" onClick={onEdit}>
-									<img className="w-full" src={Edit} alt="edit" />
-								</span>
-							</td>
-						</tr>
-					);
-				}
-			)}
+				return (
+					<tr key={id} className={`${strip} border-b`}>
+						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							{projectName}
+						</td>
+						<td className="py-3 px-4">{awardee}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{companyRep}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{projectManager}</td>
+						<td className="py-3 px-4 whitespace-nowrap">{date}</td>
+						<td className="py-3 px-4 flex items-center justify-start gap-3">
+							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
+								<img className="w-full" src={Delete} alt="delete" />
+							</span>
+							<span className="w-4 cursor-pointer" onClick={() => onEdit(data)}>
+								<img className="w-full" src={Edit} alt="edit" />
+							</span>
+						</td>
+					</tr>
+				);
+			})}
 		</tbody>
 	);
 }
@@ -131,14 +46,14 @@ export function OverviewTitleCard() {
 }
 
 export function Input(props) {
-	const { placeholder, id, onChange, values } = props;
+	const { placeholder, id, onChange, value } = props;
 	return (
 		<input
 			className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 			name={id}
 			placeholder={placeholder}
 			type="text"
-			value={values}
+			value={value}
 			onChange={onChange}
 		/>
 	);

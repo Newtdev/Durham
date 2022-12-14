@@ -1,16 +1,14 @@
-import { useState } from "react";
 import { ChevronDown } from "../../../ui";
 
-export const AccordionSelector = ({ data, objName }) => {
-	const [selected, setSelected] = useState(false);
-	// const [selected, setSelected] = useState([]);
+export const AccordionSelector = ({ data, objName, getData }) => {
+	const newClass =
+		"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
 
-	const onClick = (name, objName, e) => {
-		// setSelected([...selected, name]);
-		if (e.target.id) {
-			setSelected(true);
+	const onClick = (e) => {
+		if (e.target) {
+			getData(e.target);
+			e.target.className = newClass;
 		}
-		console.log(e.target.select());
 	};
 
 	return (
@@ -18,18 +16,17 @@ export const AccordionSelector = ({ data, objName }) => {
 			{data.map(({ name }, idx) => {
 				return (
 					<input
-						onClick={(e) => onClick(name, objName, e)}
+						onClick={onClick}
 						value={name}
 						name={objName}
 						id={idx}
 						type="button"
 						key={idx}
 						className={`bg-[#d8e1e4]
-						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black`}
+						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
 					/>
 				);
 			})}
-			{console.log(selected)}
 		</ul>
 	);
 };

@@ -59,17 +59,23 @@ export const AddVendorsSchema = Yup.object().shape({
 	industry: Yup.string().required("Industry is required!"),
 });
 
-export const EditProfileDetailsSchema = Yup.object().shape({
-	fullName: Yup.string().required("Full name is required"),
-	email: Yup.string()
-		.required("Email is required!")
-		.email("provided is not correct!"),
-	phone: Yup.string().required("Phone number is required!").phone("US", false),
-	password: Yup.string()
-		.min(6, "must be atleast 6 characters long ")
-		.required("Password is required!"),
-});
+export const EditProfileDetailsSchema = [
+	Yup.object().shape({
+		fullName: Yup.string().required("Full name is required"),
+		email: Yup.string()
+			.required("Email is required!")
+			.email("provided is not correct!"),
+		phone: Yup.string()
+			.required("Phone number is required!")
+			.phone("US", false),
+	}),
 
+	Yup.object().shape({
+		password: Yup.string()
+			.min(6, "must be atleast 6 characters long ")
+			.required("Password is required!"),
+	}),
+];
 
 export const AddNewProjectSchema = [
 	Yup.object().shape({
@@ -88,8 +94,8 @@ export const AddNewProjectSchema = [
 		corporate_president: Yup.string().required("field is required"),
 		company_representative_name: Yup.string().required("field is required"),
 		company_representative_title: Yup.string().required("field is required"),
-	})
-]
+	}),
+];
 
 // export const AddNewProjectSchema = Yup.object().shape({
 	

@@ -53,7 +53,7 @@ const DurhamSettings = () => {
 
   const props = {
     chair_board_education: {
-    indx:0,
+      indx: 0,
       name: "Chair,DPS Board of Education",
       id: "chair_board_education",
       placeholder: "Chair,DPS Board of Education",
@@ -62,7 +62,6 @@ const DurhamSettings = () => {
     },
     chief_finance_officer: {
       indx:1,
-
       name: "Chief Finance Officer",
       id: "chair_finance_officer",
       placeholder: "John Doe",

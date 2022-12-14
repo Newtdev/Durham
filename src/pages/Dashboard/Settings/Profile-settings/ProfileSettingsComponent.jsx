@@ -6,7 +6,8 @@ export const ProfileDetails = ({ data, loading, onSubmit, hidden }) => {
     const [activeIndex, setActiveIndex] = useState(null);
 
     return details.map((cur, index) => {
-        const { indx, name, values } = cur;
+        const { indx, name, value } = cur;
+        console.log(cur)
         const show = activeIndex === index
             ? 'block' : 'hidden';
         const showEdit = activeIndex === index
@@ -18,7 +19,7 @@ export const ProfileDetails = ({ data, loading, onSubmit, hidden }) => {
            
             <div>
                 <p className='font-bold text-gray-900'>{name}</p>
-                <p className={`${showEdit} font-semibold text-[#3B6979]`}>{values}</p>
+                <p className={`${showEdit} font-semibold text-[#3B6979]`}>{value}</p>
                 {hidden ? <EditComponent data={cur} show={show} onSubmit={onSubmit} cancel={CancelEdit} loading={loading} /> : <EditIndividualComponent show={show} data={cur} cancel={CancelEdit} loading={loading} />}
 
             </div>

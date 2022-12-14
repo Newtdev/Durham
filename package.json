@@ -1,6 +1,7 @@
 {
   "name": "durham",
   "version": "0.1.0",
+  "homepage": "https://staging.concisetc.com/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",

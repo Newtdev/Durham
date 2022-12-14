@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import ProjectFormsController from "../add-project";
 
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectManager = lazy(() =>
@@ -10,6 +9,8 @@ const Settings = lazy(() => import("../Settings/main"));
 const DurhamSettings = lazy(() => import("../Settings/Durhams-settings"));
 const ProfileSettings = lazy(() => import("../Settings/Profile-settings"));
 const ProjectDashboard = lazy(() => import("../Overview-dashboard"));
+const ProjectPreview = lazy(() => import("../project-dashboard"));
+const ProjectFormsController = lazy(() => import("../add-project"));
 
 const Dashboard = () => {
 	return (
@@ -22,6 +23,7 @@ const Dashboard = () => {
 				<Route path="/settings" element={<Settings />} />
 				<Route path="/settings/durhams-profile" element={<DurhamSettings />} />
 				<Route path="/settings/profile" element={<ProfileSettings />} />
+				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
 			</Routes>
 		</Suspense>
 	);
