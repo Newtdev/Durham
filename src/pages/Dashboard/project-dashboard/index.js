@@ -5,16 +5,47 @@ import Edit from "../../../assets/edit.svg";
 import Duplicate from "../../../assets/duplicate.svg";
 import { Link } from "react-router-dom";
 import { Accordion, ProjectCard, ProjectDetails } from "./Components";
-import { documents, state } from "../../../lib/data";
 import { useSelector } from "react-redux";
 import { getDocuments, project_details } from "../add-project/projectSlice";
-import { useEffect } from "react";
+import { date } from "yup";
 
 const ProjectDashboard = () => {
-	const document = useSelector(project_details);
-	useEffect(() => {
-		console.log(document);
-	}, []);
+	const projectDetails = useSelector(project_details);
+	const documents = useSelector(getDocuments);
+
+	function getTotals() {
+		if (!documents) {
+			return 0;
+		}
+		const {
+			procurement,
+			notice_letter,
+			mwbe_forms,
+			contract,
+			budget,
+			project_closeout,
+			notice,
+		} = documents;
+		return [
+			...contract,
+			...procurement,
+			...notice_letter,
+			...mwbe_forms,
+			...budget,
+			...notice,
+			...project_closeout,
+		].length;
+	}
+
+	function handleDate() {
+		// let a = new Date().g
+		if (!projectDetails) {
+			return;
+		}
+		const date = projectDetails.date.toString().split(" ");
+		return `${date[2]}/${date[1]}/${date[3]}`;
+	}
+
 	return (
 		<section>
 			{/* <!-- Navbar --> */}
@@ -32,7 +63,7 @@ const ProjectDashboard = () => {
 					<span className="text-gray-900 font-bold">&gt;</span>
 
 					<span className="text-gray-900 font-bold text-base">
-						Burton Elementary School - Boiler Replacement
+						{!projectDetails ? "" : projectDetails?.project_name}
 					</span>
 				</div>
 			</div>
@@ -73,26 +104,29 @@ const ProjectDashboard = () => {
 					</div>
 
 					<div className="mt-9 grid grid-cols-3">
-						<ProjectCard name="Total Documents" value="8" />
-						<ProjectCard name="Filled" value="8" />
-						<ProjectCard name="Yet to be Filled" value="8" />
+						<ProjectCard name="Total Documents" value={getTotals()} />
+						<ProjectCard name="Filled" value="0" />
+						<ProjectCard name="Yet to be Filled" value="0" />
 					</div>
 
 					{/* Main Content */}
 					<div className="mt-6 grid grid-cols-3 gap-6">
 						{/* Left Side */}
 						<div class="col-span-2">
-							{console.log(document)}
 							<div className="bg-white border border-gray-100 rounded-lg p-4">
 								<div className="pb-2 border-b border-b-gray-50 flex justify-between items-center">
 									<p className="px-[10px] py-1 rounded font-bold bg-[#D8E1E4] text-[#2F5461]">
-										{`No:${document?.project_number}`}
+										{`No:${
+											!projectDetails ? 0 : projectDetails?.project_number
+										}`}
 									</p>
-									<p className="text-gray-700 text-base">12/Jun/2022</p>
+									<p className="text-gray-700 text-base">{handleDate()}</p>
 								</div>
 								<ProjectDetails
-									name={document?.project_name}
-									description={document?.project_description}
+									name={!projectDetails ? "" : projectDetails?.project_name}
+									description={
+										!projectDetails ? "" : projectDetails?.project_description
+									}
 								/>
 
 								<div className="mt-4">
@@ -129,9 +163,13 @@ const ProjectDashboard = () => {
 									</div>
 									<div className="text-gray-900 text-xs">
 										<p className="mt-4 font-bold">
-											{document?.consultant_name}
+											{!projectDetails ? "" : projectDetails?.consultant_name}
 										</p>
-										<p className="my-1">{document?.consultant_address}</p>
+										<p className="my-1">
+											{!projectDetails
+												? ""
+												: projectDetails?.consultant_address}
+										</p>
 										{/* <p>Austin, TX</p> */}
 									</div>
 								</div>
@@ -156,7 +194,7 @@ const ProjectDashboard = () => {
 											{/* <img className="w-full" src={Avatar} alt="user" /> */}
 										</div>
 										<span className="text-xs text-[#2f5461]">
-											Tife Olayinka
+											{!projectDetails ? "" : projectDetails?.project_manager}
 										</span>
 									</div>
 								</div>

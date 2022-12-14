@@ -87,15 +87,7 @@ export function OverviewTextarea(props) {
 	);
 }
 
-export function ProjectInfo({
-	values,
-	errors,
-	touched,
-	handleChange,
-	nextStep,
-	prevStep,
-	steps,
-}) {
+export function ProjectInfo({ values, errors, touched, handleChange }) {
 	const project_name = {
 		name: "Project Name",
 		id: "project_name",
@@ -148,7 +140,12 @@ export function ProjectInfo({
 							<OverviewTextarea {...project_description} />
 						</div>
 						<div>
-							<DashboardSelect {...project_manager} />
+							<DashboardSelect {...project_manager}>
+								<option>Select Project Manager</option>
+
+								<option>Sindhu Uppuluri</option>
+								<option>Tanzania Burghardt</option>
+							</DashboardSelect>
 						</div>
 					</div>
 				</div>
@@ -224,7 +221,11 @@ export function AwardeeInfo({ values, errors, touched, handleChange }) {
 				<div className="">
 					<div className="w-full overflow-auto">
 						<div>
-							<SelectContainer {...awardee} />
+							<DashboardSelect {...awardee}>
+								<option>Select Awardee</option>
+								<option>Omotolani Olorotimi</option>
+								<option>Tife Olayinka</option>
+							</DashboardSelect>
 						</div>
 						<div>
 							<OverviewInput {...design_consultant} />

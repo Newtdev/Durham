@@ -31,6 +31,8 @@ const ProjectFormsController = () => {
 		handleReset,
 	} = useFormik({
 		initialValues: {
+			date: new Date(),
+			project_manager: "",
 			project_name: "",
 			project_number: "",
 			project_description: "",
@@ -39,9 +41,9 @@ const ProjectFormsController = () => {
 			awardee: "",
 			design_consultant: "",
 			consultant_name: "",
-			corporate_secretary: "",
 			consultant_address: "",
 			corporate_president: "",
+			corporate_secretary: "",
 			company_representative_name: "",
 			company_representative_title: "",
 
@@ -69,7 +71,7 @@ const ProjectFormsController = () => {
 	const ExitForm = () => {
 		setShow(false);
 		handleReset();
-		navigate(-1);
+		navigate("/dashboard");
 	};
 
 	const props = {

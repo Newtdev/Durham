@@ -19,7 +19,7 @@ export const ProjectDetails = ({ name, description }) => {
 	);
 };
 
-export const Accordion = ({data}) => {
+export const Accordion = ({ data }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
 
 	const newClass =
@@ -31,52 +31,55 @@ export const Accordion = ({data}) => {
 			e.target.className = newClass;
 		}
 	};
+
 	return (
 		<>
-			{data?.map(({ id, name, data }, idx) => {
-				const active =
-					activeIndex === idx ? "h-[40rem] " : "h-16 overflow-y-hidden ";
-
-				return (
-					<div
-						className={`${active} transition-all ease-linear duration-75 overflow-y-hidden`}
-						key={id}>
-						<h2>
-							<button
-								onClick={() => {
-									setActiveIndex(id);
-								}}
-								type="button"
-								className="flex items-center justify-between w-full p-4 font-semibold text-left text-gray-900 border border-l-0 border-r-0 border-b-0 border-gray-100 rounded-t-lg">
-								<span>{name}</span>
-								{/* Down Arrow */}
-								{activeIndex !== idx && <ChevronDown />}
-								{activeIndex === idx && (
-									<ChevronUp close={() => setActiveIndex(null)} />
-								)}
-							</button>
-						</h2>
-						<div>
-							<ul className="px-4">
-								{data.map(({ name }, idx) => {
-									return (
-										<input
-											onClick={onClick}
-											value={name}
-											// name={objName}
-											id={idx}
-											type="button"
-											key={idx}
-											className={`bg-[#d8e1e4]
+			{!data
+				? null
+				: Object.keys(data)?.map((cur, idx) => {
+						const active =
+							activeIndex === idx ? "h-full" : "h-16 overflow-y-hidden ";
+						return (
+							<div
+								className={`${active} transition-all ease-linear duration-75 overflow-y-hidden`}
+								// key={id}
+							>
+								<h2>
+									<button
+										onClick={() => {
+											setActiveIndex(idx);
+										}}
+										type="button"
+										className="flex items-center justify-between w-full p-4 font-semibold text-left text-gray-900 border border-l-0 border-r-0 border-b-0 border-gray-100 rounded-t-lg">
+										<span>{cur}</span>
+										{/* Down Arrow */}
+										{activeIndex !== idx && <ChevronDown />}
+										{activeIndex === idx && (
+											<ChevronUp close={() => setActiveIndex(null)} />
+										)}
+									</button>
+								</h2>
+								<div>
+									<ul className="px-4">
+										{Object.values(data)[idx].map((cur, idx) => {
+											return (
+												<input
+													onClick={onClick}
+													value={cur}
+													// name={objName}
+													id={idx}
+													type="button"
+													key={idx}
+													className={`bg-[#d8e1e4]
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
-										/>
-									);
-								})}
-							</ul>
-						</div>
-					</div>
-				);
-			})}
+												/>
+											);
+										})}
+									</ul>
+								</div>
+							</div>
+						);
+				  })}
 		</>
 	);
 };
