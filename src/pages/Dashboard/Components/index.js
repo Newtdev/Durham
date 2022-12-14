@@ -63,7 +63,9 @@ export function DashboardNav() {
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
-			<div className="container flex flex-wrap items-center justify-start mx-auto">
+			<div
+				className="container flex flex-wrap items-center justify-start mx-auto"
+				onClick={() => setShow(!show)}>
 				<span className="w-20 mr-8">
 					<img src={Logo} className="w-full" alt="Durham Logo" />
 				</span>

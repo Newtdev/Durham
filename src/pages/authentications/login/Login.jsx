@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import User from '../../../assets/Avatar.svg';
 import { Button, ModalOverlay } from '../../../ui'
 import { Link } from 'react-router-dom';
 import AuthComp, { AuthHeader, CheckBox, ImageSideContainer, InputContainer } from '../component';
