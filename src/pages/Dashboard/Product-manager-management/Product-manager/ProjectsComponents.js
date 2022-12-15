@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {
 	useAddProjectManagerMutation,
@@ -8,6 +9,7 @@ import {
 import { ButtonRedBG, ButtonWhiteBG } from "../../../../ui";
 import { AddProjectSchema } from "../../../../yup";
 import { Close, DashboardButton, DashboardInput } from "../../Components";
+import { save_project_manager } from "../projectManagerSlice";
 
 export const ProductHeader = [
 	"First Name",
@@ -278,6 +280,7 @@ const ProductManagerForm = ({
 
 /*********** ADD PROJECT MANAGER MODAL ************** */
 export function AddPojectsManagerModal({ close }) {
+	const dispatch = useDispatch();
 	const [show, setShow] = useState(false);
 
 	const [addProjectManager, { isLoading }] = useAddProjectManagerMutation();
@@ -302,6 +305,7 @@ export function AddPojectsManagerModal({ close }) {
 		close,
 		removeShow: () => setShow(false),
 		onSubmit: (values) => {
+			dispatch(save_project_manager(values));
 			HandleRequest(values);
 		},
 		modalHeading: {
@@ -316,6 +320,7 @@ export function AddPojectsManagerModal({ close }) {
 /*********** EDIT PROJECT MANAGER MODAL ************** */
 export function EditPojectsManagerModal({ close, data }) {
 	const [show, setShow] = useState(false);
+	const dispatch = useDispatch();
 
 	const [updateProductManagerDetails, { isLoading }] =
 		useUpdateProductManagerDetailsMutation();
@@ -346,6 +351,8 @@ export function EditPojectsManagerModal({ close, data }) {
 		removeShow: () => setShow(false),
 		data,
 		onSubmit: (values) => {
+			dispatch(save_project_manager(values));
+
 			HandleRequest(values);
 		},
 		modalHeading: {

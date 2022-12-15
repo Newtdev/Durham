@@ -7,7 +7,6 @@ export const ProfileDetails = ({ data, loading, onSubmit, hidden }) => {
 
     return details.map((cur, index) => {
         const { indx, name, value } = cur;
-        console.log(cur)
         const show = activeIndex === index
             ? 'block' : 'hidden';
         const showEdit = activeIndex === index

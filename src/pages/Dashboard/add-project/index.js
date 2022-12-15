@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { useFormik, FormikProvider } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { state } from "../../../lib/data";
@@ -10,10 +10,18 @@ import { AwardeeInformation } from "./AddNewProjects";
 import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
 import { addNewProject } from "./projectSlice";
+import { useSelector } from "react-redux";
+import { product_manager_data } from "../Product-manager-management/projectManagerSlice";
+import { getSaveData } from "../Vendors-mangement/vendorSlice";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
+
+	const awardee = useSelector(getSaveData);
+	const productmanager = useSelector(product_manager_data);
 
 	const [steps, setSteps] = useState(0);
 	const [show, setShow] = useState(false);
@@ -21,31 +29,27 @@ const ProjectFormsController = () => {
 
 	const nextStep = () => setSteps((prev) => prev + 1);
 	const prevStep = () => setSteps((prev) => prev - 1);
-	const {
-		values,
-		errors,
-		touched,
-		setFieldValue,
-		handleSubmit,
-		handleChange,
-		handleReset,
-	} = useFormik({
+
+	const formik = useFormik({
 		initialValues: {
 			date: new Date(),
 			project_manager: "",
 			project_name: "",
 			project_number: "",
 			project_description: "",
-			// select_project_manager: "",
 
-			awardee: "",
-			design_consultant: "",
-			consultant_name: "",
-			consultant_address: "",
-			corporate_president: "",
-			corporate_secretary: "",
-			company_representative_name: "",
-			company_representative_title: "",
+			awardeeInfo: [
+				{
+					awardee: "",
+					design_consultant: "",
+					consultant_name: "",
+					consultant_address: "",
+					corporate_president: "",
+					corporate_secretary: "",
+					company_representative_name: "",
+					company_representative_title: "",
+				},
+			],
 
 			document: {},
 		},
@@ -67,6 +71,15 @@ const ProjectFormsController = () => {
 			}
 		},
 	});
+	const {
+		values,
+		errors,
+		touched,
+		setFieldValue,
+		handleSubmit,
+		handleChange,
+		handleReset,
+	} = formik;
 
 	const ExitForm = () => {
 		setShow(false);
@@ -169,7 +182,6 @@ const ProjectFormsController = () => {
 						<div className="flex gap-6 items-center justify-start">
 							<FormHeader active={steps} />
 						</div>
-
 						<button
 							className="text-[#3b6979] font-semibold w-20 h-10 text-base border-none rounded hover:bg-gray-50 hover:text-blue-800"
 							onClick={() => setShow(true)}>
@@ -179,11 +191,13 @@ const ProjectFormsController = () => {
 
 					{/* Main Content */}
 					<div className="container mx-auto pt-8 px-4 lg:px-24">
-						<form onSubmit={handleSubmit}>
-							{steps === 0 && <ProjectOverview {...props} />}
-							{steps === 1 && <AwardeeInformation {...props} />}
-							{steps === 2 && <SelectDocuments {...selectprops} />}
-						</form>
+						<FormikProvider value={formik}>
+							<form onSubmit={handleSubmit}>
+								{steps === 0 && <ProjectOverview {...props} />}
+								{steps === 1 && <AwardeeInformation {...props} />}
+								{steps === 2 && <SelectDocuments {...selectprops} />}
+							</form>
+						</FormikProvider>
 					</div>
 				</main>
 			</section>

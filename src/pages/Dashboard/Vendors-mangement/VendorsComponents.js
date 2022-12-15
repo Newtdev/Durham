@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -12,6 +13,7 @@ import {
 	DashboardInput,
 	SelectContainer,
 } from "../Components";
+import { save_awardee } from "./vendorSlice";
 
 export const VendorsHeader = [
 	"First name",
@@ -385,6 +387,7 @@ const VendorInformationComponents = ({
 };
 /**********ADD VENDOR************/
 export function AddVendor({ close }) {
+	const dispatch = useDispatch();
 	const [success, setSuccess] = useState(false);
 	const [addVendor, { isLoading }] = useAddVendorMutation();
 
@@ -424,6 +427,7 @@ export function AddVendor({ close }) {
 			industry: "",
 		},
 		onSubmit: (values) => {
+			dispatch(save_awardee(values));
 			HandleRequest(values);
 		},
 	};
@@ -489,7 +493,7 @@ export function EditVendorModal({
 	isLoading,
 }) {
 	const [showVendorInfo, setShowVendorInfo] = useState(false);
-
+	const dispatch = useDispatch();
 	const vendorInfo = {
 		onSuccess: () => setShowVendorInfo(true),
 		onSuccessClose: () => setShowVendorInfo(false),
@@ -509,6 +513,7 @@ export function EditVendorModal({
 		vendorInitValue,
 		onSubmit: (values) => {
 			handleRequest(values);
+			dispatch(save_awardee(values));
 		},
 	};
 

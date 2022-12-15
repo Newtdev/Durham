@@ -154,63 +154,66 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 	);
 }
 
-export function AwardeeInfo({ values, errors, touched, handleChange }) {
+export function AwardeeInfo(props) {
+	const { values, errors, touched, handleChange, index } = props.data;
+	console.log(values);
 	const awardee = {
 		name: "Select Awardee involve in this project",
-		id: "awardee",
+		id: `awardeeInfo.${index}.awardee`,
 		placeholder: "Select Awardee involve in this project",
 		onChange: handleChange,
-		value: values.awardee,
-		error: errors.awardee,
+		value: values.awardeeInfo[index].awardee,
+		// error: errors?.awardeeInfo[index].awardee,
 		touched: touched.awardee,
 	};
 
 	const design_consultant = {
 		name: "Select Design Consultant",
-		id: "design_consultant",
+		id: `awardeeInfo.${index}.design_consultant`,
 		placeholder: "Select Design Consultant",
 
 		onChange: handleChange,
-		value: values.design_consultant,
+		value: values.awardeeInfo[index].design_consultant,
 		error: errors.design_consultant,
 		touched: touched.design_consultant,
 	};
 	const consultant_name = {
 		name: "Consultant Name",
-		id: "consultant_name",
+		id: `awardeeInfo.${index}.consultant_name`,
 		placeholder: "Enter Consultant Name",
 		onChange: handleChange,
-		value: values.consultant_name,
+		value: values.awardeeInfo[index].consultant_name,
 		error: errors.consultant_name,
 		touched: touched.consultant_name,
 	};
 	const consultant_address = {
 		name: "Consultant Address",
-		id: "consultant_address",
+		id: `awardeeInfo.${index}.consultant_address`,
 		placeholder: "Enter Consultant Address",
 
 		onChange: handleChange,
-		value: values.consultant_address,
+		value: values.awardeeInfo[index].consultant_address,
 		error: errors.consultant_address,
 		touched: touched.consultant_address,
 	};
+
 	const corporate_president = {
 		name: "Corperate President",
-		id: "corporate_president",
+		id: `awardeeInfo.${index}.corporate_president`,
 		placeholder: "Enter Corperate President",
 		onChange: handleChange,
-		value: values.corporate_president,
+		value: values.awardeeInfo[index].corporate_president,
 		error: errors.corporate_president,
 		touched: touched.corporate_president,
 	};
 
 	const corporate_secretary = {
 		name: "Corperate Secretary",
-		id: "corporate_secretary",
+		id: `awardeeInfo.${index}.corporate_secretary`,
 		placeholder: "Enter Corperate Secretary",
 
 		onChange: handleChange,
-		value: values.corporate_secretary,
+		value: values.awardeeInfo[index].corporate_secretary,
 		error: errors.corporate_secretary,
 		touched: touched.corporate_secretary,
 	};
@@ -250,23 +253,25 @@ export function AwardeeInfo({ values, errors, touched, handleChange }) {
 	);
 }
 
-export function CompanyRep({ values, handleChange, errors, touched }) {
+export function CompanyRep({ data }) {
+	const { values, handleChange, errors, touched, index } = data;
+
 	const company_representative_name = {
 		name: "Name",
-		id: "company_representative_name",
+		id: `awardeeInfo.${index}.company_representative_name`,
 		placeholder: "Enter Representative Name",
 		onChange: handleChange,
-		value: values.company_representative_name,
+		value: values.awardeeInfo[index].company_representative_name,
 		error: errors.company_representative_name,
 		touched: touched.company_representative_name,
 	};
 	const company_representative_title = {
 		name: "Title",
-		id: "company_representative_title",
+		id: `awardeeInfo.${index}.company_representative_title`,
 		placeholder: "Enter Representative Title",
 
 		onChange: handleChange,
-		value: values.company_representative_title,
+		value: values.awardeeInfo[index].company_representative_title,
 		error: errors.company_representative_title,
 		touched: touched.company_representative_title,
 	};

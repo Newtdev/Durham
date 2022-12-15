@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import Lunsford from "../../forms/Lundsford";
 
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectManager = lazy(() =>
@@ -18,6 +19,7 @@ const Dashboard = () => {
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
+				<Route path="/forms" element={<Lunsford />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
 				<Route path="/settings" element={<Settings />} />

@@ -165,3 +165,85 @@ export const Months = [
 	"Nov",
 	"Dec",
 ];
+
+
+export const ProductHeader = [
+	"First Name",
+	"Last name",
+	"Email",
+	"Phone Number",
+	"",
+];
+
+export const productContent = [
+	{
+		id: 1,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 2,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 3,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 4,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 5,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 6,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 7,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 8,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 9,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+	{
+		id: 10,
+		first_name: "Jane ",
+		last_name: " Cooper",
+		email: "debra.holt@example.com",
+		phone: "+1 (925) 727-5161",
+	},
+];

@@ -78,27 +78,31 @@ export const EditProfileDetailsSchema = [
 ];
 
 export const AddNewProjectSchema = [
-	Yup.object().shape({
+	Yup.object({
 		project_name: Yup.string().required("field is required"),
 		project_number: Yup.string().required("field is required"),
 		project_description: Yup.string().required("field is required"),
 		project_manager: Yup.string().required("field is required"),
 	}),
-
-	Yup.object().shape({
-		awardee: Yup.string().required("field is required"),
-		design_consultant: Yup.string().required("field is required"),
-		consultant_name: Yup.string().required("field is required"),
-		consultant_address: Yup.string().required("field is required"),
-		corporate_president: Yup.string().required("field is required"),
-		corporate_secretary: Yup.string().required("field is required"),
-		company_representative_name: Yup.string().required("field is required"),
-		company_representative_title: Yup.string().required("field is required"),
+	Yup.object({
+		awardeeInfo: Yup.array().of(
+			Yup.object().shape({
+				awardee: Yup.string().required("field is required"),
+				design_consultant: Yup.string().required("field is required"),
+				consultant_name: Yup.string().required("field is required"),
+				consultant_address: Yup.string().required("field is required"),
+				corporate_president: Yup.string().required("field is required"),
+				corporate_secretary: Yup.string().required("field is required"),
+				company_representative_name: Yup.string().required("field is required"),
+				company_representative_title:
+					Yup.string().required("field is required"),
+			})
+		),
 	}),
 ];
 
 // export const AddNewProjectSchema = Yup.object().shape({
-	
+
 // 	awardee: Yup.string().required("field is required"),
 // 	design_consultant: Yup.string().required("field is required"),
 // 	consultant_name: Yup.string().required("field is required"),
@@ -107,4 +111,6 @@ export const AddNewProjectSchema = [
 // 	company_representative_title: Yup.string().required("field is required"),
 // });
 
-
+export const LundsForm = Yup.object().shape({
+	type: Yup.string().required("Type is required!"),
+});

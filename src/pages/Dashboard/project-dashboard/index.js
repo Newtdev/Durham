@@ -1,50 +1,20 @@
 import { DashboardNav } from "../Components";
 import RedDelete from "../../../assets/redDelete.svg";
 import BackArrow from "../../../assets/backArrow.svg";
-import Edit from "../../../assets/edit.svg";
-import Duplicate from "../../../assets/duplicate.svg";
 import { Link } from "react-router-dom";
 import { Accordion, ProjectCard, ProjectDetails } from "./Components";
 import { useSelector } from "react-redux";
 import { getDocuments, project_details } from "../add-project/projectSlice";
-import { date } from "yup";
+import { LoadingArrow, Pen } from "../../../ui";
+import { getTotals, handleDate } from "../../../shared-component";
+import { useState } from "react";
+import Lunsford from "../../forms/Lundsford";
+import { lundsford } from "../../../shared-component/slug";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documents = useSelector(getDocuments);
-
-	function getTotals() {
-		if (!documents) {
-			return 0;
-		}
-		const {
-			procurement,
-			notice_letter,
-			mwbe_forms,
-			contract,
-			budget,
-			project_closeout,
-			notice,
-		} = documents;
-		return [
-			...contract,
-			...procurement,
-			...notice_letter,
-			...mwbe_forms,
-			...budget,
-			...notice,
-			...project_closeout,
-		].length;
-	}
-
-	function handleDate() {
-		// let a = new Date().g
-		if (!projectDetails) {
-			return;
-		}
-		const date = projectDetails.date.toString().split(" ");
-		return `${date[2]}/${date[1]}/${date[3]}`;
-	}
+	const [slug, setSlug] = useState(null);
 
 	return (
 		<section>
@@ -83,14 +53,14 @@ const ProjectDashboard = () => {
 							<button
 								type="button"
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
-								<img src={Edit} alt="edit" />
+								<Pen />
 								<span>edit</span>
 							</button>
 
 							<button
 								type="submit"
 								className="uppercase text-white text-center text-base w-[152px] bg-[#3B6979] hover:bg-blue-800 font-bold rounded h-8 transition-all flex gap-2 items-center justify-center">
-								<img src={Duplicate} alt="duplicate" />
+								<LoadingArrow />
 								<span>duplicate</span>
 							</button>
 
@@ -104,7 +74,7 @@ const ProjectDashboard = () => {
 					</div>
 
 					<div className="mt-9 grid grid-cols-3">
-						<ProjectCard name="Total Documents" value={getTotals()} />
+						<ProjectCard name="Total Documents" value={getTotals(documents)} />
 						<ProjectCard name="Filled" value="0" />
 						<ProjectCard name="Yet to be Filled" value="0" />
 					</div>
@@ -120,7 +90,9 @@ const ProjectDashboard = () => {
 											!projectDetails ? 0 : projectDetails?.project_number
 										}`}
 									</p>
-									<p className="text-gray-700 text-base">{handleDate()}</p>
+									<p className="text-gray-700 text-base">
+										{handleDate(projectDetails)}
+									</p>
 								</div>
 								<ProjectDetails
 									name={!projectDetails ? "" : projectDetails?.project_name}
@@ -140,7 +112,7 @@ const ProjectDashboard = () => {
 							</div>
 							{/* Accordions */}
 							<div className="mt-6 bg-white rounded-lg border border-gray-100">
-								<Accordion data={documents} />
+								<Accordion data={documents} readSlug={(val) => setSlug(val)} />
 							</div>
 						</div>
 
@@ -203,6 +175,7 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
+			{slug === lundsford && <Lunsford {...projectDetails} />}
 		</section>
 	);
 };

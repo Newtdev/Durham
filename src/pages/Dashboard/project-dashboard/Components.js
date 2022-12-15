@@ -19,7 +19,7 @@ export const ProjectDetails = ({ name, description }) => {
 	);
 };
 
-export const Accordion = ({ data }) => {
+export const Accordion = ({ data, readSlug }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
 
 	const newClass =
@@ -27,16 +27,22 @@ export const Accordion = ({ data }) => {
 
 	const onClick = (e) => {
 		if (e.target) {
+			readSlug(e.target.id);
 			// getData(e.target);
 			e.target.className = newClass;
 		}
 	};
 
+	const makeId = (...arg) => {
+		return arg[1].split(" ").join("-");
+	};
+
 	return (
 		<>
+			{console.log(data)}
 			{!data
 				? null
-				: Object.keys(data)?.map((cur, idx) => {
+				: Object.keys(data)?.map((document, idx) => {
 						const active =
 							activeIndex === idx ? "h-full" : "h-16 overflow-y-hidden ";
 						return (
@@ -51,7 +57,7 @@ export const Accordion = ({ data }) => {
 										}}
 										type="button"
 										className="flex items-center justify-between w-full p-4 font-semibold text-left text-gray-900 border border-l-0 border-r-0 border-b-0 border-gray-100 rounded-t-lg">
-										<span>{cur}</span>
+										<span>{document}</span>
 										{/* Down Arrow */}
 										{activeIndex !== idx && <ChevronDown />}
 										{activeIndex === idx && (
@@ -61,15 +67,15 @@ export const Accordion = ({ data }) => {
 								</h2>
 								<div>
 									<ul className="px-4">
-										{Object.values(data)[idx].map((cur, idx) => {
+										{Object.values(data)[idx].map((cur, index) => {
 											return (
 												<input
 													onClick={onClick}
 													value={cur}
 													// name={objName}
-													id={idx}
+													id={makeId(document, cur)}
 													type="button"
-													key={idx}
+													key={index}
 													className={`bg-[#d8e1e4]
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
 												/>

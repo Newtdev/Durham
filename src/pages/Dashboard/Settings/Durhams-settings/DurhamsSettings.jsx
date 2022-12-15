@@ -5,13 +5,14 @@ import {useUpdateDurhamDetailsMutation,
 import { toast } from "react-toastify";
 import { PageNavigation } from "../components";
 import { useState } from "react";
-
+import { fetchData } from "../../../../shared-component";
 
 
 const DurhamSettings = () => {
   const result = useFetchDurhamQuery()
+
   const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
-  const [value, setValue] = useState({});
+  const [values, setValue] = useState(fetchData);
 
   const HandleRequest = async (values) => {
 
@@ -29,21 +30,24 @@ const DurhamSettings = () => {
 			}
     }
   }
+
  
   const onChange = (e) => {
     const { name, value } = e.target;
-    setValue({ [name]: value })
+    
+    setValue({...values, [name]: value })
   };
 
   const onSubmit = (e) => {
     e.preventDefault()
-    Object.entries(value).forEach((cur) => {
+    Object.entries(values).forEach((cur) => {
       const [name, value] = [cur[0], cur[1]];
               
       if (!value) {
         return
       } else {
-        
+
+        localStorage.setItem('DurhamProfiles',JSON.stringify({...values,[name]:value}))
         HandleRequest({ name, value })
       }
     
@@ -51,9 +55,11 @@ const DurhamSettings = () => {
     });
   }
 
+  
   const props = {
     chair_board_education: {
       indx: 0,
+      value: values.chair_board_education,
       name: "Chair,DPS Board of Education",
       id: "chair_board_education",
       placeholder: "Chair,DPS Board of Education",
@@ -61,9 +67,10 @@ const DurhamSettings = () => {
       onSubmit
     },
     chief_finance_officer: {
-      indx:1,
+      indx: 1,
+      value: values.chief_finance_officer,
       name: "Chief Finance Officer",
-      id: "chair_finance_officer",
+      id: "chief_finance_officer",
       placeholder: "John Doe",
       onChange,
       onSubmit
@@ -71,7 +78,7 @@ const DurhamSettings = () => {
     },
     construction_interim_director: {
       indx:2,
-
+      value:values.construction_interim_director,
       name: "Construction & Capital Planning Interim Executive Director",
       id: "construction_interim_director",
       placeholder: "John Doe",
@@ -80,7 +87,7 @@ const DurhamSettings = () => {
     },
     business_Manager: {
       indx:3,
-
+      value:values.business_Manager,
       name: "Construction & Capital Planning Business Manager",
       id: "business_Manager",
       placeholder: "John Doe",
@@ -89,7 +96,7 @@ const DurhamSettings = () => {
     },
     project_manager: {
       indx:4,
-
+value: values.project_manager,
       name: " Construction & Capital Planning Project Manager",
       id: "project_manager",
       placeholder: "John Doe",
@@ -98,7 +105,7 @@ const DurhamSettings = () => {
     },
     project_manager_phone: {
       indx:5,
-
+value: values.project_manager_phone,
       name: "Construction & Capital Planning Project Manager's Phone Number",
       id: "project_manager_phone",
       placeholder: "John Doe",
@@ -107,7 +114,7 @@ const DurhamSettings = () => {
     },
     director_construction: {
       indx:6,
-
+      value:values.director_construction,
       name: " Director of Construction and Sustainability",
       id: "director_construction",
       placeholder: "John Doe",
@@ -116,7 +123,7 @@ const DurhamSettings = () => {
     },
     director_design: {
       indx:7,
-
+      value:values.director_design,
       name: " Director of Design and Construction",
       id: "director_design",
       placeholder: "John Doe",
@@ -125,7 +132,7 @@ const DurhamSettings = () => {
     },
     director_durham: {
       indx:8,
-
+value:values.director_durham,
       name: " Executive Director Durham Public Schools Building Services",
       id: "director_durham",
       placeholder: "John Doe",
