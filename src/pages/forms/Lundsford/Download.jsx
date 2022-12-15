@@ -1,9 +1,13 @@
 import { DashboardButton } from "../../Dashboard/Components"
 import Success from "../../../assets/success.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { project_details } from "../../Dashboard/add-project/projectSlice";
 
 
-const DownLoadForm = ({ component, show }) => {
+const DownLoadForm = ({ component, show, name }) => {
+  console.log(name)
+  const projectDetails = useSelector(project_details);
 
   const exportPDFWithComponent = () => {
     if (component.current) {
@@ -25,8 +29,8 @@ const DownLoadForm = ({ component, show }) => {
         </h3>
         <p className='mt-6 text-base text-gray-700'>
           Congratulations! You have successfully created the{" "}
-          <span>&lt;document name&gt;</span> for{" "}
-          <span>&lt;Project Name&gt;</span>.
+            <span>{name}</span> for{" "}
+            <span>{!projectDetails? "":projectDetails?.project_name}</span>.
         </p>
       </div>
 

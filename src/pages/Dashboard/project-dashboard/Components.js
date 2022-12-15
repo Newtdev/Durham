@@ -27,7 +27,8 @@ export const Accordion = ({ data, readSlug }) => {
 
 	const onClick = (e) => {
 		if (e.target) {
-			readSlug(e.target.id);
+			const { id, name } = e.target;
+			readSlug(id, name);
 			// getData(e.target);
 			e.target.className = newClass;
 		}
@@ -75,6 +76,7 @@ export const Accordion = ({ data, readSlug }) => {
 													// name={objName}
 													id={makeId(document, cur)}
 													type="button"
+													name={cur}
 													key={index}
 													className={`bg-[#d8e1e4]
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}

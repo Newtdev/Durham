@@ -14,7 +14,7 @@ import { lundsford } from "../../../shared-component/slug";
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documents = useSelector(getDocuments);
-	const [slug, setSlug] = useState(null);
+	const [slug, setSlug] = useState({ id: null, documents: "" });
 
 	return (
 		<section>
@@ -112,7 +112,10 @@ const ProjectDashboard = () => {
 							</div>
 							{/* Accordions */}
 							<div className="mt-6 bg-white rounded-lg border border-gray-100">
-								<Accordion data={documents} readSlug={(val) => setSlug(val)} />
+								<Accordion
+									data={documents}
+									readSlug={(val, doc) => setSlug({ id: val, name: doc })}
+								/>
 							</div>
 						</div>
 
@@ -175,7 +178,7 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			{slug === lundsford && <Lunsford {...projectDetails} />}
+			{slug.id === lundsford && <Lunsford {...{ name: slug.name }} />}
 		</section>
 	);
 };

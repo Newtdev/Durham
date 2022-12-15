@@ -8,11 +8,11 @@ import { project_details } from "../../Dashboard/add-project/projectSlice";
 
 
 
-const PreviewForm = ({ prevPage, value, component, nextPage }) => {
+const PreviewForm = ({ prevPage, value, component,name }) => {
   
   const [showModal, setShowModal] = useState(false);
 
-  const LundformFilled = ({ value, component }) => {
+  const LundformFilled = ({ value, component, name }) => {
     const projectDetails = useSelector(project_details);
 
     return(
@@ -147,7 +147,7 @@ const PreviewForm = ({ prevPage, value, component, nextPage }) => {
     <>
     <div>
         {/* Modal content */}
-        <DownLoadForm component={component} show={showModal? 'block': 'hidden' } />
+        <DownLoadForm component={component} name={name} show={showModal? 'block': 'hidden' } />
       <div className={` ${showModal ? 'hidden':' relative mx-auto w-[60rem] h-[46rem] bg-white rounded-lg shadow mt-4'}`}>
         <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
           <div className='ml-6'>
@@ -167,7 +167,7 @@ const PreviewForm = ({ prevPage, value, component, nextPage }) => {
 
         {/* Forms */}
         <div className=' mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto'>
-          <LundformFilled value={value} component={component} />
+          <LundformFilled value={value} component={component} name={name} />
 
         </div>
 

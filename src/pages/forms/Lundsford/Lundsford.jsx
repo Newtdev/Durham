@@ -7,8 +7,8 @@ import PreviewForm from "./Preview";
 
 
 
-const Lunsford = () => {
-    const [showModal, setShowModal] = useState(true);
+const Lunsford = ({name}) => {
+  const [showModal, setShowModal] = useState(true);
   const [step, setStep] = useState(1);
   const component = useRef();
 
@@ -44,6 +44,7 @@ const Lunsford = () => {
       const previewProps = {
         value: values.type,
         prevPage,
+        name,
         component
       };
 
