@@ -7,14 +7,23 @@ import { useSelector } from "react-redux";
 import { getDocuments, project_details } from "../add-project/projectSlice";
 import { LoadingArrow, Pen } from "../../../ui";
 import { getTotals, handleDate } from "../../../shared-component";
-import { useState } from "react";
 import Lunsford from "../../forms/Lundsford";
-import { lundsford } from "../../../shared-component/slug";
+import {
+	lundsford,
+	notice_of_award_contractor,
+	notice_of_intent_award_consultant,
+	notice_to_proceed,
+} from "../../../shared-component/slug";
+import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
+import { slug } from "./ReducerSlice";
+import NoticeToProceed from "../../forms/Notice-to-Proceed";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documents = useSelector(getDocuments);
-	const [slug, setSlug] = useState({ id: null, documents: "" });
+	const id = useSelector(slug);
+	console.log(id);
+	const date = !projectDetails ? new Date() : projectDetails.date;
 
 	return (
 		<section>
@@ -90,9 +99,7 @@ const ProjectDashboard = () => {
 											!projectDetails ? 0 : projectDetails?.project_number
 										}`}
 									</p>
-									<p className="text-gray-700 text-base">
-										{handleDate(projectDetails)}
-									</p>
+									<p className="text-gray-700 text-base">{handleDate(date)}</p>
 								</div>
 								<ProjectDetails
 									name={!projectDetails ? "" : projectDetails?.project_name}
@@ -112,10 +119,7 @@ const ProjectDashboard = () => {
 							</div>
 							{/* Accordions */}
 							<div className="mt-6 bg-white rounded-lg border border-gray-100">
-								<Accordion
-									data={documents}
-									readSlug={(val, doc) => setSlug({ id: val, name: doc })}
-								/>
+								<Accordion data={documents} />
 							</div>
 						</div>
 
@@ -148,18 +152,7 @@ const ProjectDashboard = () => {
 										{/* <p>Austin, TX</p> */}
 									</div>
 								</div>
-								<div className="mb-5">
-									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
-										Trades Selected
-									</div>
-									<div className="text-gray-900 text-xs">
-										<p className="mt-4">
-											Finish Carpentry, Flooring, Painting, Plumbing and HVAC,
-											Masonry, Glass and Glazing, Trade, Tile and Terrazzo,
-											Sliding, Site Preparation
-										</p>
-									</div>
-								</div>
+
 								<div className="mb-5">
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
 										Project Manager
@@ -178,7 +171,9 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			{slug.id === lundsford && <Lunsford {...{ name: slug.name }} />}
+			{id === lundsford && <Lunsford {...{ name: slug.name }} />}
+			{id === notice_of_intent_award_consultant && <NoticeOfIntentConsultant />}
+			{id === notice_of_award_contractor && <NoticeToProceed />}
 		</section>
 	);
 };

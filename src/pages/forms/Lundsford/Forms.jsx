@@ -36,7 +36,7 @@ const Forms = ({handleChange,error,touched, handleSubmit}) => {
 
         <div className='mx-6 mb-12'>
           <small className='text-gray-900 font-medium'>
-            To specify the type of check, check the relevant box.
+            Does this letter need the executive director's approval?
           </small>
           <div className=' mt-3 ml-2'>
             <div className='flex items-center mb-5'>

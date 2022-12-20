@@ -101,16 +101,22 @@ export const AddNewProjectSchema = [
 	}),
 ];
 
-// export const AddNewProjectSchema = Yup.object().shape({
-
-// 	awardee: Yup.string().required("field is required"),
-// 	design_consultant: Yup.string().required("field is required"),
-// 	consultant_name: Yup.string().required("field is required"),
-// 	corporate_secretary: Yup.string().required("field is required"),
-// 	company_representative_name: Yup.string().required("field is required"),
-// 	company_representative_title: Yup.string().required("field is required"),
-// });
 
 export const LundsForm = Yup.object().shape({
 	type: Yup.string().required("Type is required!"),
+});
+
+export const NoticeConsultant = Yup.object().shape({
+	approval: Yup.string().required("Approval is required!"),
+	creationDate: Yup.string().required("Creation date is required!"),
+	projectAmount: Yup.string().required("Amount is required!"),
+	approvalDate: Yup.string().required("Approval date is required!"),
+	deliveryDate: Yup.string().required("Delivery date is required!"),
+});
+
+export const NoticeProceed = Yup.object().shape({
+	creationDate: Yup.string().required("Creation date is required!"),
+	startDate: Yup.string().required("Starting date is required!"),
+	startTime: Yup.string().required("Starting time date is required!"),
+	deliveryDate: Yup.string().required("Delivery date is required!"),
 });

@@ -4,16 +4,17 @@ import { LundsForm } from "../../../yup";
 import { ModalOverlay } from "../../../ui";
 import Forms from "./Forms";
 import PreviewForm from "./Preview";
+import { useDispatch, useSelector } from "react-redux";
+import { nextStep,page,saveDoc } from "./lundsFormslice";
 
 
 
-const Lunsford = ({name}) => {
+const Lunsford = ({ name }) => {
+  
   const [showModal, setShowModal] = useState(true);
-  const [step, setStep] = useState(1);
+  const Dispatch = useDispatch();
+  const pages = useSelector(page)
   const component = useRef();
-
-    const nextPage = () => setStep(2);
-  const prevPage = () => setStep(1);
   
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
@@ -21,32 +22,31 @@ const Lunsford = ({name}) => {
       type: ''
     },
     validationSchema: LundsForm,
+
     onSubmit: (values) => {
-      if (step === 1) {
+      if (pages === 1) {
         
-        console.log(values)
-        nextPage()
+        Dispatch(nextStep())
+        Dispatch(saveDoc(values))
       }
     }
    
  })
       
       
-      const typeProps = {
-        value: values.type,
+  const typeProps = {
+    value: values.type,
     handleChange,
     handleSubmit,
-        error: errors.type,
-        touched: touched.type,
-        prevPage
-      };
+    error: errors.type,
+    touched: touched.type,
+  }
   
-      const previewProps = {
-        value: values.type,
-        prevPage,
-        name,
-        component
-      };
+  const previewProps = {
+    value: values.type,
+    name,
+    component
+  }
 
 
 
@@ -56,8 +56,8 @@ const Lunsford = ({name}) => {
           <ModalOverlay show={showModal}>
     
       
-              {step === 1 && <Forms {...typeProps} />}
-              {step === 2 && <PreviewForm {...previewProps} />}
+              {pages === 1 && <Forms {...typeProps} />}
+              {pages === 2 && <PreviewForm {...previewProps} />}
         
       </ModalOverlay>
     </div>

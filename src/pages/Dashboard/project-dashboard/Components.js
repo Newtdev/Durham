@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "../../../ui";
+import { getDocument, getSlugId } from "./ReducerSlice";
 
 export const ProjectCard = ({ name, value }) => {
 	return (
@@ -21,6 +23,7 @@ export const ProjectDetails = ({ name, description }) => {
 
 export const Accordion = ({ data, readSlug }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
+	const dispatch = useDispatch();
 
 	const newClass =
 		"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
@@ -28,8 +31,9 @@ export const Accordion = ({ data, readSlug }) => {
 	const onClick = (e) => {
 		if (e.target) {
 			const { id, name } = e.target;
-			readSlug(id, name);
-			// getData(e.target);
+			console.log(id);
+			dispatch(getDocument(name));
+			dispatch(getSlugId(id));
 			e.target.className = newClass;
 		}
 	};

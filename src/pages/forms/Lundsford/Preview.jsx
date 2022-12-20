@@ -1,28 +1,56 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton, Close } from "../../Dashboard/Components";
-import { PDFExport } from "@progress/kendo-react-pdf";
 import DownLoadForm from "./Download";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
+import {stepDefault, prevStep} from './lundsFormslice'
+import { useRef } from "react";
 
 
 
-const PreviewForm = ({ prevPage, value, component,name }) => {
+
+const PreviewForm = ({value }) => {
   
   const [showModal, setShowModal] = useState(false);
+  const projectDetails = useSelector(project_details);
+  const downloadComponent = useRef()
+  const dispatch = useDispatch();
 
-  const LundformFilled = ({ value, component, name }) => {
-    const projectDetails = useSelector(project_details);
+  const props = {
+    component: downloadComponent,
+    name:'Attachment A Lunsford Act Form',
+    show: showModal ? 'block' : 'hidden',
+    stepDefault,
+    close: () => setShowModal(false),
+    
+    }
 
-    return(
-    <PDFExport ref={component}
-    paperSize="auto"
-    margin={10}
-    fileName={'Lunford form'}
-    author="KendoReact Team">
+  return (
+    <>
+    <div>
+        {/* Modal content */}
+        <DownLoadForm {...props} />
+      <div className={` ${showModal ? 'hidden':' relative mx-auto w-[60rem] h-[46rem] bg-white rounded-lg shadow mt-4'}`}>
+        <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
+          <div className='ml-6'>
+            <h3 className='text-lg font-bold text-gray-900'>
+              Attachment A Lunsford Act Form
+            </h3>
+            <p className='text-base text-gray-700'>Preview Document</p>
+          </div>
+          <button
+            type='button'
+            className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
+            data-modal-toggle='small-modal'
+          >
+            <Close />
+          </button>
+        </div>
 
-    <div className='bg-[#D9D9D9] px-12 pt-8 pb-4 text-black'>
+        {/* Forms */}
+        <div className=' mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto'>
+        <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
       <p className='text-right mb-4'>Attachment A</p>
       <div className='mb-6 text-center'>
         <h2 className='font-bold text-xl'>Lunsford Act</h2>
@@ -41,10 +69,10 @@ const PreviewForm = ({ prevPage, value, component,name }) => {
       </div>
       <div className='mt-3'>
         <p className='text-justify'>
-          I, {projectDetails.awardeeInfo[0].company_representative_name} , {projectDetails.awardeeInfo[0].company_representative_title}
+          I, {!projectDetails? "" : projectDetails.awardeeInfo[0].company_representative_name} , {!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_title}
         </p>
         <p className='mt-3 text-justify'>
-          of {projectDetails.awardeeInfo[0].awardee} hereby certify that I have conducted sexual
+          of {!projectDetails? "" :projectDetails.awardeeInfo[0].awardee} hereby certify that I have conducted sexual
           offender registry checks required under this Agreement for
           all employees, agents, ownership personnel, or contractors
           (“contractual personnel”) who will engage in any service on
@@ -124,56 +152,26 @@ const PreviewForm = ({ prevPage, value, component,name }) => {
 
       <div className='mt-6 mb-4 pr-6'>
         <div className='flex gap-8 '>
-            <p className="mr-4">{projectDetails.awardeeInfo[0].company_representative_name}</p>
+            <p className="mr-4">{!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_name}</p>
             
           <p>
             _________________________________(signature)
           </p>
         </div>
         <div className='mt-10 flex gap-8'>
-          <p className="mr-4">{projectDetails.awardeeInfo[0].company_representative_title}</p>
+          <p className="mr-4">{!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_title}</p>
           <p>
             ___________________________________________(date)
           </p>
         </div>
       </div>
     </div>
-     </PDFExport>
-    
-    )
-  }
-
-  return (
-    <>
-    <div>
-        {/* Modal content */}
-        <DownLoadForm component={component} name={name} show={showModal? 'block': 'hidden' } />
-      <div className={` ${showModal ? 'hidden':' relative mx-auto w-[60rem] h-[46rem] bg-white rounded-lg shadow mt-4'}`}>
-        <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
-          <div className='ml-6'>
-            <h3 className='text-lg font-bold text-gray-900'>
-              Attachment A Lunsford Act Form
-            </h3>
-            <p className='text-base text-gray-700'>Preview Document</p>
-          </div>
-          <button
-            type='button'
-            className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
-            data-modal-toggle='small-modal'
-          >
-            <Close />
-          </button>
-        </div>
-
-        {/* Forms */}
-        <div className=' mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto'>
-          <LundformFilled value={value} component={component} name={name} />
 
         </div>
 
         {/* Buttons exportPDFWithComponent */}
         <div className='flex justify-end items-center h-20 gap-4 py-4 pr-6'>
-          <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={prevPage} />
+          <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevStep())} />
           <DashboardButton
             hidden
             name='CREATE DOCUMENT'

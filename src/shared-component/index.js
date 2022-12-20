@@ -31,11 +31,26 @@ export function getTotals(documents) {
 	].length;
 }
 
-export function handleDate(projectDetails) {
+export function handleDate(dates) {
 	// let a = new Date().g
-	if (!projectDetails) {
+	if (!dates) {
+		return new Date().getDate();
+	}
+	const date = dates.toString().split(" ");
+	return `${date[2]}/${date[1]}/${date[3]}`;
+}
+
+export function handleLastName(arg) {
+	if (!arg) {
 		return;
 	}
-	const date = projectDetails.date.toString().split(" ");
-	return `${date[2]}/${date[1]}/${date[3]}`;
+	return arg.split(" ")[1];
+}
+
+export function handleTime(arg) {
+	if (!arg) {
+		return;
+	}
+	console.log(arg.toString().split(" ")[4]);
+	return arg.toString().split(" ")[4];
 }

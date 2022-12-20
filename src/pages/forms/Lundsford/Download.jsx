@@ -1,19 +1,27 @@
 import { DashboardButton } from "../../Dashboard/Components"
 import Success from "../../../assets/success.png";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { documentDefault, slugIdDefault } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useReactToPrint } from "react-to-print";
 
 
-const DownLoadForm = ({ component, show, name }) => {
-  console.log(name)
+const DownLoadForm = ({ component, show, name, stepDefault, set }) => {
+  const navigate = useNavigate();
   const projectDetails = useSelector(project_details);
+  const dispatch = useDispatch();
 
-  const exportPDFWithComponent = () => {
-    if (component.current) {
-      component.current.save();
-    }
-  }
+  const handlePrint = useReactToPrint({
+    content: () => component.current,
+  });
+
+  // const exportPDFWithComponent = () => {
+  //   console.log(component)
+  //   // if (component.current) {
+  //   //   component.current.save();
+  //   // }
+  // }
     return <div
     className={`${show} relative w-full max-w-md h-screen md:h-auto mx-auto mt-14`}
     onClick={(e) => e.stopPropagation()}
@@ -37,16 +45,25 @@ const DownLoadForm = ({ component, show, name }) => {
       {/* Buttons */}
       <div className='flex flex-col justify-center items-center gap-4 mt-10 pb-8'>
         <DashboardButton
-          hidden
-          name='DOWNLOAD NOW'
-          type='button'
-          width='w-[360px]'
-          onClick={exportPDFWithComponent}
+            hidden
+            name='DOWNLOAD NOW'
+            type='button'
+            width='w-[360px]'
+            onClick={() => {
+              handlePrint()
+              dispatch(slugIdDefault())
+              dispatch(stepDefault())
+            }
+          }
           />
-          <Link to="/dashboard"
+          <button onClick={() => {
+            dispatch(slugIdDefault())
+            dispatch(documentDefault())
+            dispatch(stepDefault())
+          }}
 			className="flex items-center justify-center uppercase w-[360px] bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">
     go to project dashboard
-		</Link>
+		</button>
        
       </div>
     </div>
