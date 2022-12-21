@@ -19,7 +19,6 @@ const ProjectDetails = () => {
           
             dispatch(addNewProject(durham_projects));
 
-            // dispatch(sav)
         }())
     },[pathID,dispatch])
    return <ProjectDashboard/> 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, ModalOverlay } from '../../../ui'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthComp, { AuthHeader, CheckBox, ImageSideContainer, InputContainer } from '../component';
 import { useFormik } from 'formik';
 import { LoginSchema } from '../../../yup';
@@ -22,25 +22,29 @@ const GetLoginDetails = () => {
 const Login = () => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
-    
+    const navigate = useNavigate()
 
     const [userLogin, { isLoading }] = useUserLoginMutation();
     
     const HandleRequest = async (value) => {
 		try {
             const response = await userLogin({ ...value });
-			if (response?.error) {
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-                });
+            if(response?.status !== 'failed'){
+			// if (response?.error) {
+				// toast.error(response?.error?.message, {
+				// 	position: toast.POSITION.TOP_CENTER,
+                // })
+                return navigate('/dashboard')
               
-            }
-            // else {
-            //     toast.success(`${response?.data?.message}! Login with your new password`, {
-			// 		position: toast.POSITION.TOP_CENTER,
-            //     });
+            } else {
+                toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+                })
+                // toast.success(`${response?.data?.message}! Login with your new password`, {
+				// 	position: toast.POSITION.TOP_CENTER,
+                // });
                 
-			// }
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -118,10 +122,7 @@ const Login = () => {
                         
                         <span role='button' onClick={()=> setShowModal(true)} className=' underline text-base font-bold text-[#3B6979]'>Forgot password?</span>
                     </div>
-                    <div>
-                        <p className='text-base text-gray-800 font-light'>Don't have an account? <Link className=' underline font-extrabold  text-[#3B6979]' to='/sign-up'>Sign up</Link>
-                        </p>
-                    </div>
+                   
                     </form>
                 </div>
             </AuthComp>
