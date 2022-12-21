@@ -179,13 +179,13 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 
 export function AwardeeInfo(props) {
 	const [names, setNames] = useState([]);
-	const [n, setN] = useState("");
 	useEffect(() => {
 		async function getProjectManager() {
 			const { data: vendor, error } = await supabase.from("vendor").select("*");
 			if (vendor) {
 				setNames(vendor);
 			}
+
 			return;
 		}
 		getProjectManager();
@@ -197,31 +197,20 @@ export function AwardeeInfo(props) {
 		id: `awardeeInfo.${index}.awardee`,
 		placeholder: "Select Awardee involve in this project",
 		onChange: handleChange,
-		// onchange: () => {
-		// 	// if(names.)
-		// }
+
 		value: values.awardeeInfo[index].awardee,
 		// error: errors?.awardeeInfo[index].awardee,
 		touched: touched.awardee,
 	};
 
-	function a() {
+	function filtered() {
+		if (!names) {
+			return;
+		}
 		return names.filter((cur, id) => {
 			return cur.industry === values.awardeeInfo[index].awardee;
 		});
 	}
-
-	function b() {
-		return names.filter((cur, id) => {
-			return cur.industry === values.awardeeInfo[index].awardee;
-		});
-	}
-	// useEffect(() => {
-	// 	if (!a) {
-	// 		return;
-	// 	}
-	// 	props.data.setValues({ a });
-	// }, []);
 
 	const design_consultant = {
 		name: "Select Design Consultant",
@@ -274,6 +263,22 @@ export function AwardeeInfo(props) {
 		touched: touched.corporate_secretary,
 	};
 
+	useEffect(() => {
+		if (!values.awardeeInfo[index].design_consultant) {
+			return;
+		}
+		filtered()?.forEach((cur, id) => {
+			console.log(cur);
+			props.data.values.awardeeInfo[index].consultant_name =
+				cur.first_name + "" + cur.last_name;
+			props.data.values.awardeeInfo[index].consultant_address = cur.address;
+			props.data.values.awardeeInfo[index].corporate_president = cur.president;
+			props.data.values.awardeeInfo[index].corporate_secretary = cur.secretary;
+
+			// return cur.company_name === values.awardeeInfo[index].design_consultant;
+		});
+	}, [values]);
+
 	return (
 		<div onClick={(e) => e.stopPropagation()}>
 			<div className="">
@@ -295,7 +300,7 @@ export function AwardeeInfo(props) {
 							{/* <OverviewInput {...design_consultant} /> */}
 							<DashboardSelect {...design_consultant}>
 								<option>Select</option>
-								{a().map((cur, id) => {
+								{filtered()?.map((cur, id) => {
 									return (
 										<option key={id} value={cur.company_name}>
 											{cur.company_name}
