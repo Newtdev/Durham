@@ -1,33 +1,40 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import { supabase } from "../../../lib/supabase";
 import { Label, Error, Textarea } from "../../../ui";
 // import { AddUsersSchema } from "../../../yup";
-import { SelectContainer } from "../Components";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
+	const navigate = useNavigate();
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
-			{dataArray.map((data) => {
-				const { id, projectName, awardee, companyRep, projectManager, date } =
-					data;
-				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+			{dataArray.map((cur) => {
+				let awardee = cur.awardeeInfo[0];
+				const date = cur.created_at.split("T")[0];
+				const { id, project_name, project_manager } = cur;
 
+				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
-					<tr key={id} className={`${strip} border-b`}>
+					<tr
+						key={id}
+						className={`${strip} border-b cursor-pointer`}
+						onClick={() => navigate(`/dashboard/project-details/${id}`)}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							{projectName}
+							{project_name}
 						</td>
-						<td className="py-3 px-4">{awardee}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{companyRep}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{projectManager}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{date}</td>
-						<td className="py-3 px-4 flex items-center justify-start gap-3">
+						<td className="py-4 px-4">{awardee.awardee}</td>
+						<td className="py-4 px-4 whitespace-nowrap">
+							{awardee.company_representative_name}
+						</td>
+						<td className="py-4 px-4 whitespace-nowrap">{project_manager}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{date}</td>
+						<td className="py-4 px-4 flex items-center justify-start gap-3">
 							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>
-							<span className="w-4 cursor-pointer" onClick={() => onEdit(data)}>
+							<span className="w-4 cursor-pointer" onClick={() => onEdit(cur)}>
 								<img className="w-full" src={Edit} alt="edit" />
 							</span>
 						</td>

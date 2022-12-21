@@ -5,6 +5,7 @@ import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/No
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 
 const Vendors = lazy(() => import("../Vendors-mangement"));
+const ProjectDetails = lazy(() => import("../project-details"));
 const ProjectManager = lazy(() =>
 	import("../Product-manager-management/Product-manager")
 );
@@ -28,6 +29,7 @@ const Dashboard = () => {
 				<Route path="/settings/durhams-profile" element={<DurhamSettings />} />
 				<Route path="/settings/profile" element={<ProfileSettings />} />
 				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
+				<Route path="/project-details/:id" element={<ProjectDetails />} />
 			</Routes>
 		</Suspense>
 	);

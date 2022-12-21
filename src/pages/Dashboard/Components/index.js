@@ -213,7 +213,7 @@ export function TableHeader({ dataArray }) {
 			<tr>
 				{dataArray.map((name, index) => {
 					return (
-						<th key={index} scope="col" className="py-2 px-4">
+						<th key={index} scope="col" className="py-4 px-4">
 							{name}
 						</th>
 					);

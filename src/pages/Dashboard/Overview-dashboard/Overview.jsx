@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getProjectInfo } from "./editReducer";
 import { OverviewContent, OverviewTableHeader } from "../../../lib/data";
-import { ModalOverlay } from "../../../ui";
+import { FullPageLoader, ModalOverlay } from "../../../ui";
 import { ButtonWhiteBG, ButtonRedBG } from "../../../ui";
 import {
   DashboardButton,
@@ -20,11 +20,27 @@ import {
   OverviewTableBody,
   OverviewTitleCard,
 } from "./OverviewComponents";
+import { supabase } from "../../../lib/supabase";
+
+function handleAwardee(data) {
+  console.log(data[0])
+  // console.log(a)
+}
 
 const Overview = () => {
   const [action, setAction] = useState({delete:false, id: null})
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+	const [request, setRequest] = useState(true);
+
+	useEffect(() => {
+		(async function getDate() {
+			const response = await supabase.from("durham_projects").select("*");
+			setData(response.data);
+			setRequest(false);
+		})();
+	}, []);
 
   const dashboardProps = {
     onDelete: (id) => {
@@ -33,11 +49,10 @@ const Overview = () => {
     },
     
     onEdit: (data) => {
-      console.log(data)
       dispatch( getProjectInfo(data) )
       // setAction({ ...action, edit: true, initialData:data })
     },
-    dataArray:OverviewContent
+    dataArray:data
   };
 
   const onDeleteConfirmation = () => {
@@ -48,26 +63,28 @@ const Overview = () => {
 
   return (
     <div>
+      			{request && <FullPageLoader />}
+
       {/* DASHBOARD */}
       <section>
         {/* <!-- Navbar --> */}
         <article>
           <DashboardNav />
         </article>
-        <main className='pt-6 bg-[#fafafa]'>
+        <main className='pt-6 bg-[#fafafa] h-screen'>
           <div className='container mx-auto px-4 lg:px-24'>
             {/* Title Cards */}
             <div className='mb-6 grid grid-cols-4 gap-4'>
-              <OverviewTitleCard name='Total Projects' value='5'/>
-              <OverviewTitleCard name='Forms' value='6'/>
-              <OverviewTitleCard name='Project Managers' value='6'/>
-              <OverviewTitleCard name='Vendors'value='9'/>
+              <OverviewTitleCard name='Total Projects' value={data.length || 0} />
+              <OverviewTitleCard name='Forms' value='0' />
+              <OverviewTitleCard name='Project Managers' value={data.length || 0}/>
+              <OverviewTitleCard name='Vendors' value={data.length || 0} />
             </div>
 
             <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
               <div>
                 <PageHeader name='Projects' />
-                <p className='text-[#3b6979] text-lg'>Total Projects : 40</p>
+                <p className='text-[#3b6979] text-lg'>Total Projects : {data.length || 0}</p>
               </div>
               <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={()=> navigate('/dashboard/add-new-project')} />
             </div>
@@ -93,7 +110,7 @@ const Overview = () => {
             </div>
 
             {/* PAGINATION */}
-            <Pagination />
+            {/* <Pagination /> */}
           </div>
         </main>
 

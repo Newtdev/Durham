@@ -19,13 +19,23 @@ import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/No
 import { slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
+import { useEffect } from "react";
+import { supabase } from "../../../lib/supabase";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documents = useSelector(getDocuments);
 	const id = useSelector(slug);
-	console.log(id);
 	const date = !projectDetails ? new Date() : projectDetails.date;
+
+	useEffect(() => {
+		(async function getDate() {
+			const response = await supabase.from("durham_projects").select("*");
+			response.forEach((element) => {
+				console.log(element);
+			});
+		})();
+	}, []);
 
 	return (
 		<section>
@@ -101,7 +111,7 @@ const ProjectDashboard = () => {
 											!projectDetails ? 0 : projectDetails?.project_number
 										}`}
 									</p>
-									<p className="text-gray-700 text-base">{handleDate(date)}</p>
+									<p className="text-gray-700 text-base">{console.log(date)}</p>
 								</div>
 								<ProjectDetails
 									name={!projectDetails ? "" : projectDetails?.project_name}

@@ -287,7 +287,7 @@ export const Time = () => {
 
 export const FullPageLoader = () => {
 	return (
-		<div className="bg-[rgba(0,0,0,0.9)] w-full h-full fixed top-0 left-0 flex justify-center items-center">
+		<div className="bg-[rgba(0,0,0,0.9)] w-full h-full fixed top-0 z-50 left-0 flex justify-center items-center">
 			<svg
 				role="status"
 				className="inline mr-2 w-14 h-14 text-white animate-spin dark:text-gray-600"
