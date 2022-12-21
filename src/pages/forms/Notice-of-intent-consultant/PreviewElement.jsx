@@ -69,19 +69,19 @@ const PreviewElement = () => {
             </div>
            
           </div>
-          <div className="px-24x ">
+          <div className="px-24 ">
           <div className='mt-3'>
            
               {content.approval === 'Yes' && <p className='my-6 text-justify text-base'>
                 {handleDate(content.creationDate)}
               </p>
               }
-            <p className='text-base text-justify'>Contact Person Name, Title</p>
+                      <p className='text-base text-justify'>{!projectDetails ? "" : projectDetails.awardeeInfo[0].company_representative_name}{ " "} {!projectDetails ? "": projectDetails.awardeeInfo[0].company_representative_title}</p>
               <p className='text-base text-justify'>{!projectDetails?'':projectDetails.awardeeInfo[0].design_consultant}</p>
               <p className='text-base text-justify'>{!projectDetails
 ? "": projectDetails.awardeeInfo[0].consultant_address
 }</p>
-            <p className='text-base text-justify'>City, State XXXXX</p>
+            {/* <p className='text-base text-justify'>City, State XXXXX</p> */}
           </div>
     
           <div className=''>
@@ -102,7 +102,7 @@ const PreviewElement = () => {
     
           <div className="flex text-lg mt-4">
             <span>SUBJECT:</span>
-            <h2 className="ml-20 font-black text-lg text-black">NOTICE OF AWARD for CONSULTANT SERVICES</h2>
+            <h2 className="ml-6 font-black text-base text-black">NOTICE OF AWARD for CONSULTANT SERVICES</h2>
           </div>
     
           <div className='mt-6 mb-4'>
