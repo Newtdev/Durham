@@ -1,6 +1,6 @@
 import { useFormik, FormikProvider } from "formik";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { state } from "../../../lib/data";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { AddNewProjectSchema } from "../../../yup";
@@ -13,13 +13,16 @@ import { addNewProject } from "./projectSlice";
 import { useSelector } from "react-redux";
 import { product_manager_data } from "../Product-manager-management/projectManagerSlice";
 import { getSaveData } from "../Vendors-mangement/vendorSlice";
+import { storeProject } from "../../../shared-component";
+import { toast } from "react-toastify";
+import { supabase } from "../../../lib/supabase";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const [a, setA] = useState({});
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
-
 	const awardee = useSelector(getSaveData);
 	const productmanager = useSelector(product_manager_data);
 
@@ -30,9 +33,38 @@ const ProjectFormsController = () => {
 	const nextStep = () => setSteps((prev) => prev + 1);
 	const prevStep = () => setSteps((prev) => prev - 1);
 
+	async function HandleRequest(values) {
+		// const response = await addProjectManager({ ...values });
+		console.log(values);
+		let a = JSON.stringify(values.awardeeInfo);
+		let b = JSON.stringify(values.document);
+
+		const response = await supabase.from("durham_projects").insert([
+			{
+				project_number: values.project_number,
+				project_manager: values.project_manager,
+				project_name: values.project_name,
+				awardeeInfo: a,
+				document: b,
+				project_description: values.project_description,
+			},
+		]);
+		if (response) {
+			if (response.error?.message) {
+				// close();
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				// setShow(true);
+				navigate("/dashboard/add-new-project/preview", { replace: true });
+			}
+		}
+	}
+
 	const formik = useFormik({
 		initialValues: {
-			date: new Date(),
+			// date: new Date(),
 			project_manager: "",
 			project_name: "",
 			project_number: "",
@@ -60,8 +92,10 @@ const ProjectFormsController = () => {
 				nextStep();
 			} else {
 				values.document = selected;
+				// console.log({values);
+
 				dispatch(addNewProject(values));
-				navigate("/dashboard/add-new-project/preview", { replace: true });
+				HandleRequest(values);
 				/**
 				 * Handle API request
 				 * if successfull go the project dashboard
@@ -79,6 +113,7 @@ const ProjectFormsController = () => {
 		handleSubmit,
 		handleChange,
 		handleReset,
+		setValues,
 	} = formik;
 
 	const ExitForm = () => {
@@ -95,7 +130,10 @@ const ProjectFormsController = () => {
 		steps,
 		nextStep,
 		prevStep,
+		setValues,
 	};
+
+	console.log(a);
 
 	const getData = (e) => {
 		(function () {

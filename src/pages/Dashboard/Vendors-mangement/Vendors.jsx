@@ -41,9 +41,9 @@ const HandleRequest = async () => {
     
     if (response) {
       onEditClose()
-      if (response.error) {
-        toast.error(response?.error?.message, {
-          position: toast.POSITION.TOP_CENTER,
+       if (response.error) {
+         toast.error(response?.error?.message, {
+         position: toast.POSITION.TOP_CENTER,
         });
       } else {
         toast.success(response?.data?.message, {
@@ -75,13 +75,13 @@ const HandleRequest = async () => {
   
 
   return (
-    <section className='max-h-screen overflow-y-hidden'>
+    <section className='h-screen overflow-y-hidden '>
       <article>
         {/* <!-- Navbar --> */}
         <DashboardNav />
         
       </article>
-      <main className='pt-6 bg-[#fafafa]'>
+      <main className='pt-6 bg-[#fafafa] h-full '>
         <div className='container mx-auto px-4 lg:px-24 '>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
             <PageHeader name='Vendors' />
@@ -104,7 +104,7 @@ const HandleRequest = async () => {
             </table>
           </div>
           {/* PAGINATION */}
-          <Pagination />
+          {/* <Pagination /> */}
           
           
         </div>

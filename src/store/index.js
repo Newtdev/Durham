@@ -10,7 +10,7 @@ import FormReducer from "../pages/forms/Notice-of-intent-consultant/reducerSlice
 import ProjectDocumentReducer from "../pages/Dashboard/project-dashboard/ReducerSlice";
 import LundsfordReducer from "../pages/forms/Lundsford/lundsFormslice";
 import ModalReducer from "../pages/forms/reducer";
-
+import MultiFormReducer from "../pages/forms/Advertisement-for-bid-template/reducer";
 export const store = configureStore({
 	// reducers
 	reducer: {
@@ -26,6 +26,7 @@ export const store = configureStore({
 		ProjectDocumentReducer,
 		LundsfordReducer,
 		ModalReducer,
+		MultiFormReducer,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

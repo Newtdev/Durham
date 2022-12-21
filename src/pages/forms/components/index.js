@@ -1,5 +1,5 @@
 import { Calender } from "../../../ui";
-import { DatePicker } from "react-datepicker";
+import DatePicker from "react-datepicker";
 import DollarSign from "../../../assets/dollar.svg";
 
 export const FormInput = (props) => {
@@ -15,12 +15,16 @@ export const FormInput = (props) => {
 	);
 };
 
-const SelectDate = () => {
+export const SelectDate = (props) => {
+	const { value, setFieldValue, name } = props;
 	return (
-		<label>
+		<label className="bg-gray-50 border flex items-center justify-between border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979]  w-full pr-2">
 			<DatePicker
-				// selected={startDate} onChange={(date) => setStartDate(date)}
-				className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
+				{...props}
+				selected={value}
+				name={name}
+				onChange={(e) => setFieldValue(name, e)}
+				className="w-full p-2.5 bg-gray-50"
 				placeholderText="Select Date"
 			/>
 			<Calender />

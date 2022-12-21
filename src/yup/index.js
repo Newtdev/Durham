@@ -120,3 +120,35 @@ export const NoticeProceed = Yup.object().shape({
 	startTime: Yup.string().required("Starting time date is required!"),
 	deliveryDate: Yup.string().required("Delivery date is required!"),
 });
+
+
+
+export const AdvertisementBidSchema = [
+	Yup.object({
+		bidDate: Yup.string().required("Date field is required"),
+		deadlineTime: Yup.string().required("Deadline time field is required"),
+		openingTime: Yup.string().required("Bid opening time field is required"),
+		withdrawingBid: Yup.string().required(
+			"Period of withdrawing bid field is required"
+		),
+	}),
+	Yup.object({
+		conferenceDate: Yup.string().required("Date field is required"),
+		conferenceTime: Yup.string().required("Time field is required"),
+		conferenceAddress: Yup.string().required("Address field is required"),
+		conferenceCity: Yup.string().required("City field is required"),
+		conferenceState: Yup.string().required("State field is required"),
+		conferenceZipCode: Yup.string().required("Zip code field is required"),
+		presenceOfBiders: Yup.string().required("Choose an option"),
+	}),
+	Yup.object({
+		company_name: Yup.string().required("Company name field is required"),
+		manager_name: Yup.string().required("Manager name field is required"),
+		manager_phone_number: Yup.string()
+			.required("Manager phone number field is required")
+			.phone("US", false),
+		manager_email_address: Yup.string()
+			.required("Manager email address field is required")
+			.email("Enter a correct email address"),
+	}),
+];

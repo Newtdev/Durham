@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 
@@ -20,7 +21,7 @@ const Dashboard = () => {
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
-				<Route path="/forms" element={<NoticeOfIntentConsultant />} />
+				<Route path="/forms" element={<AdvertisementBid />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
 				<Route path="/settings" element={<Settings />} />

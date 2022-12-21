@@ -8,9 +8,16 @@ import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 
 import { Link } from "react-router-dom";
-import { ButtonWhiteBG, Error, Label, Select } from "../../../ui";
+import {
+	ButtonWhiteBG,
+	Error,
+	FullPageLoader,
+	Label,
+	Select,
+} from "../../../ui";
 import { Spinner } from "../../../assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../../lib/supabase";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -216,62 +223,44 @@ export function TableHeader({ dataArray }) {
 	);
 }
 
-// export function Th({ dataArray }) {
-// 	return dataArray.map((name, index) => {
-// 		return (
-// 			<th key={index} scope="col" className="py-2 px-4">
-// 				{name}
-// 			</th>
-// 		);
-// 	});
-// }
-
-// export function Td({ dataArray, onDelete, onEdit }) {
-// 	return dataArray.map(({ id, name, email, phone }) => {
-// 		return (
-// 			<tr key={id} className="bg-gray-50 border-b">
-// 				<th
-// 					scope="row"
-// 					className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-// 					{name}
-// 				</th>
-// 				<td className="py-3 px-4">{email}</td>
-// 				<td className="py-3 px-4 whitespace-nowrap">{phone}</td>
-// 				<td className="py-3 px-4 flex items-center justify-start gap-3">
-// 					<span className="w-4 cursor-pointer" onClick={onDelete}>
-// 						<img className="w-full" src={Delete} alt="delete" />
-// 					</span>
-// 					<span className="w-4 cursor-pointer" onClick={onEdit}>
-// 						<img className="w-full" src={Edit} alt="edit" />
-// 					</span>
-// 				</td>
-// 			</tr>
-// 		);
-// 	});
-// }
 /*************DASHBOARD HEADER TABLE*********************/
 
 export function TableBody({ dataArray, onDelete, onEdit }) {
+	const [data, setData] = useState([]);
+	const [request, setRequest] = useState(true);
+
+	useEffect(() => {
+		async function getData() {
+			const response = await supabase.from("project_manager").select("*");
+			console.log(response);
+			if (response) {
+				setData(response.data);
+				setRequest(false);
+			}
+		}
+		getData();
+	}, []);
 	return (
 		<tbody className="text-xs bg-white font-medium">
-			{dataArray.map((manager) => {
+			{request && <FullPageLoader />}
+			{data?.map((manager) => {
 				const { id, last_name, first_name, email, phone } = manager;
 				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr key={id} className={`${strip} border-b`}>
 						<th
 							scope="row"
-							className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							className="py-4 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{first_name}
 						</th>
 						<th
 							scope="row"
-							className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							className="py-4 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{last_name}
 						</th>
-						<td className="py-3 px-4">{email}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{phone}</td>
-						<td className="py-3 px-4 flex items-center justify-start gap-3">
+						<td className="py-4 px-4">{email}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{phone}</td>
+						<td className="py-4 px-4 flex items-center justify-start gap-3">
 							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>

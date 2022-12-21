@@ -14,6 +14,7 @@ const Preview = () => {
   const data = useSelector(selectForm);
   const masterInfo = useSelector(project_details)
   const show = useSelector(openDownload)
+  
   const downloadComponent = useRef()  
   const props = {
     component: downloadComponent ,

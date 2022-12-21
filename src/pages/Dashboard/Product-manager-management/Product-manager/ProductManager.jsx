@@ -1,6 +1,6 @@
 import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, Pagination, PageHeader } from "../../Components";
 import { AddPojectsManagerModal,DeleteProjectModal, EditPojectsManagerModal} from "./ProjectsComponents";
-import { ModalOverlay } from "../../../../ui";
+import { FullPageLoader, ModalOverlay } from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
 import { useDeleteProductManagerMutation } from "../../../../features/services/api";
@@ -64,7 +64,7 @@ const ProductManager = () => {
        <DashboardNav/>
       </article>
 
-      <main className='pt-6 bg-[#fafafa] max-h-screen overflow-y-hidden'>
+      <main className='pt-6 bg-[#fafafa] h-screen overflow-y-hidden'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
            <PageHeader name='Project Manager'/>
@@ -87,7 +87,7 @@ const ProductManager = () => {
             </table>
           </div>
           {/* pagination */}
-          <Pagination/>
+          {/* <Pagination/> */}
         </div>
       </main>
 

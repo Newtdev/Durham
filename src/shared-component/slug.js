@@ -8,3 +8,4 @@ export const notice_of_intent_award =
 export const notice_of_intent_award_consultant =
 	"Notice-of-Reward---Consultant-Form";
 export const notice_of_award_contractor = "Notice-of-Reward---Contractor-Form";
+export const advertisement_bid = "-00-11-13---Advertisement-for-Bid-Template";

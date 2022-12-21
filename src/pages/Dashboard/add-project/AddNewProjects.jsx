@@ -7,8 +7,14 @@ import { AccordionSelector } from "./Component";
 import { documents } from '../../../lib/data'
 
 
+
 // PROJECT OVERVIEW STEP
 export const ProjectOverview = (props) => {
+  // API REQUEST TO THE PRODUCT MANAGER
+  const [getName, setNames] = useState([]);
+
+
+ 
     return <div>
         <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
             {/* Header */}

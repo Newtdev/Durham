@@ -6,6 +6,7 @@ import {
 	useAddProjectManagerMutation,
 	useUpdateProductManagerDetailsMutation,
 } from "../../../../features/services/api";
+import { supabase } from "../../../../lib/supabase";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../../ui";
 import { AddProjectSchema } from "../../../../yup";
 import { Close, DashboardButton, DashboardInput } from "../../Components";
@@ -286,11 +287,15 @@ export function AddPojectsManagerModal({ close }) {
 	const [addProjectManager, { isLoading }] = useAddProjectManagerMutation();
 
 	async function HandleRequest(values) {
-		const response = await addProjectManager({ ...values });
+		// const response = await addProjectManager({ ...values });
+
+		const response = await supabase.from("project_manager").insert([values]);
+
 		if (response) {
+			console.log(response);
 			if (response.error) {
 				close();
-				toast.error(response?.error?.data?.message, {
+				toast.error(response?.error?.message, {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {

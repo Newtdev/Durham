@@ -34,7 +34,7 @@ const SelectDate = (props) => {
         <Calender />
     </label>
 }
-const SelectTime = (props) => {
+export const SelectTime = (props) => {
     const { value, setFieldValue, name, } = props;
     // const [field] = useField(props)
     
@@ -116,7 +116,7 @@ const NoticeForm = (props) => {
                 <div className='flex justify-between items-baseline mx-6'>
                     <div>
                         <h3 className='text-lg font-bold text-gray-900'>
-                            Notice of Intent to Award - Consultant
+                        Notice to Proceed - Contractor
                         </h3>
                         <p className='text-base text-gray-700'>
                         </p>

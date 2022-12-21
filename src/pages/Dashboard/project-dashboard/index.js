@@ -9,6 +9,7 @@ import { LoadingArrow, Pen } from "../../../ui";
 import { getTotals, handleDate } from "../../../shared-component";
 import Lunsford from "../../forms/Lundsford";
 import {
+	advertisement_bid,
 	lundsford,
 	notice_of_award_contractor,
 	notice_of_intent_award_consultant,
@@ -17,6 +18,7 @@ import {
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
 import { slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
+import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
@@ -174,6 +176,7 @@ const ProjectDashboard = () => {
 			{id === lundsford && <Lunsford {...{ name: slug.name }} />}
 			{id === notice_of_intent_award_consultant && <NoticeOfIntentConsultant />}
 			{id === notice_of_award_contractor && <NoticeToProceed />}
+			{id === advertisement_bid && <AdvertisementBid />}
 		</section>
 	);
 };

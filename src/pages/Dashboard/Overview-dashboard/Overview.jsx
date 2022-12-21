@@ -58,10 +58,10 @@ const Overview = () => {
           <div className='container mx-auto px-4 lg:px-24'>
             {/* Title Cards */}
             <div className='mb-6 grid grid-cols-4 gap-4'>
-              <OverviewTitleCard/>
-              <OverviewTitleCard />
-              <OverviewTitleCard />
-              <OverviewTitleCard />
+              <OverviewTitleCard name='Total Projects' value='5'/>
+              <OverviewTitleCard name='Forms' value='6'/>
+              <OverviewTitleCard name='Project Managers' value='6'/>
+              <OverviewTitleCard name='Vendors'value='9'/>
             </div>
 
             <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>

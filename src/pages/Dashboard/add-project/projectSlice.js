@@ -5,7 +5,7 @@ const project = createSlice({
 	initialState: {
 		isSubmitted: false,
 		// awardee: null,
-		project_overview: null,
+		project_overview: {},
 		project_document: null,
 	},
 	reducers: {

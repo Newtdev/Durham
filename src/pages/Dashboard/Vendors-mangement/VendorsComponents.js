@@ -5,7 +5,8 @@ import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import { useAddVendorMutation } from "../../../features/services/api";
-import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
+import { supabase } from "../../../lib/supabase";
+import { ButtonRedBG, ButtonWhiteBG, FullPageLoader } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
 import {
 	Close,
@@ -130,9 +131,25 @@ export const VendorsContent = [
 ];
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
+	const [data, setData] = useState([]);
+	const [request, setRequest] = useState(true);
+	useEffect(() => {
+		async function getData() {
+			const response = await supabase.from("vendor").select("*");
+			console.log(response);
+			if (response) {
+				setData(response.data);
+				setRequest(false);
+			}
+		}
+		getData();
+	}, []);
+
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
-			{dataArray.map((vendor) => {
+			{request && <FullPageLoader />}
+
+			{data?.map((vendor) => {
 				const {
 					id,
 					first_name,
@@ -154,13 +171,13 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{last_name}
 						</td>
-						<td className="py-3 px-4">{title}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{company_name}</td>
-						<td className="py-3 px-4 whitespace-wrap">{address}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{president}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{secretary}</td>
-						<td className="py-3 px-4 whitespace-nowrap">{industry}</td>
-						<td className="py-3 px-4 flex items-center justify-start gap-3">
+						<td className="py-4 px-4">{title}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{company_name}</td>
+						<td className="py-4 px-4 whitespace-wrap">{address}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{president}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{secretary}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{industry}</td>
+						<td className="py-4 px-4 flex items-center justify-start gap-3">
 							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>
@@ -393,18 +410,31 @@ export function AddVendor({ close }) {
 
 	const HandleRequest = async (value) => {
 		try {
-			const response = await addVendor({ ...value });
-			if (response?.error) {
-				console.log(response?.error);
-				close();
-				toast.error(response?.error?.message, {
+			const response = await supabase.from("vendor").insert([value]);
+			console.log(response);
+			// const response = await addVendor({ ...value });
+			if (!response?.error) {
+				toast.error("Vendor added successfully", {
 					position: toast.POSITION.TOP_CENTER,
 				});
-				// setShowSuccess(false)
-			} else if (response?.data) {
 				setSuccess(true);
-				// onSuccess show the modal and ask the manager to login
+			} else {
+				toast.error(response?.error, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				close();
 			}
+			// if (response?.error) {
+			// 	console.log(response?.error);
+			// 	close();
+			// 	toast.error(response?.error?.message, {
+			// 		position: toast.POSITION.TOP_CENTER,
+			// 	});
+			// 	// setShowSuccess(false)
+			// } else if (response?.data) {
+			// 	setSuccess(true);
+			// 	// onSuccess show the modal and ask the manager to login
+			// }
 		} catch (error) {
 			console.log(error);
 		}

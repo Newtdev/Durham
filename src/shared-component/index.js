@@ -6,6 +6,44 @@ export const fetchData = () => {
 		return durhamProfile;
 	}
 };
+export const getProjects = () => {
+	const projects = JSON.parse(localStorage.getItem("projects"));
+	if (!projects) {
+		return {};
+	} else {
+		return projects;
+	}
+};
+export const getProjectManager = () => {
+	const projectManager = JSON.parse(localStorage.getItem("project_manager"));
+	if (!projectManager) {
+		return {};
+	} else {
+		return projectManager;
+	}
+};
+export const getVendor = () => {
+	const vendor = JSON.parse(localStorage.getItem("vendor"));
+	if (!vendor) {
+		return {};
+	} else {
+		return vendor;
+	}
+};
+
+export const storeProject = (value) => {
+	localStorage.setItem("projects", JSON.stringify(value));
+};
+
+export const storeProjectManager = (value) => {
+	localStorage.setItem("project_manager", JSON.stringify(value));
+};
+
+export const storeVendor = (value) => {
+	localStorage.setItem("vendor", JSON.stringify(value));
+};
+
+
 
 export function getTotals(documents) {
 	if (!documents) {

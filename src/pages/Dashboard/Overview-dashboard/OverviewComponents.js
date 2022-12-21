@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
+import { supabase } from "../../../lib/supabase";
 import { Label, Error, Textarea } from "../../../ui";
 // import { AddUsersSchema } from "../../../yup";
 import { SelectContainer } from "../Components";
@@ -36,11 +38,11 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	);
 }
 
-export function OverviewTitleCard() {
+export function OverviewTitleCard({ name, value }) {
 	return (
 		<div className="bg-white rounded-lg border border-[#d8e1e4] flex flex-col items-center justify-center h-[104px]">
-			<small className="text-gray-900 text-xs block">Title</small>
-			<p className="text-[#3b6979] text-lg font-bold">Amount</p>
+			<small className="text-gray-900 text-sm block">{name}</small>
+			<p className="text-[#3b6979] text-xl font-extrabold">{value}</p>
 		</div>
 	);
 }
@@ -88,6 +90,20 @@ export function OverviewTextarea(props) {
 }
 
 export function ProjectInfo({ values, errors, touched, handleChange }) {
+	const [names, setNames] = useState([]);
+	useEffect(() => {
+		async function getProjectManager() {
+			const { data: project_manager, error } = await supabase
+				.from("project_manager")
+				.select("first_name,last_name");
+			if (project_manager) {
+				setNames(project_manager);
+			}
+			return;
+		}
+		getProjectManager();
+	}, []);
+
 	const project_name = {
 		name: "Project Name",
 		id: "project_name",
@@ -141,10 +157,17 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 						</div>
 						<div>
 							<DashboardSelect {...project_manager}>
+								{!names && <option>No project Manager</option>}
 								<option>Select Project Manager</option>
-
-								<option>Sindhu Uppuluri</option>
-								<option>Tanzania Burghardt</option>
+								{names?.map((cur, id) => {
+									return (
+										<option
+											value={`${cur.first_name}${cur.last_name}`}
+											key={id}>
+											{`${cur.first_name} ${cur.last_name}`}
+										</option>
+									);
+								})}
 							</DashboardSelect>
 						</div>
 					</div>
@@ -155,17 +178,50 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 }
 
 export function AwardeeInfo(props) {
+	const [names, setNames] = useState([]);
+	const [n, setN] = useState("");
+	useEffect(() => {
+		async function getProjectManager() {
+			const { data: vendor, error } = await supabase.from("vendor").select("*");
+			if (vendor) {
+				setNames(vendor);
+			}
+			return;
+		}
+		getProjectManager();
+	}, []);
+
 	const { values, errors, touched, handleChange, index } = props.data;
-	console.log(values);
 	const awardee = {
 		name: "Select Awardee involve in this project",
 		id: `awardeeInfo.${index}.awardee`,
 		placeholder: "Select Awardee involve in this project",
 		onChange: handleChange,
+		// onchange: () => {
+		// 	// if(names.)
+		// }
 		value: values.awardeeInfo[index].awardee,
 		// error: errors?.awardeeInfo[index].awardee,
 		touched: touched.awardee,
 	};
+
+	function a() {
+		return names.filter((cur, id) => {
+			return cur.industry === values.awardeeInfo[index].awardee;
+		});
+	}
+
+	function b() {
+		return names.filter((cur, id) => {
+			return cur.industry === values.awardeeInfo[index].awardee;
+		});
+	}
+	// useEffect(() => {
+	// 	if (!a) {
+	// 		return;
+	// 	}
+	// 	props.data.setValues({ a });
+	// }, []);
 
 	const design_consultant = {
 		name: "Select Design Consultant",
@@ -226,12 +282,27 @@ export function AwardeeInfo(props) {
 						<div>
 							<DashboardSelect {...awardee}>
 								<option>Select Awardee</option>
-								<option>Omotolani Olorotimi</option>
-								<option>Tife Olayinka</option>
+								<option value="Design Consultant">Design Consultant</option>
+								<option value="Contractor">Contractor</option>
+								<option value="Engineer">Engineer</option>
+								<option value="Construction Manager">
+									Construction Manager
+								</option>
+								<option value="Others">Others</option>
 							</DashboardSelect>
 						</div>
 						<div>
-							<OverviewInput {...design_consultant} />
+							{/* <OverviewInput {...design_consultant} /> */}
+							<DashboardSelect {...design_consultant}>
+								<option>Select</option>
+								{a().map((cur, id) => {
+									return (
+										<option key={id} value={cur.company_name}>
+											{cur.company_name}
+										</option>
+									);
+								})}
+							</DashboardSelect>
 						</div>
 						<div>
 							<OverviewInput {...consultant_name} />

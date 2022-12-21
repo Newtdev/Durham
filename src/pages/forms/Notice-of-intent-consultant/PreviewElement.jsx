@@ -69,7 +69,7 @@ const PreviewElement = () => {
             </div>
            
           </div>
-          <div className="px-24 ">
+          <div className="px-24x ">
           <div className='mt-3'>
            
               {content.approval === 'Yes' && <p className='my-6 text-justify text-base'>
