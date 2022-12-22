@@ -1,14 +1,21 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { handleDate, handleTime } from "../../../shared-component";
 import { ButtonWhiteBG } from "../../../ui";
+import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import DownLoadForm from "../Lundsford/Download";
+import { selectForm } from "../Lundsford/lundsFormslice";
 import { openDownload, showDownload } from "../reducer";
 import { prevChoiceStep,stepChoiceDefault } from "./reducer";
 
 const Preview = () => {
   const dispatch = useDispatch();
   const show = useSelector(openDownload)
+  const masterInfo = useSelector(project_details)
+  const content = useSelector(selectForm);
+
+
 
   const downloadComponent = useRef()  
 
@@ -48,8 +55,8 @@ const Preview = () => {
               <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
                 <div className='text-right'>
                   <p>Durham Public Schools</p>
-                  <p className='bg-yellow-500'>F1</p>
-                  <p className='bg-yellow-500'>F2</p>
+                <p className=''>{!masterInfo?'': masterInfo.project_name}</p>
+                  <p className=''>{!masterInfo?'': masterInfo.project_number}</p>
                 </div>
                 <div className='text-center mb-8'>
                   <h1 className='font-bold'>ADVERTISEMENT FOR BIDS</h1>
@@ -61,13 +68,13 @@ const Preview = () => {
                   <p>
                     Sealed bids from licensed contractors will be received by
                     Durham Public Schools, Durham, North Carolina on{" "}
-                    <span className='font-bold bg-yellow-500'>F3</span> for
+                  <span className='font-bold '>{handleDate(content.bidDate) }</span> for
                     furnishing of labor, material and equipment for the{" "}
-                    <span className='font-bold bg-yellow-500'>F4</span>. Bids
+                    <span className='font-bold '>{!masterInfo?'': masterInfo.project_name}</span>. Bids
                     will be received up to{" "}
-                    <span className='font-bold bg-yellow-500'>F5</span> from
+                  <span className='font-bold '>{handleTime(content.deadlineTime)}</span> from
                     Single Prime bidders. Bids will be opened at{" "}
-                    <span className='bg-yellow-500'>F6</span> via a virtual
+                    <span className=''>{handleTime(content.openingTime)}</span> via a virtual
                     teleconference and read aloud. Deliver bids to the{" "}
                     <span className='font-bold'>
                       Durham Public Schools Main Office located at 511
@@ -81,7 +88,7 @@ const Preview = () => {
                     <li>
                       No bid may be withdrawn after the scheduled closing time
                       for the receipt of bids for a period of{" "}
-                      <span className='bg-yellow-500'>F7</span>
+                    <span className=''>{!content? '':content.withdrawingBid }</span>
                     </li>
                     <li>
                       Bid security required is 5% of the bid in cash, certified
@@ -155,10 +162,10 @@ const Preview = () => {
                         Pre-Bid Conference:
                       </span>{" "}
                       Scheduled for{" "}
-                      <span className='font-bold bg-yellow-500'>F8</span>{" "}
-                      <span className='font-bold bg-yellow-500'> F9 </span>{" "}
-                      <span className='font-bold bg-yellow-500'> F10 </span>{" "}
-                      <span className='font-bold bg-yellow-500'> F11 </span>{" "}
+                      <span className='font-bold '>{handleDate(content.conferenceDate) }</span>{" "}
+                    <span className='font-bold '>{handleTime(content.conferenceTime)}</span>{" "}
+                    <span className='font-bold '>{content.conferenceAddress}{" "}{content.conferenceCity}{" "}{content.conferenceZipCode}{" "}{content.conferenceState}</span>{" "}
+                      <span className='font-bold '> {!content.presenceOfBiders? '':content.presenceOfBiders} </span>{" "}
                       Inspection of all sites shall be scheduled immediately
                       after the Pre-Bid Conference. The design team and owner
                       will provide access to the necessary location. The project
@@ -199,8 +206,8 @@ const Preview = () => {
                 {/* Next Page */}
                 <div className='text-right'>
                   <p>Durham Public Schools</p>
-                  <p className='bg-yellow-500'>F12</p>
-                  <p className='bg-yellow-500'>F13</p>
+                  <p className=''>{!masterInfo?'': masterInfo.project_name}</p>
+                  <p className=''>{!masterInfo?'': masterInfo.project_number}</p>
                 </div>
 
                 <div>
@@ -208,7 +215,7 @@ const Preview = () => {
                     <em>
                       {" "}
                       Prospective Bidders should contact{" "}
-                      <span className='bg-yellow-500'>F14</span> at the contact
+                    <span className=''>{!content?'':content.company_name}</span> at the contact
                       noted below in order to be e-mailed a link to download the
                       project manual and bid documents.
                     </em>
@@ -221,13 +228,14 @@ const Preview = () => {
                   <p className='mt-8 mb-4'>
                     For questions regarding this bid, please contact:
                   </p>
-                  <p className='bg-yellow-500'>F15</p>
+                  <p className=''>{!content?'':content.company_name}</p>
                   <p>
-                    <span className='bg-yellow-500'>F16</span>
-                    <span>Program Manager</span>
+
+                    <span className=''>{!content?'':content.manager_name}</span>
+                    <span>- Program Manager</span>
                   </p>
-                  <p className='bg-yellow-500'>F17</p>
-                  <p className='bg-yellow-500'>F18</p>
+                  <p className=''>{!content?'':content.manager_Phone_number}</p>
+                  <p className=''>{!content?'':content.manager_email_address}</p>
                 </div>
               </div>
             </div>

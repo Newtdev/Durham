@@ -75,16 +75,16 @@ const Overview = () => {
           <div className='container mx-auto px-4 lg:px-24'>
             {/* Title Cards */}
             <div className='mb-6 grid grid-cols-4 gap-4'>
-              <OverviewTitleCard name='Total Projects' value={data.length || 0} />
+              <OverviewTitleCard name='Total Projects' value={!data? 0 : data.length} />
               <OverviewTitleCard name='Forms' value='0' />
-              <OverviewTitleCard name='Project Managers' value={data.length || 0}/>
-              <OverviewTitleCard name='Vendors' value={data.length || 0} />
+              <OverviewTitleCard name='Project Managers' value={!data? 0 : data.length}/>
+              <OverviewTitleCard name='Vendors' value={!data? 0 : data.length} />
             </div>
 
             <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
               <div>
                 <PageHeader name='Projects' />
-                <p className='text-[#3b6979] text-lg'>Total Projects : {data.length || 0}</p>
+                <p className='text-[#3b6979] text-lg'>Total Projects : {!data? 0 : data.length}</p>
               </div>
               <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={()=> navigate('/dashboard/add-new-project')} />
             </div>

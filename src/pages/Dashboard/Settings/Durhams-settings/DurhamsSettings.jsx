@@ -4,38 +4,86 @@ import {useUpdateDurhamDetailsMutation,
 	useFetchDurhamQuery} from '../../../../features/services/api'
 import { toast } from "react-toastify";
 import { PageNavigation } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchData } from "../../../../shared-component";
+import { supabase } from "../../../../lib/supabase";
+import { useDispatch, useSelector } from "react-redux";
+import { getSaveData, save_profile } from "./ReducerSlice";
 
 
 const DurhamSettings = () => {
-  const result = useFetchDurhamQuery()
+  const dispatch = useDispatch()
 
-  const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
-  const [values, setValue] = useState(fetchData);
-
-  const HandleRequest = async (values) => {
-
-    const response = await updateDurhamDetails({...values});
-    
-    if (response) {
-      if (response.error) {
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else {
-				toast.success(response?.data?.message, {
-					position: toast.POSITION.TOP_CENTER,
+  useEffect(() => {
+		(async function fetchData() {
+			const response = await supabase.from("Durham_profile").select("*");
+			if (response?.data) {
+				// setValue(response.data)
+				response.data.forEach((cur) => {
+					dispatch(save_profile(cur));
+					// console.log({cu})
+					//  setValue({...cur, [cur.slug]:cur.value})
 				});
 			}
-    }
+		})();
+  }, []);
+
+  const data = useSelector(getSaveData);
+  const result = useFetchDurhamQuery()
+  const [values, setValue] = useState(data);
+
+  const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
+
+
+
+  useEffect(() => {
+    setValue(data)
+  }, [data])
+
+  
+
+  // const HandleRequest = async (values) => {
+  //   const response = await updateDurhamDetails({...values});
+    
+  //   if (response) {
+  //     if (response.error) {
+	// 			toast.error(response?.error?.message, {
+	// 				position: toast.POSITION.TOP_CENTER,
+	// 			});
+	// 		} else {
+	// 			toast.success(response?.data?.message, {
+	// 				position: toast.POSITION.TOP_CENTER,
+	// 			});
+	// 		}
+  //   }
+  // }
+  console.log(values)
+  const HandleRequest = async ({name,value}) => {
+    const response = await supabase
+      .from('Durham_profile')
+      .upsert([
+        { slug: name, value: value },
+      ]).select();
+    
+    console.log(response)
+    
+    // if (response) {
+    //   if (response.error) {
+		// 		toast.error(response?.error?.message, {
+		// 			position: toast.POSITION.TOP_CENTER,
+		// 		});
+		// 	} else {
+		// 		toast.success(response?.data?.message, {
+		// 			position: toast.POSITION.TOP_CENTER,
+		// 		});
+		// 	}
+    // }
   }
 
  
   const onChange = (e) => {
-    const { name, value } = e.target;
-    
-    setValue({...values, [name]: value })
+    const { name, value, } = e.target;
+    setValue({[name]: value })
   };
 
   const onSubmit = (e) => {
@@ -47,7 +95,7 @@ const DurhamSettings = () => {
         return
       } else {
 
-        localStorage.setItem('DurhamProfiles',JSON.stringify({...values,[name]:value}))
+        // localStorage.setItem('DurhamProfiles',JSON.stringify({...values,[name]:value}))
         HandleRequest({ name, value })
       }
     

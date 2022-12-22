@@ -160,7 +160,7 @@ const AccordionComponent = ({getData}) => {
     return <>
         {documents.map(({ id, name, data }, idx) => {
             
-             const active = activeIndex === idx ? "h-[40rem] ": "h-16 overflow-y-hidden ";
+             const active = activeIndex === idx ? "h-full": "h-16 overflow-y-hidden ";
             
             return <div className={`${active} transition-all ease-linear duration-75 overflow-y-hidden`} key={id}>
                 <h2>

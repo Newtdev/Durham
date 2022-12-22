@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
 import Bids from "./forms/Bids";
 import { modal } from "../reducer";
-import { choiceStep, nextChoiceStep, } from "./reducer";
+import { choiceStep, getStates, nextChoiceStep, } from "./reducer";
 import { AdvertisementBidSchema } from "../../../yup";
 import ConferenceBid from '../Advertisement-for-bid-template/forms/ConferenceBid'
 import CompanyInformation from "./forms/CompanyInfo";
 import Preview from "./Preview";
+import { useEffect } from "react";
+import { saveDoc } from "../Lundsford/lundsFormslice";
 
 const AdvertisementBid = () => {
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
+  
 
   const Formik = useFormik({
     initialValues: {
@@ -36,13 +39,26 @@ const AdvertisementBid = () => {
     },
     validationSchema: AdvertisementBidSchema[pages],
     
-    onSubmit: () => {
-      
+    onSubmit: (values) => {
+      if (show !==2) {
+        
         dispatch(nextChoiceStep())
+      }
+      dispatch(saveDoc(values))
+
 
       
     }
   });
+
+
+  useEffect(() => {
+    (async function () {
+      const response = await (await fetch('/states.json')).json();
+      dispatch(getStates(response))
+      
+    }())
+  }, [dispatch]);
   
   return <ModalOverlay show={show}>
     {pages === 0 && <Bids {...Formik} />}

@@ -31,7 +31,6 @@ export const Accordion = ({ data, readSlug }) => {
 	const onClick = (e) => {
 		if (e.target) {
 			const { id, name } = e.target;
-			console.log(id);
 			dispatch(getDocument(name));
 			dispatch(getSlugId(id));
 			e.target.className = newClass;

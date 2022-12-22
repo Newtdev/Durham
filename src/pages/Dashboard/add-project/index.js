@@ -35,9 +35,8 @@ const ProjectFormsController = () => {
 
 	async function HandleRequest(values) {
 		// const response = await addProjectManager({ ...values });
-		console.log(values);
-		let a = JSON.stringify(values.awardeeInfo);
-		let b = JSON.stringify(values.document);
+		let a = values.awardeeInfo;
+		let b = values.document;
 
 		const response = await supabase.from("durham_projects").insert([
 			{

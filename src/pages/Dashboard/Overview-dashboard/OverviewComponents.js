@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import { supabase } from "../../../lib/supabase";
@@ -7,11 +7,13 @@ import { Label, Error, Textarea } from "../../../ui";
 // import { AddUsersSchema } from "../../../yup";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
+	let a = [];
 	const navigate = useNavigate();
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
-			{dataArray.map((cur) => {
-				let awardee = cur.awardeeInfo[0];
+			{dataArray?.map((cur, index) => {
+				const awardee = cur.awardeeInfo[0];
+
 				const date = cur.created_at.split("T")[0];
 				const { id, project_name, project_manager } = cur;
 
@@ -28,6 +30,7 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-4 px-4 whitespace-nowrap">
 							{awardee.company_representative_name}
 						</td>
+						{console.log(a)}
 						<td className="py-4 px-4 whitespace-nowrap">{project_manager}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{date}</td>
 						<td className="py-4 px-4 flex items-center justify-start gap-3">

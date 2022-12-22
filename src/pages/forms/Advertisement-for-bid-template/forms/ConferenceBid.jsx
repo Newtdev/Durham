@@ -1,14 +1,15 @@
 // import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import {  SelectDate } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { SelectTime } from '../../Notice-to-Proceed/Forms';
 import { FormSelect } from "../Components";
-import { prevChoiceStep, } from "../reducer";
+import { getList, prevChoiceStep, } from "../reducer";
 
 const ConferenceBid = (props) => {
+    const states = useSelector(getList)
 
     const dispatch = useDispatch();
     const conferenceDate = {
@@ -55,6 +56,32 @@ const ConferenceBid = (props) => {
         name: 'conferenceZipCode',
         onChange: props.handleChange,
 
+    };
+
+
+    function CheckState() {
+        if (!props.values.conferenceState) {
+            return;
+        }
+        let stat = Object.values(states)?.find((state) => state.name === props.values.conferenceState);
+       
+        return Object.keys(stat.cities)?.map((cur, id) => {
+            return <option key={id} value={cur}>{cur}</option>
+        })
+    };
+
+    function CheckZipCode() {
+        if (!props.values.conferenceCity) {
+            return;
+        }
+        const city =  Object.values(states)?.filter((state) => state.name === props.values.conferenceState)
+        const zipcode = city?.find((cities) => cities);
+       return zipcode.cities[props.values.conferenceCity]?.map((zipcode, index) => {
+           return <option key={index} value={zipcode}>{zipcode}</option>
+        })
+        
+       
+           
     };
    
     return <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'>
@@ -115,26 +142,31 @@ const ConferenceBid = (props) => {
             
                 </div>
                 <div className='grid grid-cols-3 gap-x-4'>
+                <FormInputContainer name=''>
+                        <FormSelect {...conferenceState}>
+                            <option value=''>Select State</option>
+                            {Object.entries(states).map((cur, index) => {
+                                return <option key={index} value={cur[1].name}>{cur[1].name}</option>
+                                
+                            })}
+                        </FormSelect>
+                        {props.errors.conferenceState && props.touched.conferenceState && <Error message={props.errors.conferenceState} />}
+                    </FormInputContainer>
+
                     <FormInputContainer name=''>
                         <FormSelect {...conferenceCity}>
-                            <option value='k'>Select City</option>
-                            <option value='city'> City</option>
+
+                            <option value=''>Select City</option>
+                            {  CheckState()}
                         </FormSelect>
 
                         {props.errors.conferenceCity && props.touched.conferenceCity && <Error message={props.errors.conferenceCity} />}
                     </FormInputContainer>
-                    <FormInputContainer name=''>
-                        <FormSelect {...conferenceState}>
-                            <option value='h'>Select State</option>
-                            <option value='state'>State</option>
-                        </FormSelect>
-                        {props.errors.conferenceState && props.touched.conferenceState && <Error message={props.errors.conferenceState} />}
-                    </FormInputContainer>
+                  
                     <FormInputContainer name=''>
                         <FormSelect {...conferenceZipCode}>
-                            <option value='h'>Zipcode</option>
-                            <option value='zipcode'>zip</option>
-
+                            <option value=''>Select zipcode</option>
+                            {CheckZipCode()}
                         </FormSelect>
 
                         {props.errors.conferenceZipCode && props.touched.conferenceZipCode && <Error message={props.errors.conferenceZipCode} />}
