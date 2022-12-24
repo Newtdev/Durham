@@ -7,7 +7,7 @@ import { documentDefault, slugIdDefault } from "../../Dashboard/project-dashboar
 import { useReactToPrint } from "react-to-print";
 
 
-const DownLoadForm = ({ component, show, name, stepDefault, set }) => {
+const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
   const navigate = useNavigate();
   const projectDetails = useSelector(project_details);
   const dispatch = useDispatch();
@@ -16,12 +16,6 @@ const DownLoadForm = ({ component, show, name, stepDefault, set }) => {
     content: () => component.current,
   });
 
-  // const exportPDFWithComponent = () => {
-  //   console.log(component)
-  //   // if (component.current) {
-  //   //   component.current.save();
-  //   // }
-  // }
     return <div
     className={`${show} relative w-full max-w-md h-screen md:h-auto mx-auto mt-14`}
     onClick={(e) => e.stopPropagation()}
@@ -60,6 +54,7 @@ const DownLoadForm = ({ component, show, name, stepDefault, set }) => {
             dispatch(slugIdDefault())
             dispatch(documentDefault())
             dispatch(stepDefault())
+            dispatch(close())
           }}
 			className="flex items-center justify-center uppercase w-[360px] bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">
     go to project dashboard

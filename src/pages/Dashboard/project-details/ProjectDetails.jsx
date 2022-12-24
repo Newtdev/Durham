@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { supabase } from "../../../lib/supabase";
 import { addNewProject } from "../add-project/projectSlice";
 import ProjectDashboard from "../project-dashboard";
+import { save_profile } from "../Settings/Durhams-settings/ReducerSlice";
 
 const ProjectDetails = () => {
     const path = useLocation();
@@ -12,15 +13,39 @@ const ProjectDetails = () => {
     
     
     useEffect(() => {
+        let isSubcribed = false;
         (async function getById() {
+            isSubcribed = true;
+
             let { data: durham_projects, error } = await supabase
                 .from('durham_projects')
                 .select('*').eq('id', pathID).single();
-          
-            dispatch(addNewProject(durham_projects));
+            if (isSubcribed) {
+                dispatch(addNewProject(durham_projects));
+            }
+            return () => {
+                isSubcribed = false;
+                        
+            }
 
+        }());
+    }, [pathID, dispatch]);
+    
+    useEffect(() => {
+        let isSubcribed = false;
+        (async function () {
+            isSubcribed = true;
+            const response =await supabase.from('Durham_profile').select("*")
+            if (isSubcribed) {
+                
+                dispatch(save_profile(response.data))
+            }
         }())
-    },[pathID,dispatch])
+        return () => {
+    isSubcribed = false;
+            
+        }
+    }, [dispatch])
    return <ProjectDashboard/> 
 }
 

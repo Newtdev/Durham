@@ -152,3 +152,36 @@ export const AdvertisementBidSchema = [
 			.email("Enter a correct email address"),
 	}),
 ];
+
+export const EESSERContractSchema = [
+	Yup.object({
+		contractStartDate: Yup.string().required("Date field is required"),
+		fromDuration: Yup.string().required("Duration field is required"),
+		startDuration: Yup.string().required("Through date field is required"),
+	}),
+	Yup.object({
+		calculatePayment: Yup.string().required("Payment metric is required"),
+		allowablePayment: Yup.string().required(
+			"Allowable total payment field is required"
+		),
+		reimburseObligation: Yup.string().required(
+			"Additional Obligation field is required"
+		),
+		providerCompensation: Yup.string().required("Amount field is required"),
+		providerInvoice: Yup.string().required(
+			"Invoice receiver field is required"
+		),
+		signedDocument: Yup.string().required("Date field is required"),
+	}),
+	Yup.object({
+		type: "",
+	}),
+];
+
+export const TechServiceSchema = Yup.object().shape({
+	creationDate: Yup.string().required("Creation date is required!"),
+	startDate: Yup.string().required("Starting date is required!"),
+	amount: Yup.string().required("Amount is required!"),
+	endDate: Yup.string().required("Starting time date is required!"),
+	signedDate: Yup.string().required("Delivery date is required!"),
+});

@@ -5,12 +5,15 @@ const DurhamSlice = createSlice({
 	initialState: {
 		durham_profile: {},
 	},
+
 	reducers: {
 		save_profile: (state, { payload }) => {
-			state.durham_profile = {
-				...state.durham_profile,
-				[payload.slug]: payload.value,
-			};
+			 payload.map((profile) => {
+					return (state.durham_profile = {
+						...state.durham_profile,
+						[profile.slug]: profile,
+					});
+				});
 		},
 	},
 });

@@ -17,13 +17,14 @@ const Preview = () => {
 
 
 
+
   const downloadComponent = useRef()  
 
   const props = {
-    component: downloadComponent ,
-      name:'00 11 13 - Advertisement for Bid Template' ,
-      show: show ? 'block' : 'hidden',
-      stepChoiceDefault
+    component: downloadComponent,
+    name: '00 11 13 - Advertisement for Bid Template',
+    show: show ? 'block' : 'hidden',
+    stepDefault: stepChoiceDefault
   }
   
 

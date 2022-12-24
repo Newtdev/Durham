@@ -83,7 +83,7 @@ export function ModalOverlay({ children, show, close }) {
 	const showModal = show ? "top-0" : "bottom-full";
 	return (
 		<div
-			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-hidden`}
+			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-y-auto`}
 			onClick={close}>
 			{children}
 		</div>

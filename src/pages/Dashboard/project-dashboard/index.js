@@ -10,33 +10,30 @@ import { getTotals, handleDate } from "../../../shared-component";
 import Lunsford from "../../forms/Lundsford";
 import {
 	advertisement_bid,
+	ESSERContract,
+	ESSERContractPM,
+	leChase,
 	lundsford,
 	notice_of_award_contractor,
 	notice_of_intent_award_consultant,
 	notice_to_proceed,
+	techServices,
 } from "../../../shared-component/slug";
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
 import { slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
-import { useEffect } from "react";
-import { supabase } from "../../../lib/supabase";
+import Esser from "../../forms/ESSER Contract Template";
+import LeChase from "../../forms/LeChase Esser";
+import EsserPM from "../../forms/ESSER PM Contract Template";
+import Lechase from "../../forms/LeChase Esser";
+import TechService from "../../forms/Tech Service Agreement";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documents = useSelector(getDocuments);
 	const id = useSelector(slug);
 	const date = !projectDetails ? new Date() : projectDetails.date;
-
-	useEffect(() => {
-		(async function getDate() {
-			const response = await supabase.from("durham_projects").select("*");
-			response.forEach((element) => {
-				console.log(element);
-			});
-		})();
-	}, []);
-
 	return (
 		<section>
 			{/* <!-- Navbar --> */}
@@ -187,6 +184,10 @@ const ProjectDashboard = () => {
 			{id === notice_of_intent_award_consultant && <NoticeOfIntentConsultant />}
 			{id === notice_of_award_contractor && <NoticeToProceed />}
 			{id === advertisement_bid && <AdvertisementBid />}
+			{id === ESSERContract && <Esser />}
+			{id === ESSERContractPM && <EsserPM />}
+			{id === leChase && <Lechase />}
+			{id === techServices && <TechService />}
 		</section>
 	);
 };

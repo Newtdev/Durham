@@ -2,6 +2,9 @@ import { Calender } from "../../../ui";
 import DatePicker from "react-datepicker";
 import DollarSign from "../../../assets/dollar.svg";
 
+
+
+
 export const FormInput = (props) => {
 	return (
 		<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center">
@@ -16,7 +19,7 @@ export const FormInput = (props) => {
 };
 
 export const SelectDate = (props) => {
-	const { value, setFieldValue, name } = props;
+	const { value, setFieldValue, name, placeholder } = props;
 	return (
 		<label className="bg-gray-50 border flex items-center justify-between border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979]  w-full pr-2">
 			<DatePicker
@@ -25,7 +28,7 @@ export const SelectDate = (props) => {
 				name={name}
 				onChange={(e) => setFieldValue(name, e)}
 				className="w-full p-2.5 bg-gray-50"
-				placeholderText="Select Date"
+				placeholderText={placeholder}
 			/>
 			<Calender />
 		</label>

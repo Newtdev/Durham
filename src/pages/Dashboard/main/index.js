@@ -1,9 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
-import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
-import NoticeToProceed from "../../forms/Notice-to-Proceed";
-
+import TechService from "../../forms/Tech Service Agreement";
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectDetails = lazy(() => import("../project-details"));
 const ProjectManager = lazy(() =>
@@ -22,7 +19,7 @@ const Dashboard = () => {
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
-				<Route path="/forms" element={<AdvertisementBid />} />
+				<Route path="/forms" element={<TechService />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
 				<Route path="/settings" element={<Settings />} />
