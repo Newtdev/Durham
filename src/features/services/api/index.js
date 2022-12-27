@@ -83,9 +83,9 @@ export const DurhamsApi = createApi({
 			query: (token) => {
 				return {
 					url: `project-managers/by-token/${token}`,
-					// headers: {
-					// 	Accept: "application/json",
-					// },
+					headers: {
+						Accept: "application/json",
+					},
 					// credentials: "include",
 					method: "GET",
 				};

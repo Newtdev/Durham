@@ -22,7 +22,7 @@ function pages(id) {
 }
 export default function App() {
 	return (
-		<main className="bg-white">
+		<main className="bg-white overflow-x-hidden">
 			<Suspense fallback={<div>Loading...</div>}>
 				<Routes>{pages()}</Routes>
 			</Suspense>

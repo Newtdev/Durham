@@ -9,8 +9,9 @@ import Preview from "./Preview";
 // import PreviewElement from "./PreviewElement";
 import { saveDoc, nextStep, page } from "./reducerSlice";
 import { closeModal, showModal, modal } from "../reducer";
+import { notice_to_proceed } from "../../../shared-component/slug";
 
-const NoticeToProceed = () => {
+const NoticeToProceed = ({id}) => {
 // console.log(modal)
   const dispatch = useDispatch();
   const pages = useSelector(page)
@@ -36,7 +37,7 @@ const NoticeToProceed = () => {
 
     });
     
-  return <ModalOverlay show={showModal}>
+  return <ModalOverlay show={id === notice_to_proceed && showModal}>
                {pages === 1 && <NoticeForm {...formik} /> } 
                  {pages === 2 && <Preview />}
             

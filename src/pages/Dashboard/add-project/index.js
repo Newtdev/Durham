@@ -1,6 +1,6 @@
 import { useFormik, FormikProvider } from "formik";
 import { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { state } from "../../../lib/data";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { AddNewProjectSchema } from "../../../yup";
@@ -13,7 +13,6 @@ import { addNewProject } from "./projectSlice";
 import { useSelector } from "react-redux";
 import { product_manager_data } from "../Product-manager-management/projectManagerSlice";
 import { getSaveData } from "../Vendors-mangement/vendorSlice";
-import { storeProject } from "../../../shared-component";
 import { toast } from "react-toastify";
 import { supabase } from "../../../lib/supabase";
 

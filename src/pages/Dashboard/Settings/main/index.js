@@ -7,19 +7,28 @@ import { save_profile } from "../Durhams-settings/ReducerSlice";
 
 const Settings = () => {
 	const dispatch = useDispatch();
+
 	useEffect(() => {
+		let isSubscribed = false;
+
 		(async function fetchData() {
+			isSubscribed = true;
 			const response = await supabase.from("Durham_profile").select("*");
 			if (response?.data) {
+				if (isSubscribed) {
+					response.data.forEach((cur) => {
+						dispatch(save_profile(cur));
+					});
+				}
 				// setValue(response.data)
-				response.data.forEach((cur) => {
-					dispatch(save_profile(cur));
-					// console.log({cu})
-					//  setValue({...cur, [cur.slug]:cur.value})
-				});
 			}
 		})();
-	}, []);
+
+		return () => {
+			isSubscribed = false;
+		};
+	}, [dispatch]);
+
 	return (
 		<section className=" h-screen w-full overflow-y-hidden">
 			<DashboardNav />

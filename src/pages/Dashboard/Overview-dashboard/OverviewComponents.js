@@ -391,7 +391,7 @@ export function DashboardSelect(props) {
 
 			<select
 				onChange={onChange}
-				className="cursor-pointer bg-white border border-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
+				className=" cursor-pointer bg-white border border-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 				name={id}
 				type="text"
 				value={values}>

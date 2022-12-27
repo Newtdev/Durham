@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import Logo  from "../../../assets/formlogo.png";
 import { fetchData, handleDate, handleLastName, handleTime } from "../../../shared-component";
 import { prevStep, selectForm, stepDefault } from "./reducerSlice";
-import { showDownload,closeDownload, openDownload } from '../reducer';
+import { showDownload, openDownload } from '../reducer';
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
@@ -14,7 +14,6 @@ const Preview = () => {
   const data = useSelector(selectForm);
   const masterInfo = useSelector(project_details)
   const show = useSelector(openDownload)
-  // const [show, setShowModal] = useState(false);
   const downloadComponent = useRef()
   
   const props = {

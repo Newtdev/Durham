@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "../../../ui";
+import { showModal } from "../../forms/reducer";
 import { getDocument, getSlugId } from "./ReducerSlice";
 
 export const ProjectCard = ({ name, value }) => {
@@ -21,7 +22,7 @@ export const ProjectDetails = ({ name, description }) => {
 	);
 };
 
-export const Accordion = ({ data, readSlug }) => {
+export const Accordion = ({ data }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
 	const dispatch = useDispatch();
 
@@ -31,10 +32,11 @@ export const Accordion = ({ data, readSlug }) => {
 	const onClick = (e) => {
 		if (e.target) {
 			const { id, name } = e.target;
+			e.target.className = newClass;
 			console.log(id);
 			dispatch(getDocument(name));
 			dispatch(getSlugId(id));
-			e.target.className = newClass;
+			dispatch(showModal());
 		}
 	};
 
@@ -61,7 +63,9 @@ export const Accordion = ({ data, readSlug }) => {
 										}}
 										type="button"
 										className="flex items-center justify-between w-full p-4 font-semibold text-left text-gray-900 border border-l-0 border-r-0 border-b-0 border-gray-100 rounded-t-lg">
-										<span>{document}</span>
+										<span>
+											{document.charAt(0).toUpperCase() + document.slice(1)}
+										</span>
 										{/* Down Arrow */}
 										{activeIndex !== idx && <ChevronDown />}
 										{activeIndex === idx && (

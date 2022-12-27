@@ -91,8 +91,7 @@ export const AddNewProjectSchema = [
 				design_consultant: Yup.string().required("field is required"),
 				consultant_name: Yup.string().required("field is required"),
 				consultant_address: Yup.string().required("field is required"),
-				corporate_president: Yup.string().required("field is required"),
-				corporate_secretary: Yup.string().required("field is required"),
+
 				company_representative_name: Yup.string().required("field is required"),
 				company_representative_title:
 					Yup.string().required("field is required"),
@@ -184,4 +183,30 @@ export const TechServiceSchema = Yup.object().shape({
 	amount: Yup.string().required("Amount is required!"),
 	endDate: Yup.string().required("Starting time date is required!"),
 	signedDate: Yup.string().required("Delivery date is required!"),
+});
+
+export const NoticeIntentAward = Yup.object().shape({
+	creationDate: Yup.string().required("Letter creation is required"),
+	approvalDate: Yup.string().required("Letter approval date is required"),
+	contractorContact: Yup.string().required(
+		"Contractor contact person is required"
+	),
+	email: Yup.string()
+		.required("Consultant email is required")
+		.email("Please Provide a valid email address"),
+	sendersName: Yup.string().required("Sender's name is required"),
+	phone: Yup.string()
+		.required("Sender's phone number field is required")
+		.phone("US", false),
+});
+
+export const NoticeofAwardSchema = Yup.object().shape({
+	approval: Yup.string().required("Approval field is required"),
+	creationDate: Yup.string().required("Letter creation field is required"),
+	services: Yup.string().required("Services field date is required"),
+	amount: Yup.string().required("Amount field is required"),
+	email: Yup.string()
+		.required("Email field is required")
+		.email("Please Provide a valid email address"),
+	deliveryDate: Yup.string().required("Delivery date field is required"),
 });

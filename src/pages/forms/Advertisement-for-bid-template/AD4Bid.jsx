@@ -10,8 +10,9 @@ import CompanyInformation from "./forms/CompanyInfo";
 import Preview from "./Preview";
 import { useEffect } from "react";
 import { saveDoc } from "../Lundsford/lundsFormslice";
+import { advertisement_bid } from "../../../shared-component/slug";
 
-const AdvertisementBid = () => {
+const AdvertisementBid = ({id}) => {
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
@@ -60,7 +61,7 @@ const AdvertisementBid = () => {
     }())
   }, [dispatch]);
   
-  return <ModalOverlay show={show}>
+  return <ModalOverlay show={id === advertisement_bid && show}>
     {pages === 0 && <Bids {...Formik} />}
     {pages === 1 && <ConferenceBid {...Formik} />}
     {pages === 2 && <CompanyInformation {...Formik} />}

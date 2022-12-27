@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Button, ModalOverlay } from '../../../ui'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthComp, { AuthHeader, CheckBox, ImageSideContainer, InputContainer } from '../component';
 import { useFormik } from 'formik';
 import { LoginSchema } from '../../../yup';
@@ -22,29 +21,25 @@ const GetLoginDetails = () => {
 const Login = () => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    
 
     const [userLogin, { isLoading }] = useUserLoginMutation();
     
     const HandleRequest = async (value) => {
 		try {
             const response = await userLogin({ ...value });
-            if(response?.status !== 'failed'){
-			// if (response?.error) {
-				// toast.error(response?.error?.message, {
-				// 	position: toast.POSITION.TOP_CENTER,
-                // })
-                return navigate('/dashboard')
-              
-            } else {
-                toast.error(response?.error?.message, {
+			if (response?.error) {
+				toast.error(response?.error?.message, {
 					position: toast.POSITION.TOP_CENTER,
-                })
-                // toast.success(`${response?.data?.message}! Login with your new password`, {
-				// 	position: toast.POSITION.TOP_CENTER,
-                // });
+                });
+              
+            }
+            // else {
+            //     toast.success(`${response?.data?.message}! Login with your new password`, {
+			// 		position: toast.POSITION.TOP_CENTER,
+            //     });
                 
-			}
+			// }
 		} catch (error) {
 			console.log(error);
 		}

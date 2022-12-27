@@ -6,28 +6,19 @@ import { Accordion, ProjectCard, ProjectDetails } from "./Components";
 import { useSelector } from "react-redux";
 import { getDocuments, project_details } from "../add-project/projectSlice";
 import { LoadingArrow, Pen } from "../../../ui";
-import { getTotals, handleDate } from "../../../shared-component";
+import { getTotals } from "../../../shared-component";
 import Lunsford from "../../forms/Lundsford";
-import {
-	advertisement_bid,
-	ESSERContract,
-	ESSERContractPM,
-	leChase,
-	lundsford,
-	notice_of_award_contractor,
-	notice_of_intent_award_consultant,
-	notice_to_proceed,
-	techServices,
-} from "../../../shared-component/slug";
+
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
 import { slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
 import Esser from "../../forms/ESSER Contract Template";
-import LeChase from "../../forms/LeChase Esser";
 import EsserPM from "../../forms/ESSER PM Contract Template";
 import Lechase from "../../forms/LeChase Esser";
 import TechService from "../../forms/Tech Service Agreement";
+import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor/NoticeOfAwardContrator";
+import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
@@ -180,14 +171,20 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			{id === lundsford && <Lunsford {...{ name: slug.name }} />}
-			{id === notice_of_intent_award_consultant && <NoticeOfIntentConsultant />}
-			{id === notice_of_award_contractor && <NoticeToProceed />}
-			{id === advertisement_bid && <AdvertisementBid />}
-			{id === ESSERContract && <Esser />}
-			{id === ESSERContractPM && <EsserPM />}
-			{id === leChase && <Lechase />}
-			{id === techServices && <TechService />}
+			{/* <Lunsford id={id} /> */}
+
+			<NoticeOfIntentConsultant id={id} />
+
+			<NoticeToProceed id={id} />
+
+			<NoticeOfAwardConsultant id={id} />
+
+			<AdvertisementBid id={id} />
+			<Esser id={id} />
+			<EsserPM id={id} />
+			<Lechase id={id} />
+			<TechService id={id} />
+			<NoticeOfAwardContrator id={id} />
 		</section>
 	);
 };

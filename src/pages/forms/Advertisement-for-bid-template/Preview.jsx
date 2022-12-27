@@ -1,6 +1,6 @@
+import moment from "moment";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleDate, handleTime } from "../../../shared-component";
 import { ButtonWhiteBG } from "../../../ui";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { Close, DashboardButton } from "../../Dashboard/Components";
@@ -69,13 +69,13 @@ const Preview = () => {
                   <p>
                     Sealed bids from licensed contractors will be received by
                     Durham Public Schools, Durham, North Carolina on{" "}
-                  <span className='font-bold '>{handleDate(content.bidDate) }</span> for
+                  <span className='font-bold '>{moment(content.bidDate).format("MMMM D, YYYY")}</span> for
                     furnishing of labor, material and equipment for the{" "}
                     <span className='font-bold '>{!masterInfo?'': masterInfo.project_name}</span>. Bids
                     will be received up to{" "}
-                  <span className='font-bold '>{handleTime(content.deadlineTime)}</span> from
+                  <span className='font-bold '>{moment(content.deadlineTime).format("h:mm:ss a")}</span> from
                     Single Prime bidders. Bids will be opened at{" "}
-                    <span className=''>{handleTime(content.openingTime)}</span> via a virtual
+                    <span className=''>{moment(content.openingTime).format("h:mm a")}</span> via a virtual
                     teleconference and read aloud. Deliver bids to the{" "}
                     <span className='font-bold'>
                       Durham Public Schools Main Office located at 511
@@ -163,8 +163,9 @@ const Preview = () => {
                         Pre-Bid Conference:
                       </span>{" "}
                       Scheduled for{" "}
-                      <span className='font-bold '>{handleDate(content.conferenceDate) }</span>{" "}
-                    <span className='font-bold '>{handleTime(content.conferenceTime)}</span>{" "}
+                    <span className='font-bold '>{moment(content.conferenceDate).format("MMMM D, YYYY")}</span>{" "}
+                    
+                    <span className='font-bold '>{moment(content.conferenceTime).format("h:mm a")}</span>{" "}
                     <span className='font-bold '>{content.conferenceAddress}{" "}{content.conferenceCity}{" "}{content.conferenceZipCode}{" "}{content.conferenceState}</span>{" "}
                       <span className='font-bold '> {!content.presenceOfBiders? '':content.presenceOfBiders} </span>{" "}
                       Inspection of all sites shall be scheduled immediately

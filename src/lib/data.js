@@ -36,25 +36,23 @@ export const documents = [
 
 	{
 		id: 2,
-		name: "Notice",
+		name: "Notice Letter",
 		data: [
-			{ id: 1, name: "Notice of Reward - Consultant Form" },
-			{ id: 2, name: "Notice of Reward - Contractor Form" },
-			// {
-			// 	id: 3,
-			// 	name: "Notice of Intent to Award - Design Services [Less than $200k]",
-			// },
-			// {
-			// 	id: 4,
-			// 	name: "Notice of Intent to Award - Design Services [More than $200k BOARD APPROVAL]",
-			// },
-			// { id: 5, name: "Notice to Proceed - Contractor Form" },
+			{ id: 1, name: "Notice of Award - Consultant" },
+			{ id: 2, name: "Notice of Award - Contractor" },
+			{
+				id: 3,
+				name: "Notice of Intent to Award - Consultant",
+			},
+			{
+				id: 4,
+				name: "Notice to Proceed - Contractor",
+			},
 		],
 	},
 	{ id: 3, name: "Budget", data: [] },
 	{ id: 4, name: "Project Closeout", data: [] },
 	{ id: 5, name: "MWBE Forms", data: [] },
-	{ id: 6, name: "Notice Letter", data: [] },
 ];
 
 export const state = {

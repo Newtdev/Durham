@@ -9,8 +9,9 @@ import ContractDetails from "./forms/ContractDetails";
 import { choiceStep, getStates, nextChoiceStep } from "../Advertisement-for-bid-template/reducer";
 import { modal } from "../reducer";
 import SexualOffender from "./forms/SexualOffender";
+import { leChase } from "../../../shared-component/slug";
 
-const LeChase = () => {
+const LeChase = ({id}) => {
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
@@ -45,7 +46,7 @@ const LeChase = () => {
     }
   });
   
-  return <ModalOverlay show={show}>
+  return <ModalOverlay show={id === leChase && show}>
     {pages === 0 && <ContractDetails {...Formik} />}
     {pages === 1 && <Compensation {...Formik} />}
     {pages === 2 && <SexualOffender {...Formik} />}

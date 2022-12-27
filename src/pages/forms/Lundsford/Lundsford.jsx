@@ -6,10 +6,11 @@ import Forms from "./Forms";
 import PreviewForm from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep,page,saveDoc } from "./lundsFormslice";
+import { lundsford } from "../../../shared-component/slug";
 
 
 
-const Lunsford = ({ name }) => {
+const Lunsford = ({ id }) => {
   
   const [showModal, setShowModal] = useState(true);
   const Dispatch = useDispatch();
@@ -44,7 +45,6 @@ const Lunsford = ({ name }) => {
   
   const previewProps = {
     value: values.type,
-    name,
     component
   }
 
@@ -53,7 +53,7 @@ const Lunsford = ({ name }) => {
 
   return (
     <div>
-          <ModalOverlay show={showModal}>
+          <ModalOverlay show={id === lundsford && showModal}>
     
       
               {pages === 1 && <Forms {...typeProps} />}
