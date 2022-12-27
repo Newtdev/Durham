@@ -24,7 +24,7 @@ const ProjectCloseOutPreview= () => {
   
   const props = {
     component: downloadComponent ,
-      name:'Notice of Intent to Award - Consultant' ,
+      name:'Project Close-out Documentation Checklist' ,
       show: show ? 'block' : 'hidden',
       // stepDefault
   }

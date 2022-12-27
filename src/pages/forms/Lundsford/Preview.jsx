@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 import {stepDefault, prevStep} from './lundsFormslice'
 import { useRef } from "react";
+import { closeDownload, openDownload, showDownload } from "../reducer";
 
 
 
 
 const PreviewForm = ({value }) => {
   
-  const [showModal, setShowModal] = useState(false);
   const projectDetails = useSelector(project_details);
+  const showModal = useSelector(openDownload);
   const downloadComponent = useRef()
   const dispatch = useDispatch();
   
@@ -23,7 +24,7 @@ const PreviewForm = ({value }) => {
     name:'Attachment A Lunsford Act Form',
     show: showModal ? 'block' : 'hidden',
     stepDefault,
-    close: () => setShowModal(false),
+    close: closeDownload,
     
     }
 
@@ -178,7 +179,7 @@ const PreviewForm = ({value }) => {
             name='CREATE DOCUMENT'
             type='button'
             width='w-[198px]'
-            onClick={()=> setShowModal(true)}
+            onClick={()=>dispatch(showDownload())}
           />
         </div>
       </div>
