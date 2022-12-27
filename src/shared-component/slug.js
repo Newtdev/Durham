@@ -9,11 +9,14 @@ export const notice_of_award_consultant = "Notice-of-Award---Consultant";
 export const notice_of_intent_consultant = "Notice-of-Intent-to-Award---Consultant";
 
 
-//Notice of Intent to Award - Consultant
+export const project_closeout_checklist = "Project-Closeout-Checklist";
+export const certificateOfSubstantialCompletion =
+	"Certificate-of-Substantial-Completion";
 
+//Notice of Intent to Award - Consultant
 
 export const advertisement_bid = "-00-11-13---Advertisement-for-Bid-Template";
 export const ESSERContract = "ESSER-Contract-Template";
 export const ESSERContractPM = "ESSER-PM-Contract-Template";
-export const leChase = "-LeChase-Esser-Contract-Template";
+export const leChase = "LeChase-Esser-Contract-Template";
 export const techServices = "Technology-Service-Agreement";

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { closeDownload, closeModal, openDownload, showDownload } from "../reducer";
 import { useRef } from "react";
-import { prevStep, selectForm } from "../Notice-of-intent-consultant/reducerSlice";
+import { prevStep, selectForm, stepDefault } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment";
 import { handleLastName } from "../../../shared-component";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
@@ -27,8 +27,8 @@ const Preview = () => {
         component: downloadComponent,
         name: 'Notice of Award - Consultant',
         show: show ? 'block' : 'hidden',
-        stepDefault: closeModal,
-        // close: closeDownload
+        stepDefault,
+        close: closeDownload
     }
     // creationDate
     return (

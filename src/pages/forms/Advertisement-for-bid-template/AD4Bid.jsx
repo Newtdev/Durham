@@ -65,7 +65,7 @@ const AdvertisementBid = ({id}) => {
     {pages === 0 && <Bids {...Formik} />}
     {pages === 1 && <ConferenceBid {...Formik} />}
     {pages === 2 && <CompanyInformation {...Formik} />}
-    {pages === 3 && <Preview {...Formik} />}
+    {pages === 3 && <Preview />}
   </ModalOverlay>
 };
 

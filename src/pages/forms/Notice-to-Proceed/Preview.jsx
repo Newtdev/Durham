@@ -3,11 +3,12 @@ import { ButtonWhiteBG } from "../../../ui";
 import Logo  from "../../../assets/formlogo.png";
 import { fetchData, handleDate, handleLastName, handleTime } from "../../../shared-component";
 import { prevStep, selectForm, stepDefault } from "./reducerSlice";
-import { showDownload, openDownload } from '../reducer';
+import { showDownload, openDownload, closeDownload } from '../reducer';
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 import DownLoadForm from "../Lundsford/Download";
+import moment from "moment";
 
 const Preview = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ const Preview = () => {
     component: downloadComponent ,
       name:'Notice of Intent to Award - Consultant' ,
       show: show ? 'block' : 'hidden',
-      stepDefault
+    stepDefault,
+      close: closeDownload
   }
   
   return (
@@ -66,7 +68,7 @@ const Preview = () => {
                 </div>
                 <div>
                   <p>
-                    <span className='bg-grey-800'>{handleDate(data.creationDate)}</span>
+                    <span className='bg-grey-800'>{moment(data.creationDate).format("MMMM D, YYYY ")}</span>
                   </p>
                   <p>
                     {/* <span className='bg-yellow-500'></span> */}
@@ -76,9 +78,9 @@ const Preview = () => {
                   <p>
                     <span className='bg-grey-800'>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant}</span>
                   </p>
-                  <p>
+                  {/* <p>
                     <span className='bg-grey-800'>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant}</span>
-                  </p>
+                  </p> */}
                   <p>
                     {/* <span className='bg-grey-800'>F6</span> */}
                   </p>
@@ -104,7 +106,7 @@ const Preview = () => {
                     <span>
                       Dear <span className='bg-grey-800'>Mr./Ms.</span>{" "}
                     </span>{" "}
-                    <span className='bg-grey-800'>{handleLastName('Thomas Ejembi')}</span>,
+                    <span className='bg-grey-800'>{handleLastName(masterInfo.awardeeInfo[0].company_representative_name)}</span>,
                   </div>
                 </div>
                 {/* Body */}
@@ -113,8 +115,8 @@ const Preview = () => {
                     We are pleased to offer this Notice to Proceed for the{" "}
                     <span className='bg-grey-800'>Brogden Middle School</span> -{" "}
                     <span className='bg-grey-800'>{!masterInfo ? "":masterInfo.project_name }</span>. Effective{" "}
-                    <span className='bg-grey-800'>{handleDate(data.startDate)}</span>, at{" "}
-                    <span className='bg-grey-800'>{handleTime(data.startTime)}</span>,{" "}
+                    <span className='bg-grey-800'>{moment(data.stateDate).format("MMMM D, YYYY ")}</span>, at{" "}
+                    <span className='bg-grey-800'>{moment(data.startTime).format("hh:mm a ")}</span>,{" "}
                     <span className='bg-grey-800'>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant}</span> is authorized to
                     proceed with the Work in earnest in accordance with the
                     terms of your contract and the Contract Documents
@@ -122,7 +124,7 @@ const Preview = () => {
                   <p className='mb-4'>
                     Time is of the essence. The Notice to Proceed commences the
                     Contract Time until Substantial Completion is achieved on or
-                    before <span className='font-bold bg-grey-800'>{handleDate(data.deliveryDate)}</span>.
+                    before <span className='font-bold bg-grey-800'>{moment(data.deliveryDate).format("MMMM D, YYYY ")}</span>.
                   </p>
                   <p className='mb-4'>
                     We look forward to working with you and your team on this

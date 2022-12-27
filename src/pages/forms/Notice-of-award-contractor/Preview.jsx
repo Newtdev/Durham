@@ -9,7 +9,7 @@ import { Close, DashboardButton } from "../../Dashboard/Components";
 import DownLoadForm from "../Lundsford/Download";
 import { prevStep, selectForm} from "../Notice-of-intent-consultant/reducerSlice";
 
-import { closeModal, openDownload, showDownload } from "../reducer";
+import { closeDownload, closeModal, openDownload, showDownload } from "../reducer";
 
 const Preview = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,8 @@ const Preview = () => {
         component: downloadComponent ,
           name:'Notice of Award - Contractor' ,
           show: show ? 'block' : 'hidden',
-          stepDefault:closeModal
+        stepDefault: closeModal,
+          close: closeDownload
       }    
 
     return (

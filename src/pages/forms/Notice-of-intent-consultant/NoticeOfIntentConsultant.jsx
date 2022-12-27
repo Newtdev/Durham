@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { notice_of_award_consultant, notice_of_intent_consultant } from "../../../shared-component/slug";
+import {  notice_of_intent_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { NoticeConsultant } from "../../../yup";
+import { modal } from "../reducer";
 import NoticeForm from "./Forms";
 import PreviewElement from "./PreviewElement";
 import { saveDoc, nextStep, page } from "./reducerSlice";
@@ -12,9 +12,7 @@ const NoticeOfIntentConsultant = ({id}) => {
 
   const dispatch = useDispatch();
   const pages = useSelector(page)
-
-  const [showModal, setShowModal] = useState(true);
-
+  const show = useSelector(modal)
 
   
   const formik = useFormik({
@@ -37,7 +35,7 @@ const NoticeOfIntentConsultant = ({id}) => {
 
   });
     
-  return <ModalOverlay show={ id === notice_of_intent_consultant && showModal}>
+  return <ModalOverlay show={ id === notice_of_intent_consultant && show}>
     {pages === 1 && <NoticeForm {...formik} />}
     {pages === 2 && <PreviewElement />}
             

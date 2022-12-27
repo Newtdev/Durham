@@ -5,9 +5,12 @@ import Logo from '../../../assets/formlogo.png'
 import {prevStep, selectForm,stepDefault} from './reducerSlice'
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 import currency from "currency.js";
-import { fetchData, handleDate } from "../../../shared-component";
 import DownLoadForm from "../Lundsford/Download";
 import { useRef, useState } from "react";
+import moment from "moment";
+import { getSaveData } from "../../Dashboard/Settings/Durhams-settings/ReducerSlice";
+import { closeDownload } from "../reducer";
+import { handleLastName } from "../../../shared-component";
 
 const PreviewElement = () => {
   const dispatch = useDispatch()
@@ -17,12 +20,14 @@ const PreviewElement = () => {
   
   const content = useSelector(selectForm);
   const projectDetails = useSelector(project_details);
+  const profile = useSelector(getSaveData);
 
   const props = {
   component: downloadComponent ,
     name:'Notice of Intent to Award - Consultant' ,
     show: showModal ? 'block' : 'hidden',
-    stepDefault
+    stepDefault,
+    close: closeDownload
   }
       return (
         <>
@@ -73,7 +78,7 @@ const PreviewElement = () => {
           <div className='mt-3'>
            
               {content.approval === 'Yes' && <p className='my-6 text-justify text-base'>
-                {handleDate(content.creationDate)}
+                        {moment(content.creationDate).format("MMMM D, YYYY ")}
               </p>
               }
                       <p className='text-base text-justify'>{!projectDetails ? "" : projectDetails.awardeeInfo[0].company_representative_name}{ " "} {!projectDetails ? "": projectDetails.awardeeInfo[0].company_representative_title}</p>
@@ -106,7 +111,7 @@ const PreviewElement = () => {
           </div>
     
           <div className='mt-6 mb-4'>
-              <p>Dear Mr./Ms. {!projectDetails?'':projectDetails.awardeeInfo[0].consultant_name}</p>
+              <p>Dear Mr./Ms. {handleLastName(projectDetails.awardeeInfo[0].company_representative_name)}</p>
             <div className='mt-4 flex gap-8 leading-normal'>
               
               <p>
@@ -116,19 +121,19 @@ const PreviewElement = () => {
             <div className='mt-4 flex gap-8'>
               
               <p>
-              Issuance of this contract does not represent any commitment on behalf of Durham Public Schools until reviewed and approved by the Board of Education.  We anticipate the project being presented to the Board of Education for consideration of award on {handleDate(content.approvalDate)}.
+              Issuance of this contract does not represent any commitment on behalf of Durham Public Schools until reviewed and approved by the Board of Education.  We anticipate the project being presented to the Board of Education for consideration of award on {moment(content.approvalDate).format("MMMM D, YYYY ")}.
               </p>
             </div>
             <div className='mt-4 flex gap-8'>
               
               <p>
-                  The attached contract is being transmitted to your office for review.  If in agreement, please print (single-sided) and execute (3) three sets of originals, and forward all documents (including (3) originals of all required insurance certificates) to Construction & Capital Planning, 2011 Hamlin Road, Durham, North Carolina 27704 {content.approval === 'Yes' && <span>no later than Weekday, {handleDate(content.deliveryDate)}</span>}.  Pending award, one (1) fully executed copy of the contract will be returned for your records.
+                  The attached contract is being transmitted to your office for review.  If in agreement, please print (single-sided) and execute (3) three sets of originals, and forward all documents (including (3) originals of all required insurance certificates) to Construction & Capital Planning, 2011 Hamlin Road, Durham, North Carolina 27704 {content.approval === 'Yes' && <span>no later than {moment(content.deliveryDate).format("D")}, {moment(content.deliveryDate).format("MMMM YYYY ")}</span>}.  Pending award, one (1) fully executed copy of the contract will be returned for your records.
               </p>
             </div>
             <div className='mt-4 flex gap-8'>
               
               <p>
-              We look forward to working with you and your team on this project.  If you have any questions, please contact me at {fetchData().project_manager_phone}.
+              We look forward to working with you and your team on this project.  If you have any questions, please contact me at {!profile? "":profile.project_manager_phone.value}.
               </p>
             </div>
             <div className='mt-4 gap-8'>
@@ -137,7 +142,7 @@ const PreviewElement = () => {
                 Sincerely,
               </p>
               <p className="my-6">
-              {fetchData().project_manager}
+              {!profile? "":profile.project_manager.value}
                   <br/>
                 C&CP Project Manager
 

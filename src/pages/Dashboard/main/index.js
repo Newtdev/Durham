@@ -1,10 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
-import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor";
-import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
-import TechService from "../../forms/Tech Service Agreement";
-
+import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectDetails = lazy(() => import("../project-details"));
 const ProjectManager = lazy(() =>
@@ -23,7 +19,7 @@ const Dashboard = () => {
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
-				<Route path="/forms" element={<ProjectCloseoutCheckList />} />
+				<Route path="/forms" element={<CertificateOfSubstantial />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
 				<Route path="/settings" element={<Settings />} />

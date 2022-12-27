@@ -1,8 +1,10 @@
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from 'react-redux';
 import { ButtonWhiteBG, Calender, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import {  FormInput } from "../components";
+import { closeModal } from '../reducer';
 
 export const FormInputContainer = ({ name, children }) => {
     return <div className='flex flex-col mb-5'>
@@ -17,6 +19,7 @@ export const FormInputContainer = ({ name, children }) => {
 }
 
 const NoticeForm = (props) => {
+    const dispatch = useDispatch();
     const creationDate = {
         ...props,
         value: props.values.creationDate,
@@ -190,7 +193,7 @@ const NoticeForm = (props) => {
 
                 {/* Buttons */}
                 <div className='flex justify-end gap-8 pr-4'>
-                    <ButtonWhiteBG width='w-[100px]' name='cancel' />
+                    <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(closeModal())} />
                     <DashboardButton
                         hidden
                         name='NEXT'

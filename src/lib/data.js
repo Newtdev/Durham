@@ -65,80 +65,7 @@ export const state = {
 	notice_letter: [],
 };
 
-export const OverviewContent = [
-	{
-		id: 1,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 2,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 3,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 4,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 5,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 6,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 7,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 8,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-	{
-		id: 9,
-		projectName: "Burton Elementary School - Boiler Replacement",
-		awardee: "John Doe",
-		companyRep: "John Doe",
-		projectManager: "John Doe",
-		date: "12/08/22",
-	},
-];
+
 
 export const OverviewTableHeader = [
 	"Project Name",
@@ -148,7 +75,6 @@ export const OverviewTableHeader = [
 	"Date",
 	"",
 ];
-
 
 export const Months = [
 	"Jan",
@@ -165,7 +91,6 @@ export const Months = [
 	"Dec",
 ];
 
-
 export const ProductHeader = [
 	"First Name",
 	"Last name",
@@ -174,75 +99,132 @@ export const ProductHeader = [
 	"",
 ];
 
-export const productContent = [
+export const project_closeout_data = [
+	{
+		id: 0,
+		numb: 1,
+		value:
+			"1. Fully executed Certificate of Substantial Completion with attached punch list(s).",
+	},
 	{
 		id: 1,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 2,
+		value:
+			"2. Fully executed Final Change Order (i.e., for allowances,  deductions for work done by others, etc.)",
 	},
 	{
 		id: 2,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 3,
+		value: "3. Final Approved Application for Payment",
 	},
 	{
 		id: 3,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 4,
+		value: "4. Consent of Surety to Final Payment",
 	},
 	{
 		id: 4,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 5,
+		value:
+			"5. Contractor’s Affidavit of Release of Liens (properly signed, notarized, etc, with no exceptions)",
 	},
 	{
 		id: 5,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 6,
+		value:
+			"6. Contractor’s Affidavit of Payment of Debts and Claims (properly signed, notarized, etc., with no exceptions)",
 	},
 	{
 		id: 6,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 7,
+		value:
+			"7. Properly executed release of liens by subcontractors and/or vendors (if applicable for those who have had problems with payments, etc. per General Conditions",
 	},
 	{
 		id: 7,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 8,
+		value:
+			"8. Certificate of Occupancy from proper municipality (Durham County Inspections / Durham FM)",
 	},
 	{
 		id: 8,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 9,
+		value: "9. Contractor’s One-Year Warranty (notarized)",
 	},
 	{
 		id: 9,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 10,
+		value:
+			"10. Warranty summary sheet and original warranties for specific items (roofs, motors, etc.)",
 	},
 	{
 		id: 10,
-		first_name: "Jane ",
-		last_name: " Cooper",
-		email: "debra.holt@example.com",
-		phone: "+1 (925) 727-5161",
+		numb: 11,
+		value: "11. Contractor’s certification letter per General Conditions",
+	},
+	{
+		id: 11,
+		numb: 12,
+		value:
+			"12. Certification letter from Contractor stating that no asbestos containing materials were used (copy to Environmental Management)",
+	},
+	{
+		id: 12,
+		numb: 13,
+		value:
+			"13. Certification letter from Architect (or Engineer) regarding asbestos, per EPA regulations (copy to Environmental Management)",
+	},
+	{
+		id: 13,
+		numb: 14,
+		value:
+			"14. Architect’s and MEP Engineer’s certification letter saying punch list is complete, the work is per contract requirements, and recommending final payment be made to Contractor",
+	},
+	{
+		id: 14,
+		numb: 15,
+		value: "15. Architects (or Engineer’s) letter regarding liquidated damages",
+	},
+	{
+		id: 15,
+		numb: 16,
+		value:
+			"16. Transmittal indicating keys have been given to Principal – signed by Principal",
+	},
+	{
+		id: 16,
+		numb: 17,
+		value:
+			"17. Final list of all subcontractors with names, addresses, and phone numbers (especially emergency numbers)",
+	},
+	{
+		id: 17,
+		numb: 18,
+		value:
+			"18. Letter from General Contractor Stating Removal of Temporary Facilities",
+	},
+	{
+		id: 18,
+		numb: 19,
+		value:
+			"19. As-Built Redline drawings (3 sets Stamped certified) and As-Built Electronic drawings (2 sets) received from A/E and cover letter from Architect and Engineer saying they have been reviewed and are as complete and accurate as possible, attach completed transmittal to Owner.",
+	},
+	{
+		id: 19,
+		numb: 20,
+		value:
+			"20. Operations and Maintenance Manuals (3 sets) and cover letter from Architect and Engineer saying they are complete and have been reviewed, attach completed transmittal to Owner.",
+	},
+	{
+		id: 20,
+		numb: 21,
+		value:
+			"21. Final commissioning report with certified Test And Balance report. Include cover letter indicating it TAB has been reviewed and approved by consulting Engineer",
+	},
+
+	{
+		id: 21,
+		numb: 22,
+		value: "22. 2-CD’s record drawing files",
 	},
 ];

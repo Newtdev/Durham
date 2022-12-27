@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG,Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
+import { closeModal } from "../reducer";
 
 
-const Forms = ({handleChange,error,touched, handleSubmit}) => {
+const Forms = ({ handleChange, error, touched, handleSubmit }) => {
+  const dispatch = useDispatch()
     return <div>
     <div
       className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'
@@ -95,7 +98,7 @@ const Forms = ({handleChange,error,touched, handleSubmit}) => {
 
         {/* Buttons */}
         <div className='flex justify-end gap-8 pr-4'>
-          <ButtonWhiteBG width='w-[100px]' name='cancel' />
+          <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(closeModal())} />
           <DashboardButton
             hidden
             name='NEXT'

@@ -1,6 +1,5 @@
 import { DashboardButton } from "../../Dashboard/Components"
 import Success from "../../../assets/success.png";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { documentDefault, slugIdDefault } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -8,7 +7,6 @@ import { useReactToPrint } from "react-to-print";
 
 
 const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
-  const navigate = useNavigate();
   const projectDetails = useSelector(project_details);
   const dispatch = useDispatch();
 
@@ -47,6 +45,7 @@ const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
               handlePrint()
               dispatch(slugIdDefault())
               dispatch(stepDefault())
+              dispatch(close())
             }
           }
           />

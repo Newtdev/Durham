@@ -5,6 +5,7 @@ import { FormInputContainer } from "../Notice-to-Proceed/Forms";
 import SelectDate from "../components";
 import { nextStep, prevStep } from "../Lundsford/lundsFormslice";
 import { useDispatch } from "react-redux";
+import { closeModal } from "../reducer";
 
 const Forms = (props) => {
   const dispatch = useDispatch();
@@ -146,7 +147,7 @@ const Forms = (props) => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-              <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=>dispatch(prevStep())} />
+              <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=>dispatch(closeModal())} />
               <DashboardButton
                 hidden
                 name='NEXT'

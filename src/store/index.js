@@ -12,6 +12,8 @@ import LundsfordReducer from "../pages/forms/Lundsford/lundsFormslice";
 import ModalReducer from "../pages/forms/reducer";
 import MultiFormReducer from "../pages/forms/Advertisement-for-bid-template/reducer";
 import DurhamProfileReducer from "../pages/Dashboard/Settings/Durhams-settings/ReducerSlice";
+import ProjectCloseoutStepReducer from "../pages/forms/Project-closeout-checklist/reducer";
+import CertificateOfSubstantialReducer from "../pages/forms/Certificate of Substantial Completion/reducer";
 export const store = configureStore({
 	// reducers
 	reducer: {
@@ -29,6 +31,8 @@ export const store = configureStore({
 		ModalReducer,
 		MultiFormReducer,
 		DurhamProfileReducer,
+		ProjectCloseoutStepReducer,
+		CertificateOfSubstantialReducer,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

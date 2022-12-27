@@ -19,6 +19,8 @@ import Lechase from "../../forms/LeChase Esser";
 import TechService from "../../forms/Tech Service Agreement";
 import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor/NoticeOfAwardContrator";
 import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
+import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
+import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
@@ -171,19 +173,19 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			{/* <Lunsford id={id} /> */}
+			<Lunsford id={id} />
 
 			<NoticeOfIntentConsultant id={id} />
-
+			<CertificateOfSubstantial id={id} />
 			<NoticeToProceed id={id} />
-
+			<ProjectCloseoutCheckList id={id} />
 			<NoticeOfAwardConsultant id={id} />
-
 			<AdvertisementBid id={id} />
 			<Esser id={id} />
 			<EsserPM id={id} />
 			<Lechase id={id} />
 			<TechService id={id} />
+			<NoticeOfAwardContrator id={id} />
 			<NoticeOfAwardContrator id={id} />
 		</section>
 	);

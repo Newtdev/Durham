@@ -1,15 +1,19 @@
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import {  SelectDate } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { SelectTime } from '../../Notice-to-Proceed/Forms';
+import { closeModal } from "../../reducer";
 
 const Bids = (props) => {
+    const dispatch = useDispatch()
     const bidDate = {
         ...props,
         value: props.values.bidDate,
         onChange: props.handleChange,
         name: 'bidDate',
+        placeholder:'Select date'
         
     }
     const deadlineTime = {
@@ -17,6 +21,7 @@ const Bids = (props) => {
         value: props.values.deadlineTime,
         onChange: props.handleChange,
         name: 'deadlineTime',
+        placeholder:'Select date'
        
     }
     const openingTime = {
@@ -24,6 +29,7 @@ const Bids = (props) => {
         value: props.values.openingTime,
         onChange: props.handleChange,
         name: 'openingTime',
+        placeholder:'Select time'
     }
     
     const withdrawingBid = {
@@ -98,7 +104,7 @@ const Bids = (props) => {
             </div>
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(closeModal())} />
                 <DashboardButton
                     hidden
                     name='NEXT'

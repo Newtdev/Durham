@@ -1,3 +1,3 @@
-import Certificate from "./Certificate";
+import CertificateOfSubstantial from "./CertificateOfSubtantial";
 
-export default Certificate;
+export default CertificateOfSubstantial;

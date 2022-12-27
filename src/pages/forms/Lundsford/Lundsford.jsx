@@ -7,14 +7,16 @@ import PreviewForm from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep,page,saveDoc } from "./lundsFormslice";
 import { lundsford } from "../../../shared-component/slug";
+import { modal } from "../reducer";
 
 
 
 const Lunsford = ({ id }) => {
   
-  const [showModal, setShowModal] = useState(true);
+  
   const Dispatch = useDispatch();
   const pages = useSelector(page)
+  const showModal = useSelector(modal)
   const component = useRef();
   
 

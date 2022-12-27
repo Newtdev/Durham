@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import {  SelectDate } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
+import { closeModal } from "../../reducer";
 
 const ContractDetails = (props) => {
 
+    const dispatch = useDispatch()
     const contractStartDate = {
         ...props,
         value: props.values.contractStartDate,
@@ -78,7 +81,7 @@ const ContractDetails = (props) => {
             </div>
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(closeModal())} />
                 <DashboardButton
                     hidden
                     name='NEXT'

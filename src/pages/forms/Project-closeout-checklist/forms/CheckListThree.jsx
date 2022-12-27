@@ -1,36 +1,53 @@
 import { useDispatch } from "react-redux"
-import { ButtonWhiteBG, Error } from "../../../../ui"
+import { project_closeout_data } from "../../../../lib/data"
+import { ButtonWhiteBG } from "../../../../ui"
 import { Close, DashboardButton } from "../../../Dashboard/Components"
 import { prevChoiceStep } from "../../Advertisement-for-bid-template/reducer"
-import SelectDate from "../../components"
-import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms"
-import { closeModal } from "../../reducer"
+import { FormCheckBox } from "../../components"
 import { prev } from "../reducer"
 
-const GeneralInformation = (props) => {
+const CheckListThree = (props) => {
     const dispatch = useDispatch();
+    const eighteen  = {
+        value: props.values.eighteen,
+        onChange: props.handleChange,
+        error: props.errors.eighteen,
+        touched: props.touched.eighteen,
+        name: 'eighteen',
+    }
+    const nineteen = {
+        value: props.values.nineteen,
+        onChange: props.handleChange,
+        error: props.errors.nineteen,
+        touched: props.touched.nineteen,
+        name: 'nineteen',
+    }
+    const twenty = {
+        value: props.values.twenty,
+        onChange: props.handleChange,
+        error: props.errors.twenty,
+        touched: props.touched.twenty,
+        name: 'twenty',
+    }
+    const twentyOne = {
+        value: props.values.twentyOne,
+        onChange: props.handleChange,
+        error: props.errors.twentyOne,
+        touched: props.touched.twentyOne,
+        name: 'twentyOne',
+    }
+
+    const twentyTwo = {
+        value: props.values.twentyTwo,
+        onChange: props.handleChange,
+        error: props.errors.twentyTwo,
+        touched: props.touched.twentyTwo,
+        name: 'twentyTwo',
+    }
+
     
-
-    const completionDate = {
-        ...props,
-        value: props.values.completionDate,
-        onChange: props.handleChange,
-        error: props.errors.completionDate,
-        touched: props.touched.completionDate,
-        name: 'completionDate',
-        placeholder:'Select date'
-    }
-
-    const signDate = {
-        ...props,
-        value: props.values.signDate,
-        onChange: props.handleChange,
-        error: props.errors.signDate,
-        touched: props.touched.signDate,
-        name: 'signDate',
-        placeholder:'Select date'
-    }
-   return <div>
+    return <div>
+        
         <div
             className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'
             onClick={(e) => e.stopPropagation()}
@@ -41,10 +58,10 @@ const GeneralInformation = (props) => {
                 <div className='flex justify-between items-baseline mx-6'>
                     <div>
                         <h3 className='text-lg font-bold text-gray-900'>
-                        Project Closeout Checklist
+                            Project Closeout Checklist
                         </h3>
-                       <p className='text-base text-gray-700'>
-                       General Information
+                        <p className='text-base text-gray-700'>
+                        Checklist
                         </p>
                     </div>
                     <button
@@ -65,25 +82,20 @@ const GeneralInformation = (props) => {
                     
                     <div className=' mt-3 ml-2'>
                         
-                        <FormInputContainer name='Enter the substantial completion date of the project'>
-
-                            <SelectDate {...completionDate} />
-                            {props.errors.completionDate && props.touched.completionDate && <Error message={props.errors.completionDate}/>}
-                        </FormInputContainer>                        
-                      
-                       
-                        <FormInputContainer name='When does the project manager sign this document?'>
-                            <SelectDate {...signDate} />
-                            {props.errors.signDate && props.touched.signDate && <Error message={props.errors.signDate}/>}
-                        </FormInputContainer>
+                    <FormCheckBox data={project_closeout_data[17].value} props={eighteen} />
+                    <FormCheckBox data={project_closeout_data[18].value} props={nineteen} />
+                    <FormCheckBox data={project_closeout_data[19].value} props={twenty} />
+                    <FormCheckBox data={project_closeout_data[20].value} props={twentyOne} />
+                    <FormCheckBox data={project_closeout_data[21].value} props={twentyTwo} />
                     
+
            
                     </div>
                 </div>
 
                 {/* Buttons */}
                 <div className='flex justify-end gap-8 pr-4'>
-                    <ButtonWhiteBG width='w-[100px]' name='Cancel' onClick={()=> dispatch(closeModal()) } />
+                    <ButtonWhiteBG width='w-[100px]' name='Cancel' onClick={() => dispatch(prev())} />
                     <DashboardButton
                         hidden
                         name='NEXT'
@@ -97,4 +109,4 @@ const GeneralInformation = (props) => {
 }
 
 
-export default GeneralInformation;
+export default CheckListThree;

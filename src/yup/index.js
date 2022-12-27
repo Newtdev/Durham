@@ -210,3 +210,23 @@ export const NoticeofAwardSchema = Yup.object().shape({
 		.email("Please Provide a valid email address"),
 	deliveryDate: Yup.string().required("Delivery date field is required"),
 });
+
+export const ProjectCloseOutSchema = Yup.object().shape({
+	completionDate: Yup.string().required("completion date field is required"),
+	signDate: Yup.string().required("signed date field is required"),
+});
+
+export const CertificateOfSubstantialSchema = Yup.object().shape({
+	purposeOfContract: Yup.string().required("Field is required"),
+	contractEffectDate: Yup.string().required("Field is required"),
+	involvedInProject: Yup.string().required("Field is required"),
+	areasCompleted: Yup.string().required("Field is required"),
+	completionDate: Yup.string().required("Field is required"),
+	workCompletionDate: Yup.string().required("Field is required"),
+	costOfWork: Yup.string().required("Field is required"),
+	ownersRep: Yup.string().required("Field is required"),
+	ownerRepName: Yup.string().required("Field is required"),
+	signedDate: Yup.string().required("Field is required"),
+	responsibility: Yup.string().required("Field is required"),
+	estimatedCost: Yup.string().required("Field is required"),
+});

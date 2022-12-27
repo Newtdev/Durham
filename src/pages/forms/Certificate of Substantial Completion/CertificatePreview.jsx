@@ -1,18 +1,38 @@
-import "react-datepicker/dist/react-datepicker.css";
-import { ModalOverlay } from "../../../ui";
-import { useState } from "react";
+import Logo  from "../../../assets/formlogo.png";
+import { useRef } from "react";
 import { ButtonWhiteBG } from "../../../ui";
-import { DashboardButton } from "../../Dashboard/Components";
+import { Close, DashboardButton } from "../../Dashboard/Components";
+import { useDispatch, useSelector } from "react-redux";
+import { prev, stepDefault } from "./reducer";
+import { selectForm } from "../Notice-of-intent-consultant/reducerSlice";
+import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { closeDownload, openDownload, showDownload } from "../reducer";
+import moment from "moment";
+import currency from "currency.js";
+import DownLoadForm from "../Lundsford/Download";
 
-const Certificate = () => {
-  const [showModal, setShowModal] = useState(true);
+const CertificatePreview = () => {
+  const dispatch = useDispatch();
+  const data = useSelector(selectForm);
+  const masterInfo = useSelector(project_details)
+  const show = useSelector(openDownload)
+  const downloadComponent = useRef();
+
+  const props = {
+    component: downloadComponent ,
+      name:'Certificate of Substantial Completion' ,
+      show: show ? 'block' : 'hidden',
+    stepDefault,
+    close:closeDownload
+  }
 
   return (
     <div>
-      <ModalOverlay show={showModal} close={() => setShowModal(true)}>
+         <DownLoadForm {...props} />
+
         <div>
           {/* Modal content */}
-          <div className='relative w-[80%] mx-auto bg-white rounded-lg shadow mt-14'>
+          <div className={`${!show ?"block": 'hidden'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}> 
             {/* Header */}
             <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
               <div className='ml-6'>
@@ -26,28 +46,16 @@ const Certificate = () => {
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
               >
-                <svg
-                  aria-hidden='true'
-                  className='w-5 h-5'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
-                <span className='sr-only'>Close modal</span>
+               <Close/>
               </button>
             </div>
 
             <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='bg-[#D9D9D9] px-12 pt-8 pb-4 text-black'>
+              <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
                 <div>
-                  <div className='flex items-center mb-10 justify-center'>
-                    <div>logo HERE</div>
+                  <div className='flex items-center mb-10 '>
+                  <img src={Logo} alt="logo" className="h-20 object-cover mb-4" />
+
                     <h1 className='font-bold text-xl ml-8'>
                       Certficate of Substantial Completion
                     </h1>
@@ -69,16 +77,17 @@ const Certificate = () => {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>F1</td>
+                      <td className='border border-black pl-[1rem]'>{!masterInfo ?'': masterInfo.project_name}</td>
                         <td className='border border-black pl-[1rem]'>
-                          Project No: F3, g8.1
+                          Project No: {!masterInfo ?'': masterInfo.project_number}, g8.1
                         </td>
                         <td className='border border-black pl-[1rem]'>Owner</td>
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'> </td>
                         <td className='border border-black pl-[1rem]'>
-                          Contract for: F4 Construction
+                          Contract for: {!data? '': data.purposeOfContract
+} Construction
                         </td>
                         <td className='border border-black pl-[1rem]'>
                           Architect
@@ -86,8 +95,9 @@ const Certificate = () => {
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'>F2</td>
-                        <td className='border border-black pl-[1rem]'>
-                          Contract Date: F5
+                      <td className='border border-black pl-[1rem]'>
+                      
+                          Contract Date: {moment(data.contractEffectDate).format("MMMM D, YYYY ")}
                         </td>
                         <td className='border border-black pl-[1rem]'>
                           Contractor
@@ -96,7 +106,7 @@ const Certificate = () => {
                       <tr>
                         <td className='border border-black pl-[1rem]'></td>
                         <td className='border border-black pl-[1rem]'></td>
-                        <td className='border border-black pl-[1rem]'>F6</td>
+                        <td className='border border-black pl-[1rem]'>{!data? '': data.involvedInProject}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -114,20 +124,20 @@ const Certificate = () => {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>F7</td>
-                        <td className='border border-black pl-[1rem]'>F9</td>
+                        <td className='border border-black pl-[1rem]'>Durham Public Schools</td>
+                      <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_name}</td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>F8</td>
-                        <td className='border border-black pl-[1rem]'>F10</td>
+                        <td className='border border-black pl-[1rem]'>511 Cleveland St., Durham, NC 27701</td>
+                        <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_address}</td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>
+                        {/* <td className='border border-black pl-[1rem]'>
                           City, State 2XXXX
                         </td>
                         <td className='border border-black pl-[1rem]'>
                           City, State 2XXXX
-                        </td>
+                        </td> */}
                       </tr>
                     </tbody>
                   </table>
@@ -140,7 +150,8 @@ const Certificate = () => {
 
                     <p className='mb-6'>
                       List project name here the Work{" "}
-                      <span className='bg-yellow-500'>F11</span> determined
+                      <span className=''>{!data? "": data.areasCompleted
+}</span> determined
                       Substantially Complete.
                     </p>
 
@@ -159,7 +170,7 @@ const Certificate = () => {
 
                     <p className='font-bold mb-6'>
                       DATE OF SUBSTANTIAL COMPLETION:{" "}
-                      <span className='bg-yellow-500 ml-10'>F12</span>
+                      <span className=''>{moment(data.completionDate).format("MMMM D, YYYY ")}</span>
                     </p>
 
                     <p className='mb-14'>
@@ -174,38 +185,39 @@ const Certificate = () => {
 
                     <div className='mb-6'>
                       <p className='mb-0'>
-                        _____________<span className='bg-yellow-500'>F13</span>
-                        _______________________________________________________________________________________________________
+                       <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].design_consultant}</span>
+                        ___________________________________________________________________
                       </p>
                       <span>CONSULTANT</span>
-                      <span className='ml-[20rem]'>
-                        BY: <span className='bg-yellow-500'>F14</span>
+                      <span className='ml-[10rem]'>
+                        BY: <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].company_representative_name}</span>
                       </span>
-                      <span className='ml-[20rem]'>DATE</span>
+                      <span className='ml-[10rem]'>DATE</span>
                     </div>
 
                     <p className='mb-10'>
                       The Contractor will complete all work on the attached
                       punch list within{" "}
-                      <span className='bg-yellow-500'>F15</span> days from the
+                      <span className=''>{!data? "": data.workCompletionDate
+}</span> days from the
                       date of Substantial Completion.
                     </p>
 
                     <p className='mb-12 font-bold'>
                       COST ESTIMATE OF REMAINING WORK:
-                      <span className='bg-yellow-500 ml-10'>F16</span>
+                    <span className=' '>{ " "}{currency(data.estimatedCost).format()}</span>
                     </p>
 
                     <div className='mb-6'>
                       <p className='mb-0'>
-                        _____________<span className='bg-yellow-500'>F17</span>
-                        _______________________________________________________________________________________________________
+                       <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_name}</span>
+                        ________________________________________________________________________________
                       </p>
                       <span>CONTRACTOR</span>
-                      <span className='ml-[20rem]'>
-                        BY: <span className='bg-yellow-500'>F18</span>
+                      <span className='ml-[10rem]'>
+                        BY: <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].company_representative_name}</span>
                       </span>
-                      <span className='ml-[20rem]'>DATE</span>
+                      <span className='ml-[10rem]'>DATE</span>
                     </div>
 
                     <p className='mb-12'>
@@ -216,17 +228,18 @@ const Certificate = () => {
                     </p>
 
                     <div className='mb-6'>
-                      <p className='mb-0'>
-                        _____________<span className='bg-yellow-500'>F19</span>
-                        _______________________________________________________________________________________
-                        <span className='bg-yellow-500'>F21</span>
-                        _____________
+                    <p className='mb-0'>
+                    <span className=''>Durham Public Schools</span>
+                        _____________________________________________________________________________
+                        
+                        
                       </p>
-                      <span>OWNER</span>
-                      <span className='ml-[23rem]'>
-                        BY: <span className='bg-yellow-500'>F20</span>
+                      <span>OWNER: </span>
+                      <span className='ml-[15rem]'>
+                      BY: <span className=''>{!data ? '' : data.ownerRepName}</span>
                       </span>
-                      <span className='ml-[20rem]'>DATE</span>
+                    <span className='ml-[10rem]'>DATE: <span className=''>{moment(data.signedDate).format("MMMM D, YYYY ")}</span>
+                    </span>
                     </div>
 
                     <p className='mb-6'>
@@ -236,7 +249,7 @@ const Certificate = () => {
                     </p>
 
                     <p>
-                      <span className='bg-yellow-500'>F22</span>
+                      <span className=''>{!data ? '' : data.responsibility}</span>
                     </p>
                   </div>
                 </div>
@@ -245,19 +258,20 @@ const Certificate = () => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' />
+              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prev())} />
               <DashboardButton
                 hidden
                 name='CREATE DOCUMENT'
-                type='submit'
-                width='w-[198px]'
+                type='button'
+              width='w-[198px]'
+              onClick={()=> dispatch(showDownload())}
+              
               />
             </div>
           </div>
         </div>
-      </ModalOverlay>
     </div>
   );
 };
 
-export default Certificate;
+export default CertificatePreview;
