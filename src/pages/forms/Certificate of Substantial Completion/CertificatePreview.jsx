@@ -94,7 +94,7 @@ const CertificatePreview = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>F2</td>
+                        <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.project_location}</td>
                       <td className='border border-black pl-[1rem]'>
                       
                           Contract Date: {moment(data.contractEffectDate).format("MMMM D, YYYY ")}

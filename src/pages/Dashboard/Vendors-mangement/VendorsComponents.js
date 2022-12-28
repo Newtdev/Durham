@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import { useAddVendorMutation } from "../../../features/services/api";
+import {
+	useAddVendorMutation,
+	useFetchVendorsQuery,
+} from "../../../features/services/api";
 import { supabase } from "../../../lib/supabase";
 import { ButtonRedBG, ButtonWhiteBG, FullPageLoader } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
@@ -131,25 +134,13 @@ export const VendorsContent = [
 ];
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-	const [data, setData] = useState([]);
-	const [request, setRequest] = useState(true);
-	useEffect(() => {
-		async function getData() {
-			const response = await supabase.from("vendor").select("*");
-			console.log(response);
-			if (response) {
-				setData(response.data);
-				setRequest(false);
-			}
-		}
-		getData();
-	}, []);
+	const apiResponse = useFetchVendorsQuery();
 
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
-			{request && <FullPageLoader />}
+			{!apiResponse?.data && <FullPageLoader />}
 
-			{data?.map((vendor) => {
+			{apiResponse?.data?.map((vendor) => {
 				const {
 					id,
 					first_name,
@@ -161,10 +152,10 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					secretary,
 					industry,
 				} = vendor;
-				// const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 
 				return (
-					<tr key={id} className={`border-b`}>
+					<tr key={id} className={`border-b ${strip}`}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{first_name}
 						</td>
@@ -313,7 +304,6 @@ const VendorInformationComponents = ({
 	return (
 		<div className="relative w-[490px] h-screen md:h-auto mx-auto mt-14">
 			{/* Modal content */}
-			{console.log(values)}
 			<div className="relative bg-white rounded-lg shadow pb-4 md:pb-0">
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 					<div>
@@ -410,31 +400,20 @@ export function AddVendor({ close }) {
 
 	const HandleRequest = async (value) => {
 		try {
-			const response = await supabase.from("vendor").insert([value]);
-			console.log(response);
-			// const response = await addVendor({ ...value });
-			if (!response?.error) {
-				toast.error("Vendor added successfully", {
-					position: toast.POSITION.TOP_CENTER,
-				});
-				setSuccess(true);
-			} else {
-				toast.error(response?.error, {
-					position: toast.POSITION.TOP_CENTER,
-				});
+			// const response = await supabase.from("vendor").insert([value]);
+			const response = await addVendor({ ...value });
+
+			if (response?.error) {
+				console.log(response?.error);
 				close();
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				// setShowSuccess(false)
+			} else if (response?.data) {
+				setSuccess(true);
+				// onSuccess show the modal and ask the manager to login
 			}
-			// if (response?.error) {
-			// 	console.log(response?.error);
-			// 	close();
-			// 	toast.error(response?.error?.message, {
-			// 		position: toast.POSITION.TOP_CENTER,
-			// 	});
-			// 	// setShowSuccess(false)
-			// } else if (response?.data) {
-			// 	setSuccess(true);
-			// 	// onSuccess show the modal and ask the manager to login
-			// }
 		} catch (error) {
 			console.log(error);
 		}

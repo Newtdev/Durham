@@ -18,6 +18,10 @@ import {
 import { Spinner } from "../../../assets";
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
+import {
+	useFetchAllProjectManagerQuery,
+	useFetchProjectManagerQuery,
+} from "../../../features/services/api";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -226,24 +230,12 @@ export function TableHeader({ dataArray }) {
 /*************DASHBOARD HEADER TABLE*********************/
 
 export function TableBody({ dataArray, onDelete, onEdit }) {
-	const [data, setData] = useState([]);
-	const [request, setRequest] = useState(true);
+	const response = useFetchAllProjectManagerQuery();
 
-	useEffect(() => {
-		async function getData() {
-			const response = await supabase.from("project_manager").select("*");
-			console.log(response);
-			if (response) {
-				setData(response.data);
-				setRequest(false);
-			}
-		}
-		getData();
-	}, []);
 	return (
 		<tbody className="text-xs bg-white font-medium">
-			{request && <FullPageLoader />}
-			{data?.map((manager) => {
+			{!response?.data && <FullPageLoader />}
+			{response?.data?.data?.data?.map((manager) => {
 				const { id, last_name, first_name, email, phone } = manager;
 				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (

@@ -5,83 +5,70 @@ import {useUpdateDurhamDetailsMutation,
 import { toast } from "react-toastify";
 import { PageNavigation } from "../components";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../../../shared-component";
-import { supabase } from "../../../../lib/supabase";
 import { useDispatch, useSelector } from "react-redux";
 import { getSaveData, save_profile } from "./ReducerSlice";
 
 
 const DurhamSettings = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-		(async function fetchData() {
-			const response = await supabase.from("Durham_profile").select("*");
-			if (response?.data) {
-				// setValue(response.data)
-				response.data.forEach((cur) => {
-					dispatch(save_profile(cur));
-					// console.log({cu})
-					//  setValue({...cur, [cur.slug]:cur.value})
-				});
-			}
-		})();
-  }, []);
-
   const data = useSelector(getSaveData);
-  const result = useFetchDurhamQuery()
   const [values, setValue] = useState(data);
-
+    
   const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
 
+  const dispatch = useDispatch();
+	const result = useFetchDurhamQuery();
 
+	useEffect(() => {
+		if (!result?.data) {
+			return;
+		}
 
+		dispatch(save_profile(result?.data));
+	}, [dispatch, result]);
+  
+  
+  
   useEffect(() => {
-    setValue(data)
-  }, [data])
+    if (!data) {
+      return;
+    }
+    setValue({
+      business_Manager: data?.business_Manager?.value,
+      chair_board_education: data?.chair_board_education?.value,
+      chief_finance_officer: data?.chief_finance_officer?.value,
+      construction_interim_director: data?.construction_interim_director?.value,
+      director_construction: data?.director_construction?.value,
+      director_design: data?.director_design?.value,
+      director_durham:data?.director_durham?.value,
+      project_manager: data?.project_manager?.value,
+      project_manager_phone
+: data?.project_manager_phone
+?.value,
+    })
+  }, [data]);
 
   
 
-  // const HandleRequest = async (values) => {
-  //   const response = await updateDurhamDetails({...values});
+  const HandleRequest = async (values) => {
+    const response = await updateDurhamDetails({ ...values });
     
-  //   if (response) {
-  //     if (response.error) {
-	// 			toast.error(response?.error?.message, {
-	// 				position: toast.POSITION.TOP_CENTER,
-	// 			});
-	// 		} else {
-	// 			toast.success(response?.data?.message, {
-	// 				position: toast.POSITION.TOP_CENTER,
-	// 			});
-	// 		}
-  //   }
-  // }
-  console.log(values)
-  const HandleRequest = async ({name,value}) => {
-    const response = await supabase
-      .from('Durham_profile')
-      .upsert([
-        { slug: name, value: value },
-      ]).select();
-    
-    console.log(response)
-    
-    // if (response) {
-    //   if (response.error) {
-		// 		toast.error(response?.error?.message, {
-		// 			position: toast.POSITION.TOP_CENTER,
-		// 		});
-		// 	} else {
-		// 		toast.success(response?.data?.message, {
-		// 			position: toast.POSITION.TOP_CENTER,
-		// 		});
-		// 	}
-    // }
+    if (response) {
+      if (response.error) {
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success(response?.data?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			}
+    }
   }
+  
 
  
   const onChange = (e) => {
+    console.log(e.target)
     const { name, value, } = e.target;
     setValue({[name]: value })
   };
@@ -94,8 +81,6 @@ const DurhamSettings = () => {
       if (!value) {
         return
       } else {
-
-        // localStorage.setItem('DurhamProfiles',JSON.stringify({...values,[name]:value}))
         HandleRequest({ name, value })
       }
     

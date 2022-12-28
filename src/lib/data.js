@@ -51,7 +51,24 @@ export const documents = [
 		],
 	},
 	{ id: 3, name: "Budget", data: [] },
-	{ id: 4, name: "Project Closeout", data: [] },
+	{
+		id: 4,
+		name: "Project Closeout",
+		data: [
+			{
+				id: 1,
+				name: "Project Closeout Checklist",
+			},
+			{
+				id: 2,
+				name: "Certificate of Substantial Completion",
+			},
+			{
+				id: 3,
+				name: "Punch List and Substantial Completion Process",
+			},
+		],
+	},
 	{ id: 5, name: "MWBE Forms", data: [] },
 ];
 

@@ -21,12 +21,16 @@ import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor/Notic
 import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
 import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
+import PunchList from "../../forms/Punch List/PunchList";
+import moment from "moment";
 
 const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
+	console.log(projectDetails);
 	const documents = useSelector(getDocuments);
 	const id = useSelector(slug);
 	const date = !projectDetails ? new Date() : projectDetails.date;
+
 	return (
 		<section>
 			{/* <!-- Navbar --> */}
@@ -101,7 +105,9 @@ const ProjectDashboard = () => {
 											!projectDetails ? 0 : projectDetails?.project_number
 										}`}
 									</p>
-									<p className="text-gray-700 text-base">{console.log(date)}</p>
+									<p className="text-gray-700 text-base">
+										{moment(projectDetails.create_At).format("MMMM D, YYYY ")}
+									</p>
 								</div>
 								<ProjectDetails
 									name={!projectDetails ? "" : projectDetails?.project_name}
@@ -143,15 +149,20 @@ const ProjectDashboard = () => {
 										Design Consultant Information
 									</div>
 									<div className="text-gray-900 text-xs">
-										<p className="mt-4 font-bold">
-											{!projectDetails ? "" : projectDetails?.consultant_name}
+										<p className="mt-4 text-base font-bold">
+											{!projectDetails
+												? ""
+												: !projectDetails?.awardeeInfo
+												? ""
+												: projectDetails?.awardeeInfo[0]?.consultant_name}
 										</p>
 										<p className="my-1">
 											{!projectDetails
 												? ""
-												: projectDetails?.consultant_address}
+												: !projectDetails?.awardeeInfo
+												? ""
+												: projectDetails?.awardeeInfo[0]?.consultant_address}
 										</p>
-										{/* <p>Austin, TX</p> */}
 									</div>
 								</div>
 
@@ -174,7 +185,7 @@ const ProjectDashboard = () => {
 				</div>
 			</main>
 			<Lunsford id={id} />
-
+			<PunchList id={id} />
 			<NoticeOfIntentConsultant id={id} />
 			<CertificateOfSubstantial id={id} />
 			<NoticeToProceed id={id} />

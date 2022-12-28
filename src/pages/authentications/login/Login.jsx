@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import '../../../index.css';
 import { useDispatch } from 'react-redux';
 import { userInfo } from '../../../features/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const GetLoginDetails = () => {
@@ -19,6 +20,7 @@ const GetLoginDetails = () => {
 
 
 const Login = () => {
+    const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     
@@ -34,12 +36,11 @@ const Login = () => {
                 });
               
             }
-            // else {
-            //     toast.success(`${response?.data?.message}! Login with your new password`, {
-			// 		position: toast.POSITION.TOP_CENTER,
-            //     });
-                
-			// }
+            else {
+                navigate('/dashboard')
+                localStorage.setItem('durham_token', JSON.stringify(response.data))
+                // dispatch(userInfo(localStorage.getItem('durham_token')));
+			}
 		} catch (error) {
 			console.log(error);
 		}

@@ -287,9 +287,9 @@ export function AddPojectsManagerModal({ close }) {
 	const [addProjectManager, { isLoading }] = useAddProjectManagerMutation();
 
 	async function HandleRequest(values) {
-		// const response = await addProjectManager({ ...values });
+		const response = await addProjectManager({ ...values });
 
-		const response = await supabase.from("project_manager").insert([values]);
+		// const response = await supabase.from("project_manager").insert([values]);
 
 		if (response) {
 			console.log(response);

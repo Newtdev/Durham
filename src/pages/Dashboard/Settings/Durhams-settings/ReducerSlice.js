@@ -11,7 +11,7 @@ const DurhamSlice = createSlice({
 			 payload.map((profile) => {
 					return (state.durham_profile = {
 						...state.durham_profile,
-						[profile.slug]: profile,
+						[profile.name]: profile,
 					});
 				});
 		},

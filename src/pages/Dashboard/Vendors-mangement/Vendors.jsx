@@ -12,8 +12,6 @@ const Vendors = () => {
   
   const [deleteVendor, { isLoading }] = useDeleteVendorMutation();
   const [editVendor, result] = useEditVendorMutation()
-  const apiResponse = useFetchVendorsQuery();
-  console.log(apiResponse)
 
 
 /***********HANDLE DELETE REQUEST AND RESPONSE ********************** */
@@ -36,8 +34,8 @@ const HandleRequest = async () => {
 
   /***********HANDLE EDIT REQUEST AND RESPONSE ********************** */
   
-  const HandleEditRequest = async () => {
-    const response = await editVendor(showActionModal.data);
+  const HandleEditRequest = async (values) => {
+    const response = await editVendor(values);
     
     if (response) {
       onEditClose()
@@ -87,9 +85,9 @@ const HandleRequest = async () => {
             <PageHeader name='Vendors' />
             <DashboardButton name="ADD NEW VENDOR" width='w-[211px]' onClick={() => setShowVendorModal(true)} />
           </div>
-          <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
+          <div className='flex flex-col gap-3 md:flex-row md:justify-end md:items-center mt-4 mb-6'>
             {/* <!-- Sort --> */}
-            <Sort />
+            {/* <Sort /> */}
             
 
             {/* <!-- Search --> */}

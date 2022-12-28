@@ -1,6 +1,6 @@
-import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, Pagination, PageHeader } from "../../Components";
+import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, PageHeader } from "../../Components";
 import { AddPojectsManagerModal,DeleteProjectModal, EditPojectsManagerModal} from "./ProjectsComponents";
-import { FullPageLoader, ModalOverlay } from "../../../../ui";
+import {  ModalOverlay } from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
 import { useDeleteProductManagerMutation } from "../../../../features/services/api";
@@ -46,7 +46,6 @@ const ProductManager = () => {
     },
     
     onEdit: (data) => {
-      console.log(data)
       setTableButton({ ...tableButton, edit: true, initialData:data })
     },
     dataArray:productContent
@@ -70,9 +69,9 @@ const ProductManager = () => {
            <PageHeader name='Project Manager'/>
             <DashboardButton name="ADD NEW PROJECT MANAGER" width='w-[290px]' onClick={() => setShowModal(true)} />
           </div>
-          <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
+          <div className='flex flex-col gap-3 md:flex-row md:justify-end md:items-center mt-4 mb-6'>
             {/* <!-- Sort --> */}
-           <Sort/>
+           {/* <Sort/> */}
 
             {/* <!-- Search --> */}
             <Search/>

@@ -7,18 +7,23 @@ import { EditProfileDetailsSchema } from "../../../../yup";
 import { PageNavigation } from "../components";
 import { useFetchSingleProjectManagerQuery, useUpdateProductManagerDetailsMutation } from "../../../../features/services/api";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { userDetails } from "../../../../features/auth";
+import { useEffect } from "react";
 
 
 
 const ProfileSettings = () => {
 
+    const profile = useSelector(userDetails)
     // PASS IN THE ID
-    const result = useFetchSingleProjectManagerQuery(2);
+    const result = useFetchSingleProjectManagerQuery(profile.id);
     // PASS IN A ID
     const [updateProjectManageDetails, {isLoading}] = useUpdateProductManagerDetailsMutation()
 
     const HandleRequest = async (values) => {
-        const response = await updateProjectManageDetails({...values});
+        let a = {id:profile.id, info:values}
+        const response = await updateProjectManageDetails(a);
         
         if (response) {
           if (response.error) {
@@ -31,28 +36,27 @@ const ProfileSettings = () => {
                     });
                 }
         }
-      }
+  }
 
 
-    const {values,errors, touched,handleChange, handleSubmit } = useFormik({
+    const {values,errors, touched,handleChange, handleSubmit, setValues, setFieldValue } = useFormik({
         initialValues: {
-            fullName: "Jane Cooper",
-            first_name: 'Jane',
-            last_name: 'Cooper',
-			email: "johndoe@email.com",
-            phone: "+61 412 345 678",
+            fullName: "",
+            first_name: '',
+            last_name: '',
+			email: "",
+            phone: "",
             password:"**********"
         }, 
-        validateOnChange:true,
-        validationSchema: EditProfileDetailsSchema,
+        // validationSchema: EditProfileDetailsSchema,
 
         onSubmit: (values) => {
-            const { password } = values;
-            if (password) {
-                // console.log('password')
-            }
-            console.log(password)
-            // HandleRequest(values)
+            // const { password } = values;
+            // if (password) {
+            //     // console.log('password')
+            // }
+            // // console.log(password)
+            HandleRequest(values)
         
         }
     });
@@ -103,6 +107,17 @@ const ProfileSettings = () => {
             onChange: handleChange,
         },
     };
+
+
+    useEffect(() => {
+        if (!result?.data) {
+            return;
+        } else {   
+            const values = {first_name: result?.data?.first_name,last_name: result?.data?.last_name,phone: result?.data?.phone,email: result?.data?.email}
+            setValues(values)
+        }
+        
+    },[result])
     
     return <section>
             <DashboardNav/>

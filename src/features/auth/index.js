@@ -6,10 +6,10 @@ const loginSlice = createSlice({
 		user_data: null,
 		accessToken: null,
 	},
-	reducer: {
+	reducers: {
 		userInfo: (state, action) => {
 			state.user_data = action.payload;
-			state.accessToken = action.payload.authorization;
+			state.accessToken = action.payload.authorization.token;
 		},
 	},
 });
@@ -28,5 +28,5 @@ export const { userInfo } = loginSlice.actions;
 
 // SELECT THE TOKEN AND USER
 
-export const selectToken = (state) => state.accessToken;
-export const userDetails = (state) => state.user;
+export const selectToken = (state) => state.loginReducer.accessToken;
+export const userDetails = (state) => state.loginReducer.user_data;

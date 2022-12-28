@@ -1,34 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { supabase } from "../../../../lib/supabase";
 import { DashboardNav, PageHeader } from "../../Components";
-import { save_profile } from "../Durhams-settings/ReducerSlice";
 
 const Settings = () => {
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		let isSubscribed = false;
-
-		(async function fetchData() {
-			isSubscribed = true;
-			const response = await supabase.from("Durham_profile").select("*");
-			if (response?.data) {
-				if (isSubscribed) {
-					response.data.forEach((cur) => {
-						dispatch(save_profile(cur));
-					});
-				}
-				// setValue(response.data)
-			}
-		})();
-
-		return () => {
-			isSubscribed = false;
-		};
-	}, [dispatch]);
-
 	return (
 		<section className=" h-screen w-full overflow-y-hidden">
 			<DashboardNav />

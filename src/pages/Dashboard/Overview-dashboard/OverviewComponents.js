@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import { supabase } from "../../../lib/supabase";
+import {
+	useFetchAllProjectManagerQuery,
+	useFetchVendorsQuery,
+} from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
-// import { AddUsersSchema } from "../../../yup";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
-	let a = [];
 	const navigate = useNavigate();
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
@@ -30,7 +31,6 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-4 px-4 whitespace-nowrap">
 							{awardee.company_representative_name}
 						</td>
-						{console.log(a)}
 						<td className="py-4 px-4 whitespace-nowrap">{project_manager}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{date}</td>
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
@@ -100,19 +100,7 @@ export function OverviewTextarea(props) {
 }
 
 export function ProjectInfo({ values, errors, touched, handleChange }) {
-	const [names, setNames] = useState([]);
-	useEffect(() => {
-		async function getProjectManager() {
-			const { data: project_manager, error } = await supabase
-				.from("project_manager")
-				.select("first_name,last_name");
-			if (project_manager) {
-				setNames(project_manager);
-			}
-			return;
-		}
-		getProjectManager();
-	}, []);
+	const response = useFetchAllProjectManagerQuery();
 
 	const project_name = {
 		name: "Project Name",
@@ -167,9 +155,11 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 						</div>
 						<div>
 							<DashboardSelect {...project_manager}>
-								{!names && <option>No project Manager</option>}
+								{!response?.data?.data?.data && (
+									<option>No project Manager</option>
+								)}
 								<option>Select Project Manager</option>
-								{names?.map((cur, id) => {
+								{response?.data?.data?.data?.map((cur, id) => {
 									return (
 										<option
 											value={`${cur.first_name}${cur.last_name}`}
@@ -188,18 +178,7 @@ export function ProjectInfo({ values, errors, touched, handleChange }) {
 }
 
 export function AwardeeInfo(props) {
-	const [names, setNames] = useState([]);
-	useEffect(() => {
-		async function getProjectManager() {
-			const { data: vendor, error } = await supabase.from("vendor").select("*");
-			if (vendor) {
-				setNames(vendor);
-			}
-
-			return;
-		}
-		getProjectManager();
-	}, []);
+	const response = useFetchVendorsQuery();
 
 	const { values, errors, touched, handleChange, index } = props.data;
 	const awardee = {
@@ -209,15 +188,14 @@ export function AwardeeInfo(props) {
 		onChange: handleChange,
 
 		value: values.awardeeInfo[index].awardee,
-		// error: errors?.awardeeInfo[index].awardee,
 		touched: touched.awardee,
 	};
 
 	function filtered() {
-		if (!names) {
+		if (!response?.data) {
 			return;
 		}
-		return names.filter((cur, id) => {
+		return response?.data?.filter((cur) => {
 			return cur.industry === values.awardeeInfo[index].awardee;
 		});
 	}
@@ -278,14 +256,11 @@ export function AwardeeInfo(props) {
 			return;
 		}
 		filtered()?.forEach((cur, id) => {
-			console.log(cur);
 			props.data.values.awardeeInfo[index].consultant_name =
-				cur.first_name + "" + cur.last_name;
+				cur.first_name + " " + cur.last_name;
 			props.data.values.awardeeInfo[index].consultant_address = cur.address;
 			props.data.values.awardeeInfo[index].corporate_president = cur.president;
 			props.data.values.awardeeInfo[index].corporate_secretary = cur.secretary;
-
-			// return cur.company_name === values.awardeeInfo[index].design_consultant;
 		});
 	}, [values]);
 
@@ -299,7 +274,7 @@ export function AwardeeInfo(props) {
 								<option>Select Awardee</option>
 								<option value="Design Consultant">Design Consultant</option>
 								<option value="Contractor">Contractor</option>
-								<option value="Engineer">Engineer</option>
+								<option value="Engineering">Engineering</option>
 								<option value="Construction Manager">
 									Construction Manager
 								</option>

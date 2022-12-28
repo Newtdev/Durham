@@ -12,6 +12,7 @@ export const notice_of_intent_consultant = "Notice-of-Intent-to-Award---Consulta
 export const project_closeout_checklist = "Project-Closeout-Checklist";
 export const certificateOfSubstantialCompletion =
 	"Certificate-of-Substantial-Completion";
+export const punchList = "Punch-List-and-Substantial-Completion-Process";
 
 //Notice of Intent to Award - Consultant
 

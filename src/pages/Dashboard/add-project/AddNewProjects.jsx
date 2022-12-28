@@ -11,7 +11,6 @@ import { documents } from '../../../lib/data'
 // PROJECT OVERVIEW STEP
 export const ProjectOverview = (props) => {
   // API REQUEST TO THE PRODUCT MANAGER
-  const [getName, setNames] = useState([]);
 
 
  

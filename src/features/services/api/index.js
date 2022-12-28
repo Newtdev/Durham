@@ -9,13 +9,14 @@ export const DurhamsApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://durham.cfcing.org/api/",
 		prepareHeaders: (headers, { getState }) => {
-			headers.set(
-				"Authorization",
-				"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9sb2dpbiIsImlhdCI6MTY3MDIyNzY2NCwiZXhwIjoxNjcwMzE0MDY0LCJuYmYiOjE2NzAyMjc2NjQsImp0aSI6InlIdFl2bEVSZ2pGWkdjQjgiLCJzdWIiOiIxIiwicHJ2IjoiODI5NjY3NTY3OTc4ZjU1ZDc4NzVhMzhmMTNhNzU5NGNlZjQyMGI3ZiJ9.klDpfD6TYh28EONzj53SjOJlVkBfAKQqfZEGzwWoO6E"
-			);
+			const token = getState().loginReducer.accessToken;
+			if (token) {
+				headers.set("authorization", `Bearer ${token}`);
+			}
+			return headers;
 		},
 	}),
-	tagTypes: ["vendors", "product-manager", "durham-settings"],
+	tagTypes: ["vendors", "product-managers", "durham-settings"],
 	endpoints: (builder) => ({
 		userLogin: builder.mutation({
 			query: (info) => {
@@ -29,7 +30,7 @@ export const DurhamsApi = createApi({
 					body: info,
 				};
 			},
-			transformResponse: (response) => response,
+			transformResponse: (response) => response.data,
 			transformErrorResponse: (response) => response.data,
 		}),
 		forgotPassword: builder.mutation({
@@ -76,6 +77,10 @@ export const DurhamsApi = createApi({
 					body: info,
 				};
 			},
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+
+			invalidatesTags: (result) => ["product-managers"],
 		}),
 
 		// GET REQUEST FROM THE DATABASE
@@ -90,12 +95,13 @@ export const DurhamsApi = createApi({
 					method: "GET",
 				};
 			},
-			providesTags: (result, error, token) => ["product-manager"],
+
+			providesTags: (result, error, token) => ["product-managers"],
 		}),
 		updateProductManagerDetails: builder.mutation({
-			query: ({ id = 2, ...info }) => {
+			query: ({ id, info }) => {
 				return {
-					url: `settings/3`,
+					url: `project-managers/${id}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -103,7 +109,7 @@ export const DurhamsApi = createApi({
 					body: info,
 				};
 			},
-			invalidatesTags: ["product-manager"],
+			invalidatesTags: ["product-managers"],
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -115,7 +121,7 @@ export const DurhamsApi = createApi({
 					method: "GET",
 				};
 			},
-			providesTags: (result) => ["product-manager"],
+			providesTags: (result) => ["product-managers"],
 		}),
 		fetchSingleProjectManager: builder.query({
 			query: (id) => {
@@ -124,7 +130,8 @@ export const DurhamsApi = createApi({
 					method: "GET",
 				};
 			},
-			providesTags: (result) => ["product-manager"],
+			transformResponse: (response, meta, arg) => response.data,
+			providesTags: (result) => ["product-managers"],
 		}),
 		activateProjectManager: builder.mutation({
 			query: (info) => {
@@ -153,7 +160,7 @@ export const DurhamsApi = createApi({
 					method: "DELETE",
 				};
 			},
-			invalidatesTags: ["product-manager"],
+			invalidatesTags: ["product-managers"],
 			transformResponse: (response, meta, arg) => response,
 
 			transformErrorResponse: (response, meta, arg) => response.data,
@@ -190,7 +197,7 @@ export const DurhamsApi = createApi({
 					body: info,
 				};
 			},
-			transformResponse: (response) => response,
+			transformResponse: (response) => response.data.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 
 			invalidatesTags: (result) => ["vendors"],
@@ -203,7 +210,7 @@ export const DurhamsApi = createApi({
 				};
 			},
 			providesTags: ["vendors"],
-			transformResponse: (response) => response,
+			transformResponse: (response) => response.data.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		editVendor: builder.mutation({
@@ -263,7 +270,7 @@ export const DurhamsApi = createApi({
 				};
 			},
 			providesTags: ["durham-settings"],
-			transformResponse: (response) => response,
+			transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 	}),

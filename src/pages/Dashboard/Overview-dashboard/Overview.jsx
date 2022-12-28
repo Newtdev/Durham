@@ -22,10 +22,6 @@ import {
 } from "./OverviewComponents";
 import { supabase } from "../../../lib/supabase";
 
-function handleAwardee(data) {
-  console.log(data[0])
-  // console.log(a)
-}
 
 const Overview = () => {
   const [action, setAction] = useState({delete:false, id: null})
@@ -91,7 +87,7 @@ const Overview = () => {
             <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
               <div className='flex items-center gap-6'>
                 {/* <!-- Sort --> */}
-                <Sort />
+                {/* <Sort /> */}
 
                 {/* <!-- Filter --> */}
                 <Filter />
