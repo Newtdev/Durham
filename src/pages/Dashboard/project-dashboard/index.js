@@ -1,16 +1,22 @@
-import { DashboardNav } from "../Components";
+import { Close, DashboardNav } from "../Components";
 import RedDelete from "../../../assets/redDelete.svg";
 import BackArrow from "../../../assets/backArrow.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Accordion, ProjectCard, ProjectDetails } from "./Components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDocuments, project_details } from "../add-project/projectSlice";
-import { LoadingArrow, Pen } from "../../../ui";
+import {
+	ButtonRedBG,
+	ButtonWhiteBG,
+	LoadingArrow,
+	ModalOverlay,
+	Pen,
+} from "../../../ui";
 import { getTotals } from "../../../shared-component";
 import Lunsford from "../../forms/Lundsford";
 
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
-import { slug } from "./ReducerSlice";
+import { deleted, onClose, onDelete, slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
 import Esser from "../../forms/ESSER Contract Template";
@@ -23,16 +29,81 @@ import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
+import { getProjectInfo, projectData } from "../Overview-dashboard/editReducer";
+import { supabase } from "../../../lib/supabase";
+import { toast } from "react-toastify";
 
 const ProjectDashboard = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const projectDetails = useSelector(project_details);
-	console.log(projectDetails);
 	const documents = useSelector(getDocuments);
+	const remove = useSelector(deleted);
 	const id = useSelector(slug);
-	const date = !projectDetails ? new Date() : projectDetails.date;
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+		const response = await supabase
+			.from("durham_projects")
+			.delete()
+			.eq("id", projectDetails.id);
+
+		if (response) {
+			dispatch(onClose());
+			if (response.error?.message) {
+				// close();
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success("Project Deleted Successfully", {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				navigate("/dashboard", { replace: true });
+			}
+		}
+	};
 
 	return (
 		<section>
+			<ModalOverlay show={remove}>
+				<div>
+					{/* Modal content */}
+					<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14 bg-white rounded-lg shadow pb-4">
+						<div className="flex justify-between items-start px-6 py-3 rounded-t border-b">
+							<div>
+								<h3 className="text-lg font-bold text-gray-900">
+									Are you sure you want to delete this Project information?
+								</h3>
+							</div>
+							<button
+								type="button"
+								className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+								data-modal-toggle="small-modal">
+								<Close />
+							</button>
+						</div>
+						<div className="py-3 px-6">
+							<p className="text-base text-gray-600">
+								Lorem ipsum dolor sit amet consectetur. Consectetur bibendum ut
+								nec malesuada sit ante ultrices orci libero.
+							</p>
+						</div>
+
+						{/* Buttons */}
+						<form
+							className="mt-12 mr-5 flex gap-4 justify-end"
+							onSubmit={onSubmit}>
+							<ButtonWhiteBG
+								name="no, cancel"
+								onClick={() => dispatch(onClose())}
+							/>
+							{/* Make api request to delete the data */}
+							<ButtonRedBG name="yes, edit" width="w-[136px]" />
+						</form>
+					</div>
+				</div>
+			</ModalOverlay>
 			{/* <!-- Navbar --> */}
 			<article>
 				<DashboardNav />
@@ -66,6 +137,10 @@ const ProjectDashboard = () => {
 
 						<div className="flex gap-4 items-center">
 							<button
+								onClick={() => {
+									navigate("/dashboard/edit-project");
+									dispatch(getProjectInfo(projectDetails));
+								}}
 								type="button"
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
 								<Pen />
@@ -80,6 +155,9 @@ const ProjectDashboard = () => {
 							</button>
 
 							<button
+								onClick={() => {
+									dispatch(onDelete());
+								}}
 								type="submit"
 								className="uppercase text-[#ef4444] text-center text-base w-[152px] hover:bg-blue-800 font-semibold rounded h-8 transition-all flex gap-2 items-center justify-center">
 								<img src={RedDelete} alt="Delete" />

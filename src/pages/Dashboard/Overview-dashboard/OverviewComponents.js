@@ -254,14 +254,23 @@ export function AwardeeInfo(props) {
 	useEffect(() => {
 		if (!values.awardeeInfo[index].design_consultant) {
 			return;
+		} else {
+			filtered()?.forEach((cur, id) => {
+				console.log(typeof cur);
+				console.log(typeof cur?.last_name);
+				props.data.values.awardeeInfo[index].company_representative_name =
+					cur?.first_name + " " + cur?.last_name;
+				props.data.values.awardeeInfo[index].company_representative_title =
+					cur?.title;
+				props.data.values.awardeeInfo[index].consultant_name =
+					cur?.company_name;
+				props.data.values.awardeeInfo[index].consultant_address = cur?.address;
+				props.data.values.awardeeInfo[index].corporate_president =
+					cur?.president;
+				props.data.values.awardeeInfo[index].corporate_secretary =
+					cur?.secretary;
+			});
 		}
-		filtered()?.forEach((cur, id) => {
-			props.data.values.awardeeInfo[index].consultant_name =
-				cur.first_name + " " + cur.last_name;
-			props.data.values.awardeeInfo[index].consultant_address = cur.address;
-			props.data.values.awardeeInfo[index].corporate_president = cur.president;
-			props.data.values.awardeeInfo[index].corporate_secretary = cur.secretary;
-		});
 	}, [values]);
 
 	return (

@@ -19,4 +19,4 @@ export const { getProjectInfo } = editProject.actions;
 
 // SELECT THE TOKEN AND USER
 
-export const projectData = (state) => state.projectData;
+export const projectData = (state) => state.editProject.projectData;

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { userInfo } from "../../../features/auth";
 import PunchList from "../../forms/Punch List/PunchList";
+import EditProjectDashboard from "../Overview-dashboard/EditProjectDashboard";
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectDetails = lazy(() => import("../project-details"));
 const ProjectManager = lazy(() =>
@@ -30,6 +31,7 @@ const Dashboard = () => {
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
+				<Route path="/edit-project" element={<EditProjectDashboard />} />
 				<Route path="/forms" element={<PunchList />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>

@@ -1,5 +1,5 @@
 import { useFormik, FormikProvider } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { state } from "../../../lib/data";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
@@ -11,20 +11,18 @@ import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
 import { addNewProject } from "./projectSlice";
 import { useSelector } from "react-redux";
-import { product_manager_data } from "../Product-manager-management/projectManagerSlice";
-import { getSaveData } from "../Vendors-mangement/vendorSlice";
 import { toast } from "react-toastify";
 import { supabase } from "../../../lib/supabase";
+import { projectData } from "../Overview-dashboard/editReducer";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const [a, setA] = useState({});
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
-	const awardee = useSelector(getSaveData);
-	const productmanager = useSelector(product_manager_data);
-
+	// const awardee = useSelector(getSaveData);
+	// const productmanager = useSelector(product_manager_data);
+	const details = useSelector(projectData);
 	const [steps, setSteps] = useState(0);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState(state);
@@ -56,6 +54,38 @@ const ProjectFormsController = () => {
 			} else {
 				// setShow(true);
 				navigate("/dashboard/add-new-project/preview", { replace: true });
+			}
+		}
+	}
+	async function HandleEditRequest(values) {
+		// const response = await addProjectManager({ ...values });
+		let a = values.awardeeInfo;
+		let b = values.document;
+
+		const response = await supabase
+			.from("durham_projects")
+			.update([
+				{
+					project_number: values.project_number,
+					project_manager: values.project_manager,
+					project_name: values.project_name,
+					awardeeInfo: a,
+					document: b,
+					project_description: values.project_description,
+				},
+			])
+			.eq("id", details.id);
+		if (response) {
+			if (response.error?.message) {
+				// close();
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				// setShow(true);
+				toast.success("Project updated successfully", {
+					position: toast.POSITION.TOP_CENTER,
+				});
 			}
 		}
 	}
@@ -93,7 +123,11 @@ const ProjectFormsController = () => {
 				// console.log({values);
 
 				dispatch(addNewProject(values));
-				HandleRequest(values);
+				if (!details) {
+					HandleRequest(values);
+				}
+				HandleEditRequest(values);
+
 				/**
 				 * Handle API request
 				 * if successfull go the project dashboard
@@ -131,7 +165,13 @@ const ProjectFormsController = () => {
 		setValues,
 	};
 
-	console.log(a);
+	useEffect(() => {
+		if (!details) {
+			return;
+		}
+		console.log(details);
+		setValues({ ...details, project_description: details.project_description });
+	}, [details]);
 
 	const getData = (e) => {
 		(function () {
