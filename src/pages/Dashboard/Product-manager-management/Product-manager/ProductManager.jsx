@@ -5,12 +5,16 @@ import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
 import { useDeleteProductManagerMutation } from "../../../../features/services/api";
 import { toast } from "react-toastify";
+import { setSearchManagerQuery } from "../projectManagerSlice";
+import { useDispatch } from "react-redux";
 
 
 const ProductManager = () => {
   const [showModal, setShowModal] = useState(false);
   const [tableButton, setTableButton] = useState({ delete: false, edit: false, id: null, initialData:{} });
   const [deleteProductManager, result] = useDeleteProductManagerMutation();
+  const [query, setQuery] = useState('');
+  const dispatch = useDispatch()
   
 
   const HandleRequest = async () => {
@@ -56,6 +60,13 @@ const ProductManager = () => {
     setTableButton({ ...tableButton, edit: false, initialData: {} })
   }
 
+
+  const searchProps = {
+    setQuery: (value) => setQuery(value),
+    submit: ()=> dispatch(setSearchManagerQuery(query))
+  }
+
+
   return (
     <section>
       <article>
@@ -74,7 +85,7 @@ const ProductManager = () => {
            {/* <Sort/> */}
 
             {/* <!-- Search --> */}
-            <Search/>
+            <Search {...searchProps} />
           </div>
           {/* <!-- Table --> */}
           <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 '>

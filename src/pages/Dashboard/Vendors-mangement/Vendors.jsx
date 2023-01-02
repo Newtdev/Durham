@@ -1,18 +1,21 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useDeleteVendorMutation, useEditVendorMutation, useFetchVendorsQuery } from "../../../features/services/api";
 import { ModalOverlay } from "../../../ui";
 import { DashboardButton, DashboardNav, PageHeader, Pagination, Search, Sort, TableHeader } from "../Components";
 import { EditVendorModal } from './VendorsComponents';
 import { AddVendor, DeleteVendorModal, VendorsContent, VendorsHeader, VendorTableBody } from "./VendorsComponents";
+import { setSearchVendorQuery } from "./vendorSlice";
 
 const Vendors = () => {
   const [showVendorModal, setShowVendorModal] = useState(false);
   const [showActionModal, setShowActionModal] = useState({ delete: false, edit: false, id: null, data:{} });
   
   const [deleteVendor, { isLoading }] = useDeleteVendorMutation();
-  const [editVendor, result] = useEditVendorMutation()
-
+  const [editVendor, result] = useEditVendorMutation();
+  const dispatch = useDispatch()
+  const [query, setQuery] = useState('')
 
 /***********HANDLE DELETE REQUEST AND RESPONSE ********************** */
 const HandleRequest = async () => {
@@ -70,6 +73,10 @@ const HandleRequest = async () => {
   });
 
 
+  const searchProps = {
+    setQuery: (value) => setQuery(value),
+    submit: () => dispatch(setSearchVendorQuery(query))
+  };
   
 
   return (
@@ -91,7 +98,7 @@ const HandleRequest = async () => {
             
 
             {/* <!-- Search --> */}
-            <Search />
+            <Search {...searchProps} />
             
           </div>
           {/* <!-- Table --> */}

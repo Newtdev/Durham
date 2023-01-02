@@ -20,6 +20,7 @@ const Dashboard = () => {
 	const dispatch = useDispatch();
 	const data = JSON.parse(localStorage.getItem("durham_token"));
 
+
 	useEffect(() => {
 		if (!data) {
 			return;
@@ -28,6 +29,7 @@ const Dashboard = () => {
 	}, [dispatch, data]);
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
+			
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />

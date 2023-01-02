@@ -1,9 +1,9 @@
+import moment from "moment";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import {
-	useFetchAllProjectManagerQuery,
 	useFetchVendorsQuery,
 } from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
@@ -12,32 +12,36 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
-			{dataArray?.map((cur, index) => {
-				const awardee = cur.awardeeInfo[0];
+			{dataArray?.map((project, index) => {
+				const {id, name, project_manager, project_vendors, created_At,slug } = project;
+				const awardee = !project_vendors.length === 0 ? 'hello' : project_vendors[0];
 
-				const date = cur.created_at.split("T")[0];
-				const { id, project_name, project_manager } = cur;
-
-				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+		const strip = index % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr
 						key={id}
 						className={`${strip} border-b cursor-pointer`}
-						onClick={() => navigate(`/dashboard/project-details/${id}`)}>
+						onClick={() => navigate(`/dashboard/project-details/${slug}`)}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							{project_name}
+							{name}
 						</td>
-						<td className="py-4 px-4">{awardee.awardee}</td>
+						<td className="py-4 px-4">{!awardee? '' :awardee.company_name}</td>
 						<td className="py-4 px-4 whitespace-nowrap">
-							{awardee.company_representative_name}
+							{!awardee? '' :awardee.first_name + ' ' + awardee.last_name}
 						</td>
-						<td className="py-4 px-4 whitespace-nowrap">{project_manager}</td>
-						<td className="py-4 px-4 whitespace-nowrap">{date}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{project_manager.first_name + ' ' + project_manager.last_name}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{moment(created_At).format('MMM DD, YYYY')}</td>
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
-							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
+							<span className="w-4 cursor-pointer" onClick={(e) => {
+								e.stopPropagation()
+								onDelete(id)
+							}}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>
-							<span className="w-4 cursor-pointer" onClick={() => onEdit(cur)}>
+							<span className="w-4 cursor-pointer" onClick={(e) => {
+								e.stopPropagation()
+								onEdit(project)
+							}}>
 								<img className="w-full" src={Edit} alt="edit" />
 							</span>
 						</td>
@@ -99,83 +103,7 @@ export function OverviewTextarea(props) {
 	);
 }
 
-export function ProjectInfo({ values, errors, touched, handleChange }) {
-	const response = useFetchAllProjectManagerQuery();
 
-	const project_name = {
-		name: "Project Name",
-		id: "project_name",
-		value: values.project_name,
-		error: errors.project_name,
-		touched: touched.project_name,
-		onChange: handleChange,
-		placeholder: "Enter Product Name",
-	};
-	const project_number = {
-		name: "Project Number",
-		id: "project_number",
-		value: values.project_number,
-		error: errors.project_number,
-		touched: touched.project_number,
-		onChange: handleChange,
-		placeholder: "Enter Product Number",
-	};
-	const project_description = {
-		name: "Project Description",
-		id: "project_description",
-		value: values.project_description,
-		error: errors.project_description,
-		touched: touched.project_description,
-		onChange: handleChange,
-		placeholder: "Enter Product Description",
-	};
-	const project_manager = {
-		name: "Project Manager",
-		id: "project_manager",
-		value: values.project_manager,
-		error: errors.project_manager,
-		touched: touched.project_manager,
-		onChange: handleChange,
-		placeholder: "Enter Product Manager",
-	};
-
-	return (
-		<div onClick={(e) => e.stopPropagation()}>
-			<div className="">
-				<div>
-					<div className="w-full overflow-auto">
-						<div>
-							<OverviewInput {...project_name} />
-						</div>
-						<div>
-							<OverviewInput {...project_number} />
-						</div>
-						<div>
-							<OverviewTextarea {...project_description} />
-						</div>
-						<div>
-							<DashboardSelect {...project_manager}>
-								{!response?.data?.data?.data && (
-									<option>No project Manager</option>
-								)}
-								<option>Select Project Manager</option>
-								{response?.data?.data?.data?.map((cur, id) => {
-									return (
-										<option
-											value={`${cur.first_name}${cur.last_name}`}
-											key={id}>
-											{`${cur.first_name} ${cur.last_name}`}
-										</option>
-									);
-								})}
-							</DashboardSelect>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-}
 
 export function AwardeeInfo(props) {
 	const response = useFetchVendorsQuery();
@@ -192,10 +120,10 @@ export function AwardeeInfo(props) {
 	};
 
 	function filtered() {
-		if (!response?.data) {
+		if (!response?.data?.data?.data) {
 			return;
 		}
-		return response?.data?.filter((cur) => {
+		return response?.data?.data?.data.filter((cur) => {
 			return cur.industry === values.awardeeInfo[index].awardee;
 		});
 	}
@@ -256,8 +184,7 @@ export function AwardeeInfo(props) {
 			return;
 		} else {
 			filtered()?.forEach((cur, id) => {
-				console.log(typeof cur);
-				console.log(typeof cur?.last_name);
+				
 				props.data.values.awardeeInfo[index].company_representative_name =
 					cur?.first_name + " " + cur?.last_name;
 				props.data.values.awardeeInfo[index].company_representative_title =
@@ -367,7 +294,7 @@ export function DashboardSelect(props) {
 	// const { name, error, touched } = props;
 	const { id, values, children, onChange, name, error, touched } = props;
 	return (
-		<div className="mb-4 w-[531px] pr-3">
+		<div className="mb-4 w-full">
 			<Label
 				name={name}
 				styles="block mb-2 text-sm font-medium text-gray-900"

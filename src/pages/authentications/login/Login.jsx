@@ -7,9 +7,7 @@ import { ForgetPasswordModal } from '../change-password/Components';
 import { useUserLoginMutation } from '../../../features/services/api';
 import { toast } from 'react-toastify';
 import '../../../index.css';
-import { useDispatch } from 'react-redux';
-import { userInfo } from '../../../features/auth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const GetLoginDetails = () => {
@@ -22,7 +20,7 @@ const GetLoginDetails = () => {
 const Login = () => {
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
 
     const [userLogin, { isLoading }] = useUserLoginMutation();

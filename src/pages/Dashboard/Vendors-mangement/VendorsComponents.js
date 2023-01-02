@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -8,7 +8,6 @@ import {
 	useAddVendorMutation,
 	useFetchVendorsQuery,
 } from "../../../features/services/api";
-import { supabase } from "../../../lib/supabase";
 import { ButtonRedBG, ButtonWhiteBG, FullPageLoader } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
 import {
@@ -17,7 +16,7 @@ import {
 	DashboardInput,
 	SelectContainer,
 } from "../Components";
-import { save_awardee } from "./vendorSlice";
+import { save_awardee, vendorQuery } from "./vendorSlice";
 
 export const VendorsHeader = [
 	"First name",
@@ -134,13 +133,16 @@ export const VendorsContent = [
 ];
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-	const apiResponse = useFetchVendorsQuery();
+	const query = useSelector(vendorQuery)
+	const apiResponse = useFetchVendorsQuery(query);
+	// console.log(apiResponse.data.data.data)
 
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
 			{!apiResponse?.data && <FullPageLoader />}
+			{/* {console.log(apiResponse?.data?.data)} */}
 
-			{apiResponse?.data?.map((vendor) => {
+			{apiResponse?.data?.data?.data?.map((vendor) => {
 				const {
 					id,
 					first_name,

@@ -16,12 +16,12 @@ import {
 	Select,
 } from "../../../ui";
 import { Spinner } from "../../../assets";
-import { useEffect, useState } from "react";
-import { supabase } from "../../../lib/supabase";
+import {useState } from "react";
 import {
 	useFetchAllProjectManagerQuery,
-	useFetchProjectManagerQuery,
 } from "../../../features/services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProjectManager } from "../Product-manager-management/projectManagerSlice";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -185,9 +185,10 @@ export function Sort() {
 
 /**********SEARCH COMPONENTS*************** */
 
-export function Search() {
+export function Search({submit,setQuery}) {
+
 	return (
-		<div className="flex flex-row justify-center items-center gap-4">
+		<form className="flex flex-row justify-center items-center gap-4">
 			<div>
 				<label for="table-search" className="sr-only">
 					Search
@@ -197,15 +198,17 @@ export function Search() {
 						<img src={SearchIcon} alt="search" />
 					</div>
 					<input
+						onChange={(e) =>setQuery(e.target.value)}
+						
 						type="text"
 						id="table-search"
 						className="block p-2 pl-8 w-72 text-sm text-gray-900 bg-white rounded border border-gray-400 focus:outline-[#3B6979]"
-						placeholder="Search Project Manager"
+						placeholder="Search Project"
 					/>
 				</div>
 			</div>
-			<ButtonWhiteBG name="search" />
-		</div>
+			<ButtonWhiteBG name="search" onClick={submit} />
+		</form>
 	);
 }
 
@@ -230,14 +233,15 @@ export function TableHeader({ dataArray }) {
 /*************DASHBOARD HEADER TABLE*********************/
 
 export function TableBody({ dataArray, onDelete, onEdit }) {
-	const response = useFetchAllProjectManagerQuery();
+	const query = useSelector(searchProjectManager);
+	const response = useFetchAllProjectManagerQuery(query);
 
 	return (
 		<tbody className="text-xs bg-white font-medium">
 			{!response?.data && <FullPageLoader />}
-			{response?.data?.data?.data?.map((manager) => {
+			{response?.data?.data?.data?.map((manager, index) => {
 				const { id, last_name, first_name, email, phone } = manager;
-				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+				const strip = index % 2 === 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr key={id} className={`${strip} border-b`}>
 						<th
@@ -272,6 +276,7 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 /*************PAGINATION***************/
 
 export function Pagination() {
+	
 	return (
 		<nav
 			className="mt-1 flex justify-center items-center pt-4"

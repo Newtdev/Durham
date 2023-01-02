@@ -77,6 +77,28 @@ export const EditProfileDetailsSchema = [
 	}),
 ];
 
+export const AddProjectInformation = Yup.object({
+	name: Yup.string().required("field is required"),
+	number: Yup.string().required("field is required"),
+	description: Yup.string().required("field is required"),
+	project_manager_id: Yup.string().required("field is required"),
+});
+
+export const AddAwardeeInformation = 
+	Yup.object({
+		awardeeInfo: Yup.array().of(
+			Yup.object().shape({
+				awardee: Yup.string().required("field is required"),
+				design_consultant: Yup.string().required("field is required"),
+				consultant_name: Yup.string().required("field is required"),
+				consultant_address: Yup.string().required("field is required"),
+
+				company_representative_name: Yup.string().required("field is required"),
+				company_representative_title: Yup.string().required("field is required"),
+			})
+		),
+});
+
 export const AddNewProjectSchema = [
 	Yup.object({
 		project_name: Yup.string().required("field is required"),

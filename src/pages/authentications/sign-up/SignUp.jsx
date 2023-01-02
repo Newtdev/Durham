@@ -3,35 +3,25 @@ import AuthComp, { AuthHeader, AuthSuccessModal, CheckBox, ImageSideContainer, I
 import { Link, useLocation } from 'react-router-dom';
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../../yup";
-import { DurhamsApi, useActivateProjectManagerMutation, useFetchProjectManagerQuery, useResendTokenQuery } from "../../../features/services/api";
-import { collapseToast, toast } from "react-toastify";
+import { useActivateProjectManagerMutation, useFetchProjectManagerQuery } from "../../../features/services/api";
+import {toast } from "react-toastify";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { selectUserData } from "./signUpSlice";
 
 const SignUp = () => {
     const location = useLocation();
     const [showSuccess, setShowSuccess] = useState(false)
     const [userInfo, setUserInfo] = useState({})
-    // const Dispatch = useDispatch();
-    // const userDetails = useSelector(selectUserData);
-    console.log(userInfo)
-    // console.log(userDetails);
 
 
     const { data,error } = useFetchProjectManagerQuery(location?.pathname?.split('/')[3]);
 
     useEffect(() => {
-        // console.log(data.data.first_name)
         setUserInfo(data?.data);
-        console.log(error);
         toast.error(error?.data?.message, { position: toast.POSITION.TOP_CENTER });
 
-        // Dispatch({ type: 'project-manager', data });       
     }, [error,data]);
     
-    console.log(useResendTokenQuery(location?.pathname?.split('/')[3]));
     
     const [activateProjectManager, { isLoading }] = useActivateProjectManagerMutation();
 
@@ -46,8 +36,7 @@ const SignUp = () => {
                     
                     toast.error(response?.error?.message, { position: toast.POSITION.TOP_CENTER });
                     setShowSuccess(false)
-                  const data =  DurhamsApi.fetchToken(location?.pathname?.split('/')[3])
-                    console.log(data)
+                //   const data =  DurhamsApi.fetchToken(location?.pathname?.split('/')[3])
                 } else if (response?.data) {
                     setShowSuccess(true); 
                     // onSuccess show the modal and ask the manager to login
@@ -59,7 +48,7 @@ const SignUp = () => {
         }
     }
 
-    const { values, errors, touched, handleSubmit, handleChange, handleReset, setFieldValue, setValues } = useFormik({
+    const { values, errors, touched, handleSubmit, handleChange,  setValues } = useFormik({
         initialValues: {
             first_name:'' ,
             last_name: '',
@@ -151,11 +140,9 @@ const SignUp = () => {
         
     }
     const successProps = {
-        name: 'Email Confirmation',
+        name: 'Password Created Successfully',
 		content:
-			"Follow the link in the email to confirm this is your email address. If you did not receive the email you can resend the email.",
-        email: values.email,
-        
+			"Log in with Your Email and Password",        
 	};
 
     return <section>

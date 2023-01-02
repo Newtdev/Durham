@@ -1,163 +1,19 @@
 import { Fragment, useState } from "react";
-import { FieldArray   } from "formik";
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, ChevronDown, ChevronUp } from "../../../ui"
 import { DashboardButton } from "../Components";
-import { AwardeeInfo, CompanyRep, ProjectInfo } from "../Overview-dashboard/OverviewComponents"
 import { AccordionSelector } from "./Component";
-import { documents } from '../../../lib/data'
+import { prevForm } from "./reducer";
 
-
-
-// PROJECT OVERVIEW STEP
-export const ProjectOverview = (props) => {
-  // API REQUEST TO THE PRODUCT MANAGER
-
-
- 
-    return <div>
-        <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
-            {/* Header */}
-            <div className='mb-6'>
-                <h3 className='font-semibold text-gray-900 text-[32px]'>
-                    Projects Overview
-                </h3>
-                <p className='text-gray-700 text-base mb-6'>
-                    Provide information about the new project
-                </p>
-                <p className='text-gray-600 font-bold text-lg mb-1'>
-                    Project Information
-                </p>
-                <hr />
-            </div>
-
-            {/* Project Input */}
-            <div className='w-1/2'>
-                <div>
-                    <ProjectInfo {...props} />
-                </div>
-            </div>
-        </div>
-
-        {/* Buttons */}
-        <div className='flex gap-4 -mt-2 items-center'>
-            <DashboardButton
-                name='NEXT'
-                hidden
-                type='submit'
-                width='w-[168px]'
-                onClick={()=> props.nextSteps}
-            />
-            <ButtonWhiteBG width='w-[168px]' name='Cancel' />
-        </div>
-    </div>
-};
-
-
-
-export const AwardeeInformation = (props) => {
-  return <div className=''>
-    <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
-      {/* Header */}
-    
-      
-
-      {/* awardee Input */}
-      <FieldArray name='awardeeInfo'
-        render={(arrayHelpers) => (
-          
-          <>
-            <div className='mb-6'>
-              <h3 className='font-semibold text-gray-900 text-[32px]'>
-                Awardee Information
-              </h3>
-              <p className='text-gray-700 text-base mb-6'>
-                Provide information about the new project
-              </p>
-            </div>
-            {props.values.awardeeInfo.map((cur, index) => (
-              <Fragment key={index}>
-                
-                <div className="my-6">
-                  <p className='text-gray-600 font-bold text-lg mb-1'>
-                    Awardee Information ({index + 1})
-                  </p>
-                  <hr />
-
-                </div>
-         
-                <div className='w-1/2'>
-                  <div>
-                    <AwardeeInfo data={{ index, ...props }} />
-                  </div>
-                </div>
-         
-                <div className='mt-7'>
-                  <div className='mb-4'>
-                    <p className='text-gray-600 font-bold text-lg mb-1'>
-                      Company Representative
-                    </p>
-                    <hr />
-                  </div>
-                  <div className='w-1/2'>
-                    <div>
-                      <CompanyRep data={{ index, ...props }} />
-                    </div>
-                  </div>
-                </div>
-              </Fragment>
-            ))}
-           
-            <div className=''>
-              <button
-                onClick={() => arrayHelpers.push({
-                  awardee: "",
-                  design_consultant: "",
-                  consultant_name: "",
-                  consultant_address: "",
-                  corporate_president: "",
-                  corporate_secretary: "",
-                  company_representative_name: "",
-                  company_representative_title: ""
-                })}
-                className={`text-white text-sm font-semibold mt-8 w-[268px] hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center rounded h-8`}
-                type='button'
-              >
-                ADD NEW REPRESENTATIVE
-              </button>
-            </div>
-          </>
-        )}
-      >
-      </FieldArray>
-
-      {/* Company Rep Input */}
-    </div>
-
-    {/* Buttons */}
-    <div className='flex gap-4 pb-28'>
-      <DashboardButton
-        name='NEXT'
-        hidden
-        type='submit'
-        width='w-[168px]'
-      />
-      <ButtonWhiteBG width='w-[168px]' name='cancel' onClick={props.prevStep} />
-    </div>
-  </div>
-}; 
-
-
-const AccordionComponent = ({getData}) => {
-
-    // const [selected, setSelected] = useState(state);
-    
+const AccordionComponent = ({ getData, documents }) => { 
     const [activeIndex, setActiveIndex] = useState(null);
 
     
     
    
     return <>
-        {documents.map(({ id, name, data }, idx) => {
+        {documents.map((document, idx) => {
+            const { id, name, data } = document;
             
              const active = activeIndex === idx ? "h-full": "h-16 overflow-y-hidden ";
             
@@ -193,12 +49,10 @@ const AccordionComponent = ({getData}) => {
 
 
 export const SelectDocuments = (props) => {
-    const { handleSubmit, prevStep, getData } = props;
-    
-    
+    const { getData, documents,response, handleSubmit } = props;    
+    const dispatch = useDispatch();
 
-
-    return <div className=''>
+    return <form className='' onSubmit={handleSubmit}>
         <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
             {/* Header */}
             <div className='mb-6'>
@@ -221,21 +75,22 @@ export const SelectDocuments = (props) => {
             {/* Document Accordions */}
             <div className='w-full rounded-lg border border-gray-100'>
                 <div id='accordion-collapse' data-accordion='collapse'>
-                    <AccordionComponent getData={getData}  />
+                    <AccordionComponent getData={getData} documents={documents}  />
                 </div>
             </div>
         </div>
 
         {/* Buttons */}
         <div className='flex gap-4 pb-28'>
-            <ButtonWhiteBG name='go back' width='w-[168px]' onClick={prevStep} />
-            <button
-                onClick={handleSubmit}
-                type='button'
-                className='uppercase bg-gray-400 text-white font-semibold px-4 h-10 border border-gray-400 rounded hover:bg-blue-800 w-[168px]'
-            >
-                next
-            </button>
+            <ButtonWhiteBG name='go back' width='w-[168px]' onClick={()=> dispatch(prevForm())} />
+            <DashboardButton
+          name='NEXT'
+          hidden
+          type='submit'
+          width='w-[168px]'
+          loading={response.isLoading} 
+         />
+           
         </div>
-    </div>
+    </form>
 };

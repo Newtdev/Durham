@@ -6,7 +6,6 @@ import {
 	useAddProjectManagerMutation,
 	useUpdateProductManagerDetailsMutation,
 } from "../../../../features/services/api";
-import { supabase } from "../../../../lib/supabase";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../../ui";
 import { AddProjectSchema } from "../../../../yup";
 import { Close, DashboardButton, DashboardInput } from "../../Components";
@@ -391,16 +390,11 @@ export function DeleteProjectModal({ close, HandleRequest, isLoading }) {
 						<Close />
 					</button>
 				</div>
-				<div className="py-3 px-6 lg:px-8">
-					<p className="text-base text-gray-600">
-						Lorem ipsum dolor sit amet consectetur. Consectetur bibendum ut nec
-						malesuada sit ante ultrices orci libero.
-					</p>
-				</div>
+				
 
 				{/* Buttons */}
 				<div className="mt-2 mr-5 flex gap-4 justify-end">
-					<ButtonWhiteBG name="no, cancel" />
+					<ButtonWhiteBG name="no, cancel" onClick={close} />
 					<ButtonRedBG
 						name="yes, delete"
 						onClick={HandleRequest}

@@ -5,58 +5,78 @@ import { state } from "../../../lib/data";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { AddNewProjectSchema } from "../../../yup";
 import { ProjectOverviewNav } from "../Components";
-import { ProjectOverview } from "./AddNewProjects";
-import { AwardeeInformation } from "./AddNewProjects";
 import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
-import { addNewProject } from "./projectSlice";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { supabase } from "../../../lib/supabase";
 import { projectData } from "../Overview-dashboard/editReducer";
+import ProjectInformation from "./project-info";
+import { getForm, getProjectID, nextForm, saveID } from "./reducer";
+import AwardeeInformation from "./awardee-info/AwardeeInformation";
+import { useAddProjectDocumentMutation, useAddProjectVendorMutation } from "../../../features/services/api";
+import { documents } from "../../../lib/data";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const id = useSelector(getProjectID)
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
 	// const awardee = useSelector(getSaveData);
 	// const productmanager = useSelector(product_manager_data);
 	const details = useSelector(projectData);
-	const [steps, setSteps] = useState(0);
+	const steps = useSelector(getForm);
 	const [show, setShow] = useState(false);
-	const [selected, setSelected] = useState(state);
+	const [selected, setSelected] = useState([]);
+	const [addProjectVendor, { isLoading }] = useAddProjectVendorMutation();
+	const [addProjectDocument, response] = useAddProjectDocumentMutation()
 
-	const nextStep = () => setSteps((prev) => prev + 1);
-	const prevStep = () => setSteps((prev) => prev - 1);
 
 	async function HandleRequest(values) {
-		// const response = await addProjectManager({ ...values });
-		let a = values.awardeeInfo;
-		let b = values.document;
+		const response = await addProjectVendor({project_id: id, vendor_id: values });
+        if (response?.error) {
+            toast.error('Opps! Something went wrong, Please try again later!', {
+                position: toast.POSITION.TOP_CENTER,
+            });
+            
+        }
+        else if (response?.data?.status !== 'success') {
+            // error alert
+            toast.error(response?.message, {
+                position: toast.POSITION.TOP_CENTER,
+            });
+		} else {
+			dispatch(nextForm());
+        }
+        
+    }
+	async function SubmitDocument(values) {
+		console.log(id)
+		const response = await addProjectDocument({project_id: id, documents:values });
+        if (response?.error) {
+            toast.error('Opps! Something went wrong, Please try again later!', {
+                position: toast.POSITION.TOP_CENTER,
+            });
+            
+        }
+        else if (response?.data?.status !== 'success') {
+            // error alert
+            toast.error(response?.message, {
+                position: toast.POSITION.TOP_CENTER,
+            });
+        } else {
+			dispatch(nextForm());
+			navigate('/add-new-project/preview');
+        }
+        
+    }
 
-		const response = await supabase.from("durham_projects").insert([
-			{
-				project_number: values.project_number,
-				project_manager: values.project_manager,
-				project_name: values.project_name,
-				awardeeInfo: a,
-				document: b,
-				project_description: values.project_description,
-			},
-		]);
-		if (response) {
-			if (response.error?.message) {
-				// close();
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else {
-				// setShow(true);
-				navigate("/dashboard/add-new-project/preview", { replace: true });
-			}
-		}
-	}
+
+
+
+
+	
 	async function HandleEditRequest(values) {
 		// const response = await addProjectManager({ ...values });
 		let a = values.awardeeInfo;
@@ -92,11 +112,6 @@ const ProjectFormsController = () => {
 
 	const formik = useFormik({
 		initialValues: {
-			// date: new Date(),
-			project_manager: "",
-			project_name: "",
-			project_number: "",
-			project_description: "",
 
 			awardeeInfo: [
 				{
@@ -110,31 +125,41 @@ const ProjectFormsController = () => {
 					company_representative_title: "",
 				},
 			],
-
 			document: {},
+			
 		},
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
-			if (steps !== 2) {
-				nextStep();
-			} else {
-				values.document = selected;
-				// console.log({values);
-
-				dispatch(addNewProject(values));
-				if (!details) {
-					HandleRequest(values);
-				}
-				HandleEditRequest(values);
-
-				/**
-				 * Handle API request
-				 * if successfull go the project dashboard
-				 * else show the error modal
-				 * on the project dashboard fetch all the details for the project the project manager
-				 */
+			if (steps === 1) {
+				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.
+				HandleRequest(String(values.awardeeInfo.length))
 			}
+			
+			if (steps === 2) {
+				SubmitDocument(selected)
+			}
+			
+		// selected
+			// if (steps !== 2) {
+			// 	nextStep();
+			// } else {
+			// 	values.document = selected;
+			// 	// console.log({values);
+
+			// 	dispatch(addNewProject(values));
+			// 	if (!details) {
+			// 		HandleRequest(values);
+			// 	}
+			// 	HandleEditRequest(values);
+
+			// 	/**
+			// 	 * Handle API request
+			// 	 * if successfull go the project dashboard
+			// 	 * else show the error modal
+			// 	 * on the project dashboard fetch all the details for the project the project manager
+			// 	 */
+			// }
 		},
 	});
 	const {
@@ -147,80 +172,55 @@ const ProjectFormsController = () => {
 		handleReset,
 		setValues,
 	} = formik;
-
 	const ExitForm = () => {
 		setShow(false);
 		handleReset();
 		navigate("/dashboard");
 	};
-
+	
 	const props = {
 		values,
 		errors,
 		touched,
 		handleChange,
 		steps,
-		nextStep,
-		prevStep,
+		handleSubmit,
 		setValues,
+		isLoading
 	};
 
 	useEffect(() => {
 		if (!details) {
 			return;
 		}
-		console.log(details);
 		setValues({ ...details, project_description: details.project_description });
 	}, [details]);
 
+
+	/**
+	 * 
+	 *  {const onChange = (e) => {
+    console.log(e.target)
+    const { name, value, } = e.target;
+    setValue({[name]: value })
+  };} e 
+	 */
 	const getData = (e) => {
-		(function () {
-			switch (e.name) {
-				case "Contract":
-					setSelected({
-						...selected,
-						contract: [...selected.contract, e.value],
-					});
-					break;
-				case "Procurement":
-					setSelected({
-						...selected,
-						procurement: [...selected.procurement, e.value],
-					});
-					break;
-				case "Notice":
-					setSelected({ ...selected, notice: [...selected.notice, e.value] });
-					break;
-				case "Project Closeout":
-					setSelected({
-						...selected,
-						project_closeout: [...selected.project_closeout, e.value],
-					});
-					break;
-				case "MWBE Forms":
-					setSelected({
-						...selected,
-						mwbe_forms: [...selected.mwbe_forms, e.value],
-					});
-					break;
-				case "Notice Letter": {
-					setSelected({
-						...selected,
-						notice_letter: [...selected.notice_letter, e.value],
-					});
-					break;
-				}
-				default:
-					return selected;
-			}
-		})();
+		
+		setSelected([...selected, { document_type: e.name, document_name: e.value } ])
+		
+		 
+
 	};
 	const selectprops = {
 		...props,
 		handleSubmit,
 		setFieldValue,
+		documents,
+		response,
 		getData: (e) => getData(e),
 	};
+
 
 	const FormHeader = ({ active }) => {
 		return [
@@ -268,11 +268,9 @@ const ProjectFormsController = () => {
 					{/* Main Content */}
 					<div className="container mx-auto pt-8 px-4 lg:px-24">
 						<FormikProvider value={formik}>
-							<form onSubmit={handleSubmit}>
-								{steps === 0 && <ProjectOverview {...props} />}
+								{steps === 0 && <ProjectInformation />}
 								{steps === 1 && <AwardeeInformation {...props} />}
 								{steps === 2 && <SelectDocuments {...selectprops} />}
-							</form>
 						</FormikProvider>
 					</div>
 				</main>

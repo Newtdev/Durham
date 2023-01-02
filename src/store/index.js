@@ -14,6 +14,7 @@ import MultiFormReducer from "../pages/forms/Advertisement-for-bid-template/redu
 import DurhamProfileReducer from "../pages/Dashboard/Settings/Durhams-settings/ReducerSlice";
 import ProjectCloseoutStepReducer from "../pages/forms/Project-closeout-checklist/reducer";
 import CertificateOfSubstantialReducer from "../pages/forms/Certificate of Substantial Completion/reducer";
+import AddProjectReducer from '../pages/Dashboard/add-project/reducer'
 export const store = configureStore({
 	// reducers
 	reducer: {
@@ -33,6 +34,7 @@ export const store = configureStore({
 		DurhamProfileReducer,
 		ProjectCloseoutStepReducer,
 		CertificateOfSubstantialReducer,
+		AddProjectReducer
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

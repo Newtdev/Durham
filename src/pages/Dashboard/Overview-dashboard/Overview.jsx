@@ -1,42 +1,37 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getProjectInfo } from "./editReducer";
-import { OverviewContent, OverviewTableHeader } from "../../../lib/data";
+import {  useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProjectInfo, searchQuery, setsearchQuery } from "./editReducer";
+import { OverviewTableHeader } from "../../../lib/data";
 import { FullPageLoader, ModalOverlay } from "../../../ui";
 import { ButtonWhiteBG, ButtonRedBG } from "../../../ui";
 import {
-  DashboardButton,
-  PageHeader,
-  Pagination,
   Search,
-  Sort,
   Filter,
   TableHeader,
   DashboardNav,
   Close,
+  PageHeader,
+  DashboardButton,
+  Pagination,
 } from "../Components";
 import {
-  OverviewTableBody,
-  OverviewTitleCard,
+  OverviewTableBody, OverviewTitleCard,
 } from "./OverviewComponents";
-import { supabase } from "../../../lib/supabase";
+import { useDeleteProjectMutation, useFetchDashboardQuery, useFetchProjectsQuery } from "../../../features/services/api";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const Overview = () => {
-  const [action, setAction] = useState({delete:false, id: null})
-  const navigate = useNavigate();
+  const [action, setAction] = useState({ delete: false, id: null });
+  const [searchVendorQuery,setQuery] = useState('')
+  const query = useSelector(searchQuery)
+  const response = useFetchProjectsQuery(query);
+  const { currentData } = useFetchDashboardQuery();
+  const [deleteProject, {isLoading}] = useDeleteProjectMutation();
   const dispatch = useDispatch();
-  const [data, setData] = useState([]);
-	const [request, setRequest] = useState(true);
+  const navigate = useNavigate()
 
-	useEffect(() => {
-		(async function getDate() {
-			const response = await supabase.from("durham_projects").select("*");
-			setData(response.data);
-			setRequest(false);
-		})();
-	}, []);
 
   const dashboardProps = {
     onDelete: (id) => {
@@ -48,18 +43,37 @@ const Overview = () => {
       dispatch( getProjectInfo(data) )
       // setAction({ ...action, edit: true, initialData:data })
     },
-    dataArray:data
+    dataArray:response?.data?.data
   };
 
-  const onDeleteConfirmation = () => {
-    setAction({ delete: false, id:null })
+  const onDeleteConfirmation = async(id) => {
     // Make API Request
-    dispatch()
+    const response = await deleteProject(action.id)
+    if (response) {
+      setAction({ delete: false, id: null })
+      
+      if (response?.error) {
+        toast.error(response?.error?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.success(response?.data?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
   }
+
+  const CloseModal = () => setAction({ delete: false, id: null })
+  
+  const searchProps = {
+    setQuery: (value) => setQuery(value),
+    submit: () => dispatch(setsearchQuery(searchVendorQuery))
+  };
 
   return (
     <div>
-      			{request && <FullPageLoader />}
+      			{response.isLoading && <FullPageLoader />}
 
       {/* DASHBOARD */}
       <section>
@@ -67,20 +81,20 @@ const Overview = () => {
         <article>
           <DashboardNav />
         </article>
-        <main className='pt-6 bg-[#fafafa] h-screen'>
+        <main className='pt-6 bg-[#fafafa] h-full'>
           <div className='container mx-auto px-4 lg:px-24'>
             {/* Title Cards */}
             <div className='mb-6 grid grid-cols-4 gap-4'>
-              <OverviewTitleCard name='Total Projects' value={!data? 0 : data.length} />
-              <OverviewTitleCard name='Forms' value='0' />
-              <OverviewTitleCard name='Project Managers' value={!data? 0 : data.length}/>
-              <OverviewTitleCard name='Vendors' value={!data? 0 : data.length} />
+              <OverviewTitleCard name='Total Projects' value={!currentData? 0 : currentData.total_projects} />
+              <OverviewTitleCard name='Forms' value={!currentData? 0 : currentData.documents} />
+              <OverviewTitleCard name='Project Managers' value={!currentData? 0 : currentData.project_managers}/>
+              <OverviewTitleCard name='Vendors' value={!currentData? 0 : currentData.vendors} />
             </div>
 
             <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
               <div>
                 <PageHeader name='Projects' />
-                <p className='text-[#3b6979] text-lg'>Total Projects : {!data? 0 : data.length}</p>
+                <p className='text-[#3b6979] text-lg'>Total Projects : {!currentData? 0 : currentData?.total_projects}</p>
               </div>
               <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={()=> navigate('/dashboard/add-new-project')} />
             </div>
@@ -94,7 +108,7 @@ const Overview = () => {
               </div>
 
               {/* <!-- Search --> */}
-              <Search />
+              <Search {...searchProps} />
             </div>
 
             {/* <!-- Table --> */}
@@ -106,7 +120,7 @@ const Overview = () => {
             </div>
 
             {/* PAGINATION */}
-            {/* <Pagination /> */}
+            <Pagination />
           </div>
         </main>
 
@@ -126,6 +140,7 @@ const Overview = () => {
                   </h3>
                 </div>
                 <button
+                  onClick={CloseModal}
                   type='button'
                   className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                   data-modal-toggle='small-modal'
@@ -133,18 +148,13 @@ const Overview = () => {
                  <Close/>
                 </button>
               </div>
-              <div className='py-3 px-6'>
-                <p className='text-base text-gray-600'>
-                  Lorem ipsum dolor sit amet consectetur. Consectetur bibendum
-                  ut nec malesuada sit ante ultrices orci libero.
-                </p>
-              </div>
+              
 
               {/* Buttons */}
               <div className='mt-12 mr-5 flex gap-4 justify-end'>
-                <ButtonWhiteBG name='no, cancel' onClick={() => setAction({ delete: false, id: null })} />
+                <ButtonWhiteBG name='no, cancel' onClick={CloseModal} />
                 {/* Make api request to delete the data */}
-                <ButtonRedBG name='yes, edit' width='w-[136px]' onClick={onDeleteConfirmation}  />
+                <ButtonRedBG name='Yes, delete' width='w-[136px]' onClick={onDeleteConfirmation} loading={isLoading}  />
               </div>
             </div>
           </div>

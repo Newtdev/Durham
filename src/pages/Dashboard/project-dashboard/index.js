@@ -29,9 +29,9 @@ import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
-import { getProjectInfo, projectData } from "../Overview-dashboard/editReducer";
-import { supabase } from "../../../lib/supabase";
+import { getProjectInfo } from "../Overview-dashboard/editReducer";
 import { toast } from "react-toastify";
+import { useDeleteProjectMutation } from "../../../features/services/api";
 
 const ProjectDashboard = () => {
 	const navigate = useNavigate();
@@ -40,27 +40,23 @@ const ProjectDashboard = () => {
 	const documents = useSelector(getDocuments);
 	const remove = useSelector(deleted);
 	const id = useSelector(slug);
+	const [deleteProject] = useDeleteProjectMutation();
+
+	const awardee = !projectDetails?.project_vendors ? '' : projectDetails.project_vendors[0];
+
+	
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		const response = await supabase
-			.from("durham_projects")
-			.delete()
-			.eq("id", projectDetails.id);
-
-		if (response) {
-			dispatch(onClose());
-			if (response.error?.message) {
-				// close();
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else {
-				toast.success("Project Deleted Successfully", {
-					position: toast.POSITION.TOP_CENTER,
-				});
-				navigate("/dashboard", { replace: true });
-			}
+		const response = await deleteProject(projectDetails.id)
+		if (response?.error) {
+			toast.error(response?.error?.message, {
+				position: toast.POSITION.TOP_CENTER,
+			});
+		} else {
+			toast.success(response?.data?.message, {
+				position: toast.POSITION.TOP_CENTER,
+			});
 		}
 	};
 
@@ -77,18 +73,15 @@ const ProjectDashboard = () => {
 								</h3>
 							</div>
 							<button
+								onClick={() => dispatch(onClose())}
+
 								type="button"
 								className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 								data-modal-toggle="small-modal">
 								<Close />
 							</button>
 						</div>
-						<div className="py-3 px-6">
-							<p className="text-base text-gray-600">
-								Lorem ipsum dolor sit amet consectetur. Consectetur bibendum ut
-								nec malesuada sit ante ultrices orci libero.
-							</p>
-						</div>
+						
 
 						{/* Buttons */}
 						<form
@@ -119,7 +112,7 @@ const ProjectDashboard = () => {
 					<span className="text-gray-900 font-bold">&gt;</span>
 
 					<span className="text-gray-900 font-bold text-base">
-						{!projectDetails ? "" : projectDetails?.project_name}
+						{!projectDetails ? "" : projectDetails?.name}
 					</span>
 				</div>
 			</div>
@@ -180,7 +173,7 @@ const ProjectDashboard = () => {
 								<div className="pb-2 border-b border-b-gray-50 flex justify-between items-center">
 									<p className="px-[10px] py-1 rounded font-bold bg-[#D8E1E4] text-[#2F5461]">
 										{`No:${
-											!projectDetails ? 0 : projectDetails?.project_number
+											!projectDetails ? 0 : projectDetails?.number
 										}`}
 									</p>
 									<p className="text-gray-700 text-base">
@@ -188,9 +181,9 @@ const ProjectDashboard = () => {
 									</p>
 								</div>
 								<ProjectDetails
-									name={!projectDetails ? "" : projectDetails?.project_name}
+									name={!projectDetails ? "" : projectDetails?.name}
 									description={
-										!projectDetails ? "" : projectDetails?.project_description
+										!projectDetails ? "" : projectDetails?.description
 									}
 								/>
 
@@ -204,9 +197,9 @@ const ProjectDashboard = () => {
 								</div>
 							</div>
 							{/* Accordions */}
-							<div className="mt-6 bg-white rounded-lg border border-gray-100">
+							{/* <div className="mt-6 bg-white rounded-lg border border-gray-100">
 								<Accordion data={documents} />
-							</div>
+							</div> */}
 						</div>
 
 						{/* Right Side */}
@@ -228,20 +221,12 @@ const ProjectDashboard = () => {
 									</div>
 									<div className="text-gray-900 text-xs">
 										<p className="mt-4 text-base font-bold">
-											{!projectDetails
-												? ""
-												: !projectDetails?.awardeeInfo
-												? ""
-												: projectDetails?.awardeeInfo[0]?.consultant_name}
+											{!awardee ?"": awardee?.company_name}
 										</p>
 										<p className="my-1">
-											{!projectDetails
-												? ""
-												: !projectDetails?.awardeeInfo
-												? ""
-												: projectDetails?.awardeeInfo[0]?.consultant_address}
+											{!awardee ?"": awardee?.address}
 										</p>
-									</div>
+									</div> 
 								</div>
 
 								<div className="mb-5">
@@ -253,7 +238,7 @@ const ProjectDashboard = () => {
 											{/* <img className="w-full" src={Avatar} alt="user" /> */}
 										</div>
 										<span className="text-xs text-[#2f5461]">
-											{!projectDetails ? "" : projectDetails?.project_manager}
+											{!projectDetails || !projectDetails.project_manager ? "" : projectDetails?.project_manager.first_name + " " + projectDetails?.project_manager.last_name}
 										</span>
 									</div>
 								</div>

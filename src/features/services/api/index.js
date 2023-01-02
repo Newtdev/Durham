@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { addNewProject } from "../../../pages/Dashboard/add-project/projectSlice";
 
 /***
  * login?email=omotolaniolurotimi@gmail.com&password=ThinTree21+++
@@ -16,7 +17,7 @@ export const DurhamsApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["vendors", "product-managers", "durham-settings"],
+	tagTypes: ["vendors", "product-managers", "durham-settings",'projects', 'dashboard'],
 	endpoints: (builder) => ({
 		userLogin: builder.mutation({
 			query: (info) => {
@@ -114,9 +115,9 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		fetchAllProjectManager: builder.query({
-			query: () => {
+			query: (query ='') => {
 				return {
-					url: "project-managers",
+					url: `project-managers?search=${query}&limit=10`,
 
 					method: "GET",
 				};
@@ -152,7 +153,7 @@ export const DurhamsApi = createApi({
 		deleteProductManager: builder.mutation({
 			query: (id) => {
 				return {
-					url: `product-manager/${id}`,
+					url: `project-manager/${id}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -203,14 +204,14 @@ export const DurhamsApi = createApi({
 			invalidatesTags: (result) => ["vendors"],
 		}),
 		fetchVendors: builder.query({
-			query: () => {
+			query: (term="") => {
 				return {
-					url: "vendors",
+					url: `vendors?search=${term}&limit=10`,
 					method: "GET",
 				};
 			},
 			providesTags: ["vendors"],
-			transformResponse: (response) => response.data.data,
+			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		editVendor: builder.mutation({
@@ -273,6 +274,126 @@ export const DurhamsApi = createApi({
 			transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
+		// PROJECT DASHBOARD INFORMATION
+		fetchDashboard: builder.query({
+			query: () => {
+				return {
+					url: "dashboard",
+					method: "GET",
+				};
+			},
+			providesTags: ["dashboard"],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+
+		// ADD PROJECT API
+		addProjects: builder.mutation({
+			query: (info) => {
+				return {
+					url: "projects",
+					headers: {
+						Accept: "application/json",
+					},
+					method: "POST",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects",'dashboard'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
+		fetchProjects: builder.query({
+			query: (query='') => {
+				return {
+					url: `projects?search=${query}&limit=10`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+				};
+			},
+			providesTags: ["projects", 'dashboard'],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+		deleteProject: builder.mutation({
+			query: (id) => {
+				return {
+					url: `projects/${id}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "DELETE",
+				};
+			},
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response.data,
+
+			invalidatesTags: (result) => ["projects", 'dashboard'],
+		}),
+		
+		fetchSingleProject: builder.query({
+			query: (slug) => {
+				return {
+					url: `projects/by-slug/${slug}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+				
+				};
+			},
+			async onQueryStarted(slug,{dispatch, queryFulfilled}) {
+			
+				try {
+					const {data} = await queryFulfilled;
+					dispatch(addNewProject(data.data))
+				} catch (error) {
+					throw error
+					
+				}
+			},
+			// providesTags: ["projects", 'dashboard'],
+			// transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+
+
+		addProjectVendor: builder.mutation({
+			query: (info) => {
+				return {
+					url: "projects/add-vendor",
+					headers: {
+						Accept: "application/json",
+					},
+					method: "POST",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects", 'dashboard'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+		addProjectDocument: builder.mutation({
+			query: (info) => {
+				console.log(info)
+				return {
+					url: "projects/add-document",
+					headers: {
+						Accept: "application/json",
+					},
+					method: "POST",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects", 'dashboard'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+
+
+		// ADD VENDOR TO PROJECTS
 	}),
 });
 
@@ -295,4 +416,11 @@ export const {
 	useFetchAllProjectManagerQuery,
 	useUpdateProductManagerDetailsMutation,
 	useFetchSingleProjectManagerQuery,
+	useFetchProjectsQuery,
+	useAddProjectsMutation,
+	useAddProjectVendorMutation,
+	useFetchDashboardQuery,
+	useFetchSingleProjectQuery,
+	useDeleteProjectMutation,
+	useAddProjectDocumentMutation
 } = DurhamsApi;
