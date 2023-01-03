@@ -6,13 +6,13 @@ import DeleteIcon from "../assets/deleteIcon.svg";
 
 // REUSABLE INPUT COMP
 export function Input(props) {
-	const { placeholder, id, onChange, value } = props;
+	const { placeholder, id, onChange, value, type } = props;
 	return (
 		<input
 			className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 			name={id}
 			placeholder={placeholder}
-			type="text"
+			type={type}
 			value={value}
 			onChange={onChange}
 		/>
@@ -21,14 +21,14 @@ export function Input(props) {
 
 // REUSABLE Textarea
 export function Textarea(props) {
-	const { placeholder, id, onChange, values } = props;
+	const { placeholder, id, onChange, value } = props;
   return (
     <textarea
       className='bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5'
       name={id}
       placeholder={placeholder}
       type='text'
-      value={values}
+      value={value}
       onChange={onChange}
     />
   );

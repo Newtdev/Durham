@@ -78,7 +78,9 @@ export function DashboardNav() {
 				className="container flex flex-wrap items-center justify-start mx-auto"
 				onClick={() => setShow(!show)}>
 				<span className="w-20 mr-8">
+					<Link to='/dashboard'>
 					<img src={Logo} className="w-full" alt="Durham Logo" />
+					</Link>
 				</span>
 				<div className=" ml-auto md:order-2 relative">
 					<button
@@ -241,7 +243,7 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 			{!response?.data && <FullPageLoader />}
 			{response?.data?.data?.data?.map((manager, index) => {
 				const { id, last_name, first_name, email, phone } = manager;
-				const strip = index % 2 === 0 ? "bg-white" : "bg-gray-50";
+				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr key={id} className={`${strip} border-b`}>
 						<th

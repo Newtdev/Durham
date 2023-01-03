@@ -83,6 +83,7 @@ const Login = () => {
             name: 'Password',
             id: 'password',
             placeholder: 'Enter your password',
+            type: 'password',
             value:values.password,
             onChange: handleChange,
             error: errors.password,

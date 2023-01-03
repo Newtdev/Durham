@@ -4,7 +4,7 @@ import BackArrow from "../../../assets/backArrow.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { Accordion, ProjectCard, ProjectDetails } from "./Components";
 import { useDispatch, useSelector } from "react-redux";
-import { getDocuments, project_details } from "../add-project/projectSlice";
+import { project_details } from "../add-project/projectSlice";
 import {
 	ButtonRedBG,
 	ButtonWhiteBG,
@@ -12,7 +12,6 @@ import {
 	ModalOverlay,
 	Pen,
 } from "../../../ui";
-import { getTotals } from "../../../shared-component";
 import Lunsford from "../../forms/Lundsford";
 
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
@@ -31,32 +30,40 @@ import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
 import { getProjectInfo } from "../Overview-dashboard/editReducer";
 import { toast } from "react-toastify";
-import { useDeleteProjectMutation } from "../../../features/services/api";
+import { useDeleteProjectMutation, useFetchSingleProjectQuery } from "../../../features/services/api";
+import { getProjectID } from "../add-project/reducer";
 
 const ProjectDashboard = () => {
+	const id = useSelector(getProjectID)
+	useFetchSingleProjectQuery(id);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const projectDetails = useSelector(project_details);
-	const documents = useSelector(getDocuments);
+	const documentsID = useSelector(slug);
 	const remove = useSelector(deleted);
-	const id = useSelector(slug);
-	const [deleteProject] = useDeleteProjectMutation();
+	const [deleteProject, {isLoading}] = useDeleteProjectMutation();
 
 	const awardee = !projectDetails?.project_vendors ? '' : projectDetails.project_vendors[0];
-
+	const summary = !projectDetails ? '' : projectDetails.document_summary;
 	
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const response = await deleteProject(projectDetails.id)
-		if (response?.error) {
-			toast.error(response?.error?.message, {
-				position: toast.POSITION.TOP_CENTER,
-			});
-		} else {
-			toast.success(response?.data?.message, {
-				position: toast.POSITION.TOP_CENTER,
-			});
+		if (response) {
+			dispatch(onClose())
+			if (response?.error) {
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success(response?.data?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				navigate("/dashboard");
+
+			}
 		}
 	};
 
@@ -92,7 +99,7 @@ const ProjectDashboard = () => {
 								onClick={() => dispatch(onClose())}
 							/>
 							{/* Make api request to delete the data */}
-							<ButtonRedBG name="yes, edit" width="w-[136px]" />
+							<ButtonRedBG name="yes, Delete" width="w-[136px]" loading={isLoading} />
 						</form>
 					</div>
 				</div>
@@ -131,8 +138,8 @@ const ProjectDashboard = () => {
 						<div className="flex gap-4 items-center">
 							<button
 								onClick={() => {
-									navigate("/dashboard/edit-project");
 									dispatch(getProjectInfo(projectDetails));
+									navigate("/dashboard/edit-project");
 								}}
 								type="button"
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
@@ -160,9 +167,9 @@ const ProjectDashboard = () => {
 					</div>
 
 					<div className="mt-9 grid grid-cols-3">
-						<ProjectCard name="Total Documents" value={getTotals(documents)} />
-						<ProjectCard name="Filled" value="0" />
-						<ProjectCard name="Yet to be Filled" value="0" />
+						<ProjectCard name="Total Documents" value={!summary?'0':summary.total} />
+						<ProjectCard name="Filled" value={!summary?'0':summary.filled} />
+						<ProjectCard name="Yet to be Filled" value={!summary?'0':summary.unfilled} />
 					</div>
 
 					{/* Main Content */}
@@ -197,9 +204,9 @@ const ProjectDashboard = () => {
 								</div>
 							</div>
 							{/* Accordions */}
-							{/* <div className="mt-6 bg-white rounded-lg border border-gray-100">
-								<Accordion data={documents} />
-							</div> */}
+							<div className="mt-6 bg-white rounded-lg border border-gray-100">
+								<Accordion data={projectDetails.project_documents} />
+							</div>
 						</div>
 
 						{/* Right Side */}
@@ -247,20 +254,20 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			<Lunsford id={id} />
-			<PunchList id={id} />
-			<NoticeOfIntentConsultant id={id} />
-			<CertificateOfSubstantial id={id} />
-			<NoticeToProceed id={id} />
-			<ProjectCloseoutCheckList id={id} />
-			<NoticeOfAwardConsultant id={id} />
-			<AdvertisementBid id={id} />
-			<Esser id={id} />
-			<EsserPM id={id} />
-			<Lechase id={id} />
-			<TechService id={id} />
-			<NoticeOfAwardContrator id={id} />
-			<NoticeOfAwardContrator id={id} />
+			<Lunsford id={documentsID} />
+			<PunchList id={documentsID} />
+			<NoticeOfIntentConsultant id={documentsID} />
+			<CertificateOfSubstantial id={documentsID} />
+			<NoticeToProceed id={documentsID} />
+			<ProjectCloseoutCheckList id={documentsID} />
+			<NoticeOfAwardConsultant id={documentsID} />
+			<AdvertisementBid id={documentsID} />
+			<Esser id={documentsID} />
+			<EsserPM id={documentsID} />
+			<Lechase id={documentsID} />
+			<TechService id={documentsID} />
+			<NoticeOfAwardContrator id={documentsID} />
+			<NoticeOfAwardContrator id={documentsID} />
 		</section>
 	);
 };

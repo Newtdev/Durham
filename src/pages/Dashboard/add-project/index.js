@@ -1,7 +1,6 @@
 import { useFormik, FormikProvider } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { state } from "../../../lib/data";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { AddNewProjectSchema } from "../../../yup";
 import { ProjectOverviewNav } from "../Components";
@@ -9,13 +8,13 @@ import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { supabase } from "../../../lib/supabase";
-import { projectData } from "../Overview-dashboard/editReducer";
+import { projectData, setProjectInfoDefault } from "../Overview-dashboard/editReducer";
 import ProjectInformation from "./project-info";
-import { getForm, getProjectID, nextForm, saveID } from "./reducer";
+import { getForm, getProjectID, nextForm, setDefault, } from "./reducer";
 import AwardeeInformation from "./awardee-info/AwardeeInformation";
-import { useAddProjectDocumentMutation, useAddProjectVendorMutation } from "../../../features/services/api";
+import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
 import { documents } from "../../../lib/data";
+import EditDocument from "./documents/EditDocument";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
@@ -23,14 +22,13 @@ const ProjectFormsController = () => {
 	const id = useSelector(getProjectID)
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
-	// const awardee = useSelector(getSaveData);
-	// const productmanager = useSelector(product_manager_data);
 	const details = useSelector(projectData);
 	const steps = useSelector(getForm);
 	const [show, setShow] = useState(false);
 	const [selected, setSelected] = useState([]);
 	const [addProjectVendor, { isLoading }] = useAddProjectVendorMutation();
-	const [addProjectDocument, response] = useAddProjectDocumentMutation()
+	const [addProjectDocument, response] = useAddProjectDocumentMutation();
+	const [editVendor, data] = useEditVendorMutation()
 
 
 	async function HandleRequest(values) {
@@ -51,9 +49,8 @@ const ProjectFormsController = () => {
         }
         
     }
-	async function SubmitDocument(values) {
-		console.log(id)
-		const response = await addProjectDocument({project_id: id, documents:values });
+	async function HandleEditRequest(values) {
+		const response = await editVendor(values);
         if (response?.error) {
             toast.error('Opps! Something went wrong, Please try again later!', {
                 position: toast.POSITION.TOP_CENTER,
@@ -65,9 +62,28 @@ const ProjectFormsController = () => {
             toast.error(response?.message, {
                 position: toast.POSITION.TOP_CENTER,
             });
-        } else {
+		} else {
 			dispatch(nextForm());
-			navigate('/add-new-project/preview');
+        }
+        
+    }
+	async function SubmitDocument(values) {
+		
+		const response = await addProjectDocument({project_id: id, documents:values });
+        if (response?.error) {
+            toast.error(response?.error?.message, {
+				position: toast.POSITION.TOP_CENTER,
+            });
+            
+        }
+        else if (response?.data?.status !== 'success') {
+			// error alert
+            toast.error(response?.message, {
+                position: toast.POSITION.TOP_CENTER,
+            });
+        } else {
+			// dispatch(nextForm());
+			navigate('/dashboard/add-new-project/preview');
         }
         
     }
@@ -77,52 +93,20 @@ const ProjectFormsController = () => {
 
 
 	
-	async function HandleEditRequest(values) {
-		// const response = await addProjectManager({ ...values });
-		let a = values.awardeeInfo;
-		let b = values.document;
-
-		const response = await supabase
-			.from("durham_projects")
-			.update([
-				{
-					project_number: values.project_number,
-					project_manager: values.project_manager,
-					project_name: values.project_name,
-					awardeeInfo: a,
-					document: b,
-					project_description: values.project_description,
-				},
-			])
-			.eq("id", details.id);
-		if (response) {
-			if (response.error?.message) {
-				// close();
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else {
-				// setShow(true);
-				toast.success("Project updated successfully", {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			}
-		}
-	}
-
+	
 	const formik = useFormik({
 		initialValues: {
 
-			awardeeInfo: [
+			project_vendors: [
 				{
-					awardee: "",
-					design_consultant: "",
-					consultant_name: "",
-					consultant_address: "",
-					corporate_president: "",
-					corporate_secretary: "",
-					company_representative_name: "",
-					company_representative_title: "",
+					industry: "",
+					// awardee: "",
+					company_name: "",
+					address: "",
+					president: "",
+					secretary: "",
+					first_name: "",
+					title: "",
 				},
 			],
 			document: {},
@@ -131,35 +115,17 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
-			if (steps === 1) {
+			if (steps === 1 && !details) {
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.
-				HandleRequest(String(values.awardeeInfo.length))
+				HandleRequest(String(values.project_vendors.length))
+			} else {
+				HandleEditRequest(values.project_vendors[0])
 			}
 			
 			if (steps === 2) {
 				SubmitDocument(selected)
 			}
 			
-		// selected
-			// if (steps !== 2) {
-			// 	nextStep();
-			// } else {
-			// 	values.document = selected;
-			// 	// console.log({values);
-
-			// 	dispatch(addNewProject(values));
-			// 	if (!details) {
-			// 		HandleRequest(values);
-			// 	}
-			// 	HandleEditRequest(values);
-
-			// 	/**
-			// 	 * Handle API request
-			// 	 * if successfull go the project dashboard
-			// 	 * else show the error modal
-			// 	 * on the project dashboard fetch all the details for the project the project manager
-			// 	 */
-			// }
 		},
 	});
 	const {
@@ -176,6 +142,8 @@ const ProjectFormsController = () => {
 		setShow(false);
 		handleReset();
 		navigate("/dashboard");
+		dispatch(setDefault())
+		dispatch(setProjectInfoDefault())
 	};
 	
 	const props = {
@@ -185,32 +153,16 @@ const ProjectFormsController = () => {
 		handleChange,
 		steps,
 		handleSubmit,
+		setFieldValue,
 		setValues,
-		isLoading
+		isLoading:isLoading ||data.isLoading
 	};
 
-	useEffect(() => {
-		if (!details) {
-			return;
-		}
-		setValues({ ...details, project_description: details.project_description });
-	}, [details]);
+	
 
-
-	/**
-	 * 
-	 *  {const onChange = (e) => {
-    console.log(e.target)
-    const { name, value, } = e.target;
-    setValue({[name]: value })
-  };} e 
-	 */
 	const getData = (e) => {
 		
 		setSelected([...selected, { document_type: e.name, document_name: e.value } ])
-		
-		 
-
 	};
 	const selectprops = {
 		...props,
@@ -243,6 +195,13 @@ const ProjectFormsController = () => {
 		});
 	};
 
+
+	useEffect(() => {
+		if (!details) {
+			return;
+		}
+		formik.setValues(details)
+	},[details]);
 	return (
 		<section>
 			{/* PROJECT OVERVIEW */}
@@ -269,15 +228,15 @@ const ProjectFormsController = () => {
 					<div className="container mx-auto pt-8 px-4 lg:px-24">
 						<FormikProvider value={formik}>
 								{steps === 0 && <ProjectInformation />}
-								{steps === 1 && <AwardeeInformation {...props} />}
-								{steps === 2 && <SelectDocuments {...selectprops} />}
+							{steps === 1 && <AwardeeInformation {...props} />}
+								{steps === 2 && !details && <SelectDocuments {...selectprops} />}
+								{steps === 2 && details && <EditDocument documents={details.project_documents} />}
 						</FormikProvider>
 					</div>
 				</main>
 			</section>
 			<ModalOverlay
 				show={show}
-				//   close={() => setShowVendorModal(false)}
 			>
 				<div>
 					{/* Modal content */}

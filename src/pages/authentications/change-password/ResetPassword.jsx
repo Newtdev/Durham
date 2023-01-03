@@ -31,7 +31,7 @@ const ResetPassword = () => {
 		}
     };
     
-    const { values, handleChange, touched, errors, handleSubmit, isSubmitting } = useFormik({
+    const { values, handleChange, touched, errors, handleSubmit, } = useFormik({
         initialValues: {
             password: '',
             password_confirmation: '',
@@ -50,7 +50,8 @@ const ResetPassword = () => {
             value: values.password,
             onChange: handleChange,
             error: errors.password,
-            touched: touched.password
+            touched: touched.password,
+            type: 'password'
 
 
         },
@@ -61,7 +62,8 @@ const ResetPassword = () => {
             placeholder: 'Enter your password address',
             onChange: handleChange,
             error: errors.password_confirmation,
-            touched: touched.password_confirmation
+            touched: touched.password_confirmation,
+            type: 'password'
 
 
         }

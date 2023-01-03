@@ -33,7 +33,6 @@ export const Accordion = ({ data }) => {
 		if (e.target) {
 			const { id, name } = e.target;
 			e.target.className = newClass;
-			console.log(id);
 			dispatch(getDocument(name));
 			dispatch(getSlugId(id));
 			dispatch(showModal());
@@ -79,11 +78,11 @@ export const Accordion = ({ data }) => {
 											return (
 												<input
 													onClick={onClick}
-													value={cur}
+													value={cur.document_name}
 													// name={objName}
-													id={makeId(document, cur)}
+													id={makeId(document, cur.document_name)}
 													type="button"
-													name={cur}
+													name={cur.document_name}
 													key={index}
 													className={`bg-[#d8e1e4]
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}

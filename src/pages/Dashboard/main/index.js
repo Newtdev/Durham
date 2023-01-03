@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import {  Route, Routes, useNavigate } from "react-router-dom";
 import { userInfo } from "../../../features/auth";
 import PunchList from "../../forms/Punch List/PunchList";
 import EditProjectDashboard from "../Overview-dashboard/EditProjectDashboard";
@@ -17,13 +17,15 @@ const ProjectPreview = lazy(() => import("../project-dashboard"));
 const ProjectFormsController = lazy(() => import("../add-project"));
 
 const Dashboard = () => {
+	const navigate = useNavigate()
 	const dispatch = useDispatch();
 	const data = JSON.parse(localStorage.getItem("durham_token"));
 
 
 	useEffect(() => {
 		if (!data) {
-			return;
+	
+		navigate('/');
 		}
 		dispatch(userInfo(data));
 	}, [dispatch, data]);

@@ -1,20 +1,27 @@
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {  useAddProjectsMutation, useFetchAllProjectManagerQuery } from "../../../../features/services/api";
+import {  useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchProjectsQuery, useFetchSingleProjectQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
 import { ButtonWhiteBG } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
 import { DashboardButton } from "../../Components";
+import { projectData } from "../../Overview-dashboard/editReducer";
 import { DashboardSelect, OverviewInput, OverviewTextarea } from "../../Overview-dashboard/OverviewComponents";
-import { nextForm, saveID, } from '../reducer';
+import {  nextForm, saveID, } from '../reducer';
 
 const ProjectInformation = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     
 const [addProjects, {isLoading}]= useAddProjectsMutation()
     const response = useFetchAllProjectManagerQuery();
+    // const details = useFetchSingleProjectQuery(id)
+    const details = useSelector(projectData);
+
+    const [updateProjects,data ] = useUpdateProjectsMutation()
 
 
     async function HandleRequest(values) {
@@ -37,6 +44,29 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         }
         
     }
+    async function HandleEditRequest(values) {
+        // console.log(values)
+        const response = await updateProjects(values);
+        console.log(response?.data?.message)
+
+        if (response?.error) {
+            toast.error('Opps! Something went wrong, Please try again later!', {
+                position: toast.POSITION.TOP_CENTER,
+            });
+            
+         }
+        else if (response?.data?.status === 'success') {
+         
+            dispatch(saveID(response?.data?.data?.id));
+            dispatch(nextForm());
+        } else {
+              // error alert
+          toast.error(response?.message, {
+                 position: toast.POSITION.TOP_CENTER,
+             });
+         }
+        
+    }
     
     const { values, errors, touched, handleChange, handleSubmit, setValues } = useFormik({
         initialValues: {
@@ -48,7 +78,12 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         },
         validationSchema: AddProjectInformation,
         onSubmit: (values) => {
-            HandleRequest(values)
+            if (!details) {
+                HandleRequest(values)
+                
+            }
+            HandleEditRequest(values)
+        
         }
     })
 
@@ -90,7 +125,12 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         onChange: handleChange,
         placeholder: "Enter Product Manager",
     };
-
+    useEffect(() => {
+		if (!details) {
+			return;
+        }
+		setValues({ ...details, description: details?.description });
+	}, [details]);
 
     return <form onSubmit={handleSubmit}>
         <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
@@ -126,10 +166,12 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                     </div>
                                     <div>
                                         <DashboardSelect {...project_manager}>
-                                            {!response?.data?.data?.data && (
+                                            {!response?.data?.data?.data && !details?.data? (
                                                 <option>No project Manager</option>
-                                            )}
+                                            ) : 
                                             <option>Select Project Manager</option>
+                                            
+                                            }
                                             {response?.data?.data?.data?.map((cur, id) => {
                                                 return (
                                                     <option
@@ -156,7 +198,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
 								hidden
 								type="submit"
                                 width='w-[168px]'
-								loading={isLoading}
+								loading={isLoading|| data.isLoading}
 							/>
             
              <ButtonWhiteBG width='w-[168px]' name='Cancel' onClick={() => navigate('/dashboard')} /> 

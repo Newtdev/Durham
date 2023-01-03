@@ -154,7 +154,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					secretary,
 					industry,
 				} = vendor;
-				const strip = id % 2 === 0 ? "bg-white" : "bg-gray-50";
+				const strip = id % 2 !== 0 ? "bg-white" : "bg-gray-50";
 
 				return (
 					<tr key={id} className={`border-b ${strip}`}>

@@ -27,7 +27,7 @@ const dispatch = useDispatch()
                   Provide information about the new project
                 </p>
               </div>
-              {props.values.awardeeInfo.map((cur, index) => (
+              {props?.values?.project_vendors.map((cur, index) => (
                 <Fragment key={index}>
                   
                   <div className="my-6">

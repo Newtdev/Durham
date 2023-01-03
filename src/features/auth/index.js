@@ -9,7 +9,7 @@ const loginSlice = createSlice({
 	reducers: {
 		userInfo: (state, action) => {
 			state.user_data = action.payload;
-			state.accessToken = action.payload.authorization.token;
+			state.accessToken = action.payload?.authorization?.token;
 		},
 	},
 });

@@ -303,6 +303,21 @@ export const DurhamsApi = createApi({
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
+		updateProjects: builder.mutation({
+			query: ({id,...info}) => {
+				return {
+					url: `projects/${id}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "PUT",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects",'dashboard'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
 		fetchProjects: builder.query({
 			query: (query='') => {
 				return {
@@ -334,9 +349,9 @@ export const DurhamsApi = createApi({
 		}),
 		
 		fetchSingleProject: builder.query({
-			query: (slug) => {
+			query: (id) => {
 				return {
-					url: `projects/by-slug/${slug}`,
+					url: `projects/${id}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -344,10 +359,10 @@ export const DurhamsApi = createApi({
 				
 				};
 			},
-			async onQueryStarted(slug,{dispatch, queryFulfilled}) {
+			async onQueryStarted(id,{dispatch, queryFulfilled}) {
 			
 				try {
-					const {data} = await queryFulfilled;
+					const { data } = await queryFulfilled;
 					dispatch(addNewProject(data.data))
 				} catch (error) {
 					throw error
@@ -422,5 +437,6 @@ export const {
 	useFetchDashboardQuery,
 	useFetchSingleProjectQuery,
 	useDeleteProjectMutation,
-	useAddProjectDocumentMutation
+	useAddProjectDocumentMutation,
+	useUpdateProjectsMutation
 } = DurhamsApi;

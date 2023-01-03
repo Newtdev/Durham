@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -7,21 +8,27 @@ import {
 	useFetchVendorsQuery,
 } from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
+import { saveID } from "../add-project/reducer";
+import { projectData } from "./editReducer";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
 			{dataArray?.map((project, index) => {
 				const {id, name, project_manager, project_vendors, created_At,slug } = project;
 				const awardee = !project_vendors.length === 0 ? 'hello' : project_vendors[0];
 
-		const strip = index % 2 === 0 ? "bg-white" : "bg-gray-50";
+		const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr
 						key={id}
 						className={`${strip} border-b cursor-pointer`}
-						onClick={() => navigate(`/dashboard/project-details/${slug}`)}>
+						onClick={() => {
+							dispatch(saveID(id))
+					navigate(`/dashboard/project-details/${slug}`)
+						}}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{name}
 						</td>
@@ -107,16 +114,18 @@ export function OverviewTextarea(props) {
 
 export function AwardeeInfo(props) {
 	const response = useFetchVendorsQuery();
+	const details = useSelector(projectData);
 
+	// design_consultant: "",
 	const { values, errors, touched, handleChange, index } = props.data;
 	const awardee = {
 		name: "Select Awardee involve in this project",
-		id: `awardeeInfo.${index}.awardee`,
+		id: `project_vendors.${index}.industry`,
 		placeholder: "Select Awardee involve in this project",
 		onChange: handleChange,
 
-		value: values.awardeeInfo[index].awardee,
-		touched: touched.awardee,
+		value: values.project_vendors[index].industry,
+		touched: touched.industry,
 	};
 
 	function filtered() {
@@ -124,81 +133,85 @@ export function AwardeeInfo(props) {
 			return;
 		}
 		return response?.data?.data?.data.filter((cur) => {
-			return cur.industry === values.awardeeInfo[index].awardee;
+			return cur.industry === values.project_vendors[index].industry;
 		});
 	}
 
 	const design_consultant = {
-		name: "Select Design Consultant",
-		id: `awardeeInfo.${index}.design_consultant`,
-		placeholder: "Select Design Consultant",
+		name: `Select ${values.project_vendors[index].industry}`,
+		id: `project_vendors.${index}.company_name`,
+		placeholder: `Select ${values.project_vendors[index].industry}`,
 
 		onChange: handleChange,
-		value: values.awardeeInfo[index].design_consultant,
-		error: errors.design_consultant,
-		touched: touched.design_consultant,
+		value: values.project_vendors[index].company_name,
+		error: errors.company_name,
+		touched: touched.company_name,
 	};
 	const consultant_name = {
 		name: "Consultant Name",
-		id: `awardeeInfo.${index}.consultant_name`,
+		id: `project_vendors.${index}.company_name`,
 		placeholder: "Enter Consultant Name",
 		onChange: handleChange,
-		value: values.awardeeInfo[index].consultant_name,
-		error: errors.consultant_name,
-		touched: touched.consultant_name,
+		value: values.project_vendors[index].company_name,
+		error: errors.company_name,
+		touched: touched.company_name,
 	};
 	const consultant_address = {
 		name: "Consultant Address",
-		id: `awardeeInfo.${index}.consultant_address`,
+		id: `project_vendors.${index}.address`,
 		placeholder: "Enter Consultant Address",
 
 		onChange: handleChange,
-		value: values.awardeeInfo[index].consultant_address,
-		error: errors.consultant_address,
-		touched: touched.consultant_address,
+		value: values.project_vendors[index].address,
+		error: errors.address,
+		touched: touched.address,
 	};
 
 	const corporate_president = {
 		name: "Corperate President",
-		id: `awardeeInfo.${index}.corporate_president`,
+		id: `project_vendors.${index}.president`,
 		placeholder: "Enter Corperate President",
 		onChange: handleChange,
-		value: values.awardeeInfo[index].corporate_president,
-		error: errors.corporate_president,
-		touched: touched.corporate_president,
+		value: values.project_vendors[index].president,
+		error: errors.president,
+		touched: touched.president,
 	};
 
 	const corporate_secretary = {
 		name: "Corperate Secretary",
-		id: `awardeeInfo.${index}.corporate_secretary`,
+		id: `project_vendors.${index}.corporate_secretary`,
 		placeholder: "Enter Corperate Secretary",
 
 		onChange: handleChange,
-		value: values.awardeeInfo[index].corporate_secretary,
-		error: errors.corporate_secretary,
-		touched: touched.corporate_secretary,
+		value: values.project_vendors[index].secretary,
+		error: errors.secretary,
+		touched: touched.secretary,
 	};
 
 	useEffect(() => {
-		if (!values.awardeeInfo[index].design_consultant) {
+		if (!values.project_vendors[index].company_name) {
 			return;
 		} else {
 			filtered()?.forEach((cur, id) => {
-				
-				props.data.values.awardeeInfo[index].company_representative_name =
+				if (values.project_vendors[index].company_name === cur.company_name) {
+					props.data.values.project_vendors[index].first_name =
 					cur?.first_name + " " + cur?.last_name;
-				props.data.values.awardeeInfo[index].company_representative_title =
+				props.data.values.project_vendors[index].title =
 					cur?.title;
-				props.data.values.awardeeInfo[index].consultant_name =
+				props.data.values.project_vendors[index].company_name =
 					cur?.company_name;
-				props.data.values.awardeeInfo[index].consultant_address = cur?.address;
-				props.data.values.awardeeInfo[index].corporate_president =
+				props.data.values.project_vendors[index].address = cur?.address;
+				props.data.values.project_vendors[index].president =
 					cur?.president;
-				props.data.values.awardeeInfo[index].corporate_secretary =
-					cur?.secretary;
+				props.data.values.project_vendors[index].secretary =
+						cur?.secretary;
+				}
 			});
+			
 		}
 	}, [values]);
+
+
 
 	return (
 		<div onClick={(e) => e.stopPropagation()}>
@@ -207,6 +220,9 @@ export function AwardeeInfo(props) {
 					<div className="w-full overflow-auto">
 						<div>
 							<DashboardSelect {...awardee}>
+
+								{awardee.value && <option value={awardee.value}>{awardee.value}</option>
+}
 								<option>Select Awardee</option>
 								<option value="Design Consultant">Design Consultant</option>
 								<option value="Contractor">Contractor</option>
@@ -220,6 +236,7 @@ export function AwardeeInfo(props) {
 						<div>
 							{/* <OverviewInput {...design_consultant} /> */}
 							<DashboardSelect {...design_consultant}>
+								{design_consultant.value && <option value={design_consultant.value}>{design_consultant.value}</option>}
 								<option>Select</option>
 								{filtered()?.map((cur, id) => {
 									return (
@@ -237,7 +254,6 @@ export function AwardeeInfo(props) {
 							<OverviewInput {...consultant_address} />
 						</div>
 						<div>
-							{/* <OverviewTextarea {} /> */}
 							<OverviewInput {...corporate_president} />
 						</div>
 						<div>
@@ -255,22 +271,22 @@ export function CompanyRep({ data }) {
 
 	const company_representative_name = {
 		name: "Name",
-		id: `awardeeInfo.${index}.company_representative_name`,
+		id: `project_vendors.${index}.first_name`,
 		placeholder: "Enter Representative Name",
 		onChange: handleChange,
-		value: values.awardeeInfo[index].company_representative_name,
-		error: errors.company_representative_name,
-		touched: touched.company_representative_name,
+		value: values.project_vendors[index].first_name,
+		error: errors.first_name,
+		touched: touched.first_name,
 	};
 	const company_representative_title = {
 		name: "Title",
-		id: `awardeeInfo.${index}.company_representative_title`,
+		id: `project_vendors.${index}.company_representative_title`,
 		placeholder: "Enter Representative Title",
 
 		onChange: handleChange,
-		value: values.awardeeInfo[index].company_representative_title,
-		error: errors.company_representative_title,
-		touched: touched.company_representative_title,
+		value: values.project_vendors[index].title,
+		error: errors.title,
+		touched: touched.title,
 	};
 	return (
 		<div onClick={(e) => e.stopPropagation()}>

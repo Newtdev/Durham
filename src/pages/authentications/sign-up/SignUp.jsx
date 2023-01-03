@@ -110,7 +110,8 @@ const SignUp = () => {
             value:values.password,
             onChange: handleChange,
             error: errors.password,
-            touched:touched.password
+            touched: touched.password,
+            type: 'password',
 
 
         },
@@ -119,6 +120,7 @@ const SignUp = () => {
             id: 'password_confirmation',
             value:values.password_confirmation,
             placeholder: 'Enter your password address',
+            type: 'password',
             onChange: handleChange,
             error: errors.password_confirmation,
             touched:touched.password_confirmation
