@@ -366,7 +366,7 @@ export const DurhamsApi = createApi({
 					const { data } = await queryFulfilled;
 					dispatch(addNewProject(data.data))
 				} catch (error) {
-					throw error
+					// throw error
 					
 				}
 			},
@@ -439,10 +439,9 @@ export const DurhamsApi = createApi({
 			
 				try {
 					const {data} = await queryFulfilled;
-					console.log(data)
 					dispatch(getFormResponse(data.data))
 				} catch (error) {
-					throw error
+					// throw error
 					
 				}
 			},

@@ -28,29 +28,27 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         const response = await addProjects(values);
 
         if (response?.error) {
-            toast.error('Opps! Something went wrong, Please try again later!', {
+            toast.error( response?.error,{
                 position: toast.POSITION.TOP_CENTER,
             });
             
         }
-        else if (response?.data?.status !== 'success') {
-            // error alert
-            toast.error(response?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-        } else {
+        else if (response?.data) {
             dispatch(saveID(response?.data?.data?.id));
-            dispatch(nextForm());
-        }
+             dispatch(nextForm());
+            // error alert
+            // toast.error(response?.message, {
+            //     position: toast.POSITION.TOP_CENTER,
+            // });
+        } 
         
     }
     async function HandleEditRequest(values) {
         // console.log(values)
         const response = await updateProjects(values);
-        console.log(response?.data?.message)
 
         if (response?.error) {
-            toast.error('Opps! Something went wrong, Please try again later!', {
+            toast.error(response?.error, {
                 position: toast.POSITION.TOP_CENTER,
             });
             
@@ -59,12 +57,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
          
             dispatch(saveID(response?.data?.data?.id));
             dispatch(nextForm());
-        } else {
-              // error alert
-        //   toast.error(response?.message, {
-        //          position: toast.POSITION.TOP_CENTER,
-        //      });
-         }
+        } 
         
     }
     
