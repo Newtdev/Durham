@@ -17,7 +17,7 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
 			{dataArray?.map((project, index) => {
-				const {id, name, project_manager, project_vendors, created_At,slug } = project;
+				const {id, name, project_manager, project_vendors, created_at,slug } = project;
 				const awardee = !project_vendors.length === 0 ? 'hello' : project_vendors[0];
 
 		const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
@@ -37,7 +37,7 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 							{!awardee? '' :awardee.first_name + ' ' + awardee.last_name}
 						</td>
 						<td className="py-4 px-4 whitespace-nowrap">{project_manager.first_name + ' ' + project_manager.last_name}</td>
-						<td className="py-4 px-4 whitespace-nowrap">{moment(created_At).format('MMM DD, YYYY')}</td>
+						<td className="py-4 px-4 whitespace-nowrap">{moment(created_at).format('MMM DD, YYYY')}</td>
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
 							<span className="w-4 cursor-pointer" onClick={(e) => {
 								e.stopPropagation()
