@@ -8,7 +8,7 @@ import {
 	useFetchVendorsQuery,
 } from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
-import { saveID } from "../add-project/reducer";
+import { saveID, saveVendorID } from "../add-project/reducer";
 import { projectData } from "./editReducer";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
@@ -114,8 +114,8 @@ export function OverviewTextarea(props) {
 
 export function AwardeeInfo(props) {
 	const response = useFetchVendorsQuery();
-	// const details = useSelector(projectData);
 	const dispatch = useDispatch()
+	// const details = useSelector(projectData);
 
 	// design_consultant: "",
 	const { values, errors, touched, handleChange, index } = props.data;
@@ -195,7 +195,7 @@ export function AwardeeInfo(props) {
 		} else {
 			filtered()?.forEach((cur, id) => {
 				if (values.project_vendors[index].company_name === cur.company_name) {
-					dispatch(saveID(cur.id))
+					dispatch(saveVendorID(cur.id))
 					props.data.values.project_vendors[index].first_name =
 					cur?.first_name + " " + cur?.last_name;
 				props.data.values.project_vendors[index].title =

@@ -157,7 +157,7 @@ export function ImageSideContainer() {
 
 // SUCCESS COMPONENTS
 
-export const AuthSuccessModal = ({email, content, name}) => {
+export const AuthSuccessModal = ({ email, content, name,close }) => {
 	return (
 		<div
 			className="h-[344px] w-[472px] mx-auto mt-10  bg-white py-6 px-14 rounded-lg"
@@ -170,11 +170,11 @@ export const AuthSuccessModal = ({email, content, name}) => {
 				<p className="text-center text-sm text-gray-500">
 					{content}
 				</p>
-				<Link to='/'
-				 className="block text-[#3B6979] text-base w-[360px] focus:ring-4 hover:bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:bg-transparent border border-[#3B6979] hover:text-white font-extrabold rounded-md px-5 py-3 text-center">
-					Go Back To Login 
-				</Link>
+				<button onClick={close}
+					className=" text-[#3B6979] text-base w-[360px] focus:ring-4 hover:bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:bg-transparent border border-[#3B6979] hover:text-white font-extrabold rounded-md px-5 py-3 text-center">
+					Go Back To Login
+				</button>
 			</div>
 		</div>
 	);
-}
+};

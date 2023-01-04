@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { projectData, setProjectInfoDefault } from "../Overview-dashboard/editReducer";
 import ProjectInformation from "./project-info";
-import { getForm, getProjectID, nextForm, setDefault, } from "./reducer";
+import { getForm, getProjectID, getVendorID, nextForm, setDefault, } from "./reducer";
 import AwardeeInformation from "./awardee-info/AwardeeInformation";
 import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
 import { documents } from "../../../lib/data";
@@ -19,7 +19,8 @@ import EditDocument from "./documents/EditDocument";
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const id = useSelector(getProjectID)
+	const id = useSelector(getProjectID);
+	const vendorID = useSelector(getVendorID)
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
 	const details = useSelector(projectData);
@@ -50,7 +51,6 @@ const ProjectFormsController = () => {
     }
 	async function HandleEditRequest(values) {
 		const response = await editVendor(values);
-		console.log(response.error)
         if (response?.error) {
             toast.error(response?.error?.message, {
                 position: toast.POSITION.TOP_CENTER,
@@ -81,13 +81,8 @@ const ProjectFormsController = () => {
             
         } 
         
-    }
+	};
 
-
-
-
-
-	
 	
 	const formik = useFormik({
 		initialValues: {
@@ -110,10 +105,9 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
-			console.log(values)
 			if (steps === 1 && !details) {
-				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.
-				HandleRequest(String(values.project_vendors.length))
+				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
+				HandleRequest(String(vendorID))
 
 			} else {
 				HandleEditRequest(values.project_vendors[0])

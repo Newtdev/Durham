@@ -57,6 +57,7 @@ export function ForgetPasswordModal({ close }) {
 			"Follow the link in the email to reset your password . If you did not receive the email, kindly check your spam or you can resend the email.",
 		email: values.email,
 		name: "Password Resent Link Sent",
+		close
 	};
 
 	if (showSuccessModal) {
