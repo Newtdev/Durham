@@ -86,7 +86,7 @@ const CertificateOfSubstantial = ({id}) => {
           
         } else if (pages === 2) {
           
-          HandleSubmit(values)
+          HandleSubmit(values);
         }
         }
   

@@ -7,6 +7,7 @@ import { FormCheckBox } from "../../components"
 import { prev } from "../reducer"
 
 const CheckListThree = (props) => {
+    
     const dispatch = useDispatch();
     const eighteen  = {
         value: props.values.eighteen,
@@ -65,6 +66,7 @@ const CheckListThree = (props) => {
                         </p>
                     </div>
                     <button
+                        onClick={() => dispatch(prev(2))}
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'
@@ -95,7 +97,7 @@ const CheckListThree = (props) => {
 
                 {/* Buttons */}
                 <div className='flex justify-end gap-8 pr-4'>
-                    <ButtonWhiteBG width='w-[100px]' name='Cancel' onClick={() => dispatch(prev())} />
+                    <ButtonWhiteBG width='w-[100px]' name='Cancel' onClick={() => dispatch(prev(2))} />
                     <DashboardButton
                         hidden
                         name='NEXT'

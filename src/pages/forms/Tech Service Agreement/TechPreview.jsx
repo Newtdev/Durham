@@ -14,11 +14,11 @@ import { techPrevStep, techStepDefault } from "./reducer";
 
 
 const TechPreview = () => {
-  const formID = useSelector(project_document_id)
-
+  
   const dispatch = useDispatch()
   const show = useSelector(openDownload)
   const downloadComponent = useRef();
+  const formID = useSelector(project_document_id)
   useFetchFilledFormQuery(formID)
    const content = useSelector(savedResponse);
    const { form_fields, vendors, durham_profile } = content;

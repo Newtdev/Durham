@@ -6,27 +6,32 @@ import DownLoadForm from "../Lundsford/Download";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
-import { openDownload, showDownload } from "../reducer";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { openDownload, savedResponse, showDownload } from "../reducer";
 import { selectForm } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment/moment";
-import { prev } from "./reducer";
+import { prev, stepDefault } from "./reducer";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
 
 
 const ProjectCloseOutPreview= () => {
 
   const dispatch = useDispatch();
   const data = useSelector(selectForm);
-  const masterInfo = useSelector(project_details)
   const show = useSelector(openDownload)
   const downloadComponent = useRef();
 
-  
+
+  const formID = useSelector(project_document_id)
+  useFetchFilledFormQuery(formID)
+   const content = useSelector(savedResponse);
+   const { form_fields, vendors,project } = content;
+
   const props = {
     component: downloadComponent ,
       name:'Project Close-out Documentation Checklist' ,
       show: show ? 'block' : 'hidden',
-      // stepDefault
+      stepDefault
   }
 
   return (
@@ -64,14 +69,14 @@ const ProjectCloseOutPreview= () => {
                       <div>
                         <p>
                           Project: {' '}
-                        <span className=''>{!masterInfo?'' :masterInfo.project_name}</span>
+                        <span className=''>{!project?'' :project.name}</span>
                          
                         </p>
                       </div>
                       <div className='ml-14'>
                         <p>
                           Project No: {' '}
-                          <span className=''>{!masterInfo?'' :masterInfo.project_number}</span>
+                          <span className=''>{!project?'' :project.number}</span>
                          
                         </p>
                       </div>
@@ -89,14 +94,14 @@ const ProjectCloseOutPreview= () => {
                       <div>
                         <p>
                           Contractor: {' '}
-                        <span className=''>{!masterInfo?'':masterInfo.awardeeInfo[0].design_consultant}</span>
+                        <span className=''>{!vendors?'':vendors[0].company_name}</span>
                          
                         </p>
                       </div>
                       <div className='ml-[49px]'>
                         <p>
                           Substantial Completion Date: {' '}
-                        <span className=''>{moment(data.completionDate).format("MMMM D, YYYY ")}</span>
+                        <span className=''>{moment(form_fields.completionDate).format("MMMM D, YYYY ")}</span>
                         </p>
                       </div>
                     </div>
@@ -116,14 +121,14 @@ const ProjectCloseOutPreview= () => {
 
                   {/* Lists */}
                   <div className='mb-8 '>
-                  {!data.one? "": data.one && <div className='flex'>
+                  {!form_fields.one? "": form_fields.one && <div className='flex'>
                       <p>___ 1.*</p>
                       <p className='text-justify ml-9'>
                         Fully executed Certificate of Substantial Completion
                         with attached punch list(s).
                       </p>
                   </div>}
-                  {!data.two? "": data.two && <div className='flex'>
+                  {!form_fields.two? "": form_fields.two && <div className='flex'>
                       <p>___ 2.*</p>
                       <p className='text-justify ml-8'>
                         Fully executed Final Change Order (i.e., for allowances,
@@ -131,21 +136,21 @@ const ProjectCloseOutPreview= () => {
                       </p>
                     </div>}
                     
-                  {!data.three? "": data.three && <div className='flex'>
+                  {!form_fields.three? "": form_fields.three && <div className='flex'>
                     <p>___ 3.</p>
                     <p className='text-justify ml-10'>
                       Final Approved Application for Payment
                     </p>
                   </div>
                   }
-                  {!data.four ? "" : data.four && <div className='flex'>
+                  {!form_fields.four ? "" : form_fields.four && <div className='flex'>
                     <p>____ 4.**</p>
                     <p className='text-justify ml-4'>
                       Consent of Surety to Final Payment
                     </p>
                   </div>}
 
-                  {!data.five ? "" : data.five && <div className='flex'>
+                  {!form_fields.five ? "" : form_fields.five && <div className='flex'>
                     <p>____ 5.**</p>
                     <p className='text-justify ml-4'>
                       Contractor’s Affidavit of Release of Liens (properly
@@ -153,7 +158,7 @@ const ProjectCloseOutPreview= () => {
                     </p>
                   </div>
                   }
-                  {!data.six ? "" : data.six && <div className='flex'>
+                  {!form_fields.six ? "" : form_fields.six && <div className='flex'>
                     <p>_____6.**</p>
                     <p className='text-justify ml-4'>
                       Contractor’s Affidavit of Payment of Debts and Claims
@@ -161,7 +166,7 @@ const ProjectCloseOutPreview= () => {
                     </p>
                   </div>}
 
-                  {!data.seven ? "" : data.seven && <div className='flex'>
+                  {!form_fields.seven ? "" : form_fields.seven && <div className='flex'>
                     <p>____7.**</p>
                     <p className='text-justify ml-6'>
                       Properly executed release of liens by subcontractors
@@ -170,33 +175,33 @@ const ProjectCloseOutPreview= () => {
                     </p>
                   </div>}
 
-                  {!data.eight ? "" : data.eight && <div className='flex'>
+                  {!form_fields.eight ? "" : form_fields.eight && <div className='flex'>
                     <p>____ 8.**</p>
                     <p className='text-justify ml-4'>
                       Certificate of Occupancy from proper municipality
                       (Durham County Inspections / Durham FM)
                     </p>
                   </div>}
-                  {!data.nine ? "" : data.nine && <div className='flex'>
+                  {!form_fields.nine ? "" : form_fields.nine && <div className='flex'>
                     <p>____ 9.**</p>
                     <p className='text-justify ml-4'>
                       Contractor’s One-Year Warranty (notarized)
                     </p>
                   </div>}
-                  {!data.ten ? "" : data.ten && <div className='flex'>
+                  {!form_fields.ten ? "" : form_fields.ten && <div className='flex'>
                     <p>____ 10.</p>
                     <p className='text-justify ml-6'>
                       Warranty summary sheet and original warranties for
                       specific items (roofs, motors, etc.)
                     </p>
                   </div>}
-                  {!data.eleven ? "" : data.eleven && <div className='flex'>
+                  {!form_fields.eleven ? "" : form_fields.eleven && <div className='flex'>
                     <p>____11.**</p>
                     <p className='text-justify ml-4'>
                       Contractor’s certification letter per General Conditions
                     </p>
                   </div>}
-                  {!data.twelve ? "" : data.twelve && <div className='flex'>
+                  {!form_fields.twelve ? "" : form_fields.twelve && <div className='flex'>
                     <p>____12.**</p>
                     <p className='text-justify ml-4'>
                       Certification letter from Contractor stating that no
@@ -204,7 +209,7 @@ const ProjectCloseOutPreview= () => {
                       Environmental Management)
                     </p>
                   </div>}
-                  {!data.thirteen ? "" : data.thirteen && <div className='flex'>
+                  {!form_fields.thirteen ? "" : form_fields.thirteen && <div className='flex'>
                     <p>____13.**</p>
                     <p className='text-justify ml-4'>
                       Certification letter from Architect (or Engineer)
@@ -212,7 +217,7 @@ const ProjectCloseOutPreview= () => {
                       Environmental Management)
                     </p>
                   </div>}
-                  {!data.fourteen ? "" : data.fourteen && <div className='flex'>
+                  {!form_fields.fourteen ? "" : form_fields.fourteen && <div className='flex'>
                     <p>____14.**</p>
                     <p className='text-justify ml-4'>
                       Architect’s and MEP Engineer’s certification letter
@@ -221,7 +226,7 @@ const ProjectCloseOutPreview= () => {
                       Contractor
                     </p>
                   </div>}
-                  {!data.fifteen ? "" : data.fifteen && <div className='flex'>
+                  {!form_fields.fifteen ? "" : form_fields.fifteen && <div className='flex'>
                     <p>____15.**</p>
                     <p className='text-justify ml-4'>
                       Architects (or Engineer’s) letter regarding liquidated
@@ -229,14 +234,14 @@ const ProjectCloseOutPreview= () => {
                     </p>
                   </div>
                   }
-                  {!data.sixteen ? "" : data.sixteen && <div className='flex'>
+                  {!form_fields.sixteen ? "" : form_fields.sixteen && <div className='flex'>
                     <p>____16.</p>
                     <p className='text-justify ml-8'>
                       Transmittal indicating keys have been given to Principal
                       – signed by Principal
                     </p>
                   </div>}
-                  {!data.seventeen ? "" : data.seventeen && <div className='flex'>
+                  {!form_fields.seventeen ? "" : form_fields.seventeen && <div className='flex'>
                     <p>____17.</p>
                     <p className='text-justify ml-9'>
                       Final list of all subcontractors with names, addresses,
@@ -244,14 +249,14 @@ const ProjectCloseOutPreview= () => {
                     </p>
                   </div>
                   }
-                  {!data.eighteen ? "" : data.eighteen && <div className='flex'>
+                  {!form_fields.eighteen ? "" : form_fields.eighteen && <div className='flex'>
                     <p>____18.</p>
                     <p className='text-justify ml-8'>
                       Letter from General Contractor Stating Removal of
                       Temporary Facilities
                     </p>
                   </div>}
-                  {!data.nineteen ? "" : data.nineteen && <div className='flex'>
+                  {!form_fields.nineteen ? "" : form_fields.nineteen && <div className='flex'>
                     <p>____19.*</p>
                     <p className='text-justify ml-6'>
                       As-Built Redline drawings (3 sets Stamped certified) and
@@ -261,7 +266,7 @@ const ProjectCloseOutPreview= () => {
                       possible, attach completed transmittal to Owner.
                     </p>
                   </div>}
-                  {!data.twenty ? "" : data.twenty && <div className='flex'>
+                  {!form_fields.twenty ? "" : form_fields.twenty && <div className='flex'>
                     <p>____20.*</p>
                     <p className='text-justify ml-5'>
                       Operations and Maintenance Manuals (3 sets) and cover
@@ -270,7 +275,7 @@ const ProjectCloseOutPreview= () => {
                       transmittal to Owner.
                     </p>
                   </div>}
-                  {!data.twentyOne ? "" : data.twentyOne && <div className='flex'>
+                  {!form_fields.twentyOne ? "" : form_fields.twentyOne && <div className='flex'>
                     <p>____21.*</p>
                     <p className='text-justify ml-6'>
                       Final commissioning report with certified Test And
@@ -278,7 +283,7 @@ const ProjectCloseOutPreview= () => {
                       has been reviewed and approved by consulting Engineer
                     </p>
                   </div>}
-                  {!data.twentyTwo? "": data.twentyTwo && <div className='flex'>
+                  {!form_fields.twentyTwo? "": form_fields.twentyTwo && <div className='flex'>
                       <p>____22.*</p>
                       <p className='text-justify ml-5'>
                         2-CD’s record drawing files
@@ -292,7 +297,7 @@ const ProjectCloseOutPreview= () => {
                       <span>Project Manager's Signature</span>
                       <span className='ml-4'>
                         _________________________________
-                        <span className=''>{moment(data.signedDate
+                        <span className=''>{moment(form_fields.signedDate
                                         ).format("MMMM D, YYYY ")}</span>
                       </span>
                     </div>
@@ -317,7 +322,7 @@ const ProjectCloseOutPreview= () => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=>dispatch(prev)} />
+              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=>dispatch(prev(3))} />
               <DashboardButton
                 hidden
                 name='CREATE DOCUMENT'
