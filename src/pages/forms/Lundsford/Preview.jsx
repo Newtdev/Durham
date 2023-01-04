@@ -1,23 +1,26 @@
-import { useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton, Close } from "../../Dashboard/Components";
 import DownLoadForm from "./Download";
 import { useDispatch, useSelector } from "react-redux";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import {stepDefault, prevStep} from './lundsFormslice'
 import { useRef } from "react";
-import { closeDownload, openDownload, showDownload } from "../reducer";
+import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
 
 
 
 
 const PreviewForm = ({value }) => {
-  
-  const projectDetails = useSelector(project_details);
   const showModal = useSelector(openDownload);
   const downloadComponent = useRef()
   const dispatch = useDispatch();
   
+
+  const formID = useSelector(project_document_id);
+    useFetchFilledFormQuery(formID)
+    const content = useSelector(savedResponse);
+    const { vendors, project } = content;
 
   const props = {
     component: downloadComponent,
@@ -41,7 +44,8 @@ const PreviewForm = ({value }) => {
             </h3>
             <p className='text-base text-gray-700'>Preview Document</p>
           </div>
-          <button
+            <button
+               onClick={()=> dispatch(prevStep())}
             type='button'
             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
             data-modal-toggle='small-modal'
@@ -61,20 +65,42 @@ const PreviewForm = ({value }) => {
         </h3>
       </div>
       <div>
-        <p>DPS Project Name: {projectDetails?.project_name || ''} </p>
-        <p>DPS Project Number: {projectDetails?.project_number || ''} </p>
+        <p>DPS Project Name: {project?.name || ''} </p>
+        <p>DPS Project Number: {project?.number || ''} </p>
         <p className='mt-3'>
           Check the appropriate box to indicate the type of check:
         </p>
-    <p className="mt-2">□ {value}</p>
+                <p className="mt-2">
+                  <input className="mr-2" type='checkbox' checked={value === 'Initial'? true:false} 
+                  />
+                  <span>
+
+                    Initial
+                  </span>
+                  </p>
+                <p className="mt-2">
+                  <input className="mr-2" type='checkbox' checked={value === 'Supplemental'? true:false}
+                  />
+                  <span>
+
+                    Supplemental
+                  </span>
+                  </p>
+                <p className="mt-2">
+                  <input className="mr-2" type='checkbox' checked={value === 'Annual'? true:false}
+                  />
+                  <span>
+
+                    Annual
+                  </span>
+                  </p>
        
       </div>
       <div className='mt-3'>
         <p className='text-justify'>
-          I, {!projectDetails? "" : projectDetails.awardeeInfo[0].company_representative_name} , {!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_title}
-        </p>
-        <p className='mt-3 text-justify'>
-          of {!projectDetails? "" :projectDetails.awardeeInfo[0].awardee} hereby certify that I have conducted sexual
+          I, {!vendors? "" : vendors[0].first_name + ' ' + vendors[0].last_name} , {!vendors? "" :vendors[0].title}
+        
+          { ' '} of {!vendors? "" :vendors[0].company_name} hereby certify that I have conducted sexual
           offender registry checks required under this Agreement for
           all employees, agents, ownership personnel, or contractors
           (“contractual personnel”) who will engage in any service on
@@ -154,14 +180,14 @@ const PreviewForm = ({value }) => {
 
       <div className='mt-6 mb-4 pr-6'>
         <div className='flex gap-8 '>
-            <p className="mr-4">{!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_name}</p>
+            <p className="mr-4">{!vendors? "" :vendors[0].first_name + ' ' + vendors[0].last_name}</p>
             
           <p>
             _________________________________(signature)
           </p>
         </div>
         <div className='mt-10 flex gap-8'>
-          <p className="mr-4">{!projectDetails? "" :projectDetails.awardeeInfo[0].company_representative_title}</p>
+          <p className="mr-4">{!vendors? "" :vendors[0].title}</p>
           <p>
             ___________________________________________(date)
           </p>

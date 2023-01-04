@@ -4,7 +4,7 @@ import { Close, DashboardButton } from "../../Dashboard/Components";
 import { closeModal } from "../reducer";
 
 
-const Forms = ({ handleChange, error, touched, handleSubmit }) => {
+const Forms = ({ handleChange, error, touched, handleSubmit,isLoading }) => {
   const dispatch = useDispatch()
     return <div>
     <div
@@ -103,7 +103,8 @@ const Forms = ({ handleChange, error, touched, handleSubmit }) => {
             hidden
             name='NEXT'
             type='submit'
-             width='w-[77px]'
+              width='w-[77px]'
+              loading={isLoading}
           />
         </div>
       </form>
