@@ -7,11 +7,13 @@ import { PageNavigation } from "../components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSaveData, save_profile } from "./ReducerSlice";
+import { FullPageLoader } from "../../../../ui";
 
 
 const DurhamSettings = () => {
   const data = useSelector(getSaveData);
-  const [values, setValue] = useState(data);
+  const [values, setValue] = useState({});
+  const [target, setTarget] = useState(''); 
     
   const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
 
@@ -68,24 +70,31 @@ const DurhamSettings = () => {
 
  
   const onChange = (e) => {
-    console.log(e.target)
     const { name, value, } = e.target;
-    setValue({[name]: value })
+    if (!value) {
+      toast.error('Field is require', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+    } 
+      
+      setTarget({ [name]: value })
+      setValue({ [name]: value })
+  
   };
 
   const onSubmit = (e) => {
     e.preventDefault()
-    Object.entries(values).forEach((cur) => {
-      const [name, value] = [cur[0], cur[1]];
-              
-      if (!value) {
-        return
-      } else {
-        HandleRequest({ name, value })
+    if (!target) {
+     Object.entries(target).forEach((cur) => {
+       const [name, value] = [cur[0], cur[1]];        
+        HandleRequest({name,value})
+      });
+     } else {
+       return;
       }
     
   
-    });
   }
 
   
@@ -95,7 +104,7 @@ const DurhamSettings = () => {
       value: values.chair_board_education,
       name: "Chair,DPS Board of Education",
       id: "chair_board_education",
-      placeholder: "Chair,DPS Board of Education",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -104,7 +113,7 @@ const DurhamSettings = () => {
       value: values.chief_finance_officer,
       name: "Chief Finance Officer",
       id: "chief_finance_officer",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
      
@@ -114,7 +123,7 @@ const DurhamSettings = () => {
       value:values.construction_interim_director,
       name: "Construction & Capital Planning Interim Executive Director",
       id: "construction_interim_director",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -123,7 +132,7 @@ const DurhamSettings = () => {
       value:values.business_Manager,
       name: "Construction & Capital Planning Business Manager",
       id: "business_Manager",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -132,7 +141,7 @@ const DurhamSettings = () => {
 value: values.project_manager,
       name: " Construction & Capital Planning Project Manager",
       id: "project_manager",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -141,7 +150,7 @@ value: values.project_manager,
 value: values.project_manager_phone,
       name: "Construction & Capital Planning Project Manager's Phone Number",
       id: "project_manager_phone",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -150,7 +159,7 @@ value: values.project_manager_phone,
       value:values.director_construction,
       name: " Director of Construction and Sustainability",
       id: "director_construction",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -159,7 +168,7 @@ value: values.project_manager_phone,
       value:values.director_design,
       name: " Director of Design and Construction",
       id: "director_design",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -168,7 +177,7 @@ value: values.project_manager_phone,
 value:values.director_durham,
       name: " Executive Director Durham Public Schools Building Services",
       id: "director_durham",
-      placeholder: "John Doe",
+      placeholder: "Enter firstname and last name",
       onChange,
       onSubmit
     },
@@ -178,6 +187,7 @@ value:values.director_durham,
 
   return (
     <section>   
+			{!result?.data && <FullPageLoader />}
 
       <article>
         <DashboardNav/>

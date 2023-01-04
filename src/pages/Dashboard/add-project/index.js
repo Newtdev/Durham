@@ -77,6 +77,7 @@ const ProjectFormsController = () => {
         else if (response?.data) {
 			// error alert
 			navigate('/dashboard/add-new-project/preview');
+			dispatch(setDefault());
             
         } 
         
@@ -109,9 +110,11 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
+			console.log(values)
 			if (steps === 1 && !details) {
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.
 				HandleRequest(String(values.project_vendors.length))
+
 			} else {
 				HandleEditRequest(values.project_vendors[0])
 			}

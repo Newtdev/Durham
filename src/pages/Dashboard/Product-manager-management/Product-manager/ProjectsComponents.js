@@ -330,14 +330,12 @@ export function EditPojectsManagerModal({ close, data }) {
 		useUpdateProductManagerDetailsMutation();
 
 	async function HandleRequest(values) {
-		const response = await updateProductManagerDetails({
-			...values,
-		});
+		const data ={id:values.id, info:values}
+		const response = await updateProductManagerDetails(data);
 		if (response) {
-			// console.log(response);
 			close();
-			if (response.error) {
-				toast.error(response?.error?.data?.message, {
+			if (response?.error) {
+				toast.error(response?.error?.message, {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {

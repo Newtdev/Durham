@@ -22,11 +22,12 @@ const ProfileSettings = () => {
     const [updateProjectManageDetails, {isLoading}] = useUpdateProductManagerDetailsMutation()
 
     const HandleRequest = async (values) => {
-        let a = {id:profile.id, info:values}
-        const response = await updateProjectManageDetails(a);
+        const data ={id:values.id, info:values}
+
+        const response = await updateProjectManageDetails(data);
         
         if (response) {
-          if (response.error) {
+          if (response?.error) {
                     toast.error(response?.error?.message, {
                         position: toast.POSITION.TOP_CENTER,
                     });
@@ -39,7 +40,7 @@ const ProfileSettings = () => {
   }
 
 
-    const {values,errors, touched,handleChange, handleSubmit, setValues, setFieldValue } = useFormik({
+    const {values,errors, touched,handleChange, handleSubmit, setValues } = useFormik({
         initialValues: {
             fullName: "",
             first_name: '',
@@ -113,8 +114,8 @@ const ProfileSettings = () => {
         if (!result?.data) {
             return;
         } else {   
-            const values = {first_name: result?.data?.first_name,last_name: result?.data?.last_name,phone: result?.data?.phone,email: result?.data?.email}
-            setValues(values)
+            // const values = {first_name: result?.data?.first_name,last_name: result?.data?.last_name,phone: result?.data?.phone,email: result?.data?.email}
+            setValues(result?.data)
         }
         
     },[result])

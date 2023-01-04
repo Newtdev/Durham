@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const lundsfordSlice = createSlice({
 	name: "lundsfordSlice",
 	initialState: {
-		form_data: null,
+		form_data: [],
 		step: 1,
 	},
 	reducers: {
 		saveDoc: (state, action) => {
 			state.form_data = action.payload;
+		
+			
 		},
 		nextStep: (state) => {
 			state.step += 1;

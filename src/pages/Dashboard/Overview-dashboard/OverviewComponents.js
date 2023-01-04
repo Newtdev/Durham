@@ -114,7 +114,8 @@ export function OverviewTextarea(props) {
 
 export function AwardeeInfo(props) {
 	const response = useFetchVendorsQuery();
-	const details = useSelector(projectData);
+	// const details = useSelector(projectData);
+	const dispatch = useDispatch()
 
 	// design_consultant: "",
 	const { values, errors, touched, handleChange, index } = props.data;
@@ -194,6 +195,7 @@ export function AwardeeInfo(props) {
 		} else {
 			filtered()?.forEach((cur, id) => {
 				if (values.project_vendors[index].company_name === cur.company_name) {
+					dispatch(saveID(cur.id))
 					props.data.values.project_vendors[index].first_name =
 					cur?.first_name + " " + cur?.last_name;
 				props.data.values.project_vendors[index].title =
@@ -223,7 +225,7 @@ export function AwardeeInfo(props) {
 					});
 			
 		}
-	}, [values]);
+	}, [values.project_vendors]);
 
 
 
