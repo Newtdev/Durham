@@ -31,7 +31,7 @@ export function ForgetPasswordModal({ close }) {
 		}
 	};
 
-	const { values, errors, touched, handleChange, handleSubmit, isSubmitting } =
+	const { values, errors, touched, handleChange, handleSubmit } =
 		useFormik({
 			initialValues: {
 				email: "",

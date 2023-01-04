@@ -198,6 +198,7 @@ const VendorInformationComponents = ({
 	onSubmit,
 	loading,
 	vendorInitValue,
+	modal_name
 }) => {
 	const {
 		values,
@@ -309,7 +310,7 @@ const VendorInformationComponents = ({
 			<div className="relative bg-white rounded-lg shadow pb-4 md:pb-0">
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 					<div>
-						<h3 className="text-lg font-bold text-gray-900">{button_name}</h3>
+						<h3 className="text-lg font-bold text-gray-900">{modal_name}</h3>
 						<h4 className="text-gray-700">Add Vendor's information</h4>
 					</div>
 					<button
@@ -427,6 +428,7 @@ export function AddVendor({ close }) {
 		loading: isLoading,
 		close,
 		button_name: "ADD VENDOR",
+		modal_name: "ADD VENDOR",
 		initialValues: {
 			title: "",
 			first_name: "",
@@ -509,7 +511,8 @@ export function EditVendorModal({
 		onSuccess: () => setShowVendorInfo(true),
 		onSuccessClose: () => setShowVendorInfo(false),
 		close,
-		button_name: "EDIT VENDOR",
+		button_name: "SAVE",
+		modal_name: "EDIT VENDOR",
 		loading: isLoading,
 		initialValues: {
 			title: "",
