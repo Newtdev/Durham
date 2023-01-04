@@ -4,21 +4,23 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { prevChoiceStep, stepChoiceDefault } from "../Advertisement-for-bid-template/reducer";
-import { closeDownload, openDownload, showDownload } from "../reducer";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
-import { selectForm } from "../Lundsford/lundsFormslice";
-import { getSaveData } from "../../Dashboard/Settings/Durhams-settings/ReducerSlice";
+import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 
 const Preview = () => {
     const dispatch = useDispatch()
     const show = useSelector(openDownload)
-    const masterInfo = useSelector(project_details)
-    const content = useSelector(selectForm);
-    const profile = useSelector(getSaveData);
-    const downloadComponent = useRef();
+  const downloadComponent = useRef();
+  
+  const formID = useSelector(project_document_id);
+
+  useFetchFilledFormQuery(formID)
+  const content = useSelector(savedResponse);
+const { form_fields, vendors, project, durham_profile } = content;
     
     const props = {
         component: downloadComponent,
@@ -40,11 +42,12 @@ const Preview = () => {
             <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
               <div className='ml-6'>
                 <h3 className='text-lg font-bold text-gray-900'>
-                  LeChase ESSER Contract Template
+                  ESSER PM Contract Template
                 </h3>
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
-              <button
+            <button
+              onClick={()=> dispatch(prevChoiceStep(2))}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -65,14 +68,14 @@ const Preview = () => {
                 <p className='text-justify mb-4'>
                   This contract for services (the “Contract”) is made and
                   entered into this{" "}
-                  <span className=''>{moment(content.contractStartDate).format(" Do ")} </span> day of{" "}
-                  <span className=''>{moment(content.contractStartDate).format(" MMMM ")}</span>{" "}
-                  <span className=''>{moment(content.contractStartDate).format(" YYYY ")}</span>, between the Durham
+                  <span className=''>{moment(form_fields.contractStartDate).format(" Do ")} </span> day of{" "}
+                  <span className=''>{moment(form_fields.contractStartDate).format(" MMMM ")}</span>{" "}
+                  <span className=''>{moment(form_fields.contractStartDate).format(" YYYY ")}</span>, between the Durham
                   Public Schools Board of Education (the “School System”), 511
                   Cleveland Street, Durham, NC 27702, and [
-                  <span className=' font-bold'>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span>] (the
+                  <span className=' font-bold'>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span>] (the
                   “Provider”), [
-                  <span className=' font-bold'>{!masterInfo ? '' : masterInfo.awardeeInfo[0].consultant_address.toUpperCase()}</span>].
+                  <span className=' font-bold'>{!vendors ? '' : vendors[0].address.toUpperCase()}</span>].
                 </p>
 
                 <p className='ml-10 mb-4'>
@@ -217,9 +220,9 @@ const Preview = () => {
                         <span>
                           The School System hereby agrees to compensate Provider
                           at a rate or in the amount of{" "}
-                          <span className=''>{!content ? '' : content.calculatePayment}</span> for services
+                          <span className=''>{!form_fields ? '' : form_fields.calculatePayment}</span> for services
                           rendered, with total payments not to exceed{" "}
-                          <span className=''>{currency(content.allowablePayment).format()}</span>. With the
+                          <span className=''>{currency(form_fields.allowablePayment).format()}</span>. With the
                           School System’s written consent, payments may be made
                           in monthly installments for work performed and
                           accepted during the previous month.
@@ -231,7 +234,7 @@ const Preview = () => {
                         <span className='pr-4 underline underline-offset-2'>
                           2.2.
                         </span>
-                        <span className=''>{!content ? '' : content.obligation}</span>
+                        <span className=''>{!form_fields ? '' : form_fields.obligation}</span>
                       </div>
                     </div>
                   </div>
@@ -249,8 +252,8 @@ const Preview = () => {
                           {" "}
                           The services described in the Contract will be
                           provided from{" "}
-                          <span className=''>{moment(content.fromDuration).format("MMMM Do YYYY ")}</span>
-                          through <span className=''>{moment(content.startDuration).format("MMMM Do YYYY ")}</span>
+                          <span className=''>{moment(form_fields.fromDuration).format("MMMM Do YYYY ")}</span>
+                          through <span className=''>{moment(form_fields.startDuration).format("MMMM Do YYYY ")}</span>
                           unless sooner terminated as herein provided.
                         </span>
                       </p>
@@ -270,7 +273,7 @@ const Preview = () => {
                           {" "}
                           The School System hereby agrees to compensate Provider
                           in the amount of {" "}
-                          <span className=''>{currency(content.providerCompensation).format()}</span> once
+                          <span className=''>{currency(form_fields.providerCompensation).format()}</span> once
                           all services have been rendered in accordance with the
                           terms of this Contract. Provider shall provide School
                           System with invoice(s) itemized by service provided
@@ -355,7 +358,7 @@ const Preview = () => {
                           services. The School System shall process payments to
                           Provider within forty-five (45) days of submission of
                           such invoices. Invoices should be sent to{" "}
-                          <span className=''>{!content ? "" : content.providerInvoice}</span>, for review
+                          <span className=''>{!form_fields ? "" : form_fields.providerInvoice}</span>, for review
                           and approval.
                         </span>
                       </p>
@@ -1026,7 +1029,7 @@ const Preview = () => {
                         <h1 className='font-bold'>BOARD OF EDUCATION</h1>
                       </div>
                                       <p className='mb-0'>
-                                      {!profile ? '' : profile.chair_board_education.value}
+                                      {!durham_profile ? '' : durham_profile.chair_board_education}
                       </p>
                       <span className=''>Board Chair {" "} </span>
                     </div>
@@ -1060,14 +1063,13 @@ const Preview = () => {
                   <div className='grid grid-cols-2 mt-4'>
                     <div>
                       <p className='mb-0'>
-                        
-                        <span className=''>{!profile ? '' : profile.chief_finance_officer.value}</span>
+                        <span className=''>{!durham_profile ? '' : durham_profile.chief_finance_officer}</span>
                       </p>
                       <span>School System Finance Officer </span>
                     </div>
                     <div>
                       <p className='mb-0'>
-                    <span className=''>{moment(content.signedDate).format(" MMMM Do YYYY ")}</span>
+                    <span className=''>{moment(form_fields.signedDate).format(" MMMM Do YYYY ")}</span>
                       </p>
                       <span>Date</span>
                     </div>
@@ -1091,13 +1093,13 @@ const Preview = () => {
                                       
                     <span>Project Name:</span>
                     <span className=''>{" "}
-                    {!masterInfo ? '' : masterInfo.project_name}
+                    {!project ? '' : project.name}
                     </span>{" "}
                                   </div>
                                   <div>
                                       
                     <span> Project Number/Contract:</span> {" "}
-                    <span className=''>{!masterInfo ? '' : masterInfo.project_number}
+                    <span className=''>{!project ? '' : project.number}
 </span>
                                   </div>
                   </p>
@@ -1111,7 +1113,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Initial'
                                             name='type'
-                                            checked={content.type === 'Initial'? true: false}
+                                            checked={form_fields.type === 'Initial'? true: false}
                                             readOnly
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1128,7 +1130,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Supplimental'
                                             name='type'
-                                            checked={content.type === 'Supplemental'? true: false}
+                                            checked={form_fields.type === 'Supplemental'? true: false}
                                             readOnly
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1145,7 +1147,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Annual'
                                             name='type'
-                                            checked={content.type === 'Annual'? true: false}
+                                            checked={form_fields.type === 'Annual'? true: false}
 
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1160,11 +1162,11 @@ const Preview = () => {
                                     <p></p>
                   </div>
                   <p className='text-justify mb-4'>
-                   I,{" "}<span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_name.toUpperCase()}</span> 
+                   I,{" "}<span className=''>{!vendors ? '' : vendors[0].first_name + ' ' + vendors[0].first_name.toUpperCase()}</span> 
                                   {" " }, {" "}
-                                  <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_title.toUpperCase()}</span>{" " }
+                                  <span className=''>{!vendors ? '' : vendors[0].title.toUpperCase()}</span>{" " }
                      of {" "}
-                                  <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span> {" "}
+                                  <span className=''>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span> {" "}
                      hereby certify that I have performed
                     all of the required sexual offender registry checks required
                     under this Contract for all Contractual Personnel
@@ -1273,7 +1275,7 @@ const Preview = () => {
 
                   <p className='mb-8'>
                     
-                    <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_name.toUpperCase()}</span>
+                    <span className=''>{!vendors ? '' : vendors[0].first_name.toUpperCase() + ' ' + vendors[0].last_name.toUpperCase()}</span>
                      
                   </p>
                   <p className='mb-8'>
@@ -1287,7 +1289,7 @@ const Preview = () => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevChoiceStep())} />
+                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevChoiceStep(2))} />
                         <DashboardButton
                             hidden
                             name='CREATE DOCUMENT'

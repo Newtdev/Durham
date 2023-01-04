@@ -1,5 +1,6 @@
 
 import { useDispatch } from "react-redux";
+import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { OverviewTextarea } from '../../Dashboard/Overview-dashboard/OverviewComponents';
@@ -9,6 +10,8 @@ import { closeModal } from "../reducer";
 
 const Form = (props) => {
     const dispatch = useDispatch();
+    const durham = useFetchDurhamQuery()
+
     const creationDate = {
         ...props,
         value: props.values.creationDate,
@@ -99,6 +102,7 @@ const Form = (props) => {
                         </p>
                     </div>
                     <button
+                        onClick={()=> dispatch(closeModal())}
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'
@@ -204,6 +208,17 @@ const Form = (props) => {
                         <FormInputContainer>
                             <FormSelect {...recipientCopy}>
                                 <option>Select recipients</option>
+                       </FormSelect>
+                        </FormInputContainer>
+                        <FormInputContainer>
+                            <FormSelect {...recipientCopy}>
+                                <option>Select recipients</option>
+                                {!durham?.data ? <option>No recipients</option> : durham?.data.map((cur,id) => {
+                                    return <option key={cur.slug} value={cur.value}>{cur.name}</option>
+                                })}
+                       
+
+                        
                        </FormSelect>
                         </FormInputContainer>
                     

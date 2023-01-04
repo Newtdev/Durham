@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const FormSlice = createSlice({
-	name: "formSlice",
+const NoticeOfProceed = createSlice({
+	name: "NoticeOfProceed",
 	initialState: {
 		form_data: null,
 		step: 1,
@@ -22,15 +22,15 @@ const FormSlice = createSlice({
 	},
 });
 
-export default FormSlice.reducer;
+export default NoticeOfProceed.reducer;
 
 // CREATE AN ACTION CEATOR
-export const { saveDoc } = FormSlice.actions;
-export const { prevStep } = FormSlice.actions;
-export const { nextStep } = FormSlice.actions;
-export const { stepDefault } = FormSlice.actions;
+export const { saveDoc } = NoticeOfProceed.actions;
+export const { prevStep } = NoticeOfProceed.actions;
+export const { nextStep } = NoticeOfProceed.actions;
+export const { stepDefault } = NoticeOfProceed.actions;
 
 // SELECT THE TOKEN AND USER
 
-export const selectForm = (state) => state.FormReducer.form_data;
-export const page = (state) => state.FormReducer.step;
+export const selectForm = (state) => state.NoticeOfProceedReducer.form_data;
+export const page = (state) => state.NoticeOfProceedReducer.step;

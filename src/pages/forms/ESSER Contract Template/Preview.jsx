@@ -2,24 +2,28 @@ import { ButtonWhiteBG } from "../../../ui";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDownload, openDownload, showDownload } from "../reducer";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
-import { selectForm } from "../Lundsford/lundsFormslice";
+import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
 import DownLoadForm from "../Lundsford/Download";
-import { prevChoiceStep, stepChoiceDefault } from "../Advertisement-for-bid-template/reducer";
 import { useRef } from "react";
 import moment from "moment";
 import currency from "currency.js";
-import { getSaveData } from "../../Dashboard/Settings/Durhams-settings/ReducerSlice";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 
 const Preview = () => {
     
     const dispatch = useDispatch()
     const show = useSelector(openDownload)
-    const masterInfo = useSelector(project_details)
-    const content = useSelector(selectForm);
-    const profile = useSelector(getSaveData);
+   
     const downloadComponent = useRef();
+
+    const formID = useSelector(project_document_id);
+
+    useFetchFilledFormQuery(formID)
+    const content = useSelector(savedResponse);
+    console.log(content)
+  const { form_fields, vendors, project, durham_profile } = content;
     
     const props = {
         component: downloadComponent,
@@ -68,15 +72,15 @@ const Preview = () => {
                             <p className='text-justify mb-4'>
                                 This contract for services (the “Contract”) is made and
                                 entered into this{" "}
-                                <span className=''>{moment(content.contractStartDate).format(" Do ")}</span> day of{" "}
-                                <span className=''>{moment(content.contractStartDate).format(" MMMM ")}</span>{" "}
-                                <span className=''>{moment(content.contractStartDate).format(" YYYY ")}</span>, between the Durham
+                                <span className=''>{moment(form_fields.contractStartDate).format(" Do ")}</span> day of{" "}
+                                <span className=''>{moment(form_fields.contractStartDate).format(" MMMM ")}</span>{" "}
+                                <span className=''>{moment(form_fields.contractStartDate).format(" YYYY ")}</span>, between the Durham
                                 Public Schools Board of Education (the “School System”), 511
                                 Cleveland Street, Durham, NC 27702, and [
-                                <span className=' '>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span>] (the
+                                <span className=' '>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span>] (the
                                 “Provider”), [
                                 
-                                <span className=' '>{!masterInfo ? '' : masterInfo.awardeeInfo[0].consultant_address.toUpperCase()}</span>].
+                                <span className=' '>{!vendors ? '' : vendors[0].address.toUpperCase()}</span>].
                             </p>
 
                             <p className='ml-10 mb-4'>
@@ -221,10 +225,10 @@ const Preview = () => {
                                             <span>
                                                 The School System hereby agrees to compensate Provider
                                                 at a rate or in the amount of{" "}
-                                                <span className=''>{!content ? '' : content.calculatePayment}</span> for services
+                                                <span className=''>{!form_fields ? '' : form_fields.calculatePayment}</span> for services
                                                 rendered, with total payments not to exceed{" "}
                                               
-                                                <span className=''>{currency(content.allowablePayment).format()}</span>. With the
+                                                <span className=''>{currency(form_fields.allowablePayment).format()}</span>. With the
                                                 School System’s written consent, payments may be made
                                                 in monthly installments for work performed and
                                                 accepted during the previous month.
@@ -236,7 +240,7 @@ const Preview = () => {
                                             <span className='pr-4 underline underline-offset-2'>
                                                 2.2.
                                             </span>
-                                            <span className=''>{!content ? '' : content.obligation}</span>
+                                            <span className=''>{!form_fields ? '' : form_fields.obligation}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -254,8 +258,8 @@ const Preview = () => {
                                                 {" "}
                                                 The services described in the Contract will be
                                                 provided from{" "}
-                                                <span className=''>{moment(content.fromDuration).format("MMMM Do YYYY ")}</span>
-                                                through <span className=''>{moment(content.startDuration).format("MMMM Do YYYY ")}</span>
+                                                <span className=''>{moment(form_fields.fromDuration).format("MMMM Do YYYY ")}</span>
+                                                through <span className=''>{moment(form_fields.startDuration).format("MMMM Do YYYY ")}</span>
                                                 unless sooner terminated as herein provided.
                                             </span>
                                         </p>
@@ -275,7 +279,7 @@ const Preview = () => {
                                                 {" "}
                                                 The School System hereby agrees to compensate Provider
                                                 in the amount of $____
-                                                <span className=''>{currency(content.providerCompensation).format()}</span>____ once
+                                                <span className=''>{currency(form_fields.providerCompensation).format()}</span>____ once
                                                 all services have been rendered in accordance with the
                                                 terms of this Contract. Provider shall provide School
                                                 System with invoice(s) itemized by service provided
@@ -361,7 +365,7 @@ const Preview = () => {
                                                 services. The School System shall process payments to
                                                 Provider within forty-five (45) days of submission of
                                                 such invoices. Invoices should be sent to{" "}
-                                                <span className=''>{!content ? "" : content.providerInvoice}</span>, for review
+                                                <span className=''>{!form_fields ? "" : form_fields.providerInvoice}</span>, for review
                                                 and approval.
                                             </span>
                                         </p>
@@ -1046,7 +1050,7 @@ const Preview = () => {
                                         <p className='mb-0'>
                                             __________________________________________
                                         </p>
-                                        <span className=''>{!profile ? '' : profile.chair_board_education.value}</span>
+                                        <span className=''>{!durham_profile ? '' : durham_profile.chair_board_education}</span>
                                     </div>
                                     <div className=' overflow-x-hidden'>
                                         <div className='mb-[56px]'>
@@ -1079,14 +1083,14 @@ const Preview = () => {
                                     <div>
                                         <p className='mb-0'>
                                             _____________________
-                                            <span className=''>{!profile ? '' : profile.chief_finance_officer.value}</span>
+                                            <span className=''>{!durham_profile ? '' : durham_profile.chief_finance_officer}</span>
                                             _____________________
                                         </p>
                                         <span>School System Finance Officer </span>
                                     </div>
                                     <div>
                                         <p className='mb-0'>
-                                            _____<span className=''>{moment(content.signedDate).format(" MMMM Do YYYY ")}</span>_____
+                                            _____<span className=''>{moment(form_fields.signedDate).format(" MMMM Do YYYY ")}</span>_____
                                         </p>
                                         <span>Date</span>
                                     </div>
@@ -1109,10 +1113,10 @@ const Preview = () => {
                                 <p className='mb-4'>
                                     <span>Project Name:</span> _____________
                                     <span className=''>
-                                        {!masterInfo ? '' : masterInfo.project_name}
+                                        {!project ? '' : project.name}
                                     </span> ________________ <span> Project No:</span>{" "}
                                     _____________
-                                    <span className=''>{!masterInfo ? '' : masterInfo.project_number}
+                                    <span className=''>{!project ? '' : project.number}
                                     </span>
                                     ________________
                                 </p>
@@ -1126,7 +1130,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Initial'
                                             name='type'
-                                            checked={content.type === 'Initial'? true: false}
+                                            checked={form_fields.type === 'Initial'? true: false}
                                             readOnly
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1143,7 +1147,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Supplimental'
                                             name='type'
-                                            checked={content.type === 'Supplemental'? true: false}
+                                            checked={form_fields.type === 'Supplemental'? true: false}
                                             readOnly
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1160,7 +1164,7 @@ const Preview = () => {
                                             type='radio'
                                             value='Annual'
                                             name='type'
-                                            checked={content.type === 'Annual'? true: false}
+                                            checked={form_fields.type === 'Annual'? true: false}
 
                                             className='w-6 h-6 text-gray-600 bg-gray-100 border-gray-300'
                                         />
@@ -1175,9 +1179,9 @@ const Preview = () => {
                                     <p></p>
                                 </div>
                                 <p className='text-justify mb-4'>
-                                    I, <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_name.toUpperCase()}</span>, { " "}  
-                                     <span className=''> {!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_title.toUpperCase()}</span> of {" "}
-                                    <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span> hereby certify that I have performed
+                                    I, <span className=''>{!vendors ? '' : vendors[0].first_name.toUpperCase() + ' ' + vendors[0].last_name.toUpperCase()}</span>, { " "}  
+                                     <span className=''> {!vendors ? '' : vendors[0].title.toUpperCase()}</span> of {" "}
+                                    <span className=''>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span> hereby certify that I have performed
                                     all of the required sexual offender registry checks required
                                     under this Contract for all Contractual Personnel
                                     (employees, agents, ownership personnel, or contractors )
@@ -1284,7 +1288,7 @@ const Preview = () => {
                                 </p>
 
                                 <p className='mb-4'>
-                                <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].company_representative_name.toUpperCase()}</span>
+                                <span className=''>{!vendors ? '' : vendors[0].first_name.toUpperCase() + " " + vendors[0].last_name.toUpperCase()}</span>
                                 </p>
                                 <p className='mb-8'>
         _____________________________________________  (signature / date)

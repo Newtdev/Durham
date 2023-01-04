@@ -26,7 +26,7 @@ const Forms = ({ handleChange, error, touched, handleSubmit }) => {
             type='button'
             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
             data-modal-toggle='small-modal'
-            // onClick={close}
+            onClick={()=> dispatch(closeModal())}
           >
            <Close/>
           </button>

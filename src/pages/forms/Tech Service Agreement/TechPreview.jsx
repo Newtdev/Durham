@@ -2,30 +2,34 @@ import currency from "currency.js";
 import moment from "moment";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { ButtonWhiteBG } from "../../../ui";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { DashboardButton } from "../../Dashboard/Components";
-import { getSaveData } from "../../Dashboard/Settings/Durhams-settings/ReducerSlice";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
-import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
-import { openDownload, showDownload } from "../reducer";
+// import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
+
+import { openDownload, savedResponse, showDownload } from "../reducer";
+import { techPrevStep, techStepDefault } from "./reducer";
 
 
 const TechPreview = () => {
+  const formID = useSelector(project_document_id)
 
   const dispatch = useDispatch()
   const show = useSelector(openDownload)
-  const masterInfo = useSelector(project_details)
-  const content = useSelector(selectForm);
-  const profile = useSelector(getSaveData);
   const downloadComponent = useRef();
+  useFetchFilledFormQuery(formID)
+   const content = useSelector(savedResponse);
+   const { form_fields, vendors, durham_profile } = content;
+
 
 
   const props = {
       component: downloadComponent,
       name: 'LeChase ESSER Contract Template',
       show: !show ? 'hidden' : 'block',
-      stepDefault
+      stepDefault:techStepDefault
       // close: closeDownload
 
 
@@ -36,15 +40,16 @@ const TechPreview = () => {
            <DownLoadForm {...props} />
         <div>
           {/* Modal content */}
-          <div className={`${!show ?"block": 'hidden'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>            {/* Header */}
-            <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
+          <div className={`${!show ?"block": 'block'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>            {/* Header */}
+            <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3 '>
               <div className='ml-6'>
                 <h3 className='text-lg font-bold text-gray-900'>
                   Technology Service Agreement
                 </h3>
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
-              <button
+            <button
+              onClick={()=> dispatch(techPrevStep())}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -67,7 +72,7 @@ const TechPreview = () => {
             </div>
 
             <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
+              <div className='bg-white px-12 pt-8 pb-4 text-black ' ref={downloadComponent}>
                 <div className='text-center mb-4 font-bold'>
                   <h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
                   <h1>TECHNOLOGY SERVICES AGREEMENT</h1>
@@ -77,13 +82,14 @@ const TechPreview = () => {
                     THIS TECHNOLOGY SERVICES AGREEMENT
                   </span>{" "}
                   (the "Agreement") effective{" "}
-                  <span className=''> {moment(content.creationDate
-).format("MMMM D, YYYY ")}</span> is made and
+                  <span className=''> {moment(form_fields.creationDate).format("MMMM D, YYYY ")}</span>
+                is made and
                   entered into by and between the Durham Public Schools Board of
                   Education at 511 Cleveland St., Durham, NC 27701 (“DPS BOE” or
                   “DPS” or “the Board”) and{" "}
-                  <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span> at{" "}
-                  <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].consultant_address.toUpperCase()}</span>. (“Contractor”).
+                <span className=''>{!vendors ? '' : vendors[0].company_name 
+.toUpperCase()}</span> at{" "}
+                  <span className=''>{!vendors ? '' : vendors[0].address.toUpperCase()}</span>. (“Contractor”).  
                 </p>
 
                 <div>
@@ -501,7 +507,7 @@ const TechPreview = () => {
                           to accomplish the services required under this
                           Agreement. Such invoiced amounts shall not exceed{" "}
                           <span className='font-bold'>
-                            [<span className=''>{currency(content.amount).format()}</span>]
+                            [<span className=''>{currency(form_fields.amount).format()}</span>]
                           </span>{" "}
                           for the period of this contract without prior written
                           consent of the parties. Invoiced amounts shall
@@ -525,10 +531,11 @@ const TechPreview = () => {
                         <span className='ml-1'>
                           {" "}
                           This Agreement shall be for the time period between{" "}
-                          <span className=''>{moment(content.startDate
+                         <span className=''>{moment(form_fields.startDate
 ).format("MMMM D, YYYY ")}</span> and{" "}
-                          <span className=''>{moment(content.endDate
-).format("MMMM D, YYYY ")}</span> unless
+                          <span className=''>{moment(form_fields.endDate
+).format("MMMM D, YYYY ")}</span>  
+unless
                           terminated earlier as provided herein. The parties may
                           renew this Agreement only by separate written
                           agreement or addendum hereto, which must be executed
@@ -882,10 +889,10 @@ const TechPreview = () => {
                         <p>If to Contractor:</p>
                         <div className='ml-10'>
                           <div className=' h-4 mb-2 underline'>
-                            {!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}
+                            {!vendors ? '' : vendors[0].company_name.toUpperCase()}
                           </div>
                           <div className='underline h-4 mb-[20px]'>
-                          {!masterInfo ? '' : masterInfo.awardeeInfo[0].consultant_address.toUpperCase()}
+                          {!vendors ? '' : vendors[0].address.toUpperCase()}
                           </div>
                           {/* <div className='w-[10rem] h-4 mb-[20px] border-b border-b-black'>
                             <span className=''>F7</span>
@@ -1419,7 +1426,8 @@ const TechPreview = () => {
                   <p className='mb-5'>
                     <span>By:</span>
                     <span className='ml-6'>
-                      ____________________________________
+                    
+                    {!durham_profile ? '' : durham_profile.chair_board_education}
                     </span>
                   </p>
                   <p className='mb-6'>
@@ -1427,14 +1435,14 @@ const TechPreview = () => {
                   </p>
 
                   <p className='mb-5'>
-                    <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].design_consultant.toUpperCase()}</span>
+                    <span className=''>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span>
                   </p>
 
                   <p className='mb-5'>
                     <span>By:</span>
                     <span className='ml-6'>
-                      ____________________
-                      <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].corporate_president.toUpperCase()}</span>
+                     
+                      <span className=''>{!vendors ? '' : vendors[0].president.toUpperCase()}</span>
                       ____________________(Seal)
                     </span>
                   </p>
@@ -1442,8 +1450,8 @@ const TechPreview = () => {
                   <p className='mb-10'>
                     <span>Attest:</span>
                     <span className='ml-2'>
-                      ____________________
-                      <span className=''>{!masterInfo ? '' : masterInfo.awardeeInfo[0].corporate_secretary.toUpperCase()}</span>
+                     
+                      <span className=''>{!vendors ? '' : vendors[0].secretary.toUpperCase()}</span>
                       ____________________(Seal)
                     </span>
                   </p>
@@ -1457,11 +1465,11 @@ const TechPreview = () => {
                   </div>
 
                   <div>
-                    <p className='mb-0'>
-                      ___<span className=''>{!profile ? '' : profile.chief_finance_officer.value}</span>
-                      ______________
-                      <span className=''>{moment(content.signedDate
-).format("MMMM D, YYYY ")}</span>_____
+                    <p className='mb-0 '>
+                       <span className='inline-block mr-40'>{!durham_profile ? '' : durham_profile.chief_finance_officer 
+ }</span> 
+                      
+                       <span className=''>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span> 
                     </p>
                     <p className='mt-0'>
                       <span>Finance Officer</span>
@@ -1474,14 +1482,14 @@ const TechPreview = () => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevStep())} />
+              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(techPrevStep())} />
             <DashboardButton
               onClick={()=> dispatch(showDownload())}
-                hidden
-                name='CREATE DOCUMENT'
+              hidden
+              name='CREATE DOCUMENT'
               type='button'
               
-                width='w-[198px]'
+              width='w-[198px]'
               />
             </div>
           </div>

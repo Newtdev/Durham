@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
+import { prevChoiceStep } from "../reducer";
 
 
-const SexualOffender = ({handleChange,error,touched, handleSubmit}) => {
+const SexualOffender = ({ handleChange, error, touched, handleSubmit, isLoading }) => {
+  const dispatch = useDispatch();
     return <div>
     <div
       className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'
@@ -19,7 +22,8 @@ const SexualOffender = ({handleChange,error,touched, handleSubmit}) => {
               Sexual Offender Registry Check Certification Form
             </p>
           </div>
-          <button
+            <button
+              onClick={()=> dispatch(prevChoiceStep(1))}
             type='button'
             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
             data-modal-toggle='small-modal'
@@ -95,12 +99,13 @@ const SexualOffender = ({handleChange,error,touched, handleSubmit}) => {
 
         {/* Buttons */}
         <div className='flex justify-end gap-8 pr-4'>
-          <ButtonWhiteBG width='w-[100px]' name='cancel' />
+          <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep(1))} />
           <DashboardButton
             hidden
             name='NEXT'
             type='submit'
-             width='w-[77px]'
+              width='w-[77px]'
+              loading={isLoading}
           />
         </div>
       </form>

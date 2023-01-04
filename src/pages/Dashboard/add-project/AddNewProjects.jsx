@@ -6,7 +6,6 @@ import { AccordionSelector } from "./Component";
 import { prevForm } from "./reducer";
 
 const AccordionComponent = ({ getData, documents }) => { 
-    console.log(documents)
     const [activeIndex, setActiveIndex] = useState(null);
 
     

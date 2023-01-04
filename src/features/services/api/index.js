@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { addNewProject } from "../../../pages/Dashboard/add-project/projectSlice";
+import { getFormResponse } from "../../../pages/forms/reducer";
 
 /***
  * login?email=omotolaniolurotimi@gmail.com&password=ThinTree21+++
@@ -406,7 +407,49 @@ export const DurhamsApi = createApi({
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
+		fillProjectDocument: builder.mutation({
+			query: (info) => {
+				console.log(info)
+				return {
+					url: "projects/fill-form",
+					headers: {
+						Accept: "application/json",
+					},
+					method: "POST",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects", 'dashboard'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
 
+		fetchFilledForm: builder.query({
+			query: (id) => {
+				return {
+					url: `projects/forms/${id}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+				
+				};
+			},
+			async onQueryStarted(id,{dispatch, queryFulfilled}) {
+			
+				try {
+					const {data} = await queryFulfilled;
+					console.log(data)
+					dispatch(getFormResponse(data.data))
+				} catch (error) {
+					throw error
+					
+				}
+			},
+			// providesTags: ["projects", 'dashboard'],
+			// transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
 
 		// ADD VENDOR TO PROJECTS
 	}),
@@ -438,5 +481,7 @@ export const {
 	useFetchSingleProjectQuery,
 	useDeleteProjectMutation,
 	useAddProjectDocumentMutation,
-	useUpdateProjectsMutation
+	useUpdateProjectsMutation,
+	useFillProjectDocumentMutation,
+	useFetchFilledFormQuery
 } = DurhamsApi;

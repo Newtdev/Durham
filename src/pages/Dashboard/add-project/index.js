@@ -34,37 +34,35 @@ const ProjectFormsController = () => {
 	async function HandleRequest(values) {
 		const response = await addProjectVendor({project_id: id, vendor_id: values });
         if (response?.error) {
-            toast.error('Opps! Something went wrong, Please try again later!', {
+            toast.error(response?.error?.messsage, {
                 position: toast.POSITION.TOP_CENTER,
             });
             
         }
-        else if (response?.data?.status !== 'success') {
+        else if (response?.data) {
             // error alert
-            toast.error(response?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-		} else {
 			dispatch(nextForm());
-        }
+            // toast.error(response?.message, {
+            //     position: toast.POSITION.TOP_CENTER,
+            // });
+		} 
         
     }
 	async function HandleEditRequest(values) {
 		const response = await editVendor(values);
+		console.log(response.error)
         if (response?.error) {
-            toast.error('Opps! Something went wrong, Please try again later!', {
+            toast.error(response?.error?.message, {
                 position: toast.POSITION.TOP_CENTER,
             });
             
         }
-        else if (response?.data?.status !== 'success') {
+        else if (response?.data) {
             // error alert
-            toast.error(response?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-		} else {
 			dispatch(nextForm());
-        }
+            
+		}
+        
         
     }
 	async function SubmitDocument(values) {
@@ -76,15 +74,11 @@ const ProjectFormsController = () => {
             });
             
         }
-        else if (response?.data?.status !== 'success') {
+        else if (response?.data) {
 			// error alert
-            toast.error(response?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-        } else {
-			// dispatch(nextForm());
 			navigate('/dashboard/add-new-project/preview');
-        }
+            
+        } 
         
     }
 

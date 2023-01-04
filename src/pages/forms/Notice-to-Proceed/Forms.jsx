@@ -1,9 +1,8 @@
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ButtonWhiteBG, Calender, Error, Time } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import { page } from './reducerSlice';
 import { closeModal } from '../reducer';
 
 export const FormInputContainer = ({ name, children }) => {
@@ -20,7 +19,6 @@ export const FormInputContainer = ({ name, children }) => {
 
 const SelectDate = (props) => {
     const { value, setFieldValue, name } = props;
-    // const [field] = useField(props)
     return <label className="bg-gray-50 border flex items-center justify-between border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979]  w-full pr-2">
         <DatePicker
             // {...field}
@@ -36,7 +34,6 @@ const SelectDate = (props) => {
 }
 export const SelectTime = (props) => {
     const { value, setFieldValue, name, } = props;
-    // const [field] = useField(props)
     
     return <>
     <label className="bg-gray-50 border flex items-center justify-between border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979]  w-full pr-2">
@@ -62,9 +59,9 @@ export const SelectTime = (props) => {
 
 
 const NoticeForm = (props) => {
+    console.log(props.isLoading)
 
     const dispatch = useDispatch();
-    const pages = useSelector(page)
 
     const creationDate = {
         ...props,
@@ -122,6 +119,7 @@ const NoticeForm = (props) => {
                         </p>
                     </div>
                     <button
+                        onClick={()=> dispatch(closeModal()) }
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'
@@ -177,6 +175,7 @@ const NoticeForm = (props) => {
                         name='NEXT'
                         type='submit'
                         width='w-[77px]'
+                        loading={props.isLoading}
                     />
                 </div>
             </form>

@@ -55,15 +55,15 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
             });
             
          }
-        else if (response?.data?.status === 'success') {
+        else if (response?.data) {
          
             dispatch(saveID(response?.data?.data?.id));
             dispatch(nextForm());
         } else {
               // error alert
-          toast.error(response?.message, {
-                 position: toast.POSITION.TOP_CENTER,
-             });
+        //   toast.error(response?.message, {
+        //          position: toast.POSITION.TOP_CENTER,
+        //      });
          }
         
     }

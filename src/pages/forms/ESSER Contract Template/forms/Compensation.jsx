@@ -2,9 +2,9 @@
 import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import { prevChoiceStep } from "../../Advertisement-for-bid-template/reducer";
 import SelectDate from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
+import { prevChoiceStep } from "../reducer";
 
 
 
@@ -187,7 +187,7 @@ const Compensation = (props) => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep())} />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep(0))} />
                 <DashboardButton
                     hidden
                     name='NEXT'

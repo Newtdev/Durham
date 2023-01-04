@@ -3,7 +3,6 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { FormInputContainer } from "../Notice-to-Proceed/Forms";
 import SelectDate from "../components";
-import { nextStep, prevStep } from "../Lundsford/lundsFormslice";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../reducer";
 
@@ -70,6 +69,9 @@ const Forms = (props) => {
 
 
   };
+
+
+  
   return (
     <div>
       <div>
@@ -91,7 +93,7 @@ const Forms = (props) => {
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                 data-modal-toggle='small-modal'
-              // onClick={close}
+                onClick={()=>dispatch(closeModal())}
               >
                 <Close />
                 
@@ -153,6 +155,7 @@ const Forms = (props) => {
                 name='NEXT'
                 type='submit'
                 width='w-[77px]'
+                loading={props.isLoading}
                
               />
             </div>

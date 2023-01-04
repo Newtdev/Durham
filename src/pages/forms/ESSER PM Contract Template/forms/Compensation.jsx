@@ -2,9 +2,9 @@
 import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import { prevChoiceStep } from "../../Advertisement-for-bid-template/reducer";
 import SelectDate from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
+import { prevChoiceStep } from "../reducer";
 
 
 
@@ -72,6 +72,7 @@ const Compensation = (props) => {
                     </p>
                 </div>
                 <button
+                    onClick={()=> dispatch(prevChoiceStep(0))}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                     data-modal-toggle='small-modal'
@@ -173,7 +174,7 @@ const Compensation = (props) => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep())} />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep(0))} />
                 <DashboardButton
                     hidden
                     name='NEXT'

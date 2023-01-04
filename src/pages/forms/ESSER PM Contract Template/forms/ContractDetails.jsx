@@ -1,11 +1,17 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useFetchFilledFormQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
+import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import {  SelectDate } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
 
 const ContractDetails = (props) => {
+
+    const formID = useSelector(project_document_id)
+    const response = useFetchFilledFormQuery(formID);
 
     const dispatch = useDispatch()
     const contractStartDate = {
@@ -33,6 +39,21 @@ const ContractDetails = (props) => {
         placeholder: 'Through'
 
     }
+
+
+    useEffect(() => {
+        if (!response?.data?.data) {
+          return;
+        }
+        // console.log(response?.data?.data?.form_fields.providerInvoice)s
+        // props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
+        // props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
+        // props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)
+        // props.setFieldValue('providerCompensation',response?.data?.data?.form_fields.providerCompensation)
+        // props.setFieldValue('signedDocument',response?.data?.data?.form_fields.signedDocument)
+        // props.setFieldValue('providerInvoice',response?.data?.data?.form_fields.providerInvoice)
+        // props.setFieldValue('type',response?.data?.data?.form_fields.type)
+      },[response?.data?.data])
    
     return <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'>
             
@@ -47,6 +68,7 @@ const ContractDetails = (props) => {
                     </p>
                 </div>
                 <button
+                    onClick={()=> dispatch(closeModal())}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                     data-modal-toggle='small-modal'

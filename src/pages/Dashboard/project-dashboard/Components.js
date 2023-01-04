@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "../../../ui";
 import { showModal } from "../../forms/reducer";
-import { getDocument, getSlugId } from "./ReducerSlice";
+import { getDocument, getID, getSlugId } from "./ReducerSlice";
 
 export const ProjectCard = ({ name, value }) => {
 	return (
@@ -31,10 +31,13 @@ export const Accordion = ({ data }) => {
 
 	const onClick = (e) => {
 		if (e.target) {
-			const { id, name } = e.target;
+
+			const { value, name, id } = e.target;
 			e.target.className = newClass;
 			dispatch(getDocument(name));
-			dispatch(getSlugId(id));
+			dispatch(getSlugId(value));
+			
+			dispatch(getID(id));
 			dispatch(showModal());
 		}
 	};
@@ -48,6 +51,7 @@ export const Accordion = ({ data }) => {
 			{!data
 				? null
 				: Object.keys(data)?.map((document, idx) => {
+					
 						const active =
 							activeIndex === idx ? "h-full" : "h-16 overflow-y-hidden ";
 						return (
@@ -76,17 +80,23 @@ export const Accordion = ({ data }) => {
 									<ul className="px-4">
 										{Object.values(data)[idx].map((cur, index) => {
 											return (
+												<label htmlFor={cur.id}  className={`bg-[#699bac] flex justify-between items-center mb-5
+						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer `}>
+						{cur.document_name}
 												<input
-													onClick={onClick}
-													value={cur.document_name}
+													onChange={onClick}
+													value={makeId(document, cur.document_name)}
 													// name={objName}
-													id={makeId(document, cur.document_name)}
-													type="button"
+													id={cur.id}
+														type="checkbox"
+														hidden
+														
 													name={cur.document_name}
 													key={index}
-													className={`bg-[#d8e1e4]
-						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
-												/>
+						// 							className={`bg-[#d8e1e4]
+						// mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
+													/>
+													</label>
 											);
 										})}
 									</ul>

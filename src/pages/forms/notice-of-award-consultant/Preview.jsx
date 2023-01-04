@@ -3,25 +3,28 @@ import { Close, DashboardButton } from "../../Dashboard/Components";
 import Logo  from "../../../assets/formlogo.png";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { closeDownload, closeModal, openDownload, showDownload } from "../reducer";
+import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
 import { useRef } from "react";
-import { prevStep, selectForm, stepDefault } from "../Notice-of-intent-consultant/reducerSlice";
+// import { prevStep, selectForm, stepDefault } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment";
-import { handleLastName } from "../../../shared-component";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import currency from "currency.js";
-import { getSaveData } from "../../Dashboard/Settings/Durhams-settings/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { prevStep, stepDefault } from "./reducer";
 
 
 const Preview = () => {
 
     const dispatch = useDispatch();
-    const data = useSelector(selectForm);
-    const masterInfo = useSelector(project_details)
+  const formID = useSelector(project_document_id);
+
     const show = useSelector(openDownload)
-    const durham = useSelector(getSaveData)
     const downloadComponent = useRef();
+    useFetchFilledFormQuery(formID)
+    const content = useSelector(savedResponse);
+    const { form_fields, vendors, durham_profile, project } = content;
+   
 
     const props = {
         component: downloadComponent,
@@ -47,6 +50,7 @@ const Preview = () => {
                             <p className='text-base text-gray-700'>Preview Document</p>
                         </div>
                         <button
+                            onClick={()=> dispatch(prevStep())}
                             type='button'
                             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                             data-modal-toggle='small-modal'
@@ -76,19 +80,19 @@ const Preview = () => {
 
                                 <div className='mb-6'>
                                     <p className='mb-4'>
-                                        <span className=''>{moment(data.creationDate
-                                        ).format("MMMM D, YYYY ")}</span>{" "}
-                                        {data.approval === 'Yes' && <span className=' ml-12'>Exec Director approval is required to issue this</span>}
+                                        <span className=''>{moment(form_fields.creationDate
+                                        ).format("MMMM D, YYYY ")}</span>{" "} 
+                                         {form_fields.approval === 'Yes' && <span className=' ml-12'>Exec Director approval is required to issue this</span>}
                                     </p>
                                     <p>
-                                        <span className=''>{!masterInfo ? "" : masterInfo.awardeeInfo[0].company_representative_name}</span>,{" "}
-                                        <span className=''>{!masterInfo ? "" : masterInfo.awardeeInfo[0].company_representative_title}</span>
+                                        <span className=''>{!vendors ? "" : vendors[0].first_name}</span>,{" "}
+                                        <span className=''>{!vendors ? "" : vendors[0].title}</span>
                                     </p>
                                     <p>
-                                        <span className=''>{!masterInfo ? "" : masterInfo.awardeeInfo[0].design_consultant}</span>
+                                        <span className=''>{!vendors ? "" : vendors[0].company_name}</span>
                                     </p>
                                     <p>
-                                        <span className=''>{!masterInfo ? "" : masterInfo.awardeeInfo[0].consultant_address}</span>
+                                        <span className=''>{!vendors ? "" : vendors[0].address}</span>
                                     </p>
                                     {/* <p>
                       <span className=''>F6</span>
@@ -102,11 +106,11 @@ const Preview = () => {
                                             <p>Durham Public Schools (DPS)</p>
                                             <p>
                                                 <span className=''>F7</span> -{" "}
-                                                <span className=''>{!masterInfo ? "" : masterInfo.project_name}</span>
+                                                <span className=''>{!project ? "" : project.name}</span>
                                             </p>
                                             <p>
                                                 DPS Project No.{" "}
-                                                <span className=''>{!masterInfo ? "" : masterInfo.project_number}</span>
+                                                <span className=''>{!project ? "" : project.number}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -114,21 +118,21 @@ const Preview = () => {
                                         <p>SUBJECT:</p>
                                         <div className='ml-16'>
                                             <p className='font-bold'>
-                                                NOTICE OF AWARD for <span>{!data ? "" : data.services}</span> SERVICES
+                                                NOTICE OF AWARD for <span>{!form_fields ? "" : form_fields.services}</span> SERVICES
                                             </p>
                                         </div>
                                     </div>
                                     <p className='mb-6'>
-                                        Dear Mr./Mrs. <span className=''>{handleLastName(masterInfo.awardeeInfo[0].company_representative_name)}</span>
+                                        Dear Mr./Mrs. <span className=''>{!vendors ? "" :vendors.last_name}</span>
                                     </p>
                                     <p className='mb-6'>
                                         This letter serves as a Notice of Award for the{" "}
-                                        <span className=''>{!masterInfo ? "" : masterInfo.project_name}</span> project located
+                                        <span className=''>{!project ? "" : project.project_name}</span> project located
                                         at <span className=''>F13</span> in Durham,
                                         North Carolina. Durham Public School Administration is
                                         awarding the work to{" "}
-                                        <span className=''>{!masterInfo ? "" : masterInfo.awardeeInfo[0].design_consultant}</span> at a lump sum
-                                        fee of <span className=''>{currency(data.amount).format()}</span>.
+                                        <span className=''>{!vendors ? "" : vendors[0].company_name}</span> at a lump sum 
+                                        fee of <span className=''>{currency(form_fields.amount).format()}</span>. 
                                         Consultant services shall include the deliverables and
                                         scopes of work as outlined in the Consultant proposal
                                         attached to the Contract by Exhibit.{" "}
@@ -142,8 +146,8 @@ const Preview = () => {
                                         </span>{" "}
                                         to Construction & Capital Planning, 2011 Hamlin Road,
                                         Durham, North Carolina 27704 or via email to {" "}
-                                        <span className=''>{!data ? '' : data.email}</span> no
-                                        later than <span className=''>{moment(data.deliveryDate
+                                        <span className=''>{!form_fields ? '' : form_fields.email}</span> no
+                                        later than <span className=''>{moment(form_fields.deliveryDate
                                         ).format("MMMM D, YYYY ")}</span>.
                                         Once we have received and processed the contract, one (1)
                                         fully executed copy will be returned for your records.
@@ -151,16 +155,16 @@ const Preview = () => {
                                     <p className='mb-6'>
                                         We look forward to working with you and your team on this
                                         project. If you have any questions, please contact me at
-                                        <span className=''>{" "}{!durham ? "" : durham.project_manager_phone.value}</span>.
+                                        <span className=''>{" "}{!durham_profile ? "" : durham_profile.project_manager_phone}</span>.
                                     </p>
                                     <p className='mb-6'>Sincerely,</p>
                                     <p>
-                                        <span className=''>{!durham ? "" : durham.project_manager.value}</span>
+                                        <span className=''>{!durham_profile ? "" : durham_profile.project_manager}</span>
                                     </p>
                                     <p className='mb-8'>C&CP Project Manager</p>
                                     <p>Enclosure</p>
                                     <p>
-                                        Cc: <span className='bg-yellow-500'>F20</span>
+                                        Cc: <span className='bg-yellow-500'></span>
                                     </p>
                                 </div>
                             </div>
@@ -169,7 +173,7 @@ const Preview = () => {
 
                     {/* Buttons */}
                     <div className='flex justify-end gap-4 pr-6 pb-4'>
-                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=>dispatch(prevStep())} />
+                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevStep())} />
                         <DashboardButton
                             hidden
                             name='CREATE DOCUMENT'

@@ -206,7 +206,21 @@ export function AwardeeInfo(props) {
 				props.data.values.project_vendors[index].secretary =
 						cur?.secretary;
 				}
-			});
+				// else {
+
+				// 	props.data.values.project_vendors[index].first_name =
+				// 		cur?.first_name + " " + cur?.last_name;
+				// 	props.data.values.project_vendors[index].title =
+				// 		cur?.title;
+				// 	props.data.values.project_vendors[index].company_name =
+				// 		cur?.company_name;
+				// 	props.data.values.project_vendors[index].address = cur?.address;
+				// 	props.data.values.project_vendors[index].president =
+				// 		cur?.president;
+				// 	props.data.values.project_vendors[index].secretary =
+				// 			cur?.secretary;
+				// 		}
+					});
 			
 		}
 	}, [values]);
@@ -220,9 +234,6 @@ export function AwardeeInfo(props) {
 					<div className="w-full overflow-auto">
 						<div>
 							<DashboardSelect {...awardee}>
-
-								{awardee.value && <option value={awardee.value}>{awardee.value}</option>
-}
 								<option>Select Awardee</option>
 								<option value="Design Consultant">Design Consultant</option>
 								<option value="Contractor">Contractor</option>
@@ -236,7 +247,7 @@ export function AwardeeInfo(props) {
 						<div>
 							{/* <OverviewInput {...design_consultant} /> */}
 							<DashboardSelect {...design_consultant}>
-								{design_consultant.value && <option value={design_consultant.value}>{design_consultant.value}</option>}
+								{/* {design_consultant.value && <option value={design_consultant.value}>{design_consultant.value}</option>} */}
 								<option>Select</option>
 								{filtered()?.map((cur, id) => {
 									return (

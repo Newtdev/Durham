@@ -1,7 +1,8 @@
 
+import { retry } from "@reduxjs/toolkit/dist/query";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { supabase } from "../../../lib/supabase";
+import { useFetchAllProjectManagerQuery, useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import SelectDate, { FormInputPlain, FormSelect } from "../components";
@@ -11,6 +12,8 @@ import { closeModal } from "../reducer";
 
 
 const Form = (props) => {
+    const durham = useFetchDurhamQuery();
+
     const dispatch = useDispatch();
     const creationDate = {
         ...props,
@@ -84,11 +87,11 @@ const Form = (props) => {
     };
     const recipientCopy = {
         value: props.values.recipientCopy,
-        
        onChange: props.handleChange,
         error: props.errors.recipientCopy,
         touched: props.touched.recipientCopy,
         name: 'Choose the recipients of the carbon copy.',
+        id:'recipientCopy',
         type: 'text',
         placeholder:'Select recipients'
     };
@@ -112,6 +115,7 @@ const Form = (props) => {
                         </p>
                     </div>
                     <button
+                        onClick={()=> dispatch(closeModal())}
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'
@@ -191,6 +195,12 @@ const Form = (props) => {
                         <FormInputContainer>
                             <FormSelect {...recipientCopy}>
                                 <option>Select recipients</option>
+                                {!durham?.data ? <option>No recipients</option> : durham?.data.map((cur,id) => {
+                                    return <option key={cur.slug} value={cur.value}>{cur.name}</option>
+                                })}
+                       
+
+                        
                        </FormSelect>
                         </FormInputContainer>
                         
