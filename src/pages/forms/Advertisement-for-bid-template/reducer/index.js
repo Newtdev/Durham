@@ -7,11 +7,11 @@ const MultiChoiceStep = createSlice({
 		UScities: null,
 	},
 	reducers: {
-		nextChoiceStep: (state) => {
-			state.step += 1;
+		nextChoiceStep: (state,action) => {
+			state.step = action.payload;
 		},
-		prevChoiceStep: (state) => {
-			state.step -= 1;
+		prevChoiceStep: (state,action) => {
+			state.step = action.payload;
 		},
 		stepChoiceDefault: (state) => {
 			state.step = 0;

@@ -1,19 +1,25 @@
 import moment from "moment";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { ButtonWhiteBG } from "../../../ui";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { Close, DashboardButton } from "../../Dashboard/Components";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
-import { selectForm } from "../Lundsford/lundsFormslice";
-import { openDownload, showDownload } from "../reducer";
+import { openDownload, savedResponse, showDownload } from "../reducer";
 import { prevChoiceStep,stepChoiceDefault } from "./reducer";
 
 const Preview = () => {
   const dispatch = useDispatch();
   const show = useSelector(openDownload)
-  const masterInfo = useSelector(project_details)
-  const content = useSelector(selectForm);
+
+
+  
+  const formID = useSelector(project_document_id);
+
+  useFetchFilledFormQuery(formID)
+  const content = useSelector(savedResponse);
+const { form_fields, project, } = content;
 
 
 
@@ -43,7 +49,8 @@ const Preview = () => {
                 </h3>
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
-              <button
+            <button
+              onClick={()=> dispatch(prevChoiceStep(2))}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -56,8 +63,8 @@ const Preview = () => {
               <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
                 <div className='text-right'>
                   <p>Durham Public Schools</p>
-                <p className=''>{!masterInfo?'': masterInfo.project_name}</p>
-                  <p className=''>{!masterInfo?'': masterInfo.project_number}</p>
+                <p className=''>{!project?'': project.name}</p>
+                  <p className=''>{!project?'': project.number}</p>
                 </div>
                 <div className='text-center mb-8'>
                   <h1 className='font-bold'>ADVERTISEMENT FOR BIDS</h1>
@@ -69,13 +76,13 @@ const Preview = () => {
                   <p>
                     Sealed bids from licensed contractors will be received by
                     Durham Public Schools, Durham, North Carolina on{" "}
-                  <span className='font-bold '>{moment(content.bidDate).format("MMMM D, YYYY")}</span> for
+                  <span className='font-bold '>{moment(form_fields.bidDate).format("MMMM D, YYYY")}</span> for
                     furnishing of labor, material and equipment for the{" "}
-                    <span className='font-bold '>{!masterInfo?'': masterInfo.project_name}</span>. Bids
+                    <span className='font-bold '>{!project?'': project.name}</span>. Bids
                     will be received up to{" "}
-                  <span className='font-bold '>{moment(content.deadlineTime).format("h:mm:ss a")}</span> from
+                  <span className='font-bold '>{moment(form_fields.deadlineTime).format("h:mm:ss a")}</span> from
                     Single Prime bidders. Bids will be opened at{" "}
-                    <span className=''>{moment(content.openingTime).format("h:mm a")}</span> via a virtual
+                    <span className=''>{moment(form_fields.openingTime).format("h:mm a")}</span> via a virtual
                     teleconference and read aloud. Deliver bids to the{" "}
                     <span className='font-bold'>
                       Durham Public Schools Main Office located at 511
@@ -89,7 +96,7 @@ const Preview = () => {
                     <li>
                       No bid may be withdrawn after the scheduled closing time
                       for the receipt of bids for a period of{" "}
-                    <span className=''>{!content? '':content.withdrawingBid }</span>
+                    <span className=''>{!form_fields? '':form_fields.withdrawingBid }</span>
                     </li>
                     <li>
                       Bid security required is 5% of the bid in cash, certified
@@ -163,11 +170,11 @@ const Preview = () => {
                         Pre-Bid Conference:
                       </span>{" "}
                       Scheduled for{" "}
-                    <span className='font-bold '>{moment(content.conferenceDate).format("MMMM D, YYYY")}</span>{" "}
+                    <span className='font-bold '>{moment(form_fields.conferenceDate).format("MMMM D, YYYY")}</span>{" "}
                     
-                    <span className='font-bold '>{moment(content.conferenceTime).format("h:mm a")}</span>{" "}
-                    <span className='font-bold '>{content.conferenceAddress}{" "}{content.conferenceCity}{" "}{content.conferenceZipCode}{" "}{content.conferenceState}</span>{" "}
-                      <span className='font-bold '> {!content.presenceOfBiders? '':content.presenceOfBiders} </span>{" "}
+                    <span className='font-bold '>{moment(form_fields.conferenceTime).format("h:mm a")}</span>{" "}
+                    <span className='font-bold '>{form_fields.conferenceAddress}{" "}{form_fields.conferenceCity}{" "}{form_fields.conferenceZipCode}{" "}{form_fields.conferenceState}</span>{" "}
+                      <span className='font-bold '> {!form_fields.presenceOfBiders? '':form_fields.presenceOfBiders} </span>{" "}
                       Inspection of all sites shall be scheduled immediately
                       after the Pre-Bid Conference. The design team and owner
                       will provide access to the necessary location. The project
@@ -208,8 +215,8 @@ const Preview = () => {
                 {/* Next Page */}
                 <div className='text-right'>
                   <p>Durham Public Schools</p>
-                  <p className=''>{!masterInfo?'': masterInfo.project_name}</p>
-                  <p className=''>{!masterInfo?'': masterInfo.project_number}</p>
+                  <p className=''>{!project?'': project.name}</p>
+                  <p className=''>{!project?'': project.number}</p>
                 </div>
 
                 <div>
@@ -217,7 +224,7 @@ const Preview = () => {
                     <em>
                       {" "}
                       Prospective Bidders should contact{" "}
-                    <span className=''>{!content?'':content.company_name}</span> at the contact
+                    <span className=''>{!form_fields?'':form_fields.company_name}</span> at the contact
                       noted below in order to be e-mailed a link to download the
                       project manual and bid documents.
                     </em>
@@ -230,21 +237,21 @@ const Preview = () => {
                   <p className='mt-8 mb-4'>
                     For questions regarding this bid, please contact:
                   </p>
-                  <p className=''>{!content?'':content.company_name}</p>
+                  <p className=''>{!form_fields?'':form_fields.company_name}</p>
                   <p>
 
-                    <span className=''>{!content?'':content.manager_name}</span>
+                    <span className=''>{!form_fields?'':form_fields.manager_name}</span>
                     <span>- Program Manager</span>
                   </p>
-                  <p className=''>{!content?'':content.manager_Phone_number}</p>
-                  <p className=''>{!content?'':content.manager_email_address}</p>
+                  <p className=''>{!form_fields?'':form_fields.manager_Phone_number}</p>
+                  <p className=''>{!form_fields?'':form_fields.manager_email_address}</p>
                 </div>
               </div>
             </div>
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevChoiceStep())} />
+              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevChoiceStep(2))} />
               <DashboardButton
                 hidden
                 name='CREATE DOCUMENT'
