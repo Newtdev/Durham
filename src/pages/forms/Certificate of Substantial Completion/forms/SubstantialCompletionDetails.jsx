@@ -72,7 +72,8 @@ const dispatch  = useDispatch()
                     Project information
                     </p>
                 </div>
-                <button
+                    <button
+                    onClick={()=> dispatch(prev(0))}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                     data-modal-toggle='small-modal'
@@ -133,7 +134,7 @@ const dispatch  = useDispatch()
 
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prev())} />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prev(0))} />
                 <DashboardButton
                     hidden
                     name='NEXT'

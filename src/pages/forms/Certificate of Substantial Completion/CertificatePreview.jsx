@@ -6,17 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { prev, stepDefault } from "./reducer";
 import { selectForm } from "../Notice-of-intent-consultant/reducerSlice";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
-import { closeDownload, openDownload, showDownload } from "../reducer";
+import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
 import moment from "moment";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
 
 const CertificatePreview = () => {
   const dispatch = useDispatch();
-  const data = useSelector(selectForm);
-  const masterInfo = useSelector(project_details)
   const show = useSelector(openDownload)
   const downloadComponent = useRef();
+
+  const formID = useSelector(project_document_id);
+
+  useFetchFilledFormQuery(formID)
+  const content = useSelector(savedResponse);
+const { form_fields, project,vendors } = content;
 
   const props = {
     component: downloadComponent ,
@@ -41,7 +47,8 @@ const CertificatePreview = () => {
                 </h3>
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
-              <button
+            <button
+              onClick={()=> dispatch(prev(2))}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -77,16 +84,16 @@ const CertificatePreview = () => {
                     </thead>
                     <tbody>
                       <tr>
-                      <td className='border border-black pl-[1rem]'>{!masterInfo ?'': masterInfo.project_name}</td>
+                      <td className='border border-black pl-[1rem]'>{!project ?'': project.name}</td>
                         <td className='border border-black pl-[1rem]'>
-                          Project No: {!masterInfo ?'': masterInfo.project_number}, g8.1
+                          Project No: {!project ?'': project.number}, g8.1
                         </td>
                         <td className='border border-black pl-[1rem]'>Owner</td>
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'> </td>
                         <td className='border border-black pl-[1rem]'>
-                          Contract for: {!data? '': data.purposeOfContract
+                          Contract for: {!form_fields? '': form_fields.purposeOfContract
 } Construction
                         </td>
                         <td className='border border-black pl-[1rem]'>
@@ -94,10 +101,10 @@ const CertificatePreview = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.project_location}</td>
+                        <td className='border border-black pl-[1rem]'>{!project? '': project.location}</td>
                       <td className='border border-black pl-[1rem]'>
                       
-                          Contract Date: {moment(data.contractEffectDate).format("MMMM D, YYYY ")}
+                          Contract Date: {moment(form_fields.contractEffectDate).format("MMMM D, YYYY ")}
                         </td>
                         <td className='border border-black pl-[1rem]'>
                           Contractor
@@ -106,7 +113,7 @@ const CertificatePreview = () => {
                       <tr>
                         <td className='border border-black pl-[1rem]'></td>
                         <td className='border border-black pl-[1rem]'></td>
-                        <td className='border border-black pl-[1rem]'>{!data? '': data.involvedInProject}</td>
+                        <td className='border border-black pl-[1rem]'>{!form_fields? '': form_fields.involvedInProject}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -125,11 +132,11 @@ const CertificatePreview = () => {
                     <tbody>
                       <tr>
                         <td className='border border-black pl-[1rem]'>Durham Public Schools</td>
-                      <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_name}</td>
+                      <td className='border border-black pl-[1rem]'>{!vendors? '': vendors[0].company_name}</td>
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'>511 Cleveland St., Durham, NC 27701</td>
-                        <td className='border border-black pl-[1rem]'>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_address}</td>
+                        <td className='border border-black pl-[1rem]'>{!vendors? '': vendors[0].address}</td>
                       </tr>
                       <tr>
                         {/* <td className='border border-black pl-[1rem]'>
@@ -150,7 +157,7 @@ const CertificatePreview = () => {
 
                     <p className='mb-6'>
                       List project name here the Work{" "}
-                      <span className=''>{!data? "": data.areasCompleted
+                      <span className=''>{!form_fields? "": form_fields.areasCompleted
 }</span> determined
                       Substantially Complete.
                     </p>
@@ -170,7 +177,7 @@ const CertificatePreview = () => {
 
                     <p className='font-bold mb-6'>
                       DATE OF SUBSTANTIAL COMPLETION:{" "}
-                      <span className=''>{moment(data.completionDate).format("MMMM D, YYYY ")}</span>
+                      <span className=''>{moment(form_fields.completionDate).format("MMMM D, YYYY ")}</span>
                     </p>
 
                     <p className='mb-14'>
@@ -185,12 +192,12 @@ const CertificatePreview = () => {
 
                     <div className='mb-6'>
                       <p className='mb-0'>
-                       <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].design_consultant}</span>
+                       <span className=''>{!vendors? '': vendors[0].company_name}</span>
                         ___________________________________________________________________
                       </p>
                       <span>CONSULTANT</span>
                       <span className='ml-[10rem]'>
-                        BY: <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].company_representative_name}</span>
+                        BY: <span className=''>{!vendors? '': vendors[0].first_name + ' ' + vendors[0].last_name}</span>
                       </span>
                       <span className='ml-[10rem]'>DATE</span>
                     </div>
@@ -198,24 +205,24 @@ const CertificatePreview = () => {
                     <p className='mb-10'>
                       The Contractor will complete all work on the attached
                       punch list within{" "}
-                      <span className=''>{!data? "": data.workCompletionDate
+                      <span className=''>{!form_fields? "": form_fields.workCompletionDate
 }</span> days from the
                       date of Substantial Completion.
                     </p>
 
                     <p className='mb-12 font-bold'>
                       COST ESTIMATE OF REMAINING WORK:
-                    <span className=' '>{ " "}{currency(data.estimatedCost).format()}</span>
+                    <span className=' '>{ " "}{currency(form_fields.estimatedCost).format()}</span>
                     </p>
 
                     <div className='mb-6'>
                       <p className='mb-0'>
-                       <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].consultant_name}</span>
+                       <span className=''>{!vendors? '': vendors[0].company_name}</span>
                         ________________________________________________________________________________
                       </p>
                       <span>CONTRACTOR</span>
                       <span className='ml-[10rem]'>
-                        BY: <span className=''>{!masterInfo? '': masterInfo.awardeeInfo[0].company_representative_name}</span>
+                        BY: <span className=''>{!vendors? '': vendors[0].first_name + ' ' + vendors[0].last_name}</span>
                       </span>
                       <span className='ml-[10rem]'>DATE</span>
                     </div>
@@ -236,9 +243,9 @@ const CertificatePreview = () => {
                       </p>
                       <span>OWNER: </span>
                       <span className='ml-[15rem]'>
-                      BY: <span className=''>{!data ? '' : data.ownerRepName}</span>
+                      BY: <span className=''>{!form_fields ? '' : form_fields.ownerRepName}</span>
                       </span>
-                    <span className='ml-[10rem]'>DATE: <span className=''>{moment(data.signedDate).format("MMMM D, YYYY ")}</span>
+                    <span className='ml-[10rem]'>DATE: <span className=''>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span>
                     </span>
                     </div>
 
@@ -249,7 +256,7 @@ const CertificatePreview = () => {
                     </p>
 
                     <p>
-                      <span className=''>{!data ? '' : data.responsibility}</span>
+                      <span className=''>{!form_fields ? '' : form_fields.responsibility}</span>
                     </p>
                   </div>
                 </div>
@@ -258,7 +265,7 @@ const CertificatePreview = () => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prev())} />
+              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prev(2))} />
               <DashboardButton
                 hidden
                 name='CREATE DOCUMENT'

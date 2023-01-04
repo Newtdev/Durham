@@ -105,10 +105,15 @@ const AdvertisementBid = ({id}) => {
       
     }())
   }, [dispatch]);
+
+  const props = {
+    ...Formik,
+    isLoading
+  }
   return <ModalOverlay show={id === advertisement_bid && show}>
     {pages === 0 && <Bids {...Formik} />}
     {pages === 1 && <ConferenceBid {...Formik} />}
-    {pages === 2 && <CompanyInformation {...Formik} />}
+    {pages === 2 && <CompanyInformation {...props} />}
     {pages === 3 && <Preview />}
   </ModalOverlay>
 };
