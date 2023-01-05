@@ -4,9 +4,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import { prev, stepDefault } from "./reducer";
-import { selectForm } from "../Notice-of-intent-consultant/reducerSlice";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
-import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import moment from "moment";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
@@ -22,7 +20,8 @@ const CertificatePreview = () => {
 
   useFetchFilledFormQuery(formID)
   const content = useSelector(savedResponse);
-const { form_fields, project,vendors } = content;
+  const { project, vendors } = content;
+  const form_fields = useSelector(fields)
 
   const props = {
     component: downloadComponent ,

@@ -7,7 +7,7 @@ import { notice_of_award_consultant } from '../../../shared-component/slug';
 import { ModalOverlay } from '../../../ui';
 import { NoticeofAwardSchema } from '../../../yup';
 import { project_document_id } from '../../Dashboard/project-dashboard/ReducerSlice';
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import Form from './Forms';
 import Preview from './Preview';
 import { nextStep, page } from './reducer';
@@ -18,7 +18,7 @@ const NoticeOfAwardConsultant = ({id}) => {
   const formID = useSelector(project_document_id);
   
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-  const response = useFetchFilledFormQuery(formID);
+  // const response = useFetchFilledFormQuery(formID);
 
 
 
@@ -65,21 +65,23 @@ const NoticeOfAwardConsultant = ({id}) => {
     onSubmit: (values) => {
         
       if (pages === 1) {
+        dispatch(saveFormField(values))
+
         HandleSubmit(values)
       }
     }
 
   });
   
-    useEffect(() => {
-      if (!response?.data?.data) {
-        return;
-      }
-      formik.setFieldValue('amount',response?.data?.data?.form_fields.amount)
-      formik.setFieldValue('services',response?.data?.data?.form_fields.services)
-      formik.setFieldValue('email',response?.data?.data?.form_fields.email)
-      formik.setFieldValue('approval',response?.data?.data?.form_fields.approval)
-    },[response?.data?.data])
+    // useEffect(() => {
+    //   if (!response?.data?.data) {
+    //     return;
+    //   }
+    //   formik.setFieldValue('amount',response?.data?.data?.form_fields.amount)
+    //   formik.setFieldValue('services',response?.data?.data?.form_fields.services)
+    //   formik.setFieldValue('email',response?.data?.data?.form_fields.email)
+    //   formik.setFieldValue('approval',response?.data?.data?.form_fields.approval)
+    // },[response?.data?.data])
 
     return <ModalOverlay show={id === notice_of_award_consultant && show}>
                {pages === 1 && <Form {...formik} /> } 

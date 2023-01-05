@@ -2,13 +2,19 @@ import { DashboardButton } from "../../Dashboard/Components"
 import Success from "../../../assets/success.png";
 import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
-import { documentDefault, slugIdDefault } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { documentDefault, project_document_id, slugIdDefault } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useReactToPrint } from "react-to-print";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { savedResponse } from "../reducer";
 
 
 const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
-  const projectDetails = useSelector(project_details);
   const dispatch = useDispatch();
+
+  const formID = useSelector(project_document_id);
+    useFetchFilledFormQuery(formID)
+    const content = useSelector(savedResponse);
+  const { project } = content || '';
 
   const handlePrint = useReactToPrint({
     content: () => component.current,
@@ -30,7 +36,7 @@ const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
         <p className='mt-6 text-base text-gray-700'>
           Congratulations! You have successfully created the{" "}
             <span>{name}</span> for{" "}
-            <span>{!projectDetails? "":projectDetails?.project_name}</span>.
+            <span>{!project? "":project?.name}</span>.
         </p>
       </div>
 

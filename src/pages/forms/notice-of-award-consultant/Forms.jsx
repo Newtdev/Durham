@@ -205,11 +205,11 @@ const Form = (props) => {
                             {props.errors.deliveryDate && props.touched.deliveryDate && <Error message={props.errors.deliveryDate}/>}
                         </FormInputContainer>
 
-                        <FormInputContainer>
+                        {/* <FormInputContainer>
                             <FormSelect {...recipientCopy}>
                                 <option>Select recipients</option>
-                       </FormSelect>
-                        </FormInputContainer>
+                       </FormSelect> */}
+                        {/* </FormInputContainer> */}
                         <FormInputContainer>
                             <FormSelect {...recipientCopy}>
                                 <option>Select recipients</option>

@@ -7,7 +7,7 @@ import PreviewForm from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep,page } from "./lundsFormslice";
 import { lundsford } from "../../../shared-component/slug";
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import {  useFillProjectDocumentMutation } from "../../../features/services/api";
 import { toast } from "react-toastify";
@@ -60,6 +60,8 @@ const Lunsford = ({ id }) => {
 
     onSubmit: (values) => {
       if (pages === 1) {
+        Dispatch(saveFormField(values))
+
         HandleSubmit(values)
         
       }

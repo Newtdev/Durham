@@ -467,9 +467,9 @@ export function ProjectOverviewNav() {
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 h-20">
 			<div className="container flex flex-wrap items-center justify-start mx-auto">
-				<a href="/" className="w-40 mr-6">
+				<Link to="/dashboard" className="w-40 mr-6">
 					<img src={Logo} className="w-full" alt="Durham Logo" />
-				</a>
+				</Link>
 			</div>
 		</nav>
 	);

@@ -267,7 +267,7 @@ const ProjectDashboard = () => {
 			<Lechase id={documentsID} />
 			<TechService id={documentsID} />
 			<NoticeOfAwardContrator id={documentsID} />
-			<NoticeOfAwardContrator id={documentsID} />
+			{/* <NoticeOfAwardContrator id={documentsID} /> */}
 		</section>
 	);
 };

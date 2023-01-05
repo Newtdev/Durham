@@ -2,7 +2,7 @@ import { ButtonWhiteBG } from "../../../ui";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import DownLoadForm from "../Lundsford/Download";
 import { useRef } from "react";
 import moment from "moment";
@@ -22,8 +22,8 @@ const Preview = () => {
 
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
-    console.log(content)
-  const { form_fields, vendors, project, durham_profile } = content;
+    const { vendors, project, durham_profile } = content;
+    const form_fields = useSelector(fields)
     
     const props = {
         component: downloadComponent,
@@ -1301,7 +1301,7 @@ const Preview = () => {
 
                     {/* Buttons */}
                     <div className='flex justify-end gap-4 pr-6 pb-4'>
-                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(prevChoiceStep())} />
+                        <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={() => dispatch(prevChoiceStep(2))} />
                         <DashboardButton
                             hidden
                             name='CREATE DOCUMENT'

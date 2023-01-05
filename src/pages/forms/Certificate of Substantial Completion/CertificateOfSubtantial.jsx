@@ -2,7 +2,7 @@ import {useFormik} from 'formik'
 import { useSelector,useDispatch } from 'react-redux';
 import { ModalOverlay } from "../../../ui";
 import { saveDoc } from '../Notice-of-intent-consultant/reducerSlice';
-import { modal } from '../reducer';
+import { modal, saveFormField } from '../reducer';
 import { CertificateOfSubstantialSchema } from '../../../yup';
 import ProjectInformation from './forms/ProjectInformation';
 import SubstantialCompletionDetails from './forms/SubstantialCompletionDetails';
@@ -85,7 +85,8 @@ const CertificateOfSubstantial = ({id}) => {
           dispatch(next(2))
           
         } else if (pages === 2) {
-          
+          dispatch(saveFormField(values))
+
           HandleSubmit(values);
         }
         }

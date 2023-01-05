@@ -5,7 +5,7 @@ import { NoticeProceed } from "../../../yup";
 import NoticeForm from "./Forms";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducerSlice";
-import {  modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import { notice_to_proceed } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -59,6 +59,8 @@ const NoticeToProceed = ({id}) => {
         
         if (pages === 1) {
           HandleSubmit(values)
+          dispatch(saveFormField(values))
+
         }
        }
 

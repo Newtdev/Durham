@@ -137,7 +137,7 @@ const Forms = (props) => {
                   </div>
                           
                 </FormInputContainer>
-                <FormInputContainer name='When does the agreement go into effect?'>
+                <FormInputContainer name='When will the financial officer sign this document?'>
 
                   <SelectDate {...signedDate} />
                   {props.errors.signedDate && props.touched.signedDate && <Error message={props.errors.signedDate} />}

@@ -67,15 +67,18 @@ export function getTotals(documents) {
 		...notice,
 		...project_closeout,
 	].length;
-}
+};
+
+
+const Months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December']
 
 export function handleDate(dates) {
 	// let a = new Date().g
 	if (!dates) {
 		return new Date().getDate();
 	}
-	const date = dates.toString().split(" ");
-	return `${date[2]}/${date[1]}/${date[3]}`;
+	const date = dates.toString().split(" ");	
+	return `${Months[1-1]} ${date[2]}, ${date[3]}`;
 }
 
 export function handleLastName(arg) {

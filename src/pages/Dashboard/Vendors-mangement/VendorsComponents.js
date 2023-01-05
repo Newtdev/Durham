@@ -166,7 +166,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						</td>
 						<td className="py-4 px-4">{title}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{company_name}</td>
-						<td className="py-4 px-4 whitespace-wrap">{address}</td>
+						<td className="py-4 ">{address}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{president}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{secretary}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{industry}</td>

@@ -4,7 +4,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -20,7 +20,8 @@ const Preview = () => {
 
   useFetchFilledFormQuery(formID)
   const content = useSelector(savedResponse);
-const { form_fields, vendors, project, durham_profile } = content;
+  const { vendors, project, durham_profile } = content;
+  const form_fields = useSelector(fields)
     
     const props = {
         component: downloadComponent,

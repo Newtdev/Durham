@@ -6,7 +6,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
-import { openDownload, savedResponse, showDownload } from "../reducer";
+import { fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { prevChoiceStep,stepChoiceDefault } from "./reducer";
 
 const Preview = () => {
@@ -19,7 +19,8 @@ const Preview = () => {
 
   useFetchFilledFormQuery(formID)
   const content = useSelector(savedResponse);
-const { form_fields, project, } = content;
+  const { project } = content;
+  const form_fields = useSelector(fields)
 
 
 

@@ -98,7 +98,7 @@ const PreviewForm = ({value }) => {
       </div>
       <div className='mt-3'>
         <p className='text-justify'>
-          I, {!vendors? "" : vendors[0].first_name + ' ' + vendors[0].last_name} , {!vendors? "" :vendors[0].title}
+                  I, {!vendors ? "" : vendors[0].first_name} , {!vendors ? "" : vendors[0].title}
         
           { ' '} of {!vendors? "" :vendors[0].company_name} hereby certify that I have conducted sexual
           offender registry checks required under this Agreement for
@@ -180,7 +180,7 @@ const PreviewForm = ({value }) => {
 
       <div className='mt-6 mb-4 pr-6'>
         <div className='flex gap-8 '>
-            <p className="mr-4">{!vendors? "" :vendors[0].first_name + ' ' + vendors[0].last_name}</p>
+                  <p className="mr-4">{!vendors ? "" : vendors[0].first_name}</p>
             
           <p>
             _________________________________(signature)

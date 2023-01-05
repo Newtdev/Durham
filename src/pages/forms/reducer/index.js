@@ -5,7 +5,8 @@ const ModalSlice = createSlice({
 	initialState: {
 		isModalActive: false,
 		isDownloadModal: false,
-		savedFormResponse: null
+		savedFormResponse: null,
+		savedFieldResponse: null
 	},
 	reducers: {
 		showModal: (state) => {
@@ -22,6 +23,9 @@ const ModalSlice = createSlice({
 		},
 		getFormResponse: (state,action) => {
 			state.savedFormResponse = action.payload
+		},
+		saveFormField: (state,action) => {
+			state.savedFieldResponse = action.payload
 		}
 	},
 });
@@ -35,9 +39,11 @@ export const { showModal } = ModalSlice.actions;
 export const { showDownload } = ModalSlice.actions;
 export const { closeDownload } = ModalSlice.actions;
 export const { getFormResponse } = ModalSlice.actions;
+export const { saveFormField } = ModalSlice.actions;
 
 // SELECT THE TOKEN AND USER
 
 export const modal = (state) => state.ModalReducer.isModalActive;
 export const openDownload = (state) => state.ModalReducer.isDownloadModal;
 export const savedResponse = (state) => state.ModalReducer.savedFormResponse;
+export const fields = (state) => state.ModalReducer.savedFieldResponse;

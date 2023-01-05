@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import Logo  from "../../../assets/formlogo.png";
 import { prevStep, stepDefault } from "./reducerSlice";
-import { showDownload, openDownload, closeDownload, savedResponse } from '../reducer';
+import { showDownload, openDownload, closeDownload, savedResponse, fields } from '../reducer';
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import DownLoadForm from "../Lundsford/Download";
@@ -17,8 +17,9 @@ const Preview = () => {
   const formID = useSelector(project_document_id);
 
     useFetchFilledFormQuery(formID)
-    const content = useSelector(savedResponse);
-    const { form_fields, vendors, durham_profile, project } = content;
+  const content = useSelector(savedResponse);
+  const form_fields = useSelector(fields)
+  const { vendors, durham_profile, project } = content;
   
   const props = {
     component: downloadComponent ,

@@ -6,7 +6,7 @@ import DownLoadForm from "../Lundsford/Download";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
-import { openDownload, savedResponse, showDownload } from "../reducer";
+import { fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { selectForm } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment/moment";
 import { prev, stepDefault } from "./reducer";
@@ -17,15 +17,15 @@ import { useFetchFilledFormQuery } from "../../../features/services/api";
 const ProjectCloseOutPreview= () => {
 
   const dispatch = useDispatch();
-  const data = useSelector(selectForm);
   const show = useSelector(openDownload)
   const downloadComponent = useRef();
+  const form_fields = useSelector(fields)
 
 
   const formID = useSelector(project_document_id)
   useFetchFilledFormQuery(formID)
    const content = useSelector(savedResponse);
-   const { form_fields, vendors,project } = content;
+  const { vendors, project } = content;
 
   const props = {
     component: downloadComponent ,

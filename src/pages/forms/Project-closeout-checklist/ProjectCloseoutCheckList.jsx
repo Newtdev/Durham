@@ -1,7 +1,7 @@
 import {useFormik} from 'formik'
 import { useSelector,useDispatch } from 'react-redux';
 import { ModalOverlay } from "../../../ui";
-import { modal } from '../reducer';
+import { modal, saveFormField } from '../reducer';
 import GeneralInformation from './forms/GeneralInfo';
 import { ProjectCloseOutSchema } from '../../../yup';
 import CheckList from './forms/CheckList';
@@ -113,7 +113,8 @@ const ProjectCloseoutCheckList = ({id}) => {
           dispatch(next(3))
           
         } else if (pages === 3) {
-          
+          dispatch(saveFormField(values))
+
           HandleSubmit(values)
         }
       }

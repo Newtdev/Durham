@@ -1,15 +1,15 @@
 import currency from "currency.js";
-import moment from "moment";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { handleDate } from "../../../shared-component";
 import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
 // import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
 
-import { openDownload, savedResponse, showDownload } from "../reducer";
+import { fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { techPrevStep, techStepDefault } from "./reducer";
 
 
@@ -20,16 +20,17 @@ const TechPreview = () => {
   const downloadComponent = useRef();
   const formID = useSelector(project_document_id)
   useFetchFilledFormQuery(formID)
-   const content = useSelector(savedResponse);
-   const { form_fields, vendors, durham_profile } = content;
+  const content = useSelector(savedResponse);
+  const form_fields = useSelector(fields)
+  const { vendors, durham_profile } = content;
 
 
 
   const props = {
       component: downloadComponent,
-      name: 'LeChase ESSER Contract Template',
+    name: 'Technology Service Agreement',
       show: !show ? 'hidden' : 'block',
-      stepDefault:techStepDefault
+    stepDefault: techStepDefault,
       // close: closeDownload
 
 
@@ -40,7 +41,7 @@ const TechPreview = () => {
            <DownLoadForm {...props} />
         <div>
           {/* Modal content */}
-          <div className={`${!show ?"block": 'block'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>            {/* Header */}
+        <div className={`${!show ? "block" : 'hidden'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>            {/* Header */}
             <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3 '>
               <div className='ml-6'>
                 <h3 className='text-lg font-bold text-gray-900'>
@@ -81,8 +82,10 @@ const TechPreview = () => {
                   <span className='ml-10'>
                     THIS TECHNOLOGY SERVICES AGREEMENT
                   </span>{" "}
-                  (the "Agreement") effective{" "}
-                  <span className=''> {moment(form_fields.creationDate).format("MMMM D, YYYY ")}</span>
+                (the "Agreement") effective{" "}
+                {/* {console.log(form_fields)} */}
+                {/* <span className=''> {moment(form_fields.creationDate).format("MMMM D, YYYY ")}</span> */}
+                <span className=''> {handleDate(form_fields.creationDate)}{" "}</span>
                 is made and
                   entered into by and between the Durham Public Schools Board of
                   Education at 511 Cleveland St., Durham, NC 27701 (“DPS BOE” or
@@ -531,10 +534,10 @@ const TechPreview = () => {
                         <span className='ml-1'>
                           {" "}
                           This Agreement shall be for the time period between{" "}
-                         <span className=''>{moment(form_fields.startDate
-).format("MMMM D, YYYY ")}</span> and{" "}
-                          <span className=''>{moment(form_fields.endDate
-).format("MMMM D, YYYY ")}</span>  
+                        <span className=''>{handleDate(form_fields.startDate
+                        )}</span> and{" "}
+                        <span className=''>{handleDate(form_fields.endDate
+                        )}{" "}</span>
 unless
                           terminated earlier as provided herein. The parties may
                           renew this Agreement only by separate written
@@ -1426,8 +1429,8 @@ unless
                   <p className='mb-5'>
                     <span>By:</span>
                     <span className='ml-6'>
-                    
-                    {!durham_profile ? '' : durham_profile.chair_board_education}
+                    __________________________________
+                    {/* {!durham_profile ? '' : durham_profile.chair_board_education} */}
                     </span>
                   </p>
                   <p className='mb-6'>
@@ -1441,19 +1444,19 @@ unless
                   <p className='mb-5'>
                     <span>By:</span>
                     <span className='ml-6'>
-                     
-                      <span className=''>{!vendors ? '' : vendors[0].president.toUpperCase()}</span>
-                      ____________________(Seal)
+
+                    ____________________(Seal)
                     </span>
+                  <p className='ml-14'>{!vendors ? '' : vendors[0].president.toUpperCase()}</p>
                   </p>
 
                   <p className='mb-10'>
                     <span>Attest:</span>
                     <span className='ml-2'>
-                     
-                      <span className=''>{!vendors ? '' : vendors[0].secretary.toUpperCase()}</span>
-                      ____________________(Seal)
+
+                    ____________________(Seal)
                     </span>
+                  <p className='ml-14'>{!vendors ? '' : vendors[0].secretary.toUpperCase()}</p>
                   </p>
 
                   <div className='mb-4'>
@@ -1469,7 +1472,7 @@ unless
                        <span className='inline-block mr-40'>{!durham_profile ? '' : durham_profile.chief_finance_officer 
  }</span> 
                       
-                       <span className=''>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span> 
+                    <span className=''>{handleDate(form_fields.signedDate)}</span> 
                     </p>
                     <p className='mt-0'>
                       <span>Finance Officer</span>
@@ -1482,7 +1485,7 @@ unless
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={()=> dispatch(techPrevStep())} />
+            <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={() => dispatch(techPrevStep())} />
             <DashboardButton
               onClick={()=> dispatch(showDownload())}
               hidden

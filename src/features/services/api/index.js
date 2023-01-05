@@ -207,7 +207,7 @@ export const DurhamsApi = createApi({
 		fetchVendors: builder.query({
 			query: (term="") => {
 				return {
-					url: `vendors?search=${term}&limit=10`,
+					url: `vendors?search=${term}`,
 					method: "GET",
 				};
 			},
@@ -408,18 +408,18 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		fillProjectDocument: builder.mutation({
-			query: (info) => {
-				console.log(info)
+			query: (formInfo) => {
+				console.log(formInfo)
 				return {
 					url: "projects/fill-form",
 					headers: {
 						Accept: "application/json",
 					},
 					method: "POST",
-					body: info,
+					body: formInfo,
 				};
 			},
-			invalidatesTags: ["projects", 'dashboard'],
+			// invalidatesTags: ["projects", 'dashboard'],
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -438,7 +438,7 @@ export const DurhamsApi = createApi({
 			async onQueryStarted(id,{dispatch, queryFulfilled}) {
 			
 				try {
-					const {data} = await queryFulfilled;
+					const { data } = await queryFulfilled;
 					dispatch(getFormResponse(data.data))
 				} catch (error) {
 					// throw error

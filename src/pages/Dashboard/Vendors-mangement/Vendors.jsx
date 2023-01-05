@@ -86,7 +86,7 @@ const HandleRequest = async () => {
         <DashboardNav />
         
       </article>
-      <main className='pt-6 bg-[#fafafa] h-full '>
+      <main className='pt-6 bg-[#fafafa] h-full  overflow-y-auto'>
         <div className='container mx-auto px-4 lg:px-24 '>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
             <PageHeader name='Vendors' />
@@ -102,7 +102,7 @@ const HandleRequest = async () => {
             
           </div>
           {/* <!-- Table --> */}
-          <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 '>
+          <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100  mb-24'>
             <table className='w-full text-sm text-left text-gray-900'>
               <TableHeader dataArray={VendorsHeader} />
               <VendorTableBody dataArray={VendorsContent} onDelete={onDelete} onEdit={onEdit} />

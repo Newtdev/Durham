@@ -7,7 +7,7 @@ import { techServices } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { TechServiceSchema } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import Forms from "./Forms";
 import { page, techNextStep } from "./reducer";
 import TechPreview from "./TechPreview";
@@ -18,7 +18,8 @@ const TechService = ({id}) => {
   const show = useSelector(modal);
   const formID = useSelector(project_document_id)
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-  const response = useFetchFilledFormQuery(formID);
+  // const response = useFetchFilledFormQuery(formID);
+  // console.log(response)
 
  
   
@@ -60,17 +61,18 @@ const TechService = ({id}) => {
     onSubmit: (values) => {
        
       if (pages === 1) {
+        dispatch(saveFormField(values))
         HandleFormSubmit(values);      
         }
       }
   });
 
-  useEffect(() => {
-    if (!response?.data?.data) {
-      return;
-    }
-    Formik.setFieldValue('amount', response?.data?.data?.form_fields.amount)
-  }, [response?.data?.data]);
+  // useEffect(() => {
+  //   if (!response?.data?.data) {
+  //     return;
+  //   }
+  //   Formik.setFieldValue('amount', response?.data?.data?.form_fields.amount)
+  // }, [response?.data?.data]);
 
   const props = {
     ...Formik,

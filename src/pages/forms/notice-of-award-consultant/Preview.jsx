@@ -3,7 +3,7 @@ import { Close, DashboardButton } from "../../Dashboard/Components";
 import Logo  from "../../../assets/formlogo.png";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { useRef } from "react";
 // import { prevStep, selectForm, stepDefault } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment";
@@ -17,13 +17,16 @@ import { prevStep, stepDefault } from "./reducer";
 const Preview = () => {
 
     const dispatch = useDispatch();
-  const formID = useSelector(project_document_id);
 
     const show = useSelector(openDownload)
     const downloadComponent = useRef();
+    const formID = useSelector(project_document_id);
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
-    const { form_fields, vendors, durham_profile, project } = content;
+    const { vendors, durham_profile, project } = content;
+    const form_fields = useSelector(fields);
+    console.log(content)
+    console.log(form_fields)
    
 
     const props = {

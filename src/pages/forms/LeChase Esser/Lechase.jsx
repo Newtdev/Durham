@@ -5,7 +5,7 @@ import { EESSERContractSchema } from "../../../yup";
 import Preview from "./Preview";
 import Compensation from "./forms/Compensation";
 import ContractDetails from "./forms/ContractDetails";
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import SexualOffender from "./forms/SexualOffender";
 import { leChase } from "../../../shared-component/slug";
 import { choiceStep, nextChoiceStep } from "./reducer";
@@ -73,7 +73,8 @@ const LeChase = ({id}) => {
     onSubmit: (values) => {
     
       if (pages ===2) {
-        
+        dispatch(saveFormField(values))
+
         HandleSubmit(values)
       } else if (pages === 1) {
         

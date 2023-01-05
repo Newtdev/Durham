@@ -6,7 +6,7 @@ import {  notice_of_intent_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { NoticeConsultant } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import NoticeForm from "./Forms";
 import PreviewElement from "./PreviewElement";
 import { saveDoc, nextStep, page } from "./reducerSlice";
@@ -59,7 +59,8 @@ const NoticeOfIntentConsultant = ({id}) => {
     onSubmit: (values) => {
         
       if (pages === 1) {
-          
+        dispatch(saveFormField(values))
+
         HandleSubmit(values)
       }
     }

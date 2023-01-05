@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
 import Bids from "./forms/Bids";
-import { modal } from "../reducer";
+import { modal, saveFormField } from "../reducer";
 import { choiceStep, getStates, nextChoiceStep, } from "./reducer";
 import { AdvertisementBidSchema } from "../../../yup";
 import ConferenceBid from '../Advertisement-for-bid-template/forms/ConferenceBid'
@@ -89,7 +89,8 @@ const AdvertisementBid = ({id}) => {
         dispatch(nextChoiceStep(2))
         
       } else if (pages === 2) {
-        
+        dispatch(saveFormField(values))
+
         HandleSubmit(values)
       }
 

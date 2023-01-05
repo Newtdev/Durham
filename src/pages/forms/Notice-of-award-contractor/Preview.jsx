@@ -9,7 +9,7 @@ import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
 
-import { closeDownload, closeModal, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, closeModal, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { prevStep } from "./reducer";
 
 const Preview = () => {
@@ -23,7 +23,8 @@ const Preview = () => {
     const downloadComponent = useRef();
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
-    const { form_fields, vendors, durham_profile,project } = content;
+    const form_fields = useSelector(fields)
+    const { vendors, project } = content;
 
     const props = {
         component: downloadComponent ,

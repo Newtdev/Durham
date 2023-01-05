@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { ChevronDown } from "../../../ui";
-import { addDocuments } from "./projectSlice";
+// import { addDocuments } from "./projectSlice";
 
 export const AccordionSelector = ({ data, objName, getData }) => {
-	const [checked, setChecked] = useState({});
+	// const [checked, setChecked] = useState({});
 	const [checkedID, setID] = useState({});
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	// const newClass =
 	// 	"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
 

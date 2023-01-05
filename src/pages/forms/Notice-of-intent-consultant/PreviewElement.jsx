@@ -7,7 +7,7 @@ import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { useRef, useState } from "react";
 import moment from "moment";
-import { closeDownload, savedResponse } from "../reducer";
+import { closeDownload, fields, savedResponse } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 
@@ -17,10 +17,10 @@ const PreviewElement = () => {
   const [showModal, setShowModal] = useState(false);
 
   const formID = useSelector(project_document_id);
-
+  const form_fields = useSelector(fields)
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
-  const { form_fields, vendors, durham_profile, project } = content;
+  const { vendors, durham_profile, project } = content;
 
   const props = {
   component: downloadComponent ,

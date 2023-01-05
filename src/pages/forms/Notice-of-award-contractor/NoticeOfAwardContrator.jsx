@@ -4,7 +4,7 @@ import { ModalOverlay } from "../../../ui";
 import {NoticeIntentAward } from "../../../yup";
 import Preview from "./Preview";
 import Form from "./Forms";
-import { modal, showModal } from "../reducer";
+import { modal, saveFormField, showModal } from "../reducer";
 import { useEffect } from "react";
 import { notice_of_award_contractor } from "../../../shared-component/slug";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -19,7 +19,8 @@ import { nextStep, page } from "./reducer";
   const show = useSelector(modal)
   const formID = useSelector(project_document_id);
     const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-  const response = useFetchFilledFormQuery(formID);
+      // const response = useFetchFilledFormQuery(formID);
+      // console.log(response)
 
   
     const HandleFormSubmit = async (values) => {
@@ -61,6 +62,8 @@ import { nextStep, page } from "./reducer";
       onSubmit: (values) => {
         
         if (pages === 1) {
+          dispatch(saveFormField(values))
+
           HandleFormSubmit(values)
 
         }
@@ -68,16 +71,16 @@ import { nextStep, page } from "./reducer";
 
     });
       
-    useEffect(() => {
-      if (!response?.data?.data) {
-        return;
-      }
-      formik.setFieldValue('recipientCopy',response?.data?.data?.form_fields.recipientCopy)
-      formik.setFieldValue('contractorContact',response?.data?.data?.form_fields.contractorContact)
-      formik.setFieldValue('email',response?.data?.data?.form_fields.email)
-      formik.setFieldValue('sendersName',response?.data?.data?.form_fields.sendersName)
-      formik.setFieldValue('phone',response?.data?.data?.form_fields.phone)
-    }, [response?.data?.data])
+    // useEffect(() => {
+    //   if (!response?.data?.data) {
+    //     return;
+    //   }
+    //   formik.setFieldValue('recipientCopy',response?.data?.data?.form_fields.recipientCopy)
+    //   formik.setFieldValue('contractorContact',response?.data?.data?.form_fields.contractorContact)
+    //   formik.setFieldValue('email',response?.data?.data?.form_fields.email)
+    //   formik.setFieldValue('sendersName',response?.data?.data?.form_fields.sendersName)
+    //   formik.setFieldValue('phone',response?.data?.data?.form_fields.phone)
+    // }, [response?.data?.data])
       
   return <ModalOverlay show={id === notice_of_award_contractor && show}>
                {pages === 1 && <Form {...formik} /> } 
