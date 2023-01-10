@@ -174,6 +174,19 @@ export function ButtonWhiteBG(props) {
 		</button>
 	);
 }
+export function SubmitButton(props) {
+	const { name, onClick, disabled } = props;
+	// const cursor = disablebtn ? "cursor-not-allowed" : "cursor-pointer";
+	return (
+		<button
+			// onClick={onClick}
+			disabled={disabled ? true : false}
+			type="submit"
+			className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">
+			{name}
+		</button>
+	);
+}
 
 export function ChevronDown() {
 	return (

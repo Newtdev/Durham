@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useDeleteVendorMutation, useEditVendorMutation, useFetchVendorsQuery } from "../../../features/services/api";
-import { ModalOverlay } from "../../../ui";
-import { DashboardButton, DashboardNav, PageHeader, Pagination, Search, Sort, TableHeader } from "../Components";
+import { FullPageLoader, ModalOverlay } from "../../../ui";
+import { DashboardButton, DashboardNav, PageHeader, Paginations, Search, TableHeader } from "../Components";
 import { EditVendorModal } from './VendorsComponents';
-import { AddVendor, DeleteVendorModal, VendorsContent, VendorsHeader, VendorTableBody } from "./VendorsComponents";
-import { setSearchVendorQuery } from "./vendorSlice";
+import { AddVendor, DeleteVendorModal, VendorsHeader, VendorTableBody } from "./VendorsComponents";
+import { setSearchVendorQuery, vendorQuery } from "./vendorSlice";
 
 const Vendors = () => {
   const [showVendorModal, setShowVendorModal] = useState(false);
@@ -15,7 +15,11 @@ const Vendors = () => {
   const [deleteVendor, { isLoading }] = useDeleteVendorMutation();
   const [editVendor, result] = useEditVendorMutation();
   const dispatch = useDispatch()
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  console.log(page)
+  const queryValue = useSelector(vendorQuery)
+  const apiResponse = useFetchVendorsQuery({ queryValue, page });
 
 /***********HANDLE DELETE REQUEST AND RESPONSE ********************** */
 const HandleRequest = async () => {
@@ -75,18 +79,28 @@ const HandleRequest = async () => {
 
   const searchProps = {
     setQuery: (value) => setQuery(value),
-    submit: () => dispatch(setSearchVendorQuery(query))
+    submit: (e) => {
+      e.preventDefault();
+      dispatch(setSearchVendorQuery(query))
+    }
   };
-  
+
+  const paginationProps = {
+    data: apiResponse?.currentData,
+    page: page,
+    getPage: (value) => setPage(value)
+  }
+
 
   return (
-    <section className='h-screen overflow-y-hidden '>
+    <section className='h-full '>
+      {!apiResponse?.data && <FullPageLoader />}
       <article>
         {/* <!-- Navbar --> */}
         <DashboardNav />
         
       </article>
-      <main className='pt-6 bg-[#fafafa] h-full  overflow-y-auto'>
+      <main className='pt-6 bg-[#fafafa] min-h-screen overflow-y-auto'>
         <div className='container mx-auto px-4 lg:px-24 '>
           <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
             <PageHeader name='Vendors' />
@@ -102,14 +116,14 @@ const HandleRequest = async () => {
             
           </div>
           {/* <!-- Table --> */}
-          <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100  mb-24'>
+          <div className='overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 mb-6 h-full'>
             <table className='w-full text-sm text-left text-gray-900'>
               <TableHeader dataArray={VendorsHeader} />
-              <VendorTableBody dataArray={VendorsContent} onDelete={onDelete} onEdit={onEdit} />
+              <VendorTableBody dataArray={apiResponse?.currentData?.data?.data} onDelete={onDelete} onEdit={onEdit} />
             </table>
           </div>
           {/* PAGINATION */}
-          {/* <Pagination /> */}
+          <Paginations {...paginationProps} />
           
           
         </div>

@@ -1,14 +1,13 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import {
 	useAddVendorMutation,
-	useFetchVendorsQuery,
 } from "../../../features/services/api";
-import { ButtonRedBG, ButtonWhiteBG, FullPageLoader } from "../../../ui";
+import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
 import {
 	Close,
@@ -16,9 +15,10 @@ import {
 	DashboardInput,
 	SelectContainer,
 } from "../Components";
-import { save_awardee, vendorQuery } from "./vendorSlice";
+import { save_awardee } from "./vendorSlice";
 
 export const VendorsHeader = [
+	"Vendor ID",
 	"First name",
 	"Last name",
 	"Title",
@@ -30,119 +30,16 @@ export const VendorsHeader = [
 	"",
 ];
 
-export const VendorsContent = [
-	{
-		id: 1,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Engineering",
-	},
-	{
-		id: 2,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 3,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 4,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 5,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 6,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 7,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 8,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-	{
-		id: 9,
-		first_name: "John",
-		last_name: "Doe",
-		title: "Manager",
-		company_name: "Big Kahuna Burger Ltd.",
-		address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-		president: "Marvin McKinney",
-		secretary: "Esther Howard",
-		industry: "Design Consultant",
-	},
-];
+
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-	const query = useSelector(vendorQuery)
-	const apiResponse = useFetchVendorsQuery(query);
 	// console.log(apiResponse.data.data.data)
 
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
-			{!apiResponse?.data && <FullPageLoader />}
-			{/* {console.log(apiResponse?.data?.data)} */}
+			
 
-			{apiResponse?.data?.data?.data?.map((vendor) => {
+			{dataArray?.map((vendor,index) => {
 				const {
 					id,
 					first_name,
@@ -153,11 +50,15 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					president,
 					secretary,
 					industry,
+					vendor_id
 				} = vendor;
-				const strip = id % 2 !== 0 ? "bg-white" : "bg-gray-50";
+				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 
 				return (
 					<tr key={id} className={`border-b ${strip}`}>
+						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+							{!vendor_id? 'none':vendor_id}
+						</td>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{first_name}
 						</td>
@@ -296,6 +197,15 @@ const VendorInformationComponents = ({
 			error: errors.industry,
 			touched: touched.industry,
 		},
+		vendor_id: {
+			name: "Vendor ID",
+			id: "vendor_id",
+			placeholder: "Vendor ID",
+			value: values.vendor_id,
+			onChange: handleChange,
+			error: errors.vendor_id,
+			touched: touched.vendor_id,
+		},
 	};
 
 	const HandleClose = () => {
@@ -343,6 +253,9 @@ const VendorInformationComponents = ({
 							</div>
 							<div>
 								<DashboardInput {...props.company_name} />
+							</div>
+							<div>
+								<DashboardInput {...props.vendor_id} />
 							</div>
 							<div>
 								<DashboardInput {...props.address} />
@@ -438,6 +351,7 @@ export function AddVendor({ close }) {
 			president: "",
 			secretary: "",
 			industry: "",
+			vendor_id: ''
 		},
 		onSubmit: (values) => {
 			dispatch(save_awardee(values));

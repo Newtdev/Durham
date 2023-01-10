@@ -6,22 +6,19 @@ import SortIcon from "../../../assets/sortIcon.svg";
 import SearchIcon from "../../../assets/searchIcon.svg";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
+import Pagination from '@mui/material/Pagination';
 
 import { Link } from "react-router-dom";
 import {
-	ButtonWhiteBG,
 	Error,
-	FullPageLoader,
 	Label,
 	Select,
+	SubmitButton,
 } from "../../../ui";
 import { Spinner } from "../../../assets";
 import {useState } from "react";
 import {
-	useFetchAllProjectManagerQuery,
 } from "../../../features/services/api";
-import { useDispatch, useSelector } from "react-redux";
-import { searchProjectManager } from "../Product-manager-management/projectManagerSlice";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -189,10 +186,10 @@ export function Sort() {
 
 /**********SEARCH COMPONENTS*************** */
 
-export function Search({submit,setQuery}) {
+export function Search({ submit, setQuery }) {
 
 	return (
-		<form className="flex flex-row justify-center items-center gap-4">
+		<form className="flex flex-row justify-center items-center gap-4" onSubmit={submit}>
 			<div>
 				<label for="table-search" className="sr-only">
 					Search
@@ -202,8 +199,7 @@ export function Search({submit,setQuery}) {
 						<img src={SearchIcon} alt="search" />
 					</div>
 					<input
-						onChange={(e) =>setQuery(e.target.value)}
-						
+						onChange={(e) => setQuery(e.target.value)}
 						type="text"
 						id="table-search"
 						className="block p-2 pl-8 w-72 text-sm text-gray-900 bg-white rounded border border-gray-400 focus:outline-[#3B6979]"
@@ -211,7 +207,8 @@ export function Search({submit,setQuery}) {
 					/>
 				</div>
 			</div>
-			<ButtonWhiteBG name="search" onClick={submit} />
+			<SubmitButton name="search"/>
+			{/* <ButtonWhiteBG name="search" onClick={submit} /> */}
 		</form>
 	);
 }
@@ -237,25 +234,24 @@ export function TableHeader({ dataArray }) {
 /*************DASHBOARD HEADER TABLE*********************/
 
 export function TableBody({ dataArray, onDelete, onEdit }) {
-	const query = useSelector(searchProjectManager);
-	const response = useFetchAllProjectManagerQuery(query);
+	
 
 	return (
 		<tbody className="text-xs bg-white font-medium">
-			{!response?.data && <FullPageLoader />}
-			{response?.data?.data?.data?.map((manager, index) => {
+			
+			{dataArray?.data?.map((manager, index) => {
 				const { id, last_name, first_name, email, phone } = manager;
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 				return (
 					<tr key={id} className={`${strip} border-b`}>
 						<th
 							scope="row"
-							className="py-4 px-4 font-normal text-gray-900 whitespace-nowrap">
+							className="py-4 px-4 font-normal capitalize text-gray-900 whitespace-nowrap">
 							{first_name}
 						</th>
 						<th
 							scope="row"
-							className="py-4 px-4 font-normal text-gray-900 whitespace-nowrap">
+							className="py-4 px-4 font-normal capitalize text-gray-900 whitespace-nowrap">
 							{last_name}
 						</th>
 						<td className="py-4 px-4">{email}</td>
@@ -279,100 +275,22 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 
 /*************PAGINATION***************/
 
-export function Pagination() {
+export function Paginations(props) {
+	const { data, page, getPage } = props;
 	
-	return (
+	const handleChange = (e,value) => {
+    getPage(value);
+  };
+	if (data?.data?.last_page  === 1 || !data?.data?.last_page) {
+		return null;
+	}
+	
+return (
 		<nav
-			className="mt-1 flex justify-center items-center pt-4"
+			className="mb-4 flex justify-center items-center pt-4"
 			aria-label="Table navigation">
-			<ul className="inline-flex items-center -space-x-px gap-3">
-				<li>
-					<a
-						href="/"
-						className="block py-2 px-3 ml-0 leading-tight text-[#3B6979] hover:text-gray-500">
-						<span className="sr-only">Previous</span>
-						<svg
-							className="w-5 h-5"
-							aria-hidden="true"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								fill-rule="evenodd"
-								d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-								clip-rule="evenodd"></path>
-						</svg>
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center bg-[#628794] rounded-full">
-					<a
-						href="/"
-						aria-current="page"
-						className=" leading-tight text-white font-bold">
-						1
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						2
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						3
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						4
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						5
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						...
-					</a>
-				</li>
-				<li className="w-8 h-8 flex items-center justify-center">
-					<a
-						href="/"
-						className="leading-tight text-gray-900  hover:text-gray-500 ">
-						30
-					</a>
-				</li>
-				<li>
-					<a
-						href="/"
-						className="block py-2 px-3 leading-tight text-[#3B6979] hover:text-gray-500">
-						<span className="sr-only">Next</span>
-						<svg
-							className="w-5 h-5"
-							aria-hidden="true"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								fill-rule="evenodd"
-								d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-								clip-rule="evenodd"></path>
-						</svg>
-					</a>
-				</li>
-			</ul>
+		<Pagination count={data?.data?.last_page} page={page} onChange={handleChange} color='primary' />
+
 		</nav>
 	);
 }

@@ -15,9 +15,8 @@ const dispatch = useDispatch()
         
   
         {/* awardee Input */}
-        <FieldArray name='awardeeInfo'
+        <FieldArray name='project_vendors'
           render={(arrayHelpers) => (
-            
             <>
               <div className='mb-6'>
                 <h3 className='font-semibold text-gray-900 text-[32px]'>
@@ -63,14 +62,15 @@ const dispatch = useDispatch()
               <div className=''>
                 <button
                   onClick={() => arrayHelpers.push({
-                    awardee: "",
-                    design_consultant: "",
-                    consultant_name: "",
-                    consultant_address: "",
-                    corporate_president: "",
-                    corporate_secretary: "",
-                    company_representative_name: "",
-                    company_representative_title: ""
+                    industry: "",
+                    // awardee: "",
+                    company_name: "",
+                    address: "",
+                    president: "",
+                    secretary: "",
+                    first_name: "",
+                    last_name: "",
+                    title: "",
                   })}
                   className={`text-white text-sm font-semibold mt-8 w-[268px] hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center rounded h-8`}
                   type='button'

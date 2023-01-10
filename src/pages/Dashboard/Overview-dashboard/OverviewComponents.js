@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -9,7 +9,6 @@ import {
 } from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
 import { saveID, saveVendorID } from "../add-project/reducer";
-import { projectData } from "./editReducer";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
@@ -113,7 +112,7 @@ export function OverviewTextarea(props) {
 
 
 export function AwardeeInfo(props) {
-	const response = useFetchVendorsQuery();
+	const response = useFetchVendorsQuery({queryValue:''});
 	const dispatch = useDispatch()
 	// const details = useSelector(projectData);
 
@@ -134,6 +133,7 @@ export function AwardeeInfo(props) {
 			return;
 		}
 		return response?.data?.data?.data.filter((cur) => {
+			
 			return cur.industry === values.project_vendors[index].industry;
 		});
 	}
@@ -197,7 +197,9 @@ export function AwardeeInfo(props) {
 				if (values.project_vendors[index].company_name === cur.company_name) {
 					dispatch(saveVendorID(cur.id))
 					props.data.values.project_vendors[index].first_name =
-					cur?.first_name + " " + cur?.last_name;
+						cur?.first_name
+					props.data.values.project_vendors[index].last_name =
+						cur?.last_name
 				props.data.values.project_vendors[index].title =
 					cur?.title;
 				props.data.values.project_vendors[index].company_name =
@@ -208,20 +210,16 @@ export function AwardeeInfo(props) {
 				props.data.values.project_vendors[index].secretary =
 						cur?.secretary;
 				}
-				// else {
+			// else {
 
-				// 	props.data.values.project_vendors[index].first_name =
-				// 		cur?.first_name + " " + cur?.last_name;
-				// 	props.data.values.project_vendors[index].title =
-				// 		cur?.title;
-				// 	props.data.values.project_vendors[index].company_name =
-				// 		cur?.company_name;
-				// 	props.data.values.project_vendors[index].address = cur?.address;
-				// 	props.data.values.project_vendors[index].president =
-				// 		cur?.president;
-				// 	props.data.values.project_vendors[index].secretary =
-				// 			cur?.secretary;
-				// 		}
+			// 		props.data.values.project_vendors[index].first_name = '';
+			// 		props.data.values.project_vendors[index].last_name = '';
+			// 		props.data.values.project_vendors[index].title = '';
+			// 		props.data.values.project_vendors[index].company_name = '';
+			// 		props.data.values.project_vendors[index].address = '';
+			// 		props.data.values.project_vendors[index].president = '';
+			// 		props.data.values.project_vendors[index].secretary = '';
+			// 		}
 					});
 			
 		}
@@ -283,13 +281,22 @@ export function CompanyRep({ data }) {
 	const { values, handleChange, errors, touched, index } = data;
 
 	const company_representative_name = {
-		name: "Name",
+		name: "First Name",
 		id: `project_vendors.${index}.first_name`,
-		placeholder: "Enter Representative Name",
+		placeholder: "Enter Representative First Name",
 		onChange: handleChange,
 		value: values.project_vendors[index].first_name,
 		error: errors.first_name,
 		touched: touched.first_name,
+	};
+	const company_representative_last_name = {
+		name: "Last Name",
+		id: `project_vendors.${index}.last_name`,
+		placeholder: "Enter Representative Last Name",
+		onChange: handleChange,
+		value: values.project_vendors[index].last_name,
+		error: errors.last_name,
+		touched: touched.last_name,
 	};
 	const company_representative_title = {
 		name: "Title",
@@ -308,6 +315,9 @@ export function CompanyRep({ data }) {
 					<div className="w-full overflow-auto">
 						<div>
 							<OverviewInput {...company_representative_name} />
+						</div>
+						<div>
+							<OverviewInput {...company_representative_last_name} />
 						</div>
 						<div>
 							<OverviewInput {...company_representative_title} />

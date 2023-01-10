@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { addNewProject } from "../../../pages/Dashboard/add-project/projectSlice";
 import { getFormResponse } from "../../../pages/forms/reducer";
+import { userInfo } from "../../auth";
 
 /***
  * login?email=omotolaniolurotimi@gmail.com&password=ThinTree21+++
@@ -31,7 +32,19 @@ export const DurhamsApi = createApi({
 					// credentials: false,
 					body: info,
 				};
+				
 			},
+				async onQueryStarted(info,{dispatch, queryFulfilled}) {
+			
+				try {
+					const { data } = await queryFulfilled;
+					dispatch(userInfo(data))
+				} catch (error) {
+					// throw error
+					
+				}
+			},
+			
 			transformResponse: (response) => response.data,
 			transformErrorResponse: (response) => response.data,
 		}),
@@ -116,9 +129,10 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		fetchAllProjectManager: builder.query({
-			query: (query ='') => {
+			query: ({ queryValue, page }) => {
+				
 				return {
-					url: `project-managers?search=${query}&limit=10`,
+					url: `project-managers?search=${queryValue}&limit=10&page=${page}`,
 
 					method: "GET",
 				};
@@ -205,14 +219,14 @@ export const DurhamsApi = createApi({
 			invalidatesTags: (result) => ["vendors"],
 		}),
 		fetchVendors: builder.query({
-			query: (term="") => {
+			query: ({ queryValue, page }) => {
 				return {
-					url: `vendors?search=${term}`,
+					url: `vendors?search=${queryValue}&limit=6&page=${page}`,
 					method: "GET",
 				};
 			},
 			providesTags: ["vendors"],
-			// transformResponse: (response) => response.data,
+			// transformResponse: (response) => response.data.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 		editVendor: builder.mutation({
@@ -320,9 +334,9 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
 		fetchProjects: builder.query({
-			query: (query='') => {
+			query: ({query, page}) => {
 				return {
-					url: `projects?search=${query}&limit=10`,
+					url: `projects?search=${query}&limit=10&page=${page}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -393,7 +407,6 @@ export const DurhamsApi = createApi({
 		}),
 		addProjectDocument: builder.mutation({
 			query: (info) => {
-				console.log(info)
 				return {
 					url: "projects/add-document",
 					headers: {

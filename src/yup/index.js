@@ -88,7 +88,7 @@ export const AddAwardeeInformation =
 	Yup.object({
 		awardeeInfo: Yup.array().of(
 			Yup.object().shape({
-				awardee: Yup.string().required("field is required"),
+				industry: Yup.string().required("field is required"),
 				design_consultant: Yup.string().required("field is required"),
 				consultant_name: Yup.string().required("field is required"),
 				consultant_address: Yup.string().required("field is required"),
@@ -104,18 +104,19 @@ export const AddNewProjectSchema = [
 		project_name: Yup.string().required("field is required"),
 		project_number: Yup.string().required("field is required"),
 		project_description: Yup.string().required("field is required"),
+		project_location: Yup.string().required("field is required"),
 		project_manager: Yup.string().required("field is required"),
 	}),
 	Yup.object({
-		awardeeInfo: Yup.array().of(
+		project_vendors: Yup.array().of(
 			Yup.object().shape({
-				awardee: Yup.string().required("field is required"),
-				design_consultant: Yup.string().required("field is required"),
-				consultant_name: Yup.string().required("field is required"),
-				consultant_address: Yup.string().required("field is required"),
+				industry: Yup.string().required("field is required"),
+				company_name: Yup.string().required("field is required"),
+				address: Yup.string().required("field is required"),
 
-				company_representative_name: Yup.string().required("field is required"),
-				company_representative_title:
+				first_name: Yup.string().required("field is required"),
+				last_name: Yup.string().required("field is required"),
+				title:
 					Yup.string().required("field is required"),
 			})
 		),

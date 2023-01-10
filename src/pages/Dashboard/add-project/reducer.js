@@ -6,7 +6,7 @@ const AddProjectSlice = createSlice({
 	initialState: {
         projectForm: 0,
         form_id: null,
-        vendorID: null,
+        vendorID: [],
 	},
 
 	reducers: {
@@ -23,7 +23,9 @@ const AddProjectSlice = createSlice({
             state.form_id = action.payload
         },
         saveVendorID: (state, action) => {
-            state.vendorID = action.payload
+            // console.log([...state.vendorID, action.payload])
+            
+            state.vendorID =[...state.vendorID, action.payload]
         }
 	},
 });

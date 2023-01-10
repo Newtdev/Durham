@@ -1,12 +1,12 @@
-import { DashboardNav,DashboardButton, Sort, Search, TableHeader, TableBody, PageHeader } from "../../Components";
+import { DashboardNav, DashboardButton, Sort, Search, TableHeader, TableBody, PageHeader, Paginations } from "../../Components";
 import { AddPojectsManagerModal,DeleteProjectModal, EditPojectsManagerModal} from "./ProjectsComponents";
-import {  ModalOverlay } from "../../../../ui";
+import { FullPageLoader, ModalOverlay } from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from './ProjectsComponents';
-import { useDeleteProductManagerMutation } from "../../../../features/services/api";
+import { useDeleteProductManagerMutation, useFetchAllProjectManagerQuery } from "../../../../features/services/api";
 import { toast } from "react-toastify";
-import { setSearchManagerQuery } from "../projectManagerSlice";
-import { useDispatch } from "react-redux";
+import { searchProjectManager, setSearchManagerQuery } from "../projectManagerSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const ProductManager = () => {
@@ -14,7 +14,10 @@ const ProductManager = () => {
   const [tableButton, setTableButton] = useState({ delete: false, edit: false, id: null, initialData:{} });
   const [deleteProductManager, result] = useDeleteProductManagerMutation();
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch()
+  const queryValue = useSelector(searchProjectManager);
+  const response = useFetchAllProjectManagerQuery({ queryValue, page });
   
 
   const HandleRequest = async () => {
@@ -52,7 +55,7 @@ const ProductManager = () => {
     onEdit: (data) => {
       setTableButton({ ...tableButton, edit: true, initialData:data })
     },
-    dataArray:productContent
+    dataArray: response?.data?.data
   };
 
   const onEditClose= () => {
@@ -63,12 +66,22 @@ const ProductManager = () => {
 
   const searchProps = {
     setQuery: (value) => setQuery(value),
-    submit: ()=> dispatch(setSearchManagerQuery(query))
+    submit: (e) => {
+      e.preventDefault();
+      dispatch(setSearchManagerQuery(query))
+    }
+  };
+
+  const paginationProps = {
+    data: response?.data,
+    page,
+    getPage: (value) => setPage(value)
   }
 
 
   return (
     <section>
+      {!response?.data && <FullPageLoader />}
       <article>
         {/* <!-- Navbar --> */}
        <DashboardNav/>
@@ -97,7 +110,7 @@ const ProductManager = () => {
             </table>
           </div>
           {/* pagination */}
-          {/* <Pagination/> */}
+          <Paginations {...paginationProps} />
         </div>
       </main>
 

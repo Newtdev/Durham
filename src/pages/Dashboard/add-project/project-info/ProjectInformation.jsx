@@ -17,7 +17,7 @@ const ProjectInformation = () => {
 
     
 const [addProjects, {isLoading}]= useAddProjectsMutation()
-    const response = useFetchAllProjectManagerQuery();
+    const response = useFetchAllProjectManagerQuery({ queryValue: '' });
     // const details = useFetchSingleProjectQuery(id)
     const details = useSelector(projectData);
 
@@ -66,7 +66,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
             project_manager_id: "",
             name: "",
             number: "",
-            project_location: '',
+            location: '',
             description: "",
         },
         validationSchema: AddProjectInformation,
@@ -98,7 +98,16 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         error: errors.number,
         touched: touched.number,
         onChange: handleChange,
-        placeholder: "Enter Product Number",
+        placeholder: "Enter Project Number",
+    };
+    const project_location = {
+        name: "Project Location",
+        id: "location",
+        value: values.location,
+        error: errors.location,
+        touched: touched.location,
+        onChange: handleChange,
+        placeholder: "Enter Project location",
     };
     const project_description = {
         name: "Project Description",
@@ -153,6 +162,9 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                     </div>
                                     <div>
                                         <OverviewInput {...project_number} />
+                                    </div>
+                                    <div>
+                                        <OverviewInput {...project_location} />
                                     </div>
                                     <div>
                                         <OverviewTextarea {...project_description} />

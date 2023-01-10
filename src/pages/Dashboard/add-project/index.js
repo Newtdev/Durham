@@ -29,7 +29,7 @@ const ProjectFormsController = () => {
 	const [selected, setSelected] = useState([]);
 	const [addProjectVendor, { isLoading }] = useAddProjectVendorMutation();
 	const [addProjectDocument, response] = useAddProjectDocumentMutation();
-	const [editVendor, data] = useEditVendorMutation()
+	const [editVendor, data] = useEditVendorMutation();
 
 
 	async function HandleRequest(values) {
@@ -90,12 +90,12 @@ const ProjectFormsController = () => {
 			project_vendors: [
 				{
 					industry: "",
-					// awardee: "",
 					company_name: "",
 					address: "",
 					president: "",
 					secretary: "",
 					first_name: "",
+					last_name: "",
 					title: "",
 				},
 			],
@@ -105,9 +105,16 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
+			
 			if (steps === 1 && !details) {
+
+				const data = [...new Set (vendorID)]
+				// values.project_vendors.forEach((cur, index) => {
+				// 	setId([...vendorId,index])
+				// 	console.log([...vendorId,index])
+				// })
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
-				HandleRequest(String(vendorID))
+				HandleRequest(data) 
 
 			} else {
 				HandleEditRequest(values.project_vendors[0])
@@ -150,7 +157,6 @@ const ProjectFormsController = () => {
 	};
 
 	
-
 	const getData = (e) => {
 		
 		setSelected([...selected, { document_type: e.name, document_name: e.value } ])

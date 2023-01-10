@@ -28,7 +28,7 @@ const Dashboard = () => {
 		navigate('/');
 		}
 		dispatch(userInfo(data));
-	}, [dispatch, data]);
+	}, [dispatch, data, navigate]);
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			

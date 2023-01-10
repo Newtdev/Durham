@@ -12,7 +12,7 @@ import {
   Close,
   PageHeader,
   DashboardButton,
-  Pagination,
+  Paginations,
 } from "../Components";
 import {
   OverviewTableBody, OverviewTitleCard,
@@ -24,9 +24,10 @@ import { toast } from "react-toastify";
 
 const Overview = () => {
   const [action, setAction] = useState({ delete: false, id: null });
-  const [searchVendorQuery,setQuery] = useState('')
+  const [searchVendorQuery, setQuery] = useState('');
+  const [page, setPage] = useState(1);
   const query = useSelector(searchQuery)
-  const response = useFetchProjectsQuery(query);
+  const response = useFetchProjectsQuery({ query, page });
   const { currentData } = useFetchDashboardQuery();
   const [deleteProject, {isLoading}] = useDeleteProjectMutation();
   const dispatch = useDispatch();
@@ -68,12 +69,21 @@ const Overview = () => {
   
   const searchProps = {
     setQuery: (value) => setQuery(value),
-    submit: () => dispatch(setsearchQuery(searchVendorQuery))
+    submit: (e) => {
+      e.preventDefault()
+      dispatch(setsearchQuery(searchVendorQuery))
+    }
   };
+
+  const paginationProps = {
+    data: response,
+    page,
+    getPage: (value) => setPage(value)
+  }
 
   return (
     <div>
-      			{response.isLoading && <FullPageLoader />}
+      {response.isLoading && <FullPageLoader />}
 
       {/* DASHBOARD */}
       <section>
@@ -81,7 +91,7 @@ const Overview = () => {
         <article>
           <DashboardNav />
         </article>
-        <main className='pt-6 bg-[#fafafa] h-full'>
+        <main className='pt-6 bg-[#fafafa] min-h-screen'>
           <div className='container mx-auto px-4 lg:px-24'>
             {/* Title Cards */}
             <div className='mb-6 grid grid-cols-4 gap-4'>
@@ -118,9 +128,8 @@ const Overview = () => {
                 <OverviewTableBody {...dashboardProps} />
               </table>
             </div>
-
             {/* PAGINATION */}
-            <Pagination />
+            <Paginations {...paginationProps} />
           </div>
         </main>
 
