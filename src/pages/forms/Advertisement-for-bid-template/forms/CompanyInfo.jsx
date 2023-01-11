@@ -2,6 +2,7 @@
 import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
+import { closeModal } from "../../reducer";
 
 import { prevChoiceStep, } from "../reducer";
 
@@ -9,7 +10,6 @@ import { prevChoiceStep, } from "../reducer";
 const CompanyInformation = (props) => {
     const dispatch = useDispatch();
     const company_name = {
-        ...props,
         value: props.values.company_name,
         onChange: props.handleChange,
         name: 'company_name',
@@ -18,7 +18,6 @@ const CompanyInformation = (props) => {
         
     }
     const manager_name = {
-        ...props,
         value: props.values.manager_name,
         onChange: props.handleChange,
         name: 'manager_name',
@@ -27,7 +26,6 @@ const CompanyInformation = (props) => {
        
     }
     const manager_phone_number = {
-        ...props,
         value: props.values.manager_phone_number,
         onChange: props.handleChange,
         name: 'manager_phone_number',
@@ -36,7 +34,6 @@ const CompanyInformation = (props) => {
         
     }
     const manager_email_address = {
-        ...props,
         value: props.values.manager_email_address,
         onChange: props.handleChange,
         name: 'manager_email_address',
@@ -57,7 +54,7 @@ const CompanyInformation = (props) => {
                     </p>
                 </div>
                 <button
-                    onClick={()=> dispatch(prevChoiceStep(0))}
+                    onClick={() => dispatch(closeModal())}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                     data-modal-toggle='small-modal'
@@ -139,7 +136,7 @@ const CompanyInformation = (props) => {
 
             {/* Buttons */}
             <div className='flex justify-end gap-8 pr-4'>
-                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep(0))} />
+                <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={() => dispatch(prevChoiceStep(1))} />
                 <DashboardButton
                     hidden
                     name='NEXT'

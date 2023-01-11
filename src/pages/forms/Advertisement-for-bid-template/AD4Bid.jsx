@@ -18,6 +18,7 @@ const AdvertisementBid = ({id}) => {
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
+  // const show = true;
 
   
   const formID = useSelector(project_document_id);
@@ -48,6 +49,7 @@ const AdvertisementBid = ({id}) => {
     ]
     })
     if (response) {
+      console.log(response)
       if (response?.error) {
         toast.error(response?.message, {
           position: toast.POSITION.TOP_CENTER,
@@ -61,17 +63,17 @@ const AdvertisementBid = ({id}) => {
 
   const Formik = useFormik({
     initialValues: {
-      bidDate: '',
-      deadlineTime: '',
-      openingTime: '',
+      bidDate: new Date(),
+      deadlineTime: new Date(),
+      openingTime: new Date(),
       withdrawingBid: '',
-      conferenceDate: '',
-      conferenceTime: '',
+      conferenceDate: new Date(),
+      conferenceTime: new Date(),
       conferenceAddress: '',
       conferenceCity: '',
       conferenceState: '',
       conferenceZipCode: '',
-      presenceOfBiders: '',
+      presenceOfBiders: false,
       company_name: '',
       manager_name: '',
       manager_phone_number: '',
@@ -80,6 +82,7 @@ const AdvertisementBid = ({id}) => {
 
     },
     validationSchema: AdvertisementBidSchema[pages],
+    validateOnMount: false,
     
     onSubmit: (values) => {
       if (pages === 0) {
@@ -111,7 +114,8 @@ const AdvertisementBid = ({id}) => {
     ...Formik,
     isLoading
   }
-  return <ModalOverlay show={id === advertisement_bid && show}>
+  // return <ModalOverlay show={show}>
+  return <ModalOverlay show={id === advertisement_bid && show}> 
     {pages === 0 && <Bids {...Formik} />}
     {pages === 1 && <ConferenceBid {...Formik} />}
     {pages === 2 && <CompanyInformation {...props} />}

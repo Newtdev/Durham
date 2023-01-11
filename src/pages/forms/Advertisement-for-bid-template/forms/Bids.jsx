@@ -59,13 +59,15 @@ const Bids = (props) => {
                     </p>
                 </div>
                 <button
-                    onClick={()=> dispatch(closeModal())}
+                    // onClick={()=> dispatch(closeModal())}
+                    onClick={() => dispatch(closeModal())}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
-                    data-modal-toggle='small-modal'
+                    // data-modal-toggle='small-modal'
                 >
                     <Close />
                 </button>
+
             </div>
             {/* Progress */}
             <div className='w-full bg-[#89A5AF] h-2.5 my-4'>
@@ -78,11 +80,11 @@ const Bids = (props) => {
                     {props.errors.bidDate && props.touched.bidDate && <Error message={props.errors.bidDate} />}
                 </FormInputContainer>
                 <div className='grid grid-cols-2 gap-x-4'>
-                    <FormInputContainer name='Bid Deadline TIme'>
+                    <FormInputContainer name='Bid Deadline Time'>
                         <SelectTime {...deadlineTime} />
                         {props.errors.deadlineTime && props.touched.deadlineTime && <Error message={props.errors.deadlineTime} />}
                     </FormInputContainer>
-                    <FormInputContainer name='Bid Opening TIme'>
+                    <FormInputContainer name='Bid Opening Time'>
                         <SelectTime {...openingTime} />
                         {props.errors.openingTime && props.touched.openingTime && <Error message={props.errors.openingTime} />}
                     </FormInputContainer>

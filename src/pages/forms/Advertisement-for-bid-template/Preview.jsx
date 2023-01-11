@@ -2,6 +2,7 @@ import moment from "moment";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { doConvert } from "../../../shared-component";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -61,11 +62,11 @@ const Preview = () => {
             </div>
 
             <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
+            <div className='bg-white px-16 py-10 text-black' ref={downloadComponent}>
                 <div className='text-right'>
                   <p>Durham Public Schools</p>
-                <p className=''>{!project?'': project.name}</p>
-                  <p className=''>{!project?'': project.number}</p>
+                <p className='uppercase bg-yellow-300'>{!project ? '' : project.name}</p>
+                <p className='uppercase bg-yellow-300'>{!project ? '' : project.number}</p>
                 </div>
                 <div className='text-center mb-8'>
                   <h1 className='font-bold'>ADVERTISEMENT FOR BIDS</h1>
@@ -74,18 +75,18 @@ const Preview = () => {
                   </h2>
                 </div>
                 <div className='text-start'>
-                  <p>
+                <p className="adverstise">
                     Sealed bids from licensed contractors will be received by
                     Durham Public Schools, Durham, North Carolina on{" "}
-                  <span className='font-bold '>{moment(form_fields.bidDate).format("MMMM D, YYYY")}</span> for
+                  <span className='font-bold bg-yellow-300 adverstise'>{moment(form_fields.bidDate).format("dddd, MMMM D, YYYY")}</span> for
                     furnishing of labor, material and equipment for the{" "}
-                    <span className='font-bold '>{!project?'': project.name}</span>. Bids
+                  <span className='font-bold adverstise bg-yellow-300'>{!project ? '' : project.name}</span>. Bids
                     will be received up to{" "}
-                  <span className='font-bold '>{moment(form_fields.deadlineTime).format("h:mm:ss a")}</span> from
+                  <span className='font-bold adverstise bg-yellow-300'>{moment(form_fields.deadlineTime).format("h:mm a")}</span> from
                     Single Prime bidders. Bids will be opened at{" "}
-                    <span className=''>{moment(form_fields.openingTime).format("h:mm a")}</span> via a virtual
+                  <span className='adverstise bg-yellow-300'>{moment(form_fields.openingTime).format("h:mm a")}</span> via a virtual
                     teleconference and read aloud. Deliver bids to the{" "}
-                    <span className='font-bold'>
+                  <span className='font-bold adverstise'>
                       Durham Public Schools Main Office located at 511
                       Cleveland, Durham, North Carolina 27701.
                     </span>{" "}
@@ -94,20 +95,20 @@ const Preview = () => {
                 {/* Lists */}
                 <div className='mt-4 px-8'>
                   <ul className='list-disc'>
-                    <li>
+                  <li className="adverstise">
                       No bid may be withdrawn after the scheduled closing time
                       for the receipt of bids for a period of{" "}
-                    <span className=''>{!form_fields? '':form_fields.withdrawingBid }</span>
+                    <span className='adverstise bg-yellow-300'>{doConvert(form_fields.withdrawingBid)}({!form_fields ? '' : form_fields.withdrawingBid}) days</span>
                     </li>
-                    <li>
+                  <li className="adverstise">
                       Bid security required is 5% of the bid in cash, certified
                       check, or Bid Bond.
                     </li>
-                    <li>
+                  <li className="adverstise">
                       Performance and Payment Bonds for 100% of the contract
                       amount will be required.
                     </li>
-                    <li>
+                  <li className="adverstise">
                       Durham Public Schools reserves the right to reject any and
                       all bids and to waive informalities or irregularities.
                     </li>
@@ -115,18 +116,18 @@ const Preview = () => {
                 </div>
 
                 <div className='mt-5'>
-                  <div className='mb-5'>
-                    <p>
-                      <span className='font-bold underline'>
+                <div className='mb-5 adverstise'>
+                  <p> 
+                    <span className='font-bold underline adverstise'>
                         Minority Business Participation:
                       </span>{" "}
                       Bidders shall note that compliance with the North Carolina
                       Statute 143-128.2 (c) is required for this project.
                     </p>
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
-                      <span className='font-bold underline'>
+                    <span className='font-bold underline '>
                         Iran Divestment Act:
                       </span>{" "}
                       Bidders shall note that the submission of a bid
@@ -139,7 +140,7 @@ const Preview = () => {
                       North Carolina (the “Iran Divestment Act”).
                     </p>
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
                       <span className='font-bold underline'>
                         Davis-Bacon Act:
@@ -156,7 +157,7 @@ const Preview = () => {
                       employed on similar projects in the area.
                     </p>
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
                       <span className='font-bold underline'>
                         Project scope:
@@ -165,25 +166,29 @@ const Preview = () => {
                       entrances at multiple DPS Schools and Sites.
                     </p>
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
-                      <span className='font-bold underline'>
+                    <span className='font-bold underline '>
                         Pre-Bid Conference:
                       </span>{" "}
                       Scheduled for{" "}
-                    <span className='font-bold '>{moment(form_fields.conferenceDate).format("MMMM D, YYYY")}</span>{" "}
-                    
-                    <span className='font-bold '>{moment(form_fields.conferenceTime).format("h:mm a")}</span>{" "}
-                    <span className='font-bold '>{form_fields.conferenceAddress}{" "}{form_fields.conferenceCity}{" "}{form_fields.conferenceZipCode}{" "}{form_fields.conferenceState}</span>{" "}
-                      <span className='font-bold '> {!form_fields.presenceOfBiders? '':form_fields.presenceOfBiders} </span>{" "}
-                      Inspection of all sites shall be scheduled immediately
-                      after the Pre-Bid Conference. The design team and owner
-                      will provide access to the necessary location. The project
-                      Designer or Designer’s representative will be available to
-                      answer questions.
-                    </p>
+                    <span className='font-bold uppercase bg-yellow-300'>{moment(form_fields.conferenceDate).format("dddd, MMMM D, YYYY")}</span> at{" "}
+                    <span className='font-bold uppercase bg-yellow-300'>{moment(form_fields.conferenceTime).format("h:mm a")}</span> at {' '}
+
+                    <span className='font-bold  bg-yellow-300 '>{form_fields.conferenceAddress}{" "}{form_fields.conferenceCity}{" "}{form_fields.conferenceZipCode}{" "}{form_fields.conferenceState}</span>.{" "}
+                    {/* <span className='font-bold uppercase bg-yellow-300 '> {!form_fields.presenceOfBiders ? '' : form_fields.presenceOfBiders}. </span> */}
+                    <br />
+                    Inspection of all sites shall be scheduled immediately after the Pre-Bid Conference. The design team and owner will provide access to the necessary location. The project Designer or Designer’s representative will be available to answer questions.
+
+
+                  </p>
+                  <p className="adverstise">
+
+                    It is <span className='font-bold uppercase bg-yellow-300 '> {!form_fields.presenceOfBiders ? '' : form_fields.presenceOfBiders}</span> that prime bidders attend the entire conference and visit the site prior to bidding.
+                  </p>
+                  <br />
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
                       <span className='font-bold underline'>
                         Statement of Qualifications:
@@ -194,7 +199,7 @@ const Preview = () => {
                       (3) years with references.
                     </p>
                   </div>
-                  <div className='mb-5'>
+                <div className='mb-5 adverstise'>
                     <p>
                       <span className='font-bold underline'>
                         Statement of ability to staff project:
@@ -207,48 +212,50 @@ const Preview = () => {
                   </div>
                 </div>
 
-                <div className='flex justify-between'>
-                  <span className='text-sm'>Advertisement for bids</span>
-                  <span className='text-sm text-center'>00 11 13-1</span>
-                  <span> </span>
-                </div>
+
 
                 {/* Next Page */}
-                <div className='text-right'>
+              {/* <div className='text-right adverstise'>
                   <p>Durham Public Schools</p>
                   <p className=''>{!project?'': project.name}</p>
                   <p className=''>{!project?'': project.number}</p>
-                </div>
+                </div> */}
 
-                <div>
+              <div className="adverstise">
                   <p>
                     <em>
                       {" "}
                       Prospective Bidders should contact{" "}
-                    <span className=''>{!form_fields?'':form_fields.company_name}</span> at the contact
+                    <span className='adverstise'>{!form_fields ? '' : form_fields.company_name}</span> at the contact
                       noted below in order to be e-mailed a link to download the
                       project manual and bid documents.
                     </em>
                   </p>
-                  <p className='mt-4 font-bold'>Please contact:</p>
+                {/* <p className='mt-4 font-bold'>Please contact:</p>
                   <p className='font-bold'>Kevin Coyne-Project Manager</p>
                   <p className='font-bold'>
                     (ph) 919.897-3225 / (e-mail) kevin.coyne@lechase.com
-                  </p>
-                  <p className='mt-8 mb-4'>
+                  </p> */}
+                <p className='mt-8 mb-3 adverstise'>
                     For questions regarding this bid, please contact:
                   </p>
                   <p className=''>{!form_fields?'':form_fields.company_name}</p>
                   <p>
 
-                    <span className=''>{!form_fields?'':form_fields.manager_name}</span>
+                  <span className='adverstise'>{!form_fields ? '' : form_fields.manager_name}</span>
                     <span>- Program Manager</span>
-                  </p>
-                  <p className=''>{!form_fields?'':form_fields.manager_Phone_number}</p>
+                </p>
+                <p className=''>{!form_fields ? '' : form_fields.manager_phone_number}</p>
                   <p className=''>{!form_fields?'':form_fields.manager_email_address}</p>
                 </div>
+              <div className='mt-4 flex justify-evenly adverstise'>
+                <span className=''>Advertisement for bids</span>
+                <span className=' text-center'>00 11 13-1</span>
+                <span> </span>
               </div>
-            </div>
+              </div>
+          </div>
+
 
             {/* Buttons */}
             <div className='flex justify-end gap-4 pr-6 pb-4'>
