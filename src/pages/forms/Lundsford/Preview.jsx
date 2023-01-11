@@ -3,8 +3,8 @@ import { DashboardButton, Close } from "../../Dashboard/Components";
 import DownLoadForm from "./Download";
 import { useDispatch, useSelector } from "react-redux";
 import {stepDefault, prevStep} from './lundsFormslice'
-import { useRef } from "react";
-import { closeDownload, openDownload, savedResponse, showDownload } from "../reducer";
+import { useRef, useState } from "react";
+import { closeDownload, closeModal, openDownload, savedResponse, showDownload } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 
@@ -15,12 +15,15 @@ const PreviewForm = ({value }) => {
   const showModal = useSelector(openDownload);
   const downloadComponent = useRef()
   const dispatch = useDispatch();
+  const [highlighted, setHighlighed] = useState(false)
   
 
   const formID = useSelector(project_document_id);
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
-    const { vendors, project } = content;
+  const { vendors, project } = content;
+  const nottoBeHighlighted = !highlighted ? 'bg-yellow-300' : 'bg-white';
+
 
   const props = {
     component: downloadComponent,
@@ -39,13 +42,13 @@ const PreviewForm = ({value }) => {
       <div className={` ${showModal ? 'hidden':' relative mx-auto w-[60rem] h-[46rem] bg-white rounded-lg shadow mt-4'}`}>
         <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
           <div className='ml-6'>
-            <h3 className='text-lg font-bold text-gray-900'>
+              <h3 className='text-lg font-bold text-gray-900 '>
               Attachment A Lunsford Act Form
             </h3>
             <p className='text-base text-gray-700'>Preview Document</p>
           </div>
             <button
-               onClick={()=> dispatch(prevStep())}
+              onClick={() => dispatch(closeModal())}
             type='button'
             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
             data-modal-toggle='small-modal'
@@ -55,18 +58,18 @@ const PreviewForm = ({value }) => {
         </div>
 
         {/* Forms */}
-        <div className=' mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto'>
-        <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
+          <div className='mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto'>
+            <div className='bg-white px-16 pt-8 pb-4 text-black' ref={downloadComponent}>
       <p className='text-right mb-4'>Attachment A</p>
-      <div className='mb-6 text-center'>
+              <div className='mb-6 text-center arial-font'>
         <h2 className='font-bold text-xl'>Lunsford Act</h2>
         <h3 className='font-bold text-lg'>
           Sexual Offender Registry Check Certification Form
         </h3>
       </div>
-      <div>
-        <p>DPS Project Name: {project?.name || ''} </p>
-        <p>DPS Project Number: {project?.number || ''} </p>
+              <div className={`adverstise`}>
+                <p className={`adverstise ${nottoBeHighlighted} font-bold`}>DPS Project Name: {project?.name || ''} </p>
+                <p className={`adverstise ${nottoBeHighlighted} font-bold`}>DPS Project Number: {project?.number || ''} </p>
         <p className='mt-3'>
           Check the appropriate box to indicate the type of check:
         </p>
@@ -96,11 +99,11 @@ const PreviewForm = ({value }) => {
                   </p>
        
       </div>
-      <div className='mt-3'>
-        <p className='text-justify'>
-                  I, {!vendors ? "" : vendors[0].first_name} , {!vendors ? "" : vendors[0].title}
+              <div className='mt-3 adverstise'>
+                <p className='text-justify adverstise'>
+                  I, <span className={`adverstise ${nottoBeHighlighted} font-bold`}>{!vendors ? "" : vendors[0].first_name}, {!vendors ? "" : vendors[0].title}
         
-          { ' '} of {!vendors? "" :vendors[0].company_name} hereby certify that I have conducted sexual
+                    {' '} of {!vendors ? "" : vendors[0].company_name}</span> hereby certify that I have conducted sexual
           offender registry checks required under this Agreement for
           all employees, agents, ownership personnel, or contractors
           (“contractual personnel”) who will engage in any service on
@@ -131,7 +134,7 @@ const PreviewForm = ({value }) => {
         </p>
       </div>
 
-      <div className='mt-4 mb-4 grid grid-cols-2 gap-16'>
+              <div className='mt-4 mb-4 grid grid-cols-2 gap-16 adverstise'>
         <div className='overflow-hidden'>
           <p className='font-bold mb-2'>
             Contractual Personnel Names
@@ -160,12 +163,12 @@ const PreviewForm = ({value }) => {
             _____________________________
             </p>
           </div>
-          <p className='ml-3'>
+                  <p className='ml-3 adverstise'>
             (Attach additional page(s) if needed)
           </p>
         </div>
         <div>
-          <p className='font-bold'>Job Title</p>
+                  <p className='font-bold adverstise'>Job Title</p>
           <div className='w-full h-[15px] bg-black mt-5'></div>
           <div className='w-full h-[15px] bg-black mt-5'></div>
           <div className='w-full h-[20px] bg-black mt-5'></div>
@@ -173,23 +176,29 @@ const PreviewForm = ({value }) => {
         </div>
       </div>
 
-      <p>
+              <p className="adverstise">
         I attest that the forgoing information is true and accurate to
         the best of my knowledge.
       </p>
 
-      <div className='mt-6 mb-4 pr-6'>
-        <div className='flex gap-8 '>
-                  <p className="mr-4">{!vendors ? "" : vendors[0].first_name}</p>
+              <div className='mt-6 mb-4 pr-6 adverstise'>
+                <div className='flex gap-8 justify-between'>
+                  <p className="flex flex-col items-center">
+                    <span className="text-center">{!vendors ? "" : vendors[0].first_name + ' ' + vendors[0].last_name}</span>
+                    <span>__________________________________________(print name)</span>
+                  </p>
             
-          <p>
-            _________________________________(signature)
+                  <p className="mt-3">
+                    ___________________________________________(signature)
           </p>
         </div>
-        <div className='mt-10 flex gap-8'>
-          <p className="mr-4">{!vendors? "" :vendors[0].title}</p>
-          <p>
-            ___________________________________________(date)
+                <div className='mt-6 flex gap-8 adverstise justify-between'>
+                  <p className="flex flex-col items-center h-0">
+                    <span className="text-center">{!vendors ? "" : vendors[0].title}</span>
+                    <span>_______________________________________________(title)</span>
+                  </p>
+                  <p className="mt-3">
+                    _______________________________________________(date)
           </p>
         </div>
       </div>
@@ -205,7 +214,10 @@ const PreviewForm = ({value }) => {
             name='CREATE DOCUMENT'
             type='button'
             width='w-[198px]'
-            onClick={()=>dispatch(showDownload())}
+              onClick={() => {
+                setHighlighed(true)
+                dispatch(showDownload())
+              }}
           />
         </div>
       </div>
