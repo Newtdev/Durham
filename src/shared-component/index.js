@@ -102,7 +102,7 @@ export function doConvert (value){
     // let myDiv = document.querySelector('#result');
 	if (!value) return '';
     let oneToTwenty = ['','One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten ',
-    'Eleven ','Twelve ','thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
+    'Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
     let tenth = ['', '', 'Twenty','Thirty','Forty','Fifty', 'Sixty','Seventy','Eighty','Ninety'];
 
     if(value.toString().length > 7) return 'overlimit' ;
@@ -110,7 +110,6 @@ export function doConvert (value){
   let num = ('0000000'+ value).slice(-7).match(/^(\d{1})(\d{1})(\d{2})(\d{1})(\d{2})$/);
     if(!num) return;
 
-	console.log(`${tenth[num[1][0]]}-${ oneToTwenty[num[1][1]] }`);
     let outputText = num[1] != 0 ? (oneToTwenty[Number(num[1])] || `${tenth[num[1][0]]} ${oneToTwenty[num[1][1]]}` )+' million ' : ''; 
   
     outputText +=num[2] != 0 ? (oneToTwenty[Number(num[2])] || `${tenth[num[2][0]]} ${oneToTwenty[num[2][1]]}` )+'hundred ' : ''; 

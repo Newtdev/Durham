@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { Form, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
 import Bids from "./forms/Bids";
@@ -63,12 +63,12 @@ const AdvertisementBid = ({id}) => {
 
   const Formik = useFormik({
     initialValues: {
-      bidDate: new Date(),
-      deadlineTime: new Date(),
-      openingTime: new Date(),
+      bidDate: '',
+      deadlineTime: '',
+      openingTime: '',
       withdrawingBid: '',
-      conferenceDate: new Date(),
-      conferenceTime: new Date(),
+      conferenceDate: '',
+      conferenceTime: '',
       conferenceAddress: '',
       conferenceCity: '',
       conferenceState: '',
@@ -83,6 +83,7 @@ const AdvertisementBid = ({id}) => {
     },
     validationSchema: AdvertisementBidSchema[pages],
     validateOnMount: false,
+    validateOnChange: false,
     
     onSubmit: (values) => {
       if (pages === 0) {
@@ -102,6 +103,7 @@ const AdvertisementBid = ({id}) => {
   });
 
 
+  console.log(Formik.errors)
   useEffect(() => {
     (async function () {
       const response = await (await fetch('/states.json')).json();
@@ -116,10 +118,12 @@ const AdvertisementBid = ({id}) => {
   }
   // return <ModalOverlay show={show}>
   return <ModalOverlay show={id === advertisement_bid && show}> 
+    {/* <form onSubmit={Formik.handleSubmit}> */}
     {pages === 0 && <Bids {...Formik} />}
     {pages === 1 && <ConferenceBid {...Formik} />}
     {pages === 2 && <CompanyInformation {...props} />}
     {pages === 3 && <Preview />}
+    {/* </form> */}
   </ModalOverlay>
 };
 

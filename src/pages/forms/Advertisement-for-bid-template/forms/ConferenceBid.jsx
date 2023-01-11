@@ -13,11 +13,13 @@ const ConferenceBid = (props) => {
     const states = useSelector(getList)
 
     const dispatch = useDispatch();
+
     const conferenceDate = {
         ...props,
         value: props.values.conferenceDate,
         onChange: props.handleChange,
         name: 'conferenceDate',
+        placeholder: 'Conference Date'
         
     }
     const conferenceTime = {
@@ -25,6 +27,8 @@ const ConferenceBid = (props) => {
         value: props.values.conferenceTime,
         onChange: props.handleChange,
         name: 'conferenceTime',
+        placeholder: 'Conference Time'
+
        
     }
     const conferenceAddress = {
@@ -32,13 +36,7 @@ const ConferenceBid = (props) => {
         onChange: props.handleChange,
         name: 'conferenceAddress',
         placeholder: 'Street'
-        
-    }
-    const conferenceCity = {
-        value: props.values.conferenceCity,
-        onChange: props.handleChange,
-        name: 'conferenceCity',
-      
+
     }
     const conferenceState = {
         value: props.values.conferenceState,
@@ -46,6 +44,12 @@ const ConferenceBid = (props) => {
         onChange: props.handleChange,
 
        
+    }
+    const conferenceCity = {
+        value: props.values.conferenceCity,
+        onChange: props.handleChange,
+        name: 'conferenceCity',
+
     }
 
     const conferenceZipCode = {
@@ -83,7 +87,7 @@ const ConferenceBid = (props) => {
    
     return <div className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'>
             
-        <form className='relative w-[600px] bg-white rounded-lg shadow py-4' onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className='relative w-[600px] bg-white rounded-lg shadow py-4'>
             <div className='flex justify-between items-baseline mx-6'>
                 <div>
                     <h3 className='text-lg font-bold text-gray-900'>
@@ -114,7 +118,8 @@ const ConferenceBid = (props) => {
                 <div className='grid grid-cols-2 gap-x-4'>
                     <FormInputContainer name='Conference Date'>
                     <SelectDate {...conferenceDate} />
-                    {props.errors.conferenceDate && props.touched.conferenceDate && <Error message={props.errors.conferenceDate} />}
+                        {props.errors.conferenceDate && props.touched.conferenceDate && <Error message={props.errors.conferenceDate} />}
+
                     </FormInputContainer>
                     <FormInputContainer name='Conference Time'>
               

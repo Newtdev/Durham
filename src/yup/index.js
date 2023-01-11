@@ -144,22 +144,40 @@ export const NoticeProceed = Yup.object().shape({
 });
 
 
+/**
+ *     bidDate: '',
+      deadlineTime: '',
+      openingTime: '',
+      withdrawingBid: '',
+      conferenceDate: '',
+      conferenceTime: '',
+      conferenceAddress: '',
+      conferenceCity: '',
+      conferenceState: '',
+      conferenceZipCode: '',
+      presenceOfBiders: false,
+      company_name: '',
+      manager_name: '',
+      manager_phone_number: '',
+      manager_email_address: '',
+ */
+
 
 export const AdvertisementBidSchema = [
 	Yup.object({
-		bidDate: Yup.string().required("Date field is required"),
-		deadlineTime: Yup.string().required("Deadline time field is required"),
-		openingTime: Yup.string().required("Bid opening time field is required"),
+		bidDate: Yup.date().required("Date field is required"),
+		deadlineTime: Yup.date().required("Deadline time field is required"),
+		openingTime: Yup.date().required("Bid opening time field is required"),
 		withdrawingBid: Yup.string().required(
 			"Period of withdrawing bid field is required"
 		),
 	}),
 	Yup.object({
-		conferenceDate: Yup.string().required("Date field is required"),
-		conferenceTime: Yup.string().required("Time field is required"),
+		conferenceDate: Yup.date().required("Date field is required"),
+		conferenceTime: Yup.date().required("Time field is required"),
 		conferenceAddress: Yup.string().required("Address field is required"),
-		conferenceCity: Yup.string().required("City field is required"),
 		conferenceState: Yup.string().required("State field is required"),
+		conferenceCity: Yup.string().required("City field is required"),
 		conferenceZipCode: Yup.string().required("Zip code field is required"),
 		presenceOfBiders: Yup.string().required("Choose an option"),
 	}),
