@@ -24,7 +24,6 @@ const Preview = () => {
     const { vendors, project, durham_profile
     } = content;
 
-    console.log(vendors)
     const props = {
         component: downloadComponent,
         name: 'Determination of Apparent Low Bidder',

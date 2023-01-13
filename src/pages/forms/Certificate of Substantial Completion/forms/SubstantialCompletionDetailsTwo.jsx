@@ -3,6 +3,7 @@ import { ButtonWhiteBG, Error } from "../../../../ui"
 import { Close, DashboardButton } from "../../../Dashboard/Components"
 import SelectDate, { FormInput, FormInputPlain, FormTextArea } from "../../components"
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms"
+import { closeModal } from "../../reducer";
 import { prev } from "../reducer";
 
 const SubstantialCompletionDetailsTwo = (props) => {
@@ -35,23 +36,23 @@ const SubstantialCompletionDetailsTwo = (props) => {
         id: 'responsibility',
         placeholder: 'Enter responsibility'
     };
-    const estimatedCost = {
-        value: props.values.estimatedCost,
-        onChange: (e) => {
-            if (isNaN(e.target.value)) {
-                return;
-            } else {
-                // return e.target.value
-                props.setFieldValue('estimatedCost',e.target.value)
-         }
-        },
-        error: props.errors.estimatedCost,
-        touched: props.touched.estimatedCost,
+    // const estimatedCost = {
+    //     value: props.values.estimatedCost,
+    //     onChange: (e) => {
+    //         if (isNaN(e.target.value)) {
+    //             return;
+    //         } else {
+    //             // return e.target.value
+    //             props.setFieldValue('estimatedCost',e.target.value)
+    //      }
+    //     },
+    //     error: props.errors.estimatedCost,
+    //     touched: props.touched.estimatedCost,
 
-        name: 'responsibility',
-        placeholder: '0.00'
-        
-    };
+    //     name: 'responsibility',
+    //     placeholder: '0.00'
+
+    // };
 
     return <div>
         <div
@@ -71,7 +72,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
                         </p>
                     </div>
                     <button
-                        onClick={()=> dispatch(prev(1))}
+                        onClick={() => dispatch(closeModal())}
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'
@@ -87,7 +88,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 
                 <div className='mx-6 mb-12'>
                     <small className='text-gray-900 font-medium'>
-                        Does this letter need the executive director's approval?
+                        Select the Owner's representative
                     </small>
                     <div className=' mt-3 ml-2'>
                         <div className='flex items-center mb-5'>
@@ -147,7 +148,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
                             
                                 className='text-base text-gray-900 mb-1'
                             >
-                                Within how many days from the date of substantial completion, the Contractor has to complete all the work on the attached punch list?
+                                Enter Owner’s Representative Name
                             </label>
                             <FormInputPlain  {...ownerRepName} />
                             {props.errors.ownerRepName && props.touched.ownerRepName && <Error message={props.errors.ownerRepName} />}
@@ -168,7 +169,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
                         <FormTextArea {...responsibility} />
                     
 
-                        <div className='flex flex-col mb-5'>
+                        {/* <div className='flex flex-col mb-5'>
                             <label
                                 for='default-radio-1'
                                 className='text-base text-gray-900 mb-1'
@@ -177,8 +178,8 @@ const SubstantialCompletionDetailsTwo = (props) => {
                             </label>
                             <FormInput {...estimatedCost} />
                             {props.errors.estimatedCost && props.touched.estimatedCost && <Error message={props.errors.estimatedCost} />}
-        
-                        </div>
+
+                        </div> */}
                 
        
                     </div>

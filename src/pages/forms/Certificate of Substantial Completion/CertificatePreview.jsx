@@ -1,10 +1,10 @@
 import Logo  from "../../../assets/formlogo.png";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import { prev, stepDefault } from "./reducer";
-import { closeDownload, fields, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeDownload, closeModal, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import moment from "moment";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
@@ -20,8 +20,10 @@ const CertificatePreview = () => {
 
   useFetchFilledFormQuery(formID)
   const content = useSelector(savedResponse);
+  const [highlighted, setHighlighted] = useState(false)
   const { project, vendors } = content;
-  const form_fields = useSelector(fields)
+  const form_fields = useSelector(fields);
+  const nottoBeHighlighted = !highlighted ? 'bg-yellow-300' : 'bg-white';
 
   const props = {
     component: downloadComponent ,
@@ -47,7 +49,7 @@ const CertificatePreview = () => {
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
             <button
-              onClick={()=> dispatch(prev(2))}
+              onClick={() => dispatch(closeModal())}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -56,7 +58,7 @@ const CertificatePreview = () => {
               </button>
             </div>
 
-            <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
+          <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font adverstise h-[380px]'>
               <div className='bg-white px-12 pt-8 pb-4 text-black' ref={downloadComponent}>
                 <div>
                   <div className='flex items-center mb-10 '>
@@ -67,7 +69,7 @@ const CertificatePreview = () => {
                     </h1>
                   </div>
 
-                  <table className='w-full border border-black text-left mb-5'>
+                <table className='w-full border border-black text-left mb-5 advertise'>
                     <thead className='h-[3rem]'>
                       <tr>
                         <th className='border border-black pl-[1rem]'>
@@ -83,15 +85,15 @@ const CertificatePreview = () => {
                     </thead>
                     <tbody>
                       <tr>
-                      <td className='border border-black pl-[1rem]'>{!project ?'': project.name}</td>
-                        <td className='border border-black pl-[1rem]'>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>{!project ? '' : project.name}</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
                           Project No: {!project ?'': project.number}, g8.1
                         </td>
                         <td className='border border-black pl-[1rem]'>Owner</td>
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'> </td>
-                        <td className='border border-black pl-[1rem]'>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
                           Contract for: {!form_fields? '': form_fields.purposeOfContract
 } Construction
                         </td>
@@ -100,24 +102,24 @@ const CertificatePreview = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>{!project? '': project.location}</td>
-                      <td className='border border-black pl-[1rem]'>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>{!project ? '' : project.location}</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
                       
                           Contract Date: {moment(form_fields.contractEffectDate).format("MMMM D, YYYY ")}
                         </td>
-                        <td className='border border-black pl-[1rem]'>
+                      <td className='border border-black pl-[1rem] adverstise'>
                           Contractor
                         </td>
                       </tr>
                       <tr>
                         <td className='border border-black pl-[1rem]'></td>
                         <td className='border border-black pl-[1rem]'></td>
-                        <td className='border border-black pl-[1rem]'>{!form_fields? '': form_fields.involvedInProject}</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>{!form_fields ? '' : form_fields.involvedInProject}</td>
                       </tr>
                     </tbody>
                   </table>
 
-                  <table className='w-full border border-black text-left mb-6'>
+                <table className='w-full border border-black text-left mb-4'>
                     <thead>
                       <tr>
                         <th className='border border-black pl-[1rem]'>
@@ -131,11 +133,11 @@ const CertificatePreview = () => {
                     <tbody>
                       <tr>
                         <td className='border border-black pl-[1rem]'>Durham Public Schools</td>
-                      <td className='border border-black pl-[1rem]'>{!vendors? '': vendors[0].company_name}</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>{!vendors ? '' : vendors[0].company_name}</td>
                       </tr>
                       <tr>
-                        <td className='border border-black pl-[1rem]'>511 Cleveland St., Durham, NC 27701</td>
-                        <td className='border border-black pl-[1rem]'>{!vendors? '': vendors[0].address}</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>511 Cleveland St., Durham, NC 27701</td>
+                      <td className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>{!vendors ? '' : vendors[0].address}</td>
                       </tr>
                       <tr>
                         {/* <td className='border border-black pl-[1rem]'>
@@ -149,19 +151,16 @@ const CertificatePreview = () => {
                   </table>
 
                   <div>
-                    <p className='font-bold mb-6'>
+                  <p className='font-bold mb-4 adverstise'>
                       PROJECT OR PORTION OF THE PROJECT DETERMINED SUBSTANTIALLY
                       COMPLETE:
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{" "}{!form_fields ? "" : form_fields.areasCompleted
+                    }</span>
                     </p>
 
-                    <p className='mb-6'>
-                      List project name here the Work{" "}
-                      <span className=''>{!form_fields? "": form_fields.areasCompleted
-}</span> determined
-                      Substantially Complete.
-                    </p>
 
-                    <p className='mb-6'>
+
+                  <p className='mb-4 adverstise'>
                       The Work performed under this contract has been reviewed
                       and found to be Substantially Complete. Substantial
                       Completion is the stage in the progress of the Work when
@@ -174,12 +173,12 @@ const CertificatePreview = () => {
                       applicable warranties required by the Contract Documents:
                     </p>
 
-                    <p className='font-bold mb-6'>
+                  <p className='font-bold mb-4 adverstise'>
                       DATE OF SUBSTANTIAL COMPLETION:{" "}
-                      <span className=''>{moment(form_fields.completionDate).format("MMMM D, YYYY ")}</span>
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{moment(form_fields.completionDate).format("MMMM D, YYYY ")}</span>
                     </p>
 
-                    <p className='mb-14'>
+                  <p className='mb-4 adverstise'>
                       A punch list of items to be corrected is attached hereto.
                       The failure to include items on the punch list does not
                       alter the Contractor’s responsibility to complete all Work
@@ -189,73 +188,74 @@ const CertificatePreview = () => {
                       of the Consultants Certification of the Final Payment.
                     </p>
 
-                    <div className='mb-6'>
+                  <div className='mb-4'>
                       <p className='mb-0'>
-                       <span className=''>{!vendors? '': vendors[0].company_name}</span>
+                      <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!vendors ? '' : vendors[0].company_name}</span>
                         ___________________________________________________________________
                       </p>
-                      <span>CONSULTANT</span>
-                      <span className='ml-[10rem]'>
-                        BY: <span className=''>{!vendors? '': vendors[0].first_name + ' ' + vendors[0].last_name}</span>
+                    <span className="adverstise">CONSULTANT</span>
+                    <span className='ml-[10rem] adverstise'>
+                      BY: <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!vendors ? '' : vendors[0].first_name + ' ' + vendors[0].last_name}</span>
                       </span>
-                      <span className='ml-[10rem]'>DATE</span>
+                    <span className='ml-[10rem] adverstise'>DATE</span>
                     </div>
 
-                    <p className='mb-10'>
+                  <p className='mb-6 adverstise'>
                       The Contractor will complete all work on the attached
                       punch list within{" "}
-                      <span className=''>{!form_fields? "": form_fields.workCompletionDate
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!form_fields ? "" : form_fields.workCompletionDate
 }</span> days from the
                       date of Substantial Completion.
                     </p>
 
-                    <p className='mb-12 font-bold'>
+                  <p className='mb-4 font-bold adverstise'>
                       COST ESTIMATE OF REMAINING WORK:
-                    <span className=' '>{ " "}{currency(form_fields.estimatedCost).format()}</span>
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{" "}{currency(form_fields.costOfWork).format()}</span>
                     </p>
 
-                    <div className='mb-6'>
+                  <div className='mb-4'>
                       <p className='mb-0'>
-                       <span className=''>{!vendors? '': vendors[0].company_name}</span>
+                      <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!vendors ? '' : vendors[1].company_name}</span>
+
                         ________________________________________________________________________________
                       </p>
-                      <span>CONTRACTOR</span>
-                      <span className='ml-[10rem]'>
-                        BY: <span className=''>{!vendors? '': vendors[0].first_name + ' ' + vendors[0].last_name}</span>
+                    <span className="adverstise">CONTRACTOR</span>
+                    <span className='ml-[10rem] adverstise'>
+                      BY: <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!vendors ? '' : vendors[1].first_name + ' ' + vendors[1].last_name}</span>
                       </span>
-                      <span className='ml-[10rem]'>DATE</span>
+                    <span className='ml-[10rem] adverstise'>DATE</span>
                     </div>
 
-                    <p className='mb-12'>
+                  <p className='mb-4 adverstise'>
                       The Owner accepts the Work or designated portion as
                       Substantially Complete and will assume full possession at
                       12:01 AM on the Substantial Completion date identified
                       above.
                     </p>
 
-                    <div className='mb-6'>
+                  <div className='mb-4'>
                     <p className='mb-0'>
-                    <span className=''>Durham Public Schools</span>
+                      <span className='adverstise'>Durham Public Schools</span>
                         _____________________________________________________________________________
                         
                         
                       </p>
-                      <span>OWNER: </span>
-                      <span className='ml-[15rem]'>
-                      BY: <span className=''>{!form_fields ? '' : form_fields.ownerRepName}</span>
+                    <span className="adverstise">OWNER </span>
+                    <span className='ml-[15rem] adverstise'>
+                      BY: <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!form_fields ? '' : form_fields.ownerRepName}</span>
                       </span>
-                    <span className='ml-[10rem]'>DATE: <span className=''>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span>
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise ml-[10rem]`}>DATE: <span className=''>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span>
                     </span>
                     </div>
 
-                    <p className='mb-6'>
+                  <p className='mb-4 adverstise'>
                       The responsibility of the Owner and Contractor for
                       security, maintenance, heat, utilities, damage to the Work
                       and insurance shall be as follows:
                     </p>
 
                     <p>
-                      <span className=''>{!form_fields ? '' : form_fields.responsibility}</span>
+                    <span className={`font-bold ${nottoBeHighlighted} adverstise`}>{!form_fields ? '' : form_fields.responsibility}</span>
                     </p>
                   </div>
                 </div>
@@ -270,7 +270,10 @@ const CertificatePreview = () => {
                 name='CREATE DOCUMENT'
                 type='button'
               width='w-[198px]'
-              onClick={()=> dispatch(showDownload())}
+              onClick={() => {
+                setHighlighted(true)
+                dispatch(showDownload())
+              }}
               
               />
             </div>

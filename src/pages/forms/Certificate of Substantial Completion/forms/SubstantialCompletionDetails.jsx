@@ -3,6 +3,7 @@ import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import SelectDate, {FormInput, FormInputPlain } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
+import { closeModal } from "../../reducer";
 import { prev } from "../reducer";
 
 const SubstantialCompletionDetails = (props) => {
@@ -73,7 +74,7 @@ const dispatch  = useDispatch()
                     </p>
                 </div>
                     <button
-                    onClick={()=> dispatch(prev(0))}
+                        onClick={() => dispatch(closeModal())}
                     type='button'
                     className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                     data-modal-toggle='small-modal'
