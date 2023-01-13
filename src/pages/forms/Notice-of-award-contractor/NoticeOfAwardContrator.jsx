@@ -4,11 +4,10 @@ import { ModalOverlay } from "../../../ui";
 import {NoticeIntentAward } from "../../../yup";
 import Preview from "./Preview";
 import Form from "./Forms";
-import { modal, saveFormField, showModal } from "../reducer";
-import { useEffect } from "react";
+import { modal, saveFormField, } from "../reducer";
 import { notice_of_award_contractor } from "../../../shared-component/slug";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery, useFillProjectDocumentMutation } from "../../../features/services/api";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { toast } from "react-toastify";
 import { nextStep, page } from "./reducer";
 
@@ -70,18 +69,7 @@ import { nextStep, page } from "./reducer";
        }
 
     });
-      
-    // useEffect(() => {
-    //   if (!response?.data?.data) {
-    //     return;
-    //   }
-    //   formik.setFieldValue('recipientCopy',response?.data?.data?.form_fields.recipientCopy)
-    //   formik.setFieldValue('contractorContact',response?.data?.data?.form_fields.contractorContact)
-    //   formik.setFieldValue('email',response?.data?.data?.form_fields.email)
-    //   formik.setFieldValue('sendersName',response?.data?.data?.form_fields.sendersName)
-    //   formik.setFieldValue('phone',response?.data?.data?.form_fields.phone)
-    // }, [response?.data?.data])
-      
+
   return <ModalOverlay show={id === notice_of_award_contractor && show}>
                {pages === 1 && <Form {...formik} /> } 
                  {pages === 2 && <Preview />}

@@ -60,7 +60,7 @@ const ContractDetails = (props) => {
         if (!response?.data?.data) {
           return;
         }
-        console.log(response?.data?.data?.form_fields.providerInvoice)
+        // console.log(response?.data?.data?.form_fields.providerInvoice)
         // props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
         // props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
         // props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)

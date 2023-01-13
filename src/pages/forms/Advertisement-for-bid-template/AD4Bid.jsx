@@ -103,7 +103,6 @@ const AdvertisementBid = ({id}) => {
   });
 
 
-  console.log(Formik.errors)
   useEffect(() => {
     (async function () {
       const response = await (await fetch('/states.json')).json();

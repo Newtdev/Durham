@@ -10,7 +10,7 @@ import { closeModal } from "../reducer";
 
 const Form = (props) => {
     const dispatch = useDispatch();
-    const durham = useFetchDurhamQuery()
+    const durham = useFetchDurhamQuery();
 
     const creationDate = {
         ...props,
@@ -77,6 +77,8 @@ const Form = (props) => {
        onChange: props.handleChange,
         error: props.errors.recipientCopy,
         touched: props.touched.recipientCopy,
+        id: 'recipientCopy',
+
         name: 'Choose the recipients of the carbon copy.',
         type: 'text',
         placeholder:'Select recipients'

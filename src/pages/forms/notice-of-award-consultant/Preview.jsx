@@ -25,8 +25,7 @@ const Preview = () => {
     const content = useSelector(savedResponse);
     const { vendors, durham_profile, project } = content;
     const form_fields = useSelector(fields);
-    console.log(content)
-    console.log(form_fields)
+
    
 
     const props = {

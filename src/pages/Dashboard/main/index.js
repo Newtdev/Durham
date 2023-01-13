@@ -2,8 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {  Route, Routes, useNavigate } from "react-router-dom";
 import { userInfo } from "../../../features/auth";
-import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
-import PunchList from "../../forms/Punch List/PunchList";
+import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement";
 import EditProjectDashboard from "../Overview-dashboard/EditProjectDashboard";
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectDetails = lazy(() => import("../project-details"));
@@ -37,7 +36,7 @@ const Dashboard = () => {
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />
 				<Route path="/edit-project" element={<EditProjectDashboard />} />
-				<Route path="/forms" element={<AdvertisementBid />} />
+				<Route path="/forms" element={<OwnerContractorManagementForm />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
 				<Route path="/settings" element={<Settings />} />

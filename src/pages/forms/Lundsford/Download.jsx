@@ -5,10 +5,10 @@ import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { documentDefault, project_document_id, slugIdDefault } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useReactToPrint } from "react-to-print";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { savedResponse } from "../reducer";
+import { closeDownload, savedResponse } from "../reducer";
 
 
-const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
+const DownLoadForm = ({ component, show, name, stepDefault, close, remove }) => {
   const dispatch = useDispatch();
 
   const formID = useSelector(project_document_id);
@@ -48,14 +48,17 @@ const DownLoadForm = ({ component, show, name, stepDefault, close }) => {
             type='button'
             width='w-[360px]'
             onClick={() => {
+              // remove()
+              dispatch(closeDownload())
               handlePrint()
               dispatch(slugIdDefault())
               dispatch(stepDefault())
-              dispatch(close())
             }
           }
           />
           <button onClick={() => {
+            dispatch(closeDownload())
+
             dispatch(slugIdDefault())
             dispatch(documentDefault())
             dispatch(stepDefault())

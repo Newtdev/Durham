@@ -97,14 +97,15 @@ export const documents = [
 		name: "Contract",
 		data: [
 			{ id: 1, name: "Technology Service Agreement" },
+			
 			// { id: 2, name: " Short Small Form Design Consultant Agreement" },
 			// { id: 3, name: "Owner and Design Consultant (more $200,000)" },
 			// { id: 4, name: " Owner and Design Consultant (less than $200,000)" },
 			// { id: 5, name: "Owner and Contractor Agreement Form (more $500,000)" },
-			// {
-			// 	id: 6,
-			// 	name: "Owner and Contractor Agreement Form (less than $500,000)",
-			// },
+			{
+				id: 6,
+				name:'Owner and Contract Management (CM & CMAR) Agreement'
+			},
 			{ id: 7, name: " LeChase Esser Contract Template" },
 			{ id: 8, name: "ESSER Contract Template" },
 			{ id: 9, name: "ESSER PM Contract Template" },
@@ -121,7 +122,7 @@ export const documents = [
 			 { id: 14, name: " 00 11 13 - Advertisement for Bid Template" },
 			// { id: 15, name: "3 bids" },
 			// { id: 16, name: " Bid Manual" },
-			// { id: 17, name: "Determination of Apparent Low Bidder - Contractor" },
+			{ id: 17, name: "Determination of Apparent Low Bidder - Contractor" },
 			// { id: 18, name: "Precise Checklist" },
 			//{ id: 19, name: "Contract Preparation Checklist" },
 		],

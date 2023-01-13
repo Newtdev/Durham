@@ -22,6 +22,8 @@ import NoticeAwardConsultantReducer from '../pages/forms/notice-of-award-consult
 import LechaseReducer from '../pages/forms/LeChase Esser/reducer'
 import EsserPMReducer from '../pages/forms/ESSER PM Contract Template/reducer'
 import EsserContractTemplate from '../pages/forms/ESSER Contract Template/reducer'
+import DeterminationReducer from '../pages/forms/Determination-low-bidder/reducer'
+import ownersContractorFormReducer from '../pages/forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/reducer'
 
 export const store = configureStore({
 	// reducers
@@ -49,7 +51,9 @@ export const store = configureStore({
 		NoticeOfProceedReducer,
 		LechaseReducer,
 		EsserPMReducer,
-		EsserContractTemplate
+		EsserContractTemplate,
+		DeterminationReducer,
+		ownersContractorFormReducer
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

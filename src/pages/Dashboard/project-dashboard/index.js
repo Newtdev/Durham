@@ -32,6 +32,7 @@ import { getProjectInfo } from "../Overview-dashboard/editReducer";
 import { toast } from "react-toastify";
 import { useDeleteProjectMutation, useFetchSingleProjectQuery } from "../../../features/services/api";
 import { getProjectID } from "../add-project/reducer";
+import DeterminationOFLowestBidder from "../../forms/Determination-low-bidder";
 
 const ProjectDashboard = () => {
 	const id = useSelector(getProjectID)
@@ -267,7 +268,7 @@ const ProjectDashboard = () => {
 			<Lechase id={documentsID} />
 			<TechService id={documentsID} />
 			<NoticeOfAwardContrator id={documentsID} />
-			{/* <NoticeOfAwardContrator id={documentsID} /> */}
+			<DeterminationOFLowestBidder id={documentsID} />
 		</section>
 	);
 };
