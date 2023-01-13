@@ -18,6 +18,7 @@ export const punchList = "Punch-List-and-Substantial-Completion-Process";
 
 export const advertisement_bid = "00-11-13---Advertisement-for-Bid-Template";
 export const Determination_bidder = "Determination-of-Apparent-Low-Bidder---Contractor";
+export const OwnerContractManagement = "Owner-and-Contract-Management-(CM-&-CMAR)-Agreement";
 export const ESSERContract = "ESSER-Contract-Template";
 export const ESSERContractPM = "ESSER-PM-Contract-Template";
 export const leChase = "LeChase-Esser-Contract-Template";

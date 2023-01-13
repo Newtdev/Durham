@@ -56,6 +56,9 @@ export const AddVendorsSchema = Yup.object().shape({
 	last_name: Yup.string().required("Last name is required!"),
 	company_name: Yup.string().required("Company name is required!"),
 	address: Yup.string().required("Address is required!"),
+	state: Yup.string().required("Address is required!"),
+	city: Yup.string().required("Address is required!"),
+	zip_code: Yup.string().required("Address is required!"),
 	industry: Yup.string().required("Industry is required!"),
 });
 
@@ -257,7 +260,6 @@ export const ProjectCloseOutSchema = Yup.object().shape({
 	signDate: Yup.string().required("signed date field is required"),
 });
 export const DeterminationFormContractor = Yup.object().shape({
-
 	creationDate: Yup.date().required("Field is required"),
 });
 

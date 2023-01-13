@@ -3,11 +3,9 @@ import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../../Dashboard/Overview-dashboard/OverviewComponents";
 import { getList } from "../../../Advertisement-for-bid-template/reducer";
-import SelectDate, { FormInputPlain, FormSelect } from "../../../components";
+import SelectDate, { FormSelect } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
-import { prev } from "../../../Project-closeout-checklist/reducer";
 import { closeModal } from "../../../reducer";
-import { prevStep } from "../reducer";
 
 const FormOne = (props) => {
     const dispatch = useDispatch()

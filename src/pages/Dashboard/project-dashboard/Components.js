@@ -33,7 +33,7 @@ export const Accordion = ({ data }) => {
 		if (e.target) {
 
 			const { value, name, id } = e.target;
-			console.log(id)
+			console.log(value)
 			e.target.className = newClass;
 			dispatch(getDocument(name));
 			dispatch(getSlugId(value));

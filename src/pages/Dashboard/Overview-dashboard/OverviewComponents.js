@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -8,11 +8,15 @@ import {
 	useFetchVendorsQuery,
 } from "../../../features/services/api";
 import { Label, Error, Textarea } from "../../../ui";
+import { getList, getStates } from "../../forms/Advertisement-for-bid-template/reducer";
+import { FormInputContainer } from "../../forms/Notice-of-intent-consultant/Forms";
 import { saveID, saveVendorID } from "../add-project/reducer";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
 			{dataArray?.map((project, index) => {
@@ -113,8 +117,8 @@ export function OverviewTextarea(props) {
 
 export function AwardeeInfo(props) {
 	const response = useFetchVendorsQuery({queryValue:''});
-	const dispatch = useDispatch()
-	// const details = useSelector(projectData);
+	const dispatch = useDispatch();
+	const states = useSelector(getList);	// const details = useSelector(projectData);
 
 	// design_consultant: "",
 	const { values, errors, touched, handleChange, index } = props.data;
@@ -127,6 +131,14 @@ export function AwardeeInfo(props) {
 		value: values.project_vendors[index].industry,
 		touched: touched.industry,
 	};
+
+	useEffect(() => {
+        (async function () {
+          const response = await (await fetch('/states.json')).json();
+          dispatch(getStates(response))
+    
+        }())
+      }, [dispatch]);
 
 	function filtered() {
 		if (!response?.data?.data?.data) {
@@ -188,6 +200,30 @@ export function AwardeeInfo(props) {
 		error: errors.secretary,
 		touched: touched.secretary,
 	};
+	function CheckState() {
+        if (!values.project_vendors[index].state) {
+            return;
+        }
+        let stat = Object.values(states)?.find((state) => state.name === values.project_vendors[index].state);
+        return !stat? '': Object.keys(stat.cities)?.map((cur, id) => {
+
+         return <option key={id} value={cur}>{cur}</option>
+        })
+    };
+
+	function CheckZipCode() {
+        if (!values.project_vendors[index].city) {
+            return;
+        }
+        const city =!states ?'' : Object.values(states)?.filter((state) => state.name === values.project_vendors[index].state)
+        const zipcode = city?.find((cities) => cities);
+        return zipcode.cities[values.project_vendors[index].city]?.map((zipcode, index) => {
+            return <option key={index} value={zipcode}>{zipcode}</option>
+        })
+
+
+
+    };
 
 	useEffect(() => {
 		if (!values.project_vendors[index].company_name) {
@@ -210,22 +246,12 @@ export function AwardeeInfo(props) {
 				props.data.values.project_vendors[index].secretary =
 						cur?.secretary;
 				}
-			// else {
-
-			// 		props.data.values.project_vendors[index].first_name = '';
-			// 		props.data.values.project_vendors[index].last_name = '';
-			// 		props.data.values.project_vendors[index].title = '';
-			// 		props.data.values.project_vendors[index].company_name = '';
-			// 		props.data.values.project_vendors[index].address = '';
-			// 		props.data.values.project_vendors[index].president = '';
-			// 		props.data.values.project_vendors[index].secretary = '';
-			// 		}
-					});
+				});
 			
 		}
 	}, [values.project_vendors]);
 
-
+	
 
 	return (
 		<div onClick={(e) => e.stopPropagation()}>
@@ -264,12 +290,40 @@ export function AwardeeInfo(props) {
 						<div>
 							<OverviewInput {...consultant_address} />
 						</div>
+						<FormInputContainer name='State'>
+							<input list="states" name={`project_vendors.${[index]}.state`} value={values.project_vendors[index].state} onChange={handleChange}
+								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+							<datalist id="states">
+							{!states ? null : Object.entries(states).map((cur, index) => { 
+							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
+							</datalist>
+                        
+						</FormInputContainer>
+
+						<FormInputContainer name='City'>
+							<input list="city" name={`project_vendors.${[index]}.city`} value={values.project_vendors[index].city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Search Consultant City' />
+							<datalist id="city">
+							{CheckState()}
+							
+							</datalist>
+                        
+						</FormInputContainer>
+
+						<FormInputContainer name='Zip code'>
+							<input list="zipcode" name={`project_vendors.${[index]}.zipcode`} value={values.project_vendors[index].zipcode} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
+							<datalist id="zipcode">
+							{CheckZipCode()}
+							
+							</datalist>
+						</FormInputContainer>
 						<div>
 							<OverviewInput {...corporate_president} />
 						</div>
 						<div>
 							<OverviewInput {...corporate_secretary} />
 						</div>
+
+						
 					</div>
 				</div>
 			</div>
@@ -349,5 +403,5 @@ export function DashboardSelect(props) {
 			</select>
 			{error && touched && <Error message={error} />}
 		</div>
-	);
+	)
 }

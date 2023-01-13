@@ -49,6 +49,7 @@ const DeterminationOFLowestBidder = ({ id }) => {
         initialValues: {
             creationDate: new Date(),
             recipientCopy: '',
+            userValue: '',
         },
         validationSchema: DeterminationFormContractor,
 

@@ -18,14 +18,13 @@ const Preview = () => {
     const form_fields = useSelector(fields);
     const [highlighted, setHighlighed] = useState(false)
 
-
     const formID = useSelector(project_document_id)
     useFetchFilledFormQuery(formID)
     const content = useSelector(savedResponse);
     const { vendors, project, durham_profile
     } = content;
 
-
+    console.log(vendors)
     const props = {
         component: downloadComponent,
         name: 'Determination of Apparent Low Bidder',
@@ -97,9 +96,9 @@ const Preview = () => {
                                     <p>
                                         <span className={`${nottoBeHighlighted} font-bold advertise`}>{!vendors ? "" : vendors[0].address}</span>
                                     </p>
-                                    {/* <p>
+                                    <p>
                                         <span className='bg-yellow-500 font-bold advertise'>F5</span>
-                                    </p> */}
+                                    </p>
                                 </div>
 
                                 <div>
@@ -154,7 +153,7 @@ const Preview = () => {
                                     <p className='mb-4'>Sincerely,</p>
                                     <div className='mb-4'>
                                         <p className='mb-0'>
-                                            <span className={`${nottoBeHighlighted} font-bold advertise`}>{!durham_profile ? '' : durham_profile.project_manager_phone}</span>
+                                            <span className={`${nottoBeHighlighted} font-bold advertise`}>{!durham_profile ? '' : durham_profile.project_manager}</span>
                                         </p>
                                         <p className='mt-0'>C&CP Project Manager</p>
                                     </div>
@@ -169,6 +168,7 @@ const Preview = () => {
                                             </p>
                                             <p>
                                                 <span className={`${nottoBeHighlighted} font-bold advertise`}>{!form_fields ? "" : form_fields.recipientCopy}</span>
+                                                {!form_fields ? "" : form_fields.userValue && !form_fields.recipientCopy && <span className={`${nottoBeHighlighted} font-bold advertise`}>{!form_fields ? "" : form_fields.userValue}</span>}
                                             </p>
                                         </div>
                                     </div>

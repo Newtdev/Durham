@@ -35,6 +35,16 @@ const DeterminationForm = (props) => {
         type: 'text',
         placeholder: 'Select recipients'
     };
+    const userValue = {
+        value: props.values.userValue,
+        onChange: props.handleChange,
+        error: props.errors.userValue,
+        touched: props.touched.userValue,
+        id: 'userValue',
+        name: 'userValue',
+        type: 'text',
+        placeholder: 'Enter recipient'
+    };
 
 
 
@@ -74,23 +84,30 @@ const DeterminationForm = (props) => {
                     <SelectDate {...creationDate} />
                     {props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
                 </FormInputContainer>
-
-
-
-
-
-
                 <FormInputContainer>
                     <FormSelect {...recipientCopy}>
                         <option value=''>Select recipients</option>
                         {!durham?.data ? <option>No recipients</option> : durham?.data.map((cur, id) => {
                             return <option key={cur.slug} value={cur.value}>{cur.name}</option>
                         })}
-
-
-
+                        <option value=''>Add new recipient</option>
                     </FormSelect>
                 </FormInputContainer>
+                {props.values.recipientCopy === '' && <div className='flex flex-col mb-5'>
+                    <label
+                        for='default-radio-1'
+                        className='text-base text-gray-900 mb-1'
+                    >
+                        Enter Recipient
+                    </label>
+                    <input
+                        {...userValue}
+                        className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
+                    />
+                    {props.errors.userValue && props.touched.userValue && <Error message={props.errors.userValue} />}
+
+                </div>
+                }
 
 
             </div>

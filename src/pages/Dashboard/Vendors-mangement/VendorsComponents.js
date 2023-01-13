@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
@@ -9,6 +9,8 @@ import {
 } from "../../../features/services/api";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
+import { getList, getStates } from "../../forms/Advertisement-for-bid-template/reducer";
+import { FormInputContainer } from "../../forms/Notice-of-intent-consultant/Forms";
 import {
 	Close,
 	DashboardButton,
@@ -33,7 +35,6 @@ export const VendorsHeader = [
 
 
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-	// console.log(apiResponse.data.data.data)
 
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
@@ -101,6 +102,17 @@ const VendorInformationComponents = ({
 	vendorInitValue,
 	modal_name
 }) => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+        (async function () {
+          const response = await (await fetch('/states.json')).json();
+          dispatch(getStates(response))
+    
+        }())
+      }, [dispatch]);
+	const states = useSelector(getList);
+
 	const {
 		values,
 		errors,
@@ -207,6 +219,33 @@ const VendorInformationComponents = ({
 			touched: touched.vendor_id,
 		},
 	};
+	function CheckState() {
+        if (!values.state) {
+            return;
+        }
+		let stat = Object.values(states)?.find((state) => state.name === values.state);
+	
+		return !stat ? '' : Object.keys(stat.cities)?.map((cur, id) => {
+         return <option key={id} value={cur}>{cur}</option>
+        })
+	};
+	
+
+	function CheckZipCode() {
+        if (!values.city) {
+            return;
+        }
+		const city = !states ? '' : Object.values(states)?.filter((state) => state.name === values.state)
+	
+		const zipcode = city?.find((cities) => cities);
+		return !zipcode ? "" : zipcode.cities[values.city]?.map((zipcode, index) => {
+			
+            return <option key={index} value={zipcode}>{zipcode}</option>
+        })
+
+
+
+    };
 
 	const HandleClose = () => {
 		close();
@@ -260,6 +299,49 @@ const VendorInformationComponents = ({
 							<div>
 								<DashboardInput {...props.address} />
 							</div>
+							<FormInputContainer name='State'>
+							<input list="states" name={`state`} value={values.state} onChange={handleChange}
+								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+							<datalist id="states">
+							{!states ? null : Object.entries(states).map((cur, index) => { 
+							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
+							</datalist>
+                        
+						</FormInputContainer>
+
+							<FormInputContainer name='City'>
+								{modal_name === 'EDIT VENDOR' && 
+									<select value={values.city} name='city' id='city' onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Search Consultant City'>
+									<option value={values.city}>{!values.city? 'Select City':values.city}</option>
+									{CheckState()}
+								</select>}
+								{modal_name !== 'EDIT VENDOR' && 
+								<>
+								<input list="city" name='city' id='city' value={values.city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Search Consultant City' />
+							<datalist  id="city">
+						{CheckState()}
+							
+							</datalist>
+									</>
+								}
+						</FormInputContainer>
+
+							<FormInputContainer name='Zip code'>
+									{modal_name !== 'EDIT VENDOR' && 
+								<>
+								<input list="zip_code"   id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
+									<datalist id="zip_code">
+									<option value={values.zip_code}>{!values.zip_code? 'Select zip code':values.zip_code}</option>
+							{CheckZipCode()}
+							
+								</datalist>
+								</>
+							}
+								{modal_name === 'EDIT VENDOR' && <select id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code'>
+									{CheckZipCode()}
+								</select>
+								}
+						</FormInputContainer>
 							<div>
 								<DashboardInput {...props.president} />
 							</div>
@@ -320,7 +402,6 @@ export function AddVendor({ close }) {
 			const response = await addVendor({ ...value });
 
 			if (response?.error) {
-				console.log(response?.error);
 				close();
 				toast.error(response?.error?.message, {
 					position: toast.POSITION.TOP_CENTER,
@@ -331,7 +412,6 @@ export function AddVendor({ close }) {
 				// onSuccess show the modal and ask the manager to login
 			}
 		} catch (error) {
-			console.log(error);
 		}
 	};
 
@@ -348,6 +428,9 @@ export function AddVendor({ close }) {
 			last_name: "",
 			company_name: "",
 			address: "",
+			state: "",
+			city: "",
+			zip_code: "",
 			president: "",
 			secretary: "",
 			industry: "",
@@ -434,6 +517,9 @@ export function EditVendorModal({
 			last_name: "",
 			company_name: "",
 			address: "",
+			state: "",
+			city: "",
+			zip_code: "",
 			president: "",
 			secretary: "",
 			industry: "",

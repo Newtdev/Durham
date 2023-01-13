@@ -92,11 +92,16 @@ const ProjectFormsController = () => {
 					industry: "",
 					company_name: "",
 					address: "",
+					state: '',
+					city: '',
+					zip_code:'',
 					president: "",
 					secretary: "",
 					first_name: "",
 					last_name: "",
 					title: "",
+					
+					
 				},
 			],
 			document: {},

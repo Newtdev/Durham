@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
+import { OwnerContractManagement } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { OwnerContractManageMent } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
@@ -15,11 +16,10 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const OwnerContractorManagementForm = () => {
+const OwnerContractorManagementForm = ({ id }) => {
   const dispatch = useDispatch();
   const pages = useSelector(page)
-  // const show = useSelector(modal)
-  const show = true;
+  const show = useSelector(modal)
 
   // const pages = 4;
   const formID = useSelector(project_document_id);
@@ -112,7 +112,7 @@ const OwnerContractorManagementForm = () => {
     }())
   }, [dispatch]);
 
-  return <ModalOverlay show={show}>
+  return <ModalOverlay show={id === OwnerContractManagement && show}>
 
     <FormikProvider value={formik}>
       <form onSubmit={formik.handleSubmit}>
