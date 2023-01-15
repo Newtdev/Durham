@@ -82,18 +82,24 @@ export const FormCheckBox = ({ props, data }) => {
 	const { id } = data;
 
 	return (
-		<div className="flex items-center mb-5">
+		<div className="flex mb-5">
+			<div>
+
 			<input
 				id={id}
 				type="checkbox"
 				value={data}
 				name={props.name}
 				onChange={props.onChange}
-				className=" text-gray-900 bg-gray-100 border-gray-300"
+				className="text-gray-900 border-gray-300"
 			/>
-			<label for="default-radio-1" className="ml-2 text-sm text-gray-900">
+			</div>
+			<div className="ml-4 flex items-center mt-1">
+
+			<span for="default-radio-1" className=" text-xs h-full items-center text-gray-900">
 				{data}
-			</label>
+			</span>
+			</div>
 		</div>
 	);
 };

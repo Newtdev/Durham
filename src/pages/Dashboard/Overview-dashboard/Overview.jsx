@@ -26,8 +26,9 @@ const Overview = () => {
   const [action, setAction] = useState({ delete: false, id: null });
   const [searchVendorQuery, setQuery] = useState('');
   const [page, setPage] = useState(1);
+  const [params, setParams] = useState('')
   const query = useSelector(searchQuery)
-  const response = useFetchProjectsQuery({ query, page });
+  const response = useFetchProjectsQuery({ query, page, params });
   const { currentData } = useFetchDashboardQuery();
   const [deleteProject, {isLoading}] = useDeleteProjectMutation();
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const Overview = () => {
   const paginationProps = {
     data: response,
     page,
-    getPage: (value) => setPage(value)
+    getPage: (value) => setPage(value),
   }
 
   return (
@@ -114,7 +115,7 @@ const Overview = () => {
                 {/* <Sort /> */}
 
                 {/* <!-- Filter --> */}
-                <Filter />
+                <Filter onChange={(e) => setParams(e.target.value)} />
               </div>
 
               {/* <!-- Search --> */}

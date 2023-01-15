@@ -74,30 +74,30 @@ const ProjectCloseoutCheckList = ({id}) => {
   
     const formik = useFormik({
       initialValues: {
-            completionDate: '',
-            signDate: '',
-            one: '',
-            two: '',
-            three: '',
-            four: '',
-            five: '',
-            six: '',
-            seven: '',
-            eight: '',
-            nine: '',
-            ten: '',
-            eleven: '',
-            twelve: '',
-            thirteen: '',
-            fourteen: '',
-            fifteen: '',
-            sixteen: '',
-            seventeen: '',
-            eighteen: '',
-            ninteen: '',
-            twenty: '',
-            twentyOne: '',
-            twentyTwo:"", 
+        completionDate: '',
+        signDate: '',
+        one: false,
+        two: false,
+        three: false,
+        four: false,
+        five: false,
+        six: false,
+        seven: false,
+        eight: false,
+        nine: false,
+        ten: false,
+        eleven: false,
+        twelve: false,
+        thirteen: false,
+        fourteen: false,
+        fifteen: false,
+        sixteen: false,
+        seventeen: false,
+        eighteen: false,
+        ninteen: false,
+        twenty: false,
+        twentyOne: false,
+        twentyTwo: false, 
         },
     
       validationSchema: ProjectCloseOutSchema,
@@ -116,6 +116,7 @@ const ProjectCloseoutCheckList = ({id}) => {
           dispatch(saveFormField(values))
 
           HandleSubmit(values)
+          formik.handleReset()
         }
       }
   

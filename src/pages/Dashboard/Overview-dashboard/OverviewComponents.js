@@ -121,15 +121,15 @@ export function AwardeeInfo(props) {
 	const states = useSelector(getList);	// const details = useSelector(projectData);
 
 	// design_consultant: "",
-	const { values, errors, touched, handleChange, index } = props.data;
+	const { values, errors, touched, handleChange, index, setFieldValue } = props.data;
 	const awardee = {
 		name: "Select Awardee involve in this project",
-		id: `project_vendors.${index}.industry`,
+		id: `project_vendors.${index}.role`,
 		placeholder: "Select Awardee involve in this project",
 		onChange: handleChange,
 
-		value: values.project_vendors[index].industry,
-		touched: touched.industry,
+		value: values.project_vendors[index].role,
+		touched: touched.role,
 	};
 
 	useEffect(() => {
@@ -144,18 +144,24 @@ export function AwardeeInfo(props) {
 		if (!response?.data?.data?.data) {
 			return;
 		}
-		return response?.data?.data?.data.filter((cur) => {
-			
-			return cur.industry === values.project_vendors[index].industry;
-		});
+		return response?.data?.data?.data;
 	}
 
 	const design_consultant = {
-		name: `Select ${values.project_vendors[index].industry}`,
+		name: `Select ${values.project_vendors[index].role}`,
 		id: `project_vendors.${index}.company_name`,
-		placeholder: `Select ${values.project_vendors[index].industry}`,
+		placeholder: `Select ${values.project_vendors[index].role}`,
 
-		onChange: handleChange,
+		onChange: (e) => {
+			if (e.target.value === 'new') {
+				setFieldValue(`project_vendors.${index}.type`,e.target.value)
+			} else {
+				setFieldValue(`project_vendors.${index}.company_name`,e.target.value)
+				setFieldValue(`project_vendors.${index}.type`,'old')
+				
+			}
+
+		},
 		value: values.project_vendors[index].company_name,
 		error: errors.company_name,
 		touched: touched.company_name,
@@ -170,14 +176,14 @@ export function AwardeeInfo(props) {
 		touched: touched.company_name,
 	};
 	const consultant_address = {
-		name: "Consultant Address",
-		id: `project_vendors.${index}.address`,
-		placeholder: "Enter Consultant Address",
+		name: "Consultant street",
+		id: `project_vendors.${index}.street`,
+		placeholder: "Enter Consultant street",
 
 		onChange: handleChange,
-		value: values.project_vendors[index].address,
-		error: errors.address,
-		touched: touched.address,
+		value: values.project_vendors[index].street,
+		error: errors.street,
+		touched: touched.street,
 	};
 
 	const corporate_president = {
@@ -215,9 +221,11 @@ export function AwardeeInfo(props) {
         if (!values.project_vendors[index].city) {
             return;
         }
-        const city =!states ?'' : Object.values(states)?.filter((state) => state.name === values.project_vendors[index].state)
-        const zipcode = city?.find((cities) => cities);
-        return zipcode.cities[values.project_vendors[index].city]?.map((zipcode, index) => {
+		const city = !states ? '' : Object.values(states)?.filter((state) => state.name === values.project_vendors[index].state)
+		
+		const zipcode = city?.find((cities) => cities);
+		
+        return zipcode?.cities[values?.project_vendors[index]?.city]?.map((zipcode, index) => {
             return <option key={index} value={zipcode}>{zipcode}</option>
         })
 
@@ -240,7 +248,10 @@ export function AwardeeInfo(props) {
 					cur?.title;
 				props.data.values.project_vendors[index].company_name =
 					cur?.company_name;
-				props.data.values.project_vendors[index].address = cur?.address;
+				props.data.values.project_vendors[index].address = cur?.street;
+				props.data.values.project_vendors[index].address = cur?.state;
+				props.data.values.project_vendors[index].address = cur?.city;
+				props.data.values.project_vendors[index].address = cur?.zip_code;
 				props.data.values.project_vendors[index].president =
 					cur?.president;
 				props.data.values.project_vendors[index].secretary =
@@ -267,7 +278,7 @@ export function AwardeeInfo(props) {
 								<option value="Construction Manager">
 									Construction Manager
 								</option>
-								<option value="Others">Others</option>
+							
 							</DashboardSelect>
 						</div>
 						<div>
@@ -275,6 +286,9 @@ export function AwardeeInfo(props) {
 							<DashboardSelect {...design_consultant}>
 								{/* {design_consultant.value && <option value={design_consultant.value}>{design_consultant.value}</option>} */}
 								<option>Select</option>
+										<option value='new'>
+											Add New Vendor
+										</option>
 								{filtered()?.map((cur, id) => {
 									return (
 										<option key={id} value={cur.company_name}>
@@ -310,8 +324,8 @@ export function AwardeeInfo(props) {
 						</FormInputContainer>
 
 						<FormInputContainer name='Zip code'>
-							<input list="zipcode" name={`project_vendors.${[index]}.zipcode`} value={values.project_vendors[index].zipcode} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
-							<datalist id="zipcode">
+							<input list="zip_code" name={`project_vendors.${[index]}.zip_code`} value={values.project_vendors[index].zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
+							<datalist id="zip_code">
 							{CheckZipCode()}
 							
 							</datalist>

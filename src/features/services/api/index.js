@@ -334,9 +334,9 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
 		fetchProjects: builder.query({
-			query: ({query, page}) => {
+			query: ({ query, page, params }) => {
 				return {
-					url: `projects?search=${query}&limit=10&page=${page}`,
+					url: `projects?search=${query}&limit=10&page=${page}&filter=${params}`,
 					headers: {
 						Accept: "application/json",
 					},

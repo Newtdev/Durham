@@ -15,6 +15,7 @@ import AwardeeInformation from "./awardee-info/AwardeeInformation";
 import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
 import { documents } from "../../../lib/data";
 import EditDocument from "./documents/EditDocument";
+import { onDelete } from "../project-dashboard/ReducerSlice";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
@@ -33,7 +34,8 @@ const ProjectFormsController = () => {
 
 
 	async function HandleRequest(values) {
-		const response = await addProjectVendor({project_id: id, vendor_id: values });
+		console.log(vendorID)
+		const response = await addProjectVendor({project_id: id, vendors: values });
         if (response?.error) {
             toast.error(response?.error?.messsage, {
                 position: toast.POSITION.TOP_CENTER,
@@ -89,9 +91,10 @@ const ProjectFormsController = () => {
 
 			project_vendors: [
 				{
-					industry: "",
+					type:'old',
+					role: "",
 					company_name: "",
-					address: "",
+					street: "",
 					state: '',
 					city: '',
 					zip_code:'',
@@ -100,8 +103,7 @@ const ProjectFormsController = () => {
 					first_name: "",
 					last_name: "",
 					title: "",
-					
-					
+
 				},
 			],
 			document: {},
@@ -110,14 +112,9 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
-			
 			if (steps === 1 && !details) {
-
-				const data = [...new Set (vendorID)]
-				// values.project_vendors.forEach((cur, index) => {
-				// 	setId([...vendorId,index])
-				// 	console.log([...vendorId,index])
-				// })
+				 const data = values.project_vendors
+				
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
 				HandleRequest(data) 
 
@@ -161,7 +158,7 @@ const ProjectFormsController = () => {
 		isLoading:isLoading ||data.isLoading
 	};
 
-	
+console.log(formik.values)	
 	const getData = (e) => {
 		
 		setSelected([...selected, { document_type: e.name, document_name: e.value } ])

@@ -2,14 +2,14 @@ import { FieldArray } from "formik";
 import { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { ButtonWhiteBG } from "../../../../ui";
-import { DashboardButton } from "../../Components";
+import { Close, DashboardButton } from "../../Components";
 import { AwardeeInfo, CompanyRep } from "../../Overview-dashboard/OverviewComponents";
 import { prevForm } from "../reducer";
 
 const AwardeeInformation = (props) => {
 const dispatch = useDispatch()
     return <form onSubmit={props.handleSubmit}>
-      <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
+      <div className='bg-white border max-w-[522px] border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
         {/* Header */}
       
         
@@ -29,15 +29,32 @@ const dispatch = useDispatch()
               {props?.values?.project_vendors.map((cur, index) => (
                 <Fragment key={index}>
                   
-                  <div className="my-6">
-                    <p className='text-gray-600 font-bold text-lg mb-1'>
+                  <div className="my-6 flex items-center justify-between w-full bg-[#89A5AF] p-2">
+                    <p className='text-gray-900 font-bold text-lg mb-1'>
                       Awardee Information ({index + 1})
                     </p>
+                    <div className="w-1/2"></div>
+                    <button className={`${index === 0 ? 'hidden' : 'block'}`} onClick={() => arrayHelpers.pop({
+                      role: "",
+                      // awardee: "",
+                      company_name: "",
+                      street: "",
+                      state: '',
+                      city: '',
+                      zip_code: '',
+                      president: "",
+                      secretary: "",
+                      first_name: "",
+                      last_name: "",
+                      title: "",
+                    })}>
+                      <Close />
+                    </button >
                     <hr />
   
                   </div>
            
-                  <div className='w-1/2'>
+                  <div className=''>
                     <div>
                       <AwardeeInfo data={{ index, ...props }} />
                     </div>
@@ -50,7 +67,7 @@ const dispatch = useDispatch()
                       </p>
                       <hr />
                     </div>
-                    <div className='w-1/2'>
+                    <div className=''>
                       <div>
                         <CompanyRep data={{ index, ...props }} />
                       </div>
@@ -62,20 +79,23 @@ const dispatch = useDispatch()
               <div className=''>
                 <button
                   onClick={() => arrayHelpers.push({
-                    industry: "",
+                    role: "",
                     // awardee: "",
                     company_name: "",
-                    address: "",
+                    street: "",
+                    state: '',
+                    city: '',
+                    zip_code: '',
                     president: "",
                     secretary: "",
                     first_name: "",
                     last_name: "",
                     title: "",
                   })}
-                  className={`text-white text-sm font-semibold mt-8 w-[268px] hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center rounded h-8`}
+                  className={`text-white text-sm font-semibold mt-8 px-6 hover:bg-blue-800 bg-[#3B6979] transition-all focus:outline-none text-center rounded h-8`}
                   type='button'
                 >
-                  ADD NEW REPRESENTATIVE
+                  ADD NEW AWARDEE
                 </button>
               </div>
             </>

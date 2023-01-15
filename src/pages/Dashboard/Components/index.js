@@ -393,29 +393,19 @@ export function ProjectOverviewNav() {
 	);
 }
 
-export function Filter() {
+export function Filter({onChange}) {
 	return (
 		<div className="flex items-center justify-center">
 			<p className="mr-4 font-bold text-gray-700">Filter By:</p>
 			<div>
-				<button
-					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979]"
-					type="button">
-					Select Filter
-					<svg
-						className="ml-2 w-3 h-3"
-						aria-hidden="true"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M19 9l-7 7-7-7"></path>
-					</svg>
-				</button>
+				<select
+					onChange={onChange}
+					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
+					>
+					<option>Select Filter</option>
+					<option value='all'>All</option>
+					
+				</select>
 			</div>
 		</div>
 	);

@@ -4,6 +4,7 @@ import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { prevChoiceStep } from "../../Advertisement-for-bid-template/reducer";
 import { FormCheckBox } from "../../components";
+import { closeModal } from "../../reducer";
 import { prev } from "../reducer";
 
 
@@ -97,7 +98,7 @@ const CheckList = (props) => {
                         </p>
                     </div>
                     <button
-                        onClick={()=> dispatch(prev(0)) }
+                        onClick={() => dispatch(closeModal())}
                         type='button'
                         className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
                         data-modal-toggle='small-modal'

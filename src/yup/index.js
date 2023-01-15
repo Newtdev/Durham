@@ -113,9 +113,12 @@ export const AddNewProjectSchema = [
 	Yup.object({
 		project_vendors: Yup.array().of(
 			Yup.object().shape({
-				industry: Yup.string().required("field is required"),
+				role: Yup.string().required("field is required"),
 				company_name: Yup.string().required("field is required"),
-				address: Yup.string().required("field is required"),
+				street: Yup.string().required("field is required"),
+				state: Yup.string().required("field is required"),
+				city: Yup.string().required("field is required"),
+				zip_code: Yup.string().required("field is required"),
 
 				first_name: Yup.string().required("field is required"),
 				last_name: Yup.string().required("field is required"),

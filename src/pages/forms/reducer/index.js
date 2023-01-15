@@ -26,6 +26,9 @@ const ModalSlice = createSlice({
 		},
 		saveFormField: (state,action) => {
 			state.savedFieldResponse = action.payload
+		},
+		saveFormFieldDefault: (state,action) => {
+			state.savedFieldResponse = action.payload
 		}
 	},
 });
@@ -40,6 +43,7 @@ export const { showDownload } = ModalSlice.actions;
 export const { closeDownload } = ModalSlice.actions;
 export const { getFormResponse } = ModalSlice.actions;
 export const { saveFormField } = ModalSlice.actions;
+export const { saveFormFieldDefault } = ModalSlice.actions;
 
 // SELECT THE TOKEN AND USER
 
