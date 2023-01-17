@@ -4,17 +4,17 @@ import { state } from "../../../lib/data";
 const AddProjectSlice = createSlice({
 	name: "add-products",
 	initialState: {
-        projectForm: 0,
+        projectForm:0,
         form_id: null,
         vendorID: [],
 	},
 
 	reducers: {
         nextForm: (state, action) => {
-            state.projectForm += 1
+            state.projectForm =action.payload
         },
         prevForm: (state, action) => {
-            state.projectForm -= 1
+            state.projectForm =action.payload
         },
         setDefault: (state, action) => {
             state.projectForm = 0;

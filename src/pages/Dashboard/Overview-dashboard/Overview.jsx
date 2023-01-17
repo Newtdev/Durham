@@ -42,7 +42,8 @@ const Overview = () => {
     },
     
     onEdit: (data) => {
-      dispatch( getProjectInfo(data) )
+      console.log(data)
+      // dispatch( getProjectInfo(data) )
       // setAction({ ...action, edit: true, initialData:data })
     },
     dataArray:response?.data?.data

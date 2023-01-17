@@ -36,6 +36,7 @@ const dispatch = useDispatch()
                     <div className="w-1/2"></div>
                     <button className={`${index === 0 ? 'hidden' : 'block'}`} onClick={() => arrayHelpers.pop({
                       role: "",
+                      type: '',
                       // awardee: "",
                       company_name: "",
                       street: "",
@@ -75,11 +76,13 @@ const dispatch = useDispatch()
                   </div>
                 </Fragment>
               ))}
-             
+
+
               <div className=''>
                 <button
                   onClick={() => arrayHelpers.push({
                     role: "",
+                    type: '',
                     // awardee: "",
                     company_name: "",
                     street: "",
@@ -116,7 +119,7 @@ const dispatch = useDispatch()
           loading={props.isLoading}
         />
         
-        <ButtonWhiteBG width='w-[168px]' name='cancel' onClick={()=> dispatch(prevForm())} />
+        <ButtonWhiteBG width='w-[168px]' name='cancel' onClick={() => dispatch(prevForm(0))} />
       </div>
     </form>
 }

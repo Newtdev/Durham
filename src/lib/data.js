@@ -342,3 +342,180 @@ export const project_closeout_data = [
 		value: "22. 2-CD’s record drawing files",
 	},
 ];
+
+
+
+// Project Closeout
+// : 
+// Array(3)
+// 0
+// : 
+// {id: 158, document_name: 'Project Closeout Checklist'}
+// 1
+// : 
+// {id: 159, document_name: 'Certificate of Substantial Completion'}
+// 2
+// : 
+// {id: 160, document_name: 'Punch List and Substantial Completion Process'}
+/**
+ * "Attachment-A-Lunsford-Act-Form";
+export const dPS_short_form = "DPS-Short-Form-Engineer---Engineering-Contract";
+export const constract_preparation = "Contract-Preparation-Checklist";
+export const precise_checkList = "Precise-Checklist";
+
+export const notice_to_proceed = "Notice-to-Proceed---Contractor";
+export const notice_of_award_contractor = "Notice-of-Award---Contractor";
+export const notice_of_award_consultant = "Notice-of-Award---Consultant";
+export const notice_of_intent_consultant = "Notice-of-Intent-to-Award---Consultant";
+
+
+export const project_closeout_checklist = "Project-Closeout-Checklist";
+export const certificateOfSubstantialCompletion =
+	"Certificate-of-Substantial-Completion";
+export const punchList = "Punch-List-and-Substantial-Completion-Process";
+
+//Notice of Intent to Award - Consultant
+
+export const advertisement_bid = "00-11-13---Advertisement-for-Bid-Template";
+export const Determination_bidder = "Determination-of-Apparent-Low-Bidder---Contractor";
+export const OwnerContractManagement = "Owner-and-Contract-Management-(CM-&-CMAR)-Agreement";
+export const ESSERContract = "ESSER-Contract-Template";
+export const ESSERContractPM = "ESSER-PM-Contract-Template";
+export const leChase = "LeChase-Esser-Contract-Template";
+export const techServices = "Technology-Service-Agreement";
+ * 
+ * 
+ * 
+ * 
+ */
+export const EditDocumentData = {
+	Contract: [
+		{ id: 1, document_name: "Technology Service Agreement" },
+		
+		// { id: 2, document_name: " Short Small Form Design Consultant Agreement" },
+		// { id: 3, document_name: "Owner and Design Consultant (more $200,000)" },
+		// { id: 4, document_name: " Owner and Design Consultant (less than $200,000)" },
+		// { id: 5, document_name: "Owner and Contractor Agreement Form (more $500,000)" },
+		{
+			id: 6,
+			document_name:'Owner and Contract Management (CM & CMAR) Agreement'
+		},
+		{ id: 7, document_name: " LeChase Esser Contract Template" },
+		{ id: 8, document_name: "ESSER Contract Template" },
+		{ id: 9, document_name: "ESSER PM Contract Template" },
+		// { id: 10, document_name: "DPS Short Form Engineer - Engineering Contract" },
+		{ id: 11, document_name: "Attachment A Lunsford Act Form" },
+	],
+	Procurement: [
+		// { id: 12, name: " E-589CI Affidavit of Capital Improvement" },
+		// { id: 13, name: "DPS Formal General Conditions - 1-17-20" },
+		 { id: 14, document_name: " 00 11 13 - Advertisement for Bid Template" },
+		// { id: 15, name: "3 bids" },
+		// { id: 16, name: " Bid Manual" },
+		{ id: 17, document_name: "Determination of Apparent Low Bidder - Contractor" },
+		// { id: 18, name: "Precise Checklist" },
+		//{ id: 19, name: "Contract Preparation Checklist" },
+	],
+		Noticer_letters: [
+			{ id: 20, document_name: "Notice of Award - Consultant" },
+			{ id: 21, document_name: "Notice of Award - Contractor" },
+			{
+				id: 22,
+				document_name: "Notice of Intent to Award - Consultant",
+			},
+			{
+				id: 23,
+				document_name: "Notice to Proceed - Contractor",
+			},
+	],
+	Project_Closeout: [
+		{
+			id: 24,
+			document_name: "Project Closeout Checklist",
+		},
+		{
+			id: 25,
+			document_name: "Certificate of Substantial Completion",
+		},
+		{
+			id: 26,
+			document_name: "Punch List and Substantial Completion Process",
+		},
+	],
+	MWBE_Forms: [],
+	Budget: []
+}
+// export const EditDocument = [
+	// 	{
+		// 		id: 0,
+		// 		name: "Contract",
+// 		data: [
+// 			{ id: 1, name: "Technology Service Agreement" },
+			
+// 			// { id: 2, name: " Short Small Form Design Consultant Agreement" },
+// 			// { id: 3, name: "Owner and Design Consultant (more $200,000)" },
+// 			// { id: 4, name: " Owner and Design Consultant (less than $200,000)" },
+// 			// { id: 5, name: "Owner and Contractor Agreement Form (more $500,000)" },
+// 			{
+// 				id: 6,
+// 				name:'Owner and Contract Management (CM & CMAR) Agreement'
+// 			},
+// 			{ id: 7, name: " LeChase Esser Contract Template" },
+// 			{ id: 8, name: "ESSER Contract Template" },
+// 			{ id: 9, name: "ESSER PM Contract Template" },
+// 			// { id: 10, name: "DPS Short Form Engineer - Engineering Contract" },
+// 			{ id: 11, name: "Attachment A Lunsford Act Form" },
+// 		],
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "Procurement",
+// 		data: [
+// 			// { id: 12, name: " E-589CI Affidavit of Capital Improvement" },
+// 			// { id: 13, name: "DPS Formal General Conditions - 1-17-20" },
+// 			 { id: 14, name: " 00 11 13 - Advertisement for Bid Template" },
+// 			// { id: 15, name: "3 bids" },
+// 			// { id: 16, name: " Bid Manual" },
+// 			{ id: 17, name: "Determination of Apparent Low Bidder - Contractor" },
+// 			// { id: 18, name: "Precise Checklist" },
+// 			//{ id: 19, name: "Contract Preparation Checklist" },
+// 		],
+// 	},
+
+// 	{
+// 		id: 2,
+// 		name: "Notice Letter",
+// 		data: [
+// 			{ id: 20, name: "Notice of Award - Consultant" },
+// 			{ id: 21, name: "Notice of Award - Contractor" },
+// 			{
+// 				id: 22,
+// 				name: "Notice of Intent to Award - Consultant",
+// 			},
+// 			{
+// 				id: 23,
+// 				name: "Notice to Proceed - Contractor",
+// 			},
+// 		],
+// 	},
+// 	{ id: 3, name: "Budget", data: [] },
+// 	{
+// 		id: 4,
+// 		name: "Project Closeout",
+// 		data: [
+// 			{
+// 				id: 24,
+// 				name: "Project Closeout Checklist",
+// 			},
+// 			{
+// 				id: 25,
+// 				name: "Certificate of Substantial Completion",
+// 			},
+// 			{
+// 				id: 26,
+// 				name: "Punch List and Substantial Completion Process",
+// 			},
+// 		],
+// 	},
+// 	{ id: 5, name: "MWBE Forms", data: [] },
+// ];

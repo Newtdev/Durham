@@ -82,7 +82,7 @@ export const SelectDocuments = (props) => {
 
         {/* Buttons */}
         <div className='flex gap-4 pb-28'>
-            <ButtonWhiteBG name='go back' width='w-[168px]' onClick={()=> dispatch(prevForm())} />
+            <ButtonWhiteBG name='go back' width='w-[168px]' onClick={() => dispatch(prevForm(1))} />
             <DashboardButton
           name='NEXT'
           hidden

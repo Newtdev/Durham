@@ -16,6 +16,9 @@ export const AccordionSelector = ({ data, objName, getData }) => {
 	// 		e.target.className = newClass;
 	// 	}
 	// };
+	const makeId = (...arg) => {
+		return arg[0].split(" ").join("-");
+   };
 	return (
 		<ul className="px-4">
 			{data.map(({ name, id }, idx) => {
@@ -29,7 +32,8 @@ export const AccordionSelector = ({ data, objName, getData }) => {
 								id={id}
 								type="checkbox"
 								value={name}
-								name={objName}
+							name={objName}
+							title={makeId(name)}
 								onChange={(e) => {
 									// console.log(e.target.checked)
 									// setChecked({checked, [e.target.name]: e.target.checked })
@@ -38,7 +42,6 @@ export const AccordionSelector = ({ data, objName, getData }) => {
 										// getData(e.target);
 									} else {
 										// console.log(e.target)
-// dispatch(addDocuments(e.target.value))
 										getData(e.target);
 										// console.log(e.target.value)
 

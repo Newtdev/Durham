@@ -84,6 +84,10 @@ export const AddProjectInformation = Yup.object({
 	name: Yup.string().required("field is required"),
 	number: Yup.string().required("field is required"),
 	description: Yup.string().required("field is required"),
+	// street: Yup.string().required("field is required"),
+	// state: Yup.string().required("field is required"),
+	// city: Yup.string().required("field is required"),
+	// zip_code: Yup.string().required("field is required"),
 	project_manager_id: Yup.string().required("field is required"),
 });
 
@@ -107,7 +111,7 @@ export const AddNewProjectSchema = [
 		project_name: Yup.string().required("field is required"),
 		project_number: Yup.string().required("field is required"),
 		project_description: Yup.string().required("field is required"),
-		project_location: Yup.string().required("field is required"),
+		// project_location: Yup.string().required("field is required"),
 		project_manager: Yup.string().required("field is required"),
 	}),
 	Yup.object({
@@ -119,7 +123,6 @@ export const AddNewProjectSchema = [
 				state: Yup.string().required("field is required"),
 				city: Yup.string().required("field is required"),
 				zip_code: Yup.string().required("field is required"),
-
 				first_name: Yup.string().required("field is required"),
 				last_name: Yup.string().required("field is required"),
 				title:

@@ -10,7 +10,7 @@ export const FormInputContainer = ({ name, children }) => {
     return <div className='flex flex-col mb-5'>
         <label
             for='default-radio-1'
-            className='text-base text-gray-900 mb-1'
+            className='text-sm text-gray-600 mb-1'
         >
             {name}
         </label>

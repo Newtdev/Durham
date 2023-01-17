@@ -1,12 +1,40 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { EditDocumentData } from "../../../../lib/data";
 import { ButtonWhiteBG, ChevronDown, ChevronUp } from "../../../../ui";
 import { DashboardButton } from "../../Components";
 import { prevForm } from "../reducer";
 
 
- const Accordion = ({ data }) => {
+const Accordion = ({ data, fetchData }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
+
+
+
+	function getList() {
+		console.log(fetchData)
+		if (fetchData?.Procurement) {
+
+			data?.Procurement.map((curr, ind) => {
+				console.log(curr.document_name);
+
+				console.log(fetchData?.Procurement[ind]?.document_name);
+				// console.log(curr.document_name == fetchData?.Procurement[ind]?.document_name)
+			})
+			// console.log(curr.document_name === documents.Procurement[index].document_name)
+		}
+
+		if (fetchData?.Contract) {
+			data?.Contract.map((curr, ind) => {
+				// console.log('personal', curr?.document_name === 'Owner and Contract Management (CM & CMAR) Agreement' && curr?.document_name.length)
+				// console.log('database', fetchData?.Contract[ind]?.document_name)
+				// console.log(curr.document_name === fetchData?.Contract[ind]?.document_name)
+				//  return curr.document_name === data.Contract[index].document_name
+			})
+		}
+	}
+
 
 	const newClass =
 		"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
@@ -38,6 +66,7 @@ import { prevForm } from "../reducer";
 								// key={id}
 							>
 								<h2>
+									{getList()}
 									<button
 										onClick={() => {
 											setActiveIndex(idx);
@@ -66,7 +95,7 @@ import { prevForm } from "../reducer";
 													type="button"
 													name={cur.document_name}
 													key={index}
-													className={`bg-[#699bac]
+													className={`${getList() ? 'bg-red-900' : 'bg-blue-900'}
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
 												/>
 											);
@@ -80,11 +109,15 @@ import { prevForm } from "../reducer";
 	);
 };
 
-const EditDocument = ({documents,getData}) => {
+const EditDocument = ({ documents, getData }) => {
+	// EditDocumentData
+	const [present, setPresent] = useState(false)
+
+
+	const navigate = useNavigate();
     const dispatch = useDispatch();
-   return <form className=''>
-        <div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
-            {/* Header */}
+	return <form className='' onSubmit={() => navigate('/dashboard')}>
+		<div className='bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8'>
             <div className='mb-6'>
                 <h3 className='font-semibold text-gray-900 text-[32px]'>
                     Edit Documents
@@ -105,7 +138,7 @@ const EditDocument = ({documents,getData}) => {
             {/* Document Accordions */}
             <div className='w-full rounded-lg border border-gray-100'>
                <div id='accordion-collapse' data-accordion='collapse'>
-               <Accordion data={documents} />
+					<Accordion data={EditDocumentData} fetchData={documents} />
 
                 </div>
             </div>
@@ -113,7 +146,7 @@ const EditDocument = ({documents,getData}) => {
 
         {/* Buttons */}
         <div className='flex gap-4 pb-28'>
-            <ButtonWhiteBG name='go back' width='w-[168px]' onClick={()=> dispatch(prevForm())} />
+			<ButtonWhiteBG name='go back' width='w-[168px]' onClick={() => dispatch(prevForm(1))} />
             <DashboardButton
           name='NEXT'
           hidden

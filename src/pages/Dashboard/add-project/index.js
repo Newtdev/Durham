@@ -10,18 +10,17 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { projectData, setProjectInfoDefault } from "../Overview-dashboard/editReducer";
 import ProjectInformation from "./project-info";
-import { getForm, getProjectID, getVendorID, nextForm, setDefault, } from "./reducer";
+import { getForm, getProjectID, nextForm, setDefault, } from "./reducer";
 import AwardeeInformation from "./awardee-info/AwardeeInformation";
 import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
 import { documents } from "../../../lib/data";
 import EditDocument from "./documents/EditDocument";
-import { onDelete } from "../project-dashboard/ReducerSlice";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const id = useSelector(getProjectID);
-	const vendorID = useSelector(getVendorID)
+	// const vendorID = useSelector(getVendorID)
 
 	// MAKE API REQUEST TO FETCH THE LIST OF ALL THE VENDORS
 	const details = useSelector(projectData);
@@ -34,7 +33,6 @@ const ProjectFormsController = () => {
 
 
 	async function HandleRequest(values) {
-		console.log(vendorID)
 		const response = await addProjectVendor({project_id: id, vendors: values });
         if (response?.error) {
             toast.error(response?.error?.messsage, {
@@ -44,7 +42,7 @@ const ProjectFormsController = () => {
         }
         else if (response?.data) {
             // error alert
-			dispatch(nextForm());
+			dispatch(nextForm(2));
             // toast.error(response?.message, {
             //     position: toast.POSITION.TOP_CENTER,
             // });
@@ -52,7 +50,7 @@ const ProjectFormsController = () => {
         
     }
 	async function HandleEditRequest(values) {
-		const response = await editVendor(values);
+		const response = await editVendor({...values, industry:"test"});
         if (response?.error) {
             toast.error(response?.error?.message, {
                 position: toast.POSITION.TOP_CENTER,
@@ -61,7 +59,7 @@ const ProjectFormsController = () => {
         }
         else if (response?.data) {
             // error alert
-			dispatch(nextForm());
+			dispatch(nextForm(2));
             
 		}
         
@@ -79,7 +77,7 @@ const ProjectFormsController = () => {
         else if (response?.data) {
 			// error alert
 			navigate('/dashboard/add-new-project/preview');
-			dispatch(setDefault());
+			// dispatch(setDefault());
             
         } 
         
@@ -91,7 +89,7 @@ const ProjectFormsController = () => {
 
 			project_vendors: [
 				{
-					type:'old',
+					type:'',
 					role: "",
 					company_name: "",
 					street: "",
@@ -158,10 +156,9 @@ const ProjectFormsController = () => {
 		isLoading:isLoading ||data.isLoading
 	};
 
-console.log(formik.values)	
 	const getData = (e) => {
 		
-		setSelected([...selected, { document_type: e.name, document_name: e.value } ])
+		setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
 	};
 	const selectprops = {
 		...props,

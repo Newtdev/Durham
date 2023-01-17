@@ -22,6 +22,7 @@ const Preview = () => {
 
   useFetchFilledFormQuery(formID)
   const content = useSelector(savedResponse);
+  console.log(content)
   const { project } = content;
   const form_fields = useSelector(fields)
 

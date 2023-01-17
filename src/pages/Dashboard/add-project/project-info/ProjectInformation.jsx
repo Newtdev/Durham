@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {  useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchProjectsQuery, useFetchSingleProjectQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
+import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
 import { ButtonWhiteBG } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
 import { DashboardButton } from "../../Components";
@@ -35,7 +35,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         }
         else if (response?.data) {
             dispatch(saveID(response?.data?.data?.id));
-             dispatch(nextForm());
+            dispatch(nextForm(1));
             // error alert
             // toast.error(response?.message, {
             //     position: toast.POSITION.TOP_CENTER,
@@ -56,7 +56,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         else if (response?.data) {
          
             dispatch(saveID(response?.data?.data?.id));
-            dispatch(nextForm());
+            dispatch(nextForm(1));
         } 
         
     }
@@ -66,7 +66,10 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
             project_manager_id: "",
             name: "",
             number: "",
-            location: '',
+            street: '',
+            state: '',
+            city: '',
+            zip_code: '',
             description: "",
         },
         validationSchema: AddProjectInformation,
@@ -100,15 +103,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         onChange: handleChange,
         placeholder: "Enter Project Number",
     };
-    const project_location = {
-        name: "Project Location",
-        id: "location",
-        value: values.location,
-        error: errors.location,
-        touched: touched.location,
-        onChange: handleChange,
-        placeholder: "Enter Project location",
-    };
+
     const project_description = {
         name: "Project Description",
         id: "description",
@@ -117,6 +112,42 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         touched: touched.description,
         onChange: handleChange,
         placeholder: "Enter Product Description",
+    };
+    const project_street = {
+        name: "Project Location (Street)",
+        id: "street",
+        value: values.street,
+        error: errors.street,
+        touched: touched.street,
+        onChange: handleChange,
+        placeholder: "Enter street",
+    };
+    const project_state = {
+        name: "Project Location (State)",
+        id: "state",
+        value: values.state,
+        error: errors.state,
+        touched: touched.state,
+        onChange: handleChange,
+        placeholder: "Enter state",
+    };
+    const project_city = {
+        name: "Project Location (City)",
+        id: "city",
+        value: values.city,
+        error: errors.city,
+        touched: touched.city,
+        onChange: handleChange,
+        placeholder: "Enter city",
+    };
+    const project_zip_code = {
+        name: "Project Location (Zip Code)",
+        id: "zip_code",
+        value: values.zip_code,
+        error: errors.zip_code,
+        touched: touched.zip_code,
+        onChange: handleChange,
+        placeholder: "Enter zip code",
     };
     const project_manager = {
         name: "Project Manager",
@@ -164,19 +195,24 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                         <OverviewInput {...project_number} />
                                     </div>
                                     <div>
-                                        <OverviewInput {...project_location} />
+                                        <OverviewInput {...project_street} />
+                                    </div>
+                                    <div>
+                                        <OverviewInput {...project_state} />
+                                    </div>
+                                    <div>
+                                        <OverviewInput {...project_city} />
+                                    </div>
+                                    <div>
+                                        <OverviewInput {...project_zip_code} />
                                     </div>
                                     <div>
                                         <OverviewTextarea {...project_description} />
                                     </div>
                                     <div>
                                         <DashboardSelect {...project_manager}>
-                                            {!response?.data?.data?.data && !details?.data? (
-                                                <option>No project Manager</option>
-                                            ) : 
-                                            <option>Select Project Manager</option>
-                                            
-                                            }
+                                            <option value={!project_manager.value && ''}>{!project_manager.value ? 'Select Project Manager' : project_manager.value}</option>
+
                                             {response?.data?.data?.data?.map((cur, id) => {
                                                 return (
                                                     <option
