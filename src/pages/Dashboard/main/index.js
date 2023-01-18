@@ -15,6 +15,7 @@ const ProfileSettings = lazy(() => import("../Settings/Profile-settings"));
 const ProjectDashboard = lazy(() => import("../Overview-dashboard"));
 const ProjectPreview = lazy(() => import("../project-dashboard"));
 const ProjectFormsController = lazy(() => import("../add-project"));
+const SchoolInformation = lazy(() => import("../schoolInformation"));
 
 const Dashboard = () => {
 	const navigate = useNavigate()
@@ -39,6 +40,7 @@ const Dashboard = () => {
 				<Route path="/forms" element={<OwnerContractorManagementForm />} />
 				<Route path="/product-manager" element={<ProjectManager />}></Route>
 				<Route path="/vendors" element={<Vendors />}></Route>
+				<Route path="/schools" element={<SchoolInformation />}></Route>
 				<Route path="/settings" element={<Settings />} />
 				<Route path="/settings/durhams-profile" element={<DurhamSettings />} />
 				<Route path="/settings/profile" element={<ProfileSettings />} />

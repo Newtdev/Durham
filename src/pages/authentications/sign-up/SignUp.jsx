@@ -1,6 +1,6 @@
 import { Button, ModalOverlay, } from "../../../ui";
 import AuthComp, { AuthHeader, AuthSuccessModal, CheckBox, ImageSideContainer, InputContainer } from "../component";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../../yup";
 import { useActivateProjectManagerMutation, useFetchProjectManagerQuery } from "../../../features/services/api";
@@ -12,6 +12,7 @@ const SignUp = () => {
     const location = useLocation();
     const [showSuccess, setShowSuccess] = useState(false)
     const [userInfo, setUserInfo] = useState({})
+    const navigate = useNavigate()
 
 
     const { data,error } = useFetchProjectManagerQuery(location?.pathname?.split('/')[3]);
@@ -144,7 +145,8 @@ const SignUp = () => {
     const successProps = {
         name: 'Password Created Successfully',
 		content:
-			"Log in with Your Email and Password",        
+            "Log in with Your Email and Password",
+        close: () => navigate('/')
 	};
 
     return <section>
@@ -152,7 +154,6 @@ const SignUp = () => {
         <article className="mx-10 px-4 mx-auto h-screen w-screen flex">
            
             <AuthComp>
-                {console.log(values)}
                 <div className='mt-8'>
                     <div className='h-16'>
                       
@@ -175,7 +176,7 @@ const SignUp = () => {
                             <Button name='SIGN UP' loading={isLoading} disablebtn={!props.check.value} />
                         </div>
                         <div>
-                            <p className='text-base text-gray-800 font-light'>Don't have an account? <Link to='/' className=' underline  text-[#3B6979] font-bold'>Log in</Link>
+                            <p className='text-base text-gray-800 font-light'>Already have an account? <Link to='/' className=' underline  text-[#3B6979] font-bold'>Log in</Link>
                             </p>
                         </div>
                     </form>

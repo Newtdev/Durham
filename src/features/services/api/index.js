@@ -19,7 +19,7 @@ export const DurhamsApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["vendors", "product-managers", "durham-settings",'projects', 'dashboard'],
+	tagTypes: ["vendors", "product-managers", "durham-settings",'projects', 'dashboard','school','profile'],
 	endpoints: (builder) => ({
 		userLogin: builder.mutation({
 			query: (info) => {
@@ -147,7 +147,8 @@ export const DurhamsApi = createApi({
 				};
 			},
 			transformResponse: (response, meta, arg) => response.data,
-			providesTags: (result) => ["product-managers"],
+			transformErrorResponse: (response, meta, arg) => response.data,
+			providesTags: (result) => ["product-managers", 'profile'],
 		}),
 		activateProjectManager: builder.mutation({
 			query: (info) => {
@@ -265,6 +266,7 @@ export const DurhamsApi = createApi({
 		// 	DURHAM SETTINGS
 		updateDurhamDetails: builder.mutation({
 			query: (info) => {
+				console.log(info)
 				return {
 					url: "settings",
 					headers: {
@@ -463,8 +465,102 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 
-		// ADD VENDOR TO PROJECTS
+		// ADD SCHOOL
+		addSchool: builder.mutation({
+			query: (info) => {
+				return {
+					url: "schools",
+					headers: {
+						Accept: "application/json",
+					},
+					method: "POST",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects",'school'],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+		updateSchool: builder.mutation({
+			query: ({id,...info}) => {
+				return {
+					url: `schools/${id}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "PUT",
+					body: info,
+				};
+			},
+			invalidatesTags: ["projects",'school'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
+		fetchAllSchool: builder.query({
+			query: ({ queryValue, page }) => {
+				return {
+					url: `schools?search=${queryValue}&limit=10&page=${page}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+					
+				};
+			},
+			providesTags: ["projects",'school'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
+		DeleteSchool: builder.mutation({
+			query: (id) => {
+				return {
+					url: `schools/${id}`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "DELETE",
+					
+				};
+			},
+			invalidatesTags: ["projects",'school'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
+		UpdateProfile: builder.mutation({
+			query: ({ id,...info }) => {
+				return {
+					url: `update-profile`,
+					headers: {
+						Accept: "application/json",
+					},
+					body:info,
+					method: "PUT",
+					
+				};
+			},
+			invalidatesTags: ["profile"],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+		UpdatePassword: builder.mutation({
+			query: (info) => {
+				return {
+					url: `change-password`,
+					headers: {
+						Accept: "application/json",
+					},
+					body:info,
+					method: "POST",
+					
+				};
+			},
+			invalidatesTags: ["profile",],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
 	}),
+
+	
 });
 
 export const {
@@ -495,5 +591,11 @@ export const {
 	useAddProjectDocumentMutation,
 	useUpdateProjectsMutation,
 	useFillProjectDocumentMutation,
-	useFetchFilledFormQuery
+	useFetchFilledFormQuery,
+	useAddSchoolMutation,
+	useDeleteSchoolMutation,
+	useFetchAllSchoolQuery,
+	useUpdateSchoolMutation,
+	useUpdateProfileMutation,
+useUpdatePasswordMutation
 } = DurhamsApi;

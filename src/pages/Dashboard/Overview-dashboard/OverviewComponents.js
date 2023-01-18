@@ -72,9 +72,10 @@ export function OverviewTitleCard({ name, value }) {
 }
 
 export function Input(props) {
-	const { placeholder, id, onChange, value } = props;
+	const { placeholder, id, onChange, value, disabled } = props;
 	return (
 		<input
+			disabled={disabled}
 			className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 			name={id}
 			placeholder={placeholder}
@@ -136,7 +137,7 @@ export function AwardeeInfo(props) {
 		onChange: handleChange,
 		error:projectError.role ,
 		touched:projectTouched.role,
-		value: values.project_vendors[index].role || values.project_vendors[index].industry,
+		value: values.project_vendors[index].role,
 	};
 
 	useEffect(() => {
@@ -153,43 +154,21 @@ export function AwardeeInfo(props) {
 		}
 		return response?.data?.data?.data;
 	}
-
-	// const design_consultant = {
-	// 	name: `Select ${values.project_vendors[index].role}`,
-	// 	id: `project_vendors.${index}.company_name`,
-	// 	placeholder: `Select ${values.project_vendors[index].role}`,
-
-	// 	onChange: (e) => {
-	// 		if (e.target.value === ' ') {
-	// 			setFieldValue(`project_vendors.${index}.type`,'new')
-	// 		} else {
-	// 			setFieldValue(`project_vendors.${index}.company_name`,e.target.value)
-	// 			setFieldValue(`project_vendors.${index}.type`,'old')
-				
-	// 		}
-
-	// 	},
-	// 	value: values.project_vendors[index].company_name,
-	// 	error:projectError.company_name,
-	// 	touched:projectTouched.company_name,
-	// 	// error: errors.company_name,
-	// 	// touched: touched.company_name,
-	// };
 	const consultant_name = {
-		name: "Consultant Name",
+		name: "Company Name",
 		id: `project_vendors.${index}.company_name`,
 		placeholder: "Enter Consultant Name",
 		onChange: handleChange,
 		value: values.project_vendors[index].company_name,
-		
+		// disabled:!values.project_vendors[index].role ? true : false,
 		error:projectError.company_name,
 		touched:projectTouched.company_name,
 	};
 	const consultant_address = {
-		name: "Consultant street",
+		name: "Company Address",
 		id: `project_vendors.${index}.street`,
-		placeholder: "Enter Consultant street",
-
+		placeholder: "Street",
+		disabled:!values.project_vendors[index].company_name? true : false,
 		onChange: handleChange,
 		value: values.project_vendors[index].street,
 		error:projectError.street && 'Field is required',
@@ -197,19 +176,21 @@ export function AwardeeInfo(props) {
 	};
 
 	const corporate_president = {
-		name: "Corperate President",
+		name: "Awardee President",
 		id: `project_vendors.${index}.president`,
-		placeholder: "Enter Corperate President",
+		placeholder: "Enter Awardee President",
 		onChange: handleChange,
+		disabled:!values.project_vendors[index].company_name? true : false,
 		value: values.project_vendors[index].president,
 		error:projectError.president,
 		touched:projectTouched.president,
 	};
 
 	const corporate_secretary = {
-		name: "Corperate Secretary",
+		name: "Awardee Secretary",
 		id: `project_vendors.${index}.secretary`,
-		placeholder: "Enter Corperate Secretary",
+		placeholder: "Enter Awardee Secretary",
+		disabled:!values.project_vendors[index].company_name? true : false,
 
 		onChange: handleChange,
 		value: values.project_vendors[index].secretary,
@@ -259,10 +240,10 @@ export function AwardeeInfo(props) {
 					cur?.title;
 				props.data.values.project_vendors[index].company_name =
 					cur?.company_name;
-				props.data.values.project_vendors[index].address = cur?.street;
-				props.data.values.project_vendors[index].address = cur?.state;
-				props.data.values.project_vendors[index].address = cur?.city;
-				props.data.values.project_vendors[index].address = cur?.zip_code;
+				props.data.values.project_vendors[index].street = cur?.street;
+				props.data.values.project_vendors[index].state = cur?.state;
+				props.data.values.project_vendors[index].city = cur?.city;
+				props.data.values.project_vendors[index].zip_code = cur?.zip_code;
 				props.data.values.project_vendors[index].president =
 					cur?.president;
 				props.data.values.project_vendors[index].secretary =
@@ -307,22 +288,24 @@ export function AwardeeInfo(props) {
 							
 							<FormInputContainer name={`Search ${values.project_vendors[index].role}`} >
 								<input list="consultant"
-									onFocus={(e)=>setFilter(true)}
+									onFocus={(e) => setFilter(true)}
 									id={`project_vendors.${index}.company_name`}
 									name={`project_vendors.${index}.company_name`}
 									value={values.project_vendors[index].company_name}
 									onChange={(e) => {
-								if (e.target.value === 'Add New Vendor') {
-									setFieldValue(`project_vendors.${index}.type`, 'new')
-									setFieldValue(`project_vendors.${index}.company_name`,'')
-			} else {
-				setFieldValue(`project_vendors.${index}.company_name`,e.target.value)
-				setFieldValue(`project_vendors.${index}.type`,'old')
+										if (e.target.value === 'Add New Vendor') {
+											setFieldValue(`project_vendors.${index}.type`, 'new')
+											setFieldValue(`project_vendors.${index}.company_name`, '')
+										} else {
+											setFieldValue(`project_vendors.${index}.company_name`, e.target.value)
+											setFieldValue(`project_vendors.${index}.type`, 'old')
 				
-			}
+										}
 
-		}}
+									}}
 									placeholder={`Search ${values.project_vendors[index].role}`} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+									disabled={!values.project_vendors[index].role ? true : false}
+
 								
 								/>
 								{}
@@ -343,9 +326,10 @@ export function AwardeeInfo(props) {
 						<div>
 							<OverviewInput {...consultant_address} />
 						</div>
-						<FormInputContainer name='State'>
+						<FormInputContainer name='Select State'>
 							<input list="states" id={`project_vendors.${index}.state`} name={`project_vendors.${index}.state`} value={values.project_vendors[index].state} onChange={handleChange}
-								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+								disabled={!values.project_vendors[index].company_name ? true : false}
+								placeholder='Select State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
 							<datalist id="states">
 							{!states ? null : Object.entries(states).map((cur, index) => { 
 							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
@@ -355,8 +339,8 @@ export function AwardeeInfo(props) {
                         
 						</FormInputContainer>
 
-						<FormInputContainer name='City'>
-							<input list="city" id={`project_vendors.${index}.city`} name={`project_vendors.${index}.city`} value={values.project_vendors[index].city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Search Consultant City' />
+						<FormInputContainer name='Select City'>
+							<input list="city" id={`project_vendors.${index}.city`} name={`project_vendors.${index}.city`} value={values.project_vendors[index].city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Select City' disabled={!values.project_vendors[index].company_name ? true : false} />
 							<datalist id="city">
 							{CheckState()}
 							
@@ -365,8 +349,8 @@ export function AwardeeInfo(props) {
                         
 						</FormInputContainer>
 
-						<FormInputContainer name='Zip code'>
-							<input list="zip_code" id={`project_vendors.${index}.zip_code`} name={`project_vendors.${index}.zip_code`} value={values.project_vendors[index].zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
+						<FormInputContainer name='Select Zip code'>
+							<input list="zip_code" id={`project_vendors.${index}.zip_code`} name={`project_vendors.${index}.zip_code`} value={values.project_vendors[index].zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Select Zip Code' disabled={!values.project_vendors[index].company_name ? true : false}/>
 							<datalist id="zip_code">
 								{CheckZipCode()}
 							

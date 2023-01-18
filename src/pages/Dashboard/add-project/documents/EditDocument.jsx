@@ -13,7 +13,7 @@ const Accordion = ({ data, fetchData }) => {
 
 
 	function getList() {
-		console.log(fetchData)
+		// console.log(fetchData)
 		if (fetchData?.Procurement) {
 
 			data?.Procurement.map((curr, ind) => {

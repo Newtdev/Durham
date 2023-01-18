@@ -31,22 +31,24 @@ const DurhamSettings = () => {
   
   
   useEffect(() => {
+    console.log(data)
     if (!data) {
       return;
     }
-    setValue({
-      business_Manager: data?.business_Manager?.value,
-      chair_board_education: data?.chair_board_education?.value,
-      chief_finance_officer: data?.chief_finance_officer?.value,
-      construction_interim_director: data?.construction_interim_director?.value,
-      director_construction: data?.director_construction?.value,
-      director_design: data?.director_design?.value,
-      director_durham:data?.director_durham?.value,
-      project_manager: data?.project_manager?.value,
-      project_manager_phone
-: data?.project_manager_phone
-?.value,
-    })
+    console.log(data)
+//     setValue({
+//       business_Manager: data?.business_Manager?.value,
+//       chair_board_education: data?.chair_board_education?.value,
+//       chief_finance_officer: data?.chief_finance_officer?.value,
+//       construction_interim_director: data?.construction_interim_director?.value,
+//       director_construction: data?.director_construction?.value,
+//       director_design: data?.director_design?.value,
+//       director_durham:data?.director_durham?.value,
+//       project_manager: data?.project_manager?.value,
+//       project_manager_phone
+// : data?.project_manager_phone
+// ?.value,
+//     })
   }, [data]);
 
   
@@ -70,7 +72,7 @@ const DurhamSettings = () => {
 
  
   const onChange = (e) => {
-    const { name, value, } = e.target;
+    const { name, value, title } = e.target;
     if (!value) {
       toast.error('Field is require', {
         position: toast.POSITION.TOP_CENTER,
@@ -78,16 +80,16 @@ const DurhamSettings = () => {
 
     } 
       
-      setTarget({ [name]: value })
-      setValue({ [name]: value })
+    setTarget({ [title]: value })
+    setValue({ [title]: value })
   
   };
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (!target) {
+    if (target) {
      Object.entries(target).forEach((cur) => {
-       const [name, value] = [cur[0], cur[1]];        
+       const [name, value] = [cur[0], cur[1]];  
         HandleRequest({name,value})
       });
      } else {

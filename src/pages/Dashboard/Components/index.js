@@ -8,7 +8,7 @@ import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import Pagination from '@mui/material/Pagination';
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	Error,
 	Label,
@@ -23,19 +23,21 @@ import {
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
 	const [show, setShow] = useState(false);
+	const navigate = useNavigate()
 
 	function LinkList() {
 		return (
 			<ul className="flex gap-8">
 				{[
 					{ id: 1, name: "Dashboard", link: "" },
-					{ id: 2, name: "Forms", link: "forms" },
 					{
 						id: 3,
 						name: "Projects Manager",
 						link: "product-manager",
+						
 					},
 					{ id: 4, name: "Vendors", link: "vendors" },
+					{ id: 5, name: "Schools", link: "schools" },
 				].map(({ name, id, link }) => {
 					return (
 						<li key={id}>
@@ -50,24 +52,7 @@ export function DashboardNav() {
 			</ul>
 		);
 	}
-
-	function UserList() {
-		return (
-			<ul className={` py-1`} aria-labelledby="user-menu-button">
-				{["Settings"].map((name, id) => {
-					return (
-						<li key={id}>
-							<Link
-								to="/dashboard/settings"
-								className="block  px-4 py-2 text-sm text-gray-900 hover:bg-gray-100">
-								{name}
-							</Link>
-						</li>
-					);
-				})}
-			</ul>
-		);
-	}
+	
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
@@ -97,7 +82,23 @@ export function DashboardNav() {
 							show ? "visible" : "invisible"
 						} absolute top-5  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
 						id="user-dropdown`}>
-						<UserList />
+						<ul>
+
+						<li>
+							<Link
+								to="/dashboard/settings"
+								className="block  px-4 py-2 text-sm text-gray-900 hover:bg-gray-100">
+								Settings
+							</Link>
+						</li>
+							<li className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100" onClick={() => {
+								localStorage.removeItem('durham_token');
+								navigate('/')
+							}
+							}>
+						Log Out
+						</li>
+						</ul>
 					</div>
 					<button
 						data-collapse-toggle="mobile-menu-2"

@@ -3,13 +3,13 @@ import User from "../../../../assets/Avatar.svg";
 import { useFormik } from "formik";
 import { DashboardNav } from "../../Components";
 import { ProfileDetails } from "./ProfileSettingsComponent";
-import { EditProfileDetailsSchema } from "../../../../yup";
 import { PageNavigation } from "../components";
-import { useFetchSingleProjectManagerQuery, useUpdateProductManagerDetailsMutation } from "../../../../features/services/api";
+import { useFetchSingleProjectManagerQuery, useUpdateProfileMutation } from "../../../../features/services/api";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { userDetails } from "../../../../features/auth";
 import { useEffect } from "react";
+import { FullPageLoader } from "../../../../ui";
 
 
 
@@ -19,25 +19,24 @@ const ProfileSettings = () => {
     // PASS IN THE ID
     const result = useFetchSingleProjectManagerQuery(profile.id);
     // PASS IN A ID
-    const [updateProjectManageDetails, {isLoading}] = useUpdateProductManagerDetailsMutation()
+    const [updateProfile, { isLoading }] = useUpdateProfileMutation()
 
     const HandleRequest = async (values) => {
         const data ={id:values.id, info:values}
 
-        const response = await updateProjectManageDetails(data);
-        
+        const response = await updateProfile(data);
         if (response) {
-          if (response?.error) {
-                    toast.error(response?.error?.message, {
-                        position: toast.POSITION.TOP_CENTER,
-                    });
-                } else {
-                    toast.success(response?.data?.message, {
-                        position: toast.POSITION.TOP_CENTER,
-                    });
-                }
+            if (response?.error) {
+                toast.error(response?.error?.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            } else {
+                toast.success('Profile Updated Successfully', {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            }
         }
-  }
+    }
 
 
     const {values,errors, touched,handleChange, handleSubmit, setValues } = useFormik({
@@ -47,18 +46,14 @@ const ProfileSettings = () => {
             last_name: '',
 			email: "",
             phone: "",
-            password:"**********"
+            password: "***********"
         }, 
         // validationSchema: EditProfileDetailsSchema,
 
         onSubmit: (values) => {
-            // const { password } = values;
-            // if (password) {
-            //     // console.log('password')
-            // }
-            // // console.log(password)
+
             HandleRequest(values)
-        
+
         }
     });
     const profileProps = {
@@ -66,6 +61,7 @@ const ProfileSettings = () => {
             indx:0,
             name:'First Name',
             id: "first_name",
+            type: 'text',
             error: errors.first_name,
             touched: touched.first_name,
             value: values.first_name,
@@ -75,6 +71,8 @@ const ProfileSettings = () => {
             indx:1,
             name:'Last Name',
             id: "last_name",
+            type: 'text',
+
             error: errors.last_name,
             touched: touched.last_name,
             value: values.last_name,
@@ -84,6 +82,8 @@ const ProfileSettings = () => {
             indx:2,
             name:'Email',
             id: "email",
+            type: 'text',
+
             error: errors.email,
             touched: touched.email,
             value: values.email,
@@ -93,6 +93,8 @@ const ProfileSettings = () => {
             indx:3,
             name:'Phone',
             id: "phone",
+            type: 'text',
+
             error: errors.phone,
             touched: touched.phone,
             value: values.phone,
@@ -102,6 +104,8 @@ const ProfileSettings = () => {
             indx:4,
             name: 'Password',
             id: "password",
+            type: 'password',
+
             error: errors.password,
             touched: touched.password,
             value: values.password,
@@ -114,14 +118,15 @@ const ProfileSettings = () => {
         if (!result?.data) {
             return;
         } else {   
-            // const values = {first_name: result?.data?.first_name,last_name: result?.data?.last_name,phone: result?.data?.phone,email: result?.data?.email}
+
             setValues(result?.data)
         }
         
     },[result])
     
     return <section>
-            <DashboardNav/>
+        <DashboardNav />
+        {!result?.data && <FullPageLoader />}
         <article className='hidde pt-6'>
         <div className='container mx-auto px-4 lg:px-24'>
           <div className='ml-4 mb-6'>

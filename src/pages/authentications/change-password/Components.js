@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import { PasswordResendEmailSchema } from "../../../yup";
 import { useState } from "react";
 import { useForgotPasswordMutation } from "../../../features/services/api";
+import Logo from "../../../assets/logo.svg";
+
 import { toast } from "react-toastify";
 
 export function ForgetPasswordModal({ close }) {
@@ -66,13 +68,16 @@ export function ForgetPasswordModal({ close }) {
 
 	return (
 		<div
-			className="h-[450px] w-[472px] mx-auto mt-10 w-full bg-white py-6 px-14 rounded-lg"
-			onClick={(e) => e.stopPropagation()}>
+		className="h-[450px] w-[472px] mx-auto mt-10 w-full bg-white py-6 px-14 rounded-lg"
+		onClick={(e) => e.stopPropagation()}>
 			<form
 				className="h-full w-full flex flex-col justify-evenly items-center"
 				onSubmit={handleSubmit}>
-				<div className="h-[48px] w-[48px] mx-auto rounded-lg bg-[#374151]"></div>
-				<AuthHeader name="Forget Password" />
+				<div className="mx-auto rounded-lg">
+				<img src={Logo} alt="logo" className="py-4 mb-2" />
+				</div>
+				<AuthHeader name="Account Recovery" />
+					
 				<p className="text-center text-sm text-gray-500">
 					Enter your email address and we’ll send you an email to reset your
 					password

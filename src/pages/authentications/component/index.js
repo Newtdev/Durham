@@ -36,7 +36,6 @@ export function InputContainer(props) {
 				styles="block mb-2 text-sm font-medium text-gray-900"
 			/>
 			<Input {...props} />
-			{/* {console.log(error)} */}
 			{error && touched && <Error message={error} />}
 		</div>
 	);

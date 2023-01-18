@@ -61,6 +61,15 @@ export const AddVendorsSchema = Yup.object().shape({
 	zip_code: Yup.string().required("Address is required!"),
 	industry: Yup.string().required("Industry is required!"),
 });
+export const AddSchoolSchema = Yup.object().shape({
+	name: Yup.string().required("Field is required!"),
+	code: Yup.string().required("Field is required!"),
+	type: Yup.string().required("Field is required!"),
+	tag: Yup.string().required("Field is required!"),
+	// address: Yup.string().required("Field is required!"),
+	// state: Yup.string().required("Field is required!"),
+	// city: Yup.string().required("Field is required!"),
+});
 
 export const EditProfileDetailsSchema = [
 	Yup.object().shape({
@@ -84,11 +93,17 @@ export const AddProjectInformation = Yup.object({
 	name: Yup.string().required("field is required"),
 	number: Yup.string().required("field is required"),
 	description: Yup.string().required("field is required"),
-	// street: Yup.string().required("field is required"),
-	// state: Yup.string().required("field is required"),
-	// city: Yup.string().required("field is required"),
-	// zip_code: Yup.string().required("field is required"),
-	project_manager_id: Yup.string().required("field is required"),
+});
+export const AddDurhamSettings = Yup.object({
+	chair_board_education: Yup.string().required("field is required") ,
+	chief_finance_officer: Yup.string().required("field is required"),
+	construction_interim_director: Yup.string().required("field is required"),
+	business_Manager:Yup.string().required("field is required") ,
+	project_manager: Yup.string().required("field is required"),
+	project_manager_phone: Yup.string().required("field is required"),
+	director_design:Yup.string().required("field is required"),
+	director_construction: Yup.string().required("field is required"),
+	director_durham:Yup.string().required("field is required"),
 });
 
 export const AddAwardeeInformation = 
