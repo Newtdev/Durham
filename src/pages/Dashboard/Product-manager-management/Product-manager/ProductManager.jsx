@@ -66,6 +66,8 @@ const ProductManager = () => {
 
   const searchProps = {
     setQuery: (value) => setQuery(value),
+    placeholder: 'Search Project Manager',
+
     submit: (e) => {
       e.preventDefault();
       dispatch(setSearchManagerQuery(query))

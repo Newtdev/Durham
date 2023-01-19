@@ -20,6 +20,10 @@ import {
 import { useDeleteProjectMutation, useFetchDashboardQuery, useFetchProjectsQuery } from "../../../features/services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { setDefault } from "../add-project/reducer";
+import { project_details } from "../add-project/projectSlice";
+import { SaveToLocalStorage } from "../../../shared-component";
+
 
 
 const Overview = () => {
@@ -42,7 +46,10 @@ const Overview = () => {
     },
     
     onEdit: (data) => {
-      console.log(data)
+      dispatch(getProjectInfo(data));
+      // navigate("/dashboard/edit-project");
+      SaveToLocalStorage(data.id)
+      navigate(`/dashboard/project-details/${data.id}`)
       // dispatch( getProjectInfo(data) )
       // setAction({ ...action, edit: true, initialData:data })
     },
@@ -71,6 +78,8 @@ const Overview = () => {
   
   const searchProps = {
     setQuery: (value) => setQuery(value),
+    placeholder: 'Search Project',
+
     submit: (e) => {
       e.preventDefault()
       dispatch(setsearchQuery(searchVendorQuery))
@@ -106,17 +115,21 @@ const Overview = () => {
             <div className='flex gap-4 flex-col md:flex-row md:justify-between items-center'>
               <div>
                 <PageHeader name='Projects' />
-                <p className='text-[#3b6979] text-lg'>Total Projects : {!currentData? 0 : currentData?.total_projects}</p>
+                {/* <p className='text-[#3b6979] text-lg'>{!params ? 'My Projects' : 'All Projects'}</p> */}
               </div>
-              <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={()=> navigate('/dashboard/add-new-project')} />
+              <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={() => {
+                dispatch(setDefault());
+                navigate('/dashboard/add-new-project');
+              }} />
             </div>
+
             <div className='flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6'>
-              <div className='flex items-center gap-6'>
+              <div className='flex flex-col items-center justify-center gap-6'>
                 {/* <!-- Sort --> */}
                 {/* <Sort /> */}
 
                 {/* <!-- Filter --> */}
-                <Filter onChange={(e) => setParams(e.target.value)} />
+                <Filter onChange={(e) => setParams(e.target.value)} params={params} />
               </div>
 
               {/* <!-- Search --> */}

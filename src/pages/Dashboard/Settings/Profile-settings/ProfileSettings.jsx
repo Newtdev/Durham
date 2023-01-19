@@ -13,6 +13,7 @@ import { FullPageLoader } from "../../../../ui";
 import { ImaageSpinner } from "../../../../assets";
 
 const ProfileSettings = () => {
+
   let image;
   const profile = useSelector(userDetails);
   // PASS IN THE ID
@@ -39,6 +40,31 @@ const ProfileSettings = () => {
           position: toast.POSITION.TOP_CENTER,
         });
       }
+
+
+    const profile = useSelector(userDetails)
+    // PASS IN THE ID
+    const result = useFetchSingleProjectManagerQuery(profile.id);
+    // PASS IN A ID
+    const [updateProfile, { isLoading }] = useUpdateProfileMutation()
+
+    const HandleRequest = async (values) => {
+        const { id, first_name, last_name, email, phone } = values;
+        const data = { id, first_name, last_name, email, phone }
+
+        const response = await updateProfile(data);
+        if (response) {
+            if (response?.error) {
+                toast.error(response?.error?.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            } else {
+                toast.success('Profile Updated Successfully', {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            }
+        }
+
     }
   };
 

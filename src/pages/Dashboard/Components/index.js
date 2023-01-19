@@ -17,13 +17,17 @@ import {
 } from "../../../ui";
 import { Spinner } from "../../../assets";
 import {useState } from "react";
-import {
-} from "../../../features/services/api";
+import { useFetchSingleProjectManagerQuery } from "../../../features/services/api";
+import { userDetails } from "../../../features/auth";
+import { useSelector } from "react-redux";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
+	const profile = useSelector(userDetails)
+    // PASS IN THE ID
+	const result = useFetchSingleProjectManagerQuery(profile.id);
 	const [show, setShow] = useState(false);
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	function LinkList() {
 		return (
@@ -53,6 +57,7 @@ export function DashboardNav() {
 		);
 	}
 	
+	const image = !result?.data?.filename?.url ? User : result?.data?.filename?.url;
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
@@ -73,7 +78,7 @@ export function DashboardNav() {
 						aria-expanded="false"
 						data-dropdown-toggle="user-dropdown"
 						data-dropdown-placement="bottom">
-						<img className="w-8 h-8 rounded-full" src={User} alt="user" />
+						<img className="w-8 h-8 rounded-full" src={image} alt="user" />
 						<img className="w-2" src={ChevronDown} alt="dropdown button" />
 					</button>
 					{/* <!-- Dropdown menu --> */}
@@ -147,7 +152,6 @@ export function DashboardButton({
 			onClick={onClick}
 			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
 			type={type}>
-				{console.log(loading)}
 			{!hidden && <img src={Plus} alt="" className="mr-4" />}
 			{loading && <Spinner />} {loading ? "Loading..." : name}
 		</button>
@@ -187,7 +191,7 @@ export function Sort() {
 
 /**********SEARCH COMPONENTS*************** */
 
-export function Search({ submit, setQuery }) {
+export function Search({ submit, setQuery, placeholder }) {
 
 	return (
 		<form className="flex flex-row justify-center items-center gap-4" onSubmit={submit}>
@@ -204,7 +208,7 @@ export function Search({ submit, setQuery }) {
 						type="text"
 						id="table-search"
 						className="block p-2 pl-8 w-72 text-sm text-gray-900 bg-white rounded border border-gray-400 focus:outline-[#3B6979]"
-						placeholder="Search Project"
+						placeholder={placeholder}
 					/>
 				</div>
 			</div>
@@ -394,11 +398,11 @@ export function ProjectOverviewNav() {
 	);
 }
 
-export function Filter({onChange}) {
+export function Filter({onChange,params}) {
 	return (
 		<div className="flex items-center justify-center">
-			<p className="mr-4 font-bold text-gray-700">Filter By:</p>
-			<div>
+			<p className="mr-4 font-bold text-gray-700 ">View By:</p>
+			<div className="flex flex-col items-center ">
 				<select
 					onChange={onChange}
 					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
@@ -407,7 +411,10 @@ export function Filter({onChange}) {
 					<option value='all'>All</option>
 					
 				</select>
+
+				
 			</div>
+				<p className='text-[#3b6979] text-base text-center ml-3'>{params === 'Select Filter' || params === '' ? 'My Projects' : 'All Projects'}</p>
 		</div>
 	);
 }

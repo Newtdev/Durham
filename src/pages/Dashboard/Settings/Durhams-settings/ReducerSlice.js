@@ -8,7 +8,7 @@ const DurhamSlice = createSlice({
 
 	reducers: {
 		save_profile: (state, { payload }) => {
-			 payload.map((profile) => {
+			 [payload].map((profile) => {
 					return (state.durham_profile = {
 						...state.durham_profile,
 						[profile.name]: profile,

@@ -8,6 +8,7 @@ import { project_details } from "../add-project/projectSlice";
 import {
 	ButtonRedBG,
 	ButtonWhiteBG,
+	FullPageLoader,
 	LoadingArrow,
 	ModalOverlay,
 	Pen,
@@ -31,13 +32,14 @@ import moment from "moment";
 import { getProjectInfo } from "../Overview-dashboard/editReducer";
 import { toast } from "react-toastify";
 import { useDeleteProjectMutation, useFetchSingleProjectQuery } from "../../../features/services/api";
-import { getProjectID } from "../add-project/reducer";
+// import { getProjectID } from "../add-project/reducer";
 import DeterminationOFLowestBidder from "../../forms/Determination-low-bidder";
 import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/OwnerContract";
+import { getId } from "../../../shared-component";
 
 const ProjectDashboard = () => {
-	const id = useSelector(getProjectID)
-	useFetchSingleProjectQuery(id);
+	// const id = useSelector(getProjectID)
+	const response = useFetchSingleProjectQuery(getId());
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -74,6 +76,8 @@ const ProjectDashboard = () => {
 			<ModalOverlay show={remove}>
 				<div>
 					{/* Modal content */}
+					{!response?.data && <FullPageLoader />}
+
 					<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14 bg-white rounded-lg shadow pb-4">
 						<div className="flex justify-between items-start px-6 py-3 rounded-t border-b">
 							<div>
@@ -142,6 +146,7 @@ const ProjectDashboard = () => {
 								onClick={() => {
 									dispatch(getProjectInfo(projectDetails));
 									navigate("/dashboard/edit-project");
+
 								}}
 								type="button"
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
@@ -226,14 +231,14 @@ const ProjectDashboard = () => {
 								</div>
 								<div className="mb-5">
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
-										Design Consultant Information
+									{!awardee ?"": awardee?.role}
 									</div>
 									<div className="text-gray-900 text-xs">
 										<p className="mt-4 text-base font-bold">
 											{!awardee ?"": awardee?.company_name}
 										</p>
 										<p className="my-1">
-											{!awardee ?"": awardee?.address}
+											{!awardee ?"": `${awardee?.street}, ${awardee?.city}, ${awardee?.state}, ${awardee?.zip_code}`}
 										</p>
 									</div> 
 								</div>

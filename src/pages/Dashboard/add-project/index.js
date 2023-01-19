@@ -15,6 +15,7 @@ import AwardeeInformation from "./awardee-info/AwardeeInformation";
 import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
 import { documents } from "../../../lib/data";
 import EditDocument from "./documents/EditDocument";
+import { getId } from "../../../shared-component";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
@@ -33,7 +34,7 @@ const ProjectFormsController = () => {
 
 
 	async function HandleRequest(values) {
-		const response = await addProjectVendor({project_id: id, vendors: values });
+		const response = await addProjectVendor({project_id: getId(), vendors: values });
         if (response?.error) {
             toast.error(response?.error?.messsage, {
                 position: toast.POSITION.TOP_CENTER,
@@ -43,9 +44,9 @@ const ProjectFormsController = () => {
         else if (response?.data) {
             // error alert
 			dispatch(nextForm(2));
-            // toast.error(response?.message, {
-            //     position: toast.POSITION.TOP_CENTER,
-            // });
+            toast.error(response?.message, {
+                position: toast.POSITION.TOP_CENTER,
+            });
 		} 
         
     }
@@ -66,8 +67,7 @@ const ProjectFormsController = () => {
         
     }
 	async function SubmitDocument(values) {
-		
-		const response = await addProjectDocument({project_id: id, documents:values });
+		const response = await addProjectDocument({project_id: getId(), documents:values });
         if (response?.error) {
             toast.error(response?.error?.message, {
 				position: toast.POSITION.TOP_CENTER,
@@ -77,7 +77,8 @@ const ProjectFormsController = () => {
         else if (response?.data) {
 			// error alert
 			navigate('/dashboard/add-new-project/preview');
-			// dispatch(setDefault());
+
+			
             
         } 
         
@@ -116,15 +117,17 @@ const ProjectFormsController = () => {
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
 				HandleRequest(data) 
 
-			} else {
+			} else if(details) {
 				HandleEditRequest(values.project_vendors[0])
 			}
 			
 			if (steps === 2) {
-				SubmitDocument(selected)
-			}
-			
-		},
+				
+				const documentSelected = [...new Map(selected.map((cur)=>[cur['document_name'], cur])).values()]
+				
+			SubmitDocument(documentSelected)
+		}
+		}
 	});
 	const {
 		values,
@@ -159,6 +162,7 @@ const ProjectFormsController = () => {
 	const getData = (e) => {
 		
 		setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
+		
 	};
 	const selectprops = {
 		...props,
@@ -225,8 +229,8 @@ const ProjectFormsController = () => {
 						<FormikProvider value={formik}>
 								{steps === 0 && <ProjectInformation />}
 							{steps === 1 && <AwardeeInformation {...props} />}
-								{steps === 2 && !details && <SelectDocuments {...selectprops} />}
-								{steps === 2 && details && <EditDocument documents={details.project_documents} />}
+								{steps === 2 && <SelectDocuments {...selectprops} />}
+								{/* {steps === 2 && details && <EditDocument documents={details.project_documents} />} */}
 						</FormikProvider>
 					</div>
 				</main>

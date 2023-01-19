@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
-import { ButtonWhiteBG } from "../../../../ui";
+import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchSchoolQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
+import { SaveToLocalStorage } from "../../../../shared-component";
+import { ButtonWhiteBG, } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
 import { DashboardButton } from "../../Components";
 import { projectData } from "../../Overview-dashboard/editReducer";
@@ -18,6 +19,7 @@ const ProjectInformation = () => {
     
 const [addProjects, {isLoading}]= useAddProjectsMutation()
     const response = useFetchAllProjectManagerQuery({ queryValue: '' });
+    const res = useFetchSchoolQuery()
     // const details = useFetchSingleProjectQuery(id)
     const details = useSelector(projectData);
 
@@ -35,6 +37,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         }
         else if (response?.data) {
             dispatch(saveID(response?.data?.data?.id));
+            SaveToLocalStorage(response?.data?.data?.id)
             dispatch(nextForm(1));
             // error alert
             // toast.error(response?.message, {
@@ -44,7 +47,6 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         
     }
     async function HandleEditRequest(values) {
-        // console.log(values)
         const response = await updateProjects(values);
 
         if (response?.error) {
@@ -56,6 +58,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         else if (response?.data) {
          
             dispatch(saveID(response?.data?.data?.id));
+            SaveToLocalStorage(response?.data?.data?.id)
             dispatch(nextForm(1));
         } 
         
@@ -71,14 +74,17 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
             city: '',
             zip_code: '',
             description: "",
+            school: ''
         },
         validationSchema: AddProjectInformation,
         onSubmit: (values) => {
             if (!details) {
                 HandleRequest(values)
                 
+            } else {
+
+                HandleEditRequest(values)
             }
-            HandleEditRequest(values)
         
         }
     })
@@ -158,6 +164,15 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         onChange: handleChange,
         placeholder: "Enter Product Manager",
     };
+    const school = {
+        name: "School/Dept Name",
+        id: "school",
+        value: values.school,
+        error: errors.school,
+        touched: touched.school,
+        onChange: handleChange,
+        placeholder: "Select School/Dept",
+    };
     useEffect(() => {
 		if (!details) {
 			return;
@@ -224,6 +239,22 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                             })}
                                         </DashboardSelect>
                                     </div>
+                                    <div>
+                                        <DashboardSelect {...school}>
+                                            <option value={!school.value && ''}>{!school.value ? 'Select School/Dept' : school.value}</option>
+
+                                            {res?.data?.data?.data?.map((cur, id) => {
+                                                return (
+                                                    <option
+                                                        value={cur.name}
+                                                        key={id}>
+                                                        {cur.name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </DashboardSelect>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

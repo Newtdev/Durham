@@ -79,6 +79,7 @@ const HandleRequest = async () => {
 
   const searchProps = {
     setQuery: (value) => setQuery(value),
+    placeholder: 'Search Vendor',
     submit: (e) => {
       e.preventDefault();
       dispatch(setSearchVendorQuery(query))
