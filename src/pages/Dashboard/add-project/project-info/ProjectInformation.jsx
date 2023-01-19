@@ -7,6 +7,8 @@ import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchSchoolQ
 import { getId, SaveToLocalStorage } from "../../../../shared-component";
 import { ButtonWhiteBG, } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
+import { getList, getStates } from "../../../forms/Advertisement-for-bid-template/reducer";
+import { FormInputContainer } from "../../../forms/Notice-of-intent-consultant/Forms";
 import { DashboardButton } from "../../Components";
 import { projectData } from "../../Overview-dashboard/editReducer";
 import { DashboardSelect, OverviewInput, OverviewTextarea } from "../../Overview-dashboard/OverviewComponents";
@@ -23,7 +25,46 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
     // const details = useFetchSingleProjectQuery(getId)
     const details = useSelector(projectData);
 
-    const [updateProjects,data ] = useUpdateProjectsMutation()
+    const [updateProjects, data] = useUpdateProjectsMutation()
+
+
+    useEffect(() => {
+        (async function () {
+            const response = await (await fetch('/states.json')).json();
+            dispatch(getStates(response))
+
+        }())
+    }, [dispatch]);
+    const states = useSelector(getList);
+
+
+    function CheckState() {
+        if (!values.state) {
+            return;
+        }
+        let stat = Object.values(states)?.find((state) => state.name === values.state);
+
+        return !stat ? '' : Object.keys(stat.cities)?.map((cur, id) => {
+            return <option key={id} value={cur}>{cur}</option>
+        })
+    };
+
+
+    function CheckZipCode() {
+        if (!values.city) {
+            return;
+        }
+        const city = !states ? '' : Object.values(states)?.filter((state) => state.name === values.state)
+
+        const zipcode = city?.find((cities) => cities);
+        return !zipcode ? "" : zipcode.cities[values.city]?.map((zipcode, index) => {
+
+            return <option key={index} value={zipcode}>{zipcode}</option>
+        })
+
+
+
+    };
 
 
     async function HandleRequest(values) {
@@ -212,15 +253,36 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                     <div>
                                         <OverviewInput {...project_street} />
                                     </div>
-                                    <div>
-                                        <OverviewInput {...project_state} />
-                                    </div>
-                                    <div>
-                                        <OverviewInput {...project_city} />
-                                    </div>
-                                    <div>
-                                        <OverviewInput {...project_zip_code} />
-                                    </div>
+                                    <FormInputContainer name='State'>
+                                        <input list="states" name={`state`} value={values.state} onChange={handleChange}
+                                            placeholder='Select State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} />
+                                        <datalist id="states">
+                                            {!states ? null : Object.entries(states).map((cur, index) => {
+                                                return <option key={index} value={cur[1].name}>{cur[1].name}</option>
+                                            })}
+                                        </datalist>
+
+                                    </FormInputContainer>
+                                    <FormInputContainer name='City'>
+
+                                        <input list="city" name={`city`} value={values.city} onChange={handleChange}
+                                            placeholder='Select city' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} />
+                                        <datalist id="city">
+                                            {CheckState()}
+                                        </datalist>
+
+
+
+                                    </FormInputContainer>
+                                    <FormInputContainer name='Zip code'>
+                                        <input list="zip_code" name={`zip_code`} value={values.zip_code} onChange={handleChange}
+                                            placeholder='Select Zip Code' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} />
+                                        <datalist id="zip_code">
+                                            {CheckZipCode()}
+                                        </datalist>
+
+
+                                    </FormInputContainer>
                                     <div>
                                         <OverviewTextarea {...project_description} />
                                     </div>
