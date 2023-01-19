@@ -35,7 +35,7 @@ import { useDeleteProjectMutation, useFetchSingleProjectQuery } from "../../../f
 // import { getProjectID } from "../add-project/reducer";
 import DeterminationOFLowestBidder from "../../forms/Determination-low-bidder";
 import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/OwnerContract";
-import { getId } from "../../../shared-component";
+import { getId, SaveToLocalStorage } from "../../../shared-component";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID)
@@ -129,16 +129,18 @@ const ProjectDashboard = () => {
 					</span>
 				</div>
 			</div>
-
 			{/* Main Content */}
 			<main className="bg-[#fafafa] h-full pb-60">
 				<div className="container mx-auto pt-5 px-4 lg:px-24 h-full">
 					<div className="flex justify-between items-center">
 						<div className="flex justify-start items-center gap-3 cursor-pointer">
 							<img src={BackArrow} alt="go back" />
-							<Link to="/dashboard" className="text-[#3b6979] font-semibold">
+							<span to="/dashboard" className="text-[#3b6979] font-semibold" onClick={() => {
+								navigate('/dashboard')
+								SaveToLocalStorage('')
+							}}>
 								BACK TO DASHBOARD
-							</Link>
+							</span>
 						</div>
 
 						<div className="flex gap-4 items-center">

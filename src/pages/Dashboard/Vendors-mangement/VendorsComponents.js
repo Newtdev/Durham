@@ -175,7 +175,7 @@ const VendorInformationComponents = ({
 		address: {
 			name: "Company Address",
 			id: "address",
-			placeholder: "Ccompany Address",
+			placeholder: "Street",
 			value: values.address,
 			onChange: handleChange,
 			error: errors.address,
@@ -300,7 +300,7 @@ const VendorInformationComponents = ({
 							</div>
 							<FormInputContainer name='State'>
 							<input list="states" name={`state`} value={values.state} onChange={handleChange}
-								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+								placeholder='Select State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
 							<datalist id="states">
 							{!states ? null : Object.entries(states).map((cur, index) => { 
 							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
@@ -312,7 +312,7 @@ const VendorInformationComponents = ({
 							
 								
 							
-								<input list="city" name='city' id='city' value={values.city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Search Consultant City' />
+								<input list="city" name='city' id='city' value={values.city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Select City' />
 							<datalist  id="city">
 						{CheckState()}
 							
@@ -322,7 +322,7 @@ const VendorInformationComponents = ({
 
 							<FormInputContainer name='Zip code'>
 								
-								<input list="zip_code"   id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code' />
+								<input list="zip_code"   id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Select Zip Code' />
 									<datalist id="zip_code">
 									<option value={values.zip_code}>{!values.zip_code? 'Select zip code':values.zip_code}</option>
 							{CheckZipCode()}
@@ -343,7 +343,7 @@ const VendorInformationComponents = ({
 								<DashboardInput {...props.secretary} />
 							</div>
 							<div>
-								<SelectContainer {...props.industry}>
+								{/* <SelectContainer {...props.industry}>
 									<option value={!values.industry ? "" : values.industry}>
 										{!values.industry ? "Select Industry" : values.industry}
 									</option>
@@ -357,7 +357,7 @@ const VendorInformationComponents = ({
 											{cur}
 										</option>
 									))}
-								</SelectContainer>
+								</SelectContainer> */}
 							</div>
 						</div>
 

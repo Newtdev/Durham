@@ -59,7 +59,7 @@ export const AddVendorsSchema = Yup.object().shape({
 	state: Yup.string().required("Address is required!"),
 	city: Yup.string().required("Address is required!"),
 	zip_code: Yup.string().required("Address is required!"),
-	industry: Yup.string().required("Industry is required!"),
+	// industry: Yup.string().required("Industry is required!"),
 });
 export const AddSchoolSchema = Yup.object().shape({
 	name: Yup.string().required("Field is required!"),

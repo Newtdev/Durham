@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProjectInfo, searchQuery, setsearchQuery } from "./editReducer";
+import { getProjectInfo, searchQuery, setProjectInfoDefault, setsearchQuery } from "./editReducer";
 import { OverviewTableHeader } from "../../../lib/data";
 import { FullPageLoader, ModalOverlay } from "../../../ui";
 import { ButtonWhiteBG, ButtonRedBG } from "../../../ui";
@@ -119,6 +119,7 @@ const Overview = () => {
               </div>
               <DashboardButton name='ADD NEW PROJECT' width='w-[211px]' onClick={() => {
                 dispatch(setDefault());
+                dispatch(setProjectInfoDefault());
                 navigate('/dashboard/add-new-project');
               }} />
             </div>

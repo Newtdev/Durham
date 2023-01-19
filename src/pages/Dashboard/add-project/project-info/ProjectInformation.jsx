@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchSchoolQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
-import { SaveToLocalStorage } from "../../../../shared-component";
+import { getId, SaveToLocalStorage } from "../../../../shared-component";
 import { ButtonWhiteBG, } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
 import { DashboardButton } from "../../Components";
@@ -20,7 +20,7 @@ const ProjectInformation = () => {
 const [addProjects, {isLoading}]= useAddProjectsMutation()
     const response = useFetchAllProjectManagerQuery({ queryValue: '' });
     const res = useFetchSchoolQuery()
-    // const details = useFetchSingleProjectQuery(id)
+    // const details = useFetchSingleProjectQuery(getId)
     const details = useSelector(projectData);
 
     const [updateProjects,data ] = useUpdateProjectsMutation()
