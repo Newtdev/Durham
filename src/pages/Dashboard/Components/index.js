@@ -407,12 +407,12 @@ export function Filter({onChange,params}) {
 					onChange={onChange}
 					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
 					>
-					<option>My project</option>
-					<option value='all'>All Project</option>
+					<option>My Projects</option>
+					<option value='all'>All Projects</option>
 					
 				</select>
 
-				<p className='text-[#3b6979] text-base text-center mt-1 mr-2'>{params === 'My project' || params === '' ? 'My Projects' : 'All Projects'}</p>
+				<p className='text-[#3b6979] text-base text-center mt-1 mr-2'>{params === 'My Projects' || params === '' ? 'My Projects' : 'All Projects'}</p>
 				
 			</div>
 		</div>

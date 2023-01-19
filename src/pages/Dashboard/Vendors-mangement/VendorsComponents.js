@@ -46,15 +46,14 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					last_name,
 					title,
 					company_name,
-					address,
 					city,
 					state,
 					zip_code,
 					president,
 					secretary,
-					vendor_id
+					vendor_id,
+					street
 				} = vendor;
-				console.log(vendor)
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 
 
@@ -71,7 +70,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						</td>
 						<td className="py-4 px-4">{title}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{company_name}</td>
-						<td className="py-4 ">{`${city},${state},${zip_code}`}</td>
+						<td className="py-4 ">{`${street}, ${city}, ${state}, ${zip_code}`}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{president}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{secretary}</td>
 						{/* <td className="py-4 px-4 whitespace-nowrap">{industry}</td> */}
@@ -315,31 +314,24 @@ const VendorInformationComponents = ({
 
 							<FormInputContainer name='City'>
 							
-								
-							
-								<input list="city" name='city' id='city' value={values.city} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Select City' />
-							<datalist  id="city">
-						{CheckState()}
-							
+							<input list="city" name={`city`} value={values.city} onChange={handleChange}
+								placeholder='Select city' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+							<datalist id="city">
+							{CheckState()}
 							</datalist>
+							
+							
 							
 						</FormInputContainer>
 
 							<FormInputContainer name='Zip code'>
-								
-								<input list="zip_code"   id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Select Zip Code' />
-									<datalist id="zip_code">
-									<option value={values.zip_code}>{!values.zip_code? 'Select zip code':values.zip_code}</option>
+							<input list="zip_code" name={`zip_code`} value={values.zip_code} onChange={handleChange}
+								placeholder='Select Zip Code' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
+							<datalist id="zip_code">
 							{CheckZipCode()}
+							</datalist>
 							
-								</datalist>
-								{/* </> */}
-							
-								{/* {console.log(values.zip_code)}
-								{modal_name === 'EDIT VENDOR' && <select id='zip_code' name={`zip_code`} value={values.zip_code} onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `} placeholder='Search Consultant Zip Code'>
-									{CheckZipCode()}
-								</select> */}
-								{/* } */}
+								
 						</FormInputContainer>
 							<div>
 								<DashboardInput {...props.president} />
@@ -400,15 +392,19 @@ export function AddVendor({ close }) {
 			// const response = await supabase.from("vendor").insert([value]);
 			const response = await addVendor({ ...value });
 
-			if (response?.error) {
+			if (response) {
 				close();
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-				// setShowSuccess(false)
-			} else if (response?.data) {
-				setSuccess(true);
-				// onSuccess show the modal and ask the manager to login
+				
+				if (response?.error) {
+					close();
+					toast.error(response?.error?.message, {
+						position: toast.POSITION.TOP_CENTER,
+					});
+					// setShowSuccess(false)
+				} else if (response?.data) {
+					setSuccess(true);
+					// onSuccess show the modal and ask the manager to login
+				}
 			}
 		} catch (error) {
 		}

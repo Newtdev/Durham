@@ -193,7 +193,7 @@ const ProjectDashboard = () => {
 										}`}
 									</p>
 									<p className="text-gray-700 text-base">
-										{moment(projectDetails.create_At).format("MMMM D, YYYY ")}
+										{moment(projectDetails.created_at).format("MMMM D, YYYY ")}
 									</p>
 								</div>
 								<ProjectDetails
