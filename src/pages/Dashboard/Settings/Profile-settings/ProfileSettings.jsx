@@ -22,7 +22,8 @@ const ProfileSettings = () => {
     const [updateProfile, { isLoading }] = useUpdateProfileMutation()
 
     const HandleRequest = async (values) => {
-        const data ={id:values.id, info:values}
+        const { id, first_name, last_name, email, phone } = values;
+        const data = { id, first_name, last_name, email, phone }
 
         const response = await updateProfile(data);
         if (response) {

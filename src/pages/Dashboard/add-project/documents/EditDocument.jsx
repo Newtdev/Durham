@@ -16,11 +16,13 @@ const Accordion = ({ data, fetchData }) => {
 		// console.log(fetchData)
 		if (fetchData?.Procurement) {
 
-			data?.Procurement.map((curr, ind) => {
-				console.log(curr.document_name);
+			return data?.Procurement.map((curr, ind) => {
+				if (!fetchData?.Procurement[ind]?.document_name) {
+					return null
+				} else {
 
-				console.log(fetchData?.Procurement[ind]?.document_name);
-				// console.log(curr.document_name == fetchData?.Procurement[ind]?.document_name)
+					return;
+				}
 			})
 			// console.log(curr.document_name === documents.Procurement[index].document_name)
 		}
@@ -85,6 +87,7 @@ const Accordion = ({ data, fetchData }) => {
 								</h2>
 								<div>
 									<ul className="px-4">
+										{/* {console.log(getList()[0])} */}
 										{Object.values(data)[idx].map((cur, index) => {
 											return (
 												<input
@@ -95,8 +98,8 @@ const Accordion = ({ data, fetchData }) => {
 													type="button"
 													name={cur.document_name}
 													key={index}
-													className={`${getList() ? 'bg-red-900' : 'bg-blue-900'}
-						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
+													className={`bg-[#699bac]
+												mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
 												/>
 											);
 										})}

@@ -9,7 +9,7 @@ const AccordionComponent = ({ getData, documents }) => {
     const [activeIndex, setActiveIndex] = useState(null);
 
     
-    
+
    
     return <>
         {documents.map((document, idx) => {
@@ -63,9 +63,9 @@ export const SelectDocuments = (props) => {
                     Select documents needed to complete this project
                 </p>
                 <div className='flex items-center gap-4 mb-4'>
-                    <button className='border-none text-[#623F04] text-base'>
+                    {/* <button className='border-none text-[#623F04] text-base'>
                         Select Template
-                    </button>
+                    </button> */}
                     <button className='underline underline-offset-8 text-[#3B6979] text-base'>
                         Load Template
                     </button>

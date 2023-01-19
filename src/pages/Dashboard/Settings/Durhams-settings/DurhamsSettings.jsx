@@ -5,53 +5,39 @@ import {useUpdateDurhamDetailsMutation,
 import { toast } from "react-toastify";
 import { PageNavigation } from "../components";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSaveData, save_profile } from "./ReducerSlice";
+import { useDispatch } from "react-redux";
+// import { getSaveData, save_profile } from "./ReducerSlice";
 import { FullPageLoader } from "../../../../ui";
 
 
 const DurhamSettings = () => {
-  const data = useSelector(getSaveData);
   const [values, setValue] = useState({});
   const [target, setTarget] = useState(''); 
-    
   const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
 
   const dispatch = useDispatch();
 	const result = useFetchDurhamQuery();
 
-	useEffect(() => {
+  useEffect(() => {
 		if (!result?.data) {
 			return;
-		}
-
-		dispatch(save_profile(result?.data));
-	}, [dispatch, result]);
-  
-  
-  
-  useEffect(() => {
-    console.log(data)
-    if (!data) {
-      return;
     }
-    console.log(data)
-//     setValue({
-//       business_Manager: data?.business_Manager?.value,
-//       chair_board_education: data?.chair_board_education?.value,
-//       chief_finance_officer: data?.chief_finance_officer?.value,
-//       construction_interim_director: data?.construction_interim_director?.value,
-//       director_construction: data?.director_construction?.value,
-//       director_design: data?.director_design?.value,
-//       director_durham:data?.director_durham?.value,
-//       project_manager: data?.project_manager?.value,
-//       project_manager_phone
-// : data?.project_manager_phone
-// ?.value,
-//     })
-  }, [data]);
+    setValue({
+      business_Manager: result?.data[3].value,
+      chair_board_education: result?.data[1].value,
+      chief_finance_officer: result?.data[0]?.value,
+      construction_interim_director: result?.data[2].value,
+      director_construction: result?.data[6].value,
+      director_design: result?.data[7].value,
+      director_durham: result?.data[8]?.value,
+      project_manager: result?.data[4]?.value,
+      project_manager_phone
+        : result?.data[5]?.value,
+    })
+	}, [dispatch, result]);
 
-  
+
+
 
   const HandleRequest = async (values) => {
     const response = await updateDurhamDetails({ ...values });
@@ -72,7 +58,7 @@ const DurhamSettings = () => {
 
  
   const onChange = (e) => {
-    const { name, value, title } = e.target;
+    const { value, title } = e.target;
     if (!value) {
       toast.error('Field is require', {
         position: toast.POSITION.TOP_CENTER,

@@ -119,3 +119,10 @@ export function doConvert (value){
 	return outputText;
     // myDiv.innerHTML = outputText;
 }
+
+export function SaveToLocalStorage(id) {
+	localStorage.setItem('project_id',id )
+}
+export function getId() {
+	return localStorage.getItem('project_id')
+}

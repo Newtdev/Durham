@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import {
-	useFetchVendorsQuery,
+import { useGetVendorsQuery,
 } from "../../../features/services/api";
+import { SaveToLocalStorage } from "../../../shared-component";
 import { Label, Error, Textarea } from "../../../ui";
 import { getList, getStates } from "../../forms/Advertisement-for-bid-template/reducer";
 import { FormInputContainer } from "../../forms/Notice-of-intent-consultant/Forms";
-import { saveID, saveVendorID } from "../add-project/reducer";
+import { saveID, setDefault } from "../add-project/reducer";
 
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
@@ -29,8 +29,10 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 						key={id}
 						className={`${strip} border-b cursor-pointer`}
 						onClick={() => {
+							dispatch(setDefault());
 							dispatch(saveID(id))
-					navigate(`/dashboard/project-details/${slug}`)
+							SaveToLocalStorage(id)
+							navigate(`/dashboard/project-details/${id}`)
 						}}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{name}
@@ -49,8 +51,9 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 								<img className="w-full" src={Delete} alt="delete" />
 							</span>
 							<span className="w-4 cursor-pointer" onClick={(e) => {
-								e.stopPropagation()
-								onEdit(project)
+								e.stopPropagation();
+								onEdit(project);
+								
 							}}>
 								<img className="w-full" src={Edit} alt="edit" />
 							</span>
@@ -117,7 +120,7 @@ export function OverviewTextarea(props) {
 
 
 export function AwardeeInfo(props) {
-	const response = useFetchVendorsQuery({queryValue:''});
+	const response = useGetVendorsQuery({queryValue:''});
 	const dispatch = useDispatch();
 	const states = useSelector(getList);
 	const [toFilter, setFilter] = useState(false)

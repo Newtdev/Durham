@@ -230,6 +230,17 @@ export const DurhamsApi = createApi({
 			// transformResponse: (response) => response.data.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
+		getVendors: builder.query({
+			query: ({ queryValue }) => {
+				return {
+					url: `vendors?search=${queryValue}&limit=200`,
+					method: "GET",
+				};
+			},
+			providesTags: ["vendors"],
+			// transformResponse: (response) => response.data.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
 		editVendor: builder.mutation({
 			query: ({ id, ...info }) => {
 				return {
@@ -266,7 +277,6 @@ export const DurhamsApi = createApi({
 		// 	DURHAM SETTINGS
 		updateDurhamDetails: builder.mutation({
 			query: (info) => {
-				console.log(info)
 				return {
 					url: "settings",
 					headers: {
@@ -386,7 +396,7 @@ export const DurhamsApi = createApi({
 					
 				}
 			},
-			// providesTags: ["projects", 'dashboard'],
+			providesTags: ["projects", 'dashboard'],
 			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -424,7 +434,6 @@ export const DurhamsApi = createApi({
 		}),
 		fillProjectDocument: builder.mutation({
 			query: (formInfo) => {
-				console.log(formInfo)
 				return {
 					url: "projects/fill-form",
 					headers: {
@@ -450,19 +459,19 @@ export const DurhamsApi = createApi({
 				
 				};
 			},
-			async onQueryStarted(id,{dispatch, queryFulfilled}) {
+			// async onQueryStarted(id,{dispatch, queryFulfilled}) {
 			
-				try {
-					const { data } = await queryFulfilled;
-					dispatch(getFormResponse(data.data))
-				} catch (error) {
-					// throw error
+			// 	try {
+			// 		const { data } = await queryFulfilled;
+			// 		dispatch(getFormResponse(data.data))
+			// 	} catch (error) {
+			// 		// throw error
 					
-				}
-			},
-			// providesTags: ["projects", 'dashboard'],
-			// transformResponse: (response) => response.data,
-			transformErrorResponse: (response, meta, arg) => response.data,
+			// 	}
+			// },
+			 providesTags: ["projects", 'dashboard'],
+			// // transformResponse: (response) => response.data,
+			// transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 
 		// ADD SCHOOL
@@ -511,6 +520,21 @@ export const DurhamsApi = createApi({
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
+		fetchSchool: builder.query({
+			query: () => {
+				return {
+					url: `schools?limit=200`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+					
+				};
+			},
+			providesTags: ["projects",'school'],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
 		DeleteSchool: builder.mutation({
 			query: (id) => {
 				return {
@@ -527,7 +551,7 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
 		UpdateProfile: builder.mutation({
-			query: ({ id,...info }) => {
+			query: ({ id, ...info }) => {
 				return {
 					url: `update-profile`,
 					headers: {
@@ -597,5 +621,7 @@ export const {
 	useFetchAllSchoolQuery,
 	useUpdateSchoolMutation,
 	useUpdateProfileMutation,
-useUpdatePasswordMutation
+	useUpdatePasswordMutation,
+	useFetchSchoolQuery,
+useGetVendorsQuery
 } = DurhamsApi;
