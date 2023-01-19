@@ -14,14 +14,14 @@ import { ImaageSpinner } from "../../../../assets";
 
 const ProfileSettings = () => {
 
-  let image;
+//   let image;
   const profile = useSelector(userDetails);
   // PASS IN THE ID
   const result = useFetchSingleProjectManagerQuery(profile.id);
   //   const filename = result.data.filename;
-  if (result) {
-    image = result.data?.filename.url;
-  }
+//   if (result) {
+//     image = result.data?.filename.url;
+//   }
   // PASS IN A ID
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
   const [uploadProfilePhoto, data] = useUploadProfilePhotoMutation();
@@ -165,7 +165,7 @@ const ProfileSettings = () => {
             <PageNavigation next="Profile Details" />
             <form action="">
               <div className="mt-6 relative w-12 h-12 rounded-full">
-                              {data?.isLoading ? <ImaageSpinner /> : <img className="w-full rounded-full" src={image} alt="user" />}
+                              {data?.isLoading ? <ImaageSpinner /> : <img className="w-full rounded-full" src={!result?.data?.filename?.url ? User : result?.data?.filename?.url} alt="user" />}
                 <label htmlFor="profile_picture" className="absolute w-[50px] top-8 left-6 cursor-pointer">
                   <img className="w-[100px] h-auto" src={PenEdit} alt="edit" />
                 </label>
