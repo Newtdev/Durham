@@ -401,20 +401,20 @@ export function ProjectOverviewNav() {
 export function Filter({onChange,params}) {
 	return (
 		<div className="flex items-center justify-center">
-			<p className="mr-4 font-bold text-gray-700 ">View By:</p>
-			<div className="flex flex-col items-center ">
+			<p className="mr-4 font-bold text-gray-700 ">View:</p>
+			<div className="flex flex-col items-center justify-center  h-16 mt-6">
 				<select
 					onChange={onChange}
 					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
 					>
-					<option>Select Filter</option>
-					<option value='all'>All</option>
+					<option>My project</option>
+					<option value='all'>All Project</option>
 					
 				</select>
 
+				<p className='text-[#3b6979] text-base text-center mt-1 mr-2'>{params === 'My project' || params === '' ? 'My Projects' : 'All Projects'}</p>
 				
 			</div>
-				<p className='text-[#3b6979] text-base text-center ml-3'>{params === 'Select Filter' || params === '' ? 'My Projects' : 'All Projects'}</p>
 		</div>
 	);
 }

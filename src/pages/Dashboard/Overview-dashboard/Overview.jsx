@@ -21,7 +21,7 @@ import { useDeleteProjectMutation, useFetchDashboardQuery, useFetchProjectsQuery
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setDefault } from "../add-project/reducer";
-import { project_details } from "../add-project/projectSlice";
+// import { project_details } from "../add-project/projectSlice";
 import { SaveToLocalStorage } from "../../../shared-component";
 
 
