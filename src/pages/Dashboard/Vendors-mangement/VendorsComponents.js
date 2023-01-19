@@ -47,12 +47,16 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					title,
 					company_name,
 					address,
+					city,
+					state,
+					zip_code,
 					president,
 					secretary,
-					industry,
 					vendor_id
 				} = vendor;
+				console.log(vendor)
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
+
 
 				return (
 					<tr key={id} className={`border-b ${strip}`}>
@@ -67,7 +71,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						</td>
 						<td className="py-4 px-4">{title}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{company_name}</td>
-						<td className="py-4 ">{address}</td>
+						<td className="py-4 ">{`${city},${state},${zip_code}`}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{president}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{secretary}</td>
 						{/* <td className="py-4 px-4 whitespace-nowrap">{industry}</td> */}
@@ -99,7 +103,8 @@ const VendorInformationComponents = ({
 	onSubmit,
 	loading,
 	vendorInitValue,
-	modal_name
+	modal_name,
+	title
 }) => {
 	const dispatch = useDispatch();
 
@@ -259,7 +264,7 @@ const VendorInformationComponents = ({
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">{modal_name}</h3>
-						<h4 className="text-gray-700">Add Vendor's information</h4>
+						<h4 className="text-gray-700">{title}</h4>
 					</div>
 					<button
 						onClick={HandleClose}

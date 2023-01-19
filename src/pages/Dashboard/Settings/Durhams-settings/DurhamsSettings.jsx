@@ -60,7 +60,7 @@ const DurhamSettings = () => {
   const onChange = (e) => {
     const { value, title } = e.target;
     if (!value) {
-      toast.error('Field is require', {
+      toast.error('Field is required', {
         position: toast.POSITION.TOP_CENTER,
       });
 
