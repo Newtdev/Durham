@@ -42,28 +42,28 @@ const ProfileSettings = () => {
       }
 
 
-    const profile = useSelector(userDetails)
+    // const profile = useSelector(userDetails)
     // PASS IN THE ID
-    const result = useFetchSingleProjectManagerQuery(profile.id);
+    // const result = useFetchSingleProjectManagerQuery(profile.id);
     // PASS IN A ID
-    const [updateProfile, { isLoading }] = useUpdateProfileMutation()
+    // const [updateProfile, { isLoading }] = useUpdateProfileMutation()
 
-    const HandleRequest = async (values) => {
-        const { id, first_name, last_name, email, phone } = values;
-        const data = { id, first_name, last_name, email, phone }
+    // const HandleRequest = async (values) => {
+    //     const { id, first_name, last_name, email, phone } = values;
+    //     const data = { id, first_name, last_name, email, phone }
 
-        const response = await updateProfile(data);
-        if (response) {
-            if (response?.error) {
-                toast.error(response?.error?.message, {
-                    position: toast.POSITION.TOP_CENTER,
-                });
-            } else {
-                toast.success('Profile Updated Successfully', {
-                    position: toast.POSITION.TOP_CENTER,
-                });
-            }
-        }
+    //     const response = await updateProfile(data);
+    //     if (response) {
+    //         if (response?.error) {
+    //             toast.error(response?.error?.message, {
+    //                 position: toast.POSITION.TOP_CENTER,
+    //             });
+    //         } else {
+    //             toast.success('Profile Updated Successfully', {
+    //                 position: toast.POSITION.TOP_CENTER,
+    //             });
+    //         }
+    //     }
 
     }
   };
@@ -165,7 +165,7 @@ const ProfileSettings = () => {
             <PageNavigation next="Profile Details" />
             <form action="">
               <div className="mt-6 relative w-12 h-12 rounded-full">
-                {data?.isLoading ? <ImaageSpinner /> : <img className="w-full" src={image} alt="user" />}
+                              {data?.isLoading ? <ImaageSpinner /> : <img className="w-full rounded-full" src={image} alt="user" />}
                 <label htmlFor="profile_picture" className="absolute w-[50px] top-8 left-6 cursor-pointer">
                   <img className="w-[100px] h-auto" src={PenEdit} alt="edit" />
                 </label>

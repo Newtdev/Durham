@@ -78,7 +78,7 @@ const SchoolInformation = () => {
 
     const searchProps = {
         setQuery: (value) => setQuery(value),
-        placeholder: 'Search School',
+        placeholder: 'Search Schools',
 
         submit: (e) => {
             e.preventDefault();

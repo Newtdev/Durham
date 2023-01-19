@@ -126,3 +126,25 @@ const dispatch = useDispatch()
   
 
 export default AwardeeInformation
+
+
+/***
+ *  uploadProfilePhoto: builder.mutation({
+      query: (info) => {
+        return {
+          url: `project-manager/photo`,
+          headers: {
+            Accept: "application/json",
+          },
+          body: info,
+          method: "POST",
+        };
+      },
+      invalidatesTags: ["profile-image"],
+      transformResponse: (response) => response.data,
+      transformErrorResponse: (response, meta, arg) => response.data,
+    }),
+ * 
+ * 
+ * 
+ */
