@@ -16,7 +16,7 @@ import {
 import Lunsford from "../../forms/Lundsford";
 
 import NoticeOfIntentConsultant from "../../forms/Notice-of-intent-consultant/NoticeOfIntentConsultant";
-import { deleted, onClose, onDelete, slug } from "./ReducerSlice";
+import { deleted, hideHistory, historyToggle, onClose, onDelete, show, slug } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";
 import AdvertisementBid from "../../forms/Advertisement-for-bid-template/AD4Bid";
 import Esser from "../../forms/ESSER Contract Template";
@@ -31,7 +31,7 @@ import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
 import { getProjectInfo } from "../Overview-dashboard/editReducer";
 import { toast } from "react-toastify";
-import { useDeleteProjectMutation, useFetchSingleProjectQuery } from "../../../features/services/api";
+import { useDeleteProjectMutation, useDuplicateProjectMutation, useDuplicateProjectQuery, useFetchSingleProjectQuery } from "../../../features/services/api";
 // import { getProjectID } from "../add-project/reducer";
 import DeterminationOFLowestBidder from "../../forms/Determination-low-bidder";
 import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/OwnerContract";
@@ -46,11 +46,12 @@ const ProjectDashboard = () => {
 	const projectDetails = useSelector(project_details);
 	const documentsID = useSelector(slug);
 	const remove = useSelector(deleted);
+	const toggle = useSelector(historyToggle);
 	const [deleteProject, {isLoading}] = useDeleteProjectMutation();
+	const [duplicateProject, result] = useDuplicateProjectMutation();
 
 	const awardee = !projectDetails?.project_vendors ? '' : projectDetails.project_vendors[0];
 	const summary = !projectDetails ? '' : projectDetails.document_summary;
-	
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -66,6 +67,24 @@ const ProjectDashboard = () => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 				navigate("/dashboard");
+
+			}
+		}
+	};
+	const onDuplicate = async (e) => {
+		e.preventDefault();
+		const response = await duplicateProject(projectDetails.id)
+		if (response) {
+			// dispatch(onClose())
+			if (response?.error) {
+				toast.error(response?.error?.error, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				toast.success(`${projectDetails.name} project has been duplicated`, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				// navigate("/dashboard");
 
 			}
 		}
@@ -157,10 +176,12 @@ const ProjectDashboard = () => {
 							</button>
 
 							<button
+								onClick={onDuplicate}
 								type="submit"
 								className="uppercase text-white text-center text-base w-[152px] bg-[#3B6979] hover:bg-blue-800 font-bold rounded h-8 transition-all flex gap-2 items-center justify-center">
 								<LoadingArrow />
-								<span>duplicate</span>
+								{result.isLoading && <span className="text-xs">Duplicating...</span>}
+								{!result.isLoading && <span>Duplicate</span>}
 							</button>
 
 							<button
@@ -205,11 +226,18 @@ const ProjectDashboard = () => {
 
 								<div className="mt-4">
 									<span className="text-[#623F04] text-base mr-4">
-										This project has been duplicated 5 times.
+										This project has been duplicated {!projectDetails?"":projectDetails.duplicate_count} times.
 									</span>
-									<span className="underline underline-offset-4 text-[#3b6979] font-semibold text-base cursor-pointer">
+									<span className="underline underline-offset-4 text-[#3b6979] font-semibold text-base cursor-pointer" onClick={()=>dispatch(hideHistory())}>
 										View History
 									</span>
+									<div className={`${toggle ? 'h-full': 'h-0 overflow-hidden'} py-2 transition-auto`}>												{projectDetails?.duplicates?.map((project, index) => {
+													return <div key={index} className="bg-gray-100 h-16 flex justify-between items-center rounded  px-4 py-2 my-1">
+														<h1 className="text-[#2f5461] font-bold">{project?.name}</h1>
+														<p className="text-sm">{moment(project.created_at).format("MMM D, YYYY ")}</p>
+														</div>
+												})}
+									</div>
 								</div>
 							</div>
 							{/* Accordions */}

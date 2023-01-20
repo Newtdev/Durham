@@ -7,6 +7,7 @@ const ProjectSlice = createSlice({
 		id: null,
 		document: null,
 		deleteProject: false,
+		showHistory: false
 	},
 	reducers: {
 		getSlugId: (state, action) => {
@@ -34,6 +35,10 @@ const ProjectSlice = createSlice({
 		defaultID: (state) => {
 			state.id = null;
 		},
+		hideHistory: (state) => {
+			console.log(!state.showHistory)
+			state.showHistory = !state.showHistory 
+		}
 		
 	},
 });
@@ -49,6 +54,7 @@ export const { documentDefault } = ProjectSlice.actions;
 export const { slugIdDefault } = ProjectSlice.actions;
 export const { onDelete } = ProjectSlice.actions;
 export const { onClose } = ProjectSlice.actions;
+export const { hideHistory } = ProjectSlice.actions;
 
 // SELECT THE TOKEN AND USER
 
@@ -56,3 +62,4 @@ export const slug = (state) => state.ProjectDocumentReducer.slugId;
 export const formDocument = (state) => state.ProjectDocumentReducer.document;
 export const deleted = (state) => state.ProjectDocumentReducer.deleteProject;
 export const project_document_id = (state) => state.ProjectDocumentReducer.id;
+export const historyToggle = (state) => state.ProjectDocumentReducer.showHistory;

@@ -26,8 +26,10 @@ const ProfileSettings = () => {
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
   const [uploadProfilePhoto, data] = useUploadProfilePhotoMutation();
 
-  const HandleRequest = async (values) => {
-    const data = { id: values.id, info: values };
+    const HandleRequest = async (values) => {
+        const { id, first_name, last_name, email, password } = values;
+        const data = { id, first_name, last_name, email, password };
+
 
     const response = await updateProfile(data);
     if (response) {

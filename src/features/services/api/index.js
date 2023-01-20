@@ -19,7 +19,7 @@ export const DurhamsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["vendors", "product-managers", "profile-image", "durham-settings", "projects", "dashboard", "school", "profile"],
+  tagTypes: ["vendors", "product-managers", "profile-image", "durham-settings", "projects", "dashboard", "school", "profile",'duplicate-project'],
   endpoints: (builder) => ({
     userLogin: builder.mutation({
       query: (info) => {
@@ -393,6 +393,20 @@ export const DurhamsApi = createApi({
       transformResponse: (response) => response,
       transformErrorResponse: (response, meta, arg) => response,
     }),
+    duplicateProject: builder.mutation({
+      query: (id) => {
+        return {
+          url: `projects/${id}/duplicate`,
+          headers: {
+            Accept: "application/json",
+          },
+          method: "GET",
+        };
+      },
+      transformResponse: (response) => response.data,
+      transformErrorResponse: (response, meta, arg) => response,
+      invalidatesTags: ["projects", "duplicate-project"],
+    }),
     updateProjects: builder.mutation({
       query: ({ id, ...info }) => {
         return {
@@ -462,7 +476,7 @@ export const DurhamsApi = createApi({
 			providesTags: ["projects", 'dashboard'],
 			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
-      invalidatesTags: (result) => ["projects", "dashboard"],
+      invalidatesTags: (result) => ["projects", "dashboard",'duplicate-project'],
 		}),
 
     DeleteSchool: builder.mutation({
@@ -546,13 +560,13 @@ fetchAllSchool: builder.query({
 }),
     
 UpdateProfile: builder.mutation({
-			query: ({ id, ...info }) => {
+  query: (data) => {
 				return {
 					url: `update-profile`,
 					headers: {
 						Accept: "application/json",
 					},
-					body:info,
+					body:data,
 					method: "PUT",
 					
 				};
@@ -1046,6 +1060,6 @@ export const {
   useUploadProfilePhotoMutation,
   useGetVendorsQuery,
   useFetchSchoolQuery,
-	
+useDuplicateProjectMutation	
 
 } = DurhamsApi;
