@@ -405,7 +405,7 @@ export const DurhamsApi = createApi({
       },
       transformResponse: (response) => response.data,
       transformErrorResponse: (response, meta, arg) => response,
-      invalidatesTags: ["projects", "duplicate-project"],
+      invalidatesTags: ["duplicate-project"],
     }),
     updateProjects: builder.mutation({
       query: ({ id, ...info }) => {
@@ -473,10 +473,9 @@ export const DurhamsApi = createApi({
 					
 				}
 			},
-			providesTags: ["projects", 'dashboard'],
+			providesTags: ["projects", 'dashboard','duplicate-project'],
 			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
-      invalidatesTags: (result) => ["projects", "dashboard",'duplicate-project'],
 		}),
 
     DeleteSchool: builder.mutation({

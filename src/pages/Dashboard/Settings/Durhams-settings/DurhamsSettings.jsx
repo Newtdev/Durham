@@ -23,16 +23,16 @@ const DurhamSettings = () => {
 			return;
     }
     setValue({
-      business_Manager: result?.data[3].value,
-      chair_board_education: result?.data[1].value,
-      chief_finance_officer: result?.data[0]?.value,
-      construction_interim_director: result?.data[2].value,
-      director_construction: result?.data[6].value,
-      director_design: result?.data[7].value,
-      director_durham: result?.data[8]?.value,
-      project_manager: result?.data[4]?.value,
+      business_Manager: !result?.data[3] ? '' : result?.data[3].value,
+      chair_board_education: !result?.data[1] ? '' : result?.data[3].value,
+      chief_finance_officer: !result?.data[0] ? '' : result?.data[3].value,
+      construction_interim_director: !result?.data[2] ? '' : result?.data[3].value,
+      director_construction: !result?.data[6] ? '' : result?.data[3].value,
+      director_design: !result?.data[7] ? '' : result?.data[3].value,
+      director_durham: !result?.data[8] ? '' : result?.data[3].value,
+      project_manager: !result?.data[4] ? '' : result?.data[3].value,
       project_manager_phone
-        : result?.data[5]?.value,
+        : !result?.data[5]?.value ? '' : result?.data[3].value,
     })
 	}, [dispatch, result]);
 
