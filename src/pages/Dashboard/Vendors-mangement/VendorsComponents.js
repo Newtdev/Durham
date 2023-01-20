@@ -177,13 +177,13 @@ const VendorInformationComponents = ({
 			touched: touched.company_name,
 		},
 		address: {
-			name: "Company Address",
-			id: "address",
+			name: "Street",
+			id: "street",
 			placeholder: "Street",
-			value: values.address,
+			value: values.street,
 			onChange: handleChange,
-			error: errors.address,
-			touched: touched.address,
+			error: errors.street,
+			touched: touched.street,
 		},
 		president: {
 			name: "President/VP",
