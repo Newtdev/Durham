@@ -32,7 +32,7 @@ const DurhamSettings = () => {
       director_durham: !result?.data[8] ? '' : result?.data[3].value,
       project_manager: !result?.data[4] ? '' : result?.data[3].value,
       project_manager_phone
-        : !result?.data[5]?.value ? '' : result?.data[3].value,
+        : !result?.data[5] ? '' : result?.data[3].value,
     })
 	}, [dispatch, result]);
 
