@@ -1,0 +1,28 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+.error-toast {
+  background: red;
+  color: white;
+}
+.adverstise {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.arial-font {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media print {
+  #main {
+    margin: 100px 0;
+  }
+}
