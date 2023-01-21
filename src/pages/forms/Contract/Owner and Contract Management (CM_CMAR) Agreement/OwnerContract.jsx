@@ -18,8 +18,8 @@ import { nextStep, page } from "./reducer";
 
 const OwnerContractorManagementForm = ({ id }) => {
   const dispatch = useDispatch();
-  const pages = useSelector(page)
-  const show = useSelector(modal)
+  const pages = useSelector(page);
+  const show = useSelector(modal);
 
   // const pages = 4;
   const formID = useSelector(project_document_id);
@@ -27,103 +27,98 @@ const OwnerContractorManagementForm = ({ id }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   // const response = useFetchFilledFormQuery(formID);
 
-
-
   const HandleSubmit = async (values) => {
-    const param = Object.keys(values)
-    const val = Object.values(values)
+    const param = Object.keys(values);
+    const val = Object.values(values);
 
     const response = await fillProjectDocument({
-      project_document_id: formID, form_fields: [{ field_name: param[0], field_value: val[0] },
-      { field_name: param[1], field_value: val[1] },
-      { field_name: param[2], field_value: val[2] },
-      { field_name: param[3], field_value: val[3] },
-      { field_name: param[4], field_value: val[4] },
-      { field_name: param[5], field_value: val[5] },
-      { field_name: param[6], field_value: val[6] },
-      ]
-    })
+      project_document_id: formID,
+      form_fields: [
+        { field_name: param[0], field_value: val[0] },
+        { field_name: param[1], field_value: val[1] },
+        { field_name: param[2], field_value: val[2] },
+        { field_name: param[3], field_value: val[3] },
+        { field_name: param[4], field_value: val[4] },
+        { field_name: param[5], field_value: val[5] },
+        { field_name: param[6], field_value: val[6] },
+      ],
+    });
     if (response) {
       if (response?.error) {
         toast.error(response?.message, {
           position: toast.POSITION.TOP_CENTER,
         });
       } else {
-        dispatch(nextStep(5))
+        dispatch(nextStep(5));
       }
     }
-  }
-
-
+  };
 
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      agreementDate: '',
-      projectIntent: '',
-      substantialCompletionDate: '',
-      amount: '',
-      percentage: '',
-      substantialAmount: '',
-      finalAmount: '',
-      Name: '',
-      conferenceAddress: '',
-      conferenceState: '',
-      conferenceCity: '',
-      conferenceZipCode: '',
-      projectName: '',
+      agreementDate: "",
+      projectIntent: "",
+      substantialCompletionDate: "",
+      amount: "",
+      percentage: "",
+      substantialAmount: "",
+      finalAmount: "",
+      Name: "",
+      conferenceAddress: "",
+      conferenceState: "",
+      conferenceCity: "",
+      conferenceZipCode: "",
+      projectName: "",
       location: [
         {
-          projectState: '',
-          projectCity: '',
-          projectZipCode: ''
+          projectState: "",
+          projectCity: "",
+          projectZipCode: "",
         },
       ],
-      procurementAmount: '',
-      constructionAmount: '',
+      procurementAmount: "",
+      constructionAmount: "",
       costOfWork: "",
       CMContingency: "",
-      generalConditions: '',
-      fees: '',
-      preConstruction: ''
+      generalConditions: "",
+      fees: "",
+      preConstruction: "",
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
-
       if (pages === 1) {
-        dispatch(nextStep(2))
+        dispatch(nextStep(2));
       } else if (pages === 2) {
-        dispatch(nextStep(3))
+        dispatch(nextStep(3));
       } else if (pages === 3) {
-        dispatch(nextStep(4))
+        dispatch(nextStep(4));
       } else if (pages === 4) {
-        dispatch(saveFormField(values))
-        HandleSubmit(values)
+        dispatch(saveFormField(values));
+        HandleSubmit(values);
       }
-    }
-
+    },
   });
 
   useEffect(() => {
     (async function () {
-      const response = await (await fetch('/states.json')).json();
-      dispatch(getStates(response))
-
-    }())
+      const response = await (await fetch("/states.json")).json();
+      dispatch(getStates(response));
+    })();
   }, [dispatch]);
 
-  return <ModalOverlay show={id === OwnerContractManagement && show}>
-
-    <FormikProvider value={formik}>
-      <form onSubmit={formik.handleSubmit}>
-        {pages === 1 && <FormOne {...formik} />}
-        {pages === 2 && <FormTwo {...formik} />}
-        {pages === 3 && <FormThree {...formik} />}
-        {pages === 4 && <FormFour {...formik} />}
-        {pages === 5 && <Preview />}
-      </form>
-    </FormikProvider>
-  </ModalOverlay>
-
-}
+  return (
+    <ModalOverlay show={id === OwnerContractManagement && show}>
+      <FormikProvider value={formik}>
+        <form onSubmit={formik.handleSubmit}>
+          {pages === 1 && <FormOne {...formik} />}
+          {pages === 2 && <FormTwo {...formik} />}
+          {pages === 3 && <FormThree {...formik} />}
+          {pages === 4 && <FormFour {...formik} />}
+          {pages === 5 && <Preview />}
+        </form>
+      </FormikProvider>
+    </ModalOverlay>
+  );
+};
 export default OwnerContractorManagementForm;
