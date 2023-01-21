@@ -135,6 +135,17 @@ export const DurhamsApi = createApi({
       },
       providesTags: (result) => ["product-managers"],
     }),
+    getAllProjectManager: builder.query({
+      query: ({ queryValue, page }) => {
+        return {
+          url: `project-managers?search=${queryValue}&limit=200&page=${page}`,
+
+          method: "GET",
+        };
+      },
+      providesTags: (result) => ["product-managers"],
+    }),
+
     fetchSingleProjectManager: builder.query({
       query: (id) => {
         return {
@@ -1059,6 +1070,7 @@ export const {
   useUploadProfilePhotoMutation,
   useGetVendorsQuery,
   useFetchSchoolQuery,
-useDuplicateProjectMutation	
+  useDuplicateProjectMutation,
+useGetAllProjectManagerQuery
 
 } = DurhamsApi;

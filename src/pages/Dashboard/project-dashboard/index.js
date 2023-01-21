@@ -49,9 +49,9 @@ const ProjectDashboard = () => {
 	const toggle = useSelector(historyToggle);
 	const [deleteProject, {isLoading}] = useDeleteProjectMutation();
 	const [duplicateProject, result] = useDuplicateProjectMutation();
-
 	const awardee = !projectDetails?.project_vendors ? '' : projectDetails.project_vendors[0];
 	const summary = !projectDetails ? '' : projectDetails.document_summary;
+	const school = !projectDetails ? '': projectDetails.school
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -232,7 +232,7 @@ const ProjectDashboard = () => {
 										View History
 									</span>
 									<div className={`${toggle ? 'h-full': 'h-0 overflow-hidden'} py-2 transition-auto`}>												{projectDetails?.duplicates?.map((project, index) => {
-													return <div key={index} className="bg-gray-100 h-16 flex justify-between items-center rounded  px-4 py-2 my-1">
+									return <div key={index} className="bg-gray-100 h-16 flex justify-between items-center rounded  px-4 py-2 my-1">
 														<h1 className="text-[#2f5461] font-bold">{project?.name}</h1>
 														<p className="text-sm">{moment(project.created_at).format("MMM D, YYYY ")}</p>
 														</div>
@@ -254,9 +254,10 @@ const ProjectDashboard = () => {
 										School Information
 									</div>
 									<div className="text-gray-900 text-xs">
-										<p className="mt-4 font-bold">Durham Public School</p>
-										<p className="my-1">leekaisian@gmail.com</p>
-										<p>+65 1234 1234</p>
+										<p className="mt-4 font-bold">{!school?'':school.name}</p>
+										<p className="my-1">{`${!school ? '' : school.address}, ${!school ? '' : school.city}, ${!school ? '' : school.state}, ${!school ? '' :
+									school.zip_code}`}</p>
+										{/* <p>+65 1234 1234</p> */}
 									</div>
 								</div>
 								<div className="mb-5">
@@ -279,7 +280,7 @@ const ProjectDashboard = () => {
 									</div>
 									<div className="mt-4 flex gap-2 items-center">
 										<div className="w-6 h-6 rounded-full">
-											{/* <img className="w-full" src={Avatar} alt="user" /> */}
+											{/* <img className="w-full" src={!projectDetails} alt="user" /> */}
 										</div>
 										<span className="text-xs text-[#2f5461]">
 											{!projectDetails || !projectDetails.project_manager ? "" : projectDetails?.project_manager.first_name + " " + projectDetails?.project_manager.last_name}

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchSchoolQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
+import { useAddProjectsMutation, useFetchAllProjectManagerQuery, useFetchSchoolQuery, useGetAllProjectManagerQuery, useUpdateProjectsMutation } from "../../../../features/services/api";
 import { getId, SaveToLocalStorage } from "../../../../shared-component";
 import { ButtonWhiteBG, } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
@@ -20,7 +20,7 @@ const ProjectInformation = () => {
 
     
 const [addProjects, {isLoading}]= useAddProjectsMutation()
-    const response = useFetchAllProjectManagerQuery({ queryValue: '' });
+    const response = useGetAllProjectManagerQuery({ queryValue: '' });
     const res = useFetchSchoolQuery()
     // const details = useFetchSingleProjectQuery(getId)
     const details = useSelector(projectData);
@@ -115,7 +115,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
             city: '',
             zip_code: '',
             description: "",
-            school: ''
+            school_id: ''
         },
         validationSchema: AddProjectInformation,
         onSubmit: (values) => {
@@ -169,33 +169,33 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         onChange: handleChange,
         placeholder: "Enter street",
     };
-    const project_state = {
-        name: "Project Location (State)",
-        id: "state",
-        value: values.state,
-        error: errors.state,
-        touched: touched.state,
-        onChange: handleChange,
-        placeholder: "Enter state",
-    };
-    const project_city = {
-        name: "Project Location (City)",
-        id: "city",
-        value: values.city,
-        error: errors.city,
-        touched: touched.city,
-        onChange: handleChange,
-        placeholder: "Enter city",
-    };
-    const project_zip_code = {
-        name: "Project Location (Zip Code)",
-        id: "zip_code",
-        value: values.zip_code,
-        error: errors.zip_code,
-        touched: touched.zip_code,
-        onChange: handleChange,
-        placeholder: "Enter zip code",
-    };
+    // const project_state = {
+    //     name: "Project Location (State)",
+    //     id: "state",
+    //     value: values.state,
+    //     error: errors.state,
+    //     touched: touched.state,
+    //     onChange: handleChange,
+    //     placeholder: "Enter state",
+    // };
+    // const project_city = {
+    //     name: "Project Location (City)",
+    //     id: "city",
+    //     value: values.city,
+    //     error: errors.city,
+    //     touched: touched.city,
+    //     onChange: handleChange,
+    //     placeholder: "Enter city",
+    // };
+    // const project_zip_code = {
+    //     name: "Project Location (Zip Code)",
+    //     id: "zip_code",
+    //     value: values.zip_code,
+    //     error: errors.zip_code,
+    //     touched: touched.zip_code,
+    //     onChange: handleChange,
+    //     placeholder: "Enter zip code",
+    // };
     const project_manager = {
         name: "Project Manager",
         id: "project_manager_id",
@@ -207,10 +207,10 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
     };
     const school = {
         name: "School/Dept Name",
-        id: "school",
-        value: values.school,
-        error: errors.school,
-        touched: touched.school,
+        id: "school_id",
+        value: values.school_id,
+        error: errors.school_id,
+        touched: touched.school_id,
         onChange: handleChange,
         placeholder: "Select School/Dept",
     };
@@ -308,7 +308,7 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
                                             {res?.data?.data?.data?.map((cur, id) => {
                                                 return (
                                                     <option
-                                                        value={cur.name}
+                                                        value={cur.id}
                                                         key={id}>
                                                         {cur.name}
                                                     </option>
@@ -328,11 +328,11 @@ const [addProjects, {isLoading}]= useAddProjectsMutation()
         {/* Buttons */}
         <div className='flex gap-4 -mt-2 items-center'>
         <DashboardButton
-								name='NEXT'
-								hidden
-								type="submit"
-                                width='w-[168px]'
-								loading={isLoading|| data.isLoading}
+                name='NEXT'
+                hidden
+                type="submit"
+                width='w-[168px]'
+                loading={isLoading || data.isLoading}
 							/>
             
              <ButtonWhiteBG width='w-[168px]' name='Cancel' onClick={() => navigate('/dashboard')} /> 

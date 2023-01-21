@@ -201,7 +201,24 @@ const ProjectFormsController = () => {
 			return;
 		}
 		formik.setValues(details)
+	}, [details]);
+	
+	useEffect(() => {
+		if (!details ) {
+			return;
+		} else {
+			if (!details.project_documents) {
+				return;
+			}
+			console.log(details.project_documents)
+			// setSelected()
+			//setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
+
+		}
+		
 	},[details]);
+
+
 	return (
 		<section>
 			{/* PROJECT OVERVIEW */}
