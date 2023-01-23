@@ -216,7 +216,6 @@ const VendorInformationComponents = ({
 			touched: touched.vendor_id,
 		},
 	};
-	console.log(errors);
 	function CheckState() {
 		if (!values.state) {
 			return;
@@ -453,7 +452,7 @@ export function AddVendor({ close }) {
 		},
 		onSubmit: (values) => {
 			dispatch(save_awardee(values));
-			HandleRequest(values);
+			HandleRequest({ ...values, address: values.street });
 		},
 	};
 
@@ -542,7 +541,7 @@ export function EditVendorModal({
 		},
 		vendorInitValue,
 		onSubmit: (values) => {
-			handleRequest(values);
+			handleRequest({ ...values, address: values.street });
 			dispatch(save_awardee(values));
 		},
 	};

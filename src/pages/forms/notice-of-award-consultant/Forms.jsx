@@ -226,18 +226,14 @@ const Form = (props) => {
 							{/* </FormInputContainer> */}
 							<FormInputContainer>
 								<FormSelect {...recipientCopy}>
-									{!durham?.data ? (
-										<option>No recipients</option>
-									) : (
-										durham?.data.map((cur, id) => {
-											return (
-												<option key={cur.slug} id={cur.name} value={cur.value}>
-													{cur.value}
-												</option>
-											);
-										})
-									)}
-									<option value="">Add New Recipient</option>
+									{durham?.data?.map((cur, id) => {
+										return (
+											<option key={cur.slug} id={cur.name} value={cur.value}>
+												{cur.value}
+											</option>
+										);
+									})}
+									<option value="Add New Recipient">Add New Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
 							{props.values.recipientCopy === "Add New Recipient" && (
