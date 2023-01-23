@@ -240,7 +240,7 @@ const Form = (props) => {
 									<option value="">Add New Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
-							{props.values.recipientCopy === "" && (
+							{props.values.recipientCopy === "Add New Recipient" && (
 								<>
 									<FormInputContainer name="Enter Recipients Name">
 										<FormInputPlain {...recipientName} />

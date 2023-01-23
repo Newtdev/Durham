@@ -55,7 +55,7 @@ export const AddVendorsSchema = Yup.object().shape({
 	first_name: Yup.string().required("First name is required!"),
 	last_name: Yup.string().required("Last name is required!"),
 	company_name: Yup.string().required("Company name is required!"),
-	address: Yup.string().required("Address is required!"),
+	street: Yup.string().required("Street is required!"),
 	state: Yup.string().required("Address is required!"),
 	city: Yup.string().required("Address is required!"),
 	zip_code: Yup.string().required("Address is required!"),

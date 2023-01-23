@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import {
-	useAddVendorMutation,
-} from "../../../features/services/api";
+import { useAddVendorMutation } from "../../../features/services/api";
 import { ButtonRedBG, ButtonWhiteBG } from "../../../ui";
 import { AddVendorsSchema } from "../../../yup";
-import { getList, getStates } from "../../forms/Advertisement-for-bid-template/reducer";
+import {
+	getList,
+	getStates,
+} from "../../forms/Advertisement-for-bid-template/reducer";
 import { FormInputContainer } from "../../forms/Notice-of-intent-consultant/Forms";
 import {
 	Close,
@@ -31,15 +32,10 @@ export const VendorsHeader = [
 	"",
 ];
 
-
-
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
-			
-
-			{dataArray?.map((vendor,index) => {
+			{dataArray?.map((vendor, index) => {
 				const {
 					id,
 					first_name,
@@ -52,15 +48,14 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 					president,
 					secretary,
 					vendor_id,
-					street
+					street,
 				} = vendor;
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
-
 
 				return (
 					<tr key={id} className={`border-b ${strip}`}>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							{!vendor_id? 'none':vendor_id}
+							{!vendor_id ? "none" : vendor_id}
 						</td>
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{first_name}
@@ -103,17 +98,16 @@ const VendorInformationComponents = ({
 	loading,
 	vendorInitValue,
 	modal_name,
-	title
+	title,
 }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-        (async function () {
-          const response = await (await fetch('/states.json')).json();
-          dispatch(getStates(response))
-    
-        }())
-      }, [dispatch]);
+		(async function () {
+			const response = await (await fetch("/states.json")).json();
+			dispatch(getStates(response));
+		})();
+	}, [dispatch]);
 	const states = useSelector(getList);
 
 	const {
@@ -222,33 +216,45 @@ const VendorInformationComponents = ({
 			touched: touched.vendor_id,
 		},
 	};
+	console.log(errors);
 	function CheckState() {
-        if (!values.state) {
-            return;
-        }
-		let stat = Object.values(states)?.find((state) => state.name === values.state);
-	
-		return !stat ? '' : Object.keys(stat.cities)?.map((cur, id) => {
-         return <option key={id} value={cur}>{cur}</option>
-        })
-	};
-	
+		if (!values.state) {
+			return;
+		}
+		let stat = Object.values(states)?.find(
+			(state) => state.name === values.state
+		);
+
+		return !stat
+			? ""
+			: Object.keys(stat.cities)?.map((cur, id) => {
+					return (
+						<option key={id} value={cur}>
+							{cur}
+						</option>
+					);
+			  });
+	}
 
 	function CheckZipCode() {
-        if (!values.city) {
-            return;
-        }
-		const city = !states ? '' : Object.values(states)?.filter((state) => state.name === values.state)
-	
+		if (!values.city) {
+			return;
+		}
+		const city = !states
+			? ""
+			: Object.values(states)?.filter((state) => state.name === values.state);
+
 		const zipcode = city?.find((cities) => cities);
-		return !zipcode ? "" : zipcode.cities[values.city]?.map((zipcode, index) => {
-			
-            return <option key={index} value={zipcode}>{zipcode}</option>
-        })
-
-
-
-    };
+		return !zipcode
+			? ""
+			: zipcode.cities[values.city]?.map((zipcode, index) => {
+					return (
+						<option key={index} value={zipcode}>
+							{zipcode}
+						</option>
+					);
+			  });
+	}
 
 	const HandleClose = () => {
 		close();
@@ -302,37 +308,51 @@ const VendorInformationComponents = ({
 							<div>
 								<DashboardInput {...props.address} />
 							</div>
-							<FormInputContainer name='State'>
-							<input list="states" name={`state`} value={values.state} onChange={handleChange}
-								placeholder='Select State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
-							<datalist id="states">
-							{!states ? null : Object.entries(states).map((cur, index) => { 
-							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
-							</datalist>
-                        
-						</FormInputContainer>
+							<FormInputContainer name="State">
+								<input
+									list="states"
+									name={`state`}
+									value={values.state}
+									onChange={handleChange}
+									placeholder="Select State"
+									className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+								/>
+								<datalist id="states">
+									{!states
+										? null
+										: Object.entries(states).map((cur, index) => {
+												return (
+													<option key={index} value={cur[1].name}>
+														{cur[1].name}
+													</option>
+												);
+										  })}
+								</datalist>
+							</FormInputContainer>
 
-							<FormInputContainer name='City'>
-							
-							<input list="city" name={`city`} value={values.city} onChange={handleChange}
-								placeholder='Select city' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
-							<datalist id="city">
-							{CheckState()}
-							</datalist>
-							
-							
-							
-						</FormInputContainer>
+							<FormInputContainer name="City">
+								<input
+									list="city"
+									name={`city`}
+									value={values.city}
+									onChange={handleChange}
+									placeholder="Select city"
+									className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+								/>
+								<datalist id="city">{CheckState()}</datalist>
+							</FormInputContainer>
 
-							<FormInputContainer name='Zip code'>
-							<input list="zip_code" name={`zip_code`} value={values.zip_code} onChange={handleChange}
-								placeholder='Select Zip Code' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
-							<datalist id="zip_code">
-							{CheckZipCode()}
-							</datalist>
-							
-								
-						</FormInputContainer>
+							<FormInputContainer name="Zip code">
+								<input
+									list="zip_code"
+									name={`zip_code`}
+									value={values.zip_code}
+									onChange={handleChange}
+									placeholder="Select Zip Code"
+									className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+								/>
+								<datalist id="zip_code">{CheckZipCode()}</datalist>
+							</FormInputContainer>
 							<div>
 								<DashboardInput {...props.president} />
 							</div>
@@ -394,7 +414,7 @@ export function AddVendor({ close }) {
 
 			if (response) {
 				close();
-				
+
 				if (response?.error) {
 					close();
 					toast.error(response?.error?.message, {
@@ -406,8 +426,7 @@ export function AddVendor({ close }) {
 					// onSuccess show the modal and ask the manager to login
 				}
 			}
-		} catch (error) {
-		}
+		} catch (error) {}
 	};
 
 	const vendorInfo = {
@@ -417,7 +436,7 @@ export function AddVendor({ close }) {
 		close,
 		button_name: "ADD VENDOR",
 		modal_name: "ADD VENDOR",
-		title:"Add Vendor's information",
+		title: "Add Vendor's information",
 		initialValues: {
 			title: "",
 			first_name: "",
@@ -430,7 +449,7 @@ export function AddVendor({ close }) {
 			president: "",
 			secretary: "",
 			industry: "",
-			vendor_id: ''
+			vendor_id: "",
 		},
 		onSubmit: (values) => {
 			dispatch(save_awardee(values));
@@ -506,7 +525,7 @@ export function EditVendorModal({
 		close,
 		button_name: "SAVE",
 		modal_name: "EDIT VENDOR",
-		title:"Edit Vendor's information",
+		title: "Edit Vendor's information",
 		loading: isLoading,
 		initialValues: {
 			title: "",
