@@ -199,6 +199,7 @@ const Preview = () => {
 												{!form_fields ? "" : form_fields.position}
 											</span>
 										)}
+										{console.log(form_fields.recipientCopy)}
 										{!form_fields.recipientCopy && (
 											<>
 												<span className={`${nottoBeHighlighted}`}>
