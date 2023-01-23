@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
@@ -8,6 +9,7 @@ import { closeModal } from "../reducer";
 
 const Form = (props) => {
 	const durham = useFetchDurhamQuery();
+	const [show, setShow] = useState(false);
 
 	const dispatch = useDispatch();
 	const creationDate = {
@@ -81,6 +83,7 @@ const Form = (props) => {
 	const recipientCopy = {
 		value: props.values.recipientCopy,
 		onChange: (e) => {
+			setShow(true);
 			props.setFieldValue("position", e.target.selectedOptions[0].id);
 			props.setFieldValue("recipientCopy", e.target.value);
 		},
@@ -214,7 +217,7 @@ const Form = (props) => {
 									<option value="">Add Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
-							{!props.values.recipientCopy && (
+							{!props.values.recipientCopy && show && (
 								<>
 									<FormInputContainer name="Enter Recipients Name">
 										<FormInputPlain {...recipientName} />
