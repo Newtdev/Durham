@@ -18,13 +18,15 @@ import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 
-const Preview = () => {
+const Preview = (data) => {
+	console.log(data);
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
 	const formID = useSelector(project_document_id);
 
 	const content = useFetchFilledFormQuery(formID);
+	console.log(content?.data?.data);
 	// const content = useSelector(savedResponse);
 	const form_fields = useSelector(fields);
 	const { vendors, durham_profile, project } = content?.data?.data;
@@ -179,7 +181,7 @@ const Preview = () => {
 									</span>
 									. Effective{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.stateDate).format("MMMM D, YYYY ")}
+										{moment(form_fields.startDate).format("MMMM D, YYYY ")}
 									</span>{" "}
 									at{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
@@ -190,14 +192,14 @@ const Preview = () => {
 									</span>{" "}
 									is authorized to proceed with the Work in earnest in
 									accordance with the terms of your contract and the Contract
-									Documents
+									Documents.
 								</p>
 								<p className="mb-4">
 									Time is of the essence. The Notice to Proceed commences the
 									Contract Time until Substantial Completion is achieved on or
 									before{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.deliveryDate).format("MMMM D, YYYY ")}
+										{moment(form_fields.effectiveDate).format("MMMM D, YYYY ")}
 									</span>
 									.
 								</p>

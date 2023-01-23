@@ -284,7 +284,7 @@ const Preview = () => {
 											</span>
 										</p>
 									)}
-									{form_fields.recipientCopy && (
+									{form_fields.recipientCopy === "Add New Recipient" && (
 										<p className="pl-20">
 											Cc:{" "}
 											<span className={`${nottoBeHighlighted}`}>

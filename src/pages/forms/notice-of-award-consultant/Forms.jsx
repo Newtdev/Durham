@@ -74,6 +74,7 @@ const Form = (props) => {
 
 		// onChange: props.handleChange,
 		onChange: (e) => {
+			console.log(e.target.selectedOptions[0].id);
 			props.setFieldValue("position", e.target.selectedOptions[0].id);
 			props.setFieldValue("recipientCopy", e.target.value);
 		},
@@ -233,10 +234,10 @@ const Form = (props) => {
 											</option>
 										);
 									})}
-									<option value="Add New Recipient">Add New Recipient</option>
+									<option>Add New Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
-							{props.values.recipientCopy === "Add New Recipient" && (
+							{!props.values.recipientCopy && (
 								<>
 									<FormInputContainer name="Enter Recipients Name">
 										<FormInputPlain {...recipientName} />

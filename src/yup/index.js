@@ -161,7 +161,7 @@ export const NoticeProceed = Yup.object().shape({
 	creationDate: Yup.string().required("Creation date is required!"),
 	startDate: Yup.string().required("Starting date is required!"),
 	startTime: Yup.string().required("Starting time date is required!"),
-	deliveryDate: Yup.string().required("Delivery date is required!"),
+	effectiveDate: Yup.string().required("Delivery date is required!"),
 });
 
 /**
