@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFetchFilledFormQuery, useFillProjectDocumentMutation } from "../../../features/services/api";
@@ -11,6 +11,20 @@ import { modal, saveFormField } from "../reducer";
 import Forms from "./Forms";
 import { page, techNextStep } from "./reducer";
 import TechPreview from "./TechPreview";
+import techPDF from '../../Dashboard/files/Technology/Technology Service Agreement(developerVersion).pdf'
+import Quixote from "./Test";
+import { PDFViewer } from "@react-pdf/renderer";
+
+
+
+
+
+
+
+
+
+
+
 
 const TechService = ({id}) => {
   const dispatch = useDispatch();
@@ -21,8 +35,10 @@ const TechService = ({id}) => {
   // const response = useFetchFilledFormQuery(formID);
   // console.log(response)
 
- 
-  
+
+
+
+
 
   const HandleFormSubmit = async (values) => {
     const param = Object.keys(values)
@@ -62,7 +78,8 @@ const TechService = ({id}) => {
        
       if (pages === 1) {
         dispatch(saveFormField(values))
-        HandleFormSubmit(values);      
+        HandleFormSubmit(values);  
+
         }
       }
   });
@@ -84,6 +101,7 @@ const TechService = ({id}) => {
     
     {pages === 1 && <Forms {...props} />}
     {pages === 2 && <TechPreview {...Formik} />}
+    {/* {pages === 2 && } */}
   </ModalOverlay>
 };
 

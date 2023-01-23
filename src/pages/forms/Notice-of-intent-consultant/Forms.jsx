@@ -177,11 +177,11 @@ const NoticeForm = (props) => {
 
                         {/* </FormInputContainer> */}
                         
-                      
-                        <FormInputContainer name='When will the Board of DPS be asked to approve this contract?'>
+                        {props.values.approval === 'Yes' && <FormInputContainer name='When will the Board of DPS be asked to approve this contract?'>
                             <SelectDate {...approvalDate} />
-                            {props.errors.approvalDate && props.touched.approvalDate && <Error message={props.errors.approvalDate}/>}
+                            {props.errors.approvalDate && props.touched.approvalDate && <Error message={props.errors.approvalDate} />}
                         </FormInputContainer>
+                        }
                         <FormInputContainer name='By what date must the consultant, deliver the required documents?'>
                             <SelectDate {...deliveryDate} />
                             {props.errors.deliveryDate && props.touched.deliveryDate && <Error message={props.errors.deliveryDate}/>}
