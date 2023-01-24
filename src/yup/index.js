@@ -311,7 +311,7 @@ export const OwnerContractManageMent = Yup.object().shape({
 		{
 			projectState: Yup.string().required("Field is required"),
 			projectCity: Yup.string().required("Field is required"),
-			projectZipCode: Yup.string().required("Field is required"),
+			projectZipCode: Yup.string().required("Field is required"), 
 		},
 	],
 	procurementAmount: Yup.string().required("Field is required"),
