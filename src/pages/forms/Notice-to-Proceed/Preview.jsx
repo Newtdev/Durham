@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import Logo from "../../../assets/formlogo.png";
 import { prevStep, stepDefault } from "./reducerSlice";
@@ -26,13 +26,31 @@ const Preview = (data) => {
 	const formID = useSelector(project_document_id);
 
 	const content = useFetchFilledFormQuery(formID);
-	console.log(content?.data?.data);
 	// const content = useSelector(savedResponse);
 	const form_fields = useSelector(fields);
-	const { vendors, durham_profile, project } = content?.data?.data;
+	// const { vendors, durham_profile, project } = content?.data?.data;
+	const vendors = content?.data?.data?.vendors;
+	const project = content?.data?.data?.project;
+	const durham_profile = content?.data?.data?.durham_profile;
+
 	const projectDetails = useSelector(project_details);
 	const school = !projectDetails ? "" : projectDetails.school;
 	const [highlighted, setHighlighed] = useState(false);
+
+	const [awardee, setAwardee] = useState({});
+
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		const data = vendors.filter((cur) => {
+			if (cur.role === "Contractor") {
+				return cur;
+			}
+			return {};
+		});
+		setAwardee(data);
+	}, [vendors]);
 
 	const props = {
 		component: downloadComponent,
@@ -98,35 +116,35 @@ const Preview = (data) => {
 								<p>
 									{/* <span className='bg-yellow-500'></span> */}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!vendors
+										{!awardee
 											? ""
-											: vendors[0].first_name + " " + vendors[0].last_name}
+											: awardee[0]?.first_name + " " + awardee[0]?.last_name}
 									</span>
 									,
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{" "}
-										{!vendors ? "" : vendors[0].title}
+										{!awardee ? "" : awardee[0]?.title}
 									</span>
 								</p>
 								<p>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!vendors ? "" : vendors[0].company_name}
+										{!awardee ? "" : awardee[0]?.company_name}
 									</span>
 								</p>
 								<p>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!vendors ? "" : vendors[0].street}
+										{!awardee ? "" : awardee[0]?.street}
 									</span>
 								</p>
 								<p>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!vendors
+										{!awardee
 											? ""
-											: vendors[0].city +
+											: awardee[0]?.city +
 											  ", " +
-											  vendors[0].state +
+											  awardee[0]?.state +
 											  ", " +
-											  vendors[0].zip_code}
+											  awardee[0]?.zip_code}
 									</span>
 								</p>
 							</div>
@@ -138,17 +156,17 @@ const Preview = (data) => {
 										<p>Durham Public Schools (DPS)</p>
 										<p>
 											<span className={`${nottoBeHighlighted} bg-grey-800`}>
-												{!school ? "" : school.name}{" "}
+												{!school ? "" : school?.name}{" "}
 											</span>
 											-
 											<span className={`${nottoBeHighlighted} bg-grey-800`}>
 												{" "}
-												{!project ? "" : project.name}
+												{!project ? "" : project?.name}
 											</span>
 											(
 											<span className={`${nottoBeHighlighted} bg-grey-800`}>
 												{" "}
-												{!project ? "" : project.number}
+												{!project ? "" : project?.number}
 											</span>
 											)
 										</p>
@@ -163,7 +181,7 @@ const Preview = (data) => {
 										Dear <span className="bg-grey-800">Mr./Ms.</span>{" "}
 									</span>{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{vendors[0].last_name}
+										{awardee[0]?.last_name}
 									</span>
 									,
 								</div>
@@ -173,11 +191,11 @@ const Preview = (data) => {
 								<p className="mb-4">
 									We are pleased to offer this Notice to Proceed for the{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!school ? "" : school.name}{" "}
+										{!school ? "" : school?.name}{" "}
 									</span>{" "}
 									-{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!project ? "" : project.name}
+										{!project ? "" : project?.name}
 									</span>
 									. Effective{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
@@ -188,7 +206,7 @@ const Preview = (data) => {
 										{moment(form_fields.startTime).format("hh:mm A, ")}
 									</span>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{!vendors ? "" : vendors[0].company_name}
+										{!awardee ? "" : awardee[0]?.company_name}
 									</span>{" "}
 									is authorized to proceed with the Work in earnest in
 									accordance with the terms of your contract and the Contract

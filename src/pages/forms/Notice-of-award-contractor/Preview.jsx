@@ -1,4 +1,5 @@
 import moment from "moment";
+import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -27,11 +28,27 @@ const Preview = () => {
 
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
-	const content = useFetchFilledFormQuery(formID);
+	let content = useFetchFilledFormQuery(formID);
+	const vendors = content?.data?.data?.vendors;
+	const project = content?.data?.data?.project;
+
 	// const content = useSelector(savedResponse);
 	const form_fields = useSelector(fields);
-	const { vendors, project } = content?.data?.data;
 	const [highlighted, setHighlighed] = useState(false);
+	const [awardee, setAwardee] = useState({});
+
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		const data = vendors.filter((cur) => {
+			if (cur.role === "Contractor") {
+				return cur;
+			}
+			return {};
+		});
+		setAwardee(data);
+	}, [vendors]);
 
 	const props = {
 		component: downloadComponent,
@@ -72,7 +89,7 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto  mb-10 arial-font px-6 h-[380px]">
 						<div
-							className=" pt-8 pb-4 text-black mt-16"
+							className=" pt-8 pb-4 text-black mt-16 adverstise"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4 px-12">
@@ -104,21 +121,21 @@ const Preview = () => {
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].company_name}
+											{!awardee ? "" : awardee[0]?.company_name}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted} block my-1`}>
-											{!vendors ? "" : vendors[0].street}
+											{!awardee ? "" : awardee[0]?.street}
 										</span>
 										<span className={`${nottoBeHighlighted} block mb-4`}>
-											{!vendors
+											{!awardee
 												? ""
-												: vendors[0].city +
+												: awardee[0]?.city +
 												  ", " +
-												  vendors[0].state +
+												  awardee[0]?.state +
 												  ", " +
-												  vendors[0].zip_code}
+												  awardee[0]?.zip_code}
 										</span>
 									</p>
 									<div className="flex mt-4 mb-4">
@@ -133,7 +150,7 @@ const Preview = () => {
 									<p className="mb-4 ml[-3rem]">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].first_name},
+											{!awardee ? "" : awardee[0]?.first_name},
 										</span>
 									</p>
 								</div>
@@ -154,19 +171,18 @@ const Preview = () => {
 									</p>
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].company_name}
+											{!awardee ? "" : awardee[0]?.company_name}
 										</span>{" "}
 										shall execute the attached enclosed contract and forward it
 										to{" "}
 										<span
-											className={`${nottoBeHighlighted} underline underline-offset-4`}>
+											className={`${nottoBeHighlighted} underline-offset-4`}>
 											{!form_fields ? "" : form_fields.contractorContact}
 										</span>{" "}
 										along with all required bonds and insurances, to Durham
 										Public Schools, 2011 Hamlin Rd. Durham, NC 27704 or via
 										email to:{" "}
-										<span
-											className={`${nottoBeHighlighted} underline underline-offset-4`}>
+										<span className={`${nottoBeHighlighted}`}>
 											{!form_fields ? "" : form_fields.email}
 										</span>
 									</p>
@@ -174,40 +190,38 @@ const Preview = () => {
 										Congratulations from Durham Public Schools. We look forward
 										to the successful completion of the{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!project ? "" : project.name}
+											{!project ? "" : project?.name}
 										</span>{" "}
 										project. If you have any questions, please do not hesitate
 										to contact me at{" "}
-										<span
-											className={`${nottoBeHighlighted} underline underline-offset-4`}>
-											{!form_fields ? "" : form_fields.phone}
+										<span className={`${nottoBeHighlighted}`}>
+											{!form_fields ? "" : form_fields?.phone}
 										</span>
 										.
 									</p>
 									<p className="mb-4">Sincerely,</p>
 									<p className="mb-4">
-										<span
-											className={`${nottoBeHighlighted} underline underline-offset-4`}>
-											{!form_fields ? "" : form_fields.sendersName}
+										<span className={`${nottoBeHighlighted}`}>
+											{!form_fields ? "" : form_fields?.sendersName}
 										</span>
 									</p>
 									<p>
 										Cc:{" "}
 										{form_fields.recipientCopy && (
 											<span className={`${nottoBeHighlighted}`}>
-												{!form_fields ? "" : form_fields.recipientCopy} -{" "}
-												{!form_fields ? "" : form_fields.position}
+												{!form_fields ? "" : form_fields?.recipientCopy} -{" "}
+												{!form_fields ? "" : form_fields?.position}
 											</span>
 										)}
 										{console.log(form_fields.recipientCopy)}
 										{!form_fields.recipientCopy && (
 											<>
 												<span className={`${nottoBeHighlighted}`}>
-													{!form_fields ? "" : form_fields.recipientName}-
+													{!form_fields ? "" : form_fields?.recipientName}-
 												</span>{" "}
 												-{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{!form_fields ? "" : form_fields.recipientTitle}
+													{!form_fields ? "" : form_fields?.recipientTitle}
 												</span>
 											</>
 										)}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
@@ -12,6 +12,19 @@ const Form = (props) => {
 	const dispatch = useDispatch();
 	const durham = useFetchDurhamQuery();
 	const [show, setShow] = useState(false);
+	const [durhamList, setList] = useState([]);
+
+	useEffect(() => {
+		if (!durham?.data) {
+			return;
+		}
+		const list = durham?.data.filter(
+			(cur) =>
+				cur.slug !==
+				"construction_capital_planning_project_managers_phone_number"
+		);
+		setList(list);
+	}, [durham]);
 
 	const creationDate = {
 		...props,
@@ -71,6 +84,7 @@ const Form = (props) => {
 		name: "deliveryDate",
 		placeholder: "Select date",
 	};
+	console.log(props.values.recipientCopy);
 	const recipientCopy = {
 		value: props.values.recipientCopy,
 
@@ -151,6 +165,7 @@ const Form = (props) => {
 								<input
 									type="radio"
 									onChange={props.handleChange}
+									checked={props.values.approval === "Yes" ? true : false}
 									value="Yes"
 									name="approval"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
@@ -166,6 +181,7 @@ const Form = (props) => {
 								<input
 									type="radio"
 									onChange={props.handleChange}
+									checked={props.values.approval === "No" ? true : false}
 									value="No"
 									name="approval"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
@@ -229,7 +245,14 @@ const Form = (props) => {
 							{/* </FormInputContainer> */}
 							<FormInputContainer>
 								<FormSelect {...recipientCopy}>
-									{durham?.data?.map((cur, id) => {
+									{!props.values.recipientCopy ? (
+										<option>Select Recipient</option>
+									) : (
+										<option value={props.values.recipientCopy}>
+											{props.values.recipientCopy}
+										</option>
+									)}
+									{durhamList?.map((cur, id) => {
 										return (
 											<option key={cur.slug} id={cur.name} value={cur.value}>
 												{cur.value}

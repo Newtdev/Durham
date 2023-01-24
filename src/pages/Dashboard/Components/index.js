@@ -62,7 +62,7 @@ export function DashboardNav() {
 				onClick={() => setShow(!show)}>
 				<span className="w-20 mr-8">
 					<Link to="/dashboard">
-						<img src={Logo} className="w-full" alt="Durham Logo" />
+						<img src={Logo} className="w-full object-cover" alt="Durham Logo" />
 					</Link>
 				</span>
 				<div className=" ml-auto md:order-2 relative">
