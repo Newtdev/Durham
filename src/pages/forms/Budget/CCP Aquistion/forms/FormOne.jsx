@@ -68,8 +68,7 @@ const FormOne = (props) => {
 			onClick={(e) => e.stopPropagation()}
 		>
 			{/* Modal content */}
-
-			<div className='relative w-[600px] bg-white rounded-lg shadow py-4'>
+			<form className='relative w-[600px] bg-white rounded-lg shadow py-4' onSubmit={props.onSubmit}>
 				<div className='flex items-baseline justify-between mx-6'>
 					<div>
 						<h3 className='text-lg font-bold text-gray-900'>
@@ -139,7 +138,7 @@ const FormOne = (props) => {
 						width='w-[77px]'
 					/>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 }

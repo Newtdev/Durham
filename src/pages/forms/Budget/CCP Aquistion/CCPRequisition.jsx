@@ -59,44 +59,54 @@ const CCPRequisitionForm = ({ id }) => {
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      agreementDate: '',
-      projectIntent: '',
-      substantialCompletionDate: '',
-      amount: '',
-      percentage: '',
-      substantialAmount: '',
-      finalAmount: '',
-      Name: '',
-      conferenceAddress: '',
-      conferenceState: '',
-      conferenceCity: '',
-      conferenceZipCode: '',
-      projectName: '',
-      location: [
-        {
-          projectState: '',
-          projectCity: '',
-          projectZipCode: ''
-        },
-      ],
-      procurementAmount: '',
-      constructionAmount: '',
-      costOfWork: "",
-      CMContingency: "",
-      generalConditions: '',
-      fees: '',
-      preConstruction: ''
+      creationDate: "",
+      budgetCode: "",
+      commodityCode: "",
+      requisitionOrder: "",
+      attached: "",
+      signDate: "",
+      vendor: "",
+      vendorId: "",
+      companyName: "",
+      address: {
+        city: "",
+        street: "",
+        state: "",
+        zipCode: "",
+      },
+      name: "",
+      shippingAddress: {
+        city: "",
+        street: "",
+        state: "",
+        zipCode: "",
+      },
+      location: "",
+      items: {
+        stockNumber: "",
+        description: "",
+        quantity: {
+          quantity: "",
+          unit: "",
+          unitPrice: "",
+        }
+      },
+      shippingCost: "",
+      salesTax: ""
     },
     validationSchema: CCPRequisitionSchema,
     onSubmit: (values) => {
-
       if (pages === 1) {
+        console.log("pages: ", pages)
         dispatch(nextStep(2))
       } else if (pages === 2) {
+        console.log("pages: ", pages)
         dispatch(nextStep(3))
       } else if (pages === 3) {
+        console.log("pages: ", pages)
         dispatch(nextStep(4))
       } else if (pages === 4) {
+        console.log("pages: ", pages)
         dispatch(saveFormField(values))
         HandleSubmit(values)
       }
