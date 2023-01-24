@@ -41,7 +41,7 @@ const AwardeeInformation = (props) => {
 											onClick={() =>
 												arrayHelpers.pop({
 													role: "",
-													type: "",
+													type: "old",
 													// awardee: "",
 													company_name: "",
 													street: "",
