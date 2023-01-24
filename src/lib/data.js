@@ -98,10 +98,10 @@ export const documents = [
 		data: [
 			{ id: 1, name: "Technology Service Agreement" },
 			
-			// { id: 2, name: " Short Small Form Design Consultant Agreement" },
-			// { id: 3, name: "Owner and Design Consultant (more $200,000)" },
-			// { id: 4, name: " Owner and Design Consultant (less than $200,000)" },
-			// { id: 5, name: "Owner and Contractor Agreement Form (more $500,000)" },
+			{ id: 2, name: " Short Small Form Design Consultant Agreement" },
+			{ id: 3, name: "Owner and Design Consultant (more $200,000)" },
+			{ id: 4, name: "Owner and Design Consultant (less than $200,000)" },
+			{ id: 5, name: "Owner and Contractor Agreement Form (more $500,000)" },
 			{
 				id: 6,
 				name:'Owner and Contract Management (CM & CMAR) Agreement'
@@ -109,7 +109,7 @@ export const documents = [
 			{ id: 7, name: " LeChase Esser Contract Template" },
 			{ id: 8, name: "ESSER Contract Template" },
 			{ id: 9, name: "ESSER PM Contract Template" },
-			// { id: 10, name: "DPS Short Form Engineer - Engineering Contract" },
+			{ id: 10, name: "DPS Short Form Engineer - Engineering Contract" },
 			{ id: 11, name: "Attachment A Lunsford Act Form" },
 		],
 	},
@@ -117,53 +117,68 @@ export const documents = [
 		id: 1,
 		name: "Procurement",
 		data: [
-			// { id: 12, name: " E-589CI Affidavit of Capital Improvement" },
-			// { id: 13, name: "DPS Formal General Conditions - 1-17-20" },
-			 { id: 14, name: " 00 11 13 - Advertisement for Bid Template" },
-			// { id: 15, name: "3 bids" },
-			// { id: 16, name: " Bid Manual" },
+			{ id: 12, name: " E-589CI Affidavit of Capital Improvement" },
+			{ id: 13, name: "DPS Formal General Conditions - 1-17-20" },
+			 { id: 14,name: " 00 11 13 - Advertisement for Bid Template" },
+			{ id: 15, name: "3 bids" },
+			{ id: 16, name: " Bid Manual" },
 			{ id: 17, name: "Determination of Apparent Low Bidder - Contractor" },
-			// { id: 18, name: "Precise Checklist" },
-			//{ id: 19, name: "Contract Preparation Checklist" },
+			{ id: 18, name: "Precise Checklist" },
+			{ id: 19, name: "Contract Preparation Checklist" },
 		],
 	},
+	{ id: 2, name: "MWBE Forms", data: [
+		{ id: 20, name:'MWBE Participation Sheet (% Form)'},
+		{ id: 21, name:'MWBE Form for Bids'},
+		{ id: 22, name:'RFP Template with MWBE'}
+	] },
+	
 
 	{
-		id: 2,
+		id: 3,
 		name: "Notice Letter",
 		data: [
-			{ id: 20, name: "Notice of Award - Consultant" },
-			{ id: 21, name: "Notice of Award - Contractor" },
+			{ id: 23, name: "Notice of Award - Consultant" },
+			{ id: 24, name: "Notice of Award - Contractor" },
 			{
-				id: 22,
+				id: 25,
 				name: "Notice of Intent to Award - Consultant",
 			},
 			{
-				id: 23,
+				id: 26,
 				name: "Notice to Proceed - Contractor",
 			},
 		],
 	},
-	{ id: 3, name: "Budget", data: [] },
 	{
-		id: 4,
+		id: 4, name: "Budget", data: [
+			{ id: 27, name:'Capital Project Request Form'},
+			{ id: 28, name:'CCP Requisition MODIFIED'},
+			{ id: 29, name:'Change Order Directive'},
+			{ id: 30, name:'Change Order Form'},
+			{ id: 31, name:'Capital Proposal Form'},
+			{ id: 32, name:'Design Phase Change Order'},
+			{ id: 33, name:'OK to Change Template'},
+	] },
+	{
+		id: 5,
 		name: "Project Closeout",
 		data: [
 			{
-				id: 24,
+				id: 34,
 				name: "Project Closeout Checklist",
 			},
 			{
-				id: 25,
+				id: 35,
 				name: "Certificate of Substantial Completion",
 			},
 			{
-				id: 26,
+				id: 36,
 				name: "Punch List and Substantial Completion Process",
 			},
 		],
 	},
-	{ id: 5, name: "MWBE Forms", data: [] },
+
 ];
 
 // export const state = {
@@ -392,10 +407,10 @@ export const EditDocumentData = {
 	Contract: [
 		{ id: 1, document_name: "Technology Service Agreement" },
 		
-		// { id: 2, document_name: " Short Small Form Design Consultant Agreement" },
-		// { id: 3, document_name: "Owner and Design Consultant (more $200,000)" },
-		// { id: 4, document_name: " Owner and Design Consultant (less than $200,000)" },
-		// { id: 5, document_name: "Owner and Contractor Agreement Form (more $500,000)" },
+		{ id: 2, document_name: " Short Small Form Design Consultant Agreement" },
+		{ id: 3, document_name: "Owner and Design Consultant (more $200,000)" },
+		{ id: 4, document_name: " Owner and Design Consultant (less than $200,000)" },
+		{ id: 5, document_name: "Owner and Contractor Agreement Form (more $500,000)" },
 		{
 			id: 6,
 			document_name:'Owner and Contract Management (CM & CMAR) Agreement'
@@ -403,47 +418,60 @@ export const EditDocumentData = {
 		{ id: 7, document_name: " LeChase Esser Contract Template" },
 		{ id: 8, document_name: "ESSER Contract Template" },
 		{ id: 9, document_name: "ESSER PM Contract Template" },
-		// { id: 10, document_name: "DPS Short Form Engineer - Engineering Contract" },
+		{ id: 10, document_name: "DPS Short Form Engineer - Engineering Contract" },
 		{ id: 11, document_name: "Attachment A Lunsford Act Form" },
 	],
 	Procurement: [
-		// { id: 12, name: " E-589CI Affidavit of Capital Improvement" },
-		// { id: 13, name: "DPS Formal General Conditions - 1-17-20" },
+		{ id: 12, name: " E-589CI Affidavit of Capital Improvement" },
+		{ id: 13, name: "DPS Formal General Conditions - 1-17-20" },
 		 { id: 14, document_name: " 00 11 13 - Advertisement for Bid Template" },
-		// { id: 15, name: "3 bids" },
-		// { id: 16, name: " Bid Manual" },
+		{ id: 15, name: "3 bids" },
+		{ id: 16, name: " Bid Manual" },
 		{ id: 17, document_name: "Determination of Apparent Low Bidder - Contractor" },
-		// { id: 18, name: "Precise Checklist" },
-		//{ id: 19, name: "Contract Preparation Checklist" },
+		{ id: 18, name: "Precise Checklist" },
+		{ id: 19, name: "Contract Preparation Checklist" },
+	],
+	MWBE_Forms: [
+		{ id: 20, document_name:'MWBE Participation Sheet (% Form)'},
+		{ id: 21, document_name:'MWBE Form for Bids'},
+		{ id: 22, document_name:'RFP Template with MWBE'}
 	],
 		Noticer_letters: [
-			{ id: 20, document_name: "Notice of Award - Consultant" },
-			{ id: 21, document_name: "Notice of Award - Contractor" },
+			{ id: 23, document_name: "Notice of Award - Consultant" },
+			{ id: 24, document_name: "Notice of Award - Contractor" },
 			{
-				id: 22,
+				id: 25,
 				document_name: "Notice of Intent to Award - Consultant",
 			},
 			{
-				id: 23,
+				id: 26,
 				document_name: "Notice to Proceed - Contractor",
 			},
 	],
 	Project_Closeout: [
 		{
-			id: 24,
+			id: 27,
 			document_name: "Project Closeout Checklist",
 		},
 		{
-			id: 25,
+			id: 28,
 			document_name: "Certificate of Substantial Completion",
 		},
 		{
-			id: 26,
+			id: 29,
 			document_name: "Punch List and Substantial Completion Process",
 		},
 	],
-	MWBE_Forms: [],
-	Budget: []
+	
+	Budget: [
+		{ id: 30, document_name:'Capital Project Request Form'},
+		{ id: 31, document_name:'CCP Requisition MODIFIED'},
+		{ id: 32, document_name:'Change Order Directive'},
+		{ id: 33, document_name:'Change Order Form'},
+		{ id: 34, document_name:'Capital Proposal Form'},
+		{ id: 35, document_name:'Design Phase Change Order'},
+		{ id: 36, document_name:'OK to Change Template'},
+	]
 }
 // export const EditDocument = [
 	// 	{

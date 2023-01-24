@@ -55,7 +55,7 @@ export const AddVendorsSchema = Yup.object().shape({
 	first_name: Yup.string().required("First name is required!"),
 	last_name: Yup.string().required("Last name is required!"),
 	company_name: Yup.string().required("Company name is required!"),
-	address: Yup.string().required("Address is required!"),
+	street: Yup.string().required("Street is required!"),
 	state: Yup.string().required("Address is required!"),
 	city: Yup.string().required("Address is required!"),
 	zip_code: Yup.string().required("Address is required!"),
@@ -95,30 +95,29 @@ export const AddProjectInformation = Yup.object({
 	description: Yup.string().required("field is required"),
 });
 export const AddDurhamSettings = Yup.object({
-	chair_board_education: Yup.string().required("field is required") ,
+	chair_board_education: Yup.string().required("field is required"),
 	chief_finance_officer: Yup.string().required("field is required"),
 	construction_interim_director: Yup.string().required("field is required"),
-	business_Manager:Yup.string().required("field is required") ,
+	business_Manager: Yup.string().required("field is required"),
 	project_manager: Yup.string().required("field is required"),
 	project_manager_phone: Yup.string().required("field is required"),
-	director_design:Yup.string().required("field is required"),
+	director_design: Yup.string().required("field is required"),
 	director_construction: Yup.string().required("field is required"),
-	director_durham:Yup.string().required("field is required"),
+	director_durham: Yup.string().required("field is required"),
 });
 
-export const AddAwardeeInformation = 
-	Yup.object({
-		awardeeInfo: Yup.array().of(
-			Yup.object().shape({
-				industry: Yup.string().required("field is required"),
-				design_consultant: Yup.string().required("field is required"),
-				consultant_name: Yup.string().required("field is required"),
-				consultant_address: Yup.string().required("field is required"),
+export const AddAwardeeInformation = Yup.object({
+	awardeeInfo: Yup.array().of(
+		Yup.object().shape({
+			industry: Yup.string().required("field is required"),
+			design_consultant: Yup.string().required("field is required"),
+			consultant_name: Yup.string().required("field is required"),
+			consultant_address: Yup.string().required("field is required"),
 
-				company_representative_name: Yup.string().required("field is required"),
-				company_representative_title: Yup.string().required("field is required"),
-			})
-		),
+			company_representative_name: Yup.string().required("field is required"),
+			company_representative_title: Yup.string().required("field is required"),
+		})
+	),
 });
 
 export const AddNewProjectSchema = [
@@ -135,18 +134,16 @@ export const AddNewProjectSchema = [
 				role: Yup.string().required("field is required"),
 				company_name: Yup.string().required("field is required"),
 				// street: Yup.string().required("field is required"),
-				state: Yup.string().required("field is required"),
-				city: Yup.string().required("field is required"),
-				zip_code: Yup.string().required("field is required"),
+				// state: Yup.string().required("field is required"),ß
+				// city: Yup.string().required("field is required"),
+				// zip_code: Yup.string().required("field is required"),
 				first_name: Yup.string().required("field is required"),
 				last_name: Yup.string().required("field is required"),
-				title:
-					Yup.string().required("field is required"),
+				title: Yup.string().required("field is required"),
 			})
 		),
 	}),
 ];
-
 
 export const LundsForm = Yup.object().shape({
 	type: Yup.string().required("Type is required!"),
@@ -156,7 +153,7 @@ export const NoticeConsultant = Yup.object().shape({
 	approval: Yup.string().required("Approval is required!"),
 	creationDate: Yup.string().required("Creation date is required!"),
 	projectAmount: Yup.string().required("Amount is required!"),
-	approvalDate: Yup.string().required("Approval date is required!"),
+	// approvalDate: Yup.string().required("Approval date is required!"),
 	deliveryDate: Yup.string().required("Delivery date is required!"),
 });
 
@@ -164,9 +161,8 @@ export const NoticeProceed = Yup.object().shape({
 	creationDate: Yup.string().required("Creation date is required!"),
 	startDate: Yup.string().required("Starting date is required!"),
 	startTime: Yup.string().required("Starting time date is required!"),
-	deliveryDate: Yup.string().required("Delivery date is required!"),
+	effectiveDate: Yup.string().required("Delivery date is required!"),
 });
-
 
 /**
  *     bidDate: '',
@@ -185,7 +181,6 @@ export const NoticeProceed = Yup.object().shape({
       manager_phone_number: '',
       manager_email_address: '',
  */
-
 
 export const AdvertisementBidSchema = [
 	Yup.object({
@@ -297,38 +292,37 @@ export const DeterminationFormContractor = Yup.object().shape({
 // 	conferenceState: Yup.string().required("Field is required"),
 // 	conferenceCity: Yup.string().required("Field is required"),
 // 	conferenceZipCode: Yup.string().required("Field is required"),
-	
-// });
-export const OwnerContractManageMent = Yup.object().shape({	
-	agreementDate: Yup.date().required("Field is required"),
-      projectIntent: Yup.string().required("Field is required"),
-      substantialCompletionstring: Yup.string().required("Field is required"),
-      amount: Yup.string().required("Field is required"),
-      percentage: Yup.string().required("Field is required"),
-      substantialAmount: Yup.string().required("Field is required"),
-      finalAmount: Yup.string().required("Field is required"),
-      Name: Yup.string().required("Field is required"),
-      conferenceAddress: Yup.string().required("Field is required"),
-      conferenceState: Yup.string().required("Field is required"),
-      conferenceCity: Yup.string().required("Field is required"),
-      conferenceZipCode: Yup.string().required("Field is required"),
-      projectName: Yup.string().required("Field is required"),
 
-      location: [
-        {
-          projectState: Yup.string().required("Field is required"),
-          projectCity: Yup.string().required("Field is required"),
-          projectZipCode: Yup.string().required("Field is required")
-        },
-      ],
-      procurementAmount: Yup.string().required("Field is required"),
-      constructionAmount: Yup.string().required("Field is required"),
-      costOfWork: Yup.string().required("Field is required"),
-      CMContingency: Yup.string().required("Field is required"),
-      generalConditions: Yup.string().required("Field is required"),
-      fees: Yup.string().required("Field is required"),
-      preConstruction: Yup.string().required("Field is required")
-	
+// });
+export const OwnerContractManageMent = Yup.object().shape({
+	agreementDate: Yup.date().required("Field is required"),
+	projectIntent: Yup.string().required("Field is required"),
+	substantialCompletionstring: Yup.string().required("Field is required"),
+	amount: Yup.string().required("Field is required"),
+	percentage: Yup.string().required("Field is required"),
+	substantialAmount: Yup.string().required("Field is required"),
+	finalAmount: Yup.string().required("Field is required"),
+	Name: Yup.string().required("Field is required"),
+	conferenceAddress: Yup.string().required("Field is required"),
+	conferenceState: Yup.string().required("Field is required"),
+	conferenceCity: Yup.string().required("Field is required"),
+	conferenceZipCode: Yup.string().required("Field is required"),
+	projectName: Yup.string().required("Field is required"),
+
+	location: [
+		{
+			projectState: Yup.string().required("Field is required"),
+			projectCity: Yup.string().required("Field is required"),
+			projectZipCode: Yup.string().required("Field is required"),
+		},
+	],
+	procurementAmount: Yup.string().required("Field is required"),
+	constructionAmount: Yup.string().required("Field is required"),
+	costOfWork: Yup.string().required("Field is required"),
+	CMContingency: Yup.string().required("Field is required"),
+	generalConditions: Yup.string().required("Field is required"),
+	fees: Yup.string().required("Field is required"),
+	preConstruction: Yup.string().required("Field is required"),
 });
 
 export const CCPRequisitionSchema = Yup.object().shape({

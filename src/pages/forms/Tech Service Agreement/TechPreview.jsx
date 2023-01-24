@@ -1,5 +1,6 @@
 import currency from "currency.js";
-import { useRef } from "react";
+import moment from "moment";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { handleDate } from "../../../shared-component";
@@ -7,41 +8,46 @@ import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
+import techPDF from '../../Dashboard/files/Technology/Technology Service Agreement(developerVersion).pdf'
 // import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
 
-import { fields, openDownload, savedResponse, showDownload } from "../reducer";
+import { closeModal, fields, openDownload, savedResponse, showDownload } from "../reducer";
 import { techPrevStep, techStepDefault } from "./reducer";
 
 
-const TechPreview = () => {
+const TechPreview = (data) => {
   
   const dispatch = useDispatch()
   const show = useSelector(openDownload)
   const downloadComponent = useRef();
   const formID = useSelector(project_document_id)
-  useFetchFilledFormQuery(formID)
-  const content = useSelector(savedResponse);
+  const content = useFetchFilledFormQuery(formID)
+  // const content = useSelector(savedResponse);
   const form_fields = useSelector(fields)
-  const { vendors, durham_profile } = content;
+  const { vendors, durham_profile } = content?.data?.data;
+  const [highlighted, setHighlighed] = useState(false)
 
 
 
   const props = {
-      component: downloadComponent,
+    component: downloadComponent,
     name: 'Technology Service Agreement',
-      show: !show ? 'hidden' : 'block',
+    show: !show ? 'hidden' : 'block',
     stepDefault: techStepDefault,
-      // close: closeDownload
+    vendors,
+    form_fields,
+    // close: closeDownload
 
 
   }
+  const nottoBeHighlighted = !highlighted ? 'bg-yellow-300 font-bold' : 'bg-white';
 
   return (
     <div>
            <DownLoadForm {...props} />
         <div>
           {/* Modal content */}
-        <div className={`${!show ? "block" : 'hidden'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>            {/* Header */}
+        <div className={`${!show ? "block" : 'hidden'} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14 `}>            {/* Header */}
             <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3 '>
               <div className='ml-6'>
                 <h3 className='text-lg font-bold text-gray-900'>
@@ -50,7 +56,7 @@ const TechPreview = () => {
                 <p className='text-base text-gray-700'>Preview Document</p>
               </div>
             <button
-              onClick={()=> dispatch(techPrevStep())}
+              onClick={() => dispatch(closeModal())}
                 type='button'
                 className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
                 data-modal-toggle='small-modal'
@@ -73,7 +79,7 @@ const TechPreview = () => {
             </div>
 
             <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='bg-white px-12 pt-8 pb-4 text-black ' ref={downloadComponent}>
+            <div className='bg-white px-20 pt-8 pb-4 text-black arial-font text-[12px]' ref={downloadComponent}>
                 <div className='text-center mb-4 font-bold'>
                   <h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
                   <h1>TECHNOLOGY SERVICES AGREEMENT</h1>
@@ -85,14 +91,14 @@ const TechPreview = () => {
                 (the "Agreement") effective{" "}
                 {/* {console.log(form_fields)} */}
                 {/* <span className=''> {moment(form_fields.creationDate).format("MMMM D, YYYY ")}</span> */}
-                <span className=''> {handleDate(form_fields.creationDate)}{" "}</span>
+                <span className={`${nottoBeHighlighted}`}> {moment(form_fields.creationDate).format("MMMM D, YYYY ")}{" "}</span>
                 is made and
                   entered into by and between the Durham Public Schools Board of
                   Education at 511 Cleveland St., Durham, NC 27701 (“DPS BOE” or
                   “DPS” or “the Board”) and{" "}
-                <span className=''>{!vendors ? '' : vendors[0].company_name 
+                <span className={`${nottoBeHighlighted}`}>{!vendors ? '' : vendors[0].company_name
 .toUpperCase()}</span> at{" "}
-                  <span className=''>{!vendors ? '' : vendors[0].address.toUpperCase()}</span>. (“Contractor”).  
+                <span className={`${nottoBeHighlighted}`}>{!vendors ? '' : vendors[0].street.toUpperCase() + ', ' + vendors[0].city.toUpperCase() + ', ' + vendors[0].state.toUpperCase() + ', ' + vendors[0].zip_code.toUpperCase()}</span>. (“Contractor”).  
                 </p>
 
                 <div>
@@ -182,14 +188,14 @@ const TechPreview = () => {
                         </div>
 
                         {/* "d" */}
-                        <div className='mb-2'>
-                          <div className='flex mb-2'>
+                      <div className='mb-2  mb-96'>
+                        <div className='flex mb-2'>
                             <span>d.</span>
-                            <span className='ml-3 text-justify'>
+                          <span className='ml-3 text-justify '>
                               Contractor has obtained and shall maintain
                               insurance to sufficiently protect Contractor and
-                              DPS BOE from any and all potential claims or
-                              damages, including but not limited to Worker’s
+                            DPS BOE from any and all potential claims or damages
+                            {/* {/* , including but not limited to Worker’s
                               Compensation, Comprehensive General and
                               Contractual Liability Insurance in no event less
                               than the amount of $1,000,000 for each occurrence
@@ -198,20 +204,22 @@ const TechPreview = () => {
                               an additional insured on the Certificate of
                               Insurance. Copies of certificates of insurance
                               shall be provided to DPS and shall include the
-                              following:
-                            </span>
+                              following: */}
+                          </span>
                           </div>
+                        <div className="w-full flex items-center justify-center mt-8">
+                          <p>1</p>
+                        </div>
 
-                          {/* Nested Roman Figures */}
-                          <div>
-                            <div className='ml-12 mb-2 flex'>
+                        <div>
+                          {/* <div className='ml-12 mb-2 flex'>
                               <span>i.</span>
                               <span className='ml-3'>
                                 Name of insurance company, policy number and
                                 expiration date;
                               </span>
-                            </div>
-                            <div className='ml-12 mb-2 flex'>
+                            </div> */}
+                          {/* <div className='ml-12 mb-2 flex'>
                               <span>ii.</span>
                               <span className='ml-3'>
                                 The coverage required and the limits on each,
@@ -219,8 +227,8 @@ const TechPreview = () => {
                                 self-insured retentions (which shall be for the
                                 account of the Contractor);
                               </span>
-                            </div>
-                            <div className='ml-12 mb-2 flex'>
+                            </div> */}
+                          {/* <div className='ml-12 mb-2 flex'>
                               <span>iii.</span>
                               <span className='ml-3'>
                                 A statement indicating that DPS BOE shall
@@ -229,40 +237,37 @@ const TechPreview = () => {
                                 policies which may affect DPS BOE’s interest;
                                 and
                               </span>
-                            </div>
-                            <div className='ml-12 mb-2 flex'>
+                            </div> */}
+                          {/* <div className='ml-12 mb-2 flex'>
                               <span>iv.</span>
                               <span className='ml-3'>
                                 A statement confirming that DPS BOE has been
                                 added as an additional insured (except for
                                 Workers’ Compensation) on all policies.
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
 
-                        {/* "e" */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>e.</span>
                           <span className='ml-3 text-justify'>
                             Contractor is a corporation duly organized, validly
                             existing and in good standing under the laws of the
                             State of California.
                           </span>
-                        </div>
+                        </div> */}
 
-                        {/* "f." */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>f.</span>
                           <span className='ml-3 text-justify'>
                             Each party has all necessary corporate power and
                             authority to enter into and perform this Agreement.
                           </span>
-                        </div>
+                        </div> */}
 
-                        {/* "g" */}
                         <div className='mb-2'>
-                          <div className='flex mb-2'>
+                        {/* <div className='flex mb-2'>
                             <span>g.</span>
                             <span className='ml-3 text-justify'>
                               Each party owns and shall retain all right, title
@@ -278,10 +283,9 @@ const TechPreview = () => {
                               by such party), subject to any licenses provided
                               by one party to the other in this Agreement.
                             </span>
-                          </div>
+                          </div> */}
 
-                          {/* Nested Roman Figures */}
-                          <div>
+                        {/* <div>
                             <div className='ml-12 mb-2 flex'>
                               <span>i.</span>
                               <span className='ml-3'>
@@ -303,19 +307,20 @@ const TechPreview = () => {
                                 registrations therefore.
                               </span>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
 
-                        {/* "h." */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>h.</span>
                           <span className='ml-3 text-justify'>
-                            Contractor expressly agrees and acknowledges that
+                          {/* Contractor expressly agrees and acknowledges that
                             all original materials developed by Contractor in
                             connection with Contractor’s work for DPS, including
                             but not limited to computer programs, listings,
                             designs, specifications, flow charts and other
-                            documentation, are to be considered “work made for
+                          documentation, are to be
+                            considered
+                          “work made for
                             hire” under the United States copyright laws as the
                             same may be amended from time to time, and are and
                             shall be the sole and exclusive property of DPS BOE.
@@ -344,7 +349,7 @@ const TechPreview = () => {
                         </div>
 
                         {/* "i." */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>i.</span>
                           <span className='ml-3 text-justify'>
                             Contractor agrees that no license or right is
@@ -357,10 +362,10 @@ const TechPreview = () => {
                             Contractor, either during or after the term of this
                             Agreement.
                           </span>
-                        </div>
+                        </div>  */}
 
                         {/* "j." */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>j.</span>
                           <span className='ml-3 text-justify'>
                             Notwithstanding anything to the contrary herein,
@@ -373,10 +378,10 @@ const TechPreview = () => {
                             acquire and apply such information without the use
                             or disclosure of any Proprietary IP of DPS BOE.
                           </span>
-                        </div>
+                        </div> */}
 
                         {/* "k." */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>k.</span>
                           <span className='ml-3 text-justify'>
                             Contractor agrees to communicate to DPS every
@@ -396,20 +401,13 @@ const TechPreview = () => {
                             as well as improvements thereof and knowledge
                             related thereto.
                           </span>
-                        </div>
+                        </div> */}
 
                         {/* "l." */}
-                        <div className='mb-2 flex'>
-                          <span>l.</span>
-                          <span className='ml-3 text-justify'>
-                            Contractor agrees to assign and does hereby assign
-                            to DPS BOE or DPS BOE’s designee Contractor’s entire
-                            right, title and interest in and to all Inventions
-                            described in subparagraph m. above, including all
-                            patent rights, trademarks and copyrights in such
-                            Inventions, and any patent applications filed and/or
-                            patent rights granted thereon in the United States
-                            and any foreign country. During Contractor’s work
+                      <div className='mb-2 flex'>
+                        {/* <span>l.</span> */}
+                        <span className='ml-3 text-justify mt-6'>
+                          foreign country. During Contractor’s work
                             with DPS and thereafter, Contractor agrees to
                             execute any patent documents or papers relating to
                             such developments as well as any documents and
@@ -421,10 +419,10 @@ const TechPreview = () => {
                             applications, litigation or proceedings shall be the
                             sole responsibility of DPS.
                           </span>
-                        </div>
+                      </div> 
 
-                        {/* "m." */}
-                        <div className='mb-2 flex'>
+                      {/* "m." */}
+                      <div className='mb-2 flex'>
                           <span>m.</span>
                           <span className='ml-3 text-justify'>
                             Contractor understands that DPS does not wish to
@@ -438,7 +436,7 @@ const TechPreview = () => {
                         </div>
 
                         {/* "n." */}
-                        <div className='mb-2 flex'>
+                      <div className='mb-2 flex'>
                           <span>n.</span>
                           <span className='ml-3 text-justify'>
                             Each party warrants to the other that it has good
@@ -475,7 +473,7 @@ const TechPreview = () => {
                         </div>
 
                         {/* "p." */}
-                        <div className='mb-2 flex'>
+                      <div className='mb-2 flex'>
                           <span>p.</span>
                           <span className='ml-3 text-justify'>
                             Contractor shall keep accurate records and books of
@@ -510,7 +508,7 @@ const TechPreview = () => {
                           to accomplish the services required under this
                           Agreement. Such invoiced amounts shall not exceed{" "}
                           <span className='font-bold'>
-                            [<span className=''>{currency(form_fields.amount).format()}</span>]
+                          [<span className={`${nottoBeHighlighted}`}>{currency(form_fields.amount).format()}</span>]
                           </span>{" "}
                           for the period of this contract without prior written
                           consent of the parties. Invoiced amounts shall
@@ -523,7 +521,7 @@ const TechPreview = () => {
                   </div>
 
                   {/* 3 */}
-                  <div className='flex mb-2'>
+                <div className='flex mb-2'>
                     <p>3.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -533,26 +531,29 @@ const TechPreview = () => {
                         .{" "}
                         <span className='ml-1'>
                           {" "}
-                          This Agreement shall be for the time period between{" "}
-                        <span className=''>{handleDate(form_fields.startDate
-                        )}</span> and{" "}
-                        <span className=''>{handleDate(form_fields.endDate
-                        )}{" "}</span>
-unless
-                          terminated earlier as provided herein. The parties may
+                        This Agreement shall be for the time period between{" "}
+                        {/* <span className=''>{handleDate(form_fields.startDate
+                        )}</span> and{" "} */}
+                        <span className={`${nottoBeHighlighted}`}>{moment(form_fields.startDate).format("MMMM D, YYYY ")}</span> and{" "}
+                        <span className={`${nottoBeHighlighted}`}>{moment(form_fields.endDate).format("MMMM D, YYYY ")}{" "}</span>unless
+                        terminated earlier as provided herein. The
+                        {/* parties may
                           renew this Agreement only by separate written
                           agreement or addendum hereto, which must be executed
-                          by both parties.
+                          by both parties. */}
                         </span>
                       </p>
-                    </div>
                   </div>
+                  </div>
+                <div className="w-full  flex items-center justify-center mt-8">
+                  <p>4</p>
+                </div>
 
                   {/* 4 */}
                   <div className='flex mb-2'>
-                    <p>4.</p>
+                  {/* <p>4.</p> */}
                     <div className=' ml-7'>
-                      <p className='text-justify'>
+                    {/* <p className='text-justify'>
                         <span className='underline underline-offset-2'>
                           DPS’s COVENANTS
                         </span>
@@ -562,12 +563,12 @@ unless
                           DPS covenants and agrees to be responsible for the
                           following:
                         </span>
-                      </p>
+                      </p> */}
 
                       {/* Nested Letters Container */}
                       <div className='mt-2'>
                         {/* "a" */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>a.</span>
                           <span className='ml-3 text-justify'>
                             DPS shall grant access to equipment as needed
@@ -575,17 +576,17 @@ unless
                             schedule established by Contractor with the approval
                             of DPS.
                           </span>
-                        </div>
+                        </div> */}
                         {/* "b" */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>b.</span>
                           <span className='ml-3 text-justify'>
                             DPS reserves the right to exercise prior approval of
                             scheduled services.
                           </span>
-                        </div>
+                        </div> */}
                         {/* "c" */}
-                        <div className='mb-2 flex'>
+                      {/* <div className='mb-2 flex'>
                           <span>c.</span>
                           <span className='ml-3 text-justify'>
                             DPS shall have the right to request written reports
@@ -596,13 +597,13 @@ unless
                             other matters pertaining to the services rendered,
                             at no additional cost to DPS.
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
 
                   {/* 5 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>5.</p>
                     <div className=' ml-7'>
                       <div className='text-justify'>
@@ -644,10 +645,10 @@ unless
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 6 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>6.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -667,9 +668,7 @@ unless
                         </span>
                       </p>
 
-                      {/* Nested Letters Container */}
                       <div className='mt-2'>
-                        {/* "a" */}
                         <div className='mb-2 flex'>
                           <span>a.</span>
                           <span className='ml-3 text-justify'>
@@ -681,7 +680,6 @@ unless
                             failure or breach.
                           </span>
                         </div>
-                        {/* "b" */}
                         <div className='mb-2 flex'>
                           <span>b.</span>
                           <span className='ml-3 text-justify'>
@@ -690,7 +688,6 @@ unless
                             obligations under this Agreement.
                           </span>
                         </div>
-                        {/* "c" */}
                         <div className='mb-2 flex'>
                           <span>c.</span>
                           <span className='ml-3 text-justify'>
@@ -702,7 +699,6 @@ unless
                           </span>
                         </div>
 
-                        {/* "d" */}
                         <div className='mb-2 flex'>
                           <span>d.</span>
                           <span className='ml-3 text-justify'>
@@ -713,7 +709,6 @@ unless
                           </span>
                         </div>
 
-                        {/* "e" */}
                         <div className='mb-2 flex'>
                           <span>e.</span>
                           <span className='ml-3 text-justify'>
@@ -725,7 +720,6 @@ unless
                           </span>
                         </div>
 
-                        {/* "f" */}
                         <div className='mb-2 flex'>
                           <span>f.</span>
                           <span className='ml-3 text-justify'>
@@ -737,7 +731,6 @@ unless
                           </span>
                         </div>
 
-                        {/* "g" */}
                         <div className='mb-2 flex'>
                           <span>g.</span>
                           <span className='ml-3 text-justify'>
@@ -753,10 +746,10 @@ unless
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 7 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>7.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -782,10 +775,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 8 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>8.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -809,10 +802,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 9 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>9.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -835,10 +828,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 10 */}
-                  <div className='mb-2'>
+                <div className='mb-2 mt-96 pt-6'>
                     <div className='flex mb-2'>
                       <p>10.</p>
                       <div className=' ml-7'>
@@ -887,18 +880,21 @@ unless
                       </div>
                     </div>
 
-                    <div className='ml-[-10px]'>
+                  <div className='ml-[-10px]'>
                       <div className='flex'>
                         <p>If to Contractor:</p>
-                        <div className='ml-10'>
-                          <div className=' h-4 mb-2 underline'>
-                            {!vendors ? '' : vendors[0].company_name.toUpperCase()}
+                      <div className='ml-14'>
+                        <div className={`${nottoBeHighlighted} h-4 mb-1 underline underline-offset-2`}>
+                          {!vendors ? '' : vendors[0].company_name}
                           </div>
-                          <div className='underline h-4 mb-[20px]'>
-                          {!vendors ? '' : vendors[0].address.toUpperCase()}
+                        <div className={`${nottoBeHighlighted} h-4 mb-1 underline underline-offset-2`} >
+                          {!vendors ? '' : vendors[0].street}
+                        </div>
+                        <div className={`${nottoBeHighlighted} underline underline-offset-2 mb-[20px]`}>
+                          {!vendors ? '' : vendors[0].city + ', ' + vendors[0].state + ', ' + vendors[0].zip_code}
                           </div>
                           {/* <div className='w-[10rem] h-4 mb-[20px] border-b border-b-black'>
-                            <span className=''>F7</span>
+                            <span className={`${nottoBeHighlighted}`}>F7</span>
                           </div> */}
                         </div>
                       </div>
@@ -975,7 +971,7 @@ unless
                   </div>
 
                   {/* 14 */}
-                  <div className='flex mb-2'>
+                <div className='flex mb-2'>
                     <p>14.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -996,21 +992,25 @@ unless
                           circumstances and such protection from liability shall
                           last only for the duration of the event of such force
                           majeure. In the event a school facility is damaged by
-                          fire, weather, or by events of a similar nature to
+                        fire, weather, or by events of a similar nature
+                        {/* to
                           those described in this paragraph and this
                           substantially prevents DPS's use of Contractor's
                           service, DPS shall have the option of suspending
                           payments due under the Agreement for the time period
                           use is substantially prevented or terminating the
                           Agreement immediately without penalty or further
-                          expense.
+                          expense. */}
                         </span>
                       </p>
-                    </div>
                   </div>
+                  </div>
+                <div className="w-full flex items-center justify-center mt-8">
+                  <p>7</p>
+                </div>
 
                   {/* 15 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>15.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1026,10 +1026,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 16 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>16.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1049,10 +1049,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 17 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>17.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1075,10 +1075,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 18 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>18.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1108,10 +1108,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 19 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>19.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1133,10 +1133,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 20 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>20.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1170,10 +1170,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 21 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>21.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1190,10 +1190,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 22 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>22.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1211,10 +1211,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 23 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>23.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1230,10 +1230,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 24 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>24.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1260,10 +1260,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 25 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>25.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1350,10 +1350,10 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 26 */}
-                  <div className='flex mb-2'>
+                {/* <div className='flex mb-2'>
                     <p>26.</p>
                     <div className=' ml-7'>
                       <p className='text-justify'>
@@ -1377,22 +1377,23 @@ unless
                         </span>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* 27 */}
-                  <div className='flex mb-2'>
-                    <p>27.</p>
+                <div className='flex mb-2 mt-96 pt-6'>
+                  {/* <p>27.</p> */}
                     <div className=' ml-7'>
                       <p className='text-justify'>
-                        <span className='underline underline-offset-2'>
+                      {/* <span className='underline underline-offset-2'>
                           ENTIRE UNDERSTANDING
-                        </span>
-                        .{" "}
+                        </span> */}
+                      {" "}
                         <span className='ml-1'>
                           {" "}
-                          This Agreement contains the final expression of the
+                        {/* This Agreement contains the final expression of the
                           parties' intent and the sole and entire understanding
-                          between Contractor and the DPS BOE. The parties agree
+                        between Contractor */}
+                        and the DPS BOE. The parties agree
                           that any statements, representations, discussions, or
                           documentation, (including the attached exhibits)
                           whether made prior to or contemporaneously with the
@@ -1438,7 +1439,7 @@ unless
                   </p>
 
                   <p className='mb-5'>
-                    <span className=''>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span>
+                  <span className={`${nottoBeHighlighted}`}>{!vendors ? '' : vendors[0].company_name.toUpperCase()}</span>
                   </p>
 
                   <p className='mb-5'>
@@ -1447,16 +1448,16 @@ unless
 
                     ____________________(Seal)
                     </span>
-                  <p className='ml-14'>{!vendors ? '' : vendors[0].president.toUpperCase()}</p>
+                  <p className={`${nottoBeHighlighted} ml-12`}>{!vendors ? '' : vendors[0].president.toUpperCase()}</p>
                   </p>
 
                   <p className='mb-10'>
                     <span>Attest:</span>
-                    <span className='ml-2'>
+                  <span className={`${nottoBeHighlighted} ml-2`}>
 
                     ____________________(Seal)
                     </span>
-                  <p className='ml-14'>{!vendors ? '' : vendors[0].secretary.toUpperCase()}</p>
+                  <p className={`${nottoBeHighlighted} ml-12`}>{!vendors ? '' : vendors[0].secretary.toUpperCase()}</p>
                   </p>
 
                   <div className='mb-4'>
@@ -1467,19 +1468,24 @@ unless
                     <p className='mt-0'>G.S. 115C-441(a).</p>
                   </div>
 
-                  <div>
-                    <p className='mb-0 '>
-                       <span className='inline-block mr-40'>{!durham_profile ? '' : durham_profile.chief_finance_officer 
- }</span> 
+                <div className="">
+                  <p className='-mb-2'>
+                    <span className={`${nottoBeHighlighted} mr-40`}>{!durham_profile ? '' : durham_profile.construction_capital_planning_project_manager
+                      ?.name}</span> 
                       
-                    <span className=''>{handleDate(form_fields.signedDate)}</span> 
-                    </p>
-                    <p className='mt-0'>
+                    <span className={`${nottoBeHighlighted}`}>{moment(form_fields.signedDate).format("MMMM D, YYYY ")}</span>
+                  </p>
+                  <span className="block ">_______________________________________________</span>
+                  <p className='mt-0'> 
                       <span>Finance Officer</span>
                       <span className='ml-[130px]'>Date</span>
                     </p>
                   </div>
                 </div>
+              <div className="w-full flex items-center justify-center mt-8">
+                <p>11</p>
+              </div>
+              <iframe src={techPDF} title='pdf' width="100%" height="500px"></iframe>
               </div>
             </div>
 
@@ -1487,7 +1493,12 @@ unless
             <div className='flex justify-end gap-4 pr-6 pb-4'>
             <ButtonWhiteBG width='w-[171px]' name='Edit document' onClick={() => dispatch(techPrevStep())} />
             <DashboardButton
-              onClick={()=> dispatch(showDownload())}
+              onClick={() => {
+                dispatch(showDownload())
+                setHighlighed(true)
+                data.handleReset()
+              }
+              }
               hidden
               name='CREATE DOCUMENT'
               type='button'

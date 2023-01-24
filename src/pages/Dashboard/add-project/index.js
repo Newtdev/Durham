@@ -8,11 +8,18 @@ import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { projectData, setProjectInfoDefault } from "../Overview-dashboard/editReducer";
+import {
+	projectData,
+	setProjectInfoDefault,
+} from "../Overview-dashboard/editReducer";
 import ProjectInformation from "./project-info";
-import { getForm, getProjectID, nextForm, setDefault, } from "./reducer";
+import { getForm, getProjectID, nextForm, setDefault } from "./reducer";
 import AwardeeInformation from "./awardee-info/AwardeeInformation";
-import { useAddProjectDocumentMutation, useAddProjectVendorMutation, useEditVendorMutation } from "../../../features/services/api";
+import {
+	useAddProjectDocumentMutation,
+	useAddProjectVendorMutation,
+	useEditVendorMutation,
+} from "../../../features/services/api";
 import { documents } from "../../../lib/data";
 // import EditDocument from "./documents/EditDocument";
 import { getId } from "../../../shared-component";
@@ -32,102 +39,95 @@ const ProjectFormsController = () => {
 	const [addProjectDocument, response] = useAddProjectDocumentMutation();
 	const [editVendor, data] = useEditVendorMutation();
 
-
 	async function HandleRequest(values) {
-		const response = await addProjectVendor({project_id: getId(), vendors: values });
-        if (response?.error) {
-            toast.error(response?.error?.messsage, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-            
-        }
-        else if (response?.data) {
-            // error alert
+		const response = await addProjectVendor({
+			project_id: getId(),
+			vendors: values,
+		});
+		if (response?.error) {
+			toast.error(response?.error?.messsage, {
+				position: toast.POSITION.TOP_CENTER,
+			});
+		} else if (response?.data) {
+			// error alert
 			dispatch(nextForm(2));
-            toast.error(response?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-		} 
-        
-    }
+			toast.error(response?.message, {
+				position: toast.POSITION.TOP_CENTER,
+			});
+		}
+	}
 	async function HandleEditRequest(values) {
 		const response = await editVendor(values);
-        if (response?.error) {
-            toast.error(response?.error?.message, {
-                position: toast.POSITION.TOP_CENTER,
-            });
-            
-        }
-        else if (response?.data) {
-            // error alert
-			dispatch(nextForm(2));
-            
-		}
-        
-        
-    }
-	async function SubmitDocument(values) {
-		const response = await addProjectDocument({project_id: getId(), documents:values });
-        if (response?.error) {
-            toast.error(response?.error?.message, {
+		if (response?.error) {
+			toast.error(response?.error?.message, {
 				position: toast.POSITION.TOP_CENTER,
-            });
-            
-        }
-        else if (response?.data) {
+			});
+		} else if (response?.data) {
 			// error alert
-			navigate('/dashboard/add-new-project/preview');
+			dispatch(nextForm(2));
+		}
+	}
+	async function SubmitDocument(values) {
+		const response = await addProjectDocument({
+			project_id: getId(),
+			documents: values,
+		});
+		if (response?.error) {
+			toast.error(response?.error?.message, {
+				position: toast.POSITION.TOP_CENTER,
+			});
+		} else if (response?.data) {
+			// error alert
+			navigate("/dashboard/add-new-project/preview");
+		}
+	}
 
-			
-            
-        } 
-        
-	};
-
-	
 	const formik = useFormik({
 		initialValues: {
-
 			project_vendors: [
 				{
-					type:'',
+					type: "old",
 					role: "",
 					company_name: "",
 					street: "",
-					state: '',
-					city: '',
-					zip_code:'',
+					state: "",
+					city: "",
+					zip_code: "",
 					president: "",
 					secretary: "",
 					first_name: "",
 					last_name: "",
 					title: "",
-
 				},
 			],
 			document: {},
-			
 		},
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
 			if (steps === 1 && !details) {
-				 const data = values.project_vendors
-				
+				const data = values.project_vendors;
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
-				HandleRequest(data) 
-
-			} else if(details) {
-				HandleEditRequest(values.project_vendors[0])
+				HandleRequest(data);
+			} else if (details) {
+				const data = values?.project_vendors?.map((cur, index) => {
+					return { ...cur, type: "old" };
+				});
+				// console.log(val);
+				HandleRequest(data);
+				// HandleEditRequest(values.project_vendors[0])
 			}
-			
+
 			if (steps === 2) {
-				
-				const documentSelected = [...new Map(selected.map((cur)=>[cur['document_name'], cur])).values()]
-				
-			SubmitDocument(documentSelected)
-		}
-		}
+				const documentSelected = [
+					...new Map(
+						selected.map((cur) => [cur["document_name"], cur])
+					).values(),
+				];
+
+				SubmitDocument(documentSelected);
+			}
+		},
 	});
 	const {
 		values,
@@ -143,10 +143,10 @@ const ProjectFormsController = () => {
 		setShow(false);
 		handleReset();
 		navigate("/dashboard");
-		dispatch(setDefault())
-		dispatch(setProjectInfoDefault())
+		dispatch(setDefault());
+		dispatch(setProjectInfoDefault());
 	};
-	
+
 	const props = {
 		values,
 		errors,
@@ -156,13 +156,14 @@ const ProjectFormsController = () => {
 		handleSubmit,
 		setFieldValue,
 		setValues,
-		isLoading:isLoading ||data.isLoading
+		isLoading: isLoading || data.isLoading,
 	};
 
 	const getData = (e) => {
-		
-		setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
-		
+		setSelected([
+			...selected,
+			{ document_type: e.name, document_name: e.value, identifier: e.title },
+		]);
 	};
 	const selectprops = {
 		...props,
@@ -172,7 +173,6 @@ const ProjectFormsController = () => {
 		response,
 		getData: (e) => getData(e),
 	};
-
 
 	const FormHeader = ({ active }) => {
 		return [
@@ -195,29 +195,25 @@ const ProjectFormsController = () => {
 		});
 	};
 
-
 	useEffect(() => {
 		if (!details) {
 			return;
 		}
-		formik.setValues(details)
+		formik.setValues(details);
 	}, [details]);
-	
+
 	useEffect(() => {
-		if (!details ) {
+		if (!details) {
 			return;
 		} else {
 			if (!details.project_documents) {
 				return;
 			}
-			console.log(details.project_documents)
+			console.log(details.project_documents);
 			// setSelected()
 			//setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
-
 		}
-		
-	},[details]);
-
+	}, [details]);
 
 	return (
 		<section>
@@ -244,17 +240,15 @@ const ProjectFormsController = () => {
 					{/* Main Content */}
 					<div className="container mx-auto pt-8 px-4 lg:px-24">
 						<FormikProvider value={formik}>
-								{steps === 0 && <ProjectInformation />}
+							{steps === 0 && <ProjectInformation />}
 							{steps === 1 && <AwardeeInformation {...props} />}
-								{steps === 2 && <SelectDocuments {...selectprops} />}
-								{/* {steps === 2 && details && <EditDocument documents={details.project_documents} />} */}
+							{steps === 2 && <SelectDocuments {...selectprops} />}
+							{/* {steps === 2 && details && <EditDocument documents={details.project_documents} />} */}
 						</FormikProvider>
 					</div>
 				</main>
 			</section>
-			<ModalOverlay
-				show={show}
-			>
+			<ModalOverlay show={show}>
 				<div>
 					{/* Modal content */}
 					<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14 bg-white rounded-lg shadow py-10 flex flex-col justify-center items-center">
