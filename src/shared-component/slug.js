@@ -23,3 +23,5 @@ export const ESSERContract = "ESSER-Contract-Template";
 export const ESSERContractPM = "ESSER-PM-Contract-Template";
 export const leChase = "LeChase-Esser-Contract-Template";
 export const techServices = "Technology-Service-Agreement";
+
+export const CCPRequisition = "CCP-Requisition-Form";

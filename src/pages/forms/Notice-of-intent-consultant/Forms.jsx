@@ -10,7 +10,7 @@ export const FormInputContainer = ({ name, children }) => {
     return <div className='flex flex-col mb-5'>
         <label
             for='default-radio-1'
-            className='text-sm text-gray-600 mb-1'
+            className='mb-1 text-sm text-gray-600'
         >
             {name}
         </label>
@@ -87,13 +87,13 @@ const NoticeForm = (props) => {
 
     return <div>
         <div
-            className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'
+            className='relative w-full h-screen max-w-md mx-auto md:h-auto mt-14'
             onClick={(e) => e.stopPropagation()}
         >
             {/* Modal content */}
             
             <form onSubmit={props.handleSubmit} className='relative w-[600px] bg-white rounded-lg shadow py-4'>
-                <div className='flex justify-between items-baseline mx-6'>
+                <div className='flex items-baseline justify-between mx-6'>
                     <div>
                         <h3 className='text-lg font-bold text-gray-900'>
                             Notice of Intent to Award - Consultant
@@ -117,10 +117,10 @@ const NoticeForm = (props) => {
                 </div>
 
                 <div className='mx-6 mb-12'>
-                    <small className='text-gray-900 font-medium'>
+                    <small className='font-medium text-gray-900'>
                         Does this letter need the executive director's approval?
                     </small>
-                    <div className=' mt-3 ml-2'>
+                    <div className='mt-3 ml-2 '>
                         <div className='flex items-center mb-5'>
                             <input
                                 type='radio'
@@ -138,7 +138,7 @@ const NoticeForm = (props) => {
                             
                         </div>
                         
-                        <div className=' mb-5'>
+                        <div className='mb-5 '>
                             
                             <input
                                 type='radio'
@@ -166,7 +166,7 @@ const NoticeForm = (props) => {
                         <div className='flex flex-col mb-5'>
                             <label
                                 for='default-radio-1'
-                                className='text-base text-gray-900 mb-1'
+                                className='mb-1 text-base text-gray-900'
                             >
                                 The consultant may be given the project for the sum of?
                             </label>
