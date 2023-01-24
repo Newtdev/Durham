@@ -62,6 +62,14 @@ export const AddVendorsSchema = Yup.object().shape({
   // industry: Yup.string().required("Industry is required!"),
 });
 
+export const CapitalPForm = Yup.object().shape({
+  selectOption: Yup.string().required("select option field is required"),
+  completionDate: Yup.string().required("completion date field is required"),
+  startDate: Yup.string().required("start date field is required"),
+  input: Yup.string().required("Text field is required"),
+  Source: Yup.string().required("field is required"),
+});
+
 export const Vendor3Bid = Yup.object().shape({
   input: Yup.string().required("Text field is required"),
   selectDate: Yup.string().required("Select date field is required"),
@@ -69,7 +77,7 @@ export const Vendor3Bid = Yup.object().shape({
   selectOption: Yup.string().required("Select option field is required"),
   selectVendor: Yup.string().required("Select vendor field is required"),
   addVendor: Yup.string().required("Add vendor field is required"),
-  company_Name: Yup.string().required("Company Name field is required"),
+  companyName: Yup.string().required("Company Name field is required"),
   address: Yup.string().required("address field is required"),
   projectCity: Yup.string().required("City field is required"),
   projectState: Yup.string().required("State field is required"),

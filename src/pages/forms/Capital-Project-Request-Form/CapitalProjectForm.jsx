@@ -2,22 +2,22 @@ import { FormikProvider, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
 import { modal, saveFormField } from "../reducer";
-import { page, nextChoiceStep } from "./reducer";
-import { Vendor3Bid } from "../../../yup";
-import { useEffect } from "react";
-import { Vendor3BidSlug } from "../../../shared-component/slug";
+import { choiceStep, getStates, nextChoiceStep } from "./reducer";
+import { CapitalPForm } from "../../../yup";
+import Preview from "./Preview";
+import { useEffect, useState } from "react";
+import { CapitalProjectRequestForm } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import BidInfo from "./forms/BidInfo";
-import VendorsInfo from "./forms/VendorsInfo";
-import MultiVendors from "./forms/MultiVendors";
-import Preview from "./Preview";
-import { getStates } from "../Advertisement-for-bid-template/reducer";
+import Cinput from "./forms/Cinput";
+import Estimate from "./forms/Estimate";
 
-const VInfo3 = ({ id }) => {
+const CapitalProjectForm = ({ id }) => {
+  const [source, setSource] = useState(false);
+
   const dispatch = useDispatch();
-  const pages = useSelector(page);
+  const pages = useSelector(choiceStep);
   const show = useSelector(modal);
 
   const formID = useSelector(project_document_id);
@@ -42,10 +42,6 @@ const VInfo3 = ({ id }) => {
         { field_name: param[8], field_value: val[8] },
         { field_name: param[9], field_value: val[9] },
         { field_name: param[10], field_value: val[10] },
-        { field_name: param[11], field_value: val[11] },
-        { field_name: param[12], field_value: val[12] },
-        { field_name: param[13], field_value: val[13] },
-        { field_name: param[14], field_value: val[14] },
       ],
     });
     if (response) {
@@ -61,36 +57,25 @@ const VInfo3 = ({ id }) => {
 
   const Formik = useFormik({
     initialValues: {
-      selectDate: "",
-      input: "",
       selectOption: "",
-      selectVendor: "",
-
-      services: "",
-      addVendor: "",
-      information: [
-        {
-          companyName: "",
-          address: "",
-          projectCity: "",
-          projectState: "",
-          projectZipCode: "",
-          shippingPrice: "",
-          totalPrice: "",
-          unitPrice: "",
-        },
-      ],
+      startDate: "",
+      completionDate: "",
+      Source: "",
+      purchase: "",
+      construction: "",
+      design: "",
+      renovation: "",
+      repair: "",
+      furnitur: "",
     },
-    validationSchema: Vendor3Bid[pages],
+    validationSchema: CapitalPForm[pages],
 
     onSubmit: (values) => {
-      if (pages === 1) {
+      if (pages === 0) {
+        dispatch(nextChoiceStep(1));
+      } else if (pages === 1) {
         dispatch(nextChoiceStep(2));
       } else if (pages === 2) {
-        dispatch(nextChoiceStep(3));
-      } else if (pages === 3) {
-        dispatch(nextChoiceStep(4));
-      } else if (pages === 4) {
         dispatch(saveFormField(values));
 
         HandleSubmit(values);
@@ -109,16 +94,17 @@ const VInfo3 = ({ id }) => {
     ...Formik,
     isLoading,
   };
+
   return (
-    <ModalOverlay show={id === Vendor3BidSlug && show}>
+    <ModalOverlay show={id === CapitalProjectRequestForm && show}>
       <FormikProvider value={Formik}>
-        {pages === 1 && <BidInfo {...Formik} />}
-        {pages === 2 && <VendorsInfo {...Formik} />}
-        {pages === 3 && <MultiVendors {...Formik} />}
-        {pages === 4 && <Preview {...Formik} />}
+        {pages === 0 && <Cinput {...Formik} source={source} />}
+        {pages === 1 && <Estimate {...Formik} />}
+        {/* {pages === 2 && <MultiVendors {...Formik} />} */}
+        {/* {pages === 3 && <NewVendor {...Formik} />} */}
       </FormikProvider>
     </ModalOverlay>
   );
 };
 
-export default VInfo3;
+export default CapitalProjectForm;

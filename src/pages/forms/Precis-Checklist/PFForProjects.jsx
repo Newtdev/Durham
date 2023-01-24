@@ -1,23 +1,19 @@
-import { FormikProvider, useFormik } from "formik";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { ModalOverlay } from "../../../ui";
 import { modal, saveFormField } from "../reducer";
-import { page, nextChoiceStep } from "./reducer";
+import { choiceStep, getStates, nextChoiceStep } from "./reducer";
 import { Vendor3Bid } from "../../../yup";
 import { useEffect } from "react";
-import { Vendor3BidSlug } from "../../../shared-component/slug";
+import { precise_checkList } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import BidInfo from "./forms/BidInfo";
-import VendorsInfo from "./forms/VendorsInfo";
-import MultiVendors from "./forms/MultiVendors";
-import Preview from "./Preview";
-import { getStates } from "../Advertisement-for-bid-template/reducer";
+import PrecisFolder from "./forms/PrecisFolderFP";
+import { ModalOverlay } from "../../../ui";
 
-const VInfo3 = ({ id }) => {
+const PFForProjects = ({ id }) => {
   const dispatch = useDispatch();
-  const pages = useSelector(page);
+  const pages = useSelector(choiceStep);
   const show = useSelector(modal);
 
   const formID = useSelector(project_document_id);
@@ -45,7 +41,7 @@ const VInfo3 = ({ id }) => {
         { field_name: param[11], field_value: val[11] },
         { field_name: param[12], field_value: val[12] },
         { field_name: param[13], field_value: val[13] },
-        { field_name: param[14], field_value: val[14] },
+        // { field_name: param[14], field_value: val[14] },
       ],
     });
     if (response) {
@@ -61,36 +57,20 @@ const VInfo3 = ({ id }) => {
 
   const Formik = useFormik({
     initialValues: {
-      selectDate: "",
-      input: "",
-      selectOption: "",
-      selectVendor: "",
-
-      services: "",
-      addVendor: "",
-      information: [
-        {
-          companyName: "",
-          address: "",
-          projectCity: "",
-          projectState: "",
-          projectZipCode: "",
-          shippingPrice: "",
-          totalPrice: "",
-          unitPrice: "",
-        },
-      ],
+      precis: "",
+      bidTab: "",
+      contract: "",
+      participation: "",
+      affidavits: "",
+      plan: "",
+      presentation: "",
     },
-    validationSchema: Vendor3Bid[pages],
+    // validationSchema: Vendor3Bid[pages],
 
     onSubmit: (values) => {
-      if (pages === 1) {
-        dispatch(nextChoiceStep(2));
-      } else if (pages === 2) {
-        dispatch(nextChoiceStep(3));
-      } else if (pages === 3) {
-        dispatch(nextChoiceStep(4));
-      } else if (pages === 4) {
+      if (pages === 0) {
+        dispatch(nextChoiceStep(1));
+      } else if (pages === 1) {
         dispatch(saveFormField(values));
 
         HandleSubmit(values);
@@ -110,15 +90,11 @@ const VInfo3 = ({ id }) => {
     isLoading,
   };
   return (
-    <ModalOverlay show={id === Vendor3BidSlug && show}>
-      <FormikProvider value={Formik}>
-        {pages === 1 && <BidInfo {...Formik} />}
-        {pages === 2 && <VendorsInfo {...Formik} />}
-        {pages === 3 && <MultiVendors {...Formik} />}
-        {pages === 4 && <Preview {...Formik} />}
-      </FormikProvider>
+    <ModalOverlay show={id === precise_checkList && show}>
+      {pages === 0 && <PrecisFolder {...Formik} />}
+      {/* {pages === 1 && <VendorsInfo {...Formik} />} */}
     </ModalOverlay>
   );
 };
 
-export default VInfo3;
+export default PFForProjects;

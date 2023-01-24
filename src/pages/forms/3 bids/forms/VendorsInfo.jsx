@@ -5,6 +5,7 @@ import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { FormSelect } from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
+import { prevChoiceStep } from "../reducer";
 
 const VendorsInfo = (props) => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const VendorsInfo = (props) => {
           <ButtonWhiteBG
             width="w-[100px]"
             name="Cancel"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => dispatch(prevChoiceStep(1))}
           />
           <DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
         </div>

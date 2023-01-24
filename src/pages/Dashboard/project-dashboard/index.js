@@ -50,6 +50,8 @@ import DeterminationOFLowestBidder from "../../forms/Determination-low-bidder";
 import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/OwnerContract";
 import { getId, SaveToLocalStorage } from "../../../shared-component";
 import VInfo3 from "../../forms/3 bids/VInfo3";
+import CapitalProjectForm from "../../forms/Capital-Project-Request-Form/CapitalProjectForm";
+import PFForProjects from "../../forms/Precis-Checklist/PFForProjects";
 
 const ProjectDashboard = () => {
   // const id = useSelector(getProjectID)
@@ -371,7 +373,9 @@ const ProjectDashboard = () => {
       <NoticeOfAwardContrator id={documentsID} />
       <DeterminationOFLowestBidder id={documentsID} />
       <OwnerContractorManagementForm id={documentsID} />
+      <CapitalProjectForm id={documentsID} />
       <VInfo3 id={documentsID} />
+      <PFForProjects id={documentsID} />
     </section>
   );
 };

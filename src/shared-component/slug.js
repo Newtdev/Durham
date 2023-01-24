@@ -28,4 +28,6 @@ export const techServices = "Technology-Service-Agreement";
 
 // Procurement
 
+export const CapitalProjectRequestForm = "Capital-Project-Request-Form";
 export const Vendor3BidSlug = "3-bids";
+// export const precise_checkList = "3-bids";

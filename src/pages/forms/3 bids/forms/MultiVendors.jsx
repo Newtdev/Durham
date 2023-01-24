@@ -10,11 +10,9 @@ import {
   FormInputContainer,
 } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
+import { prevChoiceStep } from "../reducer";
 
 const MultiVendors = (props) => {
-  // const [vendors, setVendors] = useState([]);
-  // const [btn, setBtn] = useState(false);
-
   const dispatch = useDispatch();
   const states = useSelector(getList);
 
@@ -23,47 +21,6 @@ const MultiVendors = (props) => {
     value: props.values.selectVendor,
     onChange: props.handleChange,
     name: "Select Vendor",
-  };
-
-  const unitPrice = {
-    value: props.values.unitPrice,
-    onChange: props.handleChange,
-    name: "unitPrice",
-    placeholder: "Unit Price",
-    type: "text",
-  };
-
-  const totalPrice = {
-    value: props.values.totalPrice,
-    onChange: props.handleChange,
-    name: "totalPrice",
-    placeholder: "Total Price",
-    type: "text",
-  };
-
-  const shippingPrice = {
-    value: props.values.shippingPrice,
-    onChange: props.handleChange,
-    name: "shippingPrice",
-    placeholder: "Shipping Price",
-    type: "text",
-  };
-
-  const company_Name = {
-    value: props.values.information[index].company_Name,
-    id: `location.${index}.company_name`,
-    onChange: props.handleChange,
-    name: "company_Name",
-    placeholder: "Company Namee",
-    type: "text",
-  };
-  const address = {
-    value: props.values.information[index].address,
-    id: `location.${index}.address`,
-    onChange: props.handleChange,
-    name: "address",
-    placeholder: "Address",
-    type: "text",
   };
 
   // const removeItem = (vendor) => {
@@ -141,57 +98,6 @@ const MultiVendors = (props) => {
               name="information"
               render={({ remove, push }) => (
                 <>
-                  <div className=" border-spacing-10 bg-gray-50 rounded-md p-1">
-                    <FormInputBigContainer name="Vendor Information (1)">
-                      <div className="flex flex-col rounded-md bg-white px-1">
-                        <FormSelect {...selectVendor}>
-                          <option value="">John Do Company</option>
-                          {/* {CheckZipCode()} */}
-                        </FormSelect>
-                        {props.errors.selectVendor &&
-                          props.touched.selectVendor && (
-                            <Error message={props.errors.selectVendor} />
-                          )}
-                        <FormInputContainer
-                          name="Enter the price that the vendor has quoted."
-                          pt
-                        >
-                          <div className="flex justify-center gap-4 items-center">
-                            <div className="flex mb-1">
-                              <input
-                                {...unitPrice}
-                                className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
-                              />
-                              {props.errors.unitPrice &&
-                                props.touched.unitPrice && (
-                                  <Error message={props.errors.unitPrice} />
-                                )}
-                            </div>
-                            <div className="flex mb-1">
-                              <input
-                                {...totalPrice}
-                                className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
-                              />
-                              {props.errors.totalPrice &&
-                                props.touched.totalPrice && (
-                                  <Error message={props.errors.totalPrice} />
-                                )}
-                            </div>
-                            <div className="flex mb-1">
-                              <input
-                                {...shippingPrice}
-                                className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
-                              />
-                              {props.errors.shippingPrice &&
-                                props.touched.shippingPrice && (
-                                  <Error message={props.errors.shippingPrice} />
-                                )}
-                            </div>
-                          </div>
-                        </FormInputContainer>
-                      </div>
-                    </FormInputBigContainer>
-                  </div>
                   <div className="mt-5">
                     {props?.values?.information.map((cur, index) => (
                       <Fragment key={index}>
@@ -211,26 +117,33 @@ const MultiVendors = (props) => {
                               }
                             >
                               <div className="flex flex-col rounded-md bg-white px-1">
-                                {/* <FormSelect {...addVendor}>
+                                <FormSelect {...selectVendor}>
                                   <option value="">Add New Vendor</option>
-                                  {/* {CheckZipCode()} }
+                                  {/* {CheckZipCode()} */}
                                 </FormSelect>
                                 {props.errors.addVendor &&
                                   props.touched.addVendor && (
                                     <Error message={props.errors.addVendor} />
-                                  )} */}
-                                <div className="flex flex-col mb-5">
+                                  )}
+                                <div className="flex flex-col my-5">
                                   <label className="text-base text-gray-900 mb-1">
                                     Company Name
                                   </label>
                                   <input
-                                    {...company_Name}
+                                    value={
+                                      props.values.information[index]
+                                        .companyName
+                                    }
+                                    name={`information.${[index]}.companyName`}
+                                    onChange={props.handleChange}
+                                    type="text"
+                                    placeholder="Company Name"
                                     className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                                   />
-                                  {props.errors.company_Name &&
-                                    props.touched.company_Name && (
+                                  {props.errors.companyName &&
+                                    props.touched.companyName && (
                                       <Error
-                                        message={props.errors.company_Name}
+                                        message={props.errors.companyName}
                                       />
                                     )}
                                 </div>
@@ -239,7 +152,13 @@ const MultiVendors = (props) => {
                                     Address
                                   </label>
                                   <input
-                                    {...address}
+                                    value={
+                                      props.values.information[index].address
+                                    }
+                                    name={`information.${[index]}.address`}
+                                    onChange={props.handleChange}
+                                    type="text"
+                                    placeholder="Address"
                                     className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                                   />
                                   {props.errors.address &&
@@ -255,8 +174,8 @@ const MultiVendors = (props) => {
                                         props.values.information[index]
                                           .projectState
                                       }
-                                      name="" id=
-                                      {`location.${[index]}.projectState`}
+                                      name=
+                                      {`information.${[index]}.projectState`}
                                       onChange={props.handleChange}
                                       <option value="">Select State</option>
                                       {!states
@@ -288,8 +207,8 @@ const MultiVendors = (props) => {
                                         props.values.information[index]
                                           .projectCity
                                       }
-                                      name="" id=
-                                      {`location.${[index]}.projectCity`}
+                                      name=
+                                      {`information.${[index]}.projectCity`}
                                       onChange={props.handleChange}
                                       <option value="">Select City</option>
                                       {CheckState(index)}
@@ -309,8 +228,8 @@ const MultiVendors = (props) => {
                                         props.values.information[index]
                                           .projectZipCode
                                       }
-                                      name="" id=
-                                      {`location.${[index]}.projectZipCode`}
+                                      name=
+                                      {`information.${[index]}.projectZipCode`}
                                       onChange={props.handleChange}
                                       <option value="">Zip Code</option>
                                       {CheckZipCode(index)}
@@ -339,7 +258,24 @@ const MultiVendors = (props) => {
                                   <div className="flex justify-center gap-4 items-center">
                                     <div className="flex mb-1">
                                       <input
-                                        {...unitPrice}
+                                        onChange={(e) => {
+                                          if (isNaN(e.target.value)) {
+                                            return "";
+                                          } else {
+                                            props.setFieldValue(
+                                              "unitPrice",
+                                              e.target.value
+                                            );
+                                          }
+                                        }}
+                                        value={
+                                          props.values.information[index]
+                                            .unitPrice
+                                        }
+                                        name={`information.${[
+                                          index,
+                                        ]}.unitPrice`}
+                                        placeholder="Unit Price"
                                         className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                                       />
                                       {props.errors.unitPrice &&
@@ -351,7 +287,24 @@ const MultiVendors = (props) => {
                                     </div>
                                     <div className="flex mb-1">
                                       <input
-                                        {...totalPrice}
+                                        onChange={(e) => {
+                                          if (isNaN(e.target.value)) {
+                                            return "";
+                                          } else {
+                                            props.setFieldValue(
+                                              "totalPrice",
+                                              e.target.value
+                                            );
+                                          }
+                                        }}
+                                        value={
+                                          props.values.information[index]
+                                            .totalPrice
+                                        }
+                                        name={`information.${[
+                                          index,
+                                        ]}.totalPrice`}
+                                        placeholder="Total Price"
                                         className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                                       />
                                       {props.errors.totalPrice &&
@@ -363,7 +316,24 @@ const MultiVendors = (props) => {
                                     </div>
                                     <div className="flex mb-1">
                                       <input
-                                        {...shippingPrice}
+                                        onChange={(e) => {
+                                          if (isNaN(e.target.value)) {
+                                            return "";
+                                          } else {
+                                            props.setFieldValue(
+                                              "shippingPrice",
+                                              e.target.value
+                                            );
+                                          }
+                                        }}
+                                        value={
+                                          props.values.information[index]
+                                            .shippingPrice
+                                        }
+                                        name={`information.${[
+                                          index,
+                                        ]}.shippingPrice`}
+                                        placeholder="Shipping Price"
                                         className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                                       />
                                       {props.errors.shippingPrice &&
@@ -383,15 +353,20 @@ const MultiVendors = (props) => {
                     ))}
                     <div className="m-4">
                       <DashboardButton
+                        type="button"
                         hidden
                         color
                         name="ADD VENDOR"
                         onClick={() =>
                           push({
+                            companyName: "",
                             address: "",
                             projectState: "",
                             projectCity: "",
                             projectZipCode: "",
+                            shippingPrice: "",
+                            totalPrice: "",
+                            unitPrice: "",
                           })
                         }
                         width="w-fit"
@@ -402,25 +377,13 @@ const MultiVendors = (props) => {
               )}
             ></FieldArray>
           </div>
-          {/* <div className="mt-5">
-            {vendors.map((vendor) => {
-              return (
-                <NewVendor
-                  props={props}
-                  vendor={vendor}
-                  removeItem={removeItem}
-                />
-              );
-            })}
-          </div> */}
         </div>
-        {/* AddButtons */}
         {/* Buttons */}
         <div className="flex justify-end gap-8 pr-4">
           <ButtonWhiteBG
             width="w-[100px]"
             name="Cancel"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => dispatch(prevChoiceStep(2))}
           />
           <DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
         </div>
