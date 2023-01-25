@@ -1,244 +1,127 @@
-import "react-datepicker/dist/react-datepicker.css";
+import { FormikProvider, useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
-import { useState } from "react";
-import { ButtonWhiteBG } from "../../../ui";
-import { DashboardButton } from "../../Dashboard/Components";
+// import { modal, saveFormField } from "../reducer";
+// import { page, nextChoiceStep } from "./reducer";
+// import { Vendor3Bid } from "../../../yup";
+import { useEffect } from "react";
+import { Vendor3BidSlug } from "../../../shared-component/slug";
+import { toast } from "react-toastify";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import BidInfo from "./forms/BidInfo";
+import VendorsInfo from "./forms/VendorsInfo";
+import MultiVendors from "./forms/MultiVendors";
+import Preview from "./Preview";
+import { getStates } from "../Advertisement-for-bid-template/reducer";
+import { nextChoiceStep, page } from "./Reducer";
+import { modal, saveFormField } from "../reducer";
+import { Bidschema } from "../../../yup";
 
-const Bids = () => {
-  const [showModal, setShowModal] = useState(true);
+const Bids = ({ id }) => {
+	const dispatch = useDispatch();
+	const pages = useSelector(page);
+	const show = useSelector(modal);
 
-  return (
-    <div>
-      <ModalOverlay show={showModal} close={() => setShowModal(true)}>
-        <div>
-          {/* Modal content */}
-          <div className='relative w-[80%] mx-auto bg-white rounded-lg shadow mt-14'>
-            {/* Header */}
-            <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
-              <div className='ml-6'>
-                <h3 className='text-lg font-bold text-gray-900'>Bid</h3>
-                <p className='text-base text-gray-700'>Preview Document</p>
-              </div>
-              <button
-                type='button'
-                className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
-                data-modal-toggle='small-modal'
-              >
-                <svg
-                  aria-hidden='true'
-                  className='w-5 h-5'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
-                <span className='sr-only'>Close modal</span>
-              </button>
-            </div>
+	const formID = useSelector(project_document_id);
 
-            <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='px-12 pt-8 pb-4 text-black'>
-                <div>
-                  <div className='mb-6'>
-                    <p className='text-sm mb-0'>BD-04</p>
-                    <p className='text-sm mt-0'>07/92</p>
-                  </div>
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-                  <div className='mb-10 text-center'>
-                    <h1 className='font-bold text-xl'>DURHAM PUBLIC SCHOOLS</h1>
-                    <h1 className='font-bold text-lg'>
-                      DOCUMENTATION OF PRICES
-                    </h1>
-                  </div>
+	const HandleSubmit = async (values) => {
+		const param = Object.entries(values);
+		param.forEach((cur, index) => {
+			console.log(cur);
+		});
+		// const val = Object.values(values);
 
-                  <div className='mb-10'>
-                    <p className='mb-6'>
-                      This document may be used to document prices as required
-                      under the purchasing procedures. A minimum of{" "}
-                      <span className='font-bold'>three (3)</span> bids is
-                      required.
-                    </p>
+		let response;
+		// console.log(values);
+		// const response = await fillProjectDocument({
+		// 	project_document_id: formID,
+		// 	// form_fields: [
+		// 	// 	{ field_name: param[0], field_value: val[0] },
+		// 	// 	{ field_name: param[1], field_value: val[1] },
+		// 	// 	{ field_name: param[2], field_value: val[2] },
+		// 	// 	{ field_name: param[3], field_value: val[3] },
+		// 	// 	{ field_name: param[4], field_value: val[4] },
+		// 	// 	{ field_name: param[5], field_value: val[5] },
+		// 	// 	{ field_name: param[6], field_value: val[6] },
+		// 	// 	{ field_name: param[7], field_value: val[7] },
+		// 	// 	{ field_name: param[8], field_value: val[8] },
+		// 	// 	{ field_name: param[9], field_value: val[9] },
+		// 	// 	{ field_name: param[10], field_value: val[10] },
+		// 	// 	{ field_name: param[11], field_value: val[11] },
+		// 	// 	{ field_name: param[12], field_value: val[12] },
+		// 	// 	{ field_name: param[13], field_value: val[13] },
+		// 	// 	{ field_name: param[14], field_value: val[14] },
+		// 	// ],
+		// });
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				dispatch(nextChoiceStep(2));
+			}
+		}
+	};
 
-                    <p className='mb-4'>
-                      DESCRIPTION OF ITEM(S):
-                      <span className='bg-yellow-500'>F1</span>
-                    </p>
-                    <p className='mb-6'>
-                      QUANTITY:
-                      <span className='bg-yellow-500'>F2</span>
-                    </p>
+	const Formik = useFormik({
+		initialValues: {
+			selectDate: "",
+			input: "",
+			selectOption: "",
+			selectVendor: "",
 
-                    <div className='mb-8'>
-                      <div className='flex justify-between mb-6'>
-                        <p>VENDOR NAME/ADDRESS</p>
-                        <p className=''>PRICE QUOTED</p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'>
-                          <span className='bg-yellow-500'>F3</span>
-                        </p>
-                        <p>
-                          <span>UNIT PRICE:</span>
-                          <span className='bg-yellow-500'>F5</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'>
-                          <span className='bg-yellow-500'>F4</span>
-                        </p>
-                        <p className=''>
-                          <span>TOTAL PRICE:</span>
-                          <span className='bg-yellow-500'>F6</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>SHIPPING:</span>
-                          <span className='bg-yellow-500'>F7</span>
-                        </p>
-                        <p></p>
-                      </div>
-                    </div>
+			services: "",
+			addVendor: "",
+			information: [
+				{
+					company_name: "",
+					address: "",
+					city: "",
+					state: "",
+					zip_code: "",
+					shippingPrice: "",
+					totalPrice: "",
+					unitPrice: "",
+				},
+			],
+		},
+		validationSchema: Bidschema[pages],
 
-                    <div className='mb-8'>
-                      <div className='flex justify-between mb-6'>
-                        <p>VENDOR NAME/ADDRESS</p>
-                        <p className=''>PRICE QUOTED</p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p>
-                          <span>UNIT PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>TOTAL PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>SHIPPING:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                    </div>
+		onSubmit: (values) => {
+			if (pages === 1) {
+				dispatch(nextChoiceStep(2));
+			} else if (pages === 2 && Formik.values.information.length === 3) {
+				// dispatch(nextChoiceStep(3));
+				HandleSubmit(values);
+			}
+		},
+	});
 
-                    <div className='mb-8'>
-                      <div className='flex justify-between mb-6'>
-                        <p>VENDOR NAME/ADDRESS</p>
-                        <p className=''>PRICE QUOTED</p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p>
-                          <span>UNIT PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>TOTAL PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>SHIPPING:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                    </div>
+	useEffect(() => {
+		(async function () {
+			const response = await (await fetch("/states.json")).json();
+			dispatch(getStates(response));
+		})();
+	}, [dispatch]);
 
-                    <div className='mb-10'>
-                      <div className='flex justify-between mb-6'>
-                        <p>VENDOR NAME/ADDRESS</p>
-                        <p className=''>PRICE QUOTED</p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p>
-                          <span>UNIT PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between mb-6'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>TOTAL PRICE:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                      <div className='flex justify-between'>
-                        <p className='w-[9rem]'></p>
-                        <p className=''>
-                          <span>SHIPPING:</span>
-                        </p>
-                        <p></p>
-                      </div>
-                    </div>
-
-                    <div className='flex gap-4'>
-                      <div>
-                        <p>
-                          _______________________________________________________________________________
-                        </p>
-                        <p className='text-sm'>Signature</p>
-                      </div>
-                      <div>
-                        <p>
-                          <span className='bg-yellow-500'>F8</span>
-                        </p>
-                        <p className='text-sm'>Date</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='flex gap-8 items-center justify-center'>
-                    <p className='text-sm font-bold uppercase'>
-                      original - purchasing
-                    </p>
-                    <p className='text-sm font-bold uppercase'>
-                      copy - school/department
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' />
-              <DashboardButton
-                hidden
-                name='CREATE DOCUMENT'
-                type='submit'
-                width='w-[198px]'
-              />
-            </div>
-          </div>
-        </div>
-      </ModalOverlay>
-    </div>
-  );
+	const props = {
+		...Formik,
+		isLoading,
+	};
+	return (
+		<ModalOverlay show={id === Vendor3BidSlug && show}>
+			<FormikProvider value={Formik}>
+				{pages === 1 && <BidInfo {...Formik} />}
+				{/* {pages === 2 && <VendorsInfo {...Formik} />} */}
+				{pages === 2 && <MultiVendors {...props} />}
+				{pages === 3 && <Preview {...Formik} />}
+			</FormikProvider>
+		</ModalOverlay>
+	);
 };
 
 export default Bids;

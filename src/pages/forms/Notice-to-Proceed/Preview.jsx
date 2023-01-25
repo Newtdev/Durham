@@ -19,7 +19,6 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import { project_details } from "../../Dashboard/add-project/projectSlice";
 
 const Preview = (data) => {
-	console.log(data);
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
