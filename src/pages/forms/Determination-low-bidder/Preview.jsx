@@ -191,6 +191,7 @@ const Preview = () => {
 									<p className="mb-4 pl-24">
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
+										<br />
 										<span
 											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{" "}
