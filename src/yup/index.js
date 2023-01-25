@@ -325,6 +325,46 @@ export const OwnerContractManageMent = Yup.object().shape({
 	preConstruction: Yup.string().required("Field is required"),
 });
 
+export const CCPRequisitionSchema = Yup.object().shape({
+	creationDate: Yup.string().required("Creation date field is required"),
+	budgetCode: Yup.string().required("Budget code field is required"),
+	commodityCode: Yup.string().required("Commodity code field is required"),
+	requisitionOrder: Yup.string().required("Requisition order field is required"),
+	attached: Yup.string().required("Attached field is required"),
+	signDate: Yup.string().required("Signed date field is required"),
+	vendor: Yup.string().required("Vendor field is required"),
+	vendorId: Yup.string().required("Vendor id field is required"),
+	companyName: Yup.string().required("Company name field is required"),
+	address: {
+		city: Yup.string().required("city field is required"),
+		street: Yup.string().required("street field is required"),
+		state: Yup.string().required("state field is required"),
+		zipCode: Yup.string().required("zip code field is required"),
+	},
+	name: Yup.string().required("name field is required"),
+	shippingAddress: {
+		city: Yup.string().required("city field is required"),
+		street: Yup.string().required("street field is required"),
+		state: Yup.string().required("state field is required"),
+		zipCode: Yup.string().required("zip code field is required"),
+	},
+	location: Yup.string().required("location field is required"),
+	items: {
+		stockNumber: Yup.string().required("stock number field is required"),
+		description: Yup.string().required("description field is required"),
+		quantity: {
+			quantity: Yup.string().required("quantity field is required"),
+			unit: Yup.string().required("unit field is required"),
+			unitPrice: Yup.string().required("unit price field is required"),
+		}
+	},
+	shippingCost: Yup.string().required("shipping cost field is required"),
+	salesTax: Yup.string().required("sales tax field is required")
+});
+
+
+
+
 export const CertificateOfSubstantialSchema = Yup.object().shape({
 	purposeOfContract: Yup.string().required("Field is required"),
 	contractEffectDate: Yup.string().required("Field is required"),
