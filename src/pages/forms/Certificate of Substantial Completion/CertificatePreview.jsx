@@ -1,5 +1,5 @@
 import Logo from "../../../assets/formlogo.png";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,7 @@ import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { doConvert } from "../../../shared-component";
 
 const CertificatePreview = () => {
 	const dispatch = useDispatch();
@@ -25,11 +26,17 @@ const CertificatePreview = () => {
 
 	const formID = useSelector(project_document_id);
 
-	useFetchFilledFormQuery(formID);
-	const content = useSelector(savedResponse);
+	const content = useFetchFilledFormQuery(formID);
+	// const content = useSelector(savedResponse);
 	const [highlighted, setHighlighted] = useState(false);
-	const { project, vendors } = content;
+	// const project = content?.data?.data?.project;
+	// const vendors = content?.data?.data?.vendors;
+	let formData = !content?.data ? [] : content?.data?.data;
+	const vendors = formData?.vendors;
+	// const durham_profile = formData?.durham_profile;
+	const project = formData?.project;
 	const form_fields = useSelector(fields);
+	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
 	const props = {
@@ -40,6 +47,25 @@ const CertificatePreview = () => {
 		close: closeDownload,
 	};
 
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		vendors?.forEach((cur) => {
+			// console.log(cur);
+			if (cur.role === "Design Consultant") {
+				setAwardee((prev) => {
+					return { ...prev, design: cur };
+				});
+			} else if (cur.role === "Contractor") {
+				setAwardee((prev) => {
+					return { ...prev, contractor: cur };
+				});
+
+				// setAwardee({ contractor: cur });
+			}
+		});
+	}, [vendors]);
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -109,7 +135,10 @@ const CertificatePreview = () => {
 											<td className="border border-black pl-[1rem]">Owner</td>
 										</tr>
 										<tr>
-											<td className="border border-black pl-[1rem]"> </td>
+											<td className="border border-black pl-[1rem]">
+												{console.log(project)}
+												{!project ? "" : project?.street},{" "}
+											</td>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
 												Contract for:{" "}
@@ -123,7 +152,6 @@ const CertificatePreview = () => {
 										<tr>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{console.log(project)}
 												{!project ? "" : project.city},{" "}
 												{!project ? "" : project.state},{" "}
 												{!project ? "" : project.zip_code}
@@ -168,7 +196,9 @@ const CertificatePreview = () => {
 											</td>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!vendors ? "" : vendors[0]?.company_name}
+												{!awardee?.contractor
+													? ""
+													: awardee?.contractor?.company_name}
 											</td>
 										</tr>
 										<tr>
@@ -178,7 +208,9 @@ const CertificatePreview = () => {
 											</td>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!vendors ? "" : vendors[0]?.street}
+												{!awardee?.contractor
+													? ""
+													: awardee?.contractor?.street}
 											</td>
 										</tr>
 										<tr>
@@ -188,9 +220,12 @@ const CertificatePreview = () => {
 											</td>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!vendors ? "" : vendors[0]?.city},{" "}
-												{!vendors ? "" : vendors[0]?.state},{" "}
-												{!vendors ? "" : vendors[0]?.zip_code}
+												{!awardee?.contractor ? "" : awardee?.contractor?.city},{" "}
+												{!awardee?.contractor ? "" : awardee?.contractor?.state}
+												,{" "}
+												{!awardee?.contractor
+													? ""
+													: awardee?.contractor?.zip_code}
 											</td>
 										</tr>
 									</tbody>
@@ -244,7 +279,9 @@ const CertificatePreview = () => {
 										<p className="mb-0">
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!vendors ? "" : vendors[0]?.comapany_name}
+												{!awardee?.contractor
+													? ""
+													: awardee?.contractor?.comapany_name}
 											</span>
 											____________________________________________________________________________________________________
 										</p>
@@ -253,11 +290,11 @@ const CertificatePreview = () => {
 											BY:{" "}
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!vendors
+												{!awardee?.design
 													? ""
-													: vendors[0]?.first_name +
+													: awardee?.design?.first_name +
 													  " " +
-													  vendors[0]?.last_name}
+													  awardee?.design?.last_name}
 											</span>
 										</span>
 										<span className="ml-[10rem] adverstise">DATE</span>
@@ -268,7 +305,8 @@ const CertificatePreview = () => {
 										list within{" "}
 										<span
 											className={`font-bold ${nottoBeHighlighted} adverstise`}>
-											{!form_fields ? "" : form_fields.workCompletionDate}
+											{doConvert(form_fields.workCompletionDate)}(
+											{!form_fields ? "" : form_fields.workCompletionDate})
 										</span>{" "}
 										days from the date of Substantial Completion.
 									</p>
@@ -286,7 +324,9 @@ const CertificatePreview = () => {
 										<p className="mb-0">
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!vendors ? "" : vendors[1]?.company_name}
+												{!awardee?.contractor
+													? ""
+													: awardee?.contractor?.company_name}
 											</span>
 											________________________________________________________________________________
 										</p>
@@ -295,11 +335,11 @@ const CertificatePreview = () => {
 											BY:{" "}
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!vendors
+												{!awardee?.contractor
 													? ""
-													: vendors[1]?.first_name +
+													: awardee?.contractor?.first_name +
 													  " " +
-													  vendors[1]?.last_name}
+													  awardee?.contractor?.last_name}
 											</span>
 										</span>
 										<span className="ml-[10rem] adverstise">DATE</span>

@@ -37,9 +37,13 @@ const Preview = () => {
 	const projectDetails = useSelector(project_details);
 	const school = !projectDetails ? "" : projectDetails.school;
 	// const { vendors, durham_profile, project } = content?.data?.data;
-	const vendors = content?.data?.data?.vendors;
-	const project = content?.data?.data?.project;
-	const durham_profile = content?.data?.data?.durham_profile;
+	// const vendors = content?.data?.data?.vendors;
+	// const project = content?.data?.data?.project;
+	// const durham_profile = content?.data?.data?.durham_profile;
+	let formData = !content?.data ? [] : content?.data?.data;
+	const vendors = formData?.vendors;
+	const durham_profile = formData?.durham_profile;
+	const project = formData?.project;
 
 	const form_fields = useSelector(fields);
 	const nottoBeHighlighted = !highlighted

@@ -1,17 +1,88 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {
+	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
+} from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import SelectDate, {
 	FormInput,
 	FormInputPlain,
+	FormSelect,
 	FormTextArea,
 } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
 import { prev } from "../reducer";
 
+const DurhamSelect = ({ props, owners, durhamList }) => {
+	return (
+		<FormInputContainer>
+			<FormSelect
+				value={props.values.owners}
+				onChange={props.handleChange}
+				error={props.errors.ownerRepName}
+				touched={props.touched.ownerRepName}
+				name="Select Representative"
+				id="ownerRepName"
+				type="text"
+				placeholder="Enter Name">
+				{!props.values.owners ? (
+					<option>Select Recipient</option>
+				) : (
+					<option value={props.values.owners}>{props.values.owners}</option>
+				)}
+				{durhamList?.map((cur, id) => {
+					return (
+						<option key={cur.slug} id={cur.name} value={cur.value}>
+							{cur.value}
+						</option>
+					);
+				})}
+			</FormSelect>
+		</FormInputContainer>
+	);
+};
+const ProjectManager = ({ props, owners, durhamList }) => {
+	if (!durhamList?.data?.data) {
+		return null;
+	}
+	return (
+		<FormInputContainer>
+			<FormSelect
+				value={props.values.owners}
+				onChange={props.handleChange}
+				error={props.errors.ownerRepName}
+				touched={props.touched.ownerRepName}
+				name="Select Representative"
+				id="ownerRepName"
+				type="text"
+				placeholder="Enter Name">
+				{!props.values.owners ? (
+					<option>Select Recipient</option>
+				) : (
+					<option value={props.values.owners}>{props.values.owners}</option>
+				)}
+				{durhamList?.data?.data?.data?.map((cur, id) => {
+					return (
+						<option key={cur.slug} id={cur.name} value={cur.value}>
+							{cur.first_name} {cur.last_name}
+						</option>
+					);
+				})}
+			</FormSelect>
+		</FormInputContainer>
+	);
+};
+
 const SubstantialCompletionDetailsTwo = (props) => {
 	const dispatch = useDispatch();
+	const durham = useFetchDurhamQuery();
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
+	const [durhamList, setList] = useState([]);
+
 	const ownerRepName = {
 		value: props.values.ownerRepName,
 		onChange: props.handleChange,
@@ -40,23 +111,18 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		id: "responsibility",
 		placeholder: "Enter responsibility",
 	};
-	// const estimatedCost = {
-	//     value: props.values.estimatedCost,
-	//     onChange: (e) => {
-	//         if (isNaN(e.target.value)) {
-	//             return;
-	//         } else {
-	//             // return e.target.value
-	//             props.setFieldValue('estimatedCost',e.target.value)
-	//      }
-	//     },
-	//     error: props.errors.estimatedCost,
-	//     touched: props.touched.estimatedCost,
 
-	//     name: 'responsibility',
-	//     placeholder: '0.00'
-
-	// };
+	useEffect(() => {
+		if (!durham?.data) {
+			return;
+		}
+		const list = durham?.data.filter(
+			(cur) =>
+				cur.slug !==
+				"construction_capital_planning_project_managers_phone_number"
+		);
+		setList(list);
+	}, [durham]);
 
 	return (
 		<div>
@@ -100,6 +166,9 @@ const SubstantialCompletionDetailsTwo = (props) => {
 								<input
 									type="radio"
 									onChange={props.handleChange}
+									checked={
+										props.values.ownersRep === "Durham Profile" ? true : false
+									}
 									value="Durham Profile"
 									name="ownersRep"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
@@ -110,11 +179,15 @@ const SubstantialCompletionDetailsTwo = (props) => {
 									Durham Profile
 								</label>
 							</div>
-
 							<div className=" mb-5">
 								<input
 									type="radio"
 									onChange={props.handleChange}
+									checked={
+										props.values.ownersRep === "Project Manager Database"
+											? true
+											: false
+									}
 									value="Project Manager Database"
 									name="ownersRep"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
@@ -129,8 +202,9 @@ const SubstantialCompletionDetailsTwo = (props) => {
 								<input
 									type="radio"
 									onChange={props.handleChange}
-									value="ownersRep"
-									name="Add New Owner’s representative"
+									checked={props.values.ownersRep === "new" ? true : false}
+									value="new"
+									name="ownersRep"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
 								/>
 								<label
@@ -142,16 +216,32 @@ const SubstantialCompletionDetailsTwo = (props) => {
 									<Error message={props.errors.ownersRep} />
 								)}
 							</div>
+							{props.values.ownersRep === "Project Manager Database" && (
+								<ProjectManager
+									props={props}
+									owners={ownerRepName}
+									durhamList={projectManager}
+								/>
+							)}
+							{props.values.ownersRep === "Durham Profile" && (
+								<DurhamSelect
+									durhamList={durhamList}
+									props={props}
+									owners={ownerRepName}
+								/>
+							)}
 
-							<div className="flex flex-col mb-5">
-								<label className="text-base text-gray-900 mb-1">
-									Enter Owner’s Representative Name
-								</label>
-								<FormInputPlain {...ownerRepName} />
-								{props.errors.ownerRepName && props.touched.ownerRepName && (
-									<Error message={props.errors.ownerRepName} />
-								)}
-							</div>
+							{props.values.ownersRep === "new" && (
+								<div className="flex flex-col mb-5">
+									<label className="text-base text-gray-900 mb-1">
+										Enter Owner’s Representative Name
+									</label>
+									<FormInputPlain {...ownerRepName} />
+									{props.errors.ownerRepName && props.touched.ownerRepName && (
+										<Error message={props.errors.ownerRepName} />
+									)}
+								</div>
+							)}
 
 							{/* </FormInputContainer> */}
 

@@ -28,9 +28,14 @@ const PreviewElement = () => {
 	const [awardee, setAwardee] = useState([]);
 	// const { vendors, durham_profile, project } = content?.data?.data;
 
-	const vendors = content?.data?.data?.vendors;
-	const project = content?.data?.data?.project;
-	const durham_profile = content?.data?.data?.durham_profile;
+	// const vendors = content?.data?.data?.vendors;
+	// const project = content?.data?.data?.project;
+	// const durham_profile = content?.data?.data?.durham_profile;
+
+	let formData = !content?.data ? [] : content?.data?.data;
+	const vendors = formData?.vendors;
+	const durham_profile = formData?.durham_profile;
+	const project = formData?.project;
 
 	const props = {
 		component: downloadComponent,

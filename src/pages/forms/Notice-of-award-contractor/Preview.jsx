@@ -29,8 +29,10 @@ const Preview = () => {
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
 	let content = useFetchFilledFormQuery(formID);
-	const vendors = content?.data?.data?.vendors;
-	const project = content?.data?.data?.project;
+	let formData = !content?.data ? [] : content?.data?.data;
+	const vendors = formData?.vendors;
+	// const durham_profile = formData?.durham_profile;
+	const project = formData?.project;
 
 	// const content = useSelector(savedResponse);
 	const form_fields = useSelector(fields);
