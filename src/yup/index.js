@@ -55,7 +55,7 @@ export const AddVendorsSchema = Yup.object().shape({
 	first_name: Yup.string().required("First name is required!"),
 	last_name: Yup.string().required("Last name is required!"),
 	company_name: Yup.string().required("Company name is required!"),
-	address: Yup.string().required("Address is required!"),
+	street: Yup.string().required("Street is required!"),
 	state: Yup.string().required("Address is required!"),
 	city: Yup.string().required("Address is required!"),
 	zip_code: Yup.string().required("Address is required!"),
@@ -161,7 +161,7 @@ export const NoticeProceed = Yup.object().shape({
 	creationDate: Yup.string().required("Creation date is required!"),
 	startDate: Yup.string().required("Starting date is required!"),
 	startTime: Yup.string().required("Starting time date is required!"),
-	deliveryDate: Yup.string().required("Delivery date is required!"),
+	effectiveDate: Yup.string().required("Delivery date is required!"),
 });
 
 /**
@@ -324,6 +324,46 @@ export const OwnerContractManageMent = Yup.object().shape({
 	fees: Yup.string().required("Field is required"),
 	preConstruction: Yup.string().required("Field is required"),
 });
+
+export const CCPRequisitionSchema = Yup.object().shape({
+	creationDate: Yup.string().required("Creation date field is required"),
+	budgetCode: Yup.string().required("Budget code field is required"),
+	commodityCode: Yup.string().required("Commodity code field is required"),
+	requisitionOrder: Yup.string().required("Requisition order field is required"),
+	attached: Yup.string().required("Attached field is required"),
+	signDate: Yup.string().required("Signed date field is required"),
+	vendor: Yup.string().required("Vendor field is required"),
+	vendorId: Yup.string().required("Vendor id field is required"),
+	companyName: Yup.string().required("Company name field is required"),
+	address: {
+		city: Yup.string().required("city field is required"),
+		street: Yup.string().required("street field is required"),
+		state: Yup.string().required("state field is required"),
+		zipCode: Yup.string().required("zip code field is required"),
+	},
+	name: Yup.string().required("name field is required"),
+	shippingAddress: {
+		city: Yup.string().required("city field is required"),
+		street: Yup.string().required("street field is required"),
+		state: Yup.string().required("state field is required"),
+		zipCode: Yup.string().required("zip code field is required"),
+	},
+	location: Yup.string().required("location field is required"),
+	items: {
+		stockNumber: Yup.string().required("stock number field is required"),
+		description: Yup.string().required("description field is required"),
+		quantity: {
+			quantity: Yup.string().required("quantity field is required"),
+			unit: Yup.string().required("unit field is required"),
+			unitPrice: Yup.string().required("unit price field is required"),
+		}
+	},
+	shippingCost: Yup.string().required("shipping cost field is required"),
+	salesTax: Yup.string().required("sales tax field is required")
+});
+
+
+
 
 export const CertificateOfSubstantialSchema = Yup.object().shape({
 	purposeOfContract: Yup.string().required("Field is required"),

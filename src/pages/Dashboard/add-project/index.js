@@ -86,7 +86,7 @@ const ProjectFormsController = () => {
 		initialValues: {
 			project_vendors: [
 				{
-					type: "",
+					type: "old",
 					role: "",
 					company_name: "",
 					street: "",
@@ -110,10 +110,11 @@ const ProjectFormsController = () => {
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
 				HandleRequest(data);
 			} else if (details) {
-				const val = values.project_vendors;
-				console.log(val);
-
-				HandleRequest(val);
+				const data = values?.project_vendors?.map((cur, index) => {
+					return { ...cur, type: "old" };
+				});
+				// console.log(val);
+				HandleRequest(data);
 				// HandleEditRequest(values.project_vendors[0])
 			}
 

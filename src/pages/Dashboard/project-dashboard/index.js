@@ -26,6 +26,7 @@ import TechService from "../../forms/Tech Service Agreement";
 import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor/NoticeOfAwardContrator";
 import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
 import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
+import CCPRequisitionForm from "../../forms/Budget/CCP Aquistion";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
@@ -97,8 +98,8 @@ const ProjectDashboard = () => {
 					{/* Modal content */}
 					{!response?.data && <FullPageLoader />}
 
-					<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14 bg-white rounded-lg shadow pb-4">
-						<div className="flex justify-between items-start px-6 py-3 rounded-t border-b">
+					<div className="relative w-full h-screen max-w-md pb-4 mx-auto bg-white rounded-lg shadow md:h-auto mt-14">
+						<div className="flex items-start justify-between px-6 py-3 border-b rounded-t">
 							<div>
 								<h3 className="text-lg font-bold text-gray-900">
 									Are you sure you want to delete this Project information?
@@ -117,7 +118,7 @@ const ProjectDashboard = () => {
 
 						{/* Buttons */}
 						<form
-							className="mt-12 mr-5 flex gap-4 justify-end"
+							className="flex justify-end gap-4 mt-12 mr-5"
 							onSubmit={onSubmit}>
 							<ButtonWhiteBG
 								name="no, cancel"
@@ -136,23 +137,23 @@ const ProjectDashboard = () => {
 
 			{/* Page Marker */}
 			<div className="bg-white h-14">
-				<div className="container mx-auto px-4 py-4 lg:px-24 flex gap-2 items-center">
-					<span className="text-gray-900 text-base">Dashboard</span>
-					<span className="text-gray-700 font-bold">&gt;</span>
+				<div className="container flex items-center gap-2 px-4 py-4 mx-auto lg:px-24">
+					<span className="text-base text-gray-900">Dashboard</span>
+					<span className="font-bold text-gray-700">&gt;</span>
 
-					<span className="text-gray-900 text-base">Project</span>
-					<span className="text-gray-900 font-bold">&gt;</span>
+					<span className="text-base text-gray-900">Project</span>
+					<span className="font-bold text-gray-900">&gt;</span>
 
-					<span className="text-gray-900 font-bold text-base">
+					<span className="text-base font-bold text-gray-900">
 						{!projectDetails ? "" : projectDetails?.name}
 					</span>
 				</div>
 			</div>
 			{/* Main Content */}
 			<main className="bg-[#fafafa] h-full pb-60">
-				<div className="container mx-auto pt-5 px-4 lg:px-24 h-full">
-					<div className="flex justify-between items-center">
-						<div className="flex justify-start items-center gap-3 cursor-pointer">
+				<div className="container h-full px-4 pt-5 mx-auto lg:px-24">
+					<div className="flex items-center justify-between">
+						<div className="flex items-center justify-start gap-3 cursor-pointer">
 							<img src={BackArrow} alt="go back" />
 							<span to="/dashboard" className="text-[#3b6979] font-semibold" onClick={() => {
 								navigate('/dashboard')
@@ -162,7 +163,7 @@ const ProjectDashboard = () => {
 							</span>
 						</div>
 
-						<div className="flex gap-4 items-center">
+						<div className="flex items-center gap-4">
 							<button
 								onClick={() => {
 									dispatch(getProjectInfo(projectDetails));
@@ -196,24 +197,24 @@ const ProjectDashboard = () => {
 						</div>
 					</div>
 
-					<div className="mt-9 grid grid-cols-3">
+					<div className="grid grid-cols-3 mt-9">
 						<ProjectCard name="Total Documents" value={!summary?'0':summary.total} />
 						<ProjectCard name="Filled" value={!summary?'0':summary.filled} />
 						<ProjectCard name="Yet to be Filled" value={!summary?'0':summary.unfilled} />
 					</div>
 
 					{/* Main Content */}
-					<div className="mt-6 grid grid-cols-3 gap-6">
+					<div className="grid grid-cols-3 gap-6 mt-6">
 						{/* Left Side */}
 						<div class="col-span-2">
-							<div className="bg-white border border-gray-100 rounded-lg p-4">
-								<div className="pb-2 border-b border-b-gray-50 flex justify-between items-center">
+							<div className="p-4 bg-white border border-gray-100 rounded-lg">
+								<div className="flex items-center justify-between pb-2 border-b border-b-gray-50">
 									<p className="px-[10px] py-1 rounded font-bold bg-[#D8E1E4] text-[#2F5461]">
 										{`No:${
 											!projectDetails ? 0 : projectDetails?.number
 										}`}
 									</p>
-									<p className="text-gray-700 text-base">
+									<p className="text-base text-gray-700">
 										{moment(projectDetails.created_at).format("MMMM D, YYYY ")}
 									</p>
 								</div>
@@ -232,7 +233,7 @@ const ProjectDashboard = () => {
 										View History
 									</span>
 									<div className={`${toggle ? 'h-full': 'h-0 overflow-hidden'} py-2 transition-auto`}>												{projectDetails?.duplicates?.map((project, index) => {
-									return <div key={index} className="bg-gray-100 h-16 flex justify-between items-center rounded  px-4 py-2 my-1">
+									return <div key={index} className="flex items-center justify-between h-16 px-4 py-2 my-1 bg-gray-100 rounded">
 														<h1 className="text-[#2f5461] font-bold">{project?.name}</h1>
 														<p className="text-sm">{moment(project.created_at).format("MMM D, YYYY ")}</p>
 														</div>
@@ -241,19 +242,19 @@ const ProjectDashboard = () => {
 								</div>
 							</div>
 							{/* Accordions */}
-							<div className="mt-6 bg-white rounded-lg border border-gray-100">
+							<div className="mt-6 bg-white border border-gray-100 rounded-lg">
 								<Accordion data={projectDetails.project_documents} />
 							</div>
 						</div>
 
 						{/* Right Side */}
 						<div>
-							<div className="bg-white p-4 rounded-lg">
+							<div className="p-4 bg-white rounded-lg">
 								<div className="mb-5">
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
 										School Information
 									</div>
-									<div className="text-gray-900 text-xs">
+									<div className="text-xs text-gray-900">
 										<p className="mt-4 font-bold">{!school?'':school.name}</p>
 										<p className="my-1">{`${!school ? '' : school.address}, ${!school ? '' : school.city}, ${!school ? '' : school.state}, ${!school ? '' :
 									school.zip_code}`}</p>
@@ -264,7 +265,7 @@ const ProjectDashboard = () => {
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
 									{!awardee ?"": awardee?.role}
 									</div>
-									<div className="text-gray-900 text-xs">
+									<div className="text-xs text-gray-900">
 										<p className="mt-4 text-base font-bold">
 											{!awardee ?"": awardee?.company_name}
 										</p>
@@ -278,7 +279,7 @@ const ProjectDashboard = () => {
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
 										Project Manager
 									</div>
-									<div className="mt-4 flex gap-2 items-center">
+									<div className="flex items-center gap-2 mt-4">
 										<div className="w-6 h-6 rounded-full">
 											{/* <img className="w-full" src={!projectDetails} alt="user" /> */}
 										</div>
@@ -300,6 +301,7 @@ const ProjectDashboard = () => {
 			<ProjectCloseoutCheckList id={documentsID} />
 			<NoticeOfAwardConsultant id={documentsID} />
 			<AdvertisementBid id={documentsID} />
+			<CCPRequisitionForm id={documentsID} />
 			<Esser id={documentsID} />
 			<EsserPM id={documentsID} />
 			<Lechase id={documentsID} />

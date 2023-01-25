@@ -259,8 +259,10 @@ export function AwardeeInfo(props) {
 		}
 		filtered().forEach((cur, id) => {
 			if (values.project_vendors[index].company_name === cur.company_name) {
+				props.data.values.project_vendors[index].vendor_id = cur?.vendor_id;
 				// setFieldValue(`	props.data.values.project_vendors[index].first_name`, 'Jahn')
 				props.data.values.project_vendors[index].first_name = cur?.first_name;
+				props.data.values.project_vendors[index].type = "old";
 				props.data.values.project_vendors[index].last_name = cur?.last_name;
 
 				props.data.values.project_vendors[index].title = cur?.title;
@@ -273,6 +275,7 @@ export function AwardeeInfo(props) {
 				props.data.values.project_vendors[index].president = cur?.president;
 				props.data.values.project_vendors[index].secretary = cur?.secretary;
 				props.data.values.project_vendors[index].secretary = cur?.secretary;
+				// props.data.values.project_vendors[index].vendor_id = cur?.vendor_id;
 			}
 		});
 	};
