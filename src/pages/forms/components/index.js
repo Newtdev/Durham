@@ -14,7 +14,7 @@ export const FormInput = (props) => {
 				onChange={onChange}
 				type={type}
 				placeholder={placeholder}
-				className="bg-gray-50 borde text-gray-900 text-sm rounded-sm focus:outline-none block w-full px-1 py-1"
+				className="bg-gray-50 border text-gray-900 text-sm rounded-sm focus:outline-none block w-full px-1 py-1"
 			/>
 		</label>
 	);
@@ -57,7 +57,8 @@ export default SelectDate;
 
 export function FormSelect(props) {
 	// const { name, error, touched } = props;
-	const { id, values, children, onChange, name, error, touched } = props;
+	const { id, values, children, onChange, name, error, touched, onFocus } =
+		props;
 	return (
 		<div className=" w-full">
 			<Label
@@ -84,21 +85,21 @@ export const FormCheckBox = ({ props, data }) => {
 	return (
 		<div className="flex mb-5">
 			<div>
-
-			<input
-				id={id}
-				type="checkbox"
-				value={data}
-				name={props.name}
-				onChange={props.onChange}
-				className="text-gray-900 border-gray-300"
-			/>
+				<input
+					id={id}
+					type="checkbox"
+					value={data}
+					name={props.name}
+					onChange={props.onChange}
+					className="text-gray-900 border-gray-300"
+				/>
 			</div>
 			<div className="ml-4 flex items-center mt-1">
-
-			<span for="default-radio-1" className=" text-xs h-full items-center text-gray-900">
-				{data}
-			</span>
+				<span
+					for="default-radio-1"
+					className=" text-xs h-full items-center text-gray-900">
+					{data}
+				</span>
 			</div>
 		</div>
 	);

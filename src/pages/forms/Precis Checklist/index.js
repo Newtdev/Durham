@@ -1,3 +1,3 @@
-import Precis from "./Precis";
+import PFForProjects from "./Precis";
 
-export default Precis;
+export default PFForProjects;
