@@ -29,9 +29,7 @@ const Bids = ({ id }) => {
 
 	const HandleSubmit = async (values) => {
 		const param = Object.entries(values);
-		param.forEach((cur, index) => {
-			console.log(cur);
-		});
+		param.forEach((cur, index) => {});
 		// const val = Object.values(values);
 
 		let response;
@@ -71,8 +69,8 @@ const Bids = ({ id }) => {
 		initialValues: {
 			selectDate: "",
 			input: "",
-			selectOption: "",
-			selectVendor: "",
+			// selectOption: "",
+			// selectVendor: "",
 
 			services: "",
 			addVendor: "",
@@ -92,15 +90,18 @@ const Bids = ({ id }) => {
 		validationSchema: Bidschema[pages],
 
 		onSubmit: (values) => {
-			if (pages === 1) {
+			if (pages === 0) {
+				dispatch(nextChoiceStep(1));
+			} else if (pages === 1 && Formik.values.information.length === 3) {
+				dispatch(saveFormField(values));
+
 				dispatch(nextChoiceStep(2));
-			} else if (pages === 2 && Formik.values.information.length === 3) {
-				// dispatch(nextChoiceStep(3));
 				HandleSubmit(values);
 			}
 		},
 	});
 
+	console.log(Formik.errors);
 	useEffect(() => {
 		(async function () {
 			const response = await (await fetch("/states.json")).json();
@@ -115,10 +116,9 @@ const Bids = ({ id }) => {
 	return (
 		<ModalOverlay show={id === Vendor3BidSlug && show}>
 			<FormikProvider value={Formik}>
-				{pages === 1 && <BidInfo {...Formik} />}
-				{/* {pages === 2 && <VendorsInfo {...Formik} />} */}
-				{pages === 2 && <MultiVendors {...props} />}
-				{pages === 3 && <Preview {...Formik} />}
+				{pages === 0 && <BidInfo {...Formik} />}
+				{pages === 1 && <MultiVendors {...props} />}
+				{pages === 2 && <Preview {...Formik} />}
 			</FormikProvider>
 		</ModalOverlay>
 	);

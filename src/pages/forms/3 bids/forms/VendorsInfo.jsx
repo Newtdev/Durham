@@ -7,7 +7,7 @@
 // import { closeModal } from "../../reducer";
 // import { prevChoiceStep } from "../Reducer";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetVendorsQuery } from "../../../../features/services/api";
 import { Error } from "../../../../ui";
@@ -40,6 +40,7 @@ const VendorsInfo = (props) => {
 	const { index, data, remove } = props;
 	const vendors = useGetVendorsQuery({ queryValue: "" });
 	const states = useSelector(getList);
+	const [focus, setValue] = useState();
 	const vendorData = !vendors?.data ? [] : vendors?.currentData?.data?.data;
 
 	function CheckState(index) {
@@ -81,21 +82,24 @@ const VendorsInfo = (props) => {
 	}
 
 	useEffect(() => {
-		vendorData?.forEach((cur) => {
-			if (cur.company_name === data.values.information[index].selectVendor) {
-				data.values.information[index].company_name = cur.company_name;
-				data.values.information[index].address = cur.street;
-				data.values.information[index].city = cur.city;
-				data.values.information[index].state = cur.state;
-				data.values.information[index].zip_code = cur.zip_code;
-			} else if (
-				cur.company_name !== data.values.information[index].selectVendor
-			) {
-				return;
-				// data.setFieldValue(`information.${index}.company_name`, "");
-			}
-		});
-	}, [data.values.information, index, vendorData]);
+		if (!focus) {
+		} else {
+			vendorData?.forEach((cur) => {
+				if (cur.company_name === data.values.information[index].selectVendor) {
+					data.values.information[index].company_name = cur.company_name;
+					data.values.information[index].address = cur.street;
+					data.values.information[index].city = cur.city;
+					data.values.information[index].state = cur.state;
+					data.values.information[index].zip_code = cur.zip_code;
+				} else if (
+					cur.company_name !== data.values.information[index].selectVendor
+				) {
+					return;
+					// data.setFieldValue(`information.${index}.company_name`, "");
+				}
+			});
+		}
+	}, [data.values.information, index, vendorData, focus]);
 
 	return (
 		<div className=" mb-3">
@@ -119,7 +123,13 @@ const VendorsInfo = (props) => {
 					<div className="flex flex-col rounded-md bg-white px-1">
 						<FormSelect
 							value={data.values.information[index].selectVendor}
-							onChange={data.handleChange}
+							onChange={(e) => {
+								setValue(true);
+								data.setFieldValue(
+									`information.${index}.selectVendor`,
+									e.target.value
+								);
+							}}
 							id={`information.${index}.selectVendor`}
 							name="Select Vendor">
 							<option>Select Vendor</option>;
@@ -163,7 +173,6 @@ const VendorsInfo = (props) => {
 						</div>
 						<div className="flex items-center gap-4">
 							<div className="flex-1">
-								{console.log(data.values.information[index].state)}
 								<FormSelect
 									value={data.values.information[index].state}
 									id={`information.${index}.state`}

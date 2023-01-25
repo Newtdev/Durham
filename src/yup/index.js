@@ -383,8 +383,8 @@ export const Bidschema = [
 	Yup.object({
 		selectDate: Yup.string().required("field is required"),
 		input: Yup.string().required("field is required"),
-		selectOption: Yup.string().required("field is required"),
-		selectVendor: Yup.string().required("field is required"),
+		// selectOption: Yup.string().required("field is required"),
+		// selectVendor: Yup.string().required("field is required"),
 	}),
 	Yup.object({
 		information: Yup.array().of(

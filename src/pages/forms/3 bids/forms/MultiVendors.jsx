@@ -105,7 +105,7 @@ const MultiVendors = (props) => {
 					<ButtonWhiteBG
 						width="w-[100px]"
 						name="Cancel"
-						onClick={() => dispatch(prevChoiceStep(1))}
+						onClick={() => dispatch(prevChoiceStep(0))}
 					/>
 					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
 				</div>

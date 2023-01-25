@@ -28,10 +28,6 @@ const DownLoadForm = ({
 
 	const handlePrint = useReactToPrint({
 		content: () => component.current,
-		// print: (iframe) => {
-		//   console.log(iframe)
-		// 	// the `iframe` contains the content you want printed. Now pass it to an HTML->PDF generator
-		// },
 	});
 
 	return (

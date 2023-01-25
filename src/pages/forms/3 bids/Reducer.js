@@ -4,7 +4,7 @@ const Vendor3Bid = createSlice({
 	name: "Vendor3Bid",
 	initialState: {
 		form_data: [],
-		step: 1,
+		step: 0,
 	},
 	reducers: {
 		nextChoiceStep: (state, action) => {
@@ -14,7 +14,7 @@ const Vendor3Bid = createSlice({
 			state.step = action.payload;
 		},
 		stepChoiceDefault: (state) => {
-			state.step = 1;
+			state.step = 0;
 		},
 		saveDoc: (state, { payload }) => {
 			state.form_data = payload;
