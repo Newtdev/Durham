@@ -70,7 +70,7 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-16 pt-8 pb-4 text-black arial-font"
+							className="px-16 pt-8 pb-4 text-black arial-font text-[11px]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
@@ -94,13 +94,13 @@ const Preview = () => {
 								<div className="mb-6 pl-24">
 									<p className="mb-4">
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
 										</span>
 									</p>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{!vendors
 												? ""
 												: vendors[0].first_name + " " + vendors[0].last_name}
@@ -108,19 +108,19 @@ const Preview = () => {
 									</p>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{!vendors ? "" : vendors[0].company_name}
 										</span>
 									</p>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{!vendors ? "" : vendors[0].street}
 										</span>
 									</p>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{!vendors ? "" : vendors[0].city},{" "}
 											{!vendors ? "" : vendors[0].state},{" "}
 											{!vendors ? "" : vendors[0].zip_code}
@@ -134,15 +134,15 @@ const Preview = () => {
 										<div className="ml-[5.25rem]">
 											<p>Durham Public Schools (DPS)</p>
 											<p>
-												{/* <span className='bg-yellow-500 font-bold advertise'>F6</span> -{" "} */}
+												{/* <span className='bg-yellow-500 font-bold adverstise'>F6</span> -{" "} */}
 												<span
-													className={`${nottoBeHighlighted} font-bold advertise`}>
+													className={`${nottoBeHighlighted} font-bold adverstise`}>
 													{!school ? "" : school.name} -{" "}
 													{!project ? "" : project.name}
 												</span>{" "}
 												(
 												<span
-													className={`${nottoBeHighlighted} font-bold advertise`}>
+													className={`${nottoBeHighlighted} font-bold adverstise`}>
 													{!project ? "" : project.number}
 												</span>
 												)
@@ -160,11 +160,11 @@ const Preview = () => {
 									<p className="mb-4 pl-24">
 										Dear{" "}
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											Mr./Ms.
 										</span>{" "}
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{!vendors ? "" : vendors[0].last_name}
 										</span>
 										:
@@ -192,7 +192,7 @@ const Preview = () => {
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
 										<span
-											className={`${nottoBeHighlighted} font-bold advertise`}>
+											className={`${nottoBeHighlighted} font-bold adverstise`}>
 											{" "}
 											{!durham_profile
 												? ""
@@ -210,7 +210,7 @@ const Preview = () => {
 									<div className="mb-4 pl-24">
 										<p className="mb-0">
 											<span
-												className={`${nottoBeHighlighted} font-bold advertise`}>
+												className={`${nottoBeHighlighted} font-bold adverstise`}>
 												{!durham_profile
 													? ""
 													: !durham_profile
@@ -231,7 +231,7 @@ const Preview = () => {
 										<div className="ml-8 ">
 											<p>
 												<span
-													className={`${nottoBeHighlighted} font-bold advertise`}>
+													className={`${nottoBeHighlighted} font-bold adverstise`}>
 													{!durham_profile
 														? ""
 														: !durham_profile
@@ -246,7 +246,7 @@ const Preview = () => {
 											</p>
 											<p>
 												<span
-													className={`${nottoBeHighlighted} font-bold advertise`}>
+													className={`${nottoBeHighlighted} font-bold adverstise`}>
 													{!form_fields ? "" : form_fields.recipientCopy} -{" "}
 													{!form_fields ? "" : form_fields.position}
 												</span>
@@ -255,7 +255,7 @@ const Preview = () => {
 													: form_fields.userValue &&
 													  !form_fields.recipientCopy && (
 															<span
-																className={`${nottoBeHighlighted} font-bold advertise`}>
+																className={`${nottoBeHighlighted} font-bold adverstise`}>
 																{!form_fields ? "" : form_fields.userValue}
 															</span>
 													  )}
@@ -269,7 +269,7 @@ const Preview = () => {
 											<p>
 												[DPS Project No.{" "}
 												<span
-													className={`${nottoBeHighlighted} font-bold advertise`}>
+													className={`${nottoBeHighlighted} font-bold adverstise`}>
 													{!project ? "" : project.number}
 												</span>
 												]
