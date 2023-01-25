@@ -224,6 +224,7 @@ const Preview = (data) => {
 								<p className="mb-4">
 									We look forward to working with you and your team on this
 									project. If you have any questions, please contact me at{" "}
+									<br />
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!durham_profile
 											? ""
