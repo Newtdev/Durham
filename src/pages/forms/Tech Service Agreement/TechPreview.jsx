@@ -1524,12 +1524,11 @@ const TechPreview = (data) => {
 
 								<div className="">
 									<p className="-mb-2">
+										{console.log(durham_profile)}
 										<span className={`${nottoBeHighlighted} mr-40`}>
 											{!durham_profile
 												? ""
-												: durham_profile
-														.construction_capital_planning_project_manager
-														?.name}
+												: durham_profile.chief_financial_officer?.name}
 										</span>
 
 										<span className={`${nottoBeHighlighted}`}>
@@ -1567,7 +1566,7 @@ const TechPreview = (data) => {
 							onClick={() => {
 								dispatch(showDownload());
 								setHighlighed(true);
-								data.handleReset();
+								// data.handleReset();
 							}}
 							hidden
 							name="CREATE DOCUMENT"

@@ -231,7 +231,7 @@ const PreviewElement = () => {
 												{" "}
 												{moment(form_fields.deliveryDate).format("dddd")},{" "}
 												{moment(form_fields.deliveryDate).format(
-													"MMMM D YYYY "
+													"MMMM D, YYYY "
 												)}
 											</span>
 											. Pending award, one (1) fully executed copy of the
@@ -242,6 +242,7 @@ const PreviewElement = () => {
 										<p>
 											We look forward to working with you and your team on this
 											project. If you have any questions, please contact me at{" "}
+											<br />
 											<span className={`${nottoBeHighlighted}`}>
 												{!durham_profile
 													? ""

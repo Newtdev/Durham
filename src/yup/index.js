@@ -47,7 +47,7 @@ export const AddProjectSchema = Yup.object().shape({
 	email: Yup.string()
 		.required("Email is required!")
 		.email("provided is not correct!"),
-	phone: Yup.string().required("Phone number is required!").phone("US", true),
+	phone: Yup.string().required("Phone number is required!").phone("US", false),
 });
 
 export const AddVendorsSchema = Yup.object().shape({

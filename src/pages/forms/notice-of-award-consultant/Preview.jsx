@@ -57,10 +57,7 @@ const Preview = () => {
 			return null;
 		}
 		const data = vendors?.filter((cur) => {
-			if (cur.role !== "Design Consultant") {
-				return {};
-			}
-			return cur;
+			return cur.role === "Design Consultant";
 		});
 		setAwardee(data);
 	}, [vendors]);
@@ -253,6 +250,7 @@ const Preview = () => {
 									<p className="mb-4 pl-20 pr-10">
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
+										<br />
 										<span className={`${nottoBeHighlighted}`}>
 											{" "}
 											{!durham_profile
