@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
@@ -8,6 +9,20 @@ import { closeModal } from "../reducer";
 
 const Form = (props) => {
 	const durham = useFetchDurhamQuery();
+	const [show, setShow] = useState(false);
+	const [durhamList, setList] = useState([]);
+
+	useEffect(() => {
+		if (!durham?.data) {
+			return;
+		}
+		const list = durham?.data.filter(
+			(cur) =>
+				cur.slug !==
+				"construction_capital_planning_project_managers_phone_number"
+		);
+		setList(list);
+	}, [durham]);
 
 	const dispatch = useDispatch();
 	const creationDate = {
@@ -81,6 +96,7 @@ const Form = (props) => {
 	const recipientCopy = {
 		value: props.values.recipientCopy,
 		onChange: (e) => {
+			setShow(true);
 			props.setFieldValue("position", e.target.selectedOptions[0].id);
 			props.setFieldValue("recipientCopy", e.target.value);
 		},
@@ -200,21 +216,24 @@ const Form = (props) => {
 
 							<FormInputContainer>
 								<FormSelect {...recipientCopy}>
-									{!durham?.data ? (
-										<option>No recipients</option>
+									{!props.values.recipientCopy ? (
+										<option>Select Recipient</option>
 									) : (
-										durham?.data.map((cur, id) => {
-											return (
-												<option key={cur.slug} id={cur.name} value={cur.value}>
-													{cur.value}
-												</option>
-											);
-										})
+										<option value={props.values.recipientCopy}>
+											{props.values.recipientCopy}
+										</option>
 									)}
-									<option value="">Add Recipient</option>
+									{durhamList?.map((cur, id) => {
+										return (
+											<option key={cur.slug} id={cur.name} value={cur.value}>
+												{cur.value}
+											</option>
+										);
+									})}
+									<option value="">Add New Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
-							{!props.values.recipientCopy && (
+							{!props.values.recipientCopy && show && (
 								<>
 									<FormInputContainer name="Enter Recipients Name">
 										<FormInputPlain {...recipientName} />

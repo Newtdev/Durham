@@ -6,25 +6,20 @@ import SortIcon from "../../../assets/sortIcon.svg";
 import SearchIcon from "../../../assets/searchIcon.svg";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 
 import { Link, useNavigate } from "react-router-dom";
-import {
-	Error,
-	Label,
-	Select,
-	SubmitButton,
-} from "../../../ui";
+import { Error, Label, Select, SubmitButton } from "../../../ui";
 import { Spinner } from "../../../assets";
-import {useState } from "react";
+import { useState } from "react";
 import { useFetchSingleProjectManagerQuery } from "../../../features/services/api";
 import { userDetails } from "../../../features/auth";
 import { useSelector } from "react-redux";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
-	const profile = useSelector(userDetails)
-    // PASS IN THE ID
+	const profile = useSelector(userDetails);
+	// PASS IN THE ID
 	const result = useFetchSingleProjectManagerQuery(profile.id);
 	const [show, setShow] = useState(false);
 	const navigate = useNavigate();
@@ -38,7 +33,6 @@ export function DashboardNav() {
 						id: 3,
 						name: "Projects Manager",
 						link: "product-manager",
-						
 					},
 					{ id: 4, name: "Vendors", link: "vendors" },
 					{ id: 5, name: "Schools", link: "schools" },
@@ -56,8 +50,10 @@ export function DashboardNav() {
 			</ul>
 		);
 	}
-	
-	const image = !result?.data?.filename?.url ? User : result?.data?.filename?.url;
+
+	const image = !result?.data?.filename?.url
+		? User
+		: result?.data?.filename?.url;
 
 	return (
 		<nav className="bg-white border-b-2 border-[linear-gradient(180deg, #F0F0F0 0%, rgba(255, 255, 255, 0) 100%)] px-6 py-4 sm:px-4 ">
@@ -65,8 +61,8 @@ export function DashboardNav() {
 				className="container flex flex-wrap items-center justify-start mx-auto"
 				onClick={() => setShow(!show)}>
 				<span className="w-20 mr-8">
-					<Link to='/dashboard'>
-					<img src={Logo} className="w-full" alt="Durham Logo" />
+					<Link to="/dashboard">
+						<img src={Logo} className="w-full object-cover" alt="Durham Logo" />
 					</Link>
 				</span>
 				<div className=" ml-auto md:order-2 relative">
@@ -88,21 +84,21 @@ export function DashboardNav() {
 						} absolute top-5  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
 						id="user-dropdown`}>
 						<ul>
-
-						<li>
-							<Link
-								to="/dashboard/settings"
-								className="block  px-4 py-2 text-sm text-gray-900 hover:bg-gray-100">
-								Settings
-							</Link>
-						</li>
-							<li className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100" onClick={() => {
-								localStorage.removeItem('durham_token');
-								navigate('/')
-							}
-							}>
-						Log Out
-						</li>
+							<li>
+								<Link
+									to="/dashboard/settings"
+									className="block  px-4 py-2 text-sm text-gray-900 hover:bg-gray-100">
+									Settings
+								</Link>
+							</li>
+							<li
+								className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
+								onClick={() => {
+									localStorage.removeItem("durham_token");
+									navigate("/");
+								}}>
+								Log Out
+							</li>
 						</ul>
 					</div>
 					<button
@@ -148,7 +144,7 @@ export function DashboardButton({
 }) {
 	return (
 		<button
-		disabled={!loading?false: true}
+			disabled={!loading ? false : true}
 			onClick={onClick}
 			className={`text-white text-sm font-normal ${width} hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
 			type={type}>
@@ -192,9 +188,10 @@ export function Sort() {
 /**********SEARCH COMPONENTS*************** */
 
 export function Search({ submit, setQuery, placeholder }) {
-
 	return (
-		<form className="flex flex-row justify-center items-center gap-4" onSubmit={submit}>
+		<form
+			className="flex flex-row justify-center items-center gap-4"
+			onSubmit={submit}>
 			<div>
 				<label for="table-search" className="sr-only">
 					Search
@@ -212,7 +209,7 @@ export function Search({ submit, setQuery, placeholder }) {
 					/>
 				</div>
 			</div>
-			<SubmitButton name="search"/>
+			<SubmitButton name="search" />
 			{/* <ButtonWhiteBG name="search" onClick={submit} /> */}
 		</form>
 	);
@@ -239,11 +236,8 @@ export function TableHeader({ dataArray }) {
 /*************DASHBOARD HEADER TABLE*********************/
 
 export function TableBody({ dataArray, onDelete, onEdit }) {
-	
-
 	return (
 		<tbody className="text-xs bg-white font-medium">
-			
 			{dataArray?.data?.map((manager, index) => {
 				const { id, last_name, first_name, email, phone } = manager;
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
@@ -282,20 +276,24 @@ export function TableBody({ dataArray, onDelete, onEdit }) {
 
 export function Paginations(props) {
 	const { data, page, getPage } = props;
-	
-	const handleChange = (e,value) => {
-    getPage(value);
-  };
-	if (data?.data?.last_page  === 1 || !data?.data?.last_page) {
+
+	const handleChange = (e, value) => {
+		getPage(value);
+	};
+	if (data?.data?.last_page === 1 || !data?.data?.last_page) {
 		return null;
 	}
-	
-return (
+
+	return (
 		<nav
 			className="mb-4 flex justify-center items-center pt-4"
 			aria-label="Table navigation">
-		<Pagination count={data?.data?.last_page} page={page} onChange={handleChange} color='primary' />
-
+			<Pagination
+				count={data?.data?.last_page}
+				page={page}
+				onChange={handleChange}
+				color="primary"
+			/>
 		</nav>
 	);
 }
@@ -398,22 +396,23 @@ export function ProjectOverviewNav() {
 	);
 }
 
-export function Filter({onChange,params}) {
+export function Filter({ onChange, params }) {
 	return (
 		<div className="flex items-center justify-center">
 			<p className="mr-4 font-bold text-gray-700 ">View:</p>
 			<div className="flex flex-col items-center justify-center  h-16 mt-6">
 				<select
 					onChange={onChange}
-					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
-					>
+					className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full">
 					<option>My Projects</option>
-					<option value='all'>All Projects</option>
-					
+					<option value="all">All Projects</option>
 				</select>
 
-				<p className='text-[#3b6979] text-base text-center mt-1 mr-2'>{params === 'My Projects' || params === '' ? 'My Projects' : 'All Projects'}</p>
-				
+				<p className="text-[#3b6979] text-base text-center mt-1 mr-2">
+					{params === "My Projects" || params === ""
+						? "My Projects"
+						: "All Projects"}
+				</p>
 			</div>
 		</div>
 	);

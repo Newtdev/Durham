@@ -11,7 +11,7 @@ import {
 	savedResponse,
 	showDownload,
 } from "../reducer";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { prevStep, selectForm, stepDefault } from "../Notice-of-intent-consultant/reducerSlice";
 import moment from "moment";
 import currency from "currency.js";
@@ -36,12 +36,30 @@ const Preview = () => {
 	// const content = useSelector(savedResponse);
 	const projectDetails = useSelector(project_details);
 	const school = !projectDetails ? "" : projectDetails.school;
+	// const { vendors, durham_profile, project } = content?.data?.data;
+	const vendors = content?.data?.data?.vendors;
+	const project = content?.data?.data?.project;
+	const durham_profile = content?.data?.data?.durham_profile;
 
-	const { vendors, durham_profile, project } = content?.data?.data;
 	const form_fields = useSelector(fields);
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 font-bold"
 		: "bg-white";
+
+	const [awardee, setAwardee] = useState({});
+
+	useEffect(() => {
+		if (!vendors) {
+			return null;
+		}
+		const data = vendors?.filter((cur) => {
+			if (cur.role !== "Design Consultant") {
+				return {};
+			}
+			return cur;
+		});
+		setAwardee(data);
+	}, [vendors]);
 
 	const props = {
 		component: downloadComponent,
@@ -113,32 +131,34 @@ const Preview = () => {
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].first_name}
+											{!awardee
+												? ""
+												: awardee[0]?.first_name + " " + awardee[0]?.last_name}
 										</span>
 										,{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].title}
+											{!awardee ? "" : awardee[0]?.title}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].company_name}
+											{!awardee ? "" : awardee[0]?.company_name}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].street}
+											{!awardee ? "" : awardee[0]?.street}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].city},{" "}
+											{!awardee ? "" : awardee[0]?.city},{" "}
 										</span>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].state},{" "}
+											{!awardee ? "" : awardee[0]?.state},{" "}
 										</span>
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].zip_code}
+											{!awardee ? "" : awardee[0]?.zip_code}
 										</span>
 									</p>
 								</div>
@@ -150,17 +170,17 @@ const Preview = () => {
 											<p>Durham Public Schools (DPS)</p>
 											<p>
 												<span className={`${nottoBeHighlighted}`}>
-													{!school ? "" : school.name}
+													{!school ? "" : school?.name}
 												</span>{" "}
 												-{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{!project ? "" : project.name}
+													{!project ? "" : project?.name}
 												</span>
 											</p>
 											<p>
 												DPS Project No.{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{!project ? "" : project.number}
+													{!project ? "" : project?.number}
 												</span>
 											</p>
 										</div>
@@ -171,7 +191,7 @@ const Preview = () => {
 											<p className="font-bold uppercase">
 												NOTICE OF AWARD for{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{!form_fields ? "" : form_fields.services}
+													{!form_fields ? "" : form_fields?.services}
 												</span>{" "}
 												SERVICES
 											</p>
@@ -180,22 +200,22 @@ const Preview = () => {
 									<p className="mb-4 pl-20">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].last_name},
+											{!awardee ? "" : awardee[0]?.last_name},
 										</span>
 									</p>
 									<p className="mb-4 pl-20 pr-10">
 										This letter serves as a Notice of Award for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!project ? "" : project.name}
+											{!project ? "" : project?.name}
 										</span>{" "}
 										project located at{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!school ? "" : school.address}
+											{!school ? "" : school?.address}
 										</span>{" "}
 										in Durham, North Carolina. Durham Public School
 										Administration is awarding the work to{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!vendors ? "" : vendors[0].company_name}
+											{!awardee ? "" : awardee[0]?.company_name}
 										</span>{" "}
 										at a lump sum fee of{" "}
 										<span className={`${nottoBeHighlighted}`}>
@@ -214,8 +234,8 @@ const Preview = () => {
 										</span>{" "}
 										to Construction & Capital Planning, 2011 Hamlin Road,
 										Durham, North Carolina 27704 or via email to{" "}
-										<span className="underline">
-											{!form_fields ? "" : form_fields.email}
+										<span className="">
+											{!form_fields ? "" : form_fields?.email}
 										</span>{" "}
 										no later than{" "}
 										<span className={`${nottoBeHighlighted}`}>
@@ -236,8 +256,8 @@ const Preview = () => {
 												: !durham_profile.construction_capital_planning_project_managers_phone_number
 												? ""
 												: durham_profile
-														.construction_capital_planning_project_managers_phone_number
-														.name}
+														?.construction_capital_planning_project_managers_phone_number
+														?.name}
 										</span>
 										.
 									</p>
@@ -284,6 +304,7 @@ const Preview = () => {
 											</span>
 										</p>
 									)}
+									{console.log(form_fields.recipientCopy)}
 									{form_fields.recipientCopy && (
 										<p className="pl-20">
 											Cc:{" "}

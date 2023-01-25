@@ -5,7 +5,7 @@ import Logo from "../../../assets/formlogo.png";
 import { prevStep, stepDefault } from "./reducerSlice";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import { closeDownload, fields, savedResponse } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -25,7 +25,12 @@ const PreviewElement = () => {
 	// const content = useSelector(savedResponse);
 	const projectDetails = useSelector(project_details);
 	const school = !projectDetails ? "" : projectDetails.school;
-	const { vendors, durham_profile, project } = content?.data?.data;
+	const [awardee, setAwardee] = useState([]);
+	// const { vendors, durham_profile, project } = content?.data?.data;
+
+	const vendors = content?.data?.data?.vendors;
+	const project = content?.data?.data?.project;
+	const durham_profile = content?.data?.data?.durham_profile;
 
 	const props = {
 		component: downloadComponent,
@@ -34,6 +39,19 @@ const PreviewElement = () => {
 		stepDefault,
 		close: closeDownload,
 	};
+
+	useEffect(() => {
+		if (!vendors) {
+			return null;
+		}
+		const data = vendors?.filter((cur) => {
+			if (cur.role !== "Design Consultant") {
+				return {};
+			}
+			return cur;
+		});
+		setAwardee(data);
+	}, [vendors]);
 
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 font-bold"
@@ -75,9 +93,9 @@ const PreviewElement = () => {
 								<div>
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
 								</div>
-								<div className="arial-font text-[8px] r-4">
+								<div className="arial-font text-[8px] text-[#3B6979] pr-4">
 									<p className="">Construction and Capital planning</p>
-									<p className=" my-1">
+									<p className="">
 										2011 Hamlin Road / Durham, North Carolina 27704
 									</p>
 									<div className="flex justify-between">
@@ -100,25 +118,25 @@ const PreviewElement = () => {
 										)}
 									</div>
 									<p className={`${nottoBeHighlighted}  text-justify`}>
-										{!vendors
+										{!awardee
 											? ""
-											: vendors[0].first_name + " " + vendors[0].last_name}{" "}
-										{!vendors ? "" : vendors[0].title}
+											: awardee[0]?.first_name + " " + awardee[0]?.last_name}
+										, {!awardee ? "" : awardee[0]?.title}
 									</p>
 									<p className={`${nottoBeHighlighted}  text-justify`}>
-										{!vendors ? "" : vendors[0].company_name}
+										{!awardee ? "" : awardee[0]?.company_name}
 									</p>
 									<p className={`${nottoBeHighlighted}  text-justify`}>
-										{!vendors ? "" : vendors[0].street}
+										{!awardee ? "" : awardee[0]?.street}
 									</p>
 									<p className={`${nottoBeHighlighted}  text-justify`}>
-										{!vendors
+										{!awardee
 											? ""
-											: vendors[0].city +
+											: awardee[0]?.city +
 											  ", " +
-											  vendors[0].state +
+											  awardee[0]?.state +
 											  ", " +
-											  vendors[0].zip_code}
+											  awardee[0]?.zip_code}
 									</p>
 									{/* <p className='text-base text-justify'>City, State XXXXX</p> */}
 									{/* //{`${nottoBeHighlighted}`} */}
@@ -127,10 +145,11 @@ const PreviewElement = () => {
 								<div className="">
 									<div className="overflow-hidden w-56  flex justify-between mt-8">
 										<p className="font-bold mb-2">RE:</p>
-										<div className="">
+										<div className=" ml-14">
 											<p>Durham Public Schools (DPS)</p>
 											<p className={`${nottoBeHighlighted}`}>
-												School Name – {!project ? "" : project.name}
+												{!school ? "" : school.name} –{" "}
+												{!project ? "" : project.name}
 											</p>
 											<p className={`${nottoBeHighlighted}`}>
 												DPS Project No. {!project ? "" : project.number}
@@ -142,13 +161,13 @@ const PreviewElement = () => {
 								<div className="flex  mt-4">
 									<span>SUBJECT:</span>
 									<h2 className="ml-6 font-black  text-black">
-										NOTICE OF AWARD for CONSULTANT SERVICES
+										NOTICE OF AWARD FOR CONSULTANT SERVICES
 									</h2>
 								</div>
 
 								<div className="mt-6 mb-4">
 									<p className={`${nottoBeHighlighted}`}>
-										Dear Mr./Ms. {vendors[0].last_name}
+										Dear Mr./Ms. {awardee[0]?.last_name},
 									</p>
 									<div className="mt-4 flex gap-8 leading-normal">
 										<p>
@@ -163,7 +182,7 @@ const PreviewElement = () => {
 											in Durham, North Carolina. Durham Public School
 											Administration is recommending award of the work to{" "}
 											<span className={`${nottoBeHighlighted}`}>
-												{!vendors ? "" : vendors[0].company_name}
+												{!awardee ? "" : awardee[0]?.company_name}
 											</span>{" "}
 											at a lump sum fee of{" "}
 											<span className={`${nottoBeHighlighted}`}>
