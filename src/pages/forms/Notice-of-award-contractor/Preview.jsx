@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Logo from "../../../assets/formlogo.png";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { ButtonWhiteBG } from "../../../ui";
+import { setDefault } from "../../Dashboard/add-project/reducer";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
@@ -17,7 +18,7 @@ import {
 	openDownload,
 	showDownload,
 } from "../reducer";
-import { prevStep } from "./reducer";
+import { prevStep, stepDefault } from "./reducer";
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -51,12 +52,11 @@ const Preview = () => {
 		});
 		setAwardee(data);
 	}, [vendors]);
-
 	const props = {
 		component: downloadComponent,
 		name: "Notice of Award - Contractor",
 		show: show ? "block" : "hidden",
-		stepDefault: closeModal,
+		stepDefault,
 		close: closeDownload,
 	};
 	const nottoBeHighlighted = !highlighted
@@ -91,14 +91,14 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto  mb-10 arial-font px-6 h-[380px]">
 						<div
-							className=" pt-8 pb-4 text-black mt-16 adverstise"
+							className=" pt-8 pb-4 text-black mt-16 adverstise px-32"
 							ref={downloadComponent}>
 							<div>
-								<div className="flex mb-4 px-12">
+								<div className="flex justify-between mb-4">
 									<img
 										src={Logo}
 										alt="logo"
-										className="h-16 -mt-1 object-cover"
+										className="h-16 -ml-20 -mt-1 object-cover"
 									/>
 
 									<div className="ml-[15rem] arial-font text-[8px] mt-1">
@@ -115,7 +115,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="mb-4 px-32">
+								<div className="mb-4">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -157,7 +157,7 @@ const Preview = () => {
 									</p>
 								</div>
 
-								<div className="px-32">
+								<div className="">
 									<p className="mb-4">
 										This letter is to serve as your{" "}
 										<span className="font-bold">Notice of Award</span> for the{" "}

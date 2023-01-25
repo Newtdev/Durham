@@ -238,7 +238,7 @@ const Preview = () => {
 										</span>{" "}
 										to Construction & Capital Planning, 2011 Hamlin Road,
 										Durham, North Carolina 27704 or via email to{" "}
-										<span className="">
+										<span className={`${nottoBeHighlighted}`}>
 											{!form_fields ? "" : form_fields?.email}
 										</span>{" "}
 										no later than{" "}

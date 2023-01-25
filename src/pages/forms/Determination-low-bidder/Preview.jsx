@@ -211,7 +211,6 @@ const Preview = () => {
 										<p className="mb-0">
 											<span
 												className={`${nottoBeHighlighted} font-bold advertise`}>
-												{console.log(durham_profile)}
 												{!durham_profile
 													? ""
 													: !durham_profile
@@ -248,7 +247,8 @@ const Preview = () => {
 											<p>
 												<span
 													className={`${nottoBeHighlighted} font-bold advertise`}>
-													{!form_fields ? "" : form_fields.recipientCopy}
+													{!form_fields ? "" : form_fields.recipientCopy} -{" "}
+													{!form_fields ? "" : form_fields.position}
 												</span>
 												{!form_fields
 													? ""

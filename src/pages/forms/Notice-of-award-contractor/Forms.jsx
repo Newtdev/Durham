@@ -96,9 +96,15 @@ const Form = (props) => {
 	const recipientCopy = {
 		value: props.values.recipientCopy,
 		onChange: (e) => {
-			setShow(true);
-			props.setFieldValue("position", e.target.selectedOptions[0].id);
-			props.setFieldValue("recipientCopy", e.target.value);
+			if (e.target.selectedOptions[0].innerText === "Add New Recipient") {
+				setShow(true);
+				props.setFieldValue("position", "");
+				props.setFieldValue("recipientCopy", "");
+			} else {
+				setShow(false);
+				props.setFieldValue("position", e.target.selectedOptions[0].id);
+				props.setFieldValue("recipientCopy", e.target.value);
+			}
 		},
 		error: props.errors.recipientCopy,
 		touched: props.touched.recipientCopy,
@@ -108,20 +114,24 @@ const Form = (props) => {
 		placeholder: "Select recipients",
 	};
 	const recipientName = {
-		value: props.values.recipientName,
-		onChange: props.handleChange,
-		error: props.errors.recipientName,
-		touched: props.touched.recipientName,
-		name: "recipientName",
+		value: props.values.recipientCopy,
+		onChange: (e) => {
+			props.setFieldValue("recipientCopy", e.target.value);
+		},
+		error: props.errors.recipientCopy,
+		touched: props.touched.recipientCopy,
+		name: "recipientCopy",
 		type: "text",
 		placeholder: "Enter Name",
 	};
 	const recipientTitle = {
-		value: props.values.recipientTitle,
-		onChange: props.handleChange,
-		error: props.errors.recipientTitle,
-		touched: props.touched.recipientTitle,
-		name: "recipientTitle",
+		value: props.values.position,
+		onChange: (e) => {
+			props.setFieldValue("position", e.target.value);
+		},
+		error: props.errors.position,
+		touched: props.touched.position,
+		name: "position",
 		type: "text",
 		placeholder: "Enter Title",
 	};
@@ -233,7 +243,7 @@ const Form = (props) => {
 									<option value="">Add New Recipient</option>
 								</FormSelect>
 							</FormInputContainer>
-							{!props.values.recipientCopy && show && (
+							{show && (
 								<>
 									<FormInputContainer name="Enter Recipients Name">
 										<FormInputPlain {...recipientName} />

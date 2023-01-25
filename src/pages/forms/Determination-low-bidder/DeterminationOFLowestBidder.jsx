@@ -44,9 +44,9 @@ const DeterminationOFLowestBidder = ({ id }) => {
 
 	const Formik = useFormik({
 		initialValues: {
-			creationDate: new Date(),
+			creationDate: "",
 			recipientCopy: "",
-			userValue: "",
+			position: "",
 		},
 		validationSchema: DeterminationFormContractor,
 

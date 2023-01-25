@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import SelectDate, { FormSelect } from "../components";
+import SelectDate, { FormInputPlain, FormSelect } from "../components";
 import { FormInputContainer } from "../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../reducer";
 
 const DeterminationForm = (props) => {
 	const dispatch = useDispatch();
 	const durham = useFetchDurhamQuery();
+	const [list, setList] = useState([]);
 	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		if (!durham?.data) {
+			return;
+		}
+		const list = durham?.data.filter(
+			(cur) =>
+				cur.slug !==
+				"construction_capital_planning_project_managers_phone_number"
+		);
+		setList(list);
+	}, [durham]);
 
 	const creationDate = {
 		...props,
@@ -26,9 +39,17 @@ const DeterminationForm = (props) => {
 	const recipientCopy = {
 		value: props.values.recipientCopy,
 		onChange: (e) => {
-			setShow(true);
-			props.setFieldValue("recipientCopy", e.target.value);
+			if (e.target.selectedOptions[0].innerText !== "Add New Recipient") {
+				props.setFieldValue("position", e.target.selectedOptions[0].id);
+				props.setFieldValue("recipientCopy", e.target.value);
+				setShow(false);
+			} else {
+				setShow(true);
+				props.setFieldValue("position", "");
+				props.setFieldValue("recipientCopy", "");
+			}
 		},
+
 		error: props.errors.recipientCopy,
 		touched: props.touched.recipientCopy,
 		id: "recipientCopy",
@@ -36,15 +57,38 @@ const DeterminationForm = (props) => {
 		type: "text",
 		placeholder: "Select recipients",
 	};
-	const userValue = {
-		value: props.values.userValue,
-		onChange: props.handleChange,
-		error: props.errors.userValue,
-		touched: props.touched.userValue,
-		id: "userValue",
-		name: "userValue",
+	// const userValue = {
+	// 	value: props.values.userValue,
+	// 	onChange: props.handleChange,
+	// 	error: props.errors.userValue,
+	// 	touched: props.touched.userValue,
+	// 	id: "userValue",
+	// 	name: "userValue",
+	// 	type: "text",
+	// 	placeholder: "Enter recipient",
+	// };
+
+	const recipientName = {
+		value: props.values.recipientCopy,
+		onChange: (e) => {
+			props.setFieldValue("recipientCopy", e.target.value);
+		},
+		error: props.errors.recipientCopy,
+		touched: props.touched.recipientCopy,
+		name: "recipientCopy",
 		type: "text",
-		placeholder: "Enter recipient",
+		placeholder: "Enter Name",
+	};
+	const recipientTitle = {
+		value: props.values.position,
+		onChange: (e) => {
+			props.setFieldValue("position", e.target.value);
+		},
+		error: props.errors.position,
+		touched: props.touched.position,
+		name: "position",
+		type: "text",
+		placeholder: "Enter Title",
 	};
 
 	return (
@@ -80,35 +124,34 @@ const DeterminationForm = (props) => {
 					</FormInputContainer>
 					<FormInputContainer>
 						<FormSelect {...recipientCopy}>
-							{!durham?.data ? (
-								<option>No recipients</option>
+							{!props.values.recipientCopy ? (
+								<option>Select Recipient</option>
 							) : (
-								durham?.data.map((cur, id) => {
-									return (
-										<option key={cur.slug} value={cur.value}>
-											{cur.name}
-										</option>
-									);
-								})
+								<option value={props.values.recipientCopy}>
+									{props.values.recipientCopy}
+								</option>
 							)}
-							<option value="">Add new recipient</option>
+
+							{list?.map((cur, id) => {
+								return (
+									<option key={cur.slug} id={cur.name} value={cur.value}>
+										{cur.value}
+									</option>
+								);
+							})}
+
+							<option value="">Add New Recipient</option>
 						</FormSelect>
 					</FormInputContainer>
-					{!props.values.recipientCopy && show && (
-						<div className="flex flex-col mb-5">
-							<label
-								for="default-radio-1"
-								className="text-base text-gray-900 mb-1">
-								Enter Recipient
-							</label>
-							<input
-								{...userValue}
-								className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
-							/>
-							{props.errors.userValue && props.touched.userValue && (
-								<Error message={props.errors.userValue} />
-							)}
-						</div>
+					{show && (
+						<>
+							<FormInputContainer name="Enter Recipients Name">
+								<FormInputPlain {...recipientName} />
+							</FormInputContainer>
+							<FormInputContainer name="Enter Recipients Title">
+								<FormInputPlain {...recipientTitle} />
+							</FormInputContainer>
+						</>
 					)}
 				</div>
 				{/* Buttons */}

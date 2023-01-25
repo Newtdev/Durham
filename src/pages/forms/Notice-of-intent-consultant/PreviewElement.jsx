@@ -148,7 +148,7 @@ const PreviewElement = () => {
 								</div>
 
 								<div className="">
-									<div className="overflow-hidden w-56  flex justify-between mt-8">
+									<div className="overflow-hidden w-96  flex justify-between mt-8">
 										<p className="font-bold mb-2">RE:</p>
 										<div className=" ml-14">
 											<p>Durham Public Schools (DPS)</p>

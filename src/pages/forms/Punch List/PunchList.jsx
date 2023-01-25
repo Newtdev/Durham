@@ -2,7 +2,13 @@ import { useRef } from "react";
 import { ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDownload, modal, openDownload, showDownload } from "../reducer";
+import {
+	closeDownload,
+	closeModal,
+	modal,
+	openDownload,
+	showDownload,
+} from "../reducer";
 import DownLoadForm from "../Lundsford/Download";
 import { punchList } from "../../../shared-component/slug";
 
@@ -38,6 +44,7 @@ const PunchList = ({ id }) => {
 								<p className="text-base text-gray-700">Preview Document</p>
 							</div>
 							<button
+								onClick={() => dispatch(closeModal())}
 								type="button"
 								className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
 								data-modal-toggle="small-modal">
@@ -200,11 +207,11 @@ const PunchList = ({ id }) => {
 
 						{/* Buttons */}
 						<div className="flex justify-end gap-4 pr-6 pb-4">
-							<ButtonWhiteBG
+							{/* <ButtonWhiteBG
 								width="w-[171px]"
 								name="Edit document"
 								onClick={() => dispatch(closeDownload())}
-							/>
+							/> */}
 							<DashboardButton
 								hidden
 								name="CREATE DOCUMENT"
