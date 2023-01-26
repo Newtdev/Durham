@@ -365,9 +365,6 @@ export const CCPRequisitionSchema = [
 	}),
 ]
 
-
-
-
 export const CertificateOfSubstantialSchema = Yup.object().shape({
 	purposeOfContract: Yup.string().required("Field is required"),
 	contractEffectDate: Yup.string().required("Field is required"),
@@ -382,3 +379,26 @@ export const CertificateOfSubstantialSchema = Yup.object().shape({
 	responsibility: Yup.string().required("Field is required"),
 	estimatedCost: Yup.string().required("Field is required"),
 });
+
+export const Bidschema = [
+	Yup.object({
+		selectDate: Yup.string().required("field is required"),
+		input: Yup.string().required("field is required"),
+		selectOption: Yup.string().required("field is required"),
+		selectVendor: Yup.string().required("field is required"),
+	}),
+	Yup.object({
+		information: Yup.array().of(
+			Yup.object().shape({
+				company_name: Yup.string().required("field is required"),
+				address: Yup.string().required("field is required"),
+				city: Yup.string().required("field is required"),
+				state: Yup.string().required("field is required"),
+				zip_code: Yup.string().required("field is required"),
+				shippingPrice: Yup.string().required("field is required"),
+				totalPrice: Yup.string().required("field is required"),
+				unitPrice: Yup.string().required("field is required"),
+			})
+		),
+	}),
+];

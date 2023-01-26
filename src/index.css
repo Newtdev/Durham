@@ -1,28 +1,32 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
  */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Calibri:400,700,400italic,700italic");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  font-family: 'Inter', sans-serif;
+	font-family: "Inter", sans-serif;
 }
 .error-toast {
-  background: red;
-  color: white;
+	background: red;
+	color: white;
 }
 .adverstise {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
 }
 .arial-font {
-  font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.calibri-font {
+	font-family: "Calibri", sans-serif;
 }
 
 @media print {
-  #main {
-    margin: 100px 0;
-  }
+	#main {
+		margin: 100px 0;
+	}
 }
