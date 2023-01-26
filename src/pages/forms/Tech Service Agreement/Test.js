@@ -120,7 +120,7 @@ const Preview = (data) => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white mx-16 pt-8 pb-4 text-black arial-font text-[12px]"
+							className="bg-white mx-16 pt-8 pb-4 text-black arial-font text-[11px]"
 							ref={downloadComponent}>
 							<div className="text-center mb-4 font-bold">
 								<h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
@@ -263,7 +263,7 @@ const Preview = (data) => {
                               following: */}
 													</span>
 												</div>
-												<div className="w-full flex items-center justify-center mt-8">
+												<div className="w-full flex items-center justify-center mb-6">
 													<p>1</p>
 												</div>
 
@@ -1586,9 +1586,9 @@ const Preview = (data) => {
 						/>
 						<DashboardButton
 							onClick={() => {
+								setHighlighed(true);
 								onPrint();
 								// dispatch(showDownload());
-								// setHighlighed(true);
 								// data.handleReset();
 							}}
 							hidden

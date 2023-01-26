@@ -19,11 +19,11 @@ const Preview = () => {
 
 	const description = !details ? "" : details?.services || "";
 	const quantity = !details ? "" : details?.input || "";
-	const vendor_one = !details ? {} : details?.information[0];
-	const vendor_two = !details ? {} : details?.information[1];
-	const vendor_three = !details ? {} : details?.information[2];
-	const vendor_four = !details ? {} : details?.information[2];
-	const date = !details ? {} : details.selectDate;
+	const vendor_one = !details ? "" : details?.information[0];
+	const vendor_two = !details ? "" : details?.information[1];
+	const vendor_three = !details ? "" : details?.information[2];
+	const vendor_four = !details ? "" : details?.information[3];
+	const date = !details ? "" : details.selectDate;
 
 	const props = {
 		component: downloadComponent,
@@ -51,6 +51,7 @@ const Preview = () => {
 							<p className="text-base text-gray-700">Preview Document</p>
 						</div>
 						<button
+							onClick={() => dispatch(closeModal())}
 							type="button"
 							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
 							data-modal-toggle="small-modal">
@@ -74,7 +75,7 @@ const Preview = () => {
 								</div>
 
 								<div className="mb-4">
-									<div className=" px-16">
+									<div className="pl-8 pr-16">
 										<p className="mb-6">
 											This document may be used to document prices as required
 											under the purchasing procedures. A minimum of{" "}
@@ -92,7 +93,7 @@ const Preview = () => {
 											<p className="mb-6 flex">
 												QUANTITY:
 												<span
-													className={`${nottoBeHighlighted}  block w-64 ml-1 border-black border-b-2 text-center`}>
+													className={`${nottoBeHighlighted}  block w-64 ml-1.5 border-black border-b-2`}>
 													{quantity}
 												</span>
 											</p>
@@ -128,14 +129,14 @@ const Preview = () => {
 													UNIT PRICE:{" "}
 													<span
 														className={`block w-36 ${nottoBeHighlighted} ml-2 border-b-2 border-black`}>
-														{currency(vendor_one.unitPrice).format()}
+														{currency(vendor_one?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 flex">
 													TOTAL PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_one.totalPrice).format()}
+														{currency(vendor_one?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex">
@@ -143,7 +144,7 @@ const Preview = () => {
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
 														{" "}
-														{currency(vendor_one.shippingPrice).format()}
+														{currency(vendor_one?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>
@@ -164,9 +165,9 @@ const Preview = () => {
 												</p>
 												<p className="mb-4 border-black border-b-2">
 													<span className={` ${nottoBeHighlighted}  `}>
-														{!vendor_two ? "" : vendor_two.city},{" "}
-														{!vendor_two ? "" : vendor_two.state},{" "}
-														{!vendor_two ? "" : vendor_two.zip_code}
+														{!vendor_two ? "" : vendor_two?.city},{" "}
+														{!vendor_two ? "" : vendor_two?.state},{" "}
+														{!vendor_two ? "" : vendor_two?.zip_code}
 													</span>
 												</p>
 											</div>
@@ -177,14 +178,14 @@ const Preview = () => {
 													UNIT PRICE:{" "}
 													<span
 														className={` block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_two.unitPrice).format()}
+														{currency(vendor_two?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 flex">
 													TOTAL PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_two.totalPrice).format()}
+														{currency(vendor_two?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex">
@@ -192,7 +193,7 @@ const Preview = () => {
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
 														{" "}
-														{currency(vendor_two.shippingPrice).format()}
+														{currency(vendor_two?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>
@@ -226,14 +227,14 @@ const Preview = () => {
 													UNIT PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_three.unitPrice).format()}
+														{currency(vendor_three?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 flex">
 													TOTAL PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_three.totalPrice).format()}
+														{currency(vendor_three?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex">
@@ -241,7 +242,7 @@ const Preview = () => {
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
 														{" "}
-														{currency(vendor_three.shippingPrice).format()}
+														{currency(vendor_three?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>
@@ -275,14 +276,14 @@ const Preview = () => {
 													UNIT PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_four.unitPrice).format()}
+														{currency(vendor_four?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 flex">
 													TOTAL PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_four.totalPrice).format()}
+														{currency(vendor_four?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex">
@@ -290,7 +291,7 @@ const Preview = () => {
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
 														{" "}
-														{currency(vendor_four.shippingPrice).format()}
+														{currency(vendor_four?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>

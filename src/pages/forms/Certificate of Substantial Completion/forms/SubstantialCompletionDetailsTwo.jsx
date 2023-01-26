@@ -24,7 +24,7 @@ const DurhamSelect = ({ props, owners, durhamList }) => {
 			{console.log(props.values.owner)}
 			<FormSelect {...owners}>
 				{!props.values.owner ? (
-					<option>Select Recipient</option>
+					<option>Select</option>
 				) : (
 					<option value={props.values.owner}>{props.values.owner}</option>
 				)}
@@ -114,7 +114,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		);
 		setList(list);
 	}, [durham]);
-	console.log(props.values);
+	console.log(props.errors);
 	return (
 		<div>
 			<div

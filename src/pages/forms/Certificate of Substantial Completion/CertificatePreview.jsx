@@ -159,7 +159,7 @@ const CertificatePreview = () => {
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
 												Contract Date:{" "}
-												{moment(form_fields.contractEffectDate).format(
+												{moment(form_fields?.contractEffectDate).format(
 													"MMMM D, YYYY "
 												)}
 											</td>
@@ -260,7 +260,7 @@ const CertificatePreview = () => {
 										DATE OF SUBSTANTIAL COMPLETION:{" "}
 										<span
 											className={`font-bold ${nottoBeHighlighted} adverstise`}>
-											{moment(form_fields.completionDate).format(
+											{moment(form_fields?.completionDate).format(
 												"MMMM D, YYYY "
 											)}
 										</span>
@@ -285,19 +285,21 @@ const CertificatePreview = () => {
 													: awardee?.design?.company_name}
 											</span>
 										</p>
-										<span className="adverstise">CONSULTANT</span>
-										<span className="ml-[10rem] adverstise">
-											BY:{" "}
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!awardee?.design
-													? ""
-													: awardee?.design?.first_name +
-													  " " +
-													  awardee?.design?.last_name}
+										<div className="w-full flex justify-between">
+											<span className="adverstise">CONSULTANT</span>
+											<span className=" adverstise">
+												BY:{" "}
+												<span
+													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+													{!awardee?.design
+														? ""
+														: awardee?.design?.first_name +
+														  " " +
+														  awardee?.design?.last_name}
+												</span>
 											</span>
-										</span>
-										<span className="ml-[10rem] adverstise">DATE</span>
+											<span className="adverstise">DATE</span>
+										</div>
 									</div>
 
 									<p className="mb-6 adverstise">
@@ -305,7 +307,7 @@ const CertificatePreview = () => {
 										list within{" "}
 										<span
 											className={`font-bold ${nottoBeHighlighted} adverstise`}>
-											{doConvert(form_fields.workCompletionDate)}(
+											{doConvert(form_fields?.workCompletionDate)}(
 											{!form_fields ? "" : form_fields.workCompletionDate})
 										</span>{" "}
 										days from the date of Substantial Completion.
@@ -316,7 +318,7 @@ const CertificatePreview = () => {
 										<span
 											className={`font-bold ${nottoBeHighlighted} adverstise`}>
 											{" "}
-											{currency(form_fields.costOfWork).format()}
+											{currency(form_fields?.costOfWork).format()}
 										</span>
 									</p>
 
@@ -329,19 +331,21 @@ const CertificatePreview = () => {
 													: awardee?.contractor?.company_name}
 											</span>
 										</p>
-										<span className="adverstise">CONTRACTOR</span>
-										<span className="ml-[10rem] adverstise">
-											BY:{" "}
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!awardee?.contractor
-													? ""
-													: awardee?.contractor?.first_name +
-													  " " +
-													  awardee?.contractor?.last_name}
+										<div className="flex justify-between w-full">
+											<span className="adverstise">CONTRACTOR</span>
+											<span className="adverstise">
+												BY:{" "}
+												<span
+													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.first_name +
+														  " " +
+														  awardee?.contractor?.last_name}
+												</span>
 											</span>
-										</span>
-										<span className="ml-[10rem] adverstise">DATE</span>
+											<span className="adverstise">DATE</span>
+										</div>
 									</div>
 
 									<p className="mb-4 adverstise">
@@ -352,25 +356,27 @@ const CertificatePreview = () => {
 									</p>
 
 									<div className="mb-4">
-										<p className="mb-0 border-b border-black flex justify-between py-1 pr-32">
+										<p className="mb-0 border-b border-black flex justify-between py-1">
 											<span className="adverstise">Durham Public Schools</span>
 
 											<span className="">
-												{moment(form_fields.signedDate).format("MMMM D, YYYY ")}
+												{moment(form_fields?.signedDate).format(
+													"MMMM D, YYYY "
+												)}
 											</span>
 										</p>
-										<span className="adverstise">OWNER </span>
-										<span className="ml-[10rem] adverstise">
-											BY:{" "}
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!form_fields ? "" : form_fields.owner} -{" "}
-												{!form_fields ? "" : form_fields.position}
+										<div className="w-full flex justify-between">
+											<span className="adverstise">OWNER </span>
+											<span className=" adverstise">
+												BY:{" "}
+												<span
+													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+													{!form_fields ? "" : form_fields.owner} -{" "}
+													{!form_fields ? "" : form_fields.position}
+												</span>
 											</span>
-										</span>
-										<span className={`font-bold adverstise ml-[4rem]`}>
-											DATE:{" "}
-										</span>
+											<span className={`font-bold adverstise`}>DATE: </span>
+										</div>
 									</div>
 
 									<p className="mb-4 adverstise">
