@@ -1,3 +1,4 @@
+import { positions } from "@mui/system";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -20,20 +21,14 @@ import { prev } from "../reducer";
 const DurhamSelect = ({ props, owners, durhamList }) => {
 	return (
 		<FormInputContainer>
-			<FormSelect
-				value={props.values.owners}
-				onChange={props.handleChange}
-				error={props.errors.ownerRepName}
-				touched={props.touched.ownerRepName}
-				name="Select Representative"
-				id="ownerRepName"
-				type="text"
-				placeholder="Enter Name">
-				{!props.values.owners ? (
+			{console.log(props.values.owner)}
+			<FormSelect {...owners}>
+				{!props.values.owner ? (
 					<option>Select Recipient</option>
 				) : (
-					<option value={props.values.owners}>{props.values.owners}</option>
+					<option value={props.values.owner}>{props.values.owner}</option>
 				)}
+				<option>Add New Owner</option>
 				{durhamList?.map((cur, id) => {
 					return (
 						<option key={cur.slug} id={cur.name} value={cur.value}>
@@ -45,50 +40,30 @@ const DurhamSelect = ({ props, owners, durhamList }) => {
 		</FormInputContainer>
 	);
 };
-const ProjectManager = ({ props, owners, durhamList }) => {
-	if (!durhamList?.data?.data) {
-		return null;
-	}
-	return (
-		<FormInputContainer>
-			<FormSelect
-				value={props.values.owners}
-				onChange={props.handleChange}
-				error={props.errors.ownerRepName}
-				touched={props.touched.ownerRepName}
-				name="Select Representative"
-				id="ownerRepName"
-				type="text"
-				placeholder="Enter Name">
-				{!props.values.owners ? (
-					<option>Select Recipient</option>
-				) : (
-					<option value={props.values.owners}>{props.values.owners}</option>
-				)}
-				{durhamList?.data?.data?.data?.map((cur, id) => {
-					return (
-						<option key={cur.slug} id={cur.name} value={cur.value}>
-							{cur.first_name} {cur.last_name}
-						</option>
-					);
-				})}
-			</FormSelect>
-		</FormInputContainer>
-	);
-};
 
 const SubstantialCompletionDetailsTwo = (props) => {
 	const dispatch = useDispatch();
 	const durham = useFetchDurhamQuery();
-	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 	const [durhamList, setList] = useState([]);
+	const [show, setShow] = useState(false);
 
 	const ownerRepName = {
-		value: props.values.ownerRepName,
-		onChange: props.handleChange,
-		error: props.errors.ownerRepName,
-		touched: props.touched.ownerRepName,
-		name: "ownerRepName",
+		value: props.values.owner,
+		onChange: (e) => {
+			if (e.target.selectedOptions[0].innerText === "Add New Owner") {
+				setShow(true);
+				props.setFieldValue("position", "");
+				props.setFieldValue("owner", "");
+			} else {
+				setShow(false);
+				props.setFieldValue("position", e.target.selectedOptions[0].id);
+				props.setFieldValue("owner", e.target.value);
+			}
+		},
+		error: props.errors.owner,
+		touched: props.touched.owner,
+		id: "owner",
+		name: "Select Owner’s Representative Name",
 		type: "text",
 		placeholder: "Enter Name",
 	};
@@ -111,6 +86,22 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		id: "responsibility",
 		placeholder: "Enter responsibility",
 	};
+	const positions = {
+		value: props.values.position,
+		onChange: props.handleChange,
+		error: props.errors.position,
+		touched: props.touched.position,
+		name: "position",
+		placeholder: "Enter Title",
+	};
+	const RepName = {
+		value: props.values.owner,
+		onChange: props.handleChange,
+		error: props.errors.owner,
+		touched: props.touched.owner,
+		name: "owner",
+		placeholder: "Enter Title",
+	};
 
 	useEffect(() => {
 		if (!durham?.data) {
@@ -123,7 +114,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		);
 		setList(list);
 	}, [durham]);
-
+	console.log(props.values);
 	return (
 		<div>
 			<div
@@ -158,92 +149,34 @@ const SubstantialCompletionDetailsTwo = (props) => {
 					</div>
 
 					<div className="mx-6 mb-12">
-						<small className="text-gray-900 font-medium">
-							Select the Owner's representative
-						</small>
 						<div className=" mt-3 ml-2">
-							<div className="flex items-center mb-5">
-								<input
-									type="radio"
-									onChange={props.handleChange}
-									checked={
-										props.values.ownersRep === "Durham Profile" ? true : false
-									}
-									value="Durham Profile"
-									name="ownersRep"
-									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
-								/>
-								<label
-									for="default-radio-1"
-									className="ml-2 text-base text-gray-900">
-									Durham Profile
-								</label>
-							</div>
-							<div className=" mb-5">
-								<input
-									type="radio"
-									onChange={props.handleChange}
-									checked={
-										props.values.ownersRep === "Project Manager Database"
-											? true
-											: false
-									}
-									value="Project Manager Database"
-									name="ownersRep"
-									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
-								/>
-								<label
-									for="default-radio-1"
-									className="ml-2 text-base text-gray-900">
-									Project Manager Database
-								</label>
-							</div>
-							<div className=" mb-5">
-								<input
-									type="radio"
-									onChange={props.handleChange}
-									checked={props.values.ownersRep === "new" ? true : false}
-									value="new"
-									name="ownersRep"
-									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
-								/>
-								<label
-									for="default-radio-1"
-									className="ml-2 text-base text-gray-900">
-									Add New Owner’s representative
-								</label>
-								{props.errors.ownersRep && props.touched.ownersRep && (
-									<Error message={props.errors.ownersRep} />
-								)}
-							</div>
-							{props.values.ownersRep === "Project Manager Database" && (
-								<ProjectManager
-									props={props}
-									owners={ownerRepName}
-									durhamList={projectManager}
-								/>
+							<DurhamSelect
+								durhamList={durhamList}
+								props={props}
+								owners={ownerRepName}
+							/>
+							{show && (
+								<>
+									<div className="flex flex-col mb-5">
+										<label className="text-base text-gray-900 mb-1">
+											Enter Owner’s Representative Name
+										</label>
+										<FormInputPlain {...RepName} />
+										{props.errors.RepName && props.touched.RepName && (
+											<Error message={props.errors.RepName} />
+										)}
+									</div>
+									<div className="flex flex-col mb-5">
+										<label className="text-sm text-gray-600 mb-1">
+											Enter Owner’s Representative Title
+										</label>
+										<FormInputPlain {...positions} />
+										{props.errors.positions && props.touched.positions && (
+											<Error message={props.errors.positions} />
+										)}
+									</div>
+								</>
 							)}
-							{props.values.ownersRep === "Durham Profile" && (
-								<DurhamSelect
-									durhamList={durhamList}
-									props={props}
-									owners={ownerRepName}
-								/>
-							)}
-
-							{props.values.ownersRep === "new" && (
-								<div className="flex flex-col mb-5">
-									<label className="text-base text-gray-900 mb-1">
-										Enter Owner’s Representative Name
-									</label>
-									<FormInputPlain {...ownerRepName} />
-									{props.errors.ownerRepName && props.touched.ownerRepName && (
-										<Error message={props.errors.ownerRepName} />
-									)}
-								</div>
-							)}
-
-							{/* </FormInputContainer> */}
 
 							<FormInputContainer name="When does the Owner's representative sign this form?">
 								<SelectDate {...signedDate} />

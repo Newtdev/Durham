@@ -92,7 +92,7 @@ const Bids = ({ id }) => {
 		onSubmit: (values) => {
 			if (pages === 0) {
 				dispatch(nextChoiceStep(1));
-			} else if (pages === 1 && Formik.values.information.length === 3) {
+			} else if (pages === 1) {
 				dispatch(saveFormField(values));
 
 				dispatch(nextChoiceStep(2));

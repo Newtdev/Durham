@@ -135,9 +135,9 @@ const CertificatePreview = () => {
 											<td className="border border-black pl-[1rem]">Owner</td>
 										</tr>
 										<tr>
-											<td className="border border-black pl-[1rem]">
-												{console.log(project)}
-												{!project ? "" : project?.street},{" "}
+											<td
+												className={`${nottoBeHighlighted} border font-bold border-black pl-[1rem]`}>
+												{!project ? "" : project?.location},{" "}
 											</td>
 											<td
 												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
@@ -235,6 +235,7 @@ const CertificatePreview = () => {
 									<p className="font-bold mb-4 adverstise">
 										PROJECT OR PORTION OF THE PROJECT DETERMINED SUBSTANTIALLY
 										COMPLETE:
+										<br />
 										<span
 											className={`font-bold ${nottoBeHighlighted} adverstise`}>
 											{" "}
@@ -276,14 +277,13 @@ const CertificatePreview = () => {
 									</p>
 
 									<div className="mb-4">
-										<p className="mb-0">
+										<p className="mb-0 border-b border-black py-1">
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
 												{!awardee?.contractor
 													? ""
-													: awardee?.contractor?.comapany_name}
+													: awardee?.design?.company_name}
 											</span>
-											____________________________________________________________________________________________________
 										</p>
 										<span className="adverstise">CONSULTANT</span>
 										<span className="ml-[10rem] adverstise">
@@ -320,15 +320,14 @@ const CertificatePreview = () => {
 										</span>
 									</p>
 
-									<div className="mb-4">
-										<p className="mb-0">
+									<div className="mb-4 ">
+										<p className="mb-0 border-b border-black py-1">
 											<span
 												className={`font-bold ${nottoBeHighlighted} adverstise`}>
 												{!awardee?.contractor
 													? ""
 													: awardee?.contractor?.company_name}
 											</span>
-											________________________________________________________________________________
 										</p>
 										<span className="adverstise">CONTRACTOR</span>
 										<span className="ml-[10rem] adverstise">
@@ -353,24 +352,24 @@ const CertificatePreview = () => {
 									</p>
 
 									<div className="mb-4">
-										<p className="mb-0">
+										<p className="mb-0 border-b border-black flex justify-between py-1 pr-32">
 											<span className="adverstise">Durham Public Schools</span>
-											___________________________________________________________________________________
-										</p>
-										<span className="adverstise">OWNER </span>
-										<span className="ml-[15rem] adverstise">
-											BY:{" "}
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
-												{!form_fields ? "" : form_fields.ownerRepName}
-											</span>
-										</span>
-										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise ml-[10rem]`}>
-											DATE:{" "}
+
 											<span className="">
 												{moment(form_fields.signedDate).format("MMMM D, YYYY ")}
 											</span>
+										</p>
+										<span className="adverstise">OWNER </span>
+										<span className="ml-[10rem] adverstise">
+											BY:{" "}
+											<span
+												className={`font-bold ${nottoBeHighlighted} adverstise`}>
+												{!form_fields ? "" : form_fields.owner} -{" "}
+												{!form_fields ? "" : form_fields.position}
+											</span>
+										</span>
+										<span className={`font-bold adverstise ml-[4rem]`}>
+											DATE:{" "}
 										</span>
 									</div>
 

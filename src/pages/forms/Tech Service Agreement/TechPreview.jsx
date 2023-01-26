@@ -10,7 +10,9 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import DownLoadForm from "../Lundsford/Download";
 import techPDF from "../../Dashboard/files/Technology/Technology Service Agreement(developerVersion).pdf";
 // import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
-
+// print: (iframe: HTMLIframeElement) => {
+// the `iframe` contains the content you want printed. Now pass it to an HTML->PDF generator
+// }
 import {
 	closeModal,
 	fields,

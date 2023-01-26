@@ -75,11 +75,7 @@ const MultiVendors = (props) => {
 											</Fragment>
 										))}
 										<div className="m-4">
-											<DashboardButton
-												type="button"
-												hidden
-												color
-												name="ADD VENDOR"
+											<button
 												onClick={() =>
 													push({
 														companyName: "",
@@ -92,8 +88,13 @@ const MultiVendors = (props) => {
 														unitPrice: "",
 													})
 												}
-												width="w-fit"
-											/>
+												className={`text-white text-sm font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
+												type="button"
+												disabled={
+													props?.values.information.length === 4 ? true : false
+												}>
+												ADD VENDOR
+											</button>
 										</div>
 									</div>
 								</>

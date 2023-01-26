@@ -84,7 +84,7 @@ const BidInfo = (props) => {
 								<Error message={props.errors.input} />
 							)}
 						</div>
-						<FormInputContainer name="When we this document be signed?">
+						<FormInputContainer name="When will this document be signed?">
 							<SelectDate {...selectDate} />
 							{props.errors.selectDate && props.touched.selectDate && (
 								<Error message={props.errors.selectDate} />
