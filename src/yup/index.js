@@ -87,14 +87,20 @@ export const Vendor3Bid = Yup.object().shape({
   shippingPrice: Yup.string().required("Price field is required"),
 });
 
+export const DPSshortform = Yup.object().shape({
+  selectDate: Yup.string().required("Select date Field is required!"),
+  selectDate1: Yup.string().required("Select date Field is required!"),
+  selectDate2: Yup.string().required("Select date Field is required!"),
+  selectDate3: Yup.string().required("Select date Field is required!"),
+});
 export const AddSchoolSchema = Yup.object().shape({
   name: Yup.string().required("Field is required!"),
   code: Yup.string().required("Field is required!"),
   type: Yup.string().required("Field is required!"),
   tag: Yup.string().required("Field is required!"),
-  // address: Yup.string().required("Field is required!"),
-  // state: Yup.string().required("Field is required!"),
-  // city: Yup.string().required("Field is required!"),
+  address: Yup.string().required("Field is required!"),
+  state: Yup.string().required("Field is required!"),
+  city: Yup.string().required("Field is required!"),
 });
 
 export const EditProfileDetailsSchema = [

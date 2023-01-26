@@ -14,8 +14,6 @@ import Cinput from "./forms/Cinput";
 import Estimate from "./forms/Estimate";
 
 const CapitalProjectForm = ({ id }) => {
-  const [source, setSource] = useState(false);
-
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
@@ -62,11 +60,11 @@ const CapitalProjectForm = ({ id }) => {
       completionDate: "",
       Source: "",
       purchase: "",
-      construction: "",
       design: "",
+      construction: "",
       renovation: "",
       repair: "",
-      furnitur: "",
+      furniture: "",
     },
     validationSchema: CapitalPForm[pages],
 
@@ -98,7 +96,7 @@ const CapitalProjectForm = ({ id }) => {
   return (
     <ModalOverlay show={id === CapitalProjectRequestForm && show}>
       <FormikProvider value={Formik}>
-        {pages === 0 && <Cinput {...Formik} source={source} />}
+        {pages === 0 && <Cinput {...Formik} />}
         {pages === 1 && <Estimate {...Formik} />}
         {/* {pages === 2 && <MultiVendors {...Formik} />} */}
         {/* {pages === 3 && <NewVendor {...Formik} />} */}

@@ -26,7 +26,6 @@ const Cinput = (props) => {
     touched: props.touched.completionDate,
     placeholder: "Completion Date",
   };
-  console.log();
   const startDate = {
     ...props,
     value: props.values.startDate,

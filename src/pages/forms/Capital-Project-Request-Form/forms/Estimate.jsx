@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import Component from "../Component";
+import { prevChoiceStep } from "../reducer";
 
 const Estimate = (props) => {
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0.0);
   const dispatch = useDispatch();
 
   const purchase = {
@@ -25,7 +26,6 @@ const Estimate = (props) => {
     placeholder: "0.00",
     label: "Land Purchase",
   };
-  // console.log(props.values.purchase);
   const design = {
     onChange: (e) => {
       if (isNaN(e.target.value)) {
@@ -104,7 +104,21 @@ const Estimate = (props) => {
     placeholder: "0.00",
     label: "Furniture/Equipment",
   };
+  // // console.log(typeof props.values.repair);
 
+  // console.log(Number(props.values.furniture) + Number(props.values.repair));
+
+  const pur = Number(props.values.purchase);
+  const des = Number(props.values.design);
+  const con = Number(props.values.construction);
+  const ren = Number(props.values.renovation);
+  const rep = Number(props.values.repair);
+  const fur = Number(props.values.furniture);
+
+  useEffect(() => {
+    const val = pur + des + con + ren + rep + fur;
+    setTotal(val);
+  }, [props.values]);
   return (
     <div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14">
       <form
@@ -158,7 +172,7 @@ const Estimate = (props) => {
             </div>
             <div className="bg-[#F3F4F6] flex flex-col items-start gap-1 rounded-lg p-2">
               <small className="text-[#111827] font-normal">Total Amount</small>
-              <p className="text-[#693B79] font-semibold">$ 0.00</p>
+              <p className="text-[#693B79] font-semibold">{`$ ${total}`}</p>
             </div>
           </div>
         </div>
@@ -168,7 +182,7 @@ const Estimate = (props) => {
           <ButtonWhiteBG
             width="w-[100px]"
             name="Cancel"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => dispatch(prevChoiceStep(0))}
           />
           <DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
         </div>

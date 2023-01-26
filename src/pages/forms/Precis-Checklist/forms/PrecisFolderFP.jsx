@@ -12,49 +12,49 @@ const PrecisFolder = (props) => {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Precis",
-    name: "precis",
+    name: "project",
     label: "Precis",
   };
   const bidTab = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "BidTab",
-    name: "bidTab",
+    name: "project",
     label: "Bid Tab (certified if 3rd party led)",
   };
   const contract = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Contract",
-    name: "contract",
+    name: "project",
     label: "Contract(with proposal)",
   };
   const participation = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Participation",
-    name: "participation",
+    name: "project",
     label: "MWBE Participation Sheet (% Form)",
   };
   const affidavits = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Affidavits",
-    name: "affidavits",
+    name: "project",
     label: "Affidavits(A,C or D)",
   };
   const plan = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Plan",
-    name: "plan",
+    name: "project",
     label: "HUB Plan(If they did not achieve the 10%)",
   };
   const presentation = {
     type: "checkbox",
     onChange: props.handleChange,
     value: "Presentation",
-    name: "presentation",
+    name: "project",
     label: "Presentation Slides (if required)",
   };
 

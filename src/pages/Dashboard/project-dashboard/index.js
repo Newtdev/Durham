@@ -52,6 +52,7 @@ import { getId, SaveToLocalStorage } from "../../../shared-component";
 import VInfo3 from "../../forms/3 bids/VInfo3";
 import CapitalProjectForm from "../../forms/Capital-Project-Request-Form/CapitalProjectForm";
 import PFForProjects from "../../forms/Precis-Checklist/PFForProjects";
+import { DPSMain } from "../../forms/DPS Short Form Engineer";
 
 const ProjectDashboard = () => {
   // const id = useSelector(getProjectID)
@@ -376,6 +377,7 @@ const ProjectDashboard = () => {
       <CapitalProjectForm id={documentsID} />
       <VInfo3 id={documentsID} />
       <PFForProjects id={documentsID} />
+      <DPSMain id={documentsID} />
     </section>
   );
 };

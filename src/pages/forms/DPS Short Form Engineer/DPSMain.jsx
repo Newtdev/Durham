@@ -1,25 +1,26 @@
-import { useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import { ModalOverlay } from "../../../ui";
 import { modal, saveFormField } from "../reducer";
 import { choiceStep, getStates, nextChoiceStep } from "./reducer";
-import { Vendor3Bid } from "../../../yup";
+import { DPSshortform } from "../../../yup";
 import { useEffect } from "react";
-import { precise_checkList } from "../../../shared-component/slug";
+import { dPS_short_form } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import PrecisFolder from "./forms/PrecisFolderFP";
-import { ModalOverlay } from "../../../ui";
-import Precis from "./Precis";
+import DPSEngineer from "./DPSEngineer/DPSEngineer";
+import OwnerPostal from "./DPSEngineer/OwnerPostal";
+import DPSPreview from "./DPSPreview";
 
-const PFForProjects = ({ id }) => {
+const DPSMain = ({ id }) => {
   const dispatch = useDispatch();
   const pages = useSelector(choiceStep);
   const show = useSelector(modal);
 
   const formID = useSelector(project_document_id);
 
-  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+  const [fillProjectDocument] = useFillProjectDocumentMutation();
 
   const HandleSubmit = async (values) => {
     const param = Object.keys(values);
@@ -33,6 +34,10 @@ const PFForProjects = ({ id }) => {
         { field_name: param[2], field_value: val[2] },
         { field_name: param[3], field_value: val[3] },
         { field_name: param[4], field_value: val[4] },
+        { field_name: param[5], field_value: val[5] },
+        { field_name: param[6], field_value: val[6] },
+        { field_name: param[7], field_value: val[7] },
+        { field_name: param[8], field_value: val[8] },
       ],
     });
     if (response) {
@@ -48,9 +53,17 @@ const PFForProjects = ({ id }) => {
 
   const Formik = useFormik({
     initialValues: {
-      project: [],
+      selectDate: "",
+      selectDate1: "",
+      selectDate2: "",
+      selectDate3: "",
+      check: "",
+      conferenceAddress: "",
+      conferenceStaete: "",
+      conferenceCity: "",
+      conferenceZipCode: "",
     },
-    // validationSchema: Vendor3Bid[pages],
+    validationSchema: DPSshortform[pages],
 
     onSubmit: (values) => {
       if (pages === 0) {
@@ -70,16 +83,15 @@ const PFForProjects = ({ id }) => {
     })();
   }, [dispatch]);
 
-  const props = {
-    ...Formik,
-    isLoading,
-  };
   return (
-    <ModalOverlay show={id === precise_checkList && show}>
-      {pages === 0 && <PrecisFolder {...Formik} />}
-      {pages === 1 && <Precis {...Formik} />}
+    <ModalOverlay show={id === dPS_short_form && show}>
+      <FormikProvider value={Formik}>
+        {pages === 0 && <DPSEngineer {...Formik} />}
+        {pages === 1 && <OwnerPostal {...Formik} />}
+        {pages === 2 && <DPSPreview />}
+      </FormikProvider>
     </ModalOverlay>
   );
 };
 
-export default PFForProjects;
+export default DPSMain;
