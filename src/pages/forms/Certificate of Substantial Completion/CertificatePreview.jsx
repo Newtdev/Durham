@@ -203,7 +203,7 @@ const CertificatePreview = () => {
 										</tr>
 										<tr>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
+												className={` adverstise border border-black pl-[1rem]`}>
 												511 Cleveland St.,
 											</td>
 											<td

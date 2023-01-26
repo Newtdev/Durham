@@ -244,8 +244,8 @@ const Preview = (data) => {
 											</div>
 
 											{/* "d" */}
-											<div className="mb-2  mb-96">
-												<div className="flex mb-2">
+											<div className="">
+												<div className="flex mb-1">
 													<span>d.</span>
 													<span className="ml-3 text-justify ">
 														Contractor has obtained and shall maintain insurance
@@ -263,7 +263,7 @@ const Preview = (data) => {
                               following: */}
 													</span>
 												</div>
-												<div className="w-full flex items-center justify-center mb-6">
+												<div className="w-full flex items-center justify-center mb-4">
 													<p>1</p>
 												</div>
 
@@ -491,7 +491,7 @@ const Preview = (data) => {
 											</div>
 
 											{/* "n." */}
-											<div className="mb-2 flex">
+											<div className="mb-1 flex">
 												<span>n.</span>
 												<span className="ml-3 text-justify">
 													Each party warrants to the other that it has good and
@@ -509,7 +509,7 @@ const Preview = (data) => {
 											</div>
 
 											{/* "o." */}
-											<div className="mb-2 flex">
+											<div className="mb-1 flex">
 												<span>o.</span>
 												<span className="ml-3 text-justify">
 													Should DPS permit Contractor to use any DPS equipment,
@@ -527,7 +527,7 @@ const Preview = (data) => {
 											</div>
 
 											{/* "p." */}
-											<div className="mb-2 flex">
+											<div className="mb-1 flex">
 												<span>p.</span>
 												<span className="ml-3 text-justify">
 													Contractor shall keep accurate records and books of
@@ -547,7 +547,7 @@ const Preview = (data) => {
 								</div>
 
 								{/* 2 */}
-								<div className="flex mb-2">
+								<div className="flex mb-1">
 									<p>2.</p>
 									<div className=" ml-7">
 										<p className="text-justify">
@@ -578,7 +578,7 @@ const Preview = (data) => {
 								</div>
 
 								{/* 3 */}
-								<div className="flex mb-2">
+								<div className="flex mb-1">
 									<p>3.</p>
 									<div className=" ml-7">
 										<p className="text-justify">
@@ -607,7 +607,7 @@ const Preview = (data) => {
 										</p>
 									</div>
 								</div>
-								<div className="w-full  flex items-center justify-center mt-8">
+								<div className="w-full  flex items-center justify-center mt-1 mb-6">
 									<p>4</p>
 								</div>
 
@@ -893,7 +893,7 @@ const Preview = (data) => {
                   </div> */}
 
 								{/* 10 */}
-								<div className="mb-2 mt-96 pt-6">
+								<div className="mb-2 pt-6">
 									<div className="flex mb-2">
 										<p>10.</p>
 										<div className=" ml-7">
