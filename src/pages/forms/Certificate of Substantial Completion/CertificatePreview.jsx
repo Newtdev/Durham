@@ -375,7 +375,7 @@ const CertificatePreview = () => {
 													{!form_fields ? "" : form_fields.position}
 												</span>
 											</span>
-											<span className={`font-bold adverstise`}>DATE: </span>
+											<span className={`font-bold adverstise`}>DATE </span>
 										</div>
 									</div>
 
