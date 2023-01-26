@@ -16,15 +16,17 @@ import MultiFormReducer from "../pages/forms/Advertisement-for-bid-template/redu
 import DurhamProfileReducer from "../pages/Dashboard/Settings/Durhams-settings/ReducerSlice";
 import ProjectCloseoutStepReducer from "../pages/forms/Project-closeout-checklist/reducer";
 import CertificateOfSubstantialReducer from "../pages/forms/Certificate of Substantial Completion/reducer";
-import AddProjectReducer from '../pages/Dashboard/add-project/reducer'
-import TechServiceReducer from '../pages/forms/Tech Service Agreement/reducer'
-import NoticeAwardContractorReducer from '../pages/forms/Notice-of-award-contractor/reducer'
-import NoticeAwardConsultantReducer from '../pages/forms/notice-of-award-consultant/reducer'
-import LechaseReducer from '../pages/forms/LeChase Esser/reducer'
-import EsserPMReducer from '../pages/forms/ESSER PM Contract Template/reducer'
-import EsserContractTemplate from '../pages/forms/ESSER Contract Template/reducer'
-import DeterminationReducer from '../pages/forms/Determination-low-bidder/reducer'
-import ownersContractorFormReducer from '../pages/forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/reducer'
+import AddProjectReducer from "../pages/Dashboard/add-project/reducer";
+import TechServiceReducer from "../pages/forms/Tech Service Agreement/reducer";
+import NoticeAwardContractorReducer from "../pages/forms/Notice-of-award-contractor/reducer";
+import NoticeAwardConsultantReducer from "../pages/forms/notice-of-award-consultant/reducer";
+import LechaseReducer from "../pages/forms/LeChase Esser/reducer";
+import EsserPMReducer from "../pages/forms/ESSER PM Contract Template/reducer";
+import EsserContractTemplate from "../pages/forms/ESSER Contract Template/reducer";
+import DeterminationReducer from "../pages/forms/Determination-low-bidder/reducer";
+import ownersContractorFormReducer from "../pages/forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/reducer";
+import Vendor3Bid from "../pages/forms/3 bids/Reducer";
+import PreciseListReducer from "../pages/forms/Precis Checklist/Reducer";
 
 export const store = configureStore({
 	// reducers
@@ -55,7 +57,9 @@ export const store = configureStore({
 		EsserPMReducer,
 		EsserContractTemplate,
 		DeterminationReducer,
-		ownersContractorFormReducer
+		ownersContractorFormReducer,
+		Vendor3Bid,
+		PreciseListReducer,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>
