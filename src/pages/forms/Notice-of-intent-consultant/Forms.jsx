@@ -8,7 +8,7 @@ import { closeModal } from "../reducer";
 
 export const FormInputContainer = ({ name, children }) => {
 	return (
-		<div className="flex flex-col mb-5">
+		<div className="flex flex-col mb-3">
 			<label for="default-radio-1" className="text-sm text-gray-600 mb-1">
 				{name}
 			</label>

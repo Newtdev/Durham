@@ -4,9 +4,9 @@ import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { prevChoiceStep } from "../reducer";
 
 
-const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }) => {
+const SexualOffender = ({ handleChange, error, touched, handleSubmit, isLoading }) => {
   const dispatch = useDispatch()
-    return <div>
+  return <div>
     <div
       className='relative w-full max-w-md h-screen md:h-auto mx-auto mt-14'
       onClick={(e) => e.stopPropagation()}
@@ -16,20 +16,20 @@ const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }
         <div className='flex justify-between items-baseline mx-6'>
           <div>
             <h3 className='text-lg font-bold text-gray-900'>
-            ESSER PM Contract Template
+              ESSER PM Contract Template
             </h3>
             <p className='text-base text-gray-700'>
               Sexual Offender Registry Check Certification Form
             </p>
           </div>
-            <button
-              onClick={()=> dispatch(prevChoiceStep(1))}
+          <button
+            onClick={() => dispatch(prevChoiceStep(1))}
             type='button'
             className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center'
             data-modal-toggle='small-modal'
-            // onClick={close}
+          // onClick={close}
           >
-           <Close/>
+            <Close />
           </button>
         </div>
 
@@ -48,7 +48,7 @@ const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }
                 id='default-radio-1'
                 type='radio'
                 value='Initial'
-                  name='type'
+                name='type'
                 onChange={handleChange}
                 className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
               />
@@ -64,8 +64,8 @@ const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }
                 id='default-radio-1'
                 type='radio'
                 value='Supplemental'
-                  name='type'
-                  onChange={handleChange}
+                name='type'
+                onChange={handleChange}
 
                 className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
               />
@@ -82,8 +82,8 @@ const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }
                 type='radio'
                 value='Annual'
                 name='type'
-                  className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
-                  onChange={handleChange}
+                className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
+                onChange={handleChange}
 
               />
               <label
@@ -93,13 +93,13 @@ const SexualOffender = ({ handleChange, error, touched, handleSubmit,isLoading }
                 Annual
               </label>
             </div>
-            </div>
-            {error && touched && <Error message={error} />}
+          </div>
+          {error && touched && <Error message={error} />}
         </div>
 
         {/* Buttons */}
         <div className='flex justify-end gap-8 pr-4'>
-          <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={()=> dispatch(prevChoiceStep(1))} />
+          <ButtonWhiteBG width='w-[100px]' name='cancel' onClick={() => dispatch(prevChoiceStep(1))} />
           <DashboardButton
             hidden
             name='NEXT'

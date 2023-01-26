@@ -22,7 +22,7 @@ export const FormInput = (props) => {
 export const FormInputPlain = (props) => {
 	const { value, onChange, type, placeholder, name } = props;
 	return (
-		<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center">
+		<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex justify-center items-center">
 			{/* <Icon /> */}
 			<input
 				value={value}
@@ -59,7 +59,7 @@ export function FormSelect(props) {
 	// const { name, error, touched } = props;
 	const { id, values, children, onChange, name, error, touched } = props;
 	return (
-		<div className=" w-full">
+		<div className="flex flex-col w-full">
 			<Label
 				name={name}
 				styles="block mb-2 text-sm font-medium text-gray-900"
@@ -95,9 +95,9 @@ export const FormCheckBox = ({ props, data }) => {
 			</div>
 			<div className="ml-4 flex items-center mt-1">
 
-			<span for="default-radio-1" className=" text-xs h-full items-center text-gray-900">
-				{data}
-			</span>
+				<span for="default-radio-1" className=" text-xs h-full items-center text-gray-900">
+					{data}
+				</span>
 			</div>
 		</div>
 	);

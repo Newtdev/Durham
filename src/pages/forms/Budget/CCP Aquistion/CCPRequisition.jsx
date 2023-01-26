@@ -9,7 +9,6 @@ import { CCPRequisitionSchema } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../../reducer";
-import FormFour from "./forms/FormFour";
 import FormOne from "./forms/FormOne";
 import FormThree from "./forms/FormThree";
 import FormTwo from "./forms/FormTwo";
@@ -27,11 +26,11 @@ const CCPRequisitionForm = ({ id }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   // const response = useFetchFilledFormQuery(formID);
 
-
-
   const HandleSubmit = async (values) => {
     const param = Object.keys(values)
     const val = Object.values(values)
+
+    console.log("values: ", values)
 
     const response = await fillProjectDocument({
       project_document_id: formID, form_fields: [{ field_name: param[0], field_value: val[0] },
@@ -54,8 +53,6 @@ const CCPRequisitionForm = ({ id }) => {
     }
   }
 
-
-
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
@@ -63,38 +60,33 @@ const CCPRequisitionForm = ({ id }) => {
       budgetCode: "",
       commodityCode: "",
       requisitionOrder: "",
+      po: "",
       attached: "",
       signDate: "",
       vendor: "",
       vendorId: "",
       companyName: "",
-      address: {
-        city: "",
-        street: "",
-        state: "",
-        zipCode: "",
-      },
+      addressCity: "",
+      addressStreet: "",
+      addressState: "",
+      addressZipCode: "",
       name: "",
-      shippingAddress: {
-        city: "",
-        street: "",
-        state: "",
-        zipCode: "",
-      },
+      city: "",
+      street: "",
+      state: "",
+      zipCode: "",
       location: "",
-      items: {
+      items: [{
         stockNumber: "",
         description: "",
-        quantity: {
-          quantity: "",
-          unit: "",
-          unitPrice: "",
-        }
-      },
+        quantity: "",
+        unit: "",
+        unitPrice: "",
+      }],
       shippingCost: "",
       salesTax: ""
     },
-    validationSchema: CCPRequisitionSchema,
+    validationSchema: CCPRequisitionSchema[pages - 1],
     onSubmit: (values) => {
       if (pages === 1) {
         console.log("pages: ", pages)
@@ -105,6 +97,9 @@ const CCPRequisitionForm = ({ id }) => {
       } else if (pages === 3) {
         console.log("pages: ", pages)
         dispatch(nextStep(4))
+        dispatch(saveFormField(values))
+        HandleSubmit(values)
+
       } else if (pages === 4) {
         console.log("pages: ", pages)
         dispatch(saveFormField(values))
@@ -124,13 +119,13 @@ const CCPRequisitionForm = ({ id }) => {
 
   return <ModalOverlay show={true}>
   {/* return <ModalOverlay show={id === CCPRequisition && show}> */}
-    <FormikProvider value={formik}>
-      <form onSubmit={formik.handleSubmit}>
-        {pages === 1 && <FormOne {...formik} />}
-        {pages === 2 && <FormTwo {...formik} />}
-        {pages === 5 && <Preview />}
-      </form>
-    </FormikProvider>
+    {/* <form onSubmit={formik.handleSubmit}> */}
+      {pages === 1 && <FormOne {...formik} />}
+      {pages === 2 && <FormTwo {...formik} />}
+      {pages === 3 && <FormThree {...formik} />}
+      {pages === 4 && <Preview />}
+      {/* <FormThree {...formik} /> */}
+    {/* </form> */}
   </ModalOverlay>
 
 }

@@ -27,38 +27,33 @@ const ConferenceBid = (props) => {
         value: props.values.conferenceTime,
         onChange: props.handleChange,
         name: 'conferenceTime',
-        placeholder: 'Conference Time'
-
-       
+        placeholder: 'Conference Time'   
     }
+
     const conferenceAddress = {
         value: props.values.conferenceAddress,
         onChange: props.handleChange,
         name: 'conferenceAddress',
         placeholder: 'Street'
-
     }
+
     const conferenceState = {
         value: props.values.conferenceState,
         name: 'conferenceState',
-        onChange: props.handleChange,
-
-       
+        onChange: props.handleChange
     }
+
     const conferenceCity = {
         value: props.values.conferenceCity,
         onChange: props.handleChange,
-        name: 'conferenceCity',
-
+        name: 'conferenceCity'
     }
 
     const conferenceZipCode = {
         value: props.values.conferenceZipCode,
         name: 'conferenceZipCode',
-        onChange: props.handleChange,
-
+        onChange: props.handleChange
     };
-
 
     function CheckState() {
         if (!props.values.conferenceState) {
