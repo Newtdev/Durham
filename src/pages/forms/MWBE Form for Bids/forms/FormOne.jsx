@@ -6,19 +6,19 @@ import { getList } from "../../Advertisement-for-bid-template/reducer";
 import SelectDate from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
-import { FormInputPlain } from "../../components";
+import { FormInputPlain, FormSelect } from "../../components";
 
 const FormOne = (props) => {
 	const dispatch = useDispatch()
 	const states = useSelector(getList);
 
-	const signDate = {
+	const ownerRepDate = {
 		...props,
-		value: props.values.signDate,
+		value: props.values.ownerRepDate,
 		onChange: props.handleChange,
-		name: 'signDate',
-		error: props.errors.signDate,
-		touched: props.touched.signDate,
+		name: 'ownerRepDate',
+		error: props.errors.ownerRepDate,
+		touched: props.touched.ownerRepDate,
 		placeholder: 'Select date'
 		//    prevPage
 	}
@@ -49,6 +49,20 @@ const FormOne = (props) => {
 		name: 'one',
 	}
 
+	const ownerRepDBs = [
+		{ name: 'Select from Durham profile' },
+		{ name: 'Select from Project Managers' },
+		{ name: 'Add New Owner’s Representative' }
+	];
+
+	const ownerRepNames = [
+		{ name: 'name 1'},
+		{ name: 'name 2'},
+		{ name: 'name 3'},
+		{ name: 'name 4'},
+		{ name: 'name 5'}
+	]
+
 	const checkBox = [
 		{
 			id: 1,
@@ -72,10 +86,10 @@ const FormOne = (props) => {
 				<div className='flex items-baseline justify-between mx-6'>
 					<div>
 						<h3 className='text-lg font-bold text-gray-900'>
-							CCP Requisition - MODIFIED 4-22-22FM
+							MWBE Form for Bids
 						</h3>
 						<p className='text-base text-gray-700'>
-							Requisition Details
+							Section I
 						</p>
 					</div>
 					<button
@@ -90,86 +104,50 @@ const FormOne = (props) => {
 
 				{/* Progress */}
 				<div className='w-full bg-[#89A5AF] h-2.5 my-4'>
-					<div className='bg-[#2F5461] h-2.5 w-1/3'></div>
+					<div className='bg-[#2F5461] h-2.5 w-1/2'></div>
 				</div>
 
 				<div className='mx-6 mb-12'>
 
-					<div className='mt-3 ml-2 '>
+					<div className='mt-3 ml-2 flex flex-col gap-3 '>
+						<FormSelect
+							value={props.values.ownerRepDB}
+							name="Select the Owner's representative Database"
+							id='ownerRepDB'
+							error={props.errors.ownerRepDB}
+							touched={props.touched.ownerRepDB}
+							onChange={props.handleChange}>
+							<option value=''>Select the Owner's representative Database</option>
+							{
+								ownerRepDBs?.map((ownerRepDB, index) => {
+									return <option key={index} value={ownerRepDB.name}>{ownerRepDB.name}</option>
+								})
+							}
+						</FormSelect>
 
-						<FormInputContainer name='What day is this requisition being made?'>
-							<SelectDate {...creationDate} />
-							{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<FormSelect
+							value={props.values.ownerRepName}
+							name="Select the Owner's representative"
+							id='ownerRepName'
+							error={props.errors.ownerRepName}
+							touched={props.touched.ownerRepName}
+							onChange={props.handleChange}>
+							<option value=''>Select the Owner's representative</option>
+							{
+								ownerRepNames?.map((ownerRepName, index) => {
+									return <option key={index} value={ownerRepName.name}>{ownerRepName.name}</option>
+								})
+							}
+						</FormSelect>
+						
+						<FormInputContainer name='Owner’s Representative Title'>
+							<FormInputPlain type={"text"} onChange={props.handleChange} name="ownerRepTitle" placeholder={"Enter Owner’s Representative Title"} />
+							{props.errors.ownerRepTitle && props.touched.ownerRepTitle && <Error message={props.errors.ownerRepTitle} />}
 						</FormInputContainer>
 
-						<div className="p-2 border rounded-lg border-[#D1D5DB] flex flex-col gap-2">
-							<h2 className="font-bold">For the following items, enter the corresponding codes or numbers.</h2>
-							<div className="w-full h-[1px] bg-[#D1D5DB]"></div>
-							<div className="grid grid-cols-2 gap-2">
-								<div className="flex flex-col">
-									<FormInputPlain type={"text"} onChange={props.handleChange} name="budgetCode" placeholder={"Budget Code"} />
-									{props.errors.budgetCode && props.touched.budgetCode && <Error message={props.errors.budgetCode} />}				
-								</div>
-								<div className="flex flex-col">
-									<FormInputPlain type={"text"} onChange={props.handleChange} name="commodityCode" placeholder={"Commodity Code"} />
-									{props.errors.commodityCode && props.touched.commodityCode && <Error message={props.errors.commodityCode} />}
-								</div>
-								<div className="flex flex-col">
-									<FormInputPlain type={"text"} onChange={props.handleChange} name="requisitionOrder" placeholder={"Requisition/Work Order #"} />
-									{props.errors.requisitionOrder && props.touched.requisitionOrder && <Error message={props.errors.requisitionOrder} />}
-								</div>
-								<div className="flex flex-col">
-									<FormInputPlain type={"text"} onChange={props.handleChange} name="po" placeholder={"P.O. #"} />
-									{props.errors.po && props.touched.po && <Error message={props.errors.po} />}
-								</div>
-							</div>
-						</div>
-
-						<div className="p-2 flex flex-col gap-2">
-							<h2 className="font-bold">Select the appropriate boxes below.</h2>
-							<div className="flex flex-col">
-								<div className='flex items-center mb-5'>
-									<input
-										id='default-radio-1'
-										type='radio'
-										value='Best Price(Attached)'
-										name='attached'
-										onChange={props.handleChange}
-
-										className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
-									/>
-									<label
-										for='default-radio-1'
-										className='ml-2 text-base text-gray-900'
-									>
-										Best Price(Attached)
-									</label>
-								</div>
-								<div className='flex items-center'>
-									<input
-										id='default-radio-1'
-										type='radio'
-										value='Franchise/Sole Source(Attached)'
-										name='attached'
-										className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
-										onChange={props.handleChange}
-
-									/>
-									<label
-										for='default-radio-1'
-										className='ml-2 text-base text-gray-900'
-									>
-										Franchise/Sole Source(Attached)
-									</label>
-								</div>
-							</div>
-							{props.errors.attached && props.touched.attached && <Error message={props.errors.attached} />}
-
-						</div>
-
-						<FormInputContainer name='When does the project sign sign the requisition?'>
-							<SelectDate {...signDate} />
-							{props.errors.signDate && props.touched.signDate && <Error message={props.errors.signDate} />}
+						<FormInputContainer name="When will the Owner's representative sign this Form?">
+							<SelectDate {...ownerRepDate} />
+							{props.errors.ownerRepDate && props.touched.ownerRepDate && <Error message={props.errors.ownerRepDate} />}
 						</FormInputContainer>
 					</div>
 				</div>

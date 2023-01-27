@@ -35,6 +35,7 @@ import NoticeOfAwardContrator from "../../forms/Notice-of-award-contractor/Notic
 import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
 import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
 import CCPRequisitionForm from "../../forms/Budget/CCP Aquistion";
+import MWBEFormsForBidForm from "../../forms/MWBE Form for Bids";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
 import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
@@ -358,6 +359,7 @@ const ProjectDashboard = () => {
 			<NoticeOfAwardConsultant id={documentsID} />
 			<AdvertisementBid id={documentsID} />
 			<CCPRequisitionForm id={documentsID} />
+			<MWBEFormsForBidForm id={documentsID} />
 			<Esser id={documentsID} />
 			<EsserPM id={documentsID} />
 			<Lechase id={documentsID} />

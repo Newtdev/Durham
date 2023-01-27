@@ -29,3 +29,4 @@ export const techServices = "Technology-Service-Agreement";
 export const CCPRequisition = "CCP-Requisition-Form";
 export const Vendor3BidSlug = "3-bids";
 export const precise_checkList = "Precise-Checklist";
+export const MWBEFormsForBid = "MWBE-Forms-for-Bid";

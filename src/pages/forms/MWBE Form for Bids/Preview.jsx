@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { useRef } from "react";
-import { ButtonWhiteBG } from "../../../../ui";
-import { Close, DashboardButton } from "../../../Dashboard/Components";
-import DownLoadForm from "../../Lundsford/Download";
+import { ButtonWhiteBG } from "../../../ui";
+import { Close, DashboardButton } from "../../Dashboard/Components";
+import DownLoadForm from "../Lundsford/Download";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, openDownload } from "../../reducer";
+import { closeModal, openDownload } from "../reducer";
 import { prevStep, stepDefault } from "./reducer";
 
 const Preview = () => {
