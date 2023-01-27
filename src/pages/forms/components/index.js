@@ -63,7 +63,7 @@ export function FormSelect(props) {
 		<div className="flex flex-col w-full">
 			<Label
 				name={name}
-				styles="block mb-2 text-sm font-medium text-gray-900"
+				styles="block mb-2 text-sm font-semibold text-gray-600"
 			/>
 
 			<select
@@ -109,7 +109,7 @@ export const FormTextArea = (props) => {
 		<div className="mb-4">
 			<Label
 				name={name}
-				styles="block mb-2 text-sm font-medium text-gray-900"
+				styles="block mb-2 text-sm font-semibold text-gray-600"
 			/>
 			<textarea
 				rows={4}

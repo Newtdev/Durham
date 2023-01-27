@@ -1,3 +1,3 @@
-import MWBEFormsForBid from "./MWBEFormsForBid";
+import MWBEFormsForBidForm from "./MWBEFormsForBid";
 
-export default MWBEFormsForBid
+export default MWBEFormsForBidForm

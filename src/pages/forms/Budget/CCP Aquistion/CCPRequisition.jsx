@@ -16,15 +16,15 @@ import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
 const CCPRequisitionForm = ({ id }) => {
-	const dispatch = useDispatch();
-	const pages = useSelector(page);
-	const show = useSelector(modal);
+  const dispatch = useDispatch();
+  const pages = useSelector(page)
+  const show = useSelector(modal)
 
-	// const pages = 4;
-	const formID = useSelector(project_document_id);
+  // const pages = 4;
+  const formID = useSelector(project_document_id);
 
-	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+  // const response = useFetchFilledFormQuery(formID);
 
   const HandleSubmit = async (values) => {
     const param = Object.keys(values)
