@@ -57,7 +57,8 @@ export default SelectDate;
 
 export function FormSelect(props) {
 	// const { name, error, touched } = props;
-	const { id, values, children, onChange, name, error, touched } = props;
+	const { id, values, children, onChange, name, error, touched, onFocus } =
+		props;
 	return (
 		<div className="flex flex-col w-full">
 			<Label
@@ -94,8 +95,14 @@ export const FormCheckBox = ({ props, data }) => {
 				/>
 			</div>
 			<div className="ml-4 flex items-center mt-1">
+<<<<<<< HEAD
 
 				<span for="default-radio-1" className=" text-xs h-full items-center text-gray-900">
+=======
+				<span
+					for="default-radio-1"
+					className=" text-xs h-full items-center text-gray-900">
+>>>>>>> 6ae6e8f8ef69002924879f4479ad3b38af08c0fc
 					{data}
 				</span>
 			</div>
