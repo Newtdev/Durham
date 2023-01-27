@@ -117,8 +117,8 @@ const CCPRequisitionForm = ({ id }) => {
     }())
   }, [dispatch]);
 
-  return <ModalOverlay show={true}>
-  {/* return <ModalOverlay show={id === CCPRequisition && show}> */}
+  // return <ModalOverlay show={true}>
+return <ModalOverlay show={id === CCPRequisition && show}>
     {/* <form onSubmit={formik.handleSubmit}> */}
       {pages === 1 && <FormOne {...formik} />}
       {pages === 2 && <FormTwo {...formik} />}
