@@ -33,35 +33,6 @@ const FormOne = (props) => {
 		placeholder: 'Select date'
 		//    prevPage
 	}
-
-	const one = {
-		value: props.values.one,
-		onChange: props.handleChange,
-		error: props.errors.one,
-		touched: props.touched.one,
-		name: 'one',
-	}
-	const two = {
-		value: props.values.one,
-		onChange: props.handleChange,
-		error: props.errors.one,
-		touched: props.touched.one,
-		name: 'one',
-	}
-
-	const checkBox = [
-		{
-			id: 1,
-			numb: '1',
-			value: "Best Price(Attached)",
-		},
-		{
-			id: 2,
-			numb: '2',
-			value: "Franchise/Sole Source(Attached)",
-		}
-	]
-
 	return <div>
 		<div
 			className='relative w-full h-screen max-w-md mx-auto md:h-auto mt-14'

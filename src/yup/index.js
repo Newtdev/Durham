@@ -403,12 +403,12 @@ export const Bidschema = [
 	}),
 ];
 
-export const RFPTemplateWithMWBESchema = Yup.object().shape({
+export const RFPTemplateWithMWBESchema = [
 	Yup.object().shape({
 		bidderName: Yup.string().required("Field is required"),
 		rfpNumber: Yup.string().required("Field is required"),
 		personName: Yup.string().required("Field is required"),
-		contractType: Yup.string().required("Field is required"),
+		contractType: Yup.string().required("Field is required")
 	}),
 	Yup.object().shape({
 		proposalDate: Yup.string().required("Field is required"),
@@ -427,5 +427,12 @@ export const RFPTemplateWithMWBESchema = Yup.object().shape({
 		zipCode: Yup.string().required("Field is required"),
 		date: Yup.string().required("Field is required"),
 		time: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		prototype: Yup.string().required("Field is required"),
+		validityPeriod: Yup.string().required("Field is required"),
+		items: Yup.string().required("Field is required"),
+		attachment: Yup.string().required("Field is required"),
+		proposalScope: Yup.string().required("Field is required")
 	})
-]);
+];
