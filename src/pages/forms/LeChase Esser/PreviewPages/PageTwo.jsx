@@ -78,12 +78,12 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							submitted within thirty (30) days of the rendering of services.
 							The School System shall process payments to Provider within
 							forty-five (45) days of submission of such invoices. Invoices
-							should be sent to [
+							should be sent to
 							<span className={`${nottoBeHighlighted}`}>
 								{!form_fields ? "" : form_fields.providerInvoice},
 							</span>{" "}
-							Durham Public Schools, 511 Cleveland Street, Durham, NC 27702],
-							for review and approval.
+							Durham Public Schools, 511 Cleveland Street, Durham, NC 27702, for
+							review and approval.
 						</span>
 					</p>
 				</div>
