@@ -13,94 +13,86 @@ import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { choiceStep, nextChoiceStep } from "./reducer";
 
-const EsserPM = ({id}) => {
+const EsserPM = ({ id }) => {
+	const dispatch = useDispatch();
+	const pages = useSelector(choiceStep);
+	const show = useSelector(modal);
 
-  const dispatch = useDispatch();
-  const pages = useSelector(choiceStep);
-  const show = useSelector(modal);
+	const formID = useSelector(project_document_id);
 
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-  const formID = useSelector(project_document_id);
-  
-  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const HandleSubmit = async (values) => {
+		const param = Object.keys(values);
+		const val = Object.values(values);
 
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: [
+				{ field_name: param[0], field_value: val[0] },
+				{ field_name: param[1], field_value: val[1] },
+				{ field_name: param[2], field_value: val[2] },
+				{ field_name: param[3], field_value: val[3] },
+				{ field_name: param[4], field_value: val[4] },
+				{ field_name: param[5], field_value: val[5] },
+				{ field_name: param[6], field_value: val[6] },
+				{ field_name: param[7], field_value: val[7] },
+				{ field_name: param[8], field_value: val[8] },
+				{ field_name: param[9], field_value: val[9] },
+			],
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				dispatch(nextChoiceStep(3));
+			}
+		}
+	};
 
+	const Formik = useFormik({
+		initialValues: {
+			contractStartDate: new Date(),
+			fromDuration: new Date(),
+			startDuration: new Date(),
+			calculatePayment: "",
+			allowablePayment: "",
+			reimburseObligation: "",
+			providerCompensation: "",
+			providerInvoice: "",
+			signedDocument: "",
+			type: "",
+		},
+		validationSchema: EESSERContractSchema[pages],
+		validateOnChange: false,
 
-    const HandleSubmit = async (values) => {
-      const param = Object.keys(values)
-      const val = Object.values(values)
-    
-      const response = await fillProjectDocument({
-        project_document_id: formID, form_fields: [{ field_name: param[0], field_value: val[0] },
-        { field_name: param[1], field_value: val[1] },
-        { field_name: param[2], field_value: val[2] },
-        { field_name: param[3], field_value: val[3] },
-        { field_name: param[4], field_value: val[4] },
-        { field_name: param[5], field_value: val[5] },
-        { field_name: param[6], field_value: val[6] },
-        { field_name: param[7], field_value: val[7] },
-        { field_name: param[8], field_value: val[8] },
-        { field_name: param[9], field_value: val[9] },
-      ]
-      })
-      if (response) {
-        if (response?.error) {
-          toast.error(response?.message, {
-            position: toast.POSITION.TOP_CENTER,
-        });
-        } else {
-          dispatch(nextChoiceStep(3))
-        }
-      }
-  }
-  
-  
+		onSubmit: (values) => {
+			if (pages === 2) {
+				dispatch(saveFormField(values));
 
-  const Formik = useFormik({
-    initialValues: {
-      contractStartDate: '',
-      fromDuration: '',
-      startDuration: '',
-      calculatePayment: '',
-      allowablePayment: '',
-      reimburseObligation: '',
-      providerCompensation: '',
-      providerInvoice: '',
-      signedDocument: '',
-      type: ''
-      
+				HandleSubmit(values);
+			} else if (pages === 1) {
+				dispatch(nextChoiceStep(2));
+			} else if (pages === 0) {
+				dispatch(nextChoiceStep(1));
+			}
+		},
+	});
 
-  },
-  validationSchema: EESSERContractSchema[pages],
-    
-  onSubmit: (values) => {
-    
-  if (pages === 2) {
-    dispatch(saveFormField(values))
+	const props = {
+		...Formik,
+		isLoading,
+	};
 
-    HandleSubmit(values)
-  } else if (pages === 1) {
-        
-    dispatch(nextChoiceStep(2))
-  } else if (pages === 0) {
-        
-    dispatch(nextChoiceStep(1))
-  }
-      
-      
-    }
-  });
-
-  const props = {
-    ...Formik,
-    isLoading
-  }
-  
-  return <ModalOverlay show={id === ESSERContractPM && show}>
-    {pages === 0 && <ContractDetails {...Formik} />} 
-    {pages === 1 && <Compensation {...Formik} />} 
-    {pages === 2 && <SexualOffender {...props} />}
-    {pages === 3 && <Preview {...Formik} />}
-  </ModalOverlay>
-}
+	return (
+		<ModalOverlay show={id === ESSERContractPM && show}>
+			{pages === 0 && <ContractDetails {...Formik} />}
+			{pages === 1 && <Compensation {...Formik} />}
+			{pages === 2 && <SexualOffender {...props} />}
+			{pages === 3 && <Preview {...Formik} />}
+		</ModalOverlay>
+	);
+};
 export default EsserPM;

@@ -3,7 +3,7 @@ import moment from "moment";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { handleDate } from "../../../shared-component";
+import { getTheBlob, handleDate, joinPdf } from "../../../shared-component";
 import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -21,6 +21,8 @@ import {
 } from "../reducer";
 import { techPrevStep, techStepDefault } from "./reducer";
 import { useEffect } from "react";
+// import { Document, Page } from "react-pdf";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
 
 const doc = new jsPDF({
 	// format: "a4",
@@ -38,9 +40,27 @@ const Preview = (data) => {
 	const [awardee, setAwardee] = useState({});
 	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
+	const [pdf, setPdf] = useState([]);
 	let formData = !content?.data ? [] : content?.data?.data;
 	const durham_profile = formData?.durham_profile;
 	const vendors = formData?.vendors;
+
+	// function onDocumentLoadSuccess({ numPages }) {
+	// 	console.log(numPages);
+	// 	setNumPages(numPages);
+	// }
+
+	//   return (
+	//     <div>
+	//       <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+	//         <Page pageNumber={pageNumber} />
+	//       </Document>
+	//       <p>
+	//         Page {pageNumber} of {numPages}
+	//       </p>
+	//     </div>
+	//   );
+	// }
 
 	const props = {
 		component: downloadComponent,
@@ -65,16 +85,81 @@ const Preview = (data) => {
 		setAwardee(data);
 	}, [vendors]);
 
-	const onPrint = () => {
+	// useEffect(() => {
+
+	// })
+
+	const onPrint = async () => {
+		// joinPdf(techPDF);
+		// fetch(techPDF).then((response) => {
+		// 	// const a = doc.addImage(techPDF, "PDF", 0, 0, 210, 297);
+		// 	console.log(a);
+		// });
+
+		// getTheBlob(pdfBlob);
+		// if (pdfBlob) {
+		//     console.log(b);
+
+		// }
+
+		// window.arrayOfPdf.push({
+		// 	bytes: b,
+		// 	name: "test",
+		// });
+		// do something with the pdfBlob
+
+		// console.log(window.arrayOfPdf);
+
+		// fetch("SamplePDF.pdf").then((response) => {
+		// 	var fileOfBlob = new File([response], techPDF);
+		// 	console.log(fileOfBlob);
+
+		// 	// console.log(new Blob(blob, { type: "application/pdf" }));
+
+		// 	// window.arrayOfPdf.push({
+		// 	// 	bytes: blob,
+		// 	// 	name: "data",
+		// 	// });
+		// 	// Creating new object of PDF file
+		// 	// const fileURL = window.URL.createObjectURL(blob);
+		// 	// console.log(fileURL);
+		// 	// Setting various property values
+		// 	// let alink = document.createElement("a");
+		// 	// alink.href = fileURL;
+		// 	// alink.download = "SamplePDF.pdf";
+		// 	// alink.click();
+		// });
 		// doc.fromHTML(downloadComponent);
 		// doc.save("pdf");
 		// doc.save(techPDF);
 		// doc.setFontSize(1);
+		const firstPdfResponse = await fetch(techPDF);
+		const firstPdfBlob = await firstPdfResponse.blob();
+		console.log(firstPdfBlob);
+		const a = doc.output(firstPdfBlob);
+		doc.output("dataurlnewwindow", firstPdfBlob);
+		// doc.save(techPDF);
 		doc.html(downloadComponent.current, {
-			callback: function (doc) {
+			callback: async function (doc) {
 				// doc.save("techPDf.pdf");
 				doc.setFontSize(1);
-				doc.output("dataurlnewwindow");
+				// doc.add(firstPdfBlob);
+				// const a = doc.output("blob");
+				// console.log(a);
+
+				// doc.output("dataurlnewwindow");
+				// getTheBlob(a);
+				// joinPdf();
+				// window.arrayOfPdf.push({
+				// 	bytes: b,
+				// 	name: "data",
+				// });
+				// console.log(b);
+				// doc.addPage(techPDF);
+				// console.log(a);
+				// joinPdf(window.arrayOfPdf);
+				// doc.save(a);
+				// doc.output("dataurlnewwindow");
 			},
 		});
 		// console.log(a);
@@ -126,6 +211,7 @@ const Preview = (data) => {
 								<h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
 								<h1>TECHNOLOGY SERVICES AGREEMENT</h1>
 							</div>
+
 							<p className="text-justify mb-4">
 								<span className="ml-10">
 									THIS TECHNOLOGY SERVICES AGREEMENT

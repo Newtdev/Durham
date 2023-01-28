@@ -223,9 +223,7 @@ export const EESSERContractSchema = [
 		allowablePayment: Yup.string().required(
 			"Allowable total payment field is required"
 		),
-		reimburseObligation: Yup.string().required(
-			"Additional Obligation field is required"
-		),
+
 		providerCompensation: Yup.string().required("Amount field is required"),
 		providerInvoice: Yup.string().required(
 			"Invoice receiver field is required"

@@ -937,7 +937,6 @@ const TechPreview = (data) => {
 												</div>
 												<div
 													className={`${nottoBeHighlighted} underline underline-offset-2 mb-[20px]`}>
-													{console.log(vendorsData)}
 													{vendorsData?.street +
 														", " +
 														vendorsData?.city +

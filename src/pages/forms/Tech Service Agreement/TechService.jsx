@@ -84,7 +84,9 @@ const TechService = ({ id }) => {
 	return (
 		<ModalOverlay show={id === techServices && show}>
 			{pages === 1 && <Forms {...props} />}
-			{pages === 2 && <Preview {...Formik} />}
+			{pages === 2 && <TechPreview {...Formik} />}
+
+			{/* {pages === 2 && <Preview {...Formik} />} */}
 			{/* {pages === 2 && } */}
 		</ModalOverlay>
 	);
