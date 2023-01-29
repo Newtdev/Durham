@@ -402,3 +402,38 @@ export const Bidschema = [
 		),
 	}),
 ];
+
+export const RFPTemplateWithMWBESchema = [
+	Yup.object().shape({
+		bidderName: Yup.string().required("Field is required"),
+		rfpNumber: Yup.string().required("Field is required"),
+		personName: Yup.string().required("Field is required"),
+		contractType: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		issueDate: Yup.string().required("Field is required"),
+		proposalDate: Yup.string().required("Field is required"),
+		proposalTime: Yup.string().required("Field is required"),
+		submissionDate: Yup.string().required("Field is required"),
+		submissionTime: Yup.string().required("Field is required"),
+		answerTime: Yup.string().required("Field is required"),
+		answerDate: Yup.string().required("Field is required"),
+		bidOpeningDate: Yup.string().required("Field is required"),
+		bidOpeningTime: Yup.string().required("Field is required"),
+		proposalSubmissionDate: Yup.string().required("Field is required"),
+		proposalSubmissionTime: Yup.string().required("Field is required"),
+		street: Yup.string().required("Field is required"),
+		city: Yup.string().required("Field is required"),
+		state: Yup.string().required("Field is required"),
+		zipCode: Yup.string().required("Field is required"),
+		date: Yup.string().required("Field is required"),
+		time: Yup.string().required("Field is required")
+	}), 
+	Yup.object().shape({
+		prototype: Yup.string().required("Field is required"),
+		validityPeriod: Yup.string().required("Field is required"),
+		items: Yup.string().required("Field is required"),
+		attachment: Yup.string().required("Field is required"),
+		proposalScope: Yup.string().required("Field is required")
+	})
+];
