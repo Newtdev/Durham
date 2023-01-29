@@ -9,6 +9,9 @@ import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
 import { prevStep } from "../reducer";
 import SelectDate from "../../components";
+// import React, { useState } from 'react';
+import TimePicker from 'react-time-picker';
+import { SelectTime } from "../../Notice-to-Proceed/Forms";
 
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
@@ -46,14 +49,154 @@ const FormTwo = (props) => {
 		{ name: 'item 6' }
 	];
 
-	const creationDate = {
+	const issueDate = {
 		...props,
-		value: props.values.creationDate,
+		value: props.values.issueDate,
 		onChange: props.handleChange,
-		name: 'creationDate',
-		error: props.errors.creationDate,
-		touched: props.touched.creationDate,
+		name: 'issueDate',
+		error: props.errors.issueDate,
+		touched: props.touched.issueDate,
 		placeholder: 'Select date'
+		//    prevPage
+	}
+	
+	const proposalDate = {
+		...props,
+		value: props.values.proposalDate,
+		onChange: props.handleChange,
+		name: 'proposalDate',
+		error: props.errors.proposalDate,
+		touched: props.touched.proposalDate,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const submissionDate = {
+		...props,
+		value: props.values.submissionDate,
+		onChange: props.handleChange,
+		name: 'submissionDate',
+		error: props.errors.submissionDate,
+		touched: props.touched.submissionDate,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const answerDate = {
+		...props,
+		value: props.values.answerDate,
+		onChange: props.handleChange,
+		name: 'answerDate',
+		error: props.errors.answerDate,
+		touched: props.touched.answerDate,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const bidOpeningDate = {
+		...props,
+		value: props.values.bidOpeningDate,
+		onChange: props.handleChange,
+		name: 'bidOpeningDate',
+		error: props.errors.bidOpeningDate,
+		touched: props.touched.bidOpeningDate,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const proposalSubmissionDate = {
+		...props,
+		value: props.values.proposalSubmissionDate,
+		onChange: props.handleChange,
+		name: 'proposalSubmissionDate',
+		error: props.errors.proposalSubmissionDate,
+		touched: props.touched.proposalSubmissionDate,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const proposalTime = {
+		...props,
+		value: props.values.proposalTime,
+		onChange: props.handleChange,
+		name: 'proposalTime',
+		error: props.errors.proposalTime,
+		touched: props.touched.proposalTime,
+		placeholder: 'Select time'
+		//    prevPage
+	}
+
+	const conferenceTime = {
+		...props,
+		value: props.values.conferenceTime,
+		onChange: props.handleChange,
+		name: 'conferenceTime',
+		placeholder: 'Conference Time'   
+}
+
+	const submissionTime = {
+		...props,
+		value: props.values.submissionTime,
+		onChange: props.handleChange,
+		name: 'submissionTime',
+		error: props.errors.submissionTime,
+		touched: props.touched.submissionTime,
+		placeholder: 'Select time'
+		//    prevPage
+	}
+
+	const answerTime = {
+		...props,
+		value: props.values.answerTime,
+		onChange: props.handleChange,
+		name: 'answerTime',
+		error: props.errors.answerTime,
+		touched: props.touched.answerTime,
+		placeholder: 'Select time'
+		//    prevPage
+	}
+
+	const bidOpeningTime = {
+		...props,
+		value: props.values.bidOpeningTime,
+		onChange: props.handleChange,
+		name: 'bidOpeningTime',
+		error: props.errors.bidOpeningTime,
+		touched: props.touched.bidOpeningTime,
+		placeholder: 'Select time'
+		//    prevPage
+	}
+
+	const proposalSubmissionTime = {
+		...props,
+		value: props.values.proposalSubmissionTime,
+		onChange: props.handleChange,
+		name: 'proposalSubmissionTime',
+		error: props.errors.proposalSubmissionTime,
+		touched: props.touched.proposalSubmissionTime,
+		placeholder: 'Select time'
+		//    prevPage
+	}
+
+	const date = {
+		...props,
+		value: props.values.date,
+		onChange: props.handleChange,
+		name: 'date',
+		error: props.errors.date,
+		touched: props.touched.date,
+		placeholder: 'Select date'
+		//    prevPage
+	}
+
+	const time = {
+		...props,
+		value: props.values.time,
+		onChange: props.handleChange,
+		name: 'time',
+		error: props.errors.time,
+		touched: props.touched.time,
+		placeholder: 'Select time'
 		//    prevPage
 	}
 
@@ -74,15 +217,6 @@ const FormTwo = (props) => {
 		{ name: 'Philadelphia' },
 		{ name: 'Phoenix' }
 	];
-
-	const location = [
-		{ name: 'New York' },
-		{ name: 'Los Angeles' },
-		{ name: 'Chicago' },
-		{ name: 'Houston' },
-		{ name: 'Philadelphia' },
-		{ name: 'Phoenix' }
-	]
 
 	return <div>
 		<div
@@ -119,99 +253,67 @@ const FormTwo = (props) => {
 				{/* form */}
 				<div className='flex flex-col mx-6 mb-12'>
 					<FormInputContainer name='What day is this requisition being made?'>
-						<SelectDate {...creationDate} />
-						{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<SelectDate {...issueDate} />
+						{props.errors.issueDate && props.touched.issueDate && <Error message={props.errors.issueDate} />}
 					</FormInputContainer>
 
 					<FormInputContainer name='Enter the Proposal Due Date and Time'>
-						<div className="flex gap-2 justify-center items-end">
-							<div className="">
-								<SelectDate {...creationDate} />
-								{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<div className="flex gap-2 justify-center w-full items-end">
+							<div className="w-full">
+								<SelectDate {...proposalDate} />
+								{props.errors.proposalDate && props.touched.proposalDate && <Error message={props.errors.proposalDate} />}
 							</div>
-							<FormSelect
-								value={props.values.vendor}
-								name=''
-								id='vendor'
-								error={props.errors.vendor}
-								touched={props.touched.vendor}
-								onChange={props.handleChange}>
-								<option value=''>Add New Vendor</option>
-								{
-									items?.map((vendor, index) => {
-										return <option key={index} value={vendor.name}>{vendor.name}</option>
-									})
-								}
-							</FormSelect>
+							<div className="w-full">
+								<SelectTime {...proposalTime} />
+							</div>
 						</div>
 					</FormInputContainer>
 
 					<FormInputContainer name='By what date and time must the questions be submitted?'>
-						<div className="flex gap-2 justify-center items-end">
-							<div className="">
-								<SelectDate {...creationDate} />
-								{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<div className="flex gap-2 justify-center w-full items-end">
+							<div className="w-full">
+								<SelectDate {...submissionDate} />
+								{props.errors.submissionDate && props.touched.submissionDate && <Error message={props.errors.submissionDate} />}
 							</div>
-							<FormSelect
-								value={props.values.vendor}
-								name=''
-								id='vendor'
-								error={props.errors.vendor}
-								touched={props.touched.vendor}
-								onChange={props.handleChange}>
-								<option value=''>Add New Vendor</option>
-								{
-									items?.map((vendor, index) => {
-										return <option key={index} value={vendor.name}>{vendor.name}</option>
-									})
-								}
-							</FormSelect>
+							<div className="w-full">
+								<SelectTime {...submissionTime} />
+							</div>
 						</div>
 					</FormInputContainer>
 
 					<FormInputContainer name='When will the answers to the questions be provided?'>
-						<div className="flex gap-2 justify-center items-end">
-							<div className="">
-								<SelectDate {...creationDate} />
-								{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<div className="flex gap-2 justify-center w-full items-end">
+							<div className="w-full">
+								<SelectDate {...answerDate} />
+								{props.errors.answerDate && props.touched.answerDate && <Error message={props.errors.answerDate} />}
 							</div>
-							<FormSelect
-								value={props.values.vendor}
-								name=''
-								id='vendor'
-								error={props.errors.vendor}
-								touched={props.touched.vendor}
-								onChange={props.handleChange}>
-								<option value=''>Add New Vendor</option>
-								{
-									items?.map((vendor, index) => {
-										return <option key={index} value={vendor.name}>{vendor.name}</option>
-									})
-								}
-							</FormSelect>
+							<div className="w-full">
+								<SelectTime {...answerTime} />
+							</div>
+						</div>
+					</FormInputContainer>
+
+					<FormInputContainer name='Enter the Bid Opening Date and Time'>
+						<div className="flex gap-2 justify-center w-full items-end">
+							<div className="w-full">
+								<SelectDate {...bidOpeningDate} />
+								{props.errors.bidOpeningDate && props.touched.bidOpeningDate && <Error message={props.errors.bidOpeningDate} />}
+							</div>
+							<div className="w-full">
+								<SelectTime {...bidOpeningTime} />
+							</div>
 						</div>
 					</FormInputContainer>
 
 					<FormInputContainer name='By what date and time must the sealed and online(IPS) proposals be submitted?'>
-						<div className="flex gap-2 justify-center items-end">
-							<div className="">
-								<SelectDate {...creationDate} />
-								{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+						<div className="flex gap-2 justify-center w-full items-end">
+							<div className="w-full">
+								<SelectDate {...proposalSubmissionDate} />
+								{props.errors.proposalSubmissionDate && props.touched.proposalSubmissionDate && <Error message={props.errors.proposalSubmissionDate} />}
 							</div>
-							<FormSelect
-								value={props.values.vendor}
-								name=''
-								id='vendor'
-								error={props.errors.vendor}
-								touched={props.touched.vendor}
-								onChange={props.handleChange}>
-								<option value=''>Add New Vendor</option>
-								{
-									items?.map((vendor, index) => {
-										return <option key={index} value={vendor.name}>{vendor.name}</option>
-									})
-								}
-							</FormSelect>
+							<div className="w-full">
+								<SelectTime {...proposalSubmissionTime} />
+							</div>
 						</div>
 					</FormInputContainer>
 
@@ -221,26 +323,13 @@ const FormTwo = (props) => {
 						</div>
 						<div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
 							<FormInputContainer name='Location'>
-								<FormInputPlain type={"text"} onChange={props.handleChange} name='stockNumber' placeholder={"Street"} />
-								{props.errors.stockNumber && props.touched.stockNumber && <Error message={props.errors.stockNumber} />}
+								<FormInputPlain type={"text"} onChange={props.handleChange} name='street' placeholder={"Street"} />
+								{props.errors.street && props.touched.street && <Error message={props.errors.street} />}
 							</FormInputContainer>
 
-							<div className="flex gap-2 justify-center items-end justify-center items-end">
+							<div className="flex gap-2 justify-center items-end">
 								<FormSelect
-									value={props.values.vendor}
-									id='city'
-									error={props.errors.city}
-									touched={props.touched.city}
-									onChange={props.handleChange}>
-									<option value=''>Select City</option>
-									{
-										city?.map((city, index) => {
-											return <option key={index} value={city.name}>{city.name}</option>
-										})
-									}
-								</FormSelect>
-								<FormSelect
-									value={props.values.vendor}
+									value={props.values.state}
 									id='state'
 									error={props.errors.state}
 									touched={props.touched.state}
@@ -252,31 +341,35 @@ const FormTwo = (props) => {
 										})
 									}
 								</FormSelect>
+
+								<FormSelect
+									value={props.values.city}
+									id='city'
+									error={props.errors.city}
+									touched={props.touched.city}
+									onChange={props.handleChange}>
+									<option value=''>Select City</option>
+									{
+										city?.map((city, index) => {
+											return <option key={index} value={city.name}>{city.name}</option>
+										})
+									}
+								</FormSelect>
+								
 								<div className="flex flex-col w-full">
 									<FormInputPlain type={"text"} onChange={props.handleChange} name="zipCode" placeholder={"Zip Code"} />
 									{props.errors.zipCode && props.touched.zipCode && <Error message={props.errors.zipCode} />}
 								</div>
 							</div>
 
-							<div className="flex gap-2 justify-center items-end">
-								<div className="">
-									<SelectDate {...creationDate} />
-									{props.errors.creationDate && props.touched.creationDate && <Error message={props.errors.creationDate} />}
+							<div className="flex gap-2 mt-3 justify-center w-full items-end">
+								<div className="w-full">
+									<SelectDate {...date} />
+									{props.errors.date && props.touched.date && <Error message={props.errors.date} />}
 								</div>
-								<FormSelect
-									value={props.values.vendor}
-									name=''
-									id='vendor'
-									error={props.errors.vendor}
-									touched={props.touched.vendor}
-									onChange={props.handleChange}>
-									<option value=''>Add New Vendor</option>
-									{
-										items?.map((vendor, index) => {
-											return <option key={index} value={vendor.name}>{vendor.name}</option>
-										})
-									}
-								</FormSelect>
+								<div className="w-full">
+									<SelectTime {...time} />
+								</div>
 							</div>
 						</div>
 					</div>

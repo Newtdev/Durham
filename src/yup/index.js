@@ -411,6 +411,7 @@ export const RFPTemplateWithMWBESchema = [
 		contractType: Yup.string().required("Field is required")
 	}),
 	Yup.object().shape({
+		issueDate: Yup.string().required("Field is required"),
 		proposalDate: Yup.string().required("Field is required"),
 		proposalTime: Yup.string().required("Field is required"),
 		submissionDate: Yup.string().required("Field is required"),
@@ -421,13 +422,13 @@ export const RFPTemplateWithMWBESchema = [
 		bidOpeningTime: Yup.string().required("Field is required"),
 		proposalSubmissionDate: Yup.string().required("Field is required"),
 		proposalSubmissionTime: Yup.string().required("Field is required"),
-		location: Yup.string().required("Field is required"),
+		street: Yup.string().required("Field is required"),
 		city: Yup.string().required("Field is required"),
 		state: Yup.string().required("Field is required"),
 		zipCode: Yup.string().required("Field is required"),
 		date: Yup.string().required("Field is required"),
 		time: Yup.string().required("Field is required")
-	}),
+	}), 
 	Yup.object().shape({
 		prototype: Yup.string().required("Field is required"),
 		validityPeriod: Yup.string().required("Field is required"),

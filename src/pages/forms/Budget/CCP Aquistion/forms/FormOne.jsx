@@ -118,7 +118,7 @@ const FormOne = (props) => {
 								</div>
 								<div className='flex items-center'>
 									<input
-										id='default-radio-1'
+										id='default-radio-2'
 										type='radio'
 										value='Franchise/Sole Source(Attached)'
 										name='attached'
@@ -127,7 +127,7 @@ const FormOne = (props) => {
 
 									/>
 									<label
-										for='default-radio-1'
+										for='default-radio-2'
 										className='ml-2 text-base text-gray-900'
 									>
 										Franchise/Sole Source(Attached)

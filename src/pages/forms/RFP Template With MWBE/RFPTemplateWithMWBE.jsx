@@ -60,6 +60,7 @@ const RFPTemplateWithMWBEForm = ({ id }) => {
       rfpNumber: "",
       personName: "",
       contractType: "",
+      issueDate: "",
       proposalDate: "",
       proposalTime: "",
       submissionDate: "",
@@ -70,7 +71,7 @@ const RFPTemplateWithMWBEForm = ({ id }) => {
       bidOpeningTime: "",
       proposalSubmissionDate: "",
       proposalSubmissionTime: "",
-      location: "",
+      street: "",
       city: "",
       state: "",
       zipCode: "",
@@ -84,15 +85,16 @@ const RFPTemplateWithMWBEForm = ({ id }) => {
     },
     validationSchema: RFPTemplateWithMWBESchema[pages - 1],
     onSubmit: (values) => {
+      console.log("submit trigered")
       if (pages === 1) {
-        console.log("pages: ", pages)
         dispatch(nextStep(2))
+        console.log("pages: ", pages)
       } else if (pages === 2) {
-        console.log("pages: ", pages)
         dispatch(nextStep(3))
-      } else if (pages === 3) {
         console.log("pages: ", pages)
+      } else if (pages === 3) {
         dispatch(nextStep(4))
+        console.log("pages: ", pages)
         dispatch(saveFormField(values))
         HandleSubmit(values)
 
