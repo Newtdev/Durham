@@ -26,7 +26,9 @@ export const ESSERContractPM = "ESSER-PM-Contract-Template";
 export const leChase = "LeChase-Esser-Contract-Template";
 export const techServices = "Technology-Service-Agreement";
 
+
 export const CCPRequisition = "CCP-Requisition-MODIFIED";
 export const Vendor3BidSlug = "3-bids";
 export const precise_checkList = "Precise-Checklist";
+export const MWBEFormsForBid = "MWBE-Forms-for-Bid";
 export const RFPTemplateWithMWBE = "RFP-Template-With-MWBE";

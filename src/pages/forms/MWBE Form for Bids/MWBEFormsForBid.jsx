@@ -2,29 +2,26 @@ import { FormikProvider, useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { CCPRequisition } from "../../../../shared-component/slug";
-import { ModalOverlay } from "../../../../ui";
-import { CCPRequisitionSchema } from "../../../../yup";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { getStates } from "../../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../../reducer";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { MWBEFormsForBid } from "../../../shared-component/slug";
+import { ModalOverlay } from "../../../ui";
+import { MWBEFormsForBidSchema } from "../../../yup";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { getStates } from "../Advertisement-for-bid-template/reducer";
+import { modal, saveFormField } from "../reducer";
 import FormOne from "./forms/FormOne";
-import FormThree from "./forms/FormThree";
 import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const CCPRequisitionForm = ({ id }) => {
-	const dispatch = useDispatch();
-	const pages = useSelector(page);
-	const show = useSelector(modal);
+const MWBEFormsForBidForm = ({ id }) => {
+  const dispatch = useDispatch();
+  const pages = useSelector(page)
+  const show = useSelector(modal)
 
-	// const pages = 4;
-	const formID = useSelector(project_document_id);
+  const formID = useSelector(project_document_id);
 
-	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
   const HandleSubmit = async (values) => {
     const param = Object.keys(values)
@@ -56,37 +53,23 @@ const CCPRequisitionForm = ({ id }) => {
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      creationDate: "",
-      budgetCode: "",
-      commodityCode: "",
-      requisitionOrder: "",
-      po: "",
-      attached: "",
-      signDate: "",
-      vendor: "",
-      vendorId: "",
-      companyName: "",
-      addressCity: "",
-      addressStreet: "",
-      addressState: "",
-      addressZipCode: "",
-      name: "",
-      city: "",
-      street: "",
-      state: "",
-      zipCode: "",
-      location: "",
-      items: [{
-        stockNumber: "",
-        description: "",
-        quantity: "",
-        unit: "",
-        unitPrice: "",
+      ownerRepDB: "",
+      ownerRepName: "",
+      ownerRepTitle: "",
+      ownerRepDate: "",
+      totalValue: "",
+      minPercentage: "",
+      mwbeInfo: [{
+        mwbeName: "",
+        companyName: "",
+        companyNumber: "",
+        mwbeCategory: "",
+        workDescription: "",
+        contractAmount: ""
       }],
-      shippingCost: "",
-      salesTax: ""
+
     },
-    validationSchema: CCPRequisitionSchema[pages - 1],
+    validationSchema: MWBEFormsForBidSchema[pages - 1],
     onSubmit: (values) => {
       if (pages === 1) {
         console.log("pages: ", pages)
@@ -94,19 +77,10 @@ const CCPRequisitionForm = ({ id }) => {
       } else if (pages === 2) {
         console.log("pages: ", pages)
         dispatch(nextStep(3))
-      } else if (pages === 3) {
-        console.log("pages: ", pages)
-        dispatch(nextStep(4))
-        dispatch(saveFormField(values))
-        HandleSubmit(values)
-
-      } else if (pages === 4) {
-        console.log("pages: ", pages)
         dispatch(saveFormField(values))
         HandleSubmit(values)
       }
     }
-
   });
 
   useEffect(() => {
@@ -117,16 +91,15 @@ const CCPRequisitionForm = ({ id }) => {
     }())
   }, [dispatch]);
 
-  // return <ModalOverlay show={true}>
-  return <ModalOverlay show={id === CCPRequisition && show}>
+  // return <ModalOverlay show={true}`>
+  return <ModalOverlay show={id === MWBEFormsForBid && show}>
     {/* <form onSubmit={formik.handleSubmit}> */}
       {pages === 1 && <FormOne {...formik} />}
       {pages === 2 && <FormTwo {...formik} />}
-      {pages === 3 && <FormThree {...formik} />}
-      {pages === 4 && <Preview />}
+      {pages === 3 && <Preview />}
       {/* <FormThree {...formik} /> */}
     {/* </form> */}
   </ModalOverlay>
 
 }
-export default CCPRequisitionForm;
+export default MWBEFormsForBidForm;

@@ -365,6 +365,29 @@ export const CCPRequisitionSchema = [
 	}),
 ]
 
+export const MWBEFormsForBidSchema = [
+	Yup.object().shape({
+		ownerRepDB: Yup.string().required("Owner rep field is required"),
+		ownerRepName: Yup.string().required("Owner rep name field is required"),
+		ownerRepTitle: Yup.string().required("Owner rep title field is required"),
+		ownerRepDate: Yup.string().required("Owner rep date field is required")
+	}),
+	Yup.object().shape({
+		totalValue: Yup.string().required("Total value field is required"),
+		minPercentage: Yup.string().required("Min percentage field is required"),
+		mwbeInfo: Yup.array().of(
+			Yup.object().shape({
+				mwbeName: Yup.string().required("MWBE name field is required"),
+				companyName: Yup.string().required("Company name field is required"),
+				companyNumber: Yup.string().required("Company number field is required"),
+				mwbeCategory: Yup.string().required("MWBE category field is required"),
+				workDescription: Yup.string().required("Work description field is required"),
+				contractAmount: Yup.string().required("Contract amount field is required")
+			}),
+		),
+	}),
+]
+
 export const CertificateOfSubstantialSchema = Yup.object().shape({
 	purposeOfContract: Yup.string().required("Field is required"),
 	contractEffectDate: Yup.string().required("Field is required"),
