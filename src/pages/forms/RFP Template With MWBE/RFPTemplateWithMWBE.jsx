@@ -2,20 +2,20 @@ import { FormikProvider, useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { CCPRequisition } from "../../../../shared-component/slug";
-import { ModalOverlay } from "../../../../ui";
-import { CCPRequisitionSchema } from "../../../../yup";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { getStates } from "../../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../../reducer";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { RFPTemplateWithMWBE } from "../../../shared-component/slug";
+import { ModalOverlay } from "../../../ui";
+import { RFPTemplateWithMWBESchema } from "../../../yup";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { getStates } from "../Advertisement-for-bid-template/reducer";
+import { modal, saveFormField } from "../reducer";
 import FormOne from "./forms/FormOne";
 import FormThree from "./forms/FormThree";
 import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const CCPRequisitionForm = ({ id }) => {
+const RFPTemplateWithMWBEForm = ({ id }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -56,47 +56,45 @@ const CCPRequisitionForm = ({ id }) => {
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      creationDate: "",
-      budgetCode: "",
-      commodityCode: "",
-      requisitionOrder: "",
-      po: "",
-      attached: "",
-      signDate: "",
-      vendor: "",
-      vendorId: "",
-      companyName: "",
-      addressCity: "",
-      addressStreet: "",
-      addressState: "",
-      addressZipCode: "",
-      name: "",
-      city: "",
+      bidderName: "",
+      rfpNumber: "",
+      personName: "",
+      contractType: "",
+      issueDate: "",
+      proposalDate: "",
+      proposalTime: "",
+      submissionDate: "",
+      submissionTime: "",
+      answerTime: "",
+      answerDate: "",
+      bidOpeningDate: "",
+      bidOpeningTime: "",
+      proposalSubmissionDate: "",
+      proposalSubmissionTime: "",
       street: "",
+      city: "",
       state: "",
       zipCode: "",
-      location: "",
-      items: [{
-        stockNumber: "",
-        description: "",
-        quantity: "",
-        unit: "",
-        unitPrice: "",
-      }],
-      shippingCost: "",
-      salesTax: ""
+      date: "",
+      time: "",
+      prototype: "",
+		  validityPeriod: "",
+      items: "",
+      attachment: "",
+      proposalScope: ""
     },
-    validationSchema: CCPRequisitionSchema[pages - 1],
+    validationSchema: RFPTemplateWithMWBESchema[pages - 1],
     onSubmit: (values) => {
+      console.log("submit trigered")
       if (pages === 1) {
-        console.log("pages: ", pages)
         dispatch(nextStep(2))
+        console.log("pages: ", pages)
       } else if (pages === 2) {
-        console.log("pages: ", pages)
         dispatch(nextStep(3))
-      } else if (pages === 3) {
         console.log("pages: ", pages)
+      } else if (pages === 3) {
         dispatch(nextStep(4))
+        console.log("pages: ", pages)
         dispatch(saveFormField(values))
         HandleSubmit(values)
 
@@ -117,8 +115,8 @@ const CCPRequisitionForm = ({ id }) => {
     }())
   }, [dispatch]);
 
-  // return <ModalOverlay show={true}>
-  return <ModalOverlay show={id === CCPRequisition && show}>
+  return <ModalOverlay show={true}>
+  {/* return <ModalOverlay show={id === RFPTemplateWithMWBE && show}> */}
     {/* <form onSubmit={formik.handleSubmit}> */}
       {pages === 1 && <FormOne {...formik} />}
       {pages === 2 && <FormTwo {...formik} />}
@@ -129,4 +127,4 @@ const CCPRequisitionForm = ({ id }) => {
   </ModalOverlay>
 
 }
-export default CCPRequisitionForm;
+export default RFPTemplateWithMWBEForm;

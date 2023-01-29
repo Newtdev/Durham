@@ -34,7 +34,7 @@ const SelectDate = (props) => {
 	);
 };
 export const SelectTime = (props) => {
-	const { value, setFieldValue, name } = props;
+	const { value, setFieldValue, name, error, touched, placeholder } = props;
 
 	return (
 		<>
@@ -51,10 +51,11 @@ export const SelectTime = (props) => {
 					timeCaption="Time"
 					dateFormat="h:mm aa"
 					className="w-full p-2.5 bg-gray-50"
-					placeholderText="Select Time"
+					placeholderText={placeholder}
 				/>
 				<Time />
 			</label>
+			{error && touched && <Error message={error} />}
 		</>
 	);
 };

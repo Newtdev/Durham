@@ -53,6 +53,7 @@ import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contra
 import { getId, SaveToLocalStorage } from "../../../shared-component";
 import Bids from "../../forms/3 bids";
 import PFForProjects from "../../forms/Precis Checklist/Precis";
+import RFPTemplateWithMWBEForm from "../../forms/RFP Template With MWBE";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID)
@@ -369,6 +370,7 @@ const ProjectDashboard = () => {
 			<OwnerContractorManagementForm id={documentsID} />
 			<Bids id={documentsID} />
 			<PFForProjects id={documentsID} />
+			<RFPTemplateWithMWBEForm id={documentsID} />
 		</section>
 	);
 };
