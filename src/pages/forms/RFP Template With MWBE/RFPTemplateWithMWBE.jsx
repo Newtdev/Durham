@@ -115,8 +115,8 @@ const RFPTemplateWithMWBEForm = ({ id }) => {
     }())
   }, [dispatch]);
 
-  return <ModalOverlay show={true}>
-  {/* return <ModalOverlay show={id === RFPTemplateWithMWBE && show}> */}
+  // return <ModalOverlay show={true}>
+  return <ModalOverlay show={id === RFPTemplateWithMWBE && show}>
     {/* <form onSubmit={formik.handleSubmit}> */}
       {pages === 1 && <FormOne {...formik} />}
       {pages === 2 && <FormTwo {...formik} />}
