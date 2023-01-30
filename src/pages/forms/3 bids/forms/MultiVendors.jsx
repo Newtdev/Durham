@@ -57,7 +57,7 @@ const MultiVendors = (props) => {
 				</div>
 				<div className="mx-6 mb-3">
 					<p className="text-base text-[#693B79]">
-						3 vendors are required to generate this form
+						4 vendors are required to generate this form
 					</p>
 					<div className=" mt-3">
 						<FieldArray

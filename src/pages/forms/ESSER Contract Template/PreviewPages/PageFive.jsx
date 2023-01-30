@@ -150,7 +150,7 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 					<div className=" ml-7">
 						<p className="text-justify">
 							<span className="underline underline-offset-2">
-								Attached Exhibition
+								Attached Exhibit
 							</span>
 							.{" "}
 							<span className="ml-1">

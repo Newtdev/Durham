@@ -1,3 +1,3 @@
-import Capital from "./Capital";
+import CapitalProjectForm from "./Capital";
 
-export default Capital;
+export default CapitalProjectForm;

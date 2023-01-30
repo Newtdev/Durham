@@ -6,7 +6,7 @@ const ModalSlice = createSlice({
 		isModalActive: false,
 		isDownloadModal: false,
 		savedFormResponse: null,
-		savedFieldResponse: null
+		savedFieldResponse: null,
 	},
 	reducers: {
 		showModal: (state) => {
@@ -21,15 +21,15 @@ const ModalSlice = createSlice({
 		showDownload: (state) => {
 			state.isDownloadModal = true;
 		},
-		getFormResponse: (state,action) => {
-			state.savedFormResponse = action.payload
+		getFormResponse: (state, action) => {
+			state.savedFormResponse = action.payload;
 		},
-		saveFormField: (state,action) => {
-			state.savedFieldResponse = action.payload
+		saveFormField: (state, action) => {
+			state.savedFieldResponse = action.payload;
 		},
-		saveFormFieldDefault: (state,action) => {
-			state.savedFieldResponse = action.payload
-		}
+		saveFormFieldDefault: (state, action) => {
+			state.savedFieldResponse = action.payload;
+		},
 	},
 });
 

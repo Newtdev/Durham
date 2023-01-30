@@ -52,6 +52,7 @@ import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contra
 import { getId, SaveToLocalStorage } from "../../../shared-component";
 import Bids from "../../forms/3 bids";
 import PFForProjects from "../../forms/Precis Checklist/Precis";
+import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID)
@@ -357,6 +358,7 @@ const ProjectDashboard = () => {
 			<ProjectCloseoutCheckList id={documentsID} />
 			<NoticeOfAwardConsultant id={documentsID} />
 			<AdvertisementBid id={documentsID} />
+			<CapitalProjectForm id={documentsID} />
 			<CCPRequisitionForm id={documentsID} />
 			<Esser id={documentsID} />
 			<EsserPM id={documentsID} />

@@ -45,12 +45,11 @@ const VendorsInfo = (props) => {
 
 	function CheckState(index) {
 		if (!data.values.information[index].state) {
-			return;
+			return null;
 		}
 		let stat = Object.values(states)?.find(
 			(state) => state.name === data.values.information[index].state
 		);
-		console.log(stat);
 		return !stat
 			? ""
 			: Object.keys(stat.cities)?.map((cur, id) => {
@@ -64,7 +63,7 @@ const VendorsInfo = (props) => {
 
 	function CheckZipCode(index) {
 		if (!data.values.information[index].city) {
-			return;
+			return null;
 		}
 		const city = Object.values(states)?.filter(
 			(state) => state.name === data.values.information[index].state

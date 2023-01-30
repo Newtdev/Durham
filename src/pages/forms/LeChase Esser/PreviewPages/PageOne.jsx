@@ -23,18 +23,18 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 					{moment(form_fields.contractStartDate).format(" YYYY ")}
 				</span>
 				, between the Durham Public Schools Board of Education (the “School
-				System”), 511 Cleveland Street, Durham, NC 27702, and [
+				System”), 511 Cleveland Street, Durham, NC 27702, and
 				<span className={`${nottoBeHighlighted} font-bold`}>
 					{!awardee[0] ? "" : awardee[0].company_name}
 				</span>
-				] (the “Provider”), [
+				(the “Provider”),
 				<span className={`${nottoBeHighlighted} font-bold`}>
 					{!awardee[0] ? "" : awardee[0].street},{" "}
 					{!awardee[0] ? "" : awardee[0].city},{" "}
 					{!awardee[0] ? "" : awardee[0].state},{" "}
 					{!awardee[0] ? "" : awardee[0].zip_code}
 				</span>
-				].
+				.
 			</p>
 
 			<p className="ml-10 mb-4">

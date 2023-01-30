@@ -38,18 +38,13 @@ const Preview = () => {
 	// const content = useSelector(savedResponse);
 	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
-	const [awardee, setAwardee] = useState({});
+	const [awardee, setAwardee] = useState([]);
 
 	useEffect(() => {
 		if (!vendors) {
-			return;
+			return null;
 		}
-		const data = vendors.filter((cur) => {
-			if (cur.role === "Contractor") {
-				return cur;
-			}
-			return {};
-		});
+		const data = vendors.filter((cur) => cur.role === "Contractor");
 		setAwardee(data);
 	}, [vendors]);
 	const props = {

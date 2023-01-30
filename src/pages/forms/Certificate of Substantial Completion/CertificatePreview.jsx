@@ -95,10 +95,10 @@ const CertificatePreview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font adverstise h-[380px]">
 						<div
-							className="bg-white px-12 pt-8 pb-4 text-black adverstise"
+							className="bg-white px-12 my-12 pb-4 text-black adverstise"
 							ref={downloadComponent}>
 							<div>
-								<div className="flex items-center mb-10 ">
+								<div className="flex items-center mb-6 ">
 									<img
 										src={Logo}
 										alt="logo"
@@ -243,7 +243,7 @@ const CertificatePreview = () => {
 										</span>
 									</p>
 
-									<p className="mb-4 adverstise">
+									<p className="mb-4 adverstise leading-normal">
 										The Work performed under this contract has been reviewed and
 										found to be Substantially Complete. Substantial Completion
 										is the stage in the progress of the Work when the Work (or
@@ -383,11 +383,9 @@ const CertificatePreview = () => {
 										The responsibility of the Owner and Contractor for security,
 										maintenance, heat, utilities, damage to the Work and
 										insurance shall be as follows:
-									</p>
-
-									<p>
+										<br />
 										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise`}>
+											className={`font-bold ${nottoBeHighlighted} adverstise break-words`}>
 											{!form_fields ? "" : form_fields.responsibility}
 										</span>
 									</p>

@@ -61,11 +61,23 @@ const CCPRequisitionForm = ({ id }) => {
 			budgetCode: "",
 			commodityCode: "",
 			requisitionOrder: "",
+			poCode: "",
+			selectBox: "",
 			attached: "",
-			signDate: "",
+			signedDate: "",
 			vendor: "",
 			vendorId: "",
 			companyName: "",
+			vendorState: "",
+			vendorCity: "",
+			vendorStreet: "",
+			vendorZipCode: "",
+			personName: "",
+			personStreet: "",
+			personCity: "",
+			personState: "",
+			personZipCode: "",
+
 			address: {
 				city: "",
 				street: "",
@@ -92,10 +104,10 @@ const CCPRequisitionForm = ({ id }) => {
 			shippingCost: "",
 			salesTax: "",
 		},
-		validationSchema: CCPRequisitionSchema,
+		// validationSchema: CCPRequisitionSchema,
 		onSubmit: (values) => {
 			if (pages === 1) {
-				console.log("pages: ", pages);
+				console.log("pages: ", values);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
 				console.log("pages: ", pages);
