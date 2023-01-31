@@ -21,10 +21,10 @@ const FormThree = (props) => {
 				<div className='flex justify-between items-baseline mx-6'>
 					<div>
 						<h3 className='text-lg font-bold text-gray-900'>
-							CCP Requisition - MODIFIED 4-22-22FM
+							RFP Template with MWBE
 						</h3>
 						<p className='text-base text-gray-700'>
-							Order information
+							Section III
 						</p>
 					</div>
 					<button
@@ -88,7 +88,7 @@ const FormThree = (props) => {
 								id='default-radio-2'
 								type='radio'
 								value='Yes'
-								name='attached'
+								name='attachment'
 								className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
 								onChange={props.handleChange}
 							/>

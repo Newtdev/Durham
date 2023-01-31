@@ -54,9 +54,11 @@ import { getId, SaveToLocalStorage } from "../../../shared-component";
 import Bids from "../../forms/3 bids";
 import PFForProjects from "../../forms/Precis Checklist/Precis";
 import RFPTemplateWithMWBEForm from "../../forms/RFP Template With MWBE";
+import MWBEForm from "../../forms/MWBE % Form";
+import ShortSmallFormDesignForm from "../../forms/Short Small Form Design Consultant Agreement";
 
 const ProjectDashboard = () => {
-	// const id = useSelector(getProjectID)
+	// const id = useSelector(getProjectID) 
 	const response = useFetchSingleProjectQuery(getId());
 
 	const navigate = useNavigate();
@@ -371,6 +373,8 @@ const ProjectDashboard = () => {
 			<Bids id={documentsID} />
 			<PFForProjects id={documentsID} />
 			<RFPTemplateWithMWBEForm id={documentsID} />
+			<MWBEForm id={documentsID} />
+			<ShortSmallFormDesignForm id={documentsID} />
 		</section>
 	);
 };
