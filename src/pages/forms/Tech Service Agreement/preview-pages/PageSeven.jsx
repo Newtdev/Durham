@@ -2,8 +2,8 @@ const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	const vendor = !awardee[0] ? "" : awardee[0];
 	return (
 		<div>
-			<div className="mb-2 mt-96 pt-6">
-				<div className="flex mb-2">
+			<div className="mb-2 mt-96 pt-10">
+				<div className="flex mb-2 ">
 					<p>10.</p>
 					<div className=" ml-7">
 						<p className="text-justify">
@@ -118,7 +118,7 @@ const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-2 ">
 				<p>14.</p>
 				<div className=" ml-7">
 					<p className="text-justify">

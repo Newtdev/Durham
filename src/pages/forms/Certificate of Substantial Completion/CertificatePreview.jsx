@@ -95,7 +95,7 @@ const CertificatePreview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font adverstise h-[380px]">
 						<div
-							className="bg-white px-12 my-12 pb-4 text-black adverstise"
+							className="bg-white px-12 my-12 pb-4 text-black adverstise leading-[1.15]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex items-center mb-6 ">
@@ -243,7 +243,7 @@ const CertificatePreview = () => {
 										</span>
 									</p>
 
-									<p className="mb-4 adverstise leading-normal">
+									<p className="mb-4 adverstise ">
 										The Work performed under this contract has been reviewed and
 										found to be Substantially Complete. Substantial Completion
 										is the stage in the progress of the Work when the Work (or

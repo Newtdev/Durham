@@ -1,8 +1,8 @@
 const PageTwo = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="pt-20">
 			<div className="flex mb-2">
-				<span className="ml-3 text-justify ">
+				<span className="pl-7 text-justify ">
 					including but not limited to Worker’s Compensation, Comprehensive
 					General and Contractual Liability Insurance in no event less than the
 					amount of $1,000,000 for each occurrence with an insurer having a
@@ -41,22 +41,22 @@ const PageTwo = () => {
 					insured (except for Workers’ Compensation) on all policies.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>e.</span>
 				<span className="ml-3 text-justify">
 					Contractor is a corporation duly organized, validly existing and in
 					good standing under the laws of the State of California.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>f.</span>
 				<span className="ml-3 text-justify">
 					Each party has all necessary corporate power and authority to enter
 					into and perform this Agreement.
 				</span>
 			</div>
-			<div className="mb-2">
-				<div className="flex mb-2">
+			<div className="mb-2 pl-7">
+				<div className="flex mb-2 ">
 					<span>g.</span>
 					<span className="ml-3 text-justify">
 						Each party owns and shall retain all right, title and interest in
@@ -90,7 +90,7 @@ const PageTwo = () => {
 					</div>
 				</div>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex px-7">
 				<span>h.</span>
 				<span className="ml-3 text-justify">
 					Contractor expressly agrees and acknowledges that all original

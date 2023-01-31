@@ -23,6 +23,7 @@ import PageFour from "./PreviewPages/PageFour";
 import PageFive from "./PreviewPages/PageFive";
 import PageSix from "./PreviewPages/PageSix";
 import PageSeven from "./PreviewPages/PageSeven";
+import PageEight from "./PreviewPages/PageEight";
 
 const Preview = () => {
 	const [highlighted, setHighlighed] = useState(false);
@@ -50,10 +51,10 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!vendors) {
+		if (!vendors && !form_fields) {
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === "Contractor");
+		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
 		setAwardee(data);
 	}, [vendors]);
 
@@ -92,8 +93,9 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white px-12 pt-8 pb-4 text-black Times-font text-[12px]"
-							ref={downloadComponent}>
+							className="bg-white text-black Times-font text-[14.5px]"
+							ref={downloadComponent}
+							style={{ margin: "01in 0.5in" }}>
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{showPage && <PageThree {...pageProps} />}
@@ -101,6 +103,7 @@ const Preview = () => {
 							<PageFive {...pageProps} />
 							<PageSix {...pageProps} />
 							<PageSeven {...pageProps} />
+							<PageEight {...pageProps} />
 						</div>
 					</div>
 					{/* Buttons */}

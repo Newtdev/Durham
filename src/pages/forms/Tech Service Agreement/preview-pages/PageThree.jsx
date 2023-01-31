@@ -1,8 +1,8 @@
 const PageThree = () => {
 	return (
-		<div className="mt-96 pt-10">
-			<div className="mb-2 flex">
-				<span className=" text-justify">
+		<div className="pt-24">
+			<div className="mb-2 flex pl-12">
+				<span className="text-justify">
 					“work made for hire” under the United States copyright laws as the
 					same may be amended from time to time, and are and shall be the sole
 					and exclusive property of DPS BOE. To the extent (if any) that,
@@ -23,9 +23,9 @@ const PageThree = () => {
 					designee the rights noted in subparagraph j above.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>i.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-3 ">
 					Contractor agrees that no license or right is granted by DPS BOE to
 					Contractor, either expressly or by implication, estoppel or otherwise
 					to publish or reproduce, prepare derivative works based upon,
@@ -34,9 +34,9 @@ const PageThree = () => {
 					Contractor, either during or after the term of this Agreement.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>j.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-3 ">
 					Notwithstanding anything to the contrary herein, Contractor and its
 					personnel shall be free to use and employ its and their general
 					skills, know-how, and expertise, and to use, disclose, and employ and
@@ -46,9 +46,9 @@ const PageThree = () => {
 					disclosure of any Proprietary IP of DPS BOE.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>k.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-3 ">
 					Contractor agrees to communicate to DPS every Invention conceived,
 					completed, or reduced to practice during the course of Contractor’s
 					work for DPS which is (i) related to the Statement of Work; or (ii)
@@ -62,7 +62,7 @@ const PageThree = () => {
 					improvements thereof and knowledge related thereto.
 				</span>
 			</div>{" "}
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>l.</span>
 				<span className="ml-3 text-justify ">
 					Contractor agrees to assign and does hereby assign to DPS BOE or DPS

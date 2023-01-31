@@ -1,7 +1,7 @@
 const PageFive = () => {
 	return (
-		<div className="mt-96 pt-10">
-			<div className=" ml-7">
+		<div className="mt-96 pt-20">
+			<div className=" pl-10">
 				<p className="text-justify">
 					<span className="">
 						parties may renew this Agreement only by separate written agreement
@@ -10,8 +10,8 @@ const PageFive = () => {
 				</p>
 			</div>
 			<div className="flex mb-2">
-				{/* <p>4.</p> */}
-				<div className=" ml-7">
+				<p>4.</p>
+				<div className=" pl-7">
 					<p className="text-justify">
 						<span className="underline underline-offset-2">
 							DPS’s COVENANTS
@@ -35,7 +35,7 @@ const PageFive = () => {
 							</span>
 						</div>
 						{/* "b" */}
-						<div className="mb-2 flex">
+						<div className="mb-2 flex ">
 							<span>b.</span>
 							<span className="ml-3 text-justify">
 								DPS reserves the right to exercise prior approval of scheduled
@@ -115,7 +115,7 @@ const PageFive = () => {
 					<div className="mt-2">
 						<div className="mb-2 flex">
 							<span>a.</span>
-							<span className="ml-3 text-justify">
+							<span className="ml-6 text-justify">
 								A party's failure to provide payment or services required under
 								this Agreement or a party's material breach of its obligations
 								under this Agreement and a failure to cure such failure or
@@ -125,7 +125,7 @@ const PageFive = () => {
 						</div>
 						<div className="mb-2 flex">
 							<span>b.</span>
-							<span className="ml-3 text-justify">
+							<span className="ml-6 text-justify">
 								A party's purported unauthorized transfer or assignment of this
 								Agreement or any rights or obligations under this Agreement.
 							</span>

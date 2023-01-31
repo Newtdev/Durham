@@ -37,6 +37,8 @@ const TechPreview = (data) => {
 	let formData = !content?.data ? [] : content?.data?.data;
 	const vendors = formData?.vendors;
 
+	console.log(form_fields);
+
 	const props = {
 		component: downloadComponent,
 		name: "Technology Service Agreement",
@@ -52,10 +54,12 @@ const TechPreview = (data) => {
 		: "bg-white";
 
 	useEffect(() => {
-		if (!vendors) {
-			return;
+		if (!vendors && !form_fields) {
+			return null;
 		}
-		const data = vendors?.filter((cur) => cur.role === "Contractor");
+		const data = vendors?.filter(
+			(cur) => cur.role === form_fields?.addressCopy
+		);
 		setAwardee(data);
 	}, [vendors]);
 
@@ -94,8 +98,9 @@ const TechPreview = (data) => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white px-20 pt-8 pb-4 text-black arial-font text-[12px]"
-							ref={downloadComponent}>
+							className="bg-white -mt-4  pb-4 text-black arial-font text-[14px]"
+							ref={downloadComponent}
+							style={{ margin: "1in" }}>
 							<PageOne {...pageProps} />
 							{showPage && <PageTwo {...pageProps} />}
 							{showPage && <PageThree {...pageProps} />}

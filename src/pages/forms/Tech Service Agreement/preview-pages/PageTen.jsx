@@ -1,10 +1,10 @@
 const PageTen = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-16">
 			<div className="flex mb-2">
 				<div className=" ml-7">
-					<p className="text-justify">
-						<span className="ml-1">
+					<p className="text-justify pl-5">
+						<span className="">
 							convenience only, all of the required registry checks may be
 							completed at no cost by accessing the United States Department of
 							Justice Sex Offender Public Website at http://www.nsopw.gov/.

@@ -230,13 +230,15 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 						<h1 className="font-bold">DURHAM PUBLIC SCHOOLS</h1>
 						<h1 className="font-bold">BOARD OF EDUCATION</h1>
 					</div>
-					<p
-						className={`${nottoBeHighlighted} mb-0  mr-8 border-b-2 border-black`}>
-						{!durham.chairdps_board_of_education
-							? ""
-							: durham_profile.chairdps_board_of_education.name}
+					<p className={`mb-0 mt-10 mr-8 border-t-2 border-black`}>
+						<span className={`${nottoBeHighlighted} mb-0`}>
+							{!durham.chairdps_board_of_education
+								? ""
+								: durham_profile.chairdps_board_of_education.name}
+							{",  "}
+						</span>
+						<span className="">Board Chair </span>
 					</p>
-					<span className="">Board Chair </span>
 				</div>
 				<div className=" overflow-x-hidden">
 					<div className="mb-[60px]">

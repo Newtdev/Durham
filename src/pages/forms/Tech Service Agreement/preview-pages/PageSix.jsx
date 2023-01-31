@@ -1,10 +1,10 @@
 const PageSix = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20">
 			<div className="flex mb-2">
 				<div className=" ml-7">
 					<div className="mt-2">
-						<div className="mb-2 flex">
+						<div className="mb-2 pl-3 flex">
 							<span>c.</span>
 							<span className="ml-3 text-justify">
 								A party or any agent or employee of that party commits, during
@@ -14,7 +14,7 @@ const PageSix = () => {
 							</span>
 						</div>
 
-						<div className="mb-2 flex">
+						<div className="mb-2 pl-3 flex">
 							<span>d.</span>
 							<span className="ml-3 text-justify">
 								A party or any agent or employee of that party commits an act or
@@ -23,7 +23,7 @@ const PageSix = () => {
 							</span>
 						</div>
 
-						<div className="mb-2 flex">
+						<div className="mb-2 pl-3 flex">
 							<span>e.</span>
 							<span className="ml-3 text-justify">
 								A party or any agent or employee of that party commits an act of
@@ -33,7 +33,7 @@ const PageSix = () => {
 							</span>
 						</div>
 
-						<div className="mb-2 flex">
+						<div className="mb-2 pl-3 flex">
 							<span>f.</span>
 							<span className="ml-3 text-justify">
 								Any discovery that any material representation by a party is
@@ -43,7 +43,7 @@ const PageSix = () => {
 							</span>
 						</div>
 
-						<div className="mb-2 flex">
+						<div className="mb-2 pl-3 flex">
 							<span>g.</span>
 							<span className="ml-3 text-justify">
 								A party's cessation of doing business as a going concern,

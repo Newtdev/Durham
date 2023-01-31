@@ -5,7 +5,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
 		<div className="mt-[30rem] pt-10">
 			<p className="font-bold mb-4">Exhibit A</p>
-			<p className="font-bold mb-4">
+			<p className="font-bold mb-4 text-center">
 				Sexual Offender Registry Check Certification Form
 			</p>
 			<p className="font-bold mb-3">
@@ -40,7 +40,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2 text-gray-900">
 						Initial
 					</label>
 				</div>
@@ -54,7 +54,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2 text-gray-900">
 						Supplimental
 					</label>
 				</div>
@@ -67,7 +67,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						checked={form_fields.type === "Annual" ? true : false}
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2  text-gray-900">
 						Annual
 					</label>
 				</div>
@@ -79,7 +79,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				<span className={`${nottoBeHighlighted}`}>
 					{!awardee[0]
 						? ""
-						: awardee[0].first_name + " " + awardee[0].first_name}
+						: awardee[0].first_name + " " + awardee[0].last_name}
 				</span>{" "}
 				,{" "}
 				<span className={`${nottoBeHighlighted}`}>
@@ -143,15 +143,15 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						<span>___________________________________</span>
 					</p>
 					<p className=" mb-3">
-						<span className="mr-3">1.</span>
-						<span>___________________________________</span>
-					</p>
-					<p className=" mb-3">
 						<span className="mr-3">6.</span>
 						<span>___________________________________</span>
 					</p>
-					<p className="">
+					<p className=" mb-3">
 						<span className="mr-3">7.</span>
+						<span>___________________________________</span>
+					</p>
+					<p className="">
+						<span className="mr-3">8.</span>
 						<span>___________________________________</span>
 					</p>
 				</div>
@@ -182,7 +182,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				</span>
 				<span className="pt-1">__________________________</span>
 				{"    "}
-				<span>(signature / date)</span>
+				<span>(print name)</span>
 			</p>
 			<p className="mb-8">
 				__________________________________________ (signature / date)

@@ -62,24 +62,28 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 				</p>
 			</div>
 			<p className="mb-4 text-center font-bold">AGREEMENT</p>
-			<p>1.</p>
-			<div className=" ml-7">
-				<p>
-					<span className="underline underline-offset-2">TERMS OF SERVICE</span>
-					.
-				</p>
-				<div className="mb-2 flex">
-					<span>a.</span>
-					<span className="ml-3 text-justify">
-						Contractor shall, in performing services under this Agreement,
-						exercise the highest degree of care and perform such services in an
-						expert fashion. The services to be performed are described in the
-						Statement of Work attached hereto as Exhibit 1 (“Statement of Work”)
-						and incorporated herein by reference.
-					</span>
+			<div className="flex">
+				<p>1.</p>
+				<div className=" ml-7">
+					<p>
+						<span className="underline underline-offset-2">
+							TERMS OF SERVICE
+						</span>
+						.
+					</p>
+					<div className="mb-2 flex">
+						<span>a.</span>
+						<span className="ml-3 text-justify">
+							Contractor shall, in performing services under this Agreement,
+							exercise the highest degree of care and perform such services in
+							an expert fashion. The services to be performed are described in
+							the Statement of Work attached hereto as Exhibit 1 (“Statement of
+							Work”) and incorporated herein by reference.
+						</span>
+					</div>
 				</div>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex ml-8">
 				<span>b.</span>
 				<span className="ml-3 text-justify">
 					Contractor shall maintain such supplies, equipment and employees as
@@ -91,14 +95,14 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					services and expenses.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex ml-8">
 				<span>c.</span>
 				<span className="ml-3 text-justify">
 					The parties may agree to amend or modify the Statement of Work if
 					documented and signed by the parties.
 				</span>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-2 ml-8">
 				<span>d.</span>
 				<span className="ml-3 text-justify ">
 					Contractor has obtained and shall maintain insurance to sufficiently

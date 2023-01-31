@@ -27,7 +27,7 @@ import DeterminationReducer from "../pages/forms/Determination-low-bidder/reduce
 import ownersContractorFormReducer from "../pages/forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/reducer";
 import Vendor3Bid from "../pages/forms/3 bids/Reducer";
 import PreciseListReducer from "../pages/forms/Precis Checklist/Reducer";
-import CapitalForm from "../pages/forms/Budget/Capital Project Request Form/reducer";
+// import CapitalForm from "../pages/forms/Budget/Capital Project Request Form/reducer";
 
 export const store = configureStore({
 	// reducers
@@ -61,7 +61,7 @@ export const store = configureStore({
 		ownersContractorFormReducer,
 		Vendor3Bid,
 		PreciseListReducer,
-		CapitalForm,
+		// CapitalForm,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

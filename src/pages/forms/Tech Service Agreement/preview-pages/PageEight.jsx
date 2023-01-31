@@ -1,9 +1,9 @@
 const PageEight = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-16">
 			<div className="flex mb-2">
-				<div className=" ml-7">
-					<p className="text-justify">
+				<div className="ml-5">
+					<p className="text-justify pl-7">
 						<span>
 							{" "}
 							to those described in this paragraph and this substantially

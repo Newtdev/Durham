@@ -6,9 +6,9 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 	console.log(durham);
 	return (
 		<div>
-			<div className="flex mb-2 mt-96 pt-10">
+			<div className="flex mb-2 mt-96 pt-20">
 				<div className=" ml-7">
-					<p className="text-justify">
+					<p className="text-justify pl-5">
 						<span>
 							and the DPS BOE. The parties agree that any statements,
 							representations, discussions, or documentation, (including the

@@ -3,13 +3,13 @@ import moment from "moment";
 
 const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
-		<div>
-			<div className="text-center mb-4">
+		<div className="-mt-4">
+			<div className="text-center mb-3">
 				<h1 className="font-bold">DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
 				<h1 className="font-bold">CONTRACT FOR SERVICES</h1>
 			</div>
 
-			<p className="text-justify mb-4">
+			<p className="text-justify mb-3">
 				This contract for services (the “Contract”) is made and entered into
 				this{" "}
 				<span className={`${nottoBeHighlighted}`}>
@@ -25,9 +25,10 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				, between the Durham Public Schools Board of Education (the “School
 				System”), 511 Cleveland Street, Durham, NC 27702, and
 				<span className={`${nottoBeHighlighted} font-bold`}>
-					{!awardee[0] ? "" : awardee[0].company_name}
+					{" "}
+					{!awardee[0] ? "" : awardee[0].company_name}{" "}
 				</span>
-				(the “Provider”),
+				(the “Provider”),{" "}
 				<span className={`${nottoBeHighlighted} font-bold`}>
 					{!awardee[0] ? "" : awardee[0].street},{" "}
 					{!awardee[0] ? "" : awardee[0].city},{" "}
@@ -37,7 +38,7 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				.
 			</p>
 
-			<p className="ml-10 mb-4">
+			<p className="ml-10 mb-3">
 				For and in consideration of the mutual promises set forth in the
 				Contract the parties do mutually agree as follows:
 			</p>
@@ -163,7 +164,8 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 								The School System hereby agrees to compensate Provider at a rate
 								or in the amount of{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{currency(form_fields.calculatePayment).format()}
+									{!form_fields ? "N/A" : form_fields?.calculatePayment}
+									{/* {currency(form_fields.calculatePayment).format()} */}
 								</span>{" "}
 								for services rendered, with total payments not to exceed{" "}
 								<span className={`${nottoBeHighlighted}`}>
@@ -195,11 +197,11 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 								{" "}
 								The services described in the Contract will be provided from{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{moment(form_fields.fromDuration).format("MMMM, D, YYYY ")}
+									{moment(form_fields.fromDuration).format("MMMM, Do, YYYY ")}
 								</span>
 								through{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{moment(form_fields.startDuration).format("MMMM, D, YYYY ")}
+									{moment(form_fields.startDuration).format("MMMM, Do, YYYY ")}
 								</span>
 								unless sooner terminated as herein provided.
 							</span>
@@ -207,25 +209,7 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 					</div>
 				</div>
 
-				{/* 4 */}
-				<div className="flex mb-2">
-					<p>4.</p>
-					<div className=" ml-7">
-						<p className="text-justify">
-							<span className="underline underline-offset-2">Compensation</span>
-							.{" "}
-							<span className="ml-1">
-								{" "}
-								The School System hereby agrees to compensate Provider in the
-								amount of{" "}
-								<span className={`${nottoBeHighlighted}`}>
-									{currency(form_fields.providerCompensation).format()}
-								</span>{" "}
-							</span>
-						</p>
-					</div>
-				</div>
-				<div className="w-full flex justify-center mt-20">
+				<div className="w-full flex justify-center mt-4">
 					<p>1</p>
 				</div>
 			</div>

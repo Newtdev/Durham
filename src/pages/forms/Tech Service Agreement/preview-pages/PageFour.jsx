@@ -3,9 +3,9 @@ import moment from "moment";
 
 const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	return (
-		<div className="mt-96 pt-24">
+		<div className="pt-[3rem]">
 			<div className="mb-2 flex">
-				<span className="ml-3 text-justify mt-6">
+				<span className="pl-14 text-justify mt-4">
 					foreign country. During Contractor’s work with DPS and thereafter,
 					Contractor agrees to execute any patent documents or papers relating
 					to such developments as well as any documents and papers DPS BOE may
@@ -16,7 +16,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					shall be the sole responsibility of DPS.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>m.</span>
 				<span className="ml-3 text-justify">
 					Contractor understands that DPS does not wish to receive from
@@ -27,7 +27,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					third party.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>n.</span>
 				<span className="ml-3 text-justify">
 					Each party warrants to the other that it has good and marketable title
@@ -41,7 +41,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					copyright, or patent.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>o.</span>
 				<span className="ml-3 text-justify">
 					Should DPS permit Contractor to use any DPS equipment, tools or
@@ -54,7 +54,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					or on the alleged negligence of DPS BOE in permitting its use.
 				</span>
 			</div>
-			<div className="mb-2 flex">
+			<div className="mb-2 flex pl-7">
 				<span>p.</span>
 				<span className="ml-3 text-justify">
 					Contractor shall keep accurate records and books of account showing

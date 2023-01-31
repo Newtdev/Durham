@@ -59,6 +59,7 @@ const TechService = ({ id }) => {
 			startDate: "",
 			endDate: "",
 			signedDate: "",
+			addressCopy: "",
 		},
 		validationSchema: TechServiceSchema,
 		onSubmit: (values) => {

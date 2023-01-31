@@ -133,21 +133,22 @@ const Preview = (data) => {
 		// doc.save("pdf");
 		// doc.save(techPDF);
 		// doc.setFontSize(1);
-		const firstPdfResponse = await fetch(techPDF);
-		const firstPdfBlob = await firstPdfResponse.blob();
-		console.log(firstPdfBlob);
-		const a = doc.output(firstPdfBlob);
-		doc.output("dataurlnewwindow", firstPdfBlob);
+		// const firstPdfResponse = await fetch(techPDF);
+		// const firstPdfBlob = await firstPdfResponse.blob();
+		// console.log(firstPdfBlob);
+		// const a = doc.output(firstPdfBlob);
+		// doc.output("dataurlnewwindow", firstPdfBlob);
 		// doc.save(techPDF);
+
 		doc.html(downloadComponent.current, {
 			callback: async function (doc) {
 				// doc.save("techPDf.pdf");
-				doc.setFontSize(1);
+				// doc.setFontSize(1);
 				// doc.add(firstPdfBlob);
-				// const a = doc.output("blob");
+				doc.output("blob");
 				// console.log(a);
 
-				// doc.output("dataurlnewwindow");
+				doc.output("dataurlnewwindow");
 				// getTheBlob(a);
 				// joinPdf();
 				// window.arrayOfPdf.push({
@@ -161,6 +162,12 @@ const Preview = (data) => {
 				// doc.save(a);
 				// doc.output("dataurlnewwindow");
 			},
+			margin: [10, 10, 10, 10],
+			autoPaging: "text",
+			x: 0,
+			y: 0,
+			width: 400, //target width in the PDF document
+			windowWidth: 675,
 		});
 		// console.log(a);
 	};
@@ -205,8 +212,9 @@ const Preview = (data) => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white mx-16 pt-8 pb-4 text-black arial-font text-[11px]"
-							ref={downloadComponent}>
+							className="bg-white pt-8 mx-16 pb-4 text-black arial-font text-[11px]"
+							ref={downloadComponent}
+							style={{ margin: "1in" }}>
 							<div className="text-center mb-4 font-bold">
 								<h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
 								<h1>TECHNOLOGY SERVICES AGREEMENT</h1>

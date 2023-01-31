@@ -1,9 +1,9 @@
 const PageNine = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-16">
 			<div className="flex mb-2">
 				<div className=" ml-7">
-					<p className="text-justify pl-4">
+					<p className="text-justify pl-5">
 						<span className="">
 							“immediate family” means spouse, parent, child, brother, sister,
 							grandparent, or grandchild, and includes step, half, and in-law

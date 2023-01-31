@@ -1,20 +1,38 @@
+import currency from "currency.js";
+
 const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 	return (
-		<div className="mt-[31rem] pt-10">
+		<div className="mt-[31rem] pt-10 leading-[1.21]">
+			{/* 4 */}
 			<div className="flex mb-2">
-				<div className=" ml-10">
+				<p>4.</p>
+				<div className=" ml-7">
 					<p className="text-justify">
-						once all services have been rendered in accordance with the terms of
-						this Contract. Provider shall provide School System with invoice(s)
-						itemized by service provided the number of hours worked and by whom,
-						the date(s) that services were provided, and the amount owed, along
-						with any supporting documentation that may be requested in advance
-						by School System. The School System shall process payments to
-						Provider within forty-five (45) days of submission of such
-						invoice(s).
+						<span className="underline underline-offset-2">Compensation</span>.{" "}
+						<span className="ml-1">
+							{" "}
+							The School System hereby agrees to compensate Provider in the
+							amount of{" "}
+							<span className={`${nottoBeHighlighted}`}>
+								{currency(form_fields.providerCompensation).format()}
+							</span>{" "}
+							once all services have been rendered in accordance with the terms
+							of this Contract. Provider shall provide School System with
+							invoice(s) itemized by service provided the number of hours worked
+							and by whom, the date(s) that services were provided, and the
+							amount owed, along with any supporting documentation that may be
+							requested in advance by School System. The School System shall
+							process payments to Provider within forty-five (45) days of
+							submission of such invoice(s).
+						</span>
 					</p>
 				</div>
 			</div>
+			{/* <div className="flex mb-2">
+				<div className=" ml-10">
+					<p className="text-justify"></p>
+				</div>
+			</div> */}
 
 			<div className="flex mb-2">
 				<p>5.</p>
@@ -41,7 +59,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>6.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -60,7 +78,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>7.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -78,7 +96,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							submitted within thirty (30) days of the rendering of services.
 							The School System shall process payments to Provider within
 							forty-five (45) days of submission of such invoices. Invoices
-							should be sent to
+							should be sent to{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{!form_fields ? "" : form_fields.providerInvoice},
 							</span>{" "}
@@ -89,7 +107,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>8.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -108,7 +126,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>9.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -136,9 +154,9 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>10.</p>
-				<div className=" ml-7">
+				<div className=" ml-5">
 					<p className="text-justify">
 						<span className="underline underline-offset-2">Taxes</span>.{" "}
 						<span className="ml-1">
@@ -153,15 +171,15 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>11.</p>
-				<div className=" ml-7">
+				<div className=" ml-5">
 					<p className="text-justify">
 						<span className="underline underline-offset-2">
 							Monitoring and Auditing
 						</span>
 						.{" "}
-						<span className="ml-1">
+						<span className="">
 							{" "}
 							Provider shall cooperate with the School System, or with any other
 							person or agency as directed by the School System, in monitoring,
@@ -179,22 +197,22 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			{/* <div className="flex mb-3">
 				<p>12.</p>
-				<div className=" ml-7">
+				<div className=" ml-5">
 					<p className="text-justify">
 						<span className="underline underline-offset-2">
 							Confidentiality of Student Information
 						</span>
 						.{" "}
-						<span className="ml-1">
+						<span className="">
 							{" "}
-							{/* PAGE TWO ENDS HERE */}
+							{/* PAGE TWO ENDS HERE 
 							Provider agrees that all student records or personally
 						</span>
 					</p>
 				</div>
-			</div>
+			</div> */}
 			<div className="w-full flex justify-center mt-20">
 				<p>2</p>
 			</div>
