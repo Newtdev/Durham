@@ -197,7 +197,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="w-full flex justify-center mt-10">
+			<div className="w-full flex justify-center mt-6">
 				<p>2</p>
 			</div>
 		</div>

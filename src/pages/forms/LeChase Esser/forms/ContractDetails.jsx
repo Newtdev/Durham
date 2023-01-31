@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
@@ -11,6 +11,7 @@ import { closeModal } from "../../reducer";
 const ContractDetails = (props) => {
 	const formID = useSelector(project_document_id);
 	const response = useFetchFilledFormQuery(formID);
+	const [length, setLength] = useState(0);
 
 	const dispatch = useDispatch();
 	const contractStartDate = {
@@ -63,6 +64,7 @@ const ContractDetails = (props) => {
 		if (!response?.data?.data) {
 			return;
 		}
+		setLength(response?.data?.data?.vendors.length);
 		// console.log(response?.data?.data?.form_fields.providerInvoice)
 		// props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
 		// props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
@@ -78,6 +80,7 @@ const ContractDetails = (props) => {
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4"
 				onSubmit={props.handleSubmit}>
+				{console.log(length)}
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">
@@ -98,6 +101,25 @@ const ContractDetails = (props) => {
 					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
 				</div>
 				<div className="px-4">
+					{length > 1 ? (
+						<FormInputContainer name="Who is the provider?">
+							<FormSelect {...addressCopy}>
+								{!props.values.addressCopy ? (
+									<option>Select</option>
+								) : (
+									<option value={props.values.addressCopy}>
+										{props.values.addressCopy}
+									</option>
+								)}
+								<option value="Design Consultant">Design Consultant</option>
+								<option value="Contractor">Contractor</option>
+								<option value="Engineering">Engineering</option>
+								<option value="Construction Manager">
+									Construction Manager
+								</option>
+							</FormSelect>
+						</FormInputContainer>
+					) : null}
 					<FormInputContainer name="What day is the contract formally made and entered into?">
 						<SelectDate {...contractStartDate} />
 						{props.errors.contractStartDate &&
@@ -118,21 +140,6 @@ const ContractDetails = (props) => {
 								<Error message={props.errors.fromDuration} />
 							)}
 						</div>
-					</FormInputContainer>
-					<FormInputContainer name="Who is the provider?">
-						<FormSelect {...addressCopy}>
-							{!props.values.addressCopy ? (
-								<option>Select</option>
-							) : (
-								<option value={props.values.addressCopy}>
-									{props.values.addressCopy}
-								</option>
-							)}
-							<option value="Design Consultant">Design Consultant</option>
-							<option value="Contractor">Contractor</option>
-							<option value="Engineering">Engineering</option>
-							<option value="Construction Manager">Construction Manager</option>
-						</FormSelect>
 					</FormInputContainer>
 				</div>
 				{/* Buttons */}

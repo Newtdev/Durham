@@ -115,18 +115,13 @@ const PageThree = () => {
 							this Contract on School System property or at School System
 							events. The criminal background checks shall be conducted within
 							30 days of Provider’s execution of the Contract and prior to
-							performing any services on School System property. Provider shall
-							provide the results of said checks to School System within five
-							(5) business days of receipt and shall not assign any Contractual
-							Personnel to provide services under the Contract if said worker
-							has been convicted of or pled nolo contendre to (1) any felony;
-							(2) any crime, whether misdemeanor or felony, involving violence,
+							performing any services on School System property. ,
 							{/* PAGE THREE ENDS HERE */}
 						</span>
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex justify-center mt-6">
+			<div className="w-full flex justify-center mt-10">
 				<p>3</p>
 			</div>
 		</div>

@@ -18,6 +18,7 @@ import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { doConvert } from "../../../shared-component";
+import PageTwo from "./PageTwo";
 
 const CertificatePreview = () => {
 	const dispatch = useDispatch();
@@ -66,6 +67,11 @@ const CertificatePreview = () => {
 			}
 		});
 	}, [vendors]);
+
+	const pageProps = {
+		form_fields,
+		nottoBeHighlighted,
+	};
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -95,8 +101,9 @@ const CertificatePreview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font adverstise h-[380px]">
 						<div
-							className="bg-white px-12 my-12 pb-4 text-black adverstise leading-[1.15]"
-							ref={downloadComponent}>
+							className="bg-white text-black adverstise text-[11.5px] leading-[1.15]"
+							ref={downloadComponent}
+							style={{ margin: "1in" }}>
 							<div>
 								<div className="flex items-center mb-6 ">
 									<img
@@ -384,13 +391,14 @@ const CertificatePreview = () => {
 										maintenance, heat, utilities, damage to the Work and
 										insurance shall be as follows:
 										<br />
-										<span
+										{/* <span
 											className={`font-bold ${nottoBeHighlighted} adverstise break-words`}>
 											{!form_fields ? "" : form_fields.responsibility}
-										</span>
+										</span> */}
 									</p>
 								</div>
 							</div>
+							<PageTwo {...pageProps} />
 						</div>
 					</div>
 

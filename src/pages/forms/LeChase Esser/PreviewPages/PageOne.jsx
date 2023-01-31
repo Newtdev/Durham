@@ -185,7 +185,11 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						<div className="mt-2 text-justify">
 							<span className="pr-4 underline underline-offset-2">2.2.</span>
 							<span className={`${nottoBeHighlighted}`}>
-								{!form_fields ? "N/A" : form_fields?.reimburseObligation}
+								{!form_fields
+									? ""
+									: !form_fields?.reimburseObligation
+									? "N/A"
+									: form_fields?.reimburseObligation}
 							</span>
 						</div>
 					</div>

@@ -4,20 +4,41 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 	return (
 		<div className="mt-96 pt-20 leading-[1.3]">
 			<div className="flex mb-2">
-				<div className="ml-7">
-					<p className="text-justify pl-4">
-						and includes step, half, and in-law relationships. Should Provider
-						become aware of any family relationship covered by this provision or
-						should such a family relationship arise at any time during the term
-						of this Contract, Provider shall immediately disclose the family
-						relationship in writing to the Superintendent of Schools. Unless
-						formally waived by the School System, the existence of a family
-						relationship covered by this Contract is grounds for immediate
-						termination by School System without further financial liability to
-						Provider.
+				<p>19.</p>
+				<div className=" ml-7">
+					<p className="text-justify">
+						<span className="underline underline-offset-2">Anti-Nepotism</span>.{" "}
+						<span className="ml-1">
+							{" "}
+							Provider warrants that, to the best of its knowledge and in the
+							exercise of due diligence, none of its corporate officers,
+							directors, or trustees and none of its employees who will directly
+							provide services under this Contract are immediate family members
+							of any member of the Durham Public Schools Board of Education or
+							of any principal or central office staff administrator employed by
+							the School System. For purposes of this provision, “immediate
+							family” means spouse, parent, child, brother, sister, grandparent,
+							or grandchild,and includes step, half, and in-law relationships.
+							Should Provider become aware of any family relationship covered by
+							this provision or should such a family relationship arise at any
+							time during the term of this Contract, Provider shall immediately
+							disclose the family relationship in writing to the Superintendent
+							of Schools. Unless formally waived by the School System, the
+							existence of a family relationship covered by this Contract is
+							grounds for immediate termination by School System without further
+							financial liability to Provider.
+							{/* PAGE FOUR ENDS HERE */}
+						</span>
 					</p>
 				</div>
 			</div>
+			{/* <div className="flex mb-2">
+				<div className="ml-7">
+					<p className="text-justify pl-4">
+						
+					</p>
+				</div>
+			</div> */}
 
 			{/* 20 */}
 			<div className="flex mb-2">
@@ -199,54 +220,7 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
-				<p>29.</p>
-				<div className=" ml-7">
-					<p className="text-justify">
-						<span className="underline underline-offset-2">
-							Authority to Enter Contract
-						</span>
-						.{" "}
-						<span className="ml-1">
-							{" "}
-							The person(s) executing this Contract on behalf of Provider have
-							authority to do so as an official, binding act of Provider.
-						</span>
-					</p>
-				</div>
-			</div>
-			<div className="my-4">
-				<p>
-					IN WITNESS WHEREOF, the parties have hereunto set their hands and
-					seals the day and year first indicated above.
-				</p>
-			</div>
 
-			<div className="grid grid-cols-2  w-full">
-				<div className=" overflow-x-hidden">
-					<div className="mb-6 pb-1">
-						<h1 className="font-bold">DURHAM PUBLIC SCHOOLS</h1>
-						<h1 className="font-bold">BOARD OF EDUCATION</h1>
-					</div>
-					<p className={`mb-0 mt-10 mr-8 border-t-2 border-black`}>
-						<span className={`${nottoBeHighlighted} mb-0`}>
-							{!durham.chairdps_board_of_education
-								? ""
-								: durham_profile.chairdps_board_of_education.name}
-							{",  "}
-						</span>
-						<span className="">Board Chair </span>
-					</p>
-				</div>
-				<div className=" overflow-x-hidden">
-					<div className="mb-[60px]">
-						<h1 className="font-bold">PROVIDER</h1>
-						<h1></h1>
-					</div>
-					<p className="mb-0 border-b-2 border-black"></p>
-					<span>Authorized Signature</span>
-				</div>
-			</div>
 			<div className="w-full flex justify-center mt-6">
 				<p>5</p>
 			</div>
