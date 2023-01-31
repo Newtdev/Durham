@@ -2,30 +2,41 @@ const PageThree = () => {
 	return (
 		<div className="mt-96 pt-10">
 			<div className="flex mb-2">
-				<div className="ml-12">
-					<p className="text-justify">
-						<span>
-							identifiable information contained in student records that may be
-							obtained in the course of providing services to the School System
-							under this contract shall be subject to the confidentiality and
-							disclosure provisions of applicable federal and state statutes and
-							regulations as well as the School System’s policies. All student
-							records shall be kept in a secure location preventing access by
-							unauthorized individuals. Provider will maintain an access log
-							delineating date, time, agency, and identity of individual
-							accessing student records who is not in the direct employ of
-							Provider. Provider shall not forward to any person other than
-							parent or the School System any student record or personally
-							identifiable information obtained from a student record
-							(including, but not limited to, the student’s identity) without
-							the written consent of the School System. Upon termination of this
-							Contract, Provider shall turn over to the School System all
-							student records or personally identifiable information about
-							students obtained by Provider while providing services under this
-							Contract. Nothing in this Contract gives Provider any right to
-							access any student records or personally identifiable information.
-						</span>
-					</p>
+				<div className="flex mb-3">
+					<p>12.</p>
+					<div className=" ml-5">
+						<p className="text-justify">
+							<span className="underline underline-offset-2">
+								Confidentiality of Student Information
+							</span>
+							.{" "}
+							<span className="">
+								{" "}
+								{/* PAGE TWO ENDS HERE  */}
+								Provider agrees that all student records or personally
+								identifiable information contained in student records that may
+								be obtained in the course of providing services to the School
+								System under this contract shall be subject to the
+								confidentiality and disclosure provisions of applicable federal
+								and state statutes and regulations as well as the School
+								System’s policies. All student records shall be kept in a secure
+								location preventing access by unauthorized individuals. Provider
+								will maintain an access log delineating date, time, agency, and
+								identity of individual accessing student records who is not in
+								the direct employ of Provider. Provider shall not forward to any
+								person other than parent or the School System any student record
+								or personally identifiable information obtained from a student
+								record (including, but not limited to, the student’s identity)
+								without the written consent of the School System. Upon
+								termination of this Contract, Provider shall turn over to the
+								School System all student records or personally identifiable
+								information about students obtained by Provider while providing
+								services under this Contract. Nothing in this Contract gives
+								Provider any right to access any student records or personally
+								identifiable information.
+							</span>
+						</p>
+					</div>
 				</div>
 			</div>
 
