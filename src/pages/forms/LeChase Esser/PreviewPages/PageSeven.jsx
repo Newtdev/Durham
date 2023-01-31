@@ -3,7 +3,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	const project = content?.data?.project || "";
 	// const vendors = content?.data?.vendors || "";
 	return (
-		<div className="mt-[30rem] pt-10">
+		<div className="mt-[30rem] pt-20 leading-[1.3]">
 			<p className="font-bold mb-4">Exhibit A</p>
 			<p className="font-bold mb-4 text-center">
 				Sexual Offender Registry Check Certification Form
@@ -29,8 +29,8 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 			<p className="mb-3">
 				Check the appropriate box to indicate the type of check:
 			</p>
-			<div className="flex justify-between mb-4">
-				<div className="flex items-center mb-5">
+			<div className="flex justify-between mb-2">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -44,7 +44,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						Initial
 					</label>
 				</div>
-				<div className="flex items-center mb-5">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -58,7 +58,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						Supplimental
 					</label>
 				</div>
-				<div className="flex items-center mb-5">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -74,7 +74,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 
 				<p></p>
 			</div>
-			<p className="text-justify mb-4">
+			<p className="text-justify mb-2">
 				I,{" "}
 				<span className={`${nottoBeHighlighted}`}>
 					{!awardee[0]
@@ -184,12 +184,12 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				{"    "}
 				<span>(print name)</span>
 			</p>
-			<p className="mb-8">
+			<p className="mb-6">
 				__________________________________________ (signature / date)
 			</p>
 
-			<small className="text-[11px]">R2468186</small>
-			<div className="w-full flex justify-center mt-20">
+			{/* <small className="text-[11px]">R2468186</small> */}
+			<div className="w-full flex justify-center mt-10">
 				<p>7</p>
 			</div>
 		</div>

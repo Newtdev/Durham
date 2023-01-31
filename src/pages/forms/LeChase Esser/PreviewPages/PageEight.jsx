@@ -3,9 +3,9 @@ const PageEight = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	const project = content?.data?.project || "";
 	// const vendors = content?.data?.vendors || "";
 	return (
-		<div className="mt-[30rem] pt-10 h-screen">
+		<div className="mt-[30rem] pt-10" style={{ height: "10in" }}>
 			<small className="text-[11px] ml-2">R2468186</small>
-			<div className="w-full flex justify-center bg-red-900  ">
+			<div className="w-full flex justify-center h-full   ">
 				<p className="mt-auto">8</p>
 			</div>
 		</div>

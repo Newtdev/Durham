@@ -92,7 +92,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		error: props.errors.position,
 		touched: props.touched.position,
 		name: "position",
-		placeholder: "Enter Title",
+		placeholder: "Enter Name",
 	};
 	const RepName = {
 		value: props.values.owner,

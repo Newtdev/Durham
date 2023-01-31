@@ -3,7 +3,7 @@ import moment from "moment";
 
 const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
-		<div className="-mt-4">
+		<div className="-mt-4n leading-[1.3]">
 			<div className="text-center mb-3">
 				<h1 className="font-bold">DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
 				<h1 className="font-bold">CONTRACT FOR SERVICES</h1>
@@ -197,11 +197,11 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 								{" "}
 								The services described in the Contract will be provided from{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{moment(form_fields.fromDuration).format("MMMM, Do, YYYY ")}
+									{moment(form_fields.fromDuration).format("MMMM Do, YYYY ")}
 								</span>
 								through{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{moment(form_fields.startDuration).format("MMMM, Do, YYYY ")}
+									{moment(form_fields.startDuration).format("MMMM Do, YYYY ")}
 								</span>
 								unless sooner terminated as herein provided.
 							</span>

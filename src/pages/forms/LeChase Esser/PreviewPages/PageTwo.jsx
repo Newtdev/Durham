@@ -2,7 +2,7 @@ import currency from "currency.js";
 
 const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 	return (
-		<div className="mt-[31rem] pt-10 leading-[1.21]">
+		<div className="mt-[31rem] pt-20 leading-[1.21]">
 			{/* 4 */}
 			<div className="flex mb-2">
 				<p>4.</p>
@@ -197,23 +197,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			{/* <div className="flex mb-3">
-				<p>12.</p>
-				<div className=" ml-5">
-					<p className="text-justify">
-						<span className="underline underline-offset-2">
-							Confidentiality of Student Information
-						</span>
-						.{" "}
-						<span className="">
-							{" "}
-							{/* PAGE TWO ENDS HERE 
-							Provider agrees that all student records or personally
-						</span>
-					</p>
-				</div>
-			</div> */}
-			<div className="w-full flex justify-center mt-20">
+			<div className="w-full flex justify-center mt-10">
 				<p>2</p>
 			</div>
 		</div>

@@ -2,21 +2,19 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 	const durham_profile = content?.data?.durham_profile;
 	const durham = !durham_profile ? "" : durham_profile;
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20 leading-[1.3]">
 			<div className="flex mb-2">
-				<p>19.</p>
-				<div className=" ml-7">
-					<p className="text-justify">
-						<span className="ml-1">
-							become aware of any family relationship covered by this provision
-							or should such a family relationship arise at any time during the
-							term of this Contract, Provider shall immediately disclose the
-							family relationship in writing to the Superintendent of Schools.
-							Unless formally waived by the School System, the existence of a
-							family relationship covered by this Contract is grounds for
-							immediate termination by School System without further financial
-							liability to Provider.
-						</span>
+				<div className="ml-7">
+					<p className="text-justify pl-4">
+						and includes step, half, and in-law relationships. Should Provider
+						become aware of any family relationship covered by this provision or
+						should such a family relationship arise at any time during the term
+						of this Contract, Provider shall immediately disclose the family
+						relationship in writing to the Superintendent of Schools. Unless
+						formally waived by the School System, the existence of a family
+						relationship covered by this Contract is grounds for immediate
+						termination by School System without further financial liability to
+						Provider.
 					</p>
 				</div>
 			</div>
@@ -249,7 +247,7 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 					<span>Authorized Signature</span>
 				</div>
 			</div>
-			<div className="w-full flex justify-center mt-20">
+			<div className="w-full flex justify-center mt-6">
 				<p>5</p>
 			</div>
 		</div>

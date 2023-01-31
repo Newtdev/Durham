@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import SelectDate, { FormSelect } from "../../components";
+import SelectDate, { FormInputPlain, FormSelect } from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import { prevChoiceStep } from "../reducer";
@@ -13,6 +13,7 @@ const Compensation = (props) => {
 
 	const durham = useFetchDurhamQuery();
 	const [durhamList, setList] = useState([]);
+	const [show, setShow] = useState(false);
 
 	useEffect(() => {
 		if (!durham?.data) {
@@ -56,13 +57,40 @@ const Compensation = (props) => {
 	};
 	const providerInvoice = {
 		value: props.values.providerInvoice,
-		onChange: props.handleChange,
+		onChange: (e) => {
+			if (e.target.selectedOptions[0].innerText === "Add New") {
+				setShow(true);
+				props.setFieldValue("providerInvoice", "");
+			} else {
+				setShow(false);
+				props.setFieldValue("providerInvoice", e.target.value);
+			}
+		},
 		// name: "To whom should the provider send the invoices?",
 		id: "providerInvoice",
 		type: "text",
 		placeholder: "Name",
 	};
+	// const invoiceName = {
+	// 	value: props.values.invoiceName,
+	// 	onChange: props.handleChange,
+	// 	// name: "To whom should the provider send the invoices?",
+	// 	id: "invoiceName",
+	// 	type: "text",
+	// 	placeholder: "Name",
+	// };
 
+	const recipientName = {
+		value: props.values.recipientCopy,
+		onChange: (e) => {
+			props.setFieldValue("providerInvoice", e.target.value);
+		},
+		error: props.errors.providerInvoice,
+		touched: props.touched.providerInvoice,
+		name: "providerInvoice",
+		type: "text",
+		placeholder: "Enter Name",
+	};
 	const signedDocument = {
 		...props,
 		value: props.values.signedDocument,
@@ -74,6 +102,7 @@ const Compensation = (props) => {
 
 	return (
 		<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-10">
+			{console.log(props.errors)}
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4"
 				onSubmit={props.handleSubmit}>
@@ -189,8 +218,16 @@ const Compensation = (props) => {
 									</option>
 								);
 							})}
+							<option>Add New</option>
 						</FormSelect>
 					</FormInputContainer>
+					{show && (
+						<>
+							<FormInputContainer name="Enter Name">
+								<FormInputPlain {...recipientName} />
+							</FormInputContainer>
+						</>
+					)}
 
 					<FormInputContainer name="When does the Chief Financial Officer sign the document?">
 						<SelectDate {...signedDocument} />

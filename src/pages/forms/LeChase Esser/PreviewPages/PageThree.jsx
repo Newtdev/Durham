@@ -1,10 +1,10 @@
 const PageThree = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20 leading-[1.3]">
 			<div className="flex mb-2">
-				<div className="flex mb-3">
+				<div className="flex">
 					<p>12.</p>
-					<div className=" ml-5">
+					<div className=" ml-6">
 						<p className="text-justify">
 							<span className="underline underline-offset-2">
 								Confidentiality of Student Information
@@ -40,7 +40,7 @@ const PageThree = () => {
 				</div>
 			</div>
 
-			<div className="flex mb-2">
+			<div className="flex mb-3">
 				<p>13.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -121,13 +121,12 @@ const PageThree = () => {
 							Personnel to provide services under the Contract if said worker
 							has been convicted of or pled nolo contendre to (1) any felony;
 							(2) any crime, whether misdemeanor or felony, involving violence,
-							illegal drugs, theft, child abuse, sexual harassment, sexual
 							{/* PAGE THREE ENDS HERE */}
 						</span>
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex justify-center mt-20">
+			<div className="w-full flex justify-center mt-6">
 				<p>3</p>
 			</div>
 		</div>

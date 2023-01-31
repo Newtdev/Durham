@@ -1,34 +1,33 @@
 const PageFour = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20 leading-[1.3]">
 			<div className="flex mb-2">
 				<div className=" ml-10">
-					<p className="text-justify">
-						<span className="ml-1">
-							abuse, or personal impropriety of a sexual nature with regard to
-							any other person; or (3) any other crime or conduct reasonably
-							indicating that the Contractual Personnel poses a threat to the
-							safety or well-being of School System’s students, personnel, or
-							property. In addition, Provider shall obtain all authorizations
-							necessary for School System to conduct additional criminal record
-							and background checks at its sole expense at any time during the
-							term of this Contract. If School System chooses to exercise this
-							right, Provider shall, within five (5) business days of School
-							System’s request, provide the full name, date of birth, and state
-							of residency for the past ten years for all Contractual Personnel
-							providing services under the Contract, along with any other
-							information reasonably requested by School System for purposes of
-							performing criminal record and background checks. Without
-							modifying or waiving any of Provider’s obligations under this
-							provision, School System reserves the right to prohibit any
-							Contractual Personnel from providing services under this Contract
-							if the School System determines, in its sole discretion, that said
-							Contractual Personnel has not undergone a criminal record and
-							background check in accordance with this provision or if the
-							results of such criminal record and background check reasonably
-							indicate that the said Contractual Personnel may pose a threat to
-							the safety or well-being of students, school personnel, or others.
-						</span>
+					<p className="text-justify pl-2">
+						{/* abuse, or personal impropriety of a sexual nature with */}
+						illegal drugs, theft, child abuse, sexual harassment, sexual abuse,
+						or personal impropriety of a sexual nature with regard to any other
+						person; or (3) any other crime or conduct reasonably indicating that
+						the Contractual Personnel poses a threat to the safety or well-being
+						of School System’s students, personnel, or property. In addition,
+						Provider shall obtain all authorizations necessary for School System
+						to conduct additional criminal record and background checks at its
+						sole expense at any time during the term of this Contract. If School
+						System chooses to exercise this right, Provider shall, within five
+						(5) business days of School System’s request, provide the full name,
+						date of birth, and state of residency for the past ten years for all
+						Contractual Personnel providing services under the Contract, along
+						with any other information reasonably requested by School System for
+						purposes of performing criminal record and background checks.
+						Without modifying or waiving any of Provider’s obligations under
+						this provision, School System reserves the right to prohibit any
+						Contractual Personnel from providing services under this Contract if
+						the School System determines, in its sole discretion, that said
+						Contractual Personnel has not undergone a criminal record and
+						background check in accordance with this provision or if the results
+						of such criminal record and background check reasonably indicate
+						that the said Contractual Personnel may pose a threat to the safety
+						or well-being of students, school personnel, or others.
 					</p>
 				</div>
 			</div>
@@ -150,14 +149,13 @@ const PageFour = () => {
 							of any principal or central office staff administrator employed by
 							the School System. For purposes of this provision, “immediate
 							family” means spouse, parent, child, brother, sister, grandparent,
-							or grandchild, and includes step, half, and in-law relationships.
-							Should Provider
+							or grandchild,
 							{/* PAGE FOUR ENDS HERE */}
 						</span>
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex justify-center mt-20">
+			<div className="w-full flex justify-center mt-4">
 				<p>4</p>
 			</div>
 		</div>

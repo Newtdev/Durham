@@ -4,7 +4,7 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 	const durham_profile = content?.data?.durham_profile;
 	const durham = !durham_profile ? "" : durham_profile;
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20" style={{ height: "10in" }}>
 			<div>
 				{/* PAGE FIVE ENDS HERE */}
 
@@ -44,9 +44,9 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 						<span>Date</span>
 					</div>
 				</div>
-				<div className="w-full flex justify-center mt-96">
-					<p>6</p>
-				</div>
+			</div>
+			<div className="w-full h-[73vh] flex justify-center">
+				<p className="mt-auto">6</p>
 			</div>
 		</div>
 	);

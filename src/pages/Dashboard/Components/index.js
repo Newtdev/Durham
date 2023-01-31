@@ -221,7 +221,7 @@ export function TableHeader({ dataArray }) {
 	return (
 		<thead className="text-xs bg-white font-medium">
 			<tr>
-				{dataArray.map((name, index) => {
+				{dataArray?.map((name, index) => {
 					return (
 						<th key={index} scope="col" className="py-4 px-4">
 							{name}
