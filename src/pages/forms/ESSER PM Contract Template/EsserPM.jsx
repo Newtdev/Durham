@@ -63,6 +63,7 @@ const EsserPM = ({ id }) => {
 			providerCompensation: "",
 			providerInvoice: "",
 			signedDocument: "",
+			addressCopy: "",
 			type: "",
 		},
 		validationSchema: EESSERContractSchema[pages],

@@ -98,10 +98,10 @@ const Preview = () => {
 							style={{ margin: "01in 0.5in" }}>
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
-							<PageThree {...pageProps} />
-							<PageFour {...pageProps} />
-							{/* {showPage && <PageThree {...pageProps} />} */}
-							{/* {showPage && <PageFour {...pageProps} />} */}
+							{/* <PageThree {...pageProps} /> */}
+							{/* <PageFour {...pageProps} /> */}
+							{showPage && <PageThree {...pageProps} />}
+							{showPage && <PageFour {...pageProps} />}
 							<PageFive {...pageProps} />
 							<PageSix {...pageProps} />
 							<PageSeven {...pageProps} />
