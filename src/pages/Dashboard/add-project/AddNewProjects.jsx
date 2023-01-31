@@ -9,7 +9,7 @@ const AccordionComponent = ({ getData, documents }) => {
 	const [activeIndex, setActiveIndex] = useState(null);
 	return (
 		<>
-			{documents.map((document, idx) => {
+			{documents?.map((document, idx) => {
 				const { id, name, data } = document;
 
 				const active =

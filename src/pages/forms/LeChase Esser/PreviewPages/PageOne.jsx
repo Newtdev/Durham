@@ -164,7 +164,11 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 								The School System hereby agrees to compensate Provider at a rate
 								or in the amount of{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{!form_fields ? "N/A" : form_fields?.calculatePayment}
+									{!form_fields
+										? ""
+										: !form_fields?.calculatePayment
+										? "N/A"
+										: form_fields?.calculatePayment}
 									{/* {currency(form_fields.calculatePayment).format()} */}
 								</span>{" "}
 								for services rendered, with total payments not to exceed{" "}

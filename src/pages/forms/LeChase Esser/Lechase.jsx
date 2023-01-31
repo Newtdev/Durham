@@ -59,7 +59,7 @@ const LeChase = ({ id }) => {
 			startDuration: "",
 			calculatePayment: "",
 			allowablePayment: "",
-			reimburseObligation: "N/A",
+			reimburseObligation: "",
 			providerCompensation: "",
 			providerInvoice: "",
 			signedDocument: "",

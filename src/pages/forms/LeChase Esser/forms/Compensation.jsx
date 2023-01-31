@@ -81,7 +81,7 @@ const Compensation = (props) => {
 	// };
 
 	const recipientName = {
-		value: props.values.recipientCopy,
+		value: props.values.providerInvoice,
 		onChange: (e) => {
 			props.setFieldValue("providerInvoice", e.target.value);
 		},
@@ -102,7 +102,6 @@ const Compensation = (props) => {
 
 	return (
 		<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-10">
-			{console.log(props.errors)}
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4"
 				onSubmit={props.handleSubmit}>
