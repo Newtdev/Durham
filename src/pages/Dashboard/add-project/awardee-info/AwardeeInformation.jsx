@@ -39,7 +39,7 @@ const AwardeeInformation = (props) => {
 										<button
 											className={`${index === 0 ? "hidden" : "block"}`}
 											onClick={() =>
-												arrayHelpers.pop({
+												arrayHelpers.remove({
 													role: "",
 													type: "old",
 													// awardee: "",

@@ -92,7 +92,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		error: props.errors.position,
 		touched: props.touched.position,
 		name: "position",
-		placeholder: "Enter Name",
+		placeholder: "Enter Title",
 	};
 	const RepName = {
 		value: props.values.owner,
@@ -100,7 +100,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		error: props.errors.owner,
 		touched: props.touched.owner,
 		name: "owner",
-		placeholder: "Enter Title",
+		placeholder: "Enter Name",
 	};
 
 	useEffect(() => {
@@ -114,7 +114,6 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		);
 		setList(list);
 	}, [durham]);
-	console.log(props.errors);
 	return (
 		<div>
 			<div

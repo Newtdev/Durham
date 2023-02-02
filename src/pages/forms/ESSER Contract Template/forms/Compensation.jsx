@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import SelectDate, { FormSelect } from "../../components";
+import SelectDate, { FormInputPlain, FormSelect } from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import { prevChoiceStep } from "../reducer";
@@ -13,6 +13,7 @@ const Compensation = (props) => {
 
 	const durham = useFetchDurhamQuery();
 	const [durhamList, setList] = useState([]);
+	const [show, setShow] = useState(false);
 
 	useEffect(() => {
 		if (!durham?.data) {
@@ -35,14 +36,7 @@ const Compensation = (props) => {
 	};
 	const allowablePayment = {
 		value: props.values.allowablePayment,
-		onChange: (e) => {
-			if (isNaN(e.target.value)) {
-				return;
-			} else {
-				// return e.target.value
-				props.setFieldValue("allowablePayment", e.target.value);
-			}
-		},
+		onChange: props.handleChange,
 		name: "allowablePayment",
 		placeholder: "NOT-TO-EXCEED Amount",
 		type: "text",
@@ -50,32 +44,53 @@ const Compensation = (props) => {
 	const reimburseObligation = {
 		value: props.values.reimburseObligation,
 		onChange: props.handleChange,
-		id: "reimburseObligation",
+		name: "reimburseObligation",
 		type: "text",
 		placeholder: "Obligations",
 	};
 	const providerCompensation = {
 		value: props.values.providerCompensation,
-		onChange: (e) => {
-			if (isNaN(e.target.value)) {
-				return;
-			} else {
-				// return e.target.value
-				props.setFieldValue("providerCompensation", e.target.value);
-			}
-		},
+		onChange: props.handleChange,
 		name: "providerCompensation",
 		type: "text",
 		placeholder: "Amount",
 	};
 	const providerInvoice = {
 		value: props.values.providerInvoice,
-		onChange: props.handleChange,
+		onChange: (e) => {
+			if (e.target.selectedOptions[0].innerText === "Add New") {
+				setShow(true);
+				props.setFieldValue("providerInvoice", "");
+			} else {
+				setShow(false);
+				props.setFieldValue("providerInvoice", e.target.value);
+			}
+		},
+		// name: "To whom should the provider send the invoices?",
 		id: "providerInvoice",
 		type: "text",
 		placeholder: "Name",
 	};
+	// const invoiceName = {
+	// 	value: props.values.invoiceName,
+	// 	onChange: props.handleChange,
+	// 	// name: "To whom should the provider send the invoices?",
+	// 	id: "invoiceName",
+	// 	type: "text",
+	// 	placeholder: "Name",
+	// };
 
+	const recipientName = {
+		value: props.values.providerInvoice,
+		onChange: (e) => {
+			props.setFieldValue("providerInvoice", e.target.value);
+		},
+		error: props.errors.providerInvoice,
+		touched: props.touched.providerInvoice,
+		name: "providerInvoice",
+		type: "text",
+		placeholder: "Enter Name",
+	};
 	const signedDocument = {
 		...props,
 		value: props.values.signedDocument,
@@ -93,7 +108,7 @@ const Compensation = (props) => {
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">
-							ESSER Contract Template
+							LeChase Esser Contract Template
 						</h3>
 						<p className="text-base text-gray-700">Compensation</p>
 					</div>
@@ -173,6 +188,14 @@ const Compensation = (props) => {
 								<Error message={props.errors.providerCompensation} />
 							)}
 					</div>
+					{/* <div className='flex flex-col mb-5'>
+                    <input
+                    {...providerInvoice}
+                    className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
+                    />
+                    {props.errors.providerInvoice && props.touched.providerInvoice && <Error message={props.errors.providerInvoice} />}
+                    
+                </div> */}
 					<FormInputContainer>
 						<label
 							for="default-radio-1"
@@ -194,8 +217,16 @@ const Compensation = (props) => {
 									</option>
 								);
 							})}
+							<option>Add New</option>
 						</FormSelect>
 					</FormInputContainer>
+					{show && (
+						<>
+							<FormInputContainer name="Enter Name">
+								<FormInputPlain {...recipientName} />
+							</FormInputContainer>
+						</>
+					)}
 
 					<FormInputContainer name="When does the Chief Financial Officer sign the document?">
 						<SelectDate {...signedDocument} />

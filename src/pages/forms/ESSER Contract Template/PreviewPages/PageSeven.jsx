@@ -3,7 +3,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	const project = content?.data?.project || "";
 	// const vendors = content?.data?.vendors || "";
 	return (
-		<div className="mt-[30rem] pt-10">
+		<div className="mt-[30rem] pt-20 leading-[1.3]">
 			<p className="font-bold mb-4">Exhibit A</p>
 			<p className="font-bold mb-4 text-center">
 				Sexual Offender Registry Check Certification Form
@@ -20,7 +20,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 					</span>{" "}
 				</div>
 				<div>
-					<span> Project Number:</span>{" "}
+					<span> Project Number/Contract:</span>{" "}
 					<span className="inline-block w-24 border-b border-black">
 						{!project ? "" : project?.number}
 					</span>
@@ -29,8 +29,8 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 			<p className="mb-3">
 				Check the appropriate box to indicate the type of check:
 			</p>
-			<div className="flex justify-between mb-4">
-				<div className="flex items-center mb-5">
+			<div className="flex justify-between mb-2">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -40,11 +40,11 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2 text-gray-900">
 						Initial
 					</label>
 				</div>
-				<div className="flex items-center mb-5">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -54,11 +54,11 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2 text-gray-900">
 						Supplimental
 					</label>
 				</div>
-				<div className="flex items-center mb-5">
+				<div className="flex items-center mb-2">
 					<input
 						id="default-radio-1"
 						type="checkbox"
@@ -67,36 +67,35 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						checked={form_fields.type === "Annual" ? true : false}
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
-					<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+					<label for="default-radio-1" className="ml-2  text-gray-900">
 						Annual
 					</label>
 				</div>
 
 				<p></p>
 			</div>
-			<p className="text-justify mb-4">
+			<p className="text-justify mb-2">
 				I,{" "}
-				<span className={`${nottoBeHighlighted} underline underline-offset-2`}>
+				<span className={`${nottoBeHighlighted}`}>
 					{!awardee[0]
 						? ""
-						: awardee[0].first_name + " " + awardee[0].first_name}
+						: awardee[0].first_name + " " + awardee[0].last_name}
 				</span>{" "}
-				(insert name) ,{" "}
-				<span className={`${nottoBeHighlighted} underline underline-offset-2`}>
+				,{" "}
+				<span className={`${nottoBeHighlighted}`}>
 					{!awardee[0] ? "" : awardee[0].title}
 				</span>{" "}
-				(insert title) of{" "}
-				<span className={`${nottoBeHighlighted} underline underline-offset-2`}>
+				of{" "}
+				<span className={`${nottoBeHighlighted}`}>
 					{!awardee[0] ? "" : awardee[0].company_name}
 				</span>{" "}
-				(insert company name) hereby certify that I have performed all of the
-				required sexual offender registry checks required under this Contract
-				for all Contractual Personnel (employees, agents, ownership personnel,
-				or contractors ) who may be used to deliver goods or provide services
-				under this Contract, including the North Carolina Sex Offender and
-				Public Protection Registration Program, the North Carolina Sexually
-				Violent Predator Registration Program, and the National Sex Offender
-				Registry (
+				hereby certify that I have performed all of the required sexual offender
+				registry checks required under this Contract for all Contractual
+				Personnel (employees, agents, ownership personnel, or contractors ) who
+				may be used to deliver goods or provide services under this Contract,
+				including the North Carolina Sex Offender and Public Protection
+				Registration Program, the North Carolina Sexually Violent Predator
+				Registration Program, and the National Sex Offender Registry (
 				<span className="text-red-500">
 					Note: all of the required registry checks may be completed at no cost
 					by accessing the United States Department of Justice Sex Offender
@@ -144,15 +143,15 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						<span>___________________________________</span>
 					</p>
 					<p className=" mb-3">
-						<span className="mr-3">1.</span>
-						<span>___________________________________</span>
-					</p>
-					<p className=" mb-3">
 						<span className="mr-3">6.</span>
 						<span>___________________________________</span>
 					</p>
-					<p className="">
+					<p className=" mb-3">
 						<span className="mr-3">7.</span>
+						<span>___________________________________</span>
+					</p>
+					<p className="">
+						<span className="mr-3">8.</span>
 						<span>___________________________________</span>
 					</p>
 				</div>
@@ -183,14 +182,14 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 				</span>
 				<span className="pt-1">__________________________</span>
 				{"    "}
-				<span>(signature / date)</span>
+				<span>(print name)</span>
 			</p>
-			<p className="mb-8">
+			<p className="mb-6">
 				__________________________________________ (signature / date)
 			</p>
 
-			<small className="text-[11px]">R2468186</small>
-			<div className="w-full flex justify-center mt-20">
+			{/* <small className="text-[11px]">R2468186</small> */}
+			<div className="w-full flex justify-center mt-6">
 				<p>7</p>
 			</div>
 		</div>

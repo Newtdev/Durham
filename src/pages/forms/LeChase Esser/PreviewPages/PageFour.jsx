@@ -1,6 +1,6 @@
 const PageFour = () => {
 	return (
-		<div className="mt-96 pt-20 leading-[1.3]">
+		<div className="mt-96 pt-[5.2rem] leading-[1.3]">
 			<div className="flex mb-2">
 				<div className=" ml-10">
 					<p className="text-justify pl-2">

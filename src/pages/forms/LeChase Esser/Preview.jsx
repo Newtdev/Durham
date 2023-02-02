@@ -6,6 +6,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	closeDownload,
+	closeModal,
 	fields,
 	openDownload,
 	savedResponse,
@@ -51,12 +52,13 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!vendors && !form_fields) {
+		if (!vendors || !form_fields?.addressCopy) {
+			setAwardee(vendors);
 			return;
 		}
 		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
 		setAwardee(data);
-	}, [vendors]);
+	}, [vendors, form_fields]);
 
 	const pageProps = {
 		content: pageContent,
@@ -84,7 +86,7 @@ const Preview = () => {
 							<p className="text-base text-gray-700">Preview Document</p>
 						</div>
 						<button
-							onClick={() => dispatch(prevChoiceStep(2))}
+							onClick={() => dispatch(closeModal())}
 							type="button"
 							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
 							data-modal-toggle="small-modal">
@@ -96,6 +98,7 @@ const Preview = () => {
 							className="bg-white text-black Times-font text-[14.7px]"
 							ref={downloadComponent}
 							style={{ margin: "01in 0.5in" }}>
+							{console.log(vendors)}
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{/* <PageThree {...pageProps} /> */}

@@ -52,12 +52,15 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!vendors) {
+		console.log(vendors);
+		if (!vendors || !form_fields?.addressCopy) {
+			setAwardee(vendors);
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === "Contractor");
-		setAwardee(data);
-	}, [vendors]);
+		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
+
+		setAwardee(vendors);
+	}, [vendors, form_fields]);
 
 	const pageProps = {
 		content: pageContent,
@@ -97,6 +100,7 @@ const Preview = () => {
 							className="bg-white text-black Times-font text-[14.7px]"
 							ref={downloadComponent}
 							style={{ margin: "1in 0.5in" }}>
+							{console.log(pageProps)}
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{showPage && <PageThree />}

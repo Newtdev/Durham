@@ -1,36 +1,39 @@
 const PageFour = () => {
 	return (
-		<div className="mt-96 pt-10">
+		<div className="mt-96 pt-20 leading-[1.3]">
 			<div className="flex mb-2">
 				<div className=" ml-10">
-					<p className="text-justify">
-						<span className="ml-1">
-							misdemeanor or felony, involving violence, illegal drugs, theft,
-							child abuse, sexual harassment, sexual abuse, or personal
-							impropriety of a sexual nature with regard to any other person; or
-							(3) any other crime or conduct reasonably indicating that the
-							Contractual Personnel poses a threat to the safety or well-being
-							of School System’s students, personnel, or property. In addition,
-							Provider shall obtain all authorizations necessary for School
-							System to conduct additional criminal record and background checks
-							at its sole expense at any time during the term of this Contract.
-							If School System chooses to exercise this right, Provider shall,
-							within five (5) business days of School System’s request, provide
-							the full name, date of birth, and state of residency for the past
-							ten years for all Contractual Personnel providing services under
-							the Contract, along with any other information reasonably
-							requested by School System for purposes of performing criminal
-							record and background checks. Without modifying or waiving any of
-							Provider’s obligations under this provision, School System
-							reserves the right to prohibit any Contractual Personnel from
-							providing services under this Contract if the School System
-							determines, in its sole discretion, that said Contractual
-							Personnel has not undergone a criminal record and background check
-							in accordance with this provision or if the results of such
-							criminal record and background check reasonably indicate that the
-							said Contractual Personnel may pose a threat to the safety or
-							well-being of students, school personnel, or others.
-						</span>
+					<p className="text-justify pl-2">
+						{/* abuse, or personal impropriety of a sexual nature with */}
+						Provider shall provide the results of said checks to School System
+						within five (5) business days of receipt and shall not assign any
+						Contractual Personnel to provide services under the Contract if said
+						worker has been convicted of or pled nolo contendre to (1) any
+						felony; (2) any crime, whether misdemeanor or felony, involving
+						violence illegal drugs, theft, child abuse, sexual harassment,
+						sexual abuse, or personal impropriety of a sexual nature with regard
+						to any other person; or (3) any other crime or conduct reasonably
+						indicating that the Contractual Personnel poses a threat to the
+						safety or well-being of School System’s students, personnel, or
+						property. In addition, Provider shall obtain all authorizations
+						necessary for School System to conduct additional criminal record
+						and background checks at its sole expense at any time during the
+						term of this Contract. If School System chooses to exercise this
+						right, Provider shall, within five (5) business days of School
+						System’s request, provide the full name, date of birth, and state of
+						residency for the past ten years for all Contractual Personnel
+						providing services under the Contract, along with any other
+						information reasonably requested by School System for purposes of
+						performing criminal record and background checks. Without modifying
+						or waiving any of Provider’s obligations under this provision,
+						School System reserves the right to prohibit any Contractual
+						Personnel from providing services under this Contract if the School
+						System determines, in its sole discretion, that said Contractual
+						Personnel has not undergone a criminal record and background check
+						in accordance with this provision or if the results of such criminal
+						record and background check reasonably indicate that the said
+						Contractual Personnel may pose a threat to the safety or well-being
+						of students, school personnel, or others.
 					</p>
 				</div>
 			</div>
@@ -137,27 +140,8 @@ const PageFour = () => {
 				</div>
 			</div>
 			{/* 19 */}
-			<div className="flex mb-2">
-				<p>19.</p>
-				<div className=" ml-7">
-					<p className="text-justify">
-						<span className="underline underline-offset-2">Anti-Nepotism</span>.{" "}
-						<span className="ml-1">
-							{" "}
-							Provider warrants that, to the best of its knowledge and in the
-							exercise of due diligence, none of its corporate officers,
-							directors, or trustees and none of its employees who will directly
-							provide services under this Contract are immediate family members
-							of any member of the Durham Public Schools Board of Education or
-							of any principal or central office staff administrator employed by
-							the School System. For purposes of this provision, “immediate
-							family” means spouse, parent, child, brother,
-							{/* PAGE FOUR ENDS HERE */}
-						</span>
-					</p>
-				</div>
-			</div>
-			<div className="w-full flex justify-center mt-20">
+
+			<div className="w-full flex justify-center mt-4">
 				<p>4</p>
 			</div>
 		</div>

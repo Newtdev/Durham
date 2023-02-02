@@ -75,7 +75,7 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 				<div className="grid grid-cols-2 mt-4 ">
 					<div>
 						<p className="mb-0 border-b-2 border-black">
-							={" "}
+							{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{!durham.chief_finance_officer
 									? ""

@@ -2,14 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	closeDownload,
 	closeModal,
 	fields,
 	openDownload,
+	savedResponse,
 	showDownload,
 } from "../reducer";
+import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
@@ -21,6 +24,7 @@ import PageFour from "./PreviewPages/PageFour";
 import PageFive from "./PreviewPages/PageFive";
 import PageSix from "./PreviewPages/PageSix";
 import PageSeven from "./PreviewPages/PageSeven";
+import PageEight from "./PreviewPages/PageEight";
 
 const Preview = () => {
 	const [highlighted, setHighlighed] = useState(false);
@@ -48,12 +52,14 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!vendors) {
+		if (!vendors || !form_fields?.addressCopy) {
+			setAwardee(vendors);
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === "Contractor");
+		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
+
 		setAwardee(data);
-	}, [vendors]);
+	}, [vendors, form_fields]);
 
 	const pageProps = {
 		content: pageContent,
@@ -90,8 +96,9 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white px-12 pt-8 pb-4 text-black Times-font text-[12px]"
-							ref={downloadComponent}>
+							className="bg-white text-black Times-font text-[14.7px]"
+							ref={downloadComponent}
+							style={{ margin: "1in 0.5in" }}>
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{showPage && <PageThree />}
@@ -99,6 +106,7 @@ const Preview = () => {
 							<PageFive {...pageProps} />
 							<PageSix {...pageProps} />
 							<PageSeven {...pageProps} />
+							<PageEight />
 						</div>
 					</div>
 					{/* Buttons */}

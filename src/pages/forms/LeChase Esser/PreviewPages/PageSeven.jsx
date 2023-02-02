@@ -189,7 +189,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 			</p>
 
 			{/* <small className="text-[11px]">R2468186</small> */}
-			<div className="w-full flex justify-center mt-10">
+			<div className="w-full flex justify-center mt-6">
 				<p>7</p>
 			</div>
 		</div>
