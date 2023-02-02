@@ -358,7 +358,7 @@ const ProjectDashboard = () => {
 			<ProjectCloseoutCheckList id={documentsID} />
 			<NoticeOfAwardConsultant id={documentsID} />
 			<AdvertisementBid id={documentsID} />
-			{/* <CapitalProjectForm id={documentsID} /> */}
+			<CapitalProjectForm id={documentsID} />
 			<CCPRequisitionForm id={documentsID} />
 			<Esser id={documentsID} />
 			<EsserPM id={documentsID} />

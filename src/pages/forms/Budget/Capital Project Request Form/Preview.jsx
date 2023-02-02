@@ -84,10 +84,11 @@ const Capital = () => {
 						</button>
 					</div>
 
-					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
+					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] bg">
 						<div
-							className="px-20 pt-8 pb-4 text-black text-[9.9px] arial-font"
-							ref={downloadComponent}>
+							className="text-black text-[10px] arial-font"
+							ref={downloadComponent}
+							style={{ margin: "0.5in 1in" }}>
 							<div>
 								<div className="mb-4 ml-20">
 									<img
@@ -102,8 +103,8 @@ const Capital = () => {
 										Capital Project Request Form
 									</h1>
 
-									<div className="mb-4 grid grid-cols-2">
-										<p>
+									<div className="mb-4 w-full flex">
+										<p className="">
 											Department:{" "}
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block w-64`}>
@@ -111,11 +112,11 @@ const Capital = () => {
 											</span>
 										</p>
 										<p className="flex">
-											<span className="inline-block w-[12rem]">
+											<span className="inline-block w-[5rem]">
 												Contact Person:{" "}
 											</span>
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-full`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block w-40`}>
 												{form_details.selectOption}
 											</span>
 										</p>
@@ -123,11 +124,11 @@ const Capital = () => {
 
 									<div className="mb-4">
 										<p className="flex w-full">
-											<span className="inline-block w-[4rem]">
+											<span className="inline-block w-[5rem]">
 												Project Title:{" "}
 											</span>
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-full`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block w-full -ml-4`}>
 												{!project.name ? "" : project_details?.name}
 											</span>
 										</p>
@@ -162,11 +163,11 @@ const Capital = () => {
 
 									<div className="m-auto w-[500px] mb-6">
 										<div className="border border-black">
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center border-b border-b-black py-0.5">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Land Purchase
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} px-2`}>
 													{currency(form_details?.purchase).format()}
 												</p>
 											</div>
@@ -230,10 +231,10 @@ const Capital = () => {
 												{moment(form_fields.startDate).format("MMMM D, YYYY ")}
 											</span>
 										</p>
-										<p>
+										<p className="w-full flex justify-center items-center">
 											Est. Project Completion Date:{" "}
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-36`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block ml-1`}>
 												{moment(form_fields.completionDate).format(
 													"MMMM D, YYYY "
 												)}
