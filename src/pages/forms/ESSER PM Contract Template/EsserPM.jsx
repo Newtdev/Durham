@@ -54,9 +54,9 @@ const EsserPM = ({ id }) => {
 
 	const Formik = useFormik({
 		initialValues: {
-			contractStartDate: new Date(),
-			fromDuration: new Date(),
-			startDuration: new Date(),
+			contractStartDate: "",
+			fromDuration: "",
+			startDuration: "",
 			calculatePayment: "",
 			allowablePayment: "",
 			reimburseObligation: "",

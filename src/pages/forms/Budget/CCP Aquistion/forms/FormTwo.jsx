@@ -29,8 +29,8 @@ const FormTwo = (props) => {
 		});
 	};
 
-	function CheckState(index) {
-		if (!props.values.vendorState) {
+	function CheckState(value) {
+		if (!value) {
 			return null;
 		}
 		let stat = Object.values(states)?.find(
@@ -47,7 +47,7 @@ const FormTwo = (props) => {
 			  });
 	}
 
-	function CheckZipCode(index) {
+	function CheckZipCode(value) {
 		if (!props.values.vendorCity) {
 			return null;
 		}
@@ -69,9 +69,6 @@ const FormTwo = (props) => {
 		} else {
 			vendor?.forEach((cur) => {
 				if (cur.company_name === props.values.vendor) {
-					console.log(cur);
-					console.log(props.values);
-
 					props.values.companyName = cur?.company_name;
 					props.values.vendorId = cur?.vendor_id;
 					props.values.vendorState = cur?.state;
@@ -135,7 +132,7 @@ const FormTwo = (props) => {
 							error={props.errors.vendor}
 							touched={props.touched.vendor}
 							onChange={(e) => {
-								if (e.traget.value === "Add New Vendor") {
+								if (e.target.value === "Add New Vendor") {
 									setShow(false);
 									props.setFieldValue("vendor", "");
 								} else {
@@ -223,7 +220,7 @@ const FormTwo = (props) => {
 											{props.values.vendorCity}
 										</option>
 									)}
-									{CheckState()}
+									{CheckState(props.values.vendorCity)}
 								</FormSelect>
 
 								<div className="flex flex-col w-full">
@@ -241,7 +238,7 @@ const FormTwo = (props) => {
 											</option>
 										)}
 
-										{CheckZipCode()}
+										{CheckZipCode(props.values.vendorZipCode)}
 									</FormSelect>
 
 									{props.errors.vendorZipCode &&

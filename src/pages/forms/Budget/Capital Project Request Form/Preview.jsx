@@ -36,7 +36,7 @@ const Capital = () => {
 
 	const props = {
 		component: downloadComponent,
-		name: "Notice of Award - Contractor",
+		name: "Capital Project Request Form",
 		show: show ? "block" : "hidden",
 		stepDefault: stepChoiceDefault,
 		close: closeDownload,
@@ -163,7 +163,7 @@ const Capital = () => {
 
 									<div className="m-auto w-[500px] mb-6">
 										<div className="border border-black">
-											<div className="flex items-center border-b border-b-black py-0.5">
+											<div className="flex items-center justify-between border-b border-b-black py-0.5">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Land Purchase
 												</p>
@@ -171,7 +171,7 @@ const Capital = () => {
 													{currency(form_details?.purchase).format()}
 												</p>
 											</div>
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Planning/Design
 												</p>
@@ -179,7 +179,7 @@ const Capital = () => {
 													{currency(form_details?.design).format()}
 												</p>
 											</div>
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													New Construction/Addition(s)
 												</p>
@@ -187,7 +187,7 @@ const Capital = () => {
 													{currency(form_details?.construction).format()}
 												</p>
 											</div>
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Renovation/Uplift
 												</p>
@@ -195,7 +195,7 @@ const Capital = () => {
 													{currency(form_details?.renovation).format()}
 												</p>
 											</div>
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Repair
 												</p>
@@ -203,7 +203,7 @@ const Capital = () => {
 													{currency(form_details?.repair).format()}
 												</p>
 											</div>
-											<div className="flex items-center border-b border-b-black">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Furniture/Equipment
 												</p>
@@ -211,7 +211,7 @@ const Capital = () => {
 													{currency(form_details?.furniture).format()}
 												</p>
 											</div>
-											<div className="flex items-center">
+											<div className="flex items-center justify-between">
 												<p className="p-2 w-[300px] border-r border-r-black font-bold text-right">
 													Total $
 												</p>

@@ -63,7 +63,7 @@ const Cinput = (props) => {
 		value: props.values.selectOption,
 		onChange: props.handleChange,
 		name: "selectOption",
-		placeholder: "Enter Funding Sources",
+		placeholder: "Enter Name",
 		type: "text",
 	};
 
