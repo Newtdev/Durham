@@ -1,3 +1,4 @@
-import Affidavit from "./Affidavit";
+import MainAffidavit from "./MainAffidavit";
+import Affidavit from "./reducer";
 
-export default Affidavit;
+export { MainAffidavit, Affidavit };

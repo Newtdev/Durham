@@ -30,3 +30,4 @@ export const techServices = "Technology-Service-Agreement";
 
 export const CapitalProjectRequestForm = "Capital-Project-Request-Form";
 export const Vendor3BidSlug = "3-bids";
+export const AffidavitSlug = "E-589CI-Affidavit-of-Capital-Improvement";

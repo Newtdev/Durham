@@ -53,6 +53,7 @@ import VInfo3 from "../../forms/3 bids/VInfo3";
 import CapitalProjectForm from "../../forms/Capital-Project-Request-Form/CapitalProjectForm";
 import PFForProjects from "../../forms/Precis-Checklist/PFForProjects";
 import { DPSMain } from "../../forms/DPS Short Form Engineer";
+import { MainAffidavit } from "../../forms/E-589C Affidavit Of Capital Improvement";
 
 const ProjectDashboard = () => {
   // const id = useSelector(getProjectID)
@@ -378,6 +379,7 @@ const ProjectDashboard = () => {
       <VInfo3 id={documentsID} />
       <PFForProjects id={documentsID} />
       <DPSMain id={documentsID} />
+      <MainAffidavit id={documentsID} />
     </section>
   );
 };

@@ -69,6 +69,14 @@ export const CapitalPForm = Yup.object().shape({
   input: Yup.string().required("Text field is required"),
   Source: Yup.string().required("field is required"),
 });
+export const Affidavit = Yup.object().shape({
+  userType: Yup.string().required("User Type field is required"),
+  boxA: Yup.string().required("Box A field is required"),
+  lessee: Yup.string().required("Select field is required"),
+  realProperty: Yup.string().required("Select Company field is required"),
+  companyName: Yup.string().required("Company Name field is required"),
+  contractor: Yup.string().required("Real contractor field is required"),
+});
 
 export const Vendor3Bid = Yup.object().shape({
   input: Yup.string().required("Text field is required"),

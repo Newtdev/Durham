@@ -152,12 +152,13 @@ export function DashboardButton({
   onClick,
   loading,
   color,
+  disabled,
 }) {
   return (
     <button
-      disabled={!loading ? false : true}
+      disabled={(!loading ? false : true, disabled)}
       onClick={onClick}
-      className={`text-white text-sm font-normal ${width} hover:bg-blue-800 hover:text-white focus:ring-4 ${
+      className={`text-white text-sm font-normal ${width} ${disabled} hover:bg-blue-800 hover:text-white focus:ring-4 ${
         color ? "bg-[#693B79]" : "bg-[#3B6979]"
       } transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
       type={type}

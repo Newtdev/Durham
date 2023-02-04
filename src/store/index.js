@@ -27,6 +27,7 @@ import DeterminationReducer from "../pages/forms/Determination-low-bidder/reduce
 import ownersContractorFormReducer from "../pages/forms/Contract/Owner and Contract Management (CM_CMAR) Agreement/reducer";
 import CapitalForm from "../pages/forms/Capital-Project-Request-Form/reducer";
 import Vendor3Bid from "../pages/forms/3 bids/reducer";
+import { Affidavit } from "../pages/forms/E-589C Affidavit Of Capital Improvement";
 
 export const store = configureStore({
   // reducers
@@ -60,6 +61,7 @@ export const store = configureStore({
     ownersContractorFormReducer,
     CapitalForm,
     Vendor3Bid,
+    Affidavit,
   },
   // middlewares
   middleware: (getDefaultMiddleware) =>
