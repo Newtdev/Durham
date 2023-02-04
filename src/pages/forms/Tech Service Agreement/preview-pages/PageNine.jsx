@@ -1,20 +1,21 @@
 const PageNine = () => {
 	return (
-		<div className="mt-96 pt-16">
+		<div className="mt-96 pt-24" style={{ margin: "1in", height: "10in" }}>
 			<div className="flex mb-2">
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span className="">
-							“immediate family” means spouse, parent, child, brother, sister,
-							grandparent, or grandchild, and includes step, half, and in-law
-							relationships. Should Contractor become aware of any family
-							relationship covered by this provision or should such a family
-							relationship arise at any time during the term of this Agreement,
-							Contractor shall immediately disclose the family relationship in
-							writing to the Superintendent of the Schools. Unless formally
-							waived by the Board, the existence of a family relationship
-							covered by this Agreement is grounds for immediate termination by
-							DPS without further financial liability to Contractor.
+							board. For purposes of this provision, “immediate family” means
+							spouse, parent, child, brother, sister, grandparent, or
+							grandchild, and includes step, half, and in-law relationships.
+							Should Contractor become aware of any family relationship covered
+							by this provision or should such a family relationship arise at
+							any time during the term of this Agreement, Contractor shall
+							immediately disclose the family relationship in writing to the
+							Superintendent of the Schools. Unless formally waived by the
+							Board, the existence of a family relationship covered by this
+							Agreement is grounds for immediate termination by DPS without
+							further financial liability to Contractor.
 						</span>
 					</p>
 				</div>

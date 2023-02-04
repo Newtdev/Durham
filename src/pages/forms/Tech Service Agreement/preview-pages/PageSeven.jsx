@@ -1,8 +1,8 @@
 const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	const vendor = !awardee[0] ? "" : awardee[0];
 	return (
-		<div>
-			<div className="mb-2 mt-96 pt-10">
+		<div style={{ margin: "1in", height: "10in" }}>
+			<div className="mb-2 mt-96 pt-24">
 				<div className="flex mb-2 ">
 					<p>10.</p>
 					<div className=" ml-7">
@@ -48,15 +48,15 @@ const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 						<p>If to Contractor:</p>
 						<div className="ml-14">
 							<div
-								className={`${nottoBeHighlighted} h-4 mb-1 border-b border-gray-900`}>
+								className={`${nottoBeHighlighted} h-4 mb-[4px] border-b border-gray-900 pb-4`}>
 								{vendor?.company_name}
 							</div>
 							<div
-								className={`${nottoBeHighlighted} h-4 mb-1 border-b border-gray-900`}>
+								className={`${nottoBeHighlighted} h-4 mb-[4px] border-b border-gray-900 pb-4`}>
 								{vendor?.street}
 							</div>
 							<div
-								className={`${nottoBeHighlighted} border-b border-gray-900 mb-[20px]`}>
+								className={`${nottoBeHighlighted} border-b border-gray-900 mb-[4px]`}>
 								{vendor?.city + ", " + vendor?.state + ", " + vendor?.zip_code}
 							</div>
 						</div>
@@ -132,9 +132,7 @@ const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							of energy resources, riots, war, or events of similar nature. Any
 							party experiencing such an event shall give as prompt notice as
 							possible under the circumstances and such protection from
-							liability shall last only for the duration of the event of such
-							force majeure. In the event a school facility is damaged by fire,
-							weather, or by events of a similar nature
+							liability shall last only for
 						</span>
 					</p>
 				</div>

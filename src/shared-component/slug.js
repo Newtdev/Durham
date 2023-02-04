@@ -30,3 +30,6 @@ export const CCPRequisition = "CCP-Requisition-MODIFIED";
 export const Vendor3BidSlug = "3-bids";
 export const precise_checkList = "Precise-Checklist";
 export const CapitalProjectRequestForm = "Capital-Project-Request-Form";
+export const MWBEFormId = "MWBE-Participation-Sheet-(%-Form)";
+export const ShortSmallFormDesign =
+	"Short-Small-Form-Design-Consultant-Agreement";

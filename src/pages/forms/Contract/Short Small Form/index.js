@@ -1,3 +1,3 @@
-import ShortSmall from "./ShortSmall";
+import ShortSmallFormDesignForm from "./ShortSmallForm";
 
-export default ShortSmall;
+export default ShortSmallFormDesignForm;

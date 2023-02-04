@@ -37,8 +37,6 @@ const TechPreview = (data) => {
 	let formData = !content?.data ? [] : content?.data?.data;
 	const vendors = formData?.vendors;
 
-	console.log(form_fields);
-
 	const props = {
 		component: downloadComponent,
 		name: "Technology Service Agreement",
@@ -98,19 +96,25 @@ const TechPreview = (data) => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white -mt-4  pb-4 text-black arial-font text-[14px]"
-							ref={downloadComponent}
-							style={{ margin: "1in" }}>
+							className="bg-white -mt-4  pb-4 text-black arial-font text-[14.8px] leading-[1.3]"
+							ref={downloadComponent}>
 							<PageOne {...pageProps} />
-							{showPage && <PageTwo {...pageProps} />}
-							{showPage && <PageThree {...pageProps} />}
+							<PageTwo {...pageProps} />
+							<PageThree {...pageProps} />
+							{/* {showPage && <PageTwo {...pageProps} />} */}
+							{/* {showPage && <PageThree {...pageProps} />} */}
 							<PageFour {...pageProps} />
-							{showPage && <PageFive {...pageProps} />}
-							{showPage && <PageSix {...pageProps} />}
+							<PageFive {...pageProps} />
+							<PageSix {...pageProps} />
+							{/* {showPage && <PageFive {...pageProps} />} */}
+							{/* {showPage && <PageSix {...pageProps} />} */}
 							<PageSeven {...pageProps} />
-							{showPage && <PageEight {...pageProps} />}
-							{showPage && <PageNine {...pageProps} />}
-							{showPage && <PageTen {...pageProps} />}
+							<PageEight {...pageProps} />
+							<PageNine {...pageProps} />
+							<PageTen {...pageProps} />
+							{/* {showPage && <PageEight {...pageProps} />} */}
+							{/* {showPage && <PageNine {...pageProps} />} */}
+							{/* {showPage && <PageTen {...pageProps} />} */}
 							<PageEleven {...pageProps} />
 						</div>
 					</div>

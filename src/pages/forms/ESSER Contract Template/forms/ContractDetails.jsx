@@ -14,6 +14,7 @@ const ContractDetails = (props) => {
 	const [length, setLength] = useState(0);
 
 	const dispatch = useDispatch();
+
 	const contractStartDate = {
 		...props,
 		value: props.values.contractStartDate,

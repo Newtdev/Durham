@@ -1,16 +1,19 @@
 const PageEight = () => {
 	return (
-		<div className="mt-96 pt-16">
+		<div className="mt-96 pt-24" style={{ margin: "1in", height: "10in" }}>
 			<div className="flex mb-2">
 				<div className="ml-5">
 					<p className="text-justify pl-7">
 						<span>
 							{" "}
-							to those described in this paragraph and this substantially
-							prevents DPS's use of Contractor's service, DPS shall have the
-							option of suspending payments due under the Agreement for the time
-							period use is substantially prevented or terminating the Agreement
-							immediately without penalty or further expense.
+							the duration of the event of such force majeure. In the event a
+							school facility is damaged by fire, weather, or by events of a
+							similar nature to those described in this paragraph and this
+							substantially prevents DPS's use of Contractor's service, DPS
+							shall have the option of suspending payments due under the
+							Agreement for the time period use is substantially prevented or
+							terminating the Agreement immediately without penalty or further
+							expense.
 						</span>
 					</p>
 				</div>
@@ -125,7 +128,7 @@ const PageEight = () => {
 							provide services under this Agreement are immediate family members
 							of any member of the Durham Public Schools Board of Education or
 							of any principal or central office staff administrator employed by
-							the Board. For purposes of this provision,
+							the
 						</span>
 					</p>
 				</div>

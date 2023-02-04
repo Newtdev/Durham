@@ -42,9 +42,9 @@ const Preview = () => {
 
 	useEffect(() => {
 		if (!vendors) {
-			return null;
+			return;
 		}
-		const data = vendors.filter((cur) => cur.role === "Contractor");
+		const data = vendors?.filter((cur) => cur.role === "Contractor");
 		setAwardee(data);
 	}, [vendors]);
 	const props = {

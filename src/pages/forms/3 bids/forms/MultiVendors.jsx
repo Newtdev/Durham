@@ -1,13 +1,10 @@
 import { FieldArray } from "formik";
 import React, { Fragment } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetVendorsQuery } from "../../../../features/services/api";
+
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import { getList } from "../../Advertisement-for-bid-template/reducer";
-import { FormSelect } from "../../components";
-import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
+
 import { closeModal } from "../../reducer";
 // import { closeModal } from "../../reducer";
 import { prevChoiceStep } from "../Reducer";

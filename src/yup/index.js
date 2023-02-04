@@ -399,3 +399,22 @@ export const Bidschema = [
 		),
 	}),
 ];
+export const MWBEFormSchema = Yup.object().shape({
+	purpose: Yup.string().required("field is required"),
+	totalContractAmount: Yup.string().required("field is required"),
+	contractors: Yup.array().of(
+		Yup.object().shape({
+			contractor: Yup.string().required("field is required"),
+			companyName: Yup.string().required("field is required"),
+			description: Yup.string().required("field is required"),
+			companyType: Yup.string().required("field is required"),
+			companyContractAmount: Yup.string().required("field is required"),
+		})
+	),
+});
+
+export const ShortSmallFormDesignSchema = Yup.object().shape({
+	agreementDate: Yup.string().required("Field is required"),
+	ownerEmail: Yup.string().required("Field is required"),
+	signDate: Yup.string().required("Field is required"),
+});

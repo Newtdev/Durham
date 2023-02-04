@@ -1,23 +1,20 @@
 import moment from "moment";
 
 const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
-	const durham = formData?.durham_profile;
+	const durham = !formData?.durham_profile ? "" : formData.durham_profile;
 	const vendor = !awardee[0] ? "" : awardee[0];
-	console.log(durham);
 	return (
-		<div>
-			<div className="flex mb-2 mt-96 pt-20">
+		<div style={{ margin: "1in" }}>
+			<div className="flex mb-2 mt-96 pt-20 ">
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span>
-							and the DPS BOE. The parties agree that any statements,
-							representations, discussions, or documentation, (including the
-							attached exhibits) whether made prior to or contemporaneously with
-							the execution of this Agreement, have been merged into this
-							Agreement and this Agreement fairly and comprehensively
-							memorializes the final negotiated agreement between the parties.
-							The Agreement shall not be modified or amended in any manner
-							except in writing signed by both parties hereto.
+							contemporaneously with the execution of this Agreement, have been
+							merged into this Agreement and this Agreement fairly and
+							comprehensively memorializes the final negotiated agreement
+							between the parties. The Agreement shall not be modified or
+							amended in any manner except in writing signed by both parties
+							hereto.
 						</span>
 					</p>
 				</div>
@@ -77,9 +74,9 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 				<div className="">
 					<p className="-mb-2">
 						<span className={`${nottoBeHighlighted} mr-40`}>
-							{!durham.chief_finance_officer
+							{!durham?.chief_finance_officer?.name
 								? ""
-								: durham.chief_finance_officer?.name}
+								: durham?.chief_finance_officer?.name}
 						</span>
 
 						<span className={`${nottoBeHighlighted}`}>
@@ -94,10 +91,10 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 						<span className="ml-[170px]">Date</span>
 					</p>
 				</div>
-			</div>
-			<div className="w-full flex items-center justify-center mt-8">
-				{/* PAGE ONE ENDS HERE */}
-				<p>11</p>
+				<div className="w-full flex items-start justify-center mt-40 pt-1">
+					{/* PAGE ONE ENDS HERE */}
+					<span>11</span>
+				</div>
 			</div>
 		</div>
 	);

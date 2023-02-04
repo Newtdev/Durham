@@ -1,24 +1,22 @@
 const PageTwo = () => {
 	return (
-		<div className="pt-20">
+		<div className="" style={{ margin: "1in" }}>
 			<div className="flex mb-2">
-				<span className="pl-7 text-justify ">
-					including but not limited to Worker’s Compensation, Comprehensive
-					General and Contractual Liability Insurance in no event less than the
-					amount of $1,000,000 for each occurrence with an insurer having a
-					“Best Policyholders” rating of B+ or better. DPS BOE shall be added as
-					an additional insured on the Certificate of Insurance. Copies of
+				<span className="pl-20 text-justify ">
+					$1,000,000 for each occurrence with an insurer having a “Best
+					Policyholders” rating of B+ or better. DPS BOE shall be added as an
+					additional insured on the Certificate of Insurance. Copies of
 					certificates of insurance shall be provided to DPS and shall include
 					the following:
 				</span>
 			</div>
-			<div className="ml-12 mb-2 flex">
+			<div className="ml-28 mb-2 flex">
 				<span>i.</span>
 				<span className="ml-3">
 					Name of insurance company, policy number and expiration date;
 				</span>
 			</div>
-			<div className="ml-12 mb-2 flex">
+			<div className=" ml-28 mb-2 flex">
 				<span>ii.</span>
 				<span className="ml-3">
 					The coverage required and the limits on each, including the amount of
@@ -26,7 +24,7 @@ const PageTwo = () => {
 					of the Contractor);
 				</span>
 			</div>
-			<div className="ml-12 mb-2 flex">
+			<div className="ml-28 mb-2 flex">
 				<span>iii.</span>
 				<span className="ml-3">
 					A statement indicating that DPS BOE shall receive thirty (30) days’
@@ -34,28 +32,28 @@ const PageTwo = () => {
 					policies which may affect DPS BOE’s interest; and
 				</span>
 			</div>
-			<div className="ml-12 mb-2 flex">
+			<div className="ml-28 mb-2 flex">
 				<span>iv.</span>
 				<span className="ml-3">
 					A statement confirming that DPS BOE has been added as an additional
 					insured (except for Workers’ Compensation) on all policies.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 pl-14 flex ">
 				<span>e.</span>
 				<span className="ml-3 text-justify">
 					Contractor is a corporation duly organized, validly existing and in
 					good standing under the laws of the State of California.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 flex pl-14">
 				<span>f.</span>
 				<span className="ml-3 text-justify">
 					Each party has all necessary corporate power and authority to enter
 					into and perform this Agreement.
 				</span>
 			</div>
-			<div className="mb-2 pl-7">
+			<div className="mb-2 pl-14">
 				<div className="flex mb-2 ">
 					<span>g.</span>
 					<span className="ml-3 text-justify">
@@ -90,14 +88,14 @@ const PageTwo = () => {
 					</div>
 				</div>
 			</div>
-			<div className="mb-2 flex px-7">
+			<div className="mb-2 flex pl-14">
 				<span>h.</span>
 				<span className="ml-3 text-justify">
 					Contractor expressly agrees and acknowledges that all original
 					materials developed by Contractor in connection with Contractor’s work
 					for DPS, including but not limited to computer programs, listings,
 					designs, specifications, flow charts and other documentation, are to
-					be considered
+					be considered “work made for hire”
 				</span>
 			</div>
 			<div className="w-full flex items-center justify-center mt-8">

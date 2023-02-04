@@ -3,7 +3,7 @@ import moment from "moment";
 const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	const vendor = !awardee[0] ? "" : awardee[0];
 	return (
-		<div>
+		<div style={{ margin: "1in", pageBreakAfter: "always" }}>
 			<div className="text-center mb-4 font-bold">
 				<h1>DURHAM PUBLIC SCHOOLS BOARD OF EDUCATION</h1>
 				<h1>TECHNOLOGY SERVICES AGREEMENT</h1>
@@ -62,7 +62,7 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 				</p>
 			</div>
 			<p className="mb-4 text-center font-bold">AGREEMENT</p>
-			<div className="flex">
+			<div className="flex ml-4">
 				<p>1.</p>
 				<div className=" ml-7">
 					<p>
@@ -73,7 +73,7 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					</p>
 					<div className="mb-2 flex">
 						<span>a.</span>
-						<span className="ml-3 text-justify">
+						<span className="ml-2 text-justify">
 							Contractor shall, in performing services under this Agreement,
 							exercise the highest degree of care and perform such services in
 							an expert fashion. The services to be performed are described in
@@ -83,9 +83,9 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					</div>
 				</div>
 			</div>
-			<div className="mb-2 flex ml-8">
+			<div className="mb-2 flex ml-9 pl-4">
 				<span>b.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-2 text-justify">
 					Contractor shall maintain such supplies, equipment and employees as
 					are necessary to perform of the services provided for herein.
 					Contractor warrants its services and warrants that the contracted for
@@ -95,21 +95,21 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					services and expenses.
 				</span>
 			</div>
-			<div className="mb-2 flex ml-8">
+			<div className="mb-2 flex ml-8 pl-4">
 				<span>c.</span>
 				<span className="ml-3 text-justify">
 					The parties may agree to amend or modify the Statement of Work if
 					documented and signed by the parties.
 				</span>
 			</div>
-			<div className="flex mb-2 ml-8">
+			<div className="flex mb-2 ml-8 pl-4">
 				<span>d.</span>
 				<span className="ml-3 text-justify ">
 					Contractor has obtained and shall maintain insurance to sufficiently
-					protect
-					<br />
-					<br />
-					Contractor and DPS BOE from any and all potential claims or damages,
+					protect Contractor and DPS BOE from any and all potential claims or
+					damages, including but not limited to Worker’s Compensation,
+					Comprehensive General and Contractual Liability Insurance in no event
+					less than the amount of
 				</span>
 			</div>
 			<div className="w-full flex items-center justify-center mt-8">

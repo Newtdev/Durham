@@ -57,8 +57,7 @@ export default SelectDate;
 
 export function FormSelect(props) {
 	// const { name, error, touched } = props;
-	const { id, values, children, onChange, name, error, touched, onFocus } =
-		props;
+	const { id, values, children, onChange, name, error, touched } = props;
 	return (
 		<div className=" w-full">
 			<Label
@@ -106,7 +105,8 @@ export const FormCheckBox = ({ props, data }) => {
 };
 
 export const FormTextArea = (props) => {
-	const { onChange, value, placeholder, id, name, error, touched } = props;
+	const { onChange, value, placeholder, id, name, error, touched, onBlur } =
+		props;
 	return (
 		<div className="mb-4">
 			<Label
@@ -114,6 +114,7 @@ export const FormTextArea = (props) => {
 				styles="block mb-2 text-sm font-medium text-gray-900"
 			/>
 			<textarea
+				onBlur={onBlur}
 				rows={4}
 				className="bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 				name={id}

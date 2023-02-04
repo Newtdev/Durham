@@ -1,11 +1,11 @@
 const PageFive = () => {
 	return (
-		<div className="mt-96 pt-20">
+		<div className="pt-24" style={{ margin: "0.5in 1in", height: "10in" }}>
 			<div className=" pl-10">
 				<p className="text-justify">
 					<span className="">
-						parties may renew this Agreement only by separate written agreement
-						or addendum hereto, which must be executed by both parties.
+						this Agreement only by separate written agreement or addendum
+						hereto, which must be executed by both parties.
 					</span>
 				</p>
 			</div>
@@ -26,7 +26,7 @@ const PageFive = () => {
 					{/* Nested Letters Container */}
 					<div className="mt-2">
 						{/* "a" */}
-						<div className="mb-2 flex">
+						<div className="mb-2 flex ">
 							<span>a.</span>
 							<span className="ml-3 text-justify">
 								DPS shall grant access to equipment as needed according to the

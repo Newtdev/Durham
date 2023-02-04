@@ -29,8 +29,8 @@ const FormTwo = (props) => {
 		});
 	};
 
-	function CheckState(value) {
-		if (!value) {
+	function CheckState(index) {
+		if (!props.values.vendorState) {
 			return null;
 		}
 		let stat = Object.values(states)?.find(
@@ -47,14 +47,17 @@ const FormTwo = (props) => {
 			  });
 	}
 
-	function CheckZipCode(value) {
+	function CheckZipCode(index) {
 		if (!props.values.vendorCity) {
 			return null;
 		}
+		console.log(Object.values(states));
 		const city = Object.values(states)?.filter(
 			(state) => state.name === props.values.vendorCity
 		);
+		console.log(city);
 		const zipcode = !city ? "" : city?.find((cities) => cities);
+		console.log(zipcode);
 		return zipcode?.cities[props.values.vendorCity]?.map((zipcode, index) => {
 			return (
 				<option key={index} value={zipcode}>
@@ -220,7 +223,7 @@ const FormTwo = (props) => {
 											{props.values.vendorCity}
 										</option>
 									)}
-									{CheckState(props.values.vendorCity)}
+									{CheckState()}
 								</FormSelect>
 
 								<div className="flex flex-col w-full">
@@ -238,7 +241,7 @@ const FormTwo = (props) => {
 											</option>
 										)}
 
-										{CheckZipCode(props.values.vendorZipCode)}
+										{CheckZipCode()}
 									</FormSelect>
 
 									{props.errors.vendorZipCode &&

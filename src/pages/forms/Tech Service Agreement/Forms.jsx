@@ -3,11 +3,17 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { FormInputContainer } from "../Notice-to-Proceed/Forms";
 import SelectDate, { FormSelect } from "../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../reducer";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { useEffect, useState } from "react";
 
 const Forms = (props) => {
 	const dispatch = useDispatch();
+	const formID = useSelector(project_document_id);
+	const response = useFetchFilledFormQuery(formID);
+	const [length, setLength] = useState(0);
 
 	const creationDate = {
 		...props,
@@ -76,6 +82,22 @@ const Forms = (props) => {
 		placeholder: "select",
 		//    prevPage
 	};
+
+	useEffect(() => {
+		if (!response?.data?.data) {
+			return;
+		}
+		setLength(response?.data?.data?.vendors.length);
+		// console.log(response?.data?.data?.form_fields.providerInvoice)
+		// props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
+		// props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
+		// props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)
+		// props.setFieldValue('providerCompensation',response?.data?.data?.form_fields.providerCompensation)
+		// props.setFieldValue('signedDocument',response?.data?.data?.form_fields.signedDocument)
+		// props.setFieldValue('providerInvoice',response?.data?.data?.form_fields.providerInvoice)
+		// props.setFieldValue('type',response?.data?.data?.form_fields.type)
+	}, [response?.data?.data]);
+
 	return (
 		<div>
 			<div>
@@ -104,6 +126,25 @@ const Forms = (props) => {
 						</div>
 
 						<div className="mx-6 mt-4 mb-12">
+							{length > 0 ? (
+								<FormInputContainer name="Who is the provider?">
+									<FormSelect {...addressCopy}>
+										{!props.values.addressCopy ? (
+											<option>Select</option>
+										) : (
+											<option value={props.values.addressCopy}>
+												{props.values.addressCopy}
+											</option>
+										)}
+										<option value="Design Consultant">Design Consultant</option>
+										<option value="Contractor">Contractor</option>
+										<option value="Engineering">Engineering</option>
+										<option value="Construction Manager">
+											Construction Manager
+										</option>
+									</FormSelect>
+								</FormInputContainer>
+							) : null}
 							<FormInputContainer name="When does the agreement go into effect?">
 								<SelectDate {...creationDate} />
 								{props.errors.creationDate && props.touched.creationDate && (
@@ -146,24 +187,6 @@ const Forms = (props) => {
 									)}
 								</FormInputContainer>
 							</div>
-
-							<FormInputContainer name="Who is the provider?">
-								<FormSelect {...addressCopy}>
-									{!props.values.addressCopy ? (
-										<option>Select</option>
-									) : (
-										<option value={props.values.addressCopy}>
-											{props.values.addressCopy}
-										</option>
-									)}
-									<option value="Design Consultant">Design Consultant</option>
-									<option value="Contractor">Contractor</option>
-									<option value="Engineering">Engineering</option>
-									<option value="Construction Manager">
-										Construction Manager
-									</option>
-								</FormSelect>
-							</FormInputContainer>
 						</div>
 
 						{/* Buttons */}

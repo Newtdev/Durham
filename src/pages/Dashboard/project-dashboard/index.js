@@ -53,6 +53,8 @@ import { getId, SaveToLocalStorage } from "../../../shared-component";
 import Bids from "../../forms/3 bids";
 import PFForProjects from "../../forms/Precis Checklist/Precis";
 import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form";
+import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)";
+import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID)
@@ -360,6 +362,7 @@ const ProjectDashboard = () => {
 			<AdvertisementBid id={documentsID} />
 			<CapitalProjectForm id={documentsID} />
 			<CCPRequisitionForm id={documentsID} />
+			<MWBEParticipation id={documentsID} />
 			<Esser id={documentsID} />
 			<EsserPM id={documentsID} />
 			<Lechase id={documentsID} />
@@ -369,6 +372,7 @@ const ProjectDashboard = () => {
 			<OwnerContractorManagementForm id={documentsID} />
 			<Bids id={documentsID} />
 			<PFForProjects id={documentsID} />
+			<ShortSmallFormDesignForm id={documentsID} />
 		</section>
 	);
 };

@@ -3,22 +3,22 @@ import moment from "moment";
 
 const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	return (
-		<div className="pt-[3rem]">
+		<div className="pt-20" style={{ margin: "0.5in 1in", height: "10in" }}>
 			<div className="mb-2 flex">
-				<span className="pl-14 text-justify mt-4">
-					foreign country. During Contractor’s work with DPS and thereafter,
-					Contractor agrees to execute any patent documents or papers relating
-					to such developments as well as any documents and papers DPS BOE may
-					consider necessary or helpful in obtaining or maintaining said patents
-					during the prosecution of patent applications thereon or the conduct
-					of any litigation or other proceeding in connection therewith. All
-					expenses incident to such applications, litigation or proceedings
-					shall be the sole responsibility of DPS.
+				<span className="pl-20 text-justify mt-4">
+					country. During Contractor’s work with DPS and thereafter, Contractor
+					agrees to execute any patent documents or papers relating to such
+					developments as well as any documents and papers DPS BOE may consider
+					necessary or helpful in obtaining or maintaining said patents during
+					the prosecution of patent applications thereon or the conduct of any
+					litigation or other proceeding in connection therewith. All expenses
+					incident to such applications, litigation or proceedings shall be the
+					sole responsibility of DPS.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 flex pl-11">
 				<span>m.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-5 text-justify">
 					Contractor understands that DPS does not wish to receive from
 					Contractor any information which may be considered confidential or
 					proprietary to Contractor or any third party. Contractor represents
@@ -27,9 +27,9 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					third party.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 flex pl-11">
 				<span>n.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-6 text-justify">
 					Each party warrants to the other that it has good and marketable title
 					to all of the inventions, information, material, work, or product
 					made, created, conceived, written, invented, or provided by the party
@@ -41,9 +41,9 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					copyright, or patent.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 flex pl-11">
 				<span>o.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-6 text-justify">
 					Should DPS permit Contractor to use any DPS equipment, tools or
 					facilities during the term of this Agreement, such permission will be
 					gratuitous, and Contractor shall indemnify and hold harmless DPS BOE
@@ -54,9 +54,9 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					or on the alleged negligence of DPS BOE in permitting its use.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-7">
+			<div className="mb-2 flex pl-12">
 				<span>p.</span>
-				<span className="ml-3 text-justify">
+				<span className="ml-5 text-justify">
 					Contractor shall keep accurate records and books of account showing
 					all charges, disbursements or expenses made or incurred by Contractor
 					in the performance of the services herein. DPS’s internal or outside
@@ -108,7 +108,8 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							<span className={`${nottoBeHighlighted}`}>
 								{moment(form_fields.endDate).format("MMMM D, YYYY ")}{" "}
 							</span>
-							unless terminated earlier as provided herein. The
+							unless terminated earlier as provided herein. The parties may
+							renew
 							{/* parties may
                           renew this Agreement only by separate written
                           agreement or addendum hereto, which must be executed
