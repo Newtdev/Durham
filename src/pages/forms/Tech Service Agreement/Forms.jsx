@@ -126,8 +126,9 @@ const Forms = (props) => {
 						</div>
 
 						<div className="mx-6 mt-4 mb-12">
-							{length > 0 ? (
-								<FormInputContainer name="Who is the provider?">
+							{console.log(length)}
+							{length < 2 ? null : (
+								<FormInputContainer name="With whom are you entering into the agreement?">
 									<FormSelect {...addressCopy}>
 										{!props.values.addressCopy ? (
 											<option>Select</option>
@@ -144,7 +145,7 @@ const Forms = (props) => {
 										</option>
 									</FormSelect>
 								</FormInputContainer>
-							) : null}
+							)}
 							<FormInputContainer name="When does the agreement go into effect?">
 								<SelectDate {...creationDate} />
 								{props.errors.creationDate && props.touched.creationDate && (

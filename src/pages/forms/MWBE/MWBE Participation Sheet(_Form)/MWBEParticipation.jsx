@@ -66,7 +66,7 @@ const MWBEForm = ({ id }) => {
 				},
 			],
 		},
-		validationSchema: MWBEFormSchema,
+		// validationSchema: MWBEFormSchema,
 		onSubmit: (values) => {
 			if (pages === 1) {
 				dispatch(nextStep(2));

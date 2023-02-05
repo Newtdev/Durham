@@ -23,7 +23,7 @@ const RenderContractor = ({ formDetails, color }) => {
 		return (
 			<tr className={`${color}`}>
 				<td className="border border-black border-collapse">
-					{contractor?.contractor}
+					{contractor?.companyName}
 				</td>
 				<td className="border border-black border-collapse">
 					{" "}
@@ -265,42 +265,6 @@ const MWBEParticipation = () => {
 													formDetails={formDetails}
 													color={nottoBeHighlighted}
 												/>
-
-												<tr>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-												</tr>
-
-												<tr>
-													<td className="border border-black border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-												</tr>
-
-												<tr>
-													<td className="border border-black border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-												</tr>
-
-												<tr>
-													<td className="border border-black border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-collapse h-[19.5px]"></td>
-												</tr>
 
 												<tr>
 													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>

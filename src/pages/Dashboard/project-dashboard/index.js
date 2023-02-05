@@ -70,9 +70,31 @@ const ProjectDashboard = () => {
 	const [duplicateProject, result] = useDuplicateProjectMutation();
 	const awardee = !projectDetails?.project_vendors
 		? ""
-		: projectDetails.project_vendors[0];
+		: projectDetails.project_vendors;
 	const summary = !projectDetails ? "" : projectDetails.document_summary;
 	const school = !projectDetails ? "" : projectDetails.school;
+
+	const RenderAwardee = () => {
+		return awardee?.map((awardee, index) => {
+			return (
+				<div className="mb-5" key={index}>
+					<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
+						{!awardee ? "" : awardee?.role}
+					</div>
+					<div className="text-xs text-gray-900">
+						<p className="mt-4 text-base font-bold">
+							{!awardee ? "" : awardee?.company_name}
+						</p>
+						<p className="my-1">
+							{!awardee
+								? ""
+								: `${awardee?.street}, ${awardee?.city}, ${awardee?.state}, ${awardee?.zip_code}`}
+						</p>
+					</div>
+				</div>
+			);
+		});
+	};
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -314,21 +336,8 @@ const ProjectDashboard = () => {
 										{/* <p>+65 1234 1234</p> */}
 									</div>
 								</div>
-								<div className="mb-5">
-									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
-										{!awardee ? "" : awardee?.role}
-									</div>
-									<div className="text-xs text-gray-900">
-										<p className="mt-4 text-base font-bold">
-											{!awardee ? "" : awardee?.company_name}
-										</p>
-										<p className="my-1">
-											{!awardee
-												? ""
-												: `${awardee?.street}, ${awardee?.city}, ${awardee?.state}, ${awardee?.zip_code}`}
-										</p>
-									</div>
-								</div>
+								{/* AWARDEEE SPACE */}
+								<RenderAwardee />
 
 								<div className="mb-5">
 									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">

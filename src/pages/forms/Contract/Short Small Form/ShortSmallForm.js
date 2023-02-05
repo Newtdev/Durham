@@ -35,14 +35,12 @@ const ShortSmallFormDesignForm = ({ id }) => {
 			],
 		});
 		if (response) {
-			console.log("response: ", response);
 			if (response?.error) {
-				console.log("response?.error: ", response?.error);
 				toast.error(response?.message, {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				dispatch(nextStep(3));
+				dispatch(nextStep(2));
 			}
 		}
 	};
@@ -58,7 +56,6 @@ const ShortSmallFormDesignForm = ({ id }) => {
 		onSubmit: (values) => {
 			if (pages === 1) {
 				console.log("pages: ", pages);
-				dispatch(nextStep(2));
 				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}

@@ -52,14 +52,13 @@ const TechPreview = (data) => {
 		: "bg-white";
 
 	useEffect(() => {
-		if (!vendors && !form_fields) {
-			return null;
+		if (!vendors || !form_fields?.addressCopy) {
+			setAwardee(vendors);
+			return;
 		}
-		const data = vendors?.filter(
-			(cur) => cur.role === form_fields?.addressCopy
-		);
+		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
 		setAwardee(data);
-	}, [vendors]);
+	}, [vendors, form_fields]);
 
 	const pageProps = {
 		formData,
