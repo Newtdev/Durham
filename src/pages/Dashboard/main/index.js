@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { userInfo } from "../../../features/auth";
+import { useIdleTimer } from "react-idle-timer";
 import OwnerContractorManagementForm from "../../forms/Contract/Owner and Contract Management (CM_CMAR) Agreement";
 import EditProjectDashboard from "../Overview-dashboard/EditProjectDashboard";
 const Vendors = lazy(() => import("../Vendors-mangement"));
@@ -18,21 +19,35 @@ const ProjectFormsController = lazy(() => import("../add-project"));
 const SchoolInformation = lazy(() => import("../schoolInformation"));
 
 const Dashboard = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const data = JSON.parse(localStorage.getItem("durham_token"));
 
+	// const onInactivityChange = () => {};
+	// const onIdleModal = () => {};
+	// const onActive = () => {
+	// 	console.log("active");
+	// };
+	// const onIdle = () => {
+	// 	console.log("idle");
+	// };
+	// const idleTimer = useIdleTimer({
+	// 	onActive,
+	// 	onIdle,
+	// 	timeout: 2000,
+	// 	throttle: 500,
+	// });
 
 	useEffect(() => {
+		// console.log(idleTimer());
 		if (!data) {
-	
-		navigate('/');
+			navigate("/");
 		}
 		dispatch(userInfo(data));
 	}, [dispatch, data, navigate]);
+
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
-			
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />
 				<Route path="/add-new-project" element={<ProjectFormsController />} />

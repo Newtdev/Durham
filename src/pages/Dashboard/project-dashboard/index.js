@@ -69,12 +69,15 @@ const ProjectDashboard = () => {
 	const [deleteProject, { isLoading }] = useDeleteProjectMutation();
 	const [duplicateProject, result] = useDuplicateProjectMutation();
 	const awardee = !projectDetails?.project_vendors
-		? ""
+		? null
 		: projectDetails.project_vendors;
 	const summary = !projectDetails ? "" : projectDetails.document_summary;
 	const school = !projectDetails ? "" : projectDetails.school;
 
 	const RenderAwardee = () => {
+		if (!awardee) {
+			return;
+		}
 		return awardee?.map((awardee, index) => {
 			return (
 				<div className="mb-5" key={index}>
