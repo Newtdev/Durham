@@ -71,7 +71,7 @@ const MultiVendors = (props) => {
 													data={props}
 													remove={remove}
 													index={index}
-												/>
+												/>	
 											</Fragment>
 										))}
 										<div className="m-4">
