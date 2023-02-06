@@ -1,30 +1,54 @@
+import { configureStore } from "@reduxjs/toolkit";
 import moment from "moment";
 
 const PageThree = (props) => {
 	const year = moment(props?.form_fields?.agreementDate).format("YYYY");
-	const yearInWords = year.replace(/\d{4}/g, function (match) {
-		let res = "";
-		const digits = match.split("");
-		const digit_map = [
-			"Zero",
-			"One",
-			"Two",
-			"Three",
-			"Four",
-			"Five",
-			"Six",
-			"Seven",
-			"Eight",
-			"Nine",
-		];
-		digits.forEach(function (digit) {
-			res += digit_map[digit] + " ";
-		});
-		return res?.split(" ")[3];
+	console.log(year);
+
+	var digit_map = [
+		"Zero",
+		"One",
+		"Two",
+		"Three",
+		"Four",
+		"Five",
+		"Six",
+		"Seven",
+		"Eight",
+		"Nine",
+	];
+	var tens_map = [
+		"Zero",
+		"Ten",
+		"Twenty",
+		"Thirty",
+		"Forty",
+		"Fifty",
+		"Sixty",
+		"Seventy",
+		"Eighty",
+		"Ninety",
+	];
+
+	var yearInWords = "";
+	var digits = year.toString().split("");
+	digits.forEach(function (digit, index) {
+		if (index < 2) {
+			yearInWords += tens_map[digit] + " ";
+		} else if (index === 2) {
+			yearInWords += digit_map[digit] + " Hundred ";
+		} else {
+			yearInWords += digit_map[digit] + " ";
+		}
 	});
+	const correctDate =
+		yearInWords.split(" ")[0] + " " + yearInWords.split(" ")[4];
+
+	// console.log(yearInWords + "Thousand");
+
 	return (
 		<div
-			className="text-black font11  py-[0.7in] px-[0.6in] leading-[1.13]"
+			className="text-black font11  py-[0.7in] px-[0.6in] leading-[1.13] "
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 3 */}
@@ -44,8 +68,8 @@ const PageThree = (props) => {
 							</span>{" "}
 							in the year of Two Thousand{" "}
 							<span
-								className={`${props?.nottoBeHighlighted} inline-block w-14 border-b border-black`}>
-								{yearInWords}
+								className={`${props?.nottoBeHighlighted} inline-block w-36 border-b border-black`}>
+								{correctDate}
 							</span>
 						</p>
 						<p className="mb-4">

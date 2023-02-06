@@ -45,7 +45,7 @@ const PageFive = () => {
 								Design Consultants of the training and background needed to
 								perform the Services required under this Agreement who practice
 								in the Research Triangle Park area or similar communities.{" "}
-								<span className="bg-yellow-300">
+								<span>
 									Incorporated herein and made a part of this Agreement by
 									reference is the most recent version of the Durham Public
 									Schools Design Guidelines (Design Guidelines), or the relevant

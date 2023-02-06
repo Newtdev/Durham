@@ -6,7 +6,7 @@ import DeleteIcon from "../assets/deleteIcon.svg";
 
 // REUSABLE INPUT COMP
 export function Input(props) {
-	const { placeholder, id, onChange, value, type,name } = props;
+	const { placeholder, id, onChange, value, type, name } = props;
 	return (
 		<input
 			className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
@@ -23,16 +23,16 @@ export function Input(props) {
 // REUSABLE Textarea
 export function Textarea(props) {
 	const { placeholder, id, onChange, value } = props;
-  return (
-    <textarea
-      className='bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5'
-      name={id}
-      placeholder={placeholder}
-      type='text'
-      value={value}
-      onChange={onChange}
-    />
-  );
+	return (
+		<textarea
+			className="bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
+			name={id}
+			placeholder={placeholder}
+			type="text"
+			value={value}
+			onChange={onChange}
+		/>
+	);
 }
 
 // REUSABLE LABEL COMP
@@ -84,8 +84,9 @@ export function ModalOverlay({ children, show, close }) {
 	const showModal = show ? "top-0" : "bottom-full";
 	return (
 		<div
-			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-1000 h-full w-full overflow-y-auto`}
-			onClick={close}>
+			className={`bg-[rgba(0,0,0,0.8)] transition-all fixed ${showModal} left-0 z-10000 h-full w-full overflow-y-auto`}
+			onClick={close}
+			style={{ zIndex: 10000 }}>
 			{children}
 		</div>
 	);

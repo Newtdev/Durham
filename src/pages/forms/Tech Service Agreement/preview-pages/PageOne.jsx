@@ -15,10 +15,10 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					{" "}
 					{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
 				</span>
-				<span className={`${nottoBeHighlighted}`}>
+				{/* <span className={`${nottoBeHighlighted}`}>
 					{" "}
 					{moment(form_fields.creationDate).format("MMMM D, YYYY ")}{" "}
-				</span>
+				</span> */}
 				is made and entered into by and between the Durham Public Schools Board
 				of Education at 511 Cleveland St., Durham, NC 27701 (“DPS BOE” or “DPS”
 				or “the Board”) and{" "}

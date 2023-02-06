@@ -98,22 +98,22 @@ const TechPreview = (data) => {
 							className="bg-white -mt-4  pb-4 text-black arial-font text-[14.8px] leading-[1.3]"
 							ref={downloadComponent}>
 							<PageOne {...pageProps} />
-							<PageTwo {...pageProps} />
-							<PageThree {...pageProps} />
-							{/* {showPage && <PageTwo {...pageProps} />} */}
-							{/* {showPage && <PageThree {...pageProps} />} */}
+							{/* <PageTwo {...pageProps} /> */}
+							{/* <PageThree {...pageProps} /> */}
+							{showPage && <PageTwo {...pageProps} />}
+							{showPage && <PageThree {...pageProps} />}
 							<PageFour {...pageProps} />
-							<PageFive {...pageProps} />
-							<PageSix {...pageProps} />
-							{/* {showPage && <PageFive {...pageProps} />} */}
-							{/* {showPage && <PageSix {...pageProps} />} */}
+							{/* <PageFive {...pageProps} /> */}
+							{/* <PageSix {...pageProps} /> */}
+							{showPage && <PageFive {...pageProps} />}
+							{showPage && <PageSix {...pageProps} />}
 							<PageSeven {...pageProps} />
-							<PageEight {...pageProps} />
-							<PageNine {...pageProps} />
-							<PageTen {...pageProps} />
-							{/* {showPage && <PageEight {...pageProps} />} */}
-							{/* {showPage && <PageNine {...pageProps} />} */}
-							{/* {showPage && <PageTen {...pageProps} />} */}
+							{/* <PageEight {...pageProps} /> */}
+							{/* <PageNine {...pageProps} /> */}
+							{/* <PageTen {...pageProps} /> */}
+							{showPage && <PageEight {...pageProps} />}
+							{showPage && <PageNine {...pageProps} />}
+							{showPage && <PageTen {...pageProps} />}
 							<PageEleven {...pageProps} />
 						</div>
 					</div>
