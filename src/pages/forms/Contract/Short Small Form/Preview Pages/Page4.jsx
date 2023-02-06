@@ -65,11 +65,11 @@ const PageFour = (props) => {
 									shall provide at least five (5) business days written prior
 									notice to the Owner’s Representative at the address noted
 									above and via email ("
-									<span className={`${props?.nottoBeHighlighted}`}>
+									<span className={`underline ${props?.nottoBeHighlighted}`}>
 										{editEmailAddress()}
 									</span>{" "}
-									of the cancellation, non-renewal (without replacement), or the
-									material reduction of coverage or limits of any of the
+									") of the cancellation, non-renewal (without replacement), or
+									the material reduction of coverage or limits of any of the
 									policies. Upon notice of such cancellation, nonrenewal or
 									reduction, the Design Consultant shall procure substitute
 									insurance so as to assure the Owner that the minimum limits of
