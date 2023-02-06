@@ -135,7 +135,6 @@ const FormOne = (props) => {
 								</div>
 							</div>
 							{props.errors.attached && props.touched.attached && <Error message={props.errors.attached} />}
-
 						</div>
 
 						<FormInputContainer name='When does the project sign sign the requisition?'>

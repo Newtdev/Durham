@@ -1,18 +1,20 @@
 import { FormikProvider, useFormik } from "formik";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import { ShortSmallFormDesign } from "../../../shared-component/slug";
+import { OwnerAndDesignConsultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
-import { ShortSmallFormDesignSchema } from "../../../yup";
+import { OwnerAndDesignConsultantSchema } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../reducer";
 import FormOne from "./forms/FormOne";
+import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const ShortSmallFormDesignForm = ({ id }) => {
+const OwnerAndDesignConsultantForm = ({ id }) => {
   const dispatch = useDispatch();
   const pages = useSelector(page)
   const show = useSelector(modal)
@@ -31,18 +33,18 @@ const ShortSmallFormDesignForm = ({ id }) => {
       project_document_id: formID, form_fields: [{ field_name: param[0], field_value: val[0] },
       { field_name: param[1], field_value: val[1] },
       { field_name: param[2], field_value: val[2] },
-      { field_name: param[3], field_value: val[3] }
+      { field_name: param[3], field_value: val[3] },
+      { field_name: param[4], field_value: val[4] },
+      { field_name: param[5], field_value: val[5] },
       ]
     })
     if (response) {
-      console.log("response: ", response)
       if (response?.error) {
-        console.log("response?.error: ", response?.error)
         toast.error(response?.message, {
           position: toast.POSITION.TOP_CENTER,
         });
       } else {
-        dispatch(nextStep(3))
+        dispatch(nextStep(5))
       }
     }
   }
@@ -51,24 +53,39 @@ const ShortSmallFormDesignForm = ({ id }) => {
   const formik = useFormik({
     initialValues: {
       agreementDate: "",
-      ownerEmail: "",
-      signDate: "",
+      directorSignDate: "",
+      officerSignDate: "",
+      notarySealDate: "",
+      checkType: ""
     },
-    validationSchema: ShortSmallFormDesignSchema,
+    validationSchema: OwnerAndDesignConsultantSchema[pages - 1],
     onSubmit: (values) => {
       if (pages === 1) {
         console.log("pages: ", pages)
         dispatch(nextStep(2))
+      } else if (pages === 2) {
+        console.log("pages: ", pages)
+        dispatch(nextStep(3))
         dispatch(saveFormField(values))
         HandleSubmit(values)
       }
     }
   });
 
-  // return <ModalOverlay show={true}>
-  return <ModalOverlay show={id === ShortSmallFormDesign && show}>
-      {pages === 1 && <FormOne {...formik} />}
-      {pages === 2 && <Preview />}
-  </ModalOverlay>                                         
+  useEffect(() => {
+    (async function () {
+      const response = await (await fetch('/states.json')).json();
+      dispatch(getStates(response))
+
+    }())
+  }, [dispatch]);
+
+  // return <ModalOverlay show={true}`>
+  return <ModalOverlay show={id === OwnerAndDesignConsultant && show}>
+    {pages === 1 && <FormOne {...formik} />}
+    {pages === 2 && <FormTwo {...formik} />}
+    {pages === 3 && <Preview />}
+  </ModalOverlay>
+
 }
-export default ShortSmallFormDesignForm;
+export default OwnerAndDesignConsultantForm;

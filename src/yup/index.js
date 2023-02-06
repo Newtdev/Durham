@@ -480,3 +480,41 @@ export const ShortSmallFormDesignSchema = Yup.object().shape({
 	ownerEmail: Yup.string().required("Field is required"),
 	signDate: Yup.string().required("Field is required")
 });
+
+export const OwnerAndDesignConsultantSchema = [
+	Yup.object().shape({
+		agreementDate: Yup.string().required("Field is required"),
+		directorSignDate: Yup.string().required("Field is required"),
+		officerSignDate: Yup.string().required("Field is required"),
+		notarySealDate: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		checkType: Yup.string().required("Field is required")
+	})
+]
+
+export const OwnerAndContractorSchema = [
+	Yup.object().shape({
+		agreementDate: Yup.string().required("Field is required"),
+		construction: Yup.string().required("Field is required"),
+		substantialCompletionDate: Yup.string().required("Field is required"),
+		finalCompletionDate: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		project: Yup.string().required("Field is required"),
+		projectDate: Yup.string().required("Field is required"),
+		projectAgenda: Yup.string().required("Field is required"),
+		projectAlternates: Yup.string().required("Field is required"),
+		modification: Yup.string().required("Field is required"),
+		modificationAmount: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		contractAmount: Yup.string().required("Field is required"),
+		allowances: Yup.string().required("Field is required"),
+		units: Yup.array().of(
+			Yup.object().shape({
+				unit: Yup.string().required("Field is required")
+			})
+		)
+	})
+]

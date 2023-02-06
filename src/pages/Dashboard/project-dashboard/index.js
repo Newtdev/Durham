@@ -56,6 +56,8 @@ import PFForProjects from "../../forms/Precis Checklist/Precis";
 import RFPTemplateWithMWBEForm from "../../forms/RFP Template With MWBE";
 import MWBEForm from "../../forms/MWBE % Form";
 import ShortSmallFormDesignForm from "../../forms/Short Small Form Design Consultant Agreement";
+import OwnerAndDesignConsultantForm from "../../forms/Owner and Design Consultant (less than $200,000)"
+import OwnerAndContractorForm from "../../forms/Owner and Contractor Agreement Form (more $500,000)";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
@@ -375,6 +377,8 @@ const ProjectDashboard = () => {
 			<RFPTemplateWithMWBEForm id={documentsID} />
 			<MWBEForm id={documentsID} />
 			<ShortSmallFormDesignForm id={documentsID} />
+			<OwnerAndDesignConsultantForm id={documentsID} />
+			<OwnerAndContractorForm id={documentsID} />
 		</section>
 	);
 };

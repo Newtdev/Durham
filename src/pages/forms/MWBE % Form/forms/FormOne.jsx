@@ -216,7 +216,7 @@ const FormOne = (props) => {
 											</div>
 
 											<FormInputContainer name="Enter the company's contract amount">
-												<FormInput type={"text"} onChange={props.handleChange} name={`contractors[${index}].companyContractAmount`} placeholder={"0.00"} />
+												<FormInput type={"number"} onChange={props.handleChange} name={`contractors[${index}].companyContractAmount`} placeholder={"0.00"} />
 												{props.errors.companyContractAmount && props.touched.companyContractAmount && <Error message={props.errors.companyContractAmount} />}
 											</FormInputContainer>
 										</div>
