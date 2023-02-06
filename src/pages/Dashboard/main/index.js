@@ -54,20 +54,20 @@ const Modal = ({ show }) => {
 const Dashboard = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const [show, setShow] = useState(false);
+	// const [show, setShow] = useState(false);
 	const data = JSON.parse(localStorage.getItem("durham_token"));
 
 	// const onInactivityChange = () => {};
 	// const onIdleModal = () => {};
 
-	const onIdle = () => {
-		setShow(true);
-	};
-	const idleTimer = useIdleTimer({
-		onIdle,
-		timeout: 1800000,
-		throttle: 500,
-	});
+	// const onIdle = () => {
+	// 	setShow(true);
+	// };
+	// const idleTimer = useIdleTimer({
+	// 	onIdle,
+	// 	timeout: 1800000,
+	// 	throttle: 500,
+	// });
 	// const {
 	// 	start,
 	// 	reset,
@@ -121,17 +121,16 @@ const Dashboard = () => {
 	// });
 
 	useEffect(() => {
-		console.log(idleTimer);
+		// console.log(idleTimer);
 		if (!data) {
 			navigate("/");
 		}
 		dispatch(userInfo(data));
-	}, [dispatch, data, navigate, idleTimer]);
+	}, [dispatch, data, navigate]);
 
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
-			<Modal show={show} />
-			{console.log(show)}
+			{/* <Modal show={show} /> */}
 
 			<Routes>
 				<Route path="/" index element={<ProjectDashboard />} />

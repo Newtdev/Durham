@@ -14,7 +14,6 @@ const FormOne = (props) => {
 	const dispatch = useDispatch();
 	const [index, setIndex] = useState(0);
 	const [focus, setFocus] = useState(false);
-	const [bntIndex, setBtnIndex] = useState(0);
 
 	const vendor = useGetVendorsQuery({ queryValue: "" });
 
@@ -151,7 +150,6 @@ const FormOne = (props) => {
 																	<button
 																		onClick={() => {
 																			remove();
-																			setBtnIndex((prev) => prev - 1);
 																		}}
 																		disabled={index === 0 ? true : false}
 																		type="button"
@@ -343,7 +341,6 @@ const FormOne = (props) => {
 													<div className="m-4">
 														<button
 															onClick={() => {
-																setBtnIndex((prev) => prev + 1);
 																push({
 																	contractor: "",
 																	companyName: "",
@@ -352,7 +349,11 @@ const FormOne = (props) => {
 																	companyContractAmount: "",
 																});
 															}}
-															disabled={bntIndex === 13 ? true : false}
+															disabled={
+																props?.values?.contractors?.length === 12
+																	? true
+																	: false
+															}
 															className={`text-white text-sm font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center -ml-4 `}
 															type="button">
 															ADD MORE CONTRACTORS
