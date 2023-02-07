@@ -49,7 +49,8 @@ const PreviewElement = () => {
 		if (!vendors) {
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role !== "Design Consultant");
+		const data = vendors?.filter((cur) => cur.role === "Design Consultant");
+		console.log(data);
 		setAwardee(data);
 	}, [vendors]);
 
@@ -208,14 +209,13 @@ const PreviewElement = () => {
 												Education for consideration of award on{" "}
 												<span className={`${nottoBeHighlighted}`}>
 													{moment(form_fields.approvalDate).format(
-														"MMMM D, YYYY "
+														"MMMM D, YYYY"
 													)}
-													.
 												</span>
 											</p>
 										</div>
 									)}
-									<div className="mt-2 flex gap-8 leading-[1.3]">
+									<div className="mt-3 flex gap-8 leading-[1.3]">
 										<p>
 											The attached contract is being transmitted to your office
 											for review. If in agreement,{" "}
@@ -230,14 +230,14 @@ const PreviewElement = () => {
 												{" "}
 												{moment(form_fields.deliveryDate).format("dddd")},{" "}
 												{moment(form_fields.deliveryDate).format(
-													"MMMM D, YYYY "
+													"MMMM D, YYYY."
 												)}
-											</span>
-											. Pending award, one (1) fully executed copy of the
-											contract will be returned for your records.
+											</span>{" "}
+											Pending award, one (1) fully executed copy of the contract
+											will be returned for your records.
 										</p>
 									</div>
-									<div className="mt-2 flex gap-8 leading-[1.3]">
+									<div className="mt-3 flex gap-8 leading-[1.3]">
 										<p>
 											We look forward to working with you and your team on this
 											project. If you have any questions, please contact me at{" "}
