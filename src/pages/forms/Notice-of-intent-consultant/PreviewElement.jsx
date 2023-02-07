@@ -170,7 +170,7 @@ const PreviewElement = () => {
 									<p className={`${nottoBeHighlighted}`}>
 										Dear Mr./Ms. {awardee[0]?.last_name}:
 									</p>
-									<div className="mt-4 flex gap-8 leading-normal">
+									<div className="mt-3 flex gap-8 leading-normal">
 										<p>
 											This letter serves as a Notice of Intent to Award for the{" "}
 											<span className={`${nottoBeHighlighted}`}>
@@ -193,7 +193,6 @@ const PreviewElement = () => {
 											scopes of work as outlined in the Contract.
 										</p>
 									</div>
-									{console.log(form_fields.approval)}
 									{form_fields.approval === "Yes" && (
 										<div className="mt-4 flex gap-8">
 											<p>
@@ -211,7 +210,7 @@ const PreviewElement = () => {
 											</p>
 										</div>
 									)}
-									<div className="mt-4 flex gap-8">
+									<div className="mt-3 flex gap-8">
 										<p>
 											The attached contract is being transmitted to your office
 											for review.{" "}
@@ -234,7 +233,7 @@ const PreviewElement = () => {
 											contract will be returned for your records.
 										</p>
 									</div>
-									<div className="mt-4 flex gap-8">
+									<div className="mt-3 flex gap-8">
 										<p>
 											We look forward to working with you and your team on this
 											project. If you have any questions, please contact me at{" "}
@@ -253,8 +252,8 @@ const PreviewElement = () => {
 											.
 										</p>
 									</div>
-									<div className="mt-4 gap-8">
-										<p className="mb-14">Sincerely,</p>
+									<div className="mt-3 gap-8">
+										<p className="mb-12">Sincerely,</p>
 										<p className={`${nottoBeHighlighted} my-6`}>
 											{!durham_profile
 												? ""
