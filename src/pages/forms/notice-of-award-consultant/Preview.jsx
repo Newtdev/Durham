@@ -205,7 +205,7 @@ const Preview = () => {
 										</span>
 										:
 									</p>
-									<p className="mb-4 pl-20 pr-10">
+									<p className="mb-2 pl-20 pr-10 leading-[1.3]">
 										This letter serves as a Notice of Award for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
 											{!project ? "" : project?.name}
@@ -227,7 +227,7 @@ const Preview = () => {
 										scopes of work as outlined in the Consultant proposal
 										attached to the Contract by Exhibit.{" "}
 									</p>
-									<p className="mb-4 pl-20 pr-10">
+									<p className="mb-2 pl-20 pr-10 leading-[1.3]">
 										The attached contract is being transmitted to your office
 										for review and execution. If in agreement,{" "}
 										<span className="font-bold underline">
@@ -251,7 +251,6 @@ const Preview = () => {
 									<p className="mb-4 pl-20 pr-10">
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
-										<br />
 										<span className={`${nottoBeHighlighted}`}>
 											{" "}
 											{!durham_profile
