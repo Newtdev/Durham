@@ -47,14 +47,9 @@ const PreviewElement = () => {
 
 	useEffect(() => {
 		if (!vendors) {
-			return null;
+			return;
 		}
-		const data = vendors?.filter((cur) => {
-			if (cur.role !== "Design Consultant") {
-				return {};
-			}
-			return cur;
-		});
+		const data = vendors?.filter((cur) => cur.role !== "Design Consultant");
 		setAwardee(data);
 	}, [vendors]);
 
@@ -96,9 +91,9 @@ const PreviewElement = () => {
 							<div className="mb-6 text-center"></div>
 							<div className="flex justify-between items-center pt-3 px-16">
 								<div>
-									<img src={Logo} alt="logo" className="h-16 object-cover" />
+									<img src={Logo} alt="logo" className="h-14 object-cover" />
 								</div>
-								<div className="arial-font text-[8px] text-[#3B6979] pr-4">
+								<div className="arial-font text-[10.5px] text-[#3B6979] pr-4">
 									<p className="">Construction and Capital planning</p>
 									<p className="">
 										2011 Hamlin Road / Durham, North Carolina 27704
@@ -108,11 +103,12 @@ const PreviewElement = () => {
 									</div>
 								</div>
 							</div>
-							<div className="pl-36 pr-14 ">
+							<div className="pl-36 pr-14 text-[13.5px]">
 								<div className="mt-3">
 									<div className="flex items-center adverstise">
 										{" "}
-										<p className={`${nottoBeHighlighted}  text-justify my-2`}>
+										<p
+											className={`${nottoBeHighlighted} text-[13.5px]  text-justify my-2`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
 										</p>
 										{form_fields.approval === "Yes" && (
@@ -148,7 +144,7 @@ const PreviewElement = () => {
 								</div>
 
 								<div className="">
-									<div className="overflow-hidden w-96  flex justify-between mt-8">
+									<div className="overflow-hidden flex mt-8">
 										<p className="font-bold mb-2">RE:</p>
 										<div className=" ml-14">
 											<p>Durham Public Schools (DPS)</p>
@@ -156,7 +152,7 @@ const PreviewElement = () => {
 												{!school ? "" : school.name} –{" "}
 												{!project ? "" : project.name}
 											</p>
-											<p className={`${nottoBeHighlighted}`}>
+											<p className={`w-full ${nottoBeHighlighted}`}>
 												DPS Project No. {!project ? "" : project.number}
 											</p>
 										</div>
@@ -166,13 +162,13 @@ const PreviewElement = () => {
 								<div className="flex  mt-4">
 									<span>SUBJECT:</span>
 									<h2 className="ml-6 font-black  text-black">
-										NOTICE OF AWARD FOR CONSULTANT SERVICES
+										NOTICE OF INTENT TO AWARD – CONSULTANT SERVICE
 									</h2>
 								</div>
 
 								<div className="mt-6 mb-4">
 									<p className={`${nottoBeHighlighted}`}>
-										Dear Mr./Ms. {awardee[0]?.last_name},
+										Dear Mr./Ms. {awardee[0]?.last_name}:
 									</p>
 									<div className="mt-4 flex gap-8 leading-normal">
 										<p>
@@ -258,7 +254,7 @@ const PreviewElement = () => {
 										</p>
 									</div>
 									<div className="mt-4 gap-8">
-										<p>Sincerely,</p>
+										<p className="mb-14">Sincerely,</p>
 										<p className={`${nottoBeHighlighted} my-6`}>
 											{!durham_profile
 												? ""
@@ -273,7 +269,8 @@ const PreviewElement = () => {
 										<p>Enclosure</p>
 										<p>
 											Cc:{" "}
-											<span className={`${nottoBeHighlighted}`}>
+											<span
+												className={`inline-block my-4 ml-3 ${nottoBeHighlighted}`}>
 												{!durham_profile
 													? ""
 													: !durham_profile.director_of_design_and_construction
@@ -286,7 +283,8 @@ const PreviewElement = () => {
 										</p>
 										<p>
 											File:{" "}
-											<span className={`${nottoBeHighlighted}`}>
+											<span
+												className={`inline-block ml-2 ${nottoBeHighlighted}`}>
 												{!project ? "" : project.number}
 											</span>
 										</p>

@@ -104,7 +104,7 @@ const Preview = () => {
 							<div>
 								<div className="flex mb-4">
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
-									<div className="ml-[18rem] arial-font text-[8px] mt-3">
+									<div className="ml-[18rem] arial-font text-[10.5px] mt-3">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -118,7 +118,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="mb-4 pl-20">
+								<div className="mb-4 pl-20 text-[13.5px]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -201,8 +201,9 @@ const Preview = () => {
 									<p className="mb-4 pl-20">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.last_name},
+											{!awardee ? "" : awardee[0]?.last_name}
 										</span>
+										:
 									</p>
 									<p className="mb-4 pl-20 pr-10">
 										This letter serves as a Notice of Award for the{" "}
@@ -263,12 +264,11 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-4 pl-20">Sincerely,</p>
+									<p className="mb-12 pl-20">Sincerely,</p>
 
 									<>
 										<p className="pl-20">
 											<span className={`${nottoBeHighlighted}`}>
-												{console.log(durham_profile)}
 												{!durham_profile
 													? ""
 													: !durham_profile

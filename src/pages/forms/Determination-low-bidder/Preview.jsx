@@ -11,7 +11,7 @@ import {
 	savedResponse,
 	showDownload,
 } from "../reducer";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
@@ -24,6 +24,7 @@ const Preview = () => {
 	const downloadComponent = useRef();
 	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
+	const [awardee, setAwardee] = useState([]);
 
 	const formID = useSelector(project_document_id);
 	useFetchFilledFormQuery(formID);
@@ -39,6 +40,15 @@ const Preview = () => {
 		stepDefault,
 		remove: () => setHighlighed(true),
 	};
+
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		const data = vendors?.filter((cur) => cur.role === "Contractor");
+		setAwardee(data);
+	}, [vendors]);
+
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
 	return (
@@ -70,7 +80,7 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-16 pt-8 pb-4 text-black arial-font text-[11px]"
+							className="px-16 pt-8 pb-4 text-black arial-font text-[12.5px] leading-[1.3]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
@@ -78,52 +88,50 @@ const Preview = () => {
 										<img
 											src={Logo}
 											alt="logo"
-											className="h-20  w-full object-contain"
+											className="h-16 -ml-16 w-full object-contain"
 										/>
 									</div>
-									<div className="ml-[10rem] mt-3">
-										<p className="text-sm text-[#3B6979]">
+									<div className="ml-[7rem] mt-3">
+										<p className="text-[9px] text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
-										<p className="text-sm text-[#3B6979]">
+										<p className="text-[9px] text-[#3B6979]">
 											2011 Hamlin Road / Durham, North Carolina 27704
+											<br />
 											919-560-2216
 										</p>
 									</div>
 								</div>
 								<div className="mb-6 pl-24">
 									<p className="mb-4">
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
+										<span className={`${nottoBeHighlighted}  adverstise`}>
+											{moment(form_fields?.creationDate).format(
+												"MMMM D, YYYY "
+											)}
 										</span>
 									</p>
 									<p>
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{!vendors
+										<span className={`${nottoBeHighlighted}   adverstise`}>
+											{!awardee[0]
 												? ""
-												: vendors[0].first_name + " " + vendors[0].last_name}
+												: awardee[0]?.first_name + " " + awardee[0]?.last_name}
 										</span>{" "}
 									</p>
 									<p>
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{!vendors ? "" : vendors[0].company_name}
+										<span className={`${nottoBeHighlighted}  adverstise`}>
+											{!awardee[0] ? "" : awardee[0]?.company_name}
 										</span>
 									</p>
 									<p>
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{!vendors ? "" : vendors[0].street}
+										<span className={`${nottoBeHighlighted}  adverstise`}>
+											{!awardee[0] ? "" : awardee[0]?.street}
 										</span>
 									</p>
 									<p>
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{!vendors ? "" : vendors[0].city},{" "}
-											{!vendors ? "" : vendors[0].state},{" "}
-											{!vendors ? "" : vendors[0].zip_code}
+										<span className={`${nottoBeHighlighted} adverstise`}>
+											{!awardee[0] ? "" : awardee[0]?.city},{" "}
+											{!awardee[0] ? "" : awardee[0]?.state},{" "}
+											{!awardee[0] ? "" : awardee[0]?.zip_code}
 										</span>
 									</p>
 								</div>
@@ -131,19 +139,17 @@ const Preview = () => {
 								<div>
 									<div className="flex mb-4 pl-24">
 										<p>RE:</p>
-										<div className="ml-[5.25rem]">
+										<div className="ml-[5.35rem]">
 											<p>Durham Public Schools (DPS)</p>
 											<p>
 												{/* <span className='bg-yellow-500 font-bold adverstise'>F6</span> -{" "} */}
-												<span
-													className={`${nottoBeHighlighted} font-bold adverstise`}>
-													{!school ? "" : school.name} -{" "}
-													{!project ? "" : project.name}
+												<span className={`${nottoBeHighlighted}  adverstise`}>
+													{!school ? "" : school?.name} -{" "}
+													{!project ? "" : project?.name}
 												</span>{" "}
 												(
-												<span
-													className={`${nottoBeHighlighted} font-bold adverstise`}>
-													{!project ? "" : project.number}
+												<span className={`${nottoBeHighlighted} adverstise`}>
+													{!project ? "" : project?.number}
 												</span>
 												)
 											</p>
@@ -159,13 +165,11 @@ const Preview = () => {
 									</div>
 									<p className="mb-4 pl-24">
 										Dear{" "}
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
+										<span className={`${nottoBeHighlighted}  adverstise`}>
 											Mr./Ms.
 										</span>{" "}
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
-											{!vendors ? "" : vendors[0].last_name}
+										<span className={`${nottoBeHighlighted}  adverstise`}>
+											{!awardee[0] ? "" : awardee[0]?.last_name}
 										</span>
 										:
 									</p>
@@ -192,8 +196,7 @@ const Preview = () => {
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
 										<br />
-										<span
-											className={`${nottoBeHighlighted} font-bold adverstise`}>
+										<span className={`${nottoBeHighlighted}  adverstise`}>
 											{" "}
 											{!durham_profile
 												? ""
@@ -207,11 +210,10 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-4 pl-24">Sincerely,</p>
+									<p className="mb-14 pl-24">Sincerely,</p>
 									<div className="mb-4 pl-24">
 										<p className="mb-0">
-											<span
-												className={`${nottoBeHighlighted} font-bold adverstise`}>
+											<span className={`${nottoBeHighlighted}  adverstise`}>
 												{!durham_profile
 													? ""
 													: !durham_profile
@@ -231,8 +233,7 @@ const Preview = () => {
 										<p>Cc:</p>
 										<div className="ml-8 ">
 											<p>
-												<span
-													className={`${nottoBeHighlighted} font-bold adverstise`}>
+												<span className={`${nottoBeHighlighted}  adverstise`}>
 													{!durham_profile
 														? ""
 														: !durham_profile
@@ -246,8 +247,7 @@ const Preview = () => {
 												, Interim Executive Director, C&CP
 											</p>
 											<p>
-												<span
-													className={`${nottoBeHighlighted} font-bold adverstise`}>
+												<span className={`${nottoBeHighlighted}  adverstise`}>
 													{!form_fields ? "" : form_fields.recipientCopy} -{" "}
 													{!form_fields ? "" : form_fields.position}
 												</span>
@@ -256,7 +256,7 @@ const Preview = () => {
 													: form_fields.userValue &&
 													  !form_fields.recipientCopy && (
 															<span
-																className={`${nottoBeHighlighted} font-bold adverstise`}>
+																className={`${nottoBeHighlighted}  adverstise`}>
 																{!form_fields ? "" : form_fields.userValue}
 															</span>
 													  )}
@@ -269,8 +269,7 @@ const Preview = () => {
 										<div className="ml-[1.6rem]">
 											<p>
 												[DPS Project No.{" "}
-												<span
-													className={`${nottoBeHighlighted} font-bold adverstise`}>
+												<span className={`${nottoBeHighlighted}  adverstise`}>
 													{!project ? "" : project.number}
 												</span>
 												]

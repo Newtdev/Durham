@@ -98,7 +98,6 @@ const Preview = () => {
 							className="bg-white text-black Times-font text-[14.7px]"
 							ref={downloadComponent}
 							style={{ margin: "01in 0.5in" }}>
-							{console.log(vendors)}
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{/* <PageThree {...pageProps} /> */}

@@ -65,14 +65,6 @@ const ContractDetails = (props) => {
 			return;
 		}
 		setLength(response?.data?.data?.vendors.length);
-		// console.log(response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
-		// props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
-		// props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)
-		// props.setFieldValue('providerCompensation',response?.data?.data?.form_fields.providerCompensation)
-		// props.setFieldValue('signedDocument',response?.data?.data?.form_fields.signedDocument)
-		// props.setFieldValue('providerInvoice',response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('type',response?.data?.data?.form_fields.type)
 	}, [response?.data?.data]);
 
 	return (
