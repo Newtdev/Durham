@@ -86,10 +86,10 @@ const PreviewElement = () => {
 					{/* Forms */}
 					<div className=" mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto">
 						<div
-							className="bg-white pt-8 pb-4 text-black adverstise  "
+							className="bg-white pt-8 pb-4 text-black adverstise  pr-[1in]"
 							ref={downloadComponent}>
 							<div className="mb-6 text-center"></div>
-							<div className="flex justify-between items-center pt-3 px-16 ">
+							<div className="flex justify-between items-center pt-3 pl-16 pr-4 ">
 								<div>
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
 								</div>
@@ -103,7 +103,7 @@ const PreviewElement = () => {
 									</div>
 								</div>
 							</div>
-							<div className="pl-36 pr-14 text-[14.5px]">
+							<div className="pl-36 text-[14.5px]">
 								<div className="mt-3">
 									<div className="flex items-center adverstise">
 										{" "}
