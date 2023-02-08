@@ -82,9 +82,11 @@ const OwnerAndDesignConsultantForm = ({ id }) => {
 
   // return <ModalOverlay show={true}`>
   return <ModalOverlay show={id === OwnerAndDesignConsultant && show}>
-    {pages === 1 && <FormOne {...formik} />}
-    {pages === 2 && <FormTwo {...formik} />}
-    {pages === 3 && <Preview />}
+    <FormikProvider value={formik}>
+      {pages === 1 && <FormOne {...formik} />}
+      {pages === 2 && <FormTwo {...formik} />}
+      {pages === 3 && <Preview />}
+    </FormikProvider>
   </ModalOverlay>
 
 }

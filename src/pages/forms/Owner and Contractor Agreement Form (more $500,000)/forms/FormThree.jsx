@@ -8,7 +8,6 @@ import { closeModal } from "../../reducer";
 import { FieldArray } from "formik";
 import React, { Fragment } from "react";
 import { FormInputPlain, FormInput } from "../../components";
-import { useState } from "react";
 
 const FormThree = (props) => {
 	const dispatch = useDispatch()
