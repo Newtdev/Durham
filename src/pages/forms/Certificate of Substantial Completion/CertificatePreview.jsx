@@ -99,26 +99,26 @@ const CertificatePreview = () => {
 						</button>
 					</div>
 
-					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font adverstise h-[380px]">
+					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font  h-[380px]">
 						<div
-							className="bg-white text-black adverstise text-[11.5px] leading-[1.15]"
+							className="bg-white text-black  leading-[1.3]"
 							ref={downloadComponent}
-							style={{ margin: "1in" }}>
+							style={{ margin: "0.5in 1in" }}>
 							<div>
 								<div className="flex items-center mb-6 ">
 									<img
 										src={Logo}
 										alt="logo"
-										className="h-20 object-cover mb-4"
+										className="h-14 object-cover mb-4"
 									/>
 
-									<h1 className="font-bold text-xl ml-8">
+									<h1 className="font-bold -mt-6 text-[20.5px] ml-8">
 										Certficate of Substantial Completion
 									</h1>
 								</div>
 
 								<table className="w-full border border-black text-left mb-5 advertise">
-									<thead className="h-[3rem]">
+									<thead className="h-[3rem] text-[13.5px]">
 										<tr>
 											<th className="border border-black pl-[1rem]">PROJECT</th>
 											<th className="border border-black pl-[1rem]">
@@ -130,47 +130,55 @@ const CertificatePreview = () => {
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr className="text-[12.5px]">
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem]`}>
 												{!project ? "" : project.name}
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												Project No: {!project ? "" : project.number}, g8.1
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem]`}>
+												<i>
+													Project No: {!project ? "" : project.number}, g8.1
+												</i>
 											</td>
 											<td className="border border-black pl-[1rem]">Owner</td>
 										</tr>
 										<tr>
 											<td
-												className={`${nottoBeHighlighted} border font-bold border-black pl-[1rem]`}>
-												{!project ? "" : project?.location},{" "}
+												className={`${nottoBeHighlighted} border  border-black pl-[1rem] text-[12.5px]`}>
+												<i>{!project ? "" : project?.location}, </i>
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem] text-[12.5px]`}>
 												Contract for:{" "}
-												{!form_fields ? "" : form_fields?.purposeOfContract}{" "}
+												<i>
+													{!form_fields ? "" : form_fields?.purposeOfContract}{" "}
+												</i>
 												Construction
 											</td>
-											<td className="border border-black pl-[1rem]">
+											<td className="border border-black pl-[1rem] text-[12.5px]">
 												Architect
 											</td>
 										</tr>
 										<tr>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!project ? "" : project.city},{" "}
-												{!project ? "" : project.state},{" "}
-												{!project ? "" : project.zip_code}
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem] text-[12.5px]`}>
+												<i>
+													{!project ? "" : project.city},{" "}
+													{!project ? "" : project.state},{" "}
+													{!project ? "" : project.zip_code}
+												</i>
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem] text-[12.5px]`}>
 												Contract Date:{" "}
-												{moment(form_fields?.contractEffectDate).format(
-													"MMMM D, YYYY "
-												)}
+												<i>
+													{moment(form_fields?.contractEffectDate).format(
+														"MMMM D, YYYY "
+													)}
+												</i>
 											</td>
-											<td className="border border-black pl-[1rem] adverstise">
+											<td className="border border-black pl-[1rem] text-[12.5px] ">
 												Contractor
 											</td>
 										</tr>
@@ -178,14 +186,14 @@ const CertificatePreview = () => {
 											<td className="border border-black pl-[1rem]"></td>
 											<td className="border border-black pl-[1rem]"></td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem] text-[12.5px]`}>
 												{!form_fields ? "" : form_fields.involvedInProject}
 											</td>
 										</tr>
 									</tbody>
 								</table>
 
-								<table className="w-full border border-black text-left mb-4">
+								<table className="w-full border border-black text-left mb-4 text-[13.5px]">
 									<thead>
 										<tr>
 											<th className="border border-black pl-[1rem]">
@@ -197,60 +205,70 @@ const CertificatePreview = () => {
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr className="text-[12.5px]">
 											<td className="border border-black pl-[1rem]">
-												Durham Public Schools
+												<i>Durham Public Schools</i>
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!awardee?.contractor
-													? ""
-													: awardee?.contractor?.company_name}
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem]`}>
+												<i>
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.company_name}
+												</i>
 											</td>
 										</tr>
-										<tr>
-											<td
-												className={` adverstise border border-black pl-[1rem]`}>
-												511 Cleveland St.,
+										<tr className="text-[12.5px]">
+											<td className={`  border border-black pl-[1rem]`}>
+												<i>511 Cleveland St.,</i>
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!awardee?.contractor
-													? ""
-													: awardee?.contractor?.street}
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem]`}>
+												<i>
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.street}
+												</i>
 											</td>
 										</tr>
-										<tr>
+										<tr className="text-[12.5px]">
 											<td className="border border-black pl-[1rem]">
 												{" "}
-												Durham, NC 27701
+												<i>Durham, NC 27701</i>
 											</td>
 											<td
-												className={`font-bold ${nottoBeHighlighted} adverstise border border-black pl-[1rem]`}>
-												{!awardee?.contractor ? "" : awardee?.contractor?.city},{" "}
-												{!awardee?.contractor ? "" : awardee?.contractor?.state}
-												,{" "}
-												{!awardee?.contractor
-													? ""
-													: awardee?.contractor?.zip_code}
+												className={` ${nottoBeHighlighted}  border border-black pl-[1rem]`}>
+												<i>
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.city}
+													,{" "}
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.state}
+													,{" "}
+													{!awardee?.contractor
+														? ""
+														: awardee?.contractor?.zip_code}
+												</i>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 
 								<div>
-									<p className="font-bold mb-4 adverstise">
+									<p className="font-bold mb-4 text-[12.5px]">
 										PROJECT OR PORTION OF THE PROJECT DETERMINED SUBSTANTIALLY
 										COMPLETE:
 										<br />
 										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise`}>
+											className={`inline-block font-light mt-4 ${nottoBeHighlighted} `}>
 											{" "}
 											{!form_fields ? "" : form_fields.areasCompleted}
 										</span>
 									</p>
 
-									<p className="mb-4 adverstise ">
+									<p className="mb-4 text-[12.5px] leading-[1.2]">
 										The Work performed under this contract has been reviewed and
 										found to be Substantially Complete. Substantial Completion
 										is the stage in the progress of the Work when the Work (or
@@ -263,17 +281,17 @@ const CertificatePreview = () => {
 										by the Contract Documents:
 									</p>
 
-									<p className="font-bold mb-4 adverstise">
+									<p className="font-bold mb-4 text-[12.5px]">
 										DATE OF SUBSTANTIAL COMPLETION:{" "}
 										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise`}>
+											className={`font-bold inline-block ml-6 ] ${nottoBeHighlighted} `}>
 											{moment(form_fields?.completionDate).format(
 												"MMMM D, YYYY "
 											)}
 										</span>
 									</p>
 
-									<p className="mb-4 adverstise">
+									<p className="mb-4 text-[12.5px] leading-[1.2]">
 										A punch list of items to be corrected is attached hereto.
 										The failure to include items on the punch list does not
 										alter the Contractor’s responsibility to complete all Work
@@ -285,19 +303,18 @@ const CertificatePreview = () => {
 
 									<div className="mb-4">
 										<p className="mb-0 border-b border-black py-1">
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
+											<span className={`text-[12.5px] ${nottoBeHighlighted} `}>
 												{!awardee?.contractor
 													? ""
 													: awardee?.design?.company_name}
 											</span>
 										</p>
 										<div className="w-full flex justify-between">
-											<span className="adverstise">CONSULTANT</span>
-											<span className=" adverstise">
+											<span className="text-[12.5px]">CONSULTANT</span>
+											<span className=" ">
 												BY:{" "}
 												<span
-													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+													className={`text-[12.5px] ${nottoBeHighlighted} `}>
 													{!awardee?.design
 														? ""
 														: awardee?.design?.first_name +
@@ -305,45 +322,41 @@ const CertificatePreview = () => {
 														  awardee?.design?.last_name}
 												</span>
 											</span>
-											<span className="adverstise">DATE</span>
+											<span className="">DATE</span>
 										</div>
 									</div>
 
-									<p className="mb-6 adverstise">
+									<p className="mb-6  text-[12.5px]">
 										The Contractor will complete all work on the attached punch
 										list within{" "}
-										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise`}>
+										<span className={` ${nottoBeHighlighted} `}>
 											{doConvert(form_fields?.workCompletionDate)}(
 											{!form_fields ? "" : form_fields.workCompletionDate})
 										</span>{" "}
 										days from the date of Substantial Completion.
 									</p>
 
-									<p className="mb-4 font-bold adverstise">
+									<p className="mb-4 font-bold text-[12.5px]">
 										COST ESTIMATE OF REMAINING WORK:
-										<span
-											className={`font-bold ${nottoBeHighlighted} adverstise`}>
+										<span className={`font-bold ${nottoBeHighlighted} `}>
 											{" "}
 											{currency(form_fields?.costOfWork).format()}
 										</span>
 									</p>
 
-									<div className="mb-4 ">
+									<div className="mb-4 text-[12.5px]">
 										<p className="mb-0 border-b border-black py-1">
-											<span
-												className={`font-bold ${nottoBeHighlighted} adverstise`}>
+											<span className={`font-bold ${nottoBeHighlighted} `}>
 												{!awardee?.contractor
 													? ""
 													: awardee?.contractor?.company_name}
 											</span>
 										</p>
-										<div className="flex justify-between w-full">
-											<span className="adverstise">CONTRACTOR</span>
-											<span className="adverstise">
+										<div className="flex justify-between w-full text-[12.5px]">
+											<span className="">CONTRACTOR</span>
+											<span className="">
 												BY:{" "}
-												<span
-													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+												<span className={`${nottoBeHighlighted} `}>
 													{!awardee?.contractor
 														? ""
 														: awardee?.contractor?.first_name +
@@ -351,11 +364,11 @@ const CertificatePreview = () => {
 														  awardee?.contractor?.last_name}
 												</span>
 											</span>
-											<span className="adverstise">DATE</span>
+											<span className="">DATE</span>
 										</div>
 									</div>
 
-									<p className="mb-4 adverstise">
+									<p className="mb-4 text-[12.5px]">
 										The Owner accepts the Work or designated portion as
 										Substantially Complete and will assume full possession at
 										12:01 AM on the Substantial Completion date identified
@@ -363,8 +376,8 @@ const CertificatePreview = () => {
 									</p>
 
 									<div className="mb-4">
-										<p className="mb-0 border-b border-black flex justify-between py-1">
-											<span className="adverstise">Durham Public Schools</span>
+										<p className="mb-0 border-b border-black flex justify-between py-1 text-[12.5px]">
+											<span className="">Durham Public Schools</span>
 
 											<span className="">
 												{moment(form_fields?.signedDate).format(
@@ -372,27 +385,25 @@ const CertificatePreview = () => {
 												)}
 											</span>
 										</p>
-										<div className="w-full flex justify-between">
-											<span className="adverstise">OWNER </span>
-											<span className=" adverstise">
+										<div className="w-full flex justify-between text-[12.5px]">
+											<span className="">OWNER </span>
+											<span className=" ">
 												BY:{" "}
-												<span
-													className={`font-bold ${nottoBeHighlighted} adverstise`}>
+												<span className={` ${nottoBeHighlighted} `}>
 													{!form_fields ? "" : form_fields.owner} -{" "}
 													{!form_fields ? "" : form_fields.position}
 												</span>
 											</span>
-											<span className={`font-bold adverstise`}>DATE </span>
+											<span className={` `}>DATE </span>
 										</div>
 									</div>
 
-									<p className="mb-4 adverstise">
+									<p className="mb-4 text-[12.5px]">
 										The responsibility of the Owner and Contractor for security,
 										maintenance, heat, utilities, damage to the Work and
-										insurance shall be as follows:
-										<br />
+										insurance shall be as follows:{" "}
 										{/* <span
-											className={`font-bold ${nottoBeHighlighted} adverstise break-words`}>
+											className={`font-bold ${nottoBeHighlighted}  break-words`}>
 											{!form_fields ? "" : form_fields.responsibility}
 										</span> */}
 									</p>

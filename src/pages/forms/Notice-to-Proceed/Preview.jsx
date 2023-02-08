@@ -214,9 +214,8 @@ const Preview = (data) => {
 									Contract Time until Substantial Completion is achieved on or
 									before{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.effectiveDate).format("MMMM D, YYYY ")}
+										{moment(form_fields.effectiveDate).format("MMMM D, YYYY.")}
 									</span>
-									.
 								</p>
 								<p className="mb-3 leading-[1.2]">
 									We look forward to working with you and your team on this
@@ -234,7 +233,7 @@ const Preview = (data) => {
 									</span>
 									.
 								</p>
-								<p className="mb-10">Sincerely,</p>
+								<p className="mb-12">Sincerely,</p>
 								<p>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!durham_profile
@@ -279,14 +278,11 @@ const Preview = (data) => {
 															.name}{" "}
 												- DPS C&CP Business Manager{" "}
 											</span>
-											<span className={`${nottoBeHighlighted} bg-grey-800`}>
-												DPS Project No. {!project ? "" : project.number}
-											</span>
 										</p>
 									</div>
 								</div>
 								<div className="">
-									<span className="mr-2">File:</span>
+									<span className="mr-3">File:</span>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										DPS Project No. {!project ? "" : project.number}
 									</span>

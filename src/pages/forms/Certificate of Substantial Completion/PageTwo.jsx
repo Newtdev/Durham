@@ -1,6 +1,8 @@
 const PageTwo = ({ nottoBeHighlighted, form_fields }) => {
 	return (
-		<div className="mt-[30rem] pt-20 leading-[1.3]" style={{ height: "10in" }}>
+		<div
+			className="mt-[27rem] pt-20 leading-[1.3] text-[12.5px]"
+			style={{ height: "10in" }}>
 			<div className="flex mb-2">
 				<div className="">
 					<p className={` adverstise ${nottoBeHighlighted} text-justify`}>
