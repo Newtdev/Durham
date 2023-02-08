@@ -10,8 +10,9 @@ import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 const Vendors = lazy(() => import("../Vendors-mangement"));
 const ProjectDetails = lazy(() => import("../project-details"));
 const ProjectManager = lazy(() =>
-	import("../Product-manager-management/Product-manager")
+  import("../Product-manager-management/Product-manager")
 );
+const Forms = lazy(() => import("../forms/Forms"));
 const Settings = lazy(() => import("../Settings/main"));
 const DurhamSettings = lazy(() => import("../Settings/Durhams-settings"));
 const ProfileSettings = lazy(() => import("../Settings/Profile-settings"));
@@ -52,6 +53,53 @@ const Modal = ({ show }) => {
 };
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const data = JSON.parse(localStorage.getItem("durham_token"));
+
+  // const onInactivityChange = () => {};
+  // const onIdleModal = () => {};
+  // const onActive = () => {
+  // 	console.log("active");
+  // };
+  // const onIdle = () => {
+  // 	console.log("idle");
+  // };
+  // const idleTimer = useIdleTimer({
+  // 	onActive,
+  // 	onIdle,
+  // 	timeout: 2000,
+  // 	throttle: 500,
+  // });
+
+  useEffect(() => {
+    // console.log(idleTimer());
+    if (!data) {
+      navigate("/");
+    }
+    dispatch(userInfo(data));
+  }, [dispatch, data, navigate]);
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" index element={<ProjectDashboard />} />
+        <Route path="/add-new-project" element={<ProjectFormsController />} />
+        <Route path="/edit-project" element={<EditProjectDashboard />} />
+        <Route path="/forms" element={<OwnerContractorManagementForm />} />
+        <Route path="/product-manager" element={<ProjectManager />}></Route>
+        <Route path="/vendors" element={<Vendors />}></Route>
+        <Route path="/schools" element={<SchoolInformation />}></Route>
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/settings/durhams-profile" element={<DurhamSettings />} />
+        <Route path="/settings/profile" element={<ProfileSettings />} />
+        <Route path="/add-new-project/preview" element={<ProjectPreview />} />
+        <Route path="/project-details/:id" element={<ProjectDetails />} />
+        <Route path="/forms-download" element={<Forms />}></Route>
+      </Routes>
+    </Suspense>
+  );
+=======
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	// const [show, setShow] = useState(false);
