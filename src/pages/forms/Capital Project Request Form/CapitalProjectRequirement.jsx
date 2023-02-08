@@ -3,28 +3,25 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { CCPRequisition } from "../../../../shared-component/slug";
+import { CapitalProjectRequest } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
-import { CCPRequisitionSchema } from "../../../../yup";
+import { CapitalProjectRequestSchema } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../../reducer";
 import FormOne from "./forms/FormOne";
-import FormThree from "./forms/FormThree";
 import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const CCPRequisitionForm = ({ id }) => {
-	const dispatch = useDispatch();
-	const pages = useSelector(page);
-	const show = useSelector(modal);
+const CapitalProjectRequestForm = ({ id }) => {
+  const dispatch = useDispatch();
+  const pages = useSelector(page)
+  const show = useSelector(modal)
 
-	// const pages = 4;
-	const formID = useSelector(project_document_id);
+  const formID = useSelector(project_document_id);
 
-	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
   const HandleSubmit = async (values) => {
     const param = Object.keys(values)
@@ -43,20 +40,6 @@ const CCPRequisitionForm = ({ id }) => {
       { field_name: param[7], field_value: val[7] },
       { field_name: param[8], field_value: val[8] },
       { field_name: param[9], field_value: val[9] },
-      { field_name: param[10], field_value: val[10] },
-      { field_name: param[11], field_value: val[11] },
-      { field_name: param[12], field_value: val[12] },
-      { field_name: param[13], field_value: val[13] },
-      { field_name: param[14], field_value: val[14] },
-      { field_name: param[15], field_value: val[15] },
-      { field_name: param[16], field_value: val[16] },
-      { field_name: param[17], field_value: val[17] },
-      { field_name: param[18], field_value: val[18] },
-      { field_name: param[19], field_value: val[19] },
-      { field_name: param[20], field_value: val[20] },
-      { field_name: param[21], field_value: val[21] },
-      { field_name: param[22], field_value: val[22] },
-
       ]
     })
     if (response) {
@@ -73,37 +56,18 @@ const CCPRequisitionForm = ({ id }) => {
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      creationDate: "",
-      budgetCode: "",
-      commodityCode: "",
-      requisitionOrder: "",
-      po: "",
-      attached: "",
-      signDate: "",
-      vendor: "",
-      vendorId: "",
-      companyName: "",
-      addressCity: "",
-      addressStreet: "",
-      addressState: "",
-      addressZipCode: "",
-      name: "",
-      city: "",
-      street: "",
-      state: "",
-      zipCode: "",
-      location: "",
-      items: [{
-        stockNumber: "",
-        description: "",
-        quantity: "",
-        unit: "",
-        unitPrice: "",
-      }],
-      shippingCost: "",
-      salesTax: ""
+      pointOfContact: "",
+      startDate: "",
+      completionDate: "",
+      fundingSource: "",
+      landCost: "",
+      designCost: "",
+      constructionCost: "",
+      renovationCost: "",
+      repairCost: "",
+      furnitureCost: "",
     },
-    validationSchema: CCPRequisitionSchema[pages - 1],
+    validationSchema: CapitalProjectRequestSchema[pages - 1],
     onSubmit: (values) => {
       if (pages === 1) {
         console.log("pages: ", pages)
@@ -111,9 +75,6 @@ const CCPRequisitionForm = ({ id }) => {
       } else if (pages === 2) {
         console.log("pages: ", pages)
         dispatch(nextStep(3))
-      } else if (pages === 3) {
-        console.log("pages: ", pages)
-        dispatch(nextStep(4))
         dispatch(saveFormField(values))
         HandleSubmit(values)
       }
@@ -129,14 +90,14 @@ const CCPRequisitionForm = ({ id }) => {
     }())
   }, [dispatch]);
 
-  return <ModalOverlay show={id === CCPRequisition && show}>
+  // return <ModalOverlay show={true}`>
+  return <ModalOverlay show={id === CapitalProjectRequest && show}>
     <FormikProvider value={formik}>
       {pages === 1 && <FormOne {...formik} />}
       {pages === 2 && <FormTwo {...formik} />}
-      {pages === 3 && <FormThree {...formik} />}
-      {pages === 4 && <Preview />}
+      {pages === 3 && <Preview />}
     </FormikProvider>
   </ModalOverlay>
 
 }
-export default CCPRequisitionForm;
+export default CapitalProjectRequestForm;

@@ -35,4 +35,5 @@ export const RFPTemplateWithMWBE = "RFP-Template-with-MWBE";
 export const MWBEFormId = "MWBE-Participation-Sheet-(%-Form)";
 export const ShortSmallFormDesign = "Short-Small-Form-Design-Consultant-Agreement";
 export const OwnerAndDesignConsultant = "Owner-and-Design-Consultant-(less-than-$200,000)";
-export const OwnerAndContractor = "Owner-and-Contractor-Agreement-Form-(more-$500,000)"
+export const OwnerAndContractor = "Owner-and-Contractor-Agreement-Form-(more-$500,000)";
+export const CapitalProjectRequest = "Capital-Project-Request-Form";

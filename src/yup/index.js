@@ -518,3 +518,20 @@ export const OwnerAndContractorSchema = [
 		)
 	})
 ]
+
+export const CapitalProjectRequestSchema = [
+	Yup.object().shape({
+		pointOfContact: Yup.string().required("Field is required"),
+		startDate: Yup.string().required("Field is required"),
+		completionDate: Yup.string().required("Field is required"),
+		fundingSource: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		landCost: Yup.string().required("Field is required"),
+		designCost: Yup.string().required("Field is required"),
+		constructionCost: Yup.string().required("Field is required"),
+		renovationCost: Yup.string().required("Field is required"),
+		repairCost: Yup.string().required("Field is required"),
+		furnitureCost: Yup.string().required("Field is required"),
+	})
+]
