@@ -101,24 +101,24 @@ const CertificatePreview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] arial-font  h-[380px]">
 						<div
-							className="bg-white text-black  leading-[1.3]"
+							className=" text-black  leading-[1.3]"
 							ref={downloadComponent}
-							style={{ margin: "0.5in 1in" }}>
+							style={{ margin: "0.5in 1in", height: "10.5in" }}>
 							<div>
-								<div className="flex items-center mb-6 ">
+								<div className="flex items-center mb-4 ">
 									<img
 										src={Logo}
 										alt="logo"
 										className="h-14 object-cover mb-4"
 									/>
 
-									<h1 className="font-bold -mt-6 text-[20.5px] ml-8">
+									<h1 className="font-extrabold -mt-9 text-[23.5px] ml-8">
 										Certficate of Substantial Completion
 									</h1>
 								</div>
 
 								<table className="w-full border border-black text-left mb-5 advertise">
-									<thead className="h-[3rem] text-[13.5px]">
+									<thead className="h-[2rem] text-[13.5px]">
 										<tr>
 											<th className="border border-black pl-[1rem]">PROJECT</th>
 											<th className="border border-black pl-[1rem]">
@@ -311,7 +311,7 @@ const CertificatePreview = () => {
 										</p>
 										<div className="w-full flex justify-between">
 											<span className="text-[12.5px]">CONSULTANT</span>
-											<span className=" ">
+											<span className="text-[12.5px] mt-0.5 ">
 												BY:{" "}
 												<span
 													className={`text-[12.5px] ${nottoBeHighlighted} `}>
@@ -322,7 +322,7 @@ const CertificatePreview = () => {
 														  awardee?.design?.last_name}
 												</span>
 											</span>
-											<span className="">DATE</span>
+											<span className="text-[12.5px]">DATE</span>
 										</div>
 									</div>
 
@@ -338,7 +338,8 @@ const CertificatePreview = () => {
 
 									<p className="mb-4 font-bold text-[12.5px]">
 										COST ESTIMATE OF REMAINING WORK:
-										<span className={`font-bold ${nottoBeHighlighted} `}>
+										<span
+											className={`font-bold inline-block ml-10 ${nottoBeHighlighted} `}>
 											{" "}
 											{currency(form_fields?.costOfWork).format()}
 										</span>
@@ -346,7 +347,7 @@ const CertificatePreview = () => {
 
 									<div className="mb-4 text-[12.5px]">
 										<p className="mb-0 border-b border-black py-1">
-											<span className={`font-bold ${nottoBeHighlighted} `}>
+											<span className={` ${nottoBeHighlighted} `}>
 												{!awardee?.contractor
 													? ""
 													: awardee?.contractor?.company_name}
@@ -354,9 +355,9 @@ const CertificatePreview = () => {
 										</p>
 										<div className="flex justify-between w-full text-[12.5px]">
 											<span className="">CONTRACTOR</span>
-											<span className="">
+											<span className="text-[12.5px] mt-0.5">
 												BY:{" "}
-												<span className={`${nottoBeHighlighted} `}>
+												<span className={`${nottoBeHighlighted}  `}>
 													{!awardee?.contractor
 														? ""
 														: awardee?.contractor?.first_name +
@@ -387,7 +388,7 @@ const CertificatePreview = () => {
 										</p>
 										<div className="w-full flex justify-between text-[12.5px]">
 											<span className="">OWNER </span>
-											<span className=" ">
+											<span className=" mt-0.5">
 												BY:{" "}
 												<span className={` ${nottoBeHighlighted} `}>
 													{!form_fields ? "" : form_fields.owner} -{" "}

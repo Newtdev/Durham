@@ -20,7 +20,9 @@ export function FormsDownloadButton({
       className={`text-white w-[140px] text-xs font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
       type={type}
     >
-      {loading && <Spinner />} {loading ? "Loading..." : name}
+      <span className="visible md:hidden">
+        {loading && <Spinner />} {loading ? "Loading..." : name}
+      </span>
       {!hidden && <img src={download} alt="" className="ml-4" />}
     </button>
   );
@@ -89,7 +91,7 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
+              className="py-4 px-4 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
             >
               {category}
             </li>

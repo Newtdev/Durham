@@ -54,10 +54,10 @@ const PunchList = ({ id }) => {
 
 						<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 							<div
-								className="bg-white px-12 pt-8 pb-4 calibri-font text-[14.5px] text-black"
+								className="bg-white mx-[0.8in] my-[0.5in] calibri-font text-[15.5px] text-black leading-[1.3]"
 								ref={downloadComponent}>
 								<div>
-									<h1 className="text-center mb-10 mt-4 text-[20.5px]">
+									<h1 className="text-center mb-10 mt-4 text-[23px]">
 										PUNCH LIST AND SUBSTANTIAL COMPLETION PROCESS
 									</h1>
 

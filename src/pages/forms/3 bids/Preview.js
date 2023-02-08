@@ -9,62 +9,95 @@ import currency from "currency.js";
 import moment from "moment";
 import DownLoadForm from "../Lundsford/Download";
 
-const RenderBidList = ({ details, nottoBeHighlighted }) => {
-	if (!details?.information) {
-		return null;
-	}
-	return details?.information?.map((vendor_one, index) => {
+const RenderBidList = ({ vendor_four, nottoBeHighlighted }) => {
+	if (!vendor_four) {
 		return (
-			<div key={index} className="grid grid-cols-2 gap-6 mb-6">
-				<div className="overflow-hidden">
-					<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
-					<p className="mb-4 border-black border-b-2 text-[14.5px]">
-						<span className={`${nottoBeHighlighted}  `}>
-							{!vendor_one ? "" : vendor_one.company_name}
-						</span>
-					</p>
-					<p className="mb-4 border-black border-b-2 text-[14.5px]">
-						<span className={`${nottoBeHighlighted} `}>
-							{!vendor_one ? "" : vendor_one.address},{" "}
-						</span>
-					</p>
-					<p className="mb-4 border-black border-b-2 text-[14.5px]">
-						<span className={`${nottoBeHighlighted} `}>
-							{!vendor_one ? "" : vendor_one.city},{" "}
-							{!vendor_one ? "" : vendor_one.state},{" "}
-							{!vendor_one ? "" : vendor_one.zip_code}
-						</span>
-					</p>
-				</div>
-
-				<div>
-					<p className=" mb-5 ml-14">PRICE QUOTED</p>
-					<p className="mb-4 flex text-[14.5px]">
-						UNIT PRICE:{" "}
-						<span
-							className={`block w-36 ${nottoBeHighlighted} ml-2 border-b-2 border-black`}>
-							{currency(vendor_one?.unitPrice).format()}
-						</span>
-					</p>
-					<p className="mb-4 flex text-[14.5px]">
-						TOTAL PRICE:{" "}
-						<span
-							className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-							{currency(vendor_one?.totalPrice).format()}
-						</span>
-					</p>
-					<p className="flex text-[14.5px]">
-						SHIPPING:{" "}
-						<span
-							className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-							{" "}
-							{currency(vendor_one?.shippingPrice).format()}
-						</span>
-					</p>
-				</div>
+			<div className="text-[14.5px]">
+				<p className=" mb-5 ml-14">PRICE QUOTED</p>
+				<p className="mb-4 flex">
+					UNIT PRICE:{" "}
+					<span className={`block w-36 ml-2  border-b border-black`}></span>
+				</p>
+				<p className="mb-4 flex">
+					TOTAL PRICE:{" "}
+					<span className={`block w-36 ml-2   border-b border-black`}></span>
+				</p>
+				<p className="flex">
+					SHIPPING:{" "}
+					<span className={`block w-36 ml-2   border-b border-black`}> </span>
+				</p>
 			</div>
 		);
-	});
+	}
+
+	return (
+		<div className="text-[14.5px]">
+			<p className=" mb-5 ml-14">PRICE QUOTED</p>
+			<p className="mb-4 flex">
+				UNIT PRICE:{" "}
+				<span
+					className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+					{currency(vendor_four?.unitPrice).format()}
+				</span>
+			</p>
+			<p className="mb-4 flex">
+				TOTAL PRICE:{" "}
+				<span
+					className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15.5px]`}>
+					{currency(vendor_four?.totalPrice).format()}
+				</span>
+			</p>
+			<p className="flex">
+				SHIPPING:{" "}
+				<span
+					className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+					{" "}
+					{currency(vendor_four?.shippingPrice).format()}
+				</span>
+			</p>
+		</div>
+	);
+};
+const RenderInfoList = ({ vendor_four, nottoBeHighlighted }) => {
+	if (!vendor_four) {
+		return (
+			<div className="overflow-hidden text-[14.5px]">
+				<p className="text-center mb-9">VENDOR NAME/ADDRESS</p>
+				<p className="mb-7 bg-red-900 border-black border-b">
+					<span className={``}></span>
+				</p>
+				<p className="mb-8 border-black border-b">
+					<span className={` `}></span>
+				</p>
+				<p className="mb-6 border-black border-b">
+					<span className={` `}></span>
+				</p>
+			</div>
+		);
+	}
+
+	return (
+		<div className="overflow-hidden text-[14.5px]">
+			<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
+			<p className="mb-4 border-black border-b">
+				<span className={`${nottoBeHighlighted} text-[15px]`}>
+					{!vendor_four ? "" : vendor_four.company_name}
+				</span>
+			</p>
+			<p className="mb-4 border-black border-b">
+				<span className={`${nottoBeHighlighted} text-[15px]`}>
+					{!vendor_four ? "" : vendor_four.address},{" "}
+				</span>
+			</p>
+			<p className="mb-4 border-black border-b text-[14.5px]">
+				<span className={`${nottoBeHighlighted}  text-[15px]`}>
+					{!vendor_four ? "" : vendor_four.city}{" "}
+					{!vendor_four ? "" : vendor_four.state}{" "}
+					{!vendor_four ? "" : vendor_four.zip_code}
+				</span>
+			</p>
+		</div>
+	);
 };
 
 const Preview = () => {
@@ -76,10 +109,10 @@ const Preview = () => {
 
 	const description = !details ? "" : details?.services || "";
 	const quantity = !details ? "" : details?.input || "";
-	// const vendor_one = !details ? "" : details?.information[0];
-	// const vendor_two = !details ? "" : details?.information[1];
-	// const vendor_three = !details ? "" : details?.information[2];
-	// const vendor_four = !details ? "" : details?.information[3];
+	const vendor_one = !details ? "" : details?.information[0];
+	const vendor_two = !details ? "" : details?.information[1];
+	const vendor_three = !details ? "" : details?.information[2];
+	const vendor_four = !details ? "" : details?.information[3];
 	const date = !details ? "" : details.selectDate;
 
 	const props = {
@@ -121,23 +154,23 @@ const Preview = () => {
 							className="px-12 pt-2 pb-2 text-black text-[14.5px] adverstise"
 							ref={downloadComponent}>
 							<div>
-								<div className="mb-2 px-16">
-									<p className="text-[14.5px] mb-0">BD-04</p>
-									<p className="text-[14.5px] mt-0">07/92</p>
+								<div className="mb-2 font-bold ml-7">
+									<p className="text-[12.5px] -mb-1">BD-04</p>
+									<p className="text-[12.5px] mt-0">07/92</p>
 								</div>
 
-								<div className="mb-6 text-center">
-									<h1 className="font-bold text-[14.5px]">
+								<div className="mb-12 text-center">
+									<h1 className="font-bold text-[20.5px]">
 										DURHAM PUBLIC SCHOOLS
 									</h1>
-									<h1 className="font-bold text-[14.5px]">
+									<h1 className="font-bold -mt-2 text-[18.5px]">
 										DOCUMENTATION OF PRICES
 									</h1>
 								</div>
 
 								<div className="mb-4 text-[14.5px] leading-[1.2]">
-									<div className="pl-8 pr-16">
-										<p className="mb-6">
+									<div className="pl-8 pr-10">
+										<p className="mb-6 text-[15.5px]">
 											This document may be used to document prices as required
 											under the purchasing procedures. A minimum of{" "}
 											<span className="font-bold">three (3)</span> bids is
@@ -147,40 +180,88 @@ const Preview = () => {
 											<p className="mb-4 flex leading-[1.2]">
 												DESCRIPTION OF ITEM(S):
 												<span
-													className={` ${nottoBeHighlighted} ml-1 border-black border-b-2 w-[20rem] text-[14.5px]`}>
+													className={` ${nottoBeHighlighted} ml-1 border-black border-b w-[20rem] text-[15px]`}>
 													{description}
 												</span>
 											</p>
 											<p className="mb-6 text-[14.5px] flex">
 												QUANTITY:
 												<span
-													className={`${nottoBeHighlighted}  block w-64 ml-1.5 border-black border-b-2 text-[14.5px]`}>
+													className={`${nottoBeHighlighted}  block w-64 ml-1.5 border-black border-b text-[15px]`}>
 													{quantity}
 												</span>
 											</p>
 										</div>
 									</div>
 
-									<div className=" px-8 text-[14.5px]">
-										<RenderBidList
-											details={details}
-											nottoBeHighlighted={nottoBeHighlighted}
-										/>
-										{/* <div className="grid grid-cols-2 gap-6 mb-6 text-[14.5px]">
+									<div className=" mt-12 px-8 text-[14.5px]">
+										<div className="grid grid-cols-2 gap-8 mb-6">
 											<div className="overflow-hidden">
 												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted}  `}>
+												<p className="mb-4 border-black border-b text-[15px]">
+													<span
+														className={`${nottoBeHighlighted} text-[15px] `}>
+														{!vendor_one ? "" : vendor_one.company_name}
+													</span>
+												</p>
+												<p className="mb-4 border-black border-b text-[14.5px]">
+													<span className={`${nottoBeHighlighted} text-[15px]`}>
+														{!vendor_one ? "" : vendor_one.address},{" "}
+													</span>
+												</p>
+												<p className="mb-4 border-black border-b text-[14.5px]">
+													<span className={`${nottoBeHighlighted} text-[15px]`}>
+														{!vendor_one ? "" : vendor_one.city},{" "}
+														{!vendor_one ? "" : vendor_one.state},{" "}
+														{!vendor_one ? "" : vendor_one.zip_code}
+													</span>
+												</p>
+											</div>
+
+											<div>
+												<p className=" mb-5 ml-14">PRICE QUOTED</p>
+												<p className="mb-4 flex text-[14.5px]">
+													UNIT PRICE:{" "}
+													<span
+														className={`block w-36 ${nottoBeHighlighted} ml-2 border-b border-black text-[15px]`}>
+														{currency(vendor_one?.unitPrice).format()}
+													</span>
+												</p>
+												<p className="mb-4 flex text-[14.5px]">
+													TOTAL PRICE:{" "}
+													<span
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+														{currency(vendor_one?.totalPrice).format()}
+													</span>
+												</p>
+												<p className="flex text-[14.5px]">
+													SHIPPING:{" "}
+													<span
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+														{" "}
+														{currency(vendor_one?.shippingPrice).format()}
+													</span>
+												</p>
+											</div>
+										</div>
+										<div className="grid grid-cols-2 gap-8 mb-6 text-[14.5px]">
+											<div className="overflow-hidden">
+												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
+												<p className="mb-4 border-black border-b">
+													<span
+														className={`${nottoBeHighlighted} text-[15px] `}>
 														{!vendor_two ? "" : vendor_two.company_name}
 													</span>
 												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={` ${nottoBeHighlighted}  `}>
+												<p className="mb-4 border-black border-b">
+													<span
+														className={` ${nottoBeHighlighted} text-[15px] `}>
 														{!vendor_two ? "" : vendor_two.address},{" "}
 													</span>
 												</p>
-												<p className="mb-4 border-black border-b-2 text-[14.5px]">
-													<span className={` ${nottoBeHighlighted}  `}>
+												<p className="mb-4 border-black border-b text-[14.5px]">
+													<span
+														className={` ${nottoBeHighlighted} text-[15px] `}>
 														{!vendor_two ? "" : vendor_two?.city},{" "}
 														{!vendor_two ? "" : vendor_two?.state},{" "}
 														{!vendor_two ? "" : vendor_two?.zip_code}
@@ -193,95 +274,47 @@ const Preview = () => {
 												<p className="mb-4 flex">
 													UNIT PRICE:{" "}
 													<span
-														className={` block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+														className={` block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
 														{currency(vendor_two?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 text-[14.5px] flex">
 													TOTAL PRICE:{" "}
 													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
 														{currency(vendor_two?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex text-[14.5px]">
 													SHIPPING:{" "}
 													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
 														{" "}
 														{currency(vendor_two?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>
-										</div> */}
+										</div>
 
-										{/* <div className="grid grid-cols-2 gap-6 mb-6 text-[14.5px]">
+										<div className="grid grid-cols-2 gap-8 mb-6 text-[14.5px]">
 											<div className="overflow-hidden">
 												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted}`}>
+												<p className="mb-4 border-black border-b">
+													<span className={`${nottoBeHighlighted} text-[15px]`}>
 														{!vendor_three ? "" : vendor_three.company_name}
 													</span>
 												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
+												<p className="mb-4 border-black border-b">
+													<span className={`${nottoBeHighlighted} text-[15px]`}>
 														{!vendor_three ? "" : vendor_three.address},{" "}
 													</span>
 												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
+												<p className="mb-4 border-black border-b">
+													<span
+														className={`${nottoBeHighlighted} text-[15px] `}>
 														{!vendor_three ? "" : vendor_three.city},{" "}
 														{!vendor_three ? "" : vendor_three.state},{" "}
 														{!vendor_three ? "" : vendor_three.zip_code}
-													</span>
-												</p>
-											</div> */}
-
-										{/* <div className="text-[14.5px]">
-												<p className=" mb-5 ml-14">PRICE QUOTED</p>
-												<p className="mb-4 flex">
-													UNIT PRICE:{" "}
-													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_three?.unitPrice).format()}
-													</span>
-												</p>
-												<p className="mb-4 flex">
-													TOTAL PRICE:{" "}
-													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_three?.totalPrice).format()}
-													</span>
-												</p>
-												<p className="flex">
-													SHIPPING:{" "}
-													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{" "}
-														{currency(vendor_three?.shippingPrice).format()}
-													</span>
-												</p>
-											</div>
-										</div> */}
-
-										{/* <div className="grid grid-cols-2 gap-6 mb-2">
-											<div className="overflow-hidden text-[14.5px]">
-												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted}`}>
-														{!vendor_four ? "" : vendor_four.company_name}
-													</span>
-												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
-														{!vendor_four ? "" : vendor_four.address},{" "}
-													</span>
-												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
-														{!vendor_four ? "" : vendor_four.city}{" "}
-														{!vendor_four ? "" : vendor_four.state}{" "}
-														{!vendor_four ? "" : vendor_four.zip_code}
 													</span>
 												</p>
 											</div>
@@ -291,36 +324,47 @@ const Preview = () => {
 												<p className="mb-4 flex">
 													UNIT PRICE:{" "}
 													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_four?.unitPrice).format()}
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+														{currency(vendor_three?.unitPrice).format()}
 													</span>
 												</p>
 												<p className="mb-4 flex">
 													TOTAL PRICE:{" "}
 													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_four?.totalPrice).format()}
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
+														{currency(vendor_three?.totalPrice).format()}
 													</span>
 												</p>
 												<p className="flex">
 													SHIPPING:{" "}
 													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b border-black text-[15px]`}>
 														{" "}
-														{currency(vendor_four?.shippingPrice).format()}
+														{currency(vendor_three?.shippingPrice).format()}
 													</span>
 												</p>
 											</div>
-										</div> */}
+										</div>
+
+										<div className="grid grid-cols-2 gap-8 mb-2">
+											<RenderInfoList
+												vendor_four={vendor_four}
+												nottoBeHighlighted={nottoBeHighlighted}
+											/>
+											<RenderBidList
+												vendor_four={vendor_four}
+												nottoBeHighlighted={nottoBeHighlighted}
+											/>
+										</div>
 									</div>
 
 									<div className="flex gap-8 ml-8 text-[14.5px]">
 										<div className="mt-4">
-											<p className="font-[900] bg-red-90 w-80 border-b-2 border-black "></p>
+											<p className="font-[900] bg-red-90 w-80 border-b border-black "></p>
 											<p className="text-sm">Signature</p>
 										</div>
 										<div className="">
-											<p className="w-36 border-b-2 border-black">
+											<p className="w-36 border-b border-black">
 												<span className={`${nottoBeHighlighted} `}>
 													{moment(date).format("MMMM D, YYYY ")}
 												</span>

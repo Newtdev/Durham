@@ -150,7 +150,7 @@ const Forms = () => {
             className="mb-4 flex justify-center items-center pt-4"
             aria-label="Table navigation"
           >
-            {filteredForms.length > PER_PAGE && (
+            {filteredForms.length >= 6 && (
               <Pagination
                 count={pages}
                 onChange={handleChange}

@@ -89,7 +89,7 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
+              className="py-4 px-4 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
             >
               {category}
             </li>
