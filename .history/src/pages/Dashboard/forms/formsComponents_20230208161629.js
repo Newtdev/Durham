@@ -93,7 +93,7 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
             >
               {category}
             </li>
-            <li className="py-4 px-4 flex items-center justify-start gap-3 ">
+            <li className="py-4 px-4 flex items-center justify-start gap-3">
               <a
                 className="w-4 cursor-pointer"
                 href={`${downloadLink}`}
