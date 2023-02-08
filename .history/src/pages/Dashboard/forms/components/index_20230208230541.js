@@ -103,7 +103,7 @@ export const FormsArray = [
     title: "Owner and Contractor Agreement Form (more $500,000)(Original)",
     category: "contracts",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000)(Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000) - ESSER(Original).docx",
   },
   {
     id: 16,
@@ -152,7 +152,7 @@ export const FormsArray = [
     title: "RFP Template with MWBE(Original)",
     category: "MWBE",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/RFP Template with MWBE(Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/MWBE Participation Sheet (_ Form)(Original).docx",
   },
   {
     id: 23,

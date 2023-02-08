@@ -89,11 +89,11 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
+              className="py-4 px-4 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%]"
             >
               {category}
             </li>
-            <li className="py-4 px-4 flex items-center justify-start gap-3 ">
+            <li className="py-4 px-4 flex items-center justify-start gap-3">
               <a
                 className="w-4 cursor-pointer"
                 href={`${downloadLink}`}
@@ -200,6 +200,7 @@ export function Filter({ onChange, params }) {
           onChange={onChange}
           className="inline-flex items-center text-gray-400 bg-white border border-gray-300 rounded px-3 py-1.5 focus:border-[#3B6979] w-full"
         >
+          <img src={sort} alt="sort" />
           <option value="all">All</option>
           <option value="budgets">Budgets</option>
           <option value="contracts">Contracts</option>
