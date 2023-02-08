@@ -251,7 +251,7 @@ const Preview = (data) => {
 								</p>
 								<p className="mt-4">Enclosure</p>
 								<div className=" flex items-start">
-									<p className="mr-3.5">Cc:</p>
+									<p className="mr-3.5">CC:</p>
 									<div className="leading-[1.0]">
 										<p>
 											<span className={`${nottoBeHighlighted} bg-grey-800 `}>

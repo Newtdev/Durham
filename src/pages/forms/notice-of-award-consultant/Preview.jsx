@@ -125,8 +125,8 @@ const Preview = () => {
 										</span>{" "}
 										{form_fields.approval === "Yes" && (
 											<span className={`${nottoBeHighlighted} ml-12`}>
-												**NOTE:Exec Director approval is required to issue
-												this**
+												**NOTE:Exec Director approval is required to issue this
+												letter**
 											</span>
 										)}
 									</p>
