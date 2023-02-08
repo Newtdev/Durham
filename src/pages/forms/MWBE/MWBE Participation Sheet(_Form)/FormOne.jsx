@@ -37,7 +37,6 @@ const FormOne = (props) => {
 		if (!focus) {
 		} else {
 			vendor?.currentData?.data?.data?.forEach((cur) => {
-				console.log(index);
 				if (cur.company_name === props.values.contractors[index].contractor) {
 					// console.log(cur.company_name);
 					props.values.contractors[index].companyName = cur.company_name;
@@ -149,7 +148,9 @@ const FormOne = (props) => {
 																<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-1 rounded-t-lg">
 																	<h2>MWBE Information ({index + 1})</h2>
 																	<button
-																		onClick={() => remove()}
+																		onClick={() => {
+																			remove();
+																		}}
 																		disabled={index === 0 ? true : false}
 																		type="button"
 																		className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -348,14 +349,13 @@ const FormOne = (props) => {
 																	companyContractAmount: "",
 																});
 															}}
+															disabled={
+																props?.values?.contractors?.length === 12
+																	? true
+																	: false
+															}
 															className={`text-white text-sm font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center -ml-4 `}
-															type="button"
-															// disabled={
-															// 	props?.values.information.length === 4
-															// 		? true
-															// 		: false
-															// }
-														>
+															type="button">
 															ADD MORE CONTRACTORS
 														</button>
 													</div>

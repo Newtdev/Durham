@@ -20,7 +20,7 @@ const PunchList = ({ id }) => {
 
 	const props = {
 		component: downloadComponent,
-		name: "Notice of Intent to Award - Consultant",
+		name: "PUNCH LIST AND SUBSTANTIAL COMPLETION PROCESS",
 		show: show ? "block" : "hidden",
 		close: closeDownload,
 	};
@@ -54,12 +54,13 @@ const PunchList = ({ id }) => {
 
 						<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 							<div
-								className="bg-white px-12 pt-8 pb-4 calibri-font text-[11px] text-black"
+								className="bg-white px-12 pt-8 pb-4 calibri-font text-[14.5px] text-black"
 								ref={downloadComponent}>
 								<div>
-									<h1 className="font-bold text-center mb-5">
+									<h1 className="text-center mb-10 mt-4 text-[20.5px]">
 										PUNCH LIST AND SUBSTANTIAL COMPLETION PROCESS
 									</h1>
+
 									<p className="mb-4">
 										As projects / portions of projects are racing to finish
 										there are two critical documents for us:

@@ -57,9 +57,7 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 
 				<p className="mb-10">
 					<span>Attest:</span>
-					<span className={`${nottoBeHighlighted} ml-2`}>
-						____________________(Seal)
-					</span>
+					<span className={` ml-2`}>____________________(Seal)</span>
 					<p className={`${nottoBeHighlighted} ml-12`}>{vendor?.secretary}</p>
 				</p>
 

@@ -99,12 +99,12 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-12 pt-8 pb-4 text-black adverstise mt-4"
+							className="px-12 pt-[0.4in] pb-4 text-black adverstise mt-4 pr-[1in]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
-									<div className="ml-[18rem] arial-font text-[8px] mt-3">
+									<div className="ml-[12rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -118,7 +118,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="mb-4 pl-20">
+								<div className="mb-4 pl-20 leading-[1.3] text-[14.5px]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -165,7 +165,7 @@ const Preview = () => {
 								</div>
 
 								<div>
-									<div className="flex mb-4 pl-20">
+									<div className="flex mb-4 pl-20 leading-[1.3] text-[14.5px]">
 										<p>RE:</p>
 										<div className="ml-16">
 											<p>Durham Public Schools (DPS)</p>
@@ -186,9 +186,9 @@ const Preview = () => {
 											</p>
 										</div>
 									</div>
-									<div className="flex mb-4 pl-20">
+									<div className="flex mb-4 pl-20  text-[14.5px]">
 										<p>SUBJECT:</p>
-										<div className="ml-8">
+										<div className="ml-5">
 											<p className="font-bold uppercase">
 												NOTICE OF AWARD for{" "}
 												<span className={`${nottoBeHighlighted}`}>
@@ -198,13 +198,14 @@ const Preview = () => {
 											</p>
 										</div>
 									</div>
-									<p className="mb-4 pl-20">
+									<p className="mb-4 pl-20  text-[14.5px]">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.last_name},
+											{!awardee ? "" : awardee[0]?.last_name}
 										</span>
+										:
 									</p>
-									<p className="mb-4 pl-20 pr-10">
+									<p className="mb-4 pl-20 pr-6 leading-[1.3]  text-[14.5px]">
 										This letter serves as a Notice of Award for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
 											{!project ? "" : project?.name}
@@ -226,7 +227,7 @@ const Preview = () => {
 										scopes of work as outlined in the Consultant proposal
 										attached to the Contract by Exhibit.{" "}
 									</p>
-									<p className="mb-4 pl-20 pr-10">
+									<p className="mb-4 pl-20 pr-6  text-[14.5px] leading-[1.3]">
 										The attached contract is being transmitted to your office
 										for review and execution. If in agreement,{" "}
 										<span className="font-bold underline">
@@ -241,16 +242,16 @@ const Preview = () => {
 										no later than{" "}
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.deliveryDate).format(
-												"dddd, MMMM D, YYYY "
+												"dddd, MMMM D, YYYY"
 											)}
+											.{" "}
 										</span>
-										. Once we have received and processed the contract, one (1)
+										Once we have received and processed the contract, one (1)
 										fully executed copy will be returned for your records.
 									</p>
-									<p className="mb-4 pl-20 pr-10">
+									<p className="mb-4 pl-20 pr-6 leading-[1.3] text-[14.5px]">
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
-										<br />
 										<span className={`${nottoBeHighlighted}`}>
 											{" "}
 											{!durham_profile
@@ -263,12 +264,11 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-4 pl-20">Sincerely,</p>
+									<p className="mb-12 pl-20  text-[14.5px]">Sincerely,</p>
 
 									<>
-										<p className="pl-20">
+										<p className="pl-20  text-[14.5px]">
 											<span className={`${nottoBeHighlighted}`}>
-												{console.log(durham_profile)}
 												{!durham_profile
 													? ""
 													: !durham_profile
@@ -280,7 +280,9 @@ const Preview = () => {
 															.name}
 											</span>
 										</p>
-										<p className="mb-6 pl-20">C&CP Project Manager</p>
+										<p className="mb-6 pl-20  text-[14.5px]">
+											C&CP Project Manager
+										</p>
 									</>
 
 									{/* {!form_fields.recipientCopy &&
@@ -295,9 +297,9 @@ const Preview = () => {
                                             }</p>
                                         </>
                                     } */}
-									<p className="pl-20">Enclosure</p>
+									<p className="pl-20  text-[14.5px]">Enclosure</p>
 									{!form_fields.recipientCopy && (
-										<p className="pl-20">
+										<p className="pl-20  text-[14.5px]">
 											Cc:{" "}
 											<span className={`${nottoBeHighlighted}`}>
 												{" "}
@@ -306,9 +308,8 @@ const Preview = () => {
 											</span>
 										</p>
 									)}
-									{console.log(form_fields.recipientCopy)}
 									{form_fields.recipientCopy && (
-										<p className="pl-20">
+										<p className="pl-20  text-[14.5px]">
 											Cc:{" "}
 											<span className={`${nottoBeHighlighted}`}>
 												{" "}

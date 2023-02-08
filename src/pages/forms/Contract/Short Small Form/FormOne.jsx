@@ -74,7 +74,7 @@ const FormOne = (props) => {
 									type={"text"}
 									onChange={props.handleChange}
 									name="ownerEmail"
-									placeholder={"Enter Contractor company name"}
+									placeholder={"Enter Email"}
 									value={props.values.ownerEmail}
 								/>
 								{props.errors.ownerEmail && props.touched.ownerEmail && (

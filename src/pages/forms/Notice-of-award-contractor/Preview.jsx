@@ -47,6 +47,7 @@ const Preview = () => {
 		const data = vendors?.filter((cur) => cur.role === "Contractor");
 		setAwardee(data);
 	}, [vendors]);
+
 	const props = {
 		component: downloadComponent,
 		name: "Notice of Award - Contractor",
@@ -86,7 +87,7 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto  mb-10 arial-font px-6 h-[380px]">
 						<div
-							className=" pt-8 pb-4 text-black mt-16 adverstise px-32"
+							className=" pt-8 pb-4 text-black mt-8 adverstise px-28 text-[14.5px]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex justify-between mb-4">
@@ -96,7 +97,7 @@ const Preview = () => {
 										className="h-16 -ml-20 -mt-1 object-cover"
 									/>
 
-									<div className="ml-[15rem] arial-font text-[8px] mt-1">
+									<div className="ml-[10rem] arial-font text-[10.5px] mt-2.5">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -104,13 +105,13 @@ const Preview = () => {
 											2011 Hamlin Road / Durham, North Carolina 27704
 										</p>
 										<p className=" text-[#3B6979]">
-											919-560-2216 <span className="ml-3">F919-560-9119</span>{" "}
+											919-560-2216 <span className="ml-3">F919-560-9119</span>
 											<span className="ml-3">www.dpsnc.net</span>
 										</p>
 									</div>
 								</div>
 
-								<div className="mb-4">
+								<div className="mb-4 text-[14.5px] leading-[1.3]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -122,7 +123,7 @@ const Preview = () => {
 										</span>
 									</p>
 									<p>
-										<span className={`${nottoBeHighlighted} block my-1`}>
+										<span className={`${nottoBeHighlighted} block`}>
 											{!awardee ? "" : awardee[0]?.street}
 										</span>
 										<span className={`${nottoBeHighlighted} block mb-4`}>
@@ -135,7 +136,7 @@ const Preview = () => {
 												  awardee[0]?.zip_code}
 										</span>
 									</p>
-									<div className="flex mt-4 mb-4">
+									<div className="flex mt-4 mb-4 text-[14.5px]">
 										<p>RE:</p>
 										<div className="ml-10">
 											<p className={`${nottoBeHighlighted}`}>
@@ -147,13 +148,13 @@ const Preview = () => {
 									<p className="mb-4 ml[-3rem]">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.first_name},
+											{!awardee ? "" : awardee[0]?.first_name}:
 										</span>
 									</p>
 								</div>
 
-								<div className="">
-									<p className="mb-4">
+								<div className="text-[14.5px] leading-[1.3]">
+									<p className="mb-2">
 										This letter is to serve as your{" "}
 										<span className="font-bold">Notice of Award</span> for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
@@ -166,7 +167,7 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-4">
+									<p className="mb-2 leading-[1.3]">
 										<span className={`${nottoBeHighlighted}`}>
 											{!awardee ? "" : awardee[0]?.company_name}
 										</span>{" "}
@@ -183,7 +184,7 @@ const Preview = () => {
 											{!form_fields ? "" : form_fields.email}
 										</span>
 									</p>
-									<p className="mb-4">
+									<p className="mb-2">
 										Congratulations from Durham Public Schools. We look forward
 										to the successful completion of the{" "}
 										<span className={`${nottoBeHighlighted}`}>
@@ -196,7 +197,7 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-4">Sincerely,</p>
+									<p className="mb-12 text-[14.5px]">Sincerely,</p>
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{!form_fields ? "" : form_fields?.sendersName}
@@ -210,7 +211,6 @@ const Preview = () => {
 												{!form_fields ? "" : form_fields?.position}
 											</span>
 										)}
-										{console.log(form_fields.recipientCopy)}
 										{!form_fields.recipientCopy && (
 											<>
 												<span className={`${nottoBeHighlighted}`}>

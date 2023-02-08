@@ -43,18 +43,13 @@ const Preview = (data) => {
 		if (!vendors) {
 			return;
 		}
-		const data = vendors.filter((cur) => {
-			if (cur.role === "Contractor") {
-				return cur;
-			}
-			return {};
-		});
+		const data = vendors.filter((cur) => cur.role === "Contractor");
 		setAwardee(data);
 	}, [vendors]);
 
 	const props = {
 		component: downloadComponent,
-		name: "Notice of Intent to Award - Consultant",
+		name: "Notice To Proceed",
 		show: show ? "block" : "hidden",
 		stepDefault,
 		close: closeDownload,
@@ -91,23 +86,25 @@ const Preview = (data) => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white py-16 px-24 pb-4 text-black adverstise"
+							className="bg-white py-16 pl-24 pr-[1in] pb-4 text-black  adverstise"
 							ref={downloadComponent}>
 							<div className="flex justify-between items-center mb-8">
 								<div>
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
 								</div>
-								<div className="text-[#3B6979] arial-font text-[12px]">
+								<div className="text-[#3B6979] arial-font mt-3 text-[13px]">
 									<p className=" font-bold">
 										Construction and Capital Planning
 									</p>
-									<p className=" font-bold">
+									<span className="block -my-1 font-bold">
 										2011 Hamlin Road | Durham, NC 27704
-									</p>
-									<p className=" font-bold">919-560-2216 | www.dpsnc.net</p>
+									</span>
+									<span className=" font-bold">
+										919-560-2216 | www.dpsnc.net
+									</span>
 								</div>
 							</div>
-							<div>
+							<div className="text-[14.5px] leading-[1.2]">
 								<p className="mb-2">
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -149,7 +146,7 @@ const Preview = (data) => {
 								</p>
 							</div>
 							{/* Subject */}
-							<div className="my-4">
+							<div className="my-4 text-[14.5px] leading-[1.3]">
 								<div className="mb-4 flex items-start">
 									<p className="mr-[70px]">Re:</p>
 									<div>
@@ -172,8 +169,8 @@ const Preview = (data) => {
 										</p>
 									</div>
 								</div>
-								<div className="mb-4">
-									<span className="mr-12">Subject:</span>
+								<div className="mb-4 text-[14.5px]">
+									<span className="mr-10">Subject:</span>
 									<span>Notice to Proceed</span>
 								</div>
 								<div className={`${nottoBeHighlighted} bg-grey-800`}>
@@ -183,12 +180,12 @@ const Preview = (data) => {
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{awardee[0]?.last_name}
 									</span>
-									,
+									:
 								</div>
 							</div>
 							{/* Body */}
-							<div>
-								<p className="mb-4">
+							<div className="leading-[1.3] text-[14.5px]">
+								<p className="mb-3">
 									We are pleased to offer this Notice to Proceed for the{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!school ? "" : school?.name}{" "}
@@ -212,7 +209,7 @@ const Preview = (data) => {
 									accordance with the terms of your contract and the Contract
 									Documents.
 								</p>
-								<p className="mb-4">
+								<p className="mb-3">
 									Time is of the essence. The Notice to Proceed commences the
 									Contract Time until Substantial Completion is achieved on or
 									before{" "}
@@ -221,10 +218,9 @@ const Preview = (data) => {
 									</span>
 									.
 								</p>
-								<p className="mb-4">
+								<p className="mb-3 leading-[1.2]">
 									We look forward to working with you and your team on this
 									project. If you have any questions, please contact me at{" "}
-									<br />
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!durham_profile
 											? ""
@@ -238,8 +234,7 @@ const Preview = (data) => {
 									</span>
 									.
 								</p>
-								<p className="mb-4">Sincerely,</p>
-								<div className="mb-4">{/* <em>SIGNATURE</em> */}</div>
+								<p className="mb-10">Sincerely,</p>
 								<p>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!durham_profile
@@ -255,11 +250,11 @@ const Preview = (data) => {
 									<span className="bg-grey-800">C&CP Project Manager</span>
 								</p>
 								<p className="mt-4">Enclosure</p>
-								<div className="mb-4 flex items-start">
-									<p className="mr-3">Cc:</p>
-									<div>
+								<div className=" flex items-start">
+									<p className="mr-3.5">Cc:</p>
+									<div className="leading-[1.0]">
 										<p>
-											<span className={`${nottoBeHighlighted} bg-grey-800`}>
+											<span className={`${nottoBeHighlighted} bg-grey-800 `}>
 												{!durham_profile
 													? ""
 													: !durham_profile.director_of_design_and_construction
@@ -284,11 +279,14 @@ const Preview = (data) => {
 															.name}{" "}
 												- DPS C&CP Business Manager{" "}
 											</span>
+											<span className={`${nottoBeHighlighted} bg-grey-800`}>
+												DPS Project No. {!project ? "" : project.number}
+											</span>
 										</p>
 									</div>
 								</div>
-								<div className="mb-4">
-									<span className="mr-3">File:</span>
+								<div className="">
+									<span className="mr-2">File:</span>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										DPS Project No. {!project ? "" : project.number}
 									</span>

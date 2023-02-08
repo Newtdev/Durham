@@ -1,15 +1,15 @@
 const PageFour = (props) => {
 	const editEmailAddress = () => {
-		return props?.form_fields?.ownerEmail.split("@")[0];
+		return props?.form_fields?.ownerEmail;
 	};
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13]"
+			className="text-black font11  py-[1in] px-[0.6in] leading-[1.13] "
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 4 */}
 				<div>
-					<div className="mb-4">
+					<div className="mb-10">
 						<div>
 							<div className="flex gap-12 mb-2 ml-[63px]">
 								<div>
@@ -65,16 +65,16 @@ const PageFour = (props) => {
 									shall provide at least five (5) business days written prior
 									notice to the Owner’s Representative at the address noted
 									above and via email ("
-									<span className={`${props?.nottoBeHighlighted}`}>
+									<span className={`underline ${props?.nottoBeHighlighted}`}>
 										{editEmailAddress()}
-									</span>
-									@dpsnc.net”) of the cancellation, non-renewal (without
-									replacement), or the material reduction of coverage or limits
-									of any of the policies. Upon notice of such cancellation,
-									nonrenewal or reduction, the Design Consultant shall procure
-									substitute insurance so as to assure the Owner that the
-									minimum limits of coverage are maintained continuously
-									throughout the period of this Agreement.
+									</span>{" "}
+									") of the cancellation, non-renewal (without replacement), or
+									the material reduction of coverage or limits of any of the
+									policies. Upon notice of such cancellation, nonrenewal or
+									reduction, the Design Consultant shall procure substitute
+									insurance so as to assure the Owner that the minimum limits of
+									coverage are maintained continuously throughout the period of
+									this Agreement.
 								</p>
 							</div>
 
@@ -207,7 +207,7 @@ const PageFour = (props) => {
 						</div>
 					</div>
 				</div>
-				<div className=" h-[4.2rem]  flex flex-col justify-end">
+				<div className=" h-[4.2rem]  overflow-hidden flex flex-col justify-end">
 					<div>
 						<p>DCA (short form - $100K) 12-15-2020</p>
 					</div>
