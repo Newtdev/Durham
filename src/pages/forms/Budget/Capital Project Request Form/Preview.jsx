@@ -70,7 +70,7 @@ const Capital = () => {
 					{/* Header */}
 					<div className="flex justify-between items-baseline border-b border-b-gray-200 py-3">
 						<div className="ml-6">
-							<h3 className="text-lg font-bold text-gray-900">
+							<h3 className="text-[14.5px] font-bold text-gray-900">
 								Capital Project Request Form
 							</h3>
 							<p className="text-base text-gray-700">Preview Document</p>
@@ -86,49 +86,46 @@ const Capital = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] bg">
 						<div
-							className="text-black text-[10px] arial-font"
+							className="text-black text-[14.5px] arial-font"
 							ref={downloadComponent}
-							style={{ margin: "0.5in 1in" }}>
+							style={{ margin: "0.4in 0.9in" }}>
 							<div>
-								<div className="mb-4 ml-20">
+								<div className="mb-4 ml-16">
 									<img
 										src={Logo}
 										alt="logo"
-										className="h-16 -ml-20 -mt-1 object-cover"
+										className="h-12 -ml-20 -mt-1 object-cover"
 									/>
 								</div>
 
 								<div>
-									<h1 className="font-bold text-center mb-6">
+									<h1 className="font-bold text-[15.5px] text-center mb-6">
 										Capital Project Request Form
 									</h1>
 
-									<div className="mb-4 w-full flex">
-										<p className="">
+									<div className="mb-4 w-full flex ">
+										<p className="mr-10">
 											Department:{" "}
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-64`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block`}>
 												Construction & Capital planning
 											</span>
 										</p>
-										<p className="flex">
-											<span className="inline-block w-[5rem]">
-												Contact Person:{" "}
-											</span>
+										<p className="flex items-center">
+											<span className="inline-block">Contact Person: </span>
+
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-40`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block w-[13rem] ml-0.5`}>
 												{form_details.selectOption}
 											</span>
 										</p>
 									</div>
 
 									<div className="mb-4">
-										<p className="flex w-full">
-											<span className="inline-block w-[5rem]">
-												Project Title:{" "}
-											</span>
+										<p className="flex justify-between w-full">
+											<span className="inline-block w-24">Project Title: </span>
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-full -ml-4`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block w-full`}>
 												{!project.name ? "" : project_details?.name}
 											</span>
 										</p>
@@ -149,7 +146,7 @@ const Capital = () => {
 
 									<div className="mb-4">
 										<p>Project Description:</p>
-										<div className="p-2 border border-black w-full h-24">
+										<div className="p-2 border border-black w-full h-16">
 											<span className={`${nottoBeHighlighted}`}>
 												{!project.name ? "" : project_details?.description}
 											</span>
@@ -163,11 +160,11 @@ const Capital = () => {
 
 									<div className="m-auto w-[500px] mb-6">
 										<div className="border border-black">
-											<div className="flex items-center justify-between border-b border-b-black py-0.5">
+											<div className="flex items-center justify-between border-b border-b-black">
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Land Purchase
 												</p>
-												<p className={`${nottoBeHighlighted} px-2`}>
+												<p className={`${nottoBeHighlighted} px-1  my-1`}>
 													{currency(form_details?.purchase).format()}
 												</p>
 											</div>
@@ -175,7 +172,7 @@ const Capital = () => {
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Planning/Design
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} my-1 px-1`}>
 													{currency(form_details?.design).format()}
 												</p>
 											</div>
@@ -183,7 +180,7 @@ const Capital = () => {
 												<p className="p-2 w-[300px] border-r border-r-black">
 													New Construction/Addition(s)
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} my-1 px-1 `}>
 													{currency(form_details?.construction).format()}
 												</p>
 											</div>
@@ -191,7 +188,7 @@ const Capital = () => {
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Renovation/Uplift
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} my-1 px-1`}>
 													{currency(form_details?.renovation).format()}
 												</p>
 											</div>
@@ -199,7 +196,7 @@ const Capital = () => {
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Repair
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} my-1 px-1`}>
 													{currency(form_details?.repair).format()}
 												</p>
 											</div>
@@ -207,7 +204,7 @@ const Capital = () => {
 												<p className="p-2 w-[300px] border-r border-r-black">
 													Furniture/Equipment
 												</p>
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} my-1 px-1`}>
 													{currency(form_details?.furniture).format()}
 												</p>
 											</div>
@@ -216,25 +213,25 @@ const Capital = () => {
 													Total $
 												</p>
 
-												<p className={`${nottoBeHighlighted} p-2`}>
+												<p className={`${nottoBeHighlighted} px-1 my-1`}>
 													{currency(val).format()}
 												</p>
 											</div>
 										</div>
 									</div>
 
-									<div className="grid grid-cols-2 justify-items-center mb-8">
-										<p className="w-full">
-											Estimated Project Beginning Date:{" "}
+									<div className="flex justify-between mb-6 w-full">
+										<p className="flex items-center w-[53%]">
+											<span>Estimated Project Beginning Date: </span>
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block w-36`}>
-												{moment(form_fields.startDate).format("MMMM D, YYYY ")}
+												className={`${nottoBeHighlighted} border-b border-black`}>
+												{moment(form_fields.startDate).format("MMMM D, YYYY")}
 											</span>
 										</p>
-										<p className="w-full flex justify-center items-center">
+										<p className="flex justify-center items-center">
 											Est. Project Completion Date:{" "}
 											<span
-												className={`${nottoBeHighlighted} border-b border-black inline-block ml-1`}>
+												className={`${nottoBeHighlighted} border-b border-black inline-block`}>
 												{moment(form_fields.completionDate).format(
 													"MMMM D, YYYY "
 												)}
@@ -258,11 +255,13 @@ const Capital = () => {
 
 									<div className="grid grid-cols-2">
 										<div className="">
-											<p className="font-bold mb-4">Funding Source</p>
+											<p className="font-bold mb-4 text-[12.5px]">
+												Funding Source
+											</p>
 											<div className="mb-3 flex items-center gap-2">
 												<label
 													htmlFor="capital"
-													className="font-thin text-gray-600">
+													className="font-thin text-gray-600 text-[11.5px]">
 													Capital Outlay
 												</label>
 												<input
@@ -280,7 +279,7 @@ const Capital = () => {
 											<div className="flex items-center gap-2">
 												<label
 													htmlFor="other"
-													className="font-thin text-gray-600">
+													className="font-thin text-gray-600 text-[11.5px]">
 													Other
 												</label>
 												<input
@@ -292,23 +291,27 @@ const Capital = () => {
 													}
 												/>
 												<span
-													className={`${nottoBeHighlighted} inline-block w-36 inline-block border-b border-black`}>
+													className={`${nottoBeHighlighted} inline-block w-36 inline-block border-b border-black mt-2`}>
 													{form_details?.funding_source}
 												</span>
 											</div>
 										</div>
 
-										<div className="px-6">
-											<p className="font-bold mb-6">Approved by</p>
-											<p className="mb-4 overflow-x-hidden">
+										<div className="px-1">
+											<p className="font-bold mb-6 text-[12.5px]">
+												Approved by
+											</p>
+											<p className="mb-2 overflow-x-hidden">
 												_____________________________________________________________
 											</p>
-											<p className="flex justify-between">
+											<p className="flex justify-between text-[11px]">
 												(Signature - Deputy Superintendent, Operations){" "}
 												<span className="">(Date)</span>
 											</p>
 
-											<p className="mt-6 ml-3">Form Date: 7-15-21</p>
+											<p className="mt-6 text-xs ml-3 calibri-font">
+												Form Date: 7-15-21
+											</p>
 										</div>
 									</div>
 								</div>
