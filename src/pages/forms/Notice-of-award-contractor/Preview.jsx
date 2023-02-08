@@ -87,7 +87,7 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto  mb-10 arial-font px-6 h-[380px]">
 						<div
-							className=" pt-8 pb-4 text-black mt-16 adverstise px-32 text-[12.5px]"
+							className=" pt-8 pb-4 text-black mt-8 adverstise px-28 text-[14.5px]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex justify-between mb-4">
@@ -97,7 +97,7 @@ const Preview = () => {
 										className="h-16 -ml-20 -mt-1 object-cover"
 									/>
 
-									<div className="ml-[10rem] arial-font text-[10.5px] mt-1">
+									<div className="ml-[10rem] arial-font text-[10.5px] mt-2.5">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -111,7 +111,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="mb-4">
+								<div className="mb-4 text-[14.5px] leading-[1.3]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
@@ -136,7 +136,7 @@ const Preview = () => {
 												  awardee[0]?.zip_code}
 										</span>
 									</p>
-									<div className="flex mt-4 mb-4">
+									<div className="flex mt-4 mb-4 text-[14.5px]">
 										<p>RE:</p>
 										<div className="ml-10">
 											<p className={`${nottoBeHighlighted}`}>
@@ -153,7 +153,7 @@ const Preview = () => {
 									</p>
 								</div>
 
-								<div className="">
+								<div className="text-[14.5px] leading-[1.3]">
 									<p className="mb-2">
 										This letter is to serve as your{" "}
 										<span className="font-bold">Notice of Award</span> for the{" "}
@@ -167,7 +167,7 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-2">
+									<p className="mb-2 leading-[1.3]">
 										<span className={`${nottoBeHighlighted}`}>
 											{!awardee ? "" : awardee[0]?.company_name}
 										</span>{" "}
@@ -197,7 +197,7 @@ const Preview = () => {
 										</span>
 										.
 									</p>
-									<p className="mb-12">Sincerely,</p>
+									<p className="mb-12 text-[14.5px]">Sincerely,</p>
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
 											{!form_fields ? "" : form_fields?.sendersName}

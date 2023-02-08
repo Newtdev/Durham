@@ -99,12 +99,12 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-12 pt-8 pb-4 text-black adverstise mt-4"
+							className="px-12 pt-[0.4in] pb-4 text-black adverstise mt-4 pr-[1in]"
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
 									<img src={Logo} alt="logo" className="h-16 object-cover" />
-									<div className="ml-[18rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
+									<div className="ml-[12rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -205,7 +205,7 @@ const Preview = () => {
 										</span>
 										:
 									</p>
-									<p className="mb-2 pl-20 pr-10 leading-[1.3]  text-[14.5px]">
+									<p className="mb-4 pl-20 pr-6 leading-[1.3]  text-[14.5px]">
 										This letter serves as a Notice of Award for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
 											{!project ? "" : project?.name}
@@ -227,7 +227,7 @@ const Preview = () => {
 										scopes of work as outlined in the Consultant proposal
 										attached to the Contract by Exhibit.{" "}
 									</p>
-									<p className="mb-2 pl-20 pr-10  text-[14.5px] leading-[1.3]">
+									<p className="mb-4 pl-20 pr-6  text-[14.5px] leading-[1.3]">
 										The attached contract is being transmitted to your office
 										for review and execution. If in agreement,{" "}
 										<span className="font-bold underline">
@@ -249,7 +249,7 @@ const Preview = () => {
 										Once we have received and processed the contract, one (1)
 										fully executed copy will be returned for your records.
 									</p>
-									<p className="mb-2 pl-20 pr-10 leading-[1.3] text-[14.5px]">
+									<p className="mb-4 pl-20 pr-6 leading-[1.3] text-[14.5px]">
 										We look forward to working with you and your team on this
 										project. If you have any questions, please contact me at
 										<span className={`${nottoBeHighlighted}`}>
