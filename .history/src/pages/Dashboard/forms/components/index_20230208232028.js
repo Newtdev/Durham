@@ -111,7 +111,7 @@ export const FormsArray = [
     category: "contracts",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/Owner and Design Consultant (less than $200,000)(Original).docx",
-  },
+  },d
   {
     id: 17,
     title: "Owner and Design Consultant (more $200,000)(Original)",
@@ -185,56 +185,56 @@ export const FormsArray = [
   {
     id: 27,
     title: "00 11 13 - Advertisement for Bid Template(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/00 11 13 - Advertisement for Bid Template(Original).docx",
   },
   {
     id: 28,
     title: "3 bids(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/3 bids(Original).pdf",
   },
   {
     id: 29,
     title: "Bid Manual(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/Bid Manual(Original).pdf",
   },
   {
     id: 30,
     title: "Contract Preparation Checklist - TMP20180502RB.xlsx (Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/Contract Preparation Checklist - TMP20180502RB.xlsx (Original).pdf",
   },
   {
     id: 31,
     title: "Determination of Apparent Low Bidder - Contractor(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/Determination of Apparent Low Bidder - Contractor(Original).docx",
   },
   {
     id: 32,
     title: "DPS Formal General Conditions - 1-17-20(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/DPS Formal General Conditions - 1-17-20(Original).docx",
   },
   {
     id: 33,
     title: "E-589CI Affidavit of Capital Improvement(Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/E-589CI Affidavit of Capital Improvement(Original).pdf",
   },
   {
     id: 34,
     title: "Precis Checklist (Original)",
-    category: "procurements",
+    category: "procurement",
     downloadLink:
       "https://durhamapp.000webhostapp.com/pdfs/Precis Checklist (Original).pdf",
   },

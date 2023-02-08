@@ -204,7 +204,7 @@ export function Filter({ onChange, params }) {
           <option value="budgets">Budgets</option>
           <option value="contracts">Contracts</option>
           <option value="mwbe">MWBE</option>
-          <option value="procurements">Procurements</option>
+          <option value="procurement">procurement</option>
           <option value="notice letters">Notice Letters</option>
           <option value="project closeout">Project Closeout</option>
         </select>
