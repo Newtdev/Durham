@@ -1,14 +1,71 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { ModalOverlay } from "../../../ui";
 import { useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { prevChoiceStep, stepChoiceDefault } from "./Reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDownload, closeModal, fields, showDownload } from "../reducer";
+import { closeModal, fields, showDownload } from "../reducer";
 import currency from "currency.js";
 import moment from "moment";
 import DownLoadForm from "../Lundsford/Download";
+
+const RenderBidList = ({ details, nottoBeHighlighted }) => {
+	if (!details?.information) {
+		return null;
+	}
+	return details?.information?.map((vendor_one, index) => {
+		return (
+			<div key={index} className="grid grid-cols-2 gap-6 mb-6">
+				<div className="overflow-hidden">
+					<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
+					<p className="mb-4 border-black border-b-2 text-[14.5px]">
+						<span className={`${nottoBeHighlighted}  `}>
+							{!vendor_one ? "" : vendor_one.company_name}
+						</span>
+					</p>
+					<p className="mb-4 border-black border-b-2 text-[14.5px]">
+						<span className={`${nottoBeHighlighted} `}>
+							{!vendor_one ? "" : vendor_one.address},{" "}
+						</span>
+					</p>
+					<p className="mb-4 border-black border-b-2 text-[14.5px]">
+						<span className={`${nottoBeHighlighted} `}>
+							{!vendor_one ? "" : vendor_one.city},{" "}
+							{!vendor_one ? "" : vendor_one.state},{" "}
+							{!vendor_one ? "" : vendor_one.zip_code}
+						</span>
+					</p>
+				</div>
+
+				<div>
+					<p className=" mb-5 ml-14">PRICE QUOTED</p>
+					<p className="mb-4 flex text-[14.5px]">
+						UNIT PRICE:{" "}
+						<span
+							className={`block w-36 ${nottoBeHighlighted} ml-2 border-b-2 border-black`}>
+							{currency(vendor_one?.unitPrice).format()}
+						</span>
+					</p>
+					<p className="mb-4 flex text-[14.5px]">
+						TOTAL PRICE:{" "}
+						<span
+							className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+							{currency(vendor_one?.totalPrice).format()}
+						</span>
+					</p>
+					<p className="flex text-[14.5px]">
+						SHIPPING:{" "}
+						<span
+							className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
+							{" "}
+							{currency(vendor_one?.shippingPrice).format()}
+						</span>
+					</p>
+				</div>
+			</div>
+		);
+	});
+};
 
 const Preview = () => {
 	const details = useSelector(fields);
@@ -19,10 +76,10 @@ const Preview = () => {
 
 	const description = !details ? "" : details?.services || "";
 	const quantity = !details ? "" : details?.input || "";
-	const vendor_one = !details ? "" : details?.information[0];
-	const vendor_two = !details ? "" : details?.information[1];
-	const vendor_three = !details ? "" : details?.information[2];
-	const vendor_four = !details ? "" : details?.information[3];
+	// const vendor_one = !details ? "" : details?.information[0];
+	// const vendor_two = !details ? "" : details?.information[1];
+	// const vendor_three = !details ? "" : details?.information[2];
+	// const vendor_four = !details ? "" : details?.information[3];
 	const date = !details ? "" : details.selectDate;
 
 	const props = {
@@ -61,20 +118,24 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-4 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-12 pt-8 pb-4 text-black text-[12px] adverstise"
+							className="px-12 pt-2 pb-2 text-black text-[14.5px] adverstise"
 							ref={downloadComponent}>
 							<div>
-								<div className="mb-6 px-16">
-									<p className="text-sm mb-0">BD-04</p>
-									<p className="text-sm mt-0">07/92</p>
+								<div className="mb-2 px-16">
+									<p className="text-[14.5px] mb-0">BD-04</p>
+									<p className="text-[14.5px] mt-0">07/92</p>
 								</div>
 
 								<div className="mb-6 text-center">
-									<h1 className="font-bold text-xl">DURHAM PUBLIC SCHOOLS</h1>
-									<h1 className="font-bold text-lg">DOCUMENTATION OF PRICES</h1>
+									<h1 className="font-bold text-[14.5px]">
+										DURHAM PUBLIC SCHOOLS
+									</h1>
+									<h1 className="font-bold text-[14.5px]">
+										DOCUMENTATION OF PRICES
+									</h1>
 								</div>
 
-								<div className="mb-4">
+								<div className="mb-4 text-[14.5px] leading-[1.2]">
 									<div className="pl-8 pr-16">
 										<p className="mb-6">
 											This document may be used to document prices as required
@@ -83,74 +144,29 @@ const Preview = () => {
 											required.
 										</p>
 										<div className="">
-											<p className="mb-4 flex">
+											<p className="mb-4 flex leading-[1.2]">
 												DESCRIPTION OF ITEM(S):
 												<span
-													className={` ${nottoBeHighlighted} ml-1 border-black border-b-2 w-[20rem]`}>
+													className={` ${nottoBeHighlighted} ml-1 border-black border-b-2 w-[20rem] text-[14.5px]`}>
 													{description}
 												</span>
 											</p>
-											<p className="mb-6 flex">
+											<p className="mb-6 text-[14.5px] flex">
 												QUANTITY:
 												<span
-													className={`${nottoBeHighlighted}  block w-64 ml-1.5 border-black border-b-2`}>
+													className={`${nottoBeHighlighted}  block w-64 ml-1.5 border-black border-b-2 text-[14.5px]`}>
 													{quantity}
 												</span>
 											</p>
 										</div>
 									</div>
 
-									<div className=" px-8">
-										<div className="grid grid-cols-2 gap-6 mb-6">
-											<div className="overflow-hidden">
-												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted}  `}>
-														{!vendor_one ? "" : vendor_one.company_name}
-													</span>
-												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
-														{!vendor_one ? "" : vendor_one.address},{" "}
-													</span>
-												</p>
-												<p className="mb-4 border-black border-b-2">
-													<span className={`${nottoBeHighlighted} `}>
-														{!vendor_one ? "" : vendor_one.city},{" "}
-														{!vendor_one ? "" : vendor_one.state},{" "}
-														{!vendor_one ? "" : vendor_one.zip_code}
-													</span>
-												</p>
-											</div>
-
-											<div>
-												<p className=" mb-5 ml-14">PRICE QUOTED</p>
-												<p className="mb-4 flex">
-													UNIT PRICE:{" "}
-													<span
-														className={`block w-36 ${nottoBeHighlighted} ml-2 border-b-2 border-black`}>
-														{currency(vendor_one?.unitPrice).format()}
-													</span>
-												</p>
-												<p className="mb-4 flex">
-													TOTAL PRICE:{" "}
-													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{currency(vendor_one?.totalPrice).format()}
-													</span>
-												</p>
-												<p className="flex">
-													SHIPPING:{" "}
-													<span
-														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
-														{" "}
-														{currency(vendor_one?.shippingPrice).format()}
-													</span>
-												</p>
-											</div>
-										</div>
-
-										<div className="grid grid-cols-2 gap-6 mb-6">
+									<div className=" px-8 text-[14.5px]">
+										<RenderBidList
+											details={details}
+											nottoBeHighlighted={nottoBeHighlighted}
+										/>
+										{/* <div className="grid grid-cols-2 gap-6 mb-6 text-[14.5px]">
 											<div className="overflow-hidden">
 												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
 												<p className="mb-4 border-black border-b-2">
@@ -163,7 +179,7 @@ const Preview = () => {
 														{!vendor_two ? "" : vendor_two.address},{" "}
 													</span>
 												</p>
-												<p className="mb-4 border-black border-b-2">
+												<p className="mb-4 border-black border-b-2 text-[14.5px]">
 													<span className={` ${nottoBeHighlighted}  `}>
 														{!vendor_two ? "" : vendor_two?.city},{" "}
 														{!vendor_two ? "" : vendor_two?.state},{" "}
@@ -172,7 +188,7 @@ const Preview = () => {
 												</p>
 											</div>
 
-											<div>
+											<div className="text-[14.5px]">
 												<p className=" mb-5 ml-14">PRICE QUOTED</p>
 												<p className="mb-4 flex">
 													UNIT PRICE:{" "}
@@ -181,14 +197,14 @@ const Preview = () => {
 														{currency(vendor_two?.unitPrice).format()}
 													</span>
 												</p>
-												<p className="mb-4 flex">
+												<p className="mb-4 text-[14.5px] flex">
 													TOTAL PRICE:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
 														{currency(vendor_two?.totalPrice).format()}
 													</span>
 												</p>
-												<p className="flex">
+												<p className="flex text-[14.5px]">
 													SHIPPING:{" "}
 													<span
 														className={`block w-36 ml-2 ${nottoBeHighlighted}  border-b-2 border-black`}>
@@ -197,9 +213,9 @@ const Preview = () => {
 													</span>
 												</p>
 											</div>
-										</div>
+										</div> */}
 
-										<div className="grid grid-cols-2 gap-6 mb-6">
+										{/* <div className="grid grid-cols-2 gap-6 mb-6 text-[14.5px]">
 											<div className="overflow-hidden">
 												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
 												<p className="mb-4 border-black border-b-2">
@@ -219,9 +235,9 @@ const Preview = () => {
 														{!vendor_three ? "" : vendor_three.zip_code}
 													</span>
 												</p>
-											</div>
+											</div> */}
 
-											<div>
+										{/* <div className="text-[14.5px]">
 												<p className=" mb-5 ml-14">PRICE QUOTED</p>
 												<p className="mb-4 flex">
 													UNIT PRICE:{" "}
@@ -246,10 +262,10 @@ const Preview = () => {
 													</span>
 												</p>
 											</div>
-										</div>
+										</div> */}
 
-										<div className="grid grid-cols-2 gap-6 mb-2">
-											<div className="overflow-hidden">
+										{/* <div className="grid grid-cols-2 gap-6 mb-2">
+											<div className="overflow-hidden text-[14.5px]">
 												<p className="text-center mb-5">VENDOR NAME/ADDRESS</p>
 												<p className="mb-4 border-black border-b-2">
 													<span className={`${nottoBeHighlighted}`}>
@@ -263,14 +279,14 @@ const Preview = () => {
 												</p>
 												<p className="mb-4 border-black border-b-2">
 													<span className={`${nottoBeHighlighted} `}>
-														{!vendor_four ? "" : vendor_four.city},{" "}
-														{!vendor_four ? "" : vendor_four.state},{" "}
+														{!vendor_four ? "" : vendor_four.city}{" "}
+														{!vendor_four ? "" : vendor_four.state}{" "}
 														{!vendor_four ? "" : vendor_four.zip_code}
 													</span>
 												</p>
 											</div>
 
-											<div>
+											<div className="text-[14.5px]">
 												<p className=" mb-5 ml-14">PRICE QUOTED</p>
 												<p className="mb-4 flex">
 													UNIT PRICE:{" "}
@@ -295,10 +311,10 @@ const Preview = () => {
 													</span>
 												</p>
 											</div>
-										</div>
+										</div> */}
 									</div>
 
-									<div className="flex gap-8 ml-8">
+									<div className="flex gap-8 ml-8 text-[14.5px]">
 										<div className="mt-4">
 											<p className="font-[900] bg-red-90 w-80 border-b-2 border-black "></p>
 											<p className="text-sm">Signature</p>
