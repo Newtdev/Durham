@@ -103,7 +103,7 @@ export const FormsArray = [
     title: "Owner and Contractor Agreement Form (more $500,000)(Original)",
     category: "contracts",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000)(Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000) - ESSER(Original).docx",
   },
   {
     id: 16,
@@ -152,7 +152,7 @@ export const FormsArray = [
     title: "RFP Template with MWBE(Original)",
     category: "MWBE",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/RFP Template with MWBE(Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/MWBE Participation Sheet (_ Form)(Original).docx",
   },
   {
     id: 23,
@@ -247,16 +247,16 @@ export const FormsArray = [
   },
   {
     id: 36,
-    title: "Project Closeout Checklist - T20160317 (Original)",
+    title: "Certificate of Substantial Completion(Original)",
     category: "project closeout",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Project Closeout Checklist - T20160317 (Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/Certificate of Substantial Completion(Original).docx",
   },
   {
     id: 37,
-    title: "Punchlist and Substantial Agreement(Original)",
+    title: "Certificate of Substantial Completion(Original)",
     category: "project closeout",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Punchlist and Substantial Agreement(Original).docx",
+      "https://durhamapp.000webhostapp.com/pdfs/Certificate of Substantial Completion(Original).docx",
   },
 ];
