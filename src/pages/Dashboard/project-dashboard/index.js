@@ -58,7 +58,7 @@ import MWBEForm from "../../forms/MWBE % Form";
 import ShortSmallFormDesignForm from "../../forms/Short Small Form Design Consultant Agreement";
 import OwnerAndDesignConsultantForm from "../../forms/Owner and Design Consultant (less than $200,000)"
 import OwnerAndContractorForm from "../../forms/Owner and Contractor Agreement Form (more $500,000)";
-// import CapitalProjectRequestForm from "../../forms/Capital Project Request Form";
+import CapitalProjectRequestForm from "../../forms/Capital Project Request Form";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
@@ -380,7 +380,7 @@ const ProjectDashboard = () => {
 			<ShortSmallFormDesignForm id={documentsID} />
 			<OwnerAndDesignConsultantForm id={documentsID} />
 			<OwnerAndContractorForm id={documentsID} />
-			{/* <CapitalProjectRequestForm id={documentsID} /> */}
+			<CapitalProjectRequestForm id={documentsID} />
 		</section>
 	);
 };

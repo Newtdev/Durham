@@ -166,6 +166,7 @@ const FormThree = (props) => {
 							touched={props.touched.salesTax}
 							onChange={props.handleChange}>
 							<option value='Yes'>Yes</option>
+							<option value='No'>No</option>
 						</FormSelect>
 					</FormInputContainer>
 					<FormInputContainer name='Enter the Shipping cost, if applicable.'>
