@@ -86,6 +86,7 @@ export function ForgetPasswordModal({ close }) {
 				<Button name="RESET PASSWORD" loading={isLoading} />
 				<p className="text-base text-gray-800 font-light text-center ">
 					<Link
+					to={"/login"}
 						onClick={close}
 						className=" underline  text-[#3B6979] font-bold">
 						Return to login
