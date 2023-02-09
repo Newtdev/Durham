@@ -78,18 +78,18 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
         return (
           <ul
             key={id}
-            className="border border-[#D8E1E4] bg-white rounded-lg h-16 flex justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
+            className="border border-[#D8E1E4]  bg-white rounded-lg h-16 flex justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
           >
             <li
               // scope="row"
-              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[50%] flex items-center justify-start gap-3"
+              className="py-4 px-2 font-normal capitalize overflow-x-auto no-scrollbar text-gray-900   flex-1 max-w-[70%] text-ellipsis  flex items-center justify-start gap-3"
             >
               <img src={frame} alt="icon" />
               {title}
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
+              className="md:py-4 md:px-4 pl-32 hidden md:block font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
             >
               {category}
             </li>
