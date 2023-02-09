@@ -28,7 +28,10 @@ const Lunsford = ({ id }) => {
 
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [{ field_name: param[0], field_value: val[0] }],
+			form_fields: [
+				{ field_name: param[0], field_value: val[0] },
+				{ field_name: param[1], field_value: val[1] },
+			],
 		});
 		if (response) {
 			if (response?.error) {

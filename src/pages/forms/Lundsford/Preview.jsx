@@ -21,20 +21,20 @@ const PreviewForm = ({ value }) => {
 	const [highlighted, setHighlighed] = useState(false);
 
 	const formID = useSelector(project_document_id);
-	useFetchFilledFormQuery(formID);
-	const content = useSelector(savedResponse);
-	const { vendors, project } = content;
+	let content = useFetchFilledFormQuery(formID);
+
+	const { vendors, project, form_fields } = content?.currentData?.data;
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
 
 	useEffect(() => {
-		if (!vendors || !content?.addressCopy) {
+		if (!vendors || !form_fields?.addressCopy) {
 			setAwardee(vendors);
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === content.addressCopy);
+		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
 		setAwardee(data);
-	}, [vendors, content]);
+	}, [vendors, form_fields]);
 
 	const props = {
 		component: downloadComponent,

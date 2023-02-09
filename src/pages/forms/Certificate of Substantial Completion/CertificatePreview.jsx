@@ -32,11 +32,13 @@ const CertificatePreview = () => {
 	const [highlighted, setHighlighted] = useState(false);
 	// const project = content?.data?.data?.project;
 	// const vendors = content?.data?.data?.vendors;
-	let formData = !content?.data ? [] : content?.data?.data;
+	let formData = !content?.data ? [] : content?.currentData?.data;
+
 	const vendors = formData?.vendors;
 	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
-	const form_fields = useSelector(fields);
+	const form_fields = formData?.form_fields;
+	// const form_fields = useSelector(fields);
 	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
@@ -52,9 +54,13 @@ const CertificatePreview = () => {
 		if (!vendors) {
 			return;
 		}
+
 		vendors?.forEach((cur) => {
 			// console.log(cur);
-			if (cur.role === "Design Consultant") {
+			if (
+				cur.role === "Design Consultant" ||
+				cur.role === "Engineering Consultant"
+			) {
 				setAwardee((prev) => {
 					return { ...prev, design: cur };
 				});

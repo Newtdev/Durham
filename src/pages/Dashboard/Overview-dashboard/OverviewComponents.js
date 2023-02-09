@@ -302,7 +302,9 @@ export function AwardeeInfo(props) {
 								</option>
 								<option value="Design Consultant">Design Consultant</option>
 								<option value="Contractor">Contractor</option>
-								<option value="Engineering">Engineering</option>
+								<option value="Engineering Consultant">
+									Engineering Consultant
+								</option>
 								<option value="Construction Manager">
 									Construction Manager
 								</option>

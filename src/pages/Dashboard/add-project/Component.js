@@ -4,69 +4,44 @@ import { ChevronDown } from "../../../ui";
 // import { addDocuments } from "./projectSlice";
 
 export const AccordionSelector = ({ data, objName, getData }) => {
-	// const [checked, setChecked] = useState({});
 	const [checkedID, setID] = useState({});
-	// const dispatch = useDispatch()
-	const newClass =
-		"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
 
-	// const onClick = (e) => {
-	// 	if (e.target) {
-	// 		getData(e.target);
-	// 	}
-	// };
-	
-	const onChange=(e) => {
-		// console.log(e.target.checked)
-		// setChecked({checked, [e.target.name]: e.target.checked })
+	const onChange = (e) => {
 		if (!e.target.checked) {
-			setID(null)
-			// getData(e.target);
+			setID(null);
 		} else {
-			// console.log(e.target)
 			getData(e.target);
-			// console.log(e.target.value)
 
-			
-			setID(Number(e.target.id))
+			setID(Number(e.target.id));
 		}
-		
-	}
-
+	};
 
 	const makeId = (...arg) => {
 		return arg[0].split(" ").join("-");
-   };
+	};
 	return (
 		<ul className="px-4">
 			{data.map(({ name, id }, idx) => {
 				return (
-					
-					<label htmlFor={id} key={id} className={`${checkedID === id? 'bg-[#699bac]':'bg-[#d8e1e4]'} flex justify-between items-center mb-5
+					<label
+						htmlFor={id}
+						key={id}
+						className={`${
+							checkedID === id ? "bg-[#699bac]" : "bg-[#d8e1e4]"
+						} flex justify-between items-center mb-5
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}>
 						{name}
-						
+
 						<input
-								id={id}
-								type="checkbox"
-								value={name}
+							id={id}
+							type="checkbox"
+							value={name}
 							name={objName}
 							title={makeId(name)}
 							onChange={onChange}
-								className="text-gray-900 bg-gray-100 border-gray-300"
-							/>
-						</label>
-					
-					// <input
-					// 	onClick={onClick}
-					// 	value={name}
-					// 	name={objName}
-					// 	id={idx}
-					// 	type="button"
-					// 	key={idx}
-					// 	className={`bg-[#d8e1e4]
-					// 	mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
-					// />
+							className="text-gray-900 bg-gray-100 border-gray-300"
+						/>
+					</label>
 				);
 			})}
 		</ul>

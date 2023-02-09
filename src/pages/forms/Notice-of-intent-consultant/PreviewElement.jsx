@@ -51,7 +51,11 @@ const PreviewElement = () => {
 		if (!vendors) {
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === "Design Consultant");
+		const data = vendors?.filter(
+			(cur) =>
+				cur.role === "Design Consultant" ||
+				cur.role === "Engineering Consultant"
+		);
 		console.log(data);
 		setAwardee(data);
 	}, [vendors]);
