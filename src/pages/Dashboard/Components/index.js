@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 export function DashboardNav() {
 	const profile = useSelector(userDetails);
 	// PASS IN THE ID
-	const result = useFetchSingleProjectManagerQuery(profile.id);
+	const result = useFetchSingleProjectManagerQuery(profile?.id);
 	const [show, setShow] = useState(false);
 	const navigate = useNavigate();
 

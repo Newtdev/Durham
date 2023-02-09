@@ -59,6 +59,7 @@ import ShortSmallFormDesignForm from "../../forms/Short Small Form Design Consul
 import OwnerAndDesignConsultantForm from "../../forms/Owner and Design Consultant (less than $200,000)"
 import OwnerAndContractorForm from "../../forms/Owner and Contractor Agreement Form (more $500,000)";
 import CapitalProjectRequestForm from "../../forms/Capital Project Request Form";
+import DesignPhaseChangeOrderForm from "../../forms/Design Phase Change Order";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
@@ -377,6 +378,7 @@ const ProjectDashboard = () => {
 			<PFForProjects id={documentsID} />
 			<RFPTemplateWithMWBEForm id={documentsID} />
 			<MWBEForm id={documentsID} />
+			<DesignPhaseChangeOrderForm id={documentsID} />
 			<ShortSmallFormDesignForm id={documentsID} />
 			<OwnerAndDesignConsultantForm id={documentsID} />
 			<OwnerAndContractorForm id={documentsID} />
