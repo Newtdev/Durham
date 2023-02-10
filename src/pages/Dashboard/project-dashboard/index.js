@@ -58,8 +58,8 @@ import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID)
-	const response = useFetchSingleProjectQuery(getId());
 
+	const response = useFetchSingleProjectQuery(getId());
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const projectDetails = useSelector(project_details);
@@ -71,8 +71,8 @@ const ProjectDashboard = () => {
 	const awardee = !projectDetails?.project_vendors
 		? null
 		: projectDetails.project_vendors;
-	const summary = !projectDetails ? "" : projectDetails.document_summary;
-	const school = !projectDetails ? "" : projectDetails.school;
+	const summary = !projectDetails ? "" : projectDetails?.document_summary;
+	const school = !projectDetails ? "" : projectDetails?.school;
 
 	const RenderAwardee = () => {
 		if (!awardee) {
@@ -297,7 +297,10 @@ const ProjectDashboard = () => {
 											toggle ? "h-full" : "h-0 overflow-hidden"
 										} py-2 transition-auto`}>
 										{" "}
+										{console.log(projectDetails?.duplicates)}
 										{projectDetails?.duplicates?.map((project, index) => {
+											{
+											}
 											return (
 												<div
 													key={index}

@@ -28,8 +28,10 @@ html {
 	font-family: "Calibri", sans-serif;
 }
 
-@media print {
-	#main {
-		margin: 100px 0;
+/* @media print {
+	body.printableArea {
+		width: 21cm;
+		height: 29.7cm;
+		margin: 2cm;
 	}
-}
+} */

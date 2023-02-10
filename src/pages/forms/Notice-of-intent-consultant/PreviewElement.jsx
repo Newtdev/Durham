@@ -20,9 +20,11 @@ const PreviewElement = () => {
 	const [highlighted, setHighlighed] = useState(false);
 
 	const formID = useSelector(project_document_id);
-	const form_fields = useSelector(fields);
+	// RETURNS DURHAM PROFILE DETAILS, FORM FIELDS, VENDOR AND PROJECT MANAGER INFO
 	const content = useFetchFilledFormQuery(formID);
+
 	// const content = useSelector(savedResponse);
+	const form_fields = useSelector(fields);
 	const projectDetails = useSelector(project_details);
 	const school = !projectDetails ? "" : projectDetails.school;
 	const [awardee, setAwardee] = useState([]);

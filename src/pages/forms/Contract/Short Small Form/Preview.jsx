@@ -27,7 +27,7 @@ const ShortSmall = () => {
 	const formID = useSelector(project_document_id);
 	const content = useFetchFilledFormQuery(formID);
 	const [highlighted, setHighlighed] = useState(false);
-	const [showPage, setShowPage] = useState(false);
+	const [showPage, setShowPage] = useState(true);
 	const [awardee, setAwardee] = useState([]);
 	const form_fields = useSelector(fields);
 	let formData = !content?.data ? [] : content?.data?.data;
@@ -91,7 +91,7 @@ const ShortSmall = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white -mt-4  pb-4 text-black arial-font text-[12.8px] leading-[1.3]"
+							className="bg-white -mt-4  pb-4 text-black arial-font text-[14.5px] leading-[1.3]"
 							ref={downloadComponent}>
 							<PageOne {...pageProps} />
 							{showPage && <PageTwo />}

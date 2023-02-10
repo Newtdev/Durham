@@ -1,8 +1,8 @@
 const PageFive = () => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13] "
-			style={{ height: "10in" }}>
+			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13] text-[13.5px] "
+			style={{ height: "11in" }}>
 			<div>
 				{/* Page 5 */}
 				<div>
@@ -88,8 +88,8 @@ const PageFive = () => {
 
 					{/* Article 3 */}
 					<div className="my-5">
-						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 3</p>
+						<div className="text-center font-bold mb-1">
+							<p className="mb-2">ARTICLE 3</p>
 							<p>ADDITIONAL SERVICES</p>
 						</div>
 
@@ -113,8 +113,8 @@ const PageFive = () => {
 
 					{/* Article 4 */}
 					<div className="mb-0">
-						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 4</p>
+						<div className="text-center font-bold mt-7 mb-1">
+							<p className="mb-2">ARTICLE 4</p>
 							<p>TERMINATION OF AGREEMENT</p>
 						</div>
 
@@ -165,16 +165,16 @@ const PageFive = () => {
 									under this Agreement shall be the amount which is equitable
 									under the circumstances. If the Owner and the Design
 									Consultant are unable to agree on the amount to be paid under
-									the foregoing sentence, the Owner shall fix
+									the foregoing sentence,
 								</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className=" h-[5.6rem]  flex flex-col justify-end">
+			<div className=" h-[2.5rem]  flex flex-col justify-end">
 				<div>
-					<p>DCA (short form - $100K) 12-15-2020</p>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>
 				<div className="w-1  ml-auto">
 					<p>5</p>
