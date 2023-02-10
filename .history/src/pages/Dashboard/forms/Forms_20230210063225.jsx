@@ -27,7 +27,7 @@ const Forms = () => {
   };
 
   const PER_PAGE = 6;
-  const pages = Math.floor(filteredForms.length / PER_PAGE);
+  const pages = Math.floor(filteredForms.length / 6);
   const skip = page * PER_PAGE - PER_PAGE;
 
   const filterHandler = (e) => {
