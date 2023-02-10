@@ -30,6 +30,7 @@ import PreciseListReducer from "../pages/forms/Precis Checklist/Reducer";
 import CapitalForm from "../pages/forms/Budget/Capital Project Request Form/reducer";
 import shortformDesign from "../pages/forms/Contract/Short Small Form/reducer";
 import OwnerDesignConsultantLess from "../pages/forms/Contract/Owner and Design Consultant (Less than $200,000)/reducer";
+import OwnerAndContractor from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000)/reducer";
 
 export const store = configureStore({
   // reducers
@@ -66,7 +67,9 @@ export const store = configureStore({
     CapitalForm,
     shortformDesign,
     OwnerDesignConsultantLess,
+    OwnerAndContractor,
   },
+
   // middlewares
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(DurhamsApi.middleware),

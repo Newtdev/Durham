@@ -56,6 +56,7 @@ import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)"
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
 import OwnerDesignConsultantLessForm from "../../forms/Contract/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { setDefault } from "../add-project/reducer";
+import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)";
 
 const ProjectDashboard = () => {
   const response = useFetchSingleProjectQuery(getId());
@@ -402,6 +403,7 @@ const ProjectDashboard = () => {
       <PFForProjects id={documentsID} />
       <ShortSmallFormDesignForm id={documentsID} />
       <OwnerDesignConsultantLessForm id={documentsID} />
+      <OwnerAndContractorForm id={documentsID} />
     </section>
   );
 };

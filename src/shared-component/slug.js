@@ -21,6 +21,8 @@ export const Determination_bidder =
   "Determination-of-Apparent-Low-Bidder---Contractor";
 export const OwnerContractManagement =
   "Owner-and-Contract-Management-(CM-&-CMAR)-Agreement";
+export const OwnerAndContractor =
+  "Owner-and-Contractor-Agreement-Form-(more-$500,000)";
 export const ESSERContract = "ESSER-Contract-Template";
 export const ESSERContractPM = "ESSER-PM-Contract-Template";
 export const leChase = "LeChase-Esser-Contract-Template";
