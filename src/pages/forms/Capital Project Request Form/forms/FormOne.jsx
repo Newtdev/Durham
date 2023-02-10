@@ -5,11 +5,13 @@ import { getList } from "../../Advertisement-for-bid-template/reducer";
 import SelectDate from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
-import { FormSelect } from "../../components";
+import { FormSelect, FormInputPlain } from "../../components";
+import { useState } from "react";
 
 const FormOne = (props) => {
 	const dispatch = useDispatch()
 	const states = useSelector(getList);
+	const [value, setValue] = useState('')
 
 	const startDate = {
 		...props,
@@ -33,6 +35,22 @@ const FormOne = (props) => {
 		//    prevPage
 	}
 
+	const handleRadioChange = (e) => {
+		console.log('o value: ', e.target.value)
+		setValue(e.target.value);
+		console.log('value: ', value)
+		// props.handleChange(e);
+
+	}
+
+	const handleChange = (e) => {
+		console.log('o value: ', e.target.value)
+		setValue(e.target.value);
+		console.log('value: ', value)
+		props.handleChange(e);
+
+	}
+
 	return <div>
 		<div
 			className='relative w-full h-screen max-w-md mx-auto md:h-auto mt-14'
@@ -43,7 +61,7 @@ const FormOne = (props) => {
 				<div className='flex items-baseline justify-between mx-6'>
 					<div>
 						<h3 className='text-lg font-bold text-gray-900'>
-							Owner and Design Consultant (less than $200,000)
+							Capital Project Request Form
 						</h3>
 						<p className='text-base text-gray-700'>
 							Section I
@@ -102,7 +120,7 @@ const FormOne = (props) => {
 										value='Capital Outlay'
 										name='fundingSource'
 										className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
-										onChange={props.handleChange}
+										onChange={handleChange}
 
 									/>
 									<label
@@ -119,7 +137,7 @@ const FormOne = (props) => {
 										value='Other'
 										name='fundingSource'
 										className='w-6 h-6 text-blue-600 bg-gray-100 border-gray-300'
-										onChange={props.handleChange}
+										onChange={handleRadioChange}
 
 									/>
 									<label
@@ -129,6 +147,14 @@ const FormOne = (props) => {
 										Other
 									</label>
 								</div>
+								{
+									value == "Other" && 
+									<div className="">
+										<FormInputPlain type={"text"} onChange={props.handleChange} name='fundingSource' placeholder={"Enter Funding Source"} />
+										{props.errors.fundingSource && props.touched.fundingSource && <Error message={props.errors.fundingSource} />}
+									</div>
+								}
+
 							</div>
 							{props.errors.fundingSource && props.touched.fundingSource && <Error message={props.errors.fundingSource} />}
 						</div>

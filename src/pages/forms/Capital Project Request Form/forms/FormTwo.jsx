@@ -43,7 +43,7 @@ const FormTwo = (props) => {
 
 				<div className='mx-6 mb-12'>
 					<div className='mt-3 ml-2 flex flex-col gap-3 '>
-						<FormInputContainer name='Land Purchase'>
+						<FormInputContainer name='Land Purchase'>x
 							<FormInput type={"number"} onChange={props.handleChange} name="landCost" placeholder={"0.0"} />
 							{props.errors.landCost && props.touched.landCost && <Error message={props.errors.landCost} />}
 						</FormInputContainer>
