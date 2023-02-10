@@ -36,7 +36,7 @@ const Preview = () => {
 
 	const content = useFetchFilledFormQuery(formID);
 	const [awardee, setAwardee] = useState([]);
-	const [showPage, setShow] = useState(true);
+	const [showPage, setShow] = useState(false);
 	// const content = useSelector(savedResponse);
 	const vendors = content?.data?.data.vendors;
 	const form_fields = useSelector(fields);
