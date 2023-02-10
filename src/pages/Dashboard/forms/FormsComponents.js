@@ -81,7 +81,7 @@ export const TableBody = memo(({ skip, perPage, dataArray, onDownload }) => {
         return (
           <ul
             key={id}
-            className="border border-[#D8E1E4]  bg-white rounded-lg h-16 flex justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
+            className="border border-[#D8E1E4]  bg-white rounded-lg  flex  justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
           >
             <li
               // scope="row"
@@ -92,7 +92,7 @@ export const TableBody = memo(({ skip, perPage, dataArray, onDownload }) => {
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4 pl-32 hidden md:block font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
+              className="md:py-4 px-4   md:block font-normal capitalize text-[#693B79] whitespace-nowrap flex-1 max-w-[35%] text-center"
             >
               {category}
             </li>
