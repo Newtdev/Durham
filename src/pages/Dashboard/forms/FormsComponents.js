@@ -4,6 +4,7 @@ import download from "../../../assets/download.svg";
 import success from "../../../assets/success.svg";
 import frame from "../../../assets/Frame.svg";
 import sort from "../../../assets/sort.svg";
+import { memo } from "react";
 
 export function FormsDownloadButton({
   name,
@@ -26,7 +27,9 @@ export function FormsDownloadButton({
   );
 }
 
-export function TableBody({ skip, perPage, dataArray, onDownload }) {
+export const TableBody = memo(({ skip, perPage, dataArray, onDownload }) => {
+  // console.log("Child got: ", dataArray, "Pagination: ", skip, skip + perPage);
+
   return (
     // <table
     //   className=" border-separate w-full"
@@ -120,7 +123,7 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
       })}
     </section>
   );
-}
+});
 
 export function SuccessModal({ close, dashboard, fileName }) {
   return (
