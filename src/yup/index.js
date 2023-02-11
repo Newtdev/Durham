@@ -535,3 +535,63 @@ export const CapitalProjectRequestSchema = [
 		furnitureCost: Yup.string().required("Field is required"),
 	})
 ]
+
+export const ChangeOrderSchema = [
+	Yup.object().shape({
+		number: Yup.string().required("Field is required"),
+		creatingDate: Yup.string().required("Field is required"),
+		description: Yup.string().required("Field is required"),
+		originalSum: Yup.string().required("Field is required"),
+		netSum: Yup.string().required("Field is required"),
+		amountEffect: Yup.string().required("Field is required"),
+		amount: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		completionDate: Yup.string().required("Field is required"),
+		priorChangeDays: Yup.string().required("Field is required"),
+		changeDays: Yup.string().required("Field is required"),
+		signDate: Yup.string().required("Field is required"),
+		approval: Yup.string().required("Field is required"),
+		persons: Yup.array().of(
+			Yup.object().shape({
+				database: Yup.string().required("Field is required"),
+				name: Yup.string().required("Field is required")
+			})
+		)
+	})
+]
+
+export const ChangeOrderDirectiveSchema = Yup.object().shape({
+	maxPrice: Yup.string().required("Field is required"),
+	amount: Yup.string().required("Field is required"),
+	contractTime: Yup.string(),
+	contractTimePerHour: Yup.string().when("maxPrice", {
+		is: (maxPrice) => maxPrice === "Unit Price",
+		then: Yup.string().required("Field is required")
+	}),
+	ownerDatabase: Yup.string().required("Field is required"),
+	ownerName: Yup.string().required("Field is required"),
+	signDate: Yup.string().required("Field is required")
+});
+
+export const DPSShortFormEngineerSchema = [
+	Yup.object().shape({
+		agreementDate: Yup.string().required("Field is required"),
+		directorSignDate: Yup.string().required("Field is required"),
+		officerSignDate: Yup.string().required("Field is required"),
+		notarySealDate: Yup.string().required("Field is required"),
+		checkType: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		address: Yup.string().required("Field is required"),
+		state: Yup.string().required("Field is required"),
+		city: Yup.string().required("Field is required"),
+		zipCode: Yup.string().required("Field is required")
+	})
+];
+
+export const DPSFormalGeneralConditionSchema = Yup.object().shape({
+	substantialCompletion: Yup.string().required("Field is required"),
+	finalCompletion: Yup.string().required("Field is required"),
+	amount: Yup.string().required("Field is required")
+});
