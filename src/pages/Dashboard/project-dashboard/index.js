@@ -43,7 +43,6 @@ import { toast } from "react-toastify";
 import {
 	useDeleteProjectMutation,
 	useDuplicateProjectMutation,
-	useDuplicateProjectQuery,
 	useFetchSingleProjectQuery,
 } from "../../../features/services/api";
 // import { getProjectID } from "../add-project/reducer";
@@ -55,10 +54,9 @@ import PFForProjects from "../../forms/Precis Checklist/Precis";
 import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form";
 import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)";
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
+import { setDefault } from "../add-project/reducer";
 
 const ProjectDashboard = () => {
-	// const id = useSelector(getProjectID)
-
 	const response = useFetchSingleProjectQuery(getId());
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -214,6 +212,7 @@ const ProjectDashboard = () => {
 						<div className="flex items-center gap-4">
 							<button
 								onClick={() => {
+									dispatch(setDefault());
 									dispatch(getProjectInfo(projectDetails));
 									navigate("/dashboard/edit-project");
 								}}
@@ -297,14 +296,18 @@ const ProjectDashboard = () => {
 											toggle ? "h-full" : "h-0 overflow-hidden"
 										} py-2 transition-auto`}>
 										{" "}
-										{console.log(projectDetails?.duplicates)}
 										{projectDetails?.duplicates?.map((project, index) => {
-											{
-											}
 											return (
 												<div
 													key={index}
-													className="flex items-center justify-between h-16 px-4 py-2 my-1 bg-gray-100 rounded">
+													className="flex items-center justify-between h-16 px-4 py-2 my-1 bg-gray-100 rounded cursor-pointer hover:shadow-lg transition-all "
+													onClick={() => {
+														SaveToLocalStorage(project?.id);
+														navigate(
+															`/dashboard/project-details/${project?.id}`
+														);
+														// window.location.reload();
+													}}>
 													<h1 className="text-[#2f5461] font-bold">
 														{project?.name}
 													</h1>

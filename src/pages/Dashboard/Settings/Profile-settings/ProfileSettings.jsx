@@ -21,10 +21,7 @@ const ProfileSettings = () => {
 	const profile = useSelector(userDetails);
 	// PASS IN THE ID
 	const result = useFetchSingleProjectManagerQuery(profile.id);
-	//   const filename = result.data.filename;
-	//   if (result) {
-	//     image = result.data?.filename.url;
-	//   }
+
 	// PASS IN A ID
 	const [updateProfile, { isLoading }] = useUpdateProfileMutation();
 	const [uploadProfilePhoto, data] = useUploadProfilePhotoMutation();
@@ -44,29 +41,6 @@ const ProfileSettings = () => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			}
-
-			// const profile = useSelector(userDetails)
-			// PASS IN THE ID
-			// const result = useFetchSingleProjectManagerQuery(profile.id);
-			// PASS IN A ID
-			// const [updateProfile, { isLoading }] = useUpdateProfileMutation()
-
-			// const HandleRequest = async (values) => {
-			//     const { id, first_name, last_name, email, phone } = values;
-			//     const data = { id, first_name, last_name, email, phone }
-
-			//     const response = await updateProfile(data);
-			//     if (response) {
-			//         if (response?.error) {
-			//             toast.error(response?.error?.message, {
-			//                 position: toast.POSITION.TOP_CENTER,
-			//             });
-			//         } else {
-			//             toast.success('Profile Updated Successfully', {
-			//                 position: toast.POSITION.TOP_CENTER,
-			//             });
-			//         }
-			//     }
 		}
 	};
 
@@ -172,7 +146,7 @@ const ProfileSettings = () => {
 									<ImaageSpinner />
 								) : (
 									<img
-										className="w-full rounded-full"
+										className="w-full object-cover rounded-full"
 										src={
 											!result?.data?.filename?.url
 												? User
