@@ -59,14 +59,10 @@ import ShortSmallFormDesignForm from "../../forms/Short Small Form Design Consul
 import OwnerAndDesignConsultantForm from "../../forms/Owner and Design Consultant (less than $200,000)"
 import OwnerAndContractorForm from "../../forms/Owner and Contractor Agreement Form (more $500,000)";
 import CapitalProjectRequestForm from "../../forms/Capital Project Request Form";
-<<<<<<< HEAD
 import ChangeOrderForm from "../../forms/Change Order Form"
 import ChangeOrderDirectiveForm from "../../forms/Change Order Directive"
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer"
 import DPSFormalGeneralConditionForm from "../../forms/DPS Formal General Conditions - 1-17-20"
-=======
-import DesignPhaseChangeOrderForm from "../../forms/Design Phase Change Order";
->>>>>>> 36dd1bac73560be79bdd7a1a7bb434172841107f
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
