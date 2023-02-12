@@ -37,11 +37,7 @@ export const ShortSmallFormDesign = "Short-Small-Form-Design-Consultant-Agreemen
 export const OwnerAndDesignConsultant = "Owner-and-Design-Consultant-(less-than-$200,000)";
 export const OwnerAndContractor = "Owner-and-Contractor-Agreement-Form-(more-$500,000)";
 export const CapitalProjectRequest = "Capital-Project-Request-Form";
-<<<<<<< HEAD
 export const ChangeOrder = "Change-Order-Form";
 export const ChangeOrderDirective = "Change-Order-Directive";
 export const DPSShortFormEngineer = "DPS-Short-Form-Engineer---Engineering-Contract";
 export const DPSFormalGeneralCondition = "DPS-Formal-General-Conditions---1-17-20";
-=======
-export const DesignPhaseChangeOrder = "Design-Phase-Change-Order";
->>>>>>> 36dd1bac73560be79bdd7a1a7bb434172841107f
