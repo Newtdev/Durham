@@ -4,8 +4,8 @@ const PageFour = (props) => {
 	};
 	return (
 		<div
-			className="text-black font11  py-[1in] px-[0.6in] leading-[1.13] "
-			style={{ height: "10in" }}>
+			className="text-black   py-[0.8in] px-[0.6in] leading-[1.1] text-[13.5px]"
+			style={{ height: "10.5in" }}>
 			<div>
 				{/* Page 4 */}
 				<div>
@@ -15,7 +15,7 @@ const PageFour = (props) => {
 								<div>
 									<div className="ml-3 mb-2 grid grid-cols-2">
 										<div>
-											<div className="flex gap-[20px] mb-3">
+											<div className="flex gap-[20px] mb-2">
 												<p>d.</p>
 												<div>
 													<p>Automobile Liability (Symbol 1)</p>
@@ -32,7 +32,7 @@ const PageFour = (props) => {
 										</div>
 
 										<div>
-											<div className="mb-4">
+											<div className="mb-2">
 												<p>Combined Single Limit</p>
 												<p>$1,000,000 Each Accident</p>
 											</div>
@@ -117,7 +117,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12">
 								<p>1.7</p>
 								<p className="text-justfy">
 									<span className="mr-3">USE OF DRAWINGS:</span> It is
@@ -134,8 +134,8 @@ const PageFour = (props) => {
 
 					{/* Article 2 */}
 					<div>
-						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 2</p>
+						<div className="text-center font-bold mb-2 -mt-6">
+							<p className="mb-2">ARTICLE 2</p>
 							<p>BASIC SERVICES</p>
 						</div>
 
@@ -207,13 +207,13 @@ const PageFour = (props) => {
 						</div>
 					</div>
 				</div>
-				<div className=" h-[4.2rem]  overflow-hidden flex flex-col justify-end">
-					<div>
-						<p>DCA (short form - $100K) 12-15-2020</p>
-					</div>
-					<div className="w-1  ml-auto">
-						<p>4</p>
-					</div>
+			</div>
+			<div className=" mt-12 overflow-hidden flex flex-col justify-end">
+				<div>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
+				</div>
+				<div className="w-1  ml-auto pr-2">
+					<p>4</p>
 				</div>
 			</div>
 		</div>

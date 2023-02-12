@@ -59,9 +59,9 @@ const PageNine = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[16.2rem]  flex flex-col justify-end">
+			<div className=" h-[16.2rem] -mt-6  flex flex-col justify-end">
 				<div>
-					<p>DCA (short form - $100K) 12-15-2020</p>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>
 				<div className="w-1 ml-auto">
 					<p>9</p>

@@ -48,8 +48,8 @@ const PageThree = (props) => {
 
 	return (
 		<div
-			className="text-black font11  py-[0.7in] px-[0.6in] leading-[1.13] "
-			style={{ height: "10in" }}>
+			className="text-black py-[0.7in] pl-[0.7in] pr-[0.6in] leading-[1.1]"
+			style={{ height: "11in" }}>
 			<div>
 				{/* Page 3 */}
 				<div>
@@ -106,7 +106,7 @@ const PageThree = (props) => {
 					{/* Article 1 */}
 					<div className="">
 						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 1</p>
+							<p className="mb-2">ARTICLE 1</p>
 							<p>TERMS AND CONDITION</p>
 						</div>
 
@@ -196,13 +196,13 @@ const PageThree = (props) => {
 										coverage shall be:
 									</p>
 
-									<div className=" mb-2 grid grid-cols-2">
+									<div className=" mb-2 grid grid-cols-2 mt-3">
 										<div>
 											<p className="mb-1 ml-4">Insurance Description</p>
 											<p className="mb-1">
 												<span className="mr-4">a.</span> Worker's Compensation
 											</p>
-											<p className="mb-14">
+											<p className="mb-10">
 												<span className="mr-4">b.</span> Employer's Liability
 											</p>
 											<div className="flex gap-[20px]">
@@ -225,7 +225,7 @@ const PageThree = (props) => {
 												<p>$300,000 Disease – Policy Limit</p>
 											</div>
 
-											<div className="mb-1">
+											<div className="mb-1 mt-3">
 												<p>Combined Single Limit</p>
 												<p>$1,000,000 Each Occurrence</p>
 												<p>$1,000,000 Each Occurrence</p>
@@ -238,9 +238,9 @@ const PageThree = (props) => {
 						</div>
 					</div>
 				</div>
-				<div className=" h-[2rem] flex flex-col justify-end">
+				<div className="-mt-4 flex flex-col justify-end">
 					<div>
-						<p>DCA (short form - $100K) 12-15-2020</p>
+						<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 					</div>
 					<div className="w-1  ml-auto">
 						<p>3</p>

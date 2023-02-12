@@ -3,12 +3,12 @@ import moment from "moment";
 const PageTen = (props) => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13]"
+			className="text-black  py-[0.8in] pr-[0.6in] pl-[0.8in] leading-[1.13] text-[13.5px]"
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 10 */}
 				<div>
-					<p className="text-justify mb-8">
+					<p className="text-justify mb-12">
 						In witness whereof, each individual executing this agreement
 						acknowledges that he/she/it is authorized to execute this agreement
 						and further acknowledges the execution of this agreement the day and
@@ -45,7 +45,7 @@ const PageTen = (props) => {
 						</div>
 					</div>
 
-					<div className="flex mb-8 gap-2">
+					<div className="flex mb-12 gap-2">
 						<p className="font-bold">Attest:</p>
 						<div>
 							<p>____________________________________(Seal)</p>
@@ -57,7 +57,7 @@ const PageTen = (props) => {
 						</div>
 					</div>
 
-					<div className="mb-8 font-bold text-justify">
+					<div className="mb-8 font-bold text-justify text-[12.5px]">
 						<p>
 							This instrument has been pre-audited in the manner required by the
 							School Budget and Fiscal Control Act.
@@ -67,7 +67,7 @@ const PageTen = (props) => {
 
 					<div className="flex ">
 						<div>
-							<p className="border-b-2 border-black w-56 my-1">
+							<p className="border-b border-black w-56 my-1.5">
 								<span className={`${props?.nottoBeHighlighted}`}>
 									{props?.durham_profile?.chief_finance_officer?.name}
 								</span>
@@ -75,7 +75,7 @@ const PageTen = (props) => {
 							<p className="font-bold">Finance Officer</p>
 						</div>
 						<div>
-							<p className="border-b-2 border-black  my-1">
+							<p className="border-b border-black  my-1.5">
 								<span className={`${props?.nottoBeHighlighted}`}>
 									{moment(props?.form_fields?.signData).format("MMMM, D,YYYY")}
 								</span>
@@ -85,9 +85,9 @@ const PageTen = (props) => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[28.2rem] flex flex-col justify-end">
+			<div className=" h-[28.2rem] -mt-6 flex flex-col justify-end">
 				<div>
-					<p>DCA (short form - $100K) 12-15-2020</p>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>
 				<div className="w-1 ml-auto">
 					<p>10</p>

@@ -2,7 +2,7 @@ import currency from "currency.js";
 
 const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 	return (
-		<div className="mt-[31rem] pt-[5.2rem] leading-[1.21]">
+		<div className="mt-[31rem] pt-[5rem] leading-[1.15] flex flex-col justify-between">
 			{/* 4 */}
 			<div className="flex mb-2">
 				<p>4.</p>
@@ -197,7 +197,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="w-full flex justify-center mt-6">
+			<div className="w-full flex justify-center mt-6 Times-font">
 				<p>2</p>
 			</div>
 		</div>

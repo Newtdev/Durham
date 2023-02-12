@@ -3,9 +3,19 @@ const PageTwo = ({ nottoBeHighlighted, form_fields }) => {
 		<div
 			className="mt-[27rem] pt-20 leading-[1.3] text-[12.5px]"
 			style={{ margin: "0.5in 0.1in", height: "10in" }}>
+			<p className="mb-4 text-[12.5px]">
+				The responsibility of the Owner and Contractor for security,
+				maintenance, heat, utilities, damage to the Work and insurance shall be
+				as follows:{" "}
+				{/* <span
+											className={`font-bold ${nottoBeHighlighted}  break-words`}>
+											{!form_fields ? "" : form_fields.responsibility}
+										</span> */}
+			</p>
 			<div className="flex mb-2">
 				<div className="">
-					<p className={` adverstise ${nottoBeHighlighted} text-justify`}>
+					<p
+						className={` adverstise ${nottoBeHighlighted} text-justify text-[14.5px]`}>
 						{!form_fields ? "" : form_fields?.responsibility}
 					</p>
 				</div>

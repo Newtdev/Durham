@@ -29,6 +29,7 @@ const DownLoadForm = ({
 	const handlePrint = useReactToPrint({
 		content: () => component.current,
 		documentTitle: name,
+		// bodyClass: "printableArea",
 	});
 
 	return (

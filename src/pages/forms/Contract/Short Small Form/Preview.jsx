@@ -91,7 +91,7 @@ const ShortSmall = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white -mt-4  pb-4 text-black arial-font text-[12.8px] leading-[1.3]"
+							className="bg-white -mt-4  pb-4 text-black arial-font text-[14.5px] leading-[1.3]"
 							ref={downloadComponent}>
 							<PageOne {...pageProps} />
 							{showPage && <PageTwo />}

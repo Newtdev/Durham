@@ -1,17 +1,18 @@
 const PageSix = () => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13]"
+			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13] text-[13.5px]"
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 6 */}
 				<div>
 					<div>
-						<div className="ml-[63px] mt-0 mb-2">
+						<div className="ml-[69px] mt-0 mb-2">
 							<p className="text-justify">
-								an amount, if any, which it deems appropriate in consideration
-								of all of the circumstances surrounding such termination, and
-								shall make payment accordingly.
+								the Owner shall fix an amount, if any, which it deems
+								appropriate in consideration of all of the circumstances
+								surrounding such termination, and shall make payment
+								accordingly.
 							</p>
 						</div>
 
@@ -59,13 +60,13 @@ const PageSix = () => {
 					</div>
 
 					{/* Article 5 */}
-					<div className="my-5">
+					<div className="mt-6">
 						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 5</p>
+							<p className="pb-2">ARTICLE 5</p>
 							<p>OWNERSHIP OF DOCUMENTS/CONFIDENTIAL INFORMATION</p>
 						</div>
 
-						<div>
+						<div className="mt-7">
 							<div className="flex gap-12 mb-2">
 								<p>5.1</p>
 								<p className="text-justify">
@@ -107,12 +108,12 @@ const PageSix = () => {
 
 					{/* Article 6 */}
 					<div className="">
-						<div className="text-center font-bold mb-4">
-							<p>ARTICLE 6</p>
+						<div className="text-center font-bold mt-6">
+							<p className="pb-2">ARTICLE 6</p>
 							<p>ADDITIONAL REQUIREMENTS</p>
 						</div>
 
-						<div>
+						<div className="mt-7">
 							<div className="flex gap-12 mb-2">
 								<p>6.1</p>
 								<p className="text-justify">
@@ -154,9 +155,9 @@ const PageSix = () => {
 						</div>
 					</div>
 				</div>
-				<div className=" h-[6.6rem]  flex flex-col justify-end">
+				<div className=" h-[2rem] mt-4 flex flex-col justify-end">
 					<div>
-						<p>DCA (short form - $100K) 12-15-2020</p>
+						<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 					</div>
 					<div className="w-1  ml-auto">
 						<p>6</p>

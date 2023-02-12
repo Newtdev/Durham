@@ -1,12 +1,12 @@
 const PageSeven = () => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13]"
-			style={{ height: "10in" }}>
+			className="text-black text-[13.5px]  py-[0.8in] px-[0.6in] leading-[1.1]"
+			style={{ height: "11in" }}>
 			<div>
 				{/* Page 7 */}
 				<div>
-					<div className="flex gap-12 mb-2">
+					<div className="flex gap-12 mb-1.5">
 						<p>6.5</p>
 						<p className="text-justify">
 							The headings or captions within this Agreement shall be deemed set
@@ -15,7 +15,7 @@ const PageSeven = () => {
 							forth therein or interpretation thereof.
 						</p>
 					</div>
-					<div className="flex gap-12 mb-2">
+					<div className="flex gap-12 mb-1.5">
 						<p>6.6</p>
 						<p className="text-justify">
 							For the purpose of this Agreement unless the context clearly
@@ -23,7 +23,7 @@ const PageSeven = () => {
 							plural includes the singular.
 						</p>
 					</div>
-					<div className="flex gap-12 mb-2">
+					<div className="flex gap-12 mb-1.5">
 						<p>6.7</p>
 						<p className="text-justify">
 							This Agreement may be executed in any number of counterparts, each
@@ -40,7 +40,7 @@ const PageSeven = () => {
 							thereof.
 						</p>
 					</div>
-					<div className="flex gap-12 mb-2">
+					<div className="flex gap-12 mb-1.5">
 						<p>6.8</p>
 						<p className="text-justify">
 							This Agreement shall inure to the benefit of and be binding on the
@@ -49,7 +49,7 @@ const PageSeven = () => {
 							Design Consultant.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.9</p>
 						<p className="text-justify pl-1">
 							The Design Consultant shall not assign, subcontract, sublet or
@@ -59,7 +59,7 @@ const PageSeven = () => {
 							for securing loans, without prior approval of the Owner.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.10</p>
 						<p className="text-justify">
 							Notwithstanding anything to the contrary contained herein, the
@@ -80,7 +80,7 @@ const PageSeven = () => {
 							Contractor is solely responsible for the claims.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.11</p>
 						<p className="text-justify">
 							Notwithstanding anything to the contrary contained herein, the
@@ -96,7 +96,7 @@ const PageSeven = () => {
 							as to any party or person described in this Article.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.12</p>
 						<p className="text-justify">
 							Except as otherwise set forth in this Agreement, the Design
@@ -112,7 +112,7 @@ const PageSeven = () => {
 							Contractor or the Owner's consultants.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.13</p>
 						<p className="text-justify">
 							Whenever renderings, photographs of renderings, photographs of
@@ -123,7 +123,7 @@ const PageSeven = () => {
 							given to the Design Consultant and Owner respectively.
 						</p>
 					</div>
-					<div className="flex gap-11 mb-2">
+					<div className="flex gap-11 mb-1.5">
 						<p>6.14</p>
 						<p className="text-justify">
 							MISCELLANEOUS: The Design Consultant shall provide documentation
@@ -132,7 +132,7 @@ const PageSeven = () => {
 							subcontract amounts).
 						</p>
 					</div>
-					<div className="flex gap-8 mb-2">
+					<div className="flex gap-8 mb-1.5">
 						<p>6.14.1</p>
 						<p className="text-justify ">
 							Applicable Durham Public Schools Board of Education Policies.
@@ -142,17 +142,19 @@ const PageSeven = () => {
 							abide by any and all relevant DPS policies during the term of the
 							agreement and while on School System property. DPS’s Design
 							Consultant related policies can be viewed at{" "}
-							<span className="text-blue-500">
+							<a
+								href="https://boardpolicyonline.com/bl/?b=dps_new"
+								className="text-blue-500 ">
 								https://boardpolicyonline.com/bl/?b=dps_new
-							</span>{" "}
+							</a>{" "}
 							and are incorporated into this Agreement by reference.
 						</p>
 					</div>
 				</div>
 			</div>
-			<div className=" h-[3.2rem]  flex flex-col justify-end">
+			<div className=" h-[2.2rem] mt-6  flex flex-col justify-end">
 				<div>
-					<p>DCA (short form - $100K) 12-15-2020</p>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>
 				<div className="w-1 ml-auto">
 					<p>7</p>

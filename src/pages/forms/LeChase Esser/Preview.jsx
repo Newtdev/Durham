@@ -95,7 +95,7 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white text-black Times-font text-[14.7px]"
+							className="bg-white text-black Times-font text-[15.5px]"
 							ref={downloadComponent}
 							style={{ margin: "01in 0.5in" }}>
 							<PageOne {...pageProps} />

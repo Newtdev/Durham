@@ -1,18 +1,20 @@
+import { Footer } from "./Page1";
+
 const PageTwo = () => {
 	return (
 		<div
-			className=" text-black font11 pt-24  p-[0.6in] pb-0"
+			className=" text-black pt-24  p-[0.3in] ml-[0.43in] mr-[0.69in] pb-0 text-[14.5px] flex flex-col justify-between"
 			style={{ height: "10.4in" }}>
 			<div>
 				{/* Page 2 */}
 				<div className="">
-					<p className="text-[12px] text-center mb-6">TABLE OF CONTENTS</p>
+					<p className="text-[14.5px] text-center mb-12">TABLE OF CONTENTS</p>
 					<div className="flex justify-between">
 						<div>
 							<p className="mb-3">Article 1</p>
 							<p className="mb-3">Article 2</p>
 							<p className="mb-3">Article 3</p>
-							<p className="mb-3">Article 4</p>
+							<p className="mb-3">Article 3</p>
 							<p className="mb-3">Article 5</p>
 							<p className="mb-3">Article 6</p>
 							<p className="mb-3">Exhibit A</p>
@@ -54,12 +56,12 @@ const PageTwo = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[30rem] flex flex-col justify-end">
-				<p className="font-bold mb-4 text-center">
-					SHORT FORM DESIGN CONSULTANT AGREEMENT
+			<div className=" h-[31.4rem] flex flex-col justify-end">
+				<p className="font-extrabold text-black mb-3 text-center">
+					<b>SHORT FORM DESIGN CONSULTANT AGREEMENT</b>
 				</p>
 				<div>
-					<p>DCA (short form - $100K) 12-15-2020</p>
+					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>
 				<div className="w-1  ml-auto">
 					<p>2</p>

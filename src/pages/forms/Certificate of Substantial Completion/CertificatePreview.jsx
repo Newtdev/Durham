@@ -268,7 +268,7 @@ const CertificatePreview = () => {
 										</span>
 									</p>
 
-									<p className="mb-4 text-[12.5px] leading-[1.2]">
+									<p className="mb-4 text-[12.5px] leading-[1.3]">
 										The Work performed under this contract has been reviewed and
 										found to be Substantially Complete. Substantial Completion
 										is the stage in the progress of the Work when the Work (or
@@ -398,16 +398,6 @@ const CertificatePreview = () => {
 											<span className={` `}>DATE </span>
 										</div>
 									</div>
-
-									<p className="mb-4 text-[12.5px]">
-										The responsibility of the Owner and Contractor for security,
-										maintenance, heat, utilities, damage to the Work and
-										insurance shall be as follows:{" "}
-										{/* <span
-											className={`font-bold ${nottoBeHighlighted}  break-words`}>
-											{!form_fields ? "" : form_fields.responsibility}
-										</span> */}
-									</p>
 								</div>
 							</div>
 							<PageTwo {...pageProps} />

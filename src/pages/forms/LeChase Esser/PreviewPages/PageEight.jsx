@@ -5,8 +5,8 @@ const PageEight = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
 		<div className="mt-[30rem] pt-10" style={{ height: "10in" }}>
 			<small className="text-[11px] ml-2">R2468186</small>
-			<div className="w-full flex justify-center h-full   ">
-				<p className="mt-auto">8</p>
+			<div className="w-full flex justify-center h-full mt-16   ">
+				<p className="mt-auto Times-font">8</p>
 			</div>
 		</div>
 	);
