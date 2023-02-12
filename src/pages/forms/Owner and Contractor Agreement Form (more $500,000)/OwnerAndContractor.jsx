@@ -55,7 +55,7 @@ const OwnerAndContractorForm = ({ id }) => {
           position: toast.POSITION.TOP_CENTER,
         });
       } else {
-        dispatch(nextStep(5))
+        dispatch(nextStep(3))
       }
     }
   }

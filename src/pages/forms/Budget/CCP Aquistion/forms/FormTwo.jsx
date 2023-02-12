@@ -180,7 +180,7 @@ const FormTwo = (props) => {
 					<FormInputContainer name='Enter the Shipping address.'>
 						<div className="flex flex-col">
 							<FormInputPlain type={"text"} onChange={props.handleChange} name="street" placeholder={"Street"} />
-							{props.errors.companyName && props.touched.street && <Error message={props.errors.street} />}
+							{props.errors.street && props.touched.street && <Error message={props.errors.street} />}
 						</div>
 						<div className="flex gap-2 justify-center items-end">
 							<FormSelect
