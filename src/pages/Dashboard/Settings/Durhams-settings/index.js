@@ -2,7 +2,6 @@ import DurhamSettings from "./DurhamsSettings";
 
 export default DurhamSettings;
 
-
 /***
  * import { DashboardNav } from "../../Components";
 import { ProfileDetails } from "../Profile-settings/ProfileSettingsComponent";

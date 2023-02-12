@@ -486,6 +486,7 @@ export const DurhamsApi = createApi({
 					method: "GET",
 				};
 			},
+
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 					const { data } = await queryFulfilled;
