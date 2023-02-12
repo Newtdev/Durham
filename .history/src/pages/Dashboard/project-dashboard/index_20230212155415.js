@@ -54,7 +54,7 @@ import PFForProjects from "../../forms/Precis Checklist/Precis";
 import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form";
 import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)";
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
-import OwnerDesignConsultantLessForm from "../../forms/Contract/Owner and Design Consultant (Less than $200,000)";
+import OwnerDesignConsultantLessForm from "../../forms/Contract/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { setDefault } from "../add-project/reducer";
 
 const ProjectDashboard = () => {

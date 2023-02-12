@@ -34,5 +34,5 @@ export const MWBEFormId = "MWBE-Participation-Sheet-(%-Form)";
 export const ShortSmallFormDesign =
   "Short-Small-Form-Design-Consultant-Agreement";
 export const AffidavitSlug = "E-589CI-Affidavit-of-Capital-Improvement";
-export const OwnerDesignConsultantLess =
+export const OwnerDesignConsultantLess200k =
   "Owner-and-Design-Consultant-(less-than-$200,000)";

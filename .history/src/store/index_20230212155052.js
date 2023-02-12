@@ -65,7 +65,6 @@ export const store = configureStore({
     PreciseListReducer,
     CapitalForm,
     shortformDesign,
-    OwnerDesignConsultantLessForm,
   },
   // middlewares
   middleware: (getDefaultMiddleware) =>

@@ -1,0 +1,48 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Calibri:400,700,400italic,700italic");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Inter", sans-serif;
+}
+.error-toast {
+  background: red;
+  color: white;
+}
+.adverstise {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.arial-font {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.Times-font {
+  font-family: "Times New Roman", Times, serif;
+}
+.calibri-font {
+  font-family: "Calibri", sans-serif;
+}
+
+/* @media print {
+	body.printableArea {
+		width: 21cm;
+		height: 29.7cm;
+		margin: 2cm;
+	}
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
