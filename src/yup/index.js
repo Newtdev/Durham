@@ -388,6 +388,27 @@ export const MWBEFormsForBidSchema = [
 	}),
 ]
 
+export const DesignPhaseChangeOrderSchema = [
+	Yup.object().shape({
+		orderNumber: Yup.string().required("Change order Number is required"),
+		orderDate: Yup.string().required("Order Date field is required"),
+		fileNumber: Yup.string().required("File Number field is required"),
+		descOfChange: Yup.string().required("Description of the change field is required"),
+		netSumofPriorChangeOrders: Yup.string().required("Net Sum of Prior Change Order(s) field is required"),
+		originalContractSum: Yup.string().required("Original Contract Sum field is required"),
+		changeInOrderAmount: Yup.string().required("Change in order amount field is required"),
+		amount: Yup.string().required("Amount field is required"),
+	}),
+	Yup.object().shape({
+		originalContractSubstantialCompletionDate: Yup.string().required("Original Contract Substantial Completion Date field is required"),
+		numberOfDaysAddedByPriorChangeOrder: Yup.string().required("Days Added by Prior Change Order(s) field is required"),
+		numberOfDaysAddedByChangeOrder: Yup.string().required("Number of Days Added by this Change Order field is required"),
+		ownerRepresentative: Yup.string().required("Owner Representative field is required"),
+		ownerRepresentativeName: Yup.string().required("Owner Representative Name field is required"),
+		ownerRepresentativeSign: Yup.string().required("Owner's representative sign this change order field is required"),
+	}),
+]
+
 export const CertificateOfSubstantialSchema = Yup.object().shape({
 	purposeOfContract: Yup.string().required("Field is required"),
 	contractEffectDate: Yup.string().required("Field is required"),
