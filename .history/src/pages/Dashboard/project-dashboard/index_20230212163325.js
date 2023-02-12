@@ -36,6 +36,7 @@ import NoticeOfAwardConsultant from "../../forms/notice-of-award-consultant";
 import ProjectCloseoutCheckList from "../../forms/Project-closeout-checklist";
 import CCPRequisitionForm from "../../forms/Budget/CCP Aquistion";
 import CertificateOfSubstantial from "../../forms/Certificate of Substantial Completion";
+import OwnerAndDesignConsultantLessThan200000 from "../../forms/Owner and Design Consultant less than 200,000/OwnerAndDesignConsultantLessThan200000";
 import PunchList from "../../forms/Punch List/PunchList";
 import moment from "moment";
 import { getProjectInfo } from "../Overview-dashboard/editReducer";
@@ -43,6 +44,7 @@ import { toast } from "react-toastify";
 import {
   useDeleteProjectMutation,
   useDuplicateProjectMutation,
+  useDuplicateProjectQuery,
   useFetchSingleProjectQuery,
 } from "../../../features/services/api";
 // import { getProjectID } from "../add-project/reducer";
@@ -54,11 +56,11 @@ import PFForProjects from "../../forms/Precis Checklist/Precis";
 import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form";
 import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)";
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
-import OwnerDesignConsultantLessForm from "../../forms/Contract/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
-import { setDefault } from "../add-project/reducer";
 
 const ProjectDashboard = () => {
+  // const id = useSelector(getProjectID)
   const response = useFetchSingleProjectQuery(getId());
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const projectDetails = useSelector(project_details);
@@ -70,8 +72,8 @@ const ProjectDashboard = () => {
   const awardee = !projectDetails?.project_vendors
     ? null
     : projectDetails.project_vendors;
-  const summary = !projectDetails ? "" : projectDetails?.document_summary;
-  const school = !projectDetails ? "" : projectDetails?.school;
+  const summary = !projectDetails ? "" : projectDetails.document_summary;
+  const school = !projectDetails ? "" : projectDetails.school;
 
   const RenderAwardee = () => {
     if (!awardee) {
@@ -216,7 +218,6 @@ const ProjectDashboard = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => {
-                  dispatch(setDefault());
                   dispatch(getProjectInfo(projectDetails));
                   navigate("/dashboard/edit-project");
                 }}
@@ -309,14 +310,7 @@ const ProjectDashboard = () => {
                       return (
                         <div
                           key={index}
-                          className="flex items-center justify-between h-16 px-4 py-2 my-1 bg-gray-100 rounded cursor-pointer hover:shadow-lg transition-all "
-                          onClick={() => {
-                            SaveToLocalStorage(project?.id);
-                            navigate(
-                              `/dashboard/project-details/${project?.id}`
-                            );
-                            // window.location.reload();
-                          }}
+                          className="flex items-center justify-between h-16 px-4 py-2 my-1 bg-gray-100 rounded"
                         >
                           <h1 className="text-[#2f5461] font-bold">
                             {project?.name}
@@ -401,7 +395,7 @@ const ProjectDashboard = () => {
       <Bids id={documentsID} />
       <PFForProjects id={documentsID} />
       <ShortSmallFormDesignForm id={documentsID} />
-      <OwnerDesignConsultantLessForm id={documentsID} />
+      <OwnerAndDesignConsultantLessThan200000 id={documentsID} />
     </section>
   );
 };
