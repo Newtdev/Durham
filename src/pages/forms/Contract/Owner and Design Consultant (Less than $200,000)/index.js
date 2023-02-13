@@ -1,3 +1,3 @@
-import OwnerDesignLess from "./OwnerDesignLess";
+import OwnerDesignConsultantLessForm from "./OwnerDesignConsultantLess";
 
-export default OwnerDesignLess;
+export default OwnerDesignConsultantLessForm;
