@@ -63,6 +63,7 @@ import ChangeOrderForm from "../../forms/Change Order Form"
 import ChangeOrderDirectiveForm from "../../forms/Change Order Directive"
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer"
 import DPSFormalGeneralConditionForm from "../../forms/DPS Formal General Conditions - 1-17-20"
+import DesignPhaseChangeOrderForm from "../../forms/Design Phase Change Order";
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
