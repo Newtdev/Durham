@@ -495,7 +495,7 @@ export const DurhamsApi = createApi({
 					// throw error
 				}
 			},
-			providesTags: ["projects", "dashboard", "duplicate-project"],
+			providesTags: ["projects", "dashboard", "duplicate-project", "documents"],
 			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -691,6 +691,21 @@ export const DurhamsApi = createApi({
 				};
 			},
 			invalidatesTags: ["profile"],
+			transformResponse: (response) => response.data,
+			transformErrorResponse: (response, meta, arg) => response.data,
+		}),
+		DeleteForm: builder.mutation({
+			query: (info) => {
+				return {
+					url: `projects/remove-document`,
+					headers: {
+						Accept: "application/json",
+					},
+					body: info,
+					method: "POST",
+				};
+			},
+			invalidatesTags: ["documents"],
 			transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -1071,4 +1086,5 @@ export const {
 	useFetchSchoolQuery,
 	useDuplicateProjectMutation,
 	useGetAllProjectManagerQuery,
+	useDeleteFormMutation,
 } = DurhamsApi;

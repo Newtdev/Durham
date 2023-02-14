@@ -7,15 +7,10 @@ const PageTwo = ({ nottoBeHighlighted, form_fields }) => {
 				The responsibility of the Owner and Contractor for security,
 				maintenance, heat, utilities, damage to the Work and insurance shall be
 				as follows:{" "}
-				{/* <span
-											className={`font-bold ${nottoBeHighlighted}  break-words`}>
-											{!form_fields ? "" : form_fields.responsibility}
-										</span> */}
 			</p>
 			<div className="flex mb-2">
 				<div className="">
-					<p
-						className={` adverstise ${nottoBeHighlighted} text-justify text-[14.5px]`}>
+					<p className={`  ${nottoBeHighlighted} text-justify text-[14.5px]`}>
 						{!form_fields ? "" : form_fields?.responsibility}
 					</p>
 				</div>

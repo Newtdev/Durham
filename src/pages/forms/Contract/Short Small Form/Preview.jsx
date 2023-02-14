@@ -51,7 +51,10 @@ const ShortSmall = () => {
 			return null;
 		}
 		const data = vendors?.filter((cur) => {
-			return cur.role === "Design Consultant";
+			return (
+				cur.role === "Design Consultant" ||
+				cur.role === "Engineering Consultant"
+			);
 		});
 		setAwardee(data);
 	}, [vendors]);

@@ -23,6 +23,7 @@ import {
 import { documents } from "../../../lib/data";
 // import EditDocument from "./documents/EditDocument";
 import { getId } from "../../../shared-component";
+import EditDocument from "./documents/EditDocument";
 
 const ProjectFormsController = () => {
 	const navigate = useNavigate();
@@ -56,17 +57,7 @@ const ProjectFormsController = () => {
 			});
 		}
 	}
-	async function HandleEditRequest(values) {
-		const response = await editVendor(values);
-		if (response?.error) {
-			toast.error(response?.error?.message, {
-				position: toast.POSITION.TOP_CENTER,
-			});
-		} else if (response?.data) {
-			// error alert
-			dispatch(nextForm(2));
-		}
-	}
+
 	async function SubmitDocument(values) {
 		const response = await addProjectDocument({
 			project_id: getId(),
@@ -203,19 +194,6 @@ const ProjectFormsController = () => {
 		formik.setValues(details);
 	}, [details]);
 
-	useEffect(() => {
-		if (!details) {
-			return;
-		} else {
-			if (!details.project_documents) {
-				return;
-			}
-			console.log(details.project_documents);
-			// setSelected()
-			//setSelected([...selected, { document_type: e.name, document_name: e.value, identifier:e.title } ])
-		}
-	}, [details]);
-
 	return (
 		<section>
 			{/* PROJECT OVERVIEW */}
@@ -241,10 +219,14 @@ const ProjectFormsController = () => {
 					{/* Main Content */}
 					<div className="container mx-auto pt-8 px-4 lg:px-24">
 						<FormikProvider value={formik}>
-							{steps === 0 && <ProjectInformation />}
-							{steps === 1 && <AwardeeInformation {...props} />}
-							{steps === 2 && <SelectDocuments {...selectprops} />}
-							{/* {steps === 2 && details && <EditDocument documents={details.project_documents} />} */}
+							{steps === 0 ? <ProjectInformation /> : null}
+							{steps === 1 ? <AwardeeInformation {...props} /> : null}
+							{steps === 2 && !details ? (
+								<SelectDocuments {...selectprops} />
+							) : null}
+							{steps === 2 && details ? (
+								<EditDocument documents={details?.project_documents} />
+							) : null}
 						</FormikProvider>
 					</div>
 				</main>
