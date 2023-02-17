@@ -1,3 +1,3 @@
-import CPC from "./CPC";
+import CPCForm from "./CPC";
 
-export default CPC;
+export default CPCForm;

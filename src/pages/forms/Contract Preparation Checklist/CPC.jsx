@@ -1,314 +1,127 @@
-import "react-datepicker/dist/react-datepicker.css";
+import { FormikProvider, useFormik } from "formik";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { CPC } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
-import { useState } from "react";
-import { ButtonWhiteBG } from "../../../ui";
-import { DashboardButton } from "../../Dashboard/Components";
+import { CPCSchema } from "../../../yup";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { getStates } from "../Advertisement-for-bid-template/reducer";
+import { modal, saveFormField } from "../reducer";
+import FormOne from "./forms/FormOne";
+import FormThree from "./forms/FormTwo";
+import FormTwo from "./forms/FormThree";
+import Preview from "./Preview";
+import { nextStep, page } from "./reducer";
 
-const CPC = () => {
-  const [showModal, setShowModal] = useState(true);
+const CPCForm = ({ id }) => {
+  const dispatch = useDispatch();
+  const pages = useSelector(page);
+  const show = useSelector(modal);
 
-  return (
-    <div>
-      <ModalOverlay show={showModal} close={() => setShowModal(true)}>
-        <div>
-          {/* Modal content */}
-          <div className='relative w-[80%] mx-auto bg-white rounded-lg shadow mt-14'>
-            {/* Header */}
-            <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
-              <div className='ml-6'>
-                <h3 className='text-lg font-bold text-gray-900'>
-                  Contract Preparation Checklist
-                </h3>
-                <p className='text-base text-gray-700'>Preview Document</p>
-              </div>
-              <button
-                type='button'
-                className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
-                data-modal-toggle='small-modal'
-              >
-                <svg
-                  aria-hidden='true'
-                  className='w-5 h-5'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
-                <span className='sr-only'>Close modal</span>
-              </button>
-            </div>
+  // const pages = 4;
+  const formID = useSelector(project_document_id);
 
-            <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='px-12 pt-8 pb-4 text-black'>
-                <div>
-                  <h1 className='text-lg mb-10'>
-                    Contract Preparation Checklist
-                  </h1>
-                  <div className='mb-6'>
-                    <p>
-                      <span className='font-bold'>Project Name:</span>{" "}
-                      <span className='bg-yellow-500'>F1</span>
-                    </p>
-                    <p>
-                      <span className='font-bold'>Contact Type:</span>{" "}
-                      <span className='bg-yellow-500'>F2</span>
-                    </p>
-                    <p>
-                      <span className='font-bold'>Project Number:</span>{" "}
-                      <span className='bg-yellow-500'>F3</span>
-                    </p>
-                  </div>
+  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+  // const response = useFetchFilledFormQuery(formID);
 
-                  <div className='mb-8'>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Most recent template used</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
+  const HandleSubmit = async (values) => {
+    const param = Object.keys(values)
+    const val = Object.values(values)
 
-                      <p>Bid documents for ALL bidders (1 copy)</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Project number assigned by / confirmed with Business
-                        Manager
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Project title=County title. If "Renovations", specify
-                        type of consulting
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Exhibit 1: Scope of Services (Consultant under $90k)
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Exhibit 2: Hourly Rate Schedule (Consultant under $90k,
-                        locally funded)
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Exhibit A: DPS Management Plan (Consultant over $90k)
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Exhibit B: Hourly Rate Schedule (Consultant over $90k,
-                        locally funded)
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Exhibit C: Closeout Documentation (Consultant over $90K)
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Attachment A: Lunsford Act</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Performance Bond (contract &gt; $300k)</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Labor and Materials Bond (contract &gt; $300k)</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>
-                        Certificate of Liability Insurance with project name in
-                        "Description"
-                      </p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>If vendor is new to DPS, W-9 form</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Three originals of all documents</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Single-sided</p>
-                    </div>
-                    <div className='flex items-center gap-4 mb-3'>
-                      <div className='h-8 w-8 border-2 border-red-500 flex justify-center items-center'>
-                        <input
-                          checked
-                          type='checkbox'
-                          value=''
-                          class='h-full w-full bg-gray-100'
-                        />
-                      </div>
-                      <p>Pages in order, no staples</p>
-                    </div>
-                  </div>
+    console.log("values: ", values)
 
-                  <div className='flex gap-4'>
-                    <div>
-                      <p>
-                        _______________________________________________________________________________
-                      </p>
-                      <p className='text-sm font-bold'>Project Manager</p>
-                    </div>
-                    <div>
-                      <p>
-                        <span className='bg-yellow-500'>F21</span>
-                      </p>
-                      <p className='text-sm font-bold'>Date</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    const response = await fillProjectDocument({
+      project_document_id: formID, form_fields: [{ field_name: param[0], field_value: val[0] },
+      { field_name: param[1], field_value: val[1] },
+      { field_name: param[2], field_value: val[2] },
+      { field_name: param[3], field_value: val[3] },
+      { field_name: param[4], field_value: val[4] },
+      { field_name: param[5], field_value: val[5] },
+      { field_name: param[6], field_value: val[6] },
+      { field_name: param[7], field_value: val[7] },
+      { field_name: param[8], field_value: val[8] },
+      { field_name: param[9], field_value: val[9] },
+      { field_name: param[10], field_value: val[10] },
+      { field_name: param[11], field_value: val[11] },
+      { field_name: param[12], field_value: val[12] },
+      { field_name: param[13], field_value: val[13] },
+      { field_name: param[15], field_value: val[15] },
+      { field_name: param[16], field_value: val[16] },
+      { field_name: param[17], field_value: val[17] },
+      { field_name: param[18], field_value: val[18] },
+      ]
+    })
+    if (response) {
+      if (response?.error) {
+        toast.error(response?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        dispatch(nextStep(4))
+      }
+    }
+  }
 
-            {/* Buttons */}
-            <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' />
-              <DashboardButton
-                hidden
-                name='CREATE DOCUMENT'
-                type='submit'
-                width='w-[198px]'
-              />
-            </div>
-          </div>
-        </div>
-      </ModalOverlay>
-    </div>
-  );
-};
+  // const show = useSelector(modal);
+  const formik = useFormik({
+    initialValues: {
+      contractType: "",
+      signDate: "",
+      mostRecent: false,
+      bidDocument: false,
+      projectNumber: false,
+      projectTitle: false,
+      exhibit1: false,
+      exhibit2: false,
+      exhibitA: false,
+      exhibitB: false,
+      exhibitC: false,
+      attachmentA: false,
+      performanceBond: false,
+      materialBond: false,
+      liabilityInsurance: false,
+      dps: false,
+      originals: false,
+      singleSided: false,
+      pagesInOrder: false,
+    },
+    validationSchema: CPCSchema[pages - 1],
+    onSubmit: (values) => {
+      if (pages === 1) {
+        console.log("pages: ", pages)
+        dispatch(nextStep(2))
+      } else if (pages === 2) {
+        console.log("pages: ", pages)
+        dispatch(nextStep(3))
+      } else if (pages === 3) {
+        console.log("pages: ", pages)
+        dispatch(nextStep(4))
+        dispatch(saveFormField(values))
+        HandleSubmit(values)
+      }
+    }
+  });
 
-export default CPC;
+  useEffect(() => {
+    (async function () {
+      const response = await (await fetch('/states.json')).json();
+      dispatch(getStates(response))
+
+    }())
+  }, [dispatch]);
+
+  // return <ModalOverlay show={true}>
+  return <ModalOverlay show={id === CPC && show}>
+    <FormikProvider value={formik}>
+      {pages === 1 && <FormOne {...formik} />}
+      {pages === 2 && <FormTwo {...formik} />}
+      {pages === 3 && <FormThree {...formik} />}
+      {pages === 4 && <Preview />}
+      {/* <FormThree {...formik} /> */}
+    </FormikProvider>
+  </ModalOverlay>
+
+}
+export default CPCForm;

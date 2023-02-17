@@ -42,3 +42,5 @@ export const ChangeOrderDirective = "Change-Order-Directive";
 export const DPSShortFormEngineer = "DPS-Short-Form-Engineer---Engineering-Contract";
 export const DPSFormalGeneralCondition = "DPS-Formal-General-Conditions---1-17-20";
 export const DesignPhaseChangeOrder = "Design-Phase-Change-Order";
+export const CPC = "Contract-Preparation-Checklist";
+export const OwnerAndDesignMore = "Owner-and-Design-Consultant-(more-$200,000)";

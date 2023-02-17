@@ -3,11 +3,11 @@ import DatePicker from "react-datepicker";
 import DollarSign from "../../../assets/dollar.svg";
 
 export const FormInput = (props) => {
-	const { name, value, onChange, type, placeholder } = props;
+	const { name, value, onChange, type, placeholder, icon } = props;
 	return (
 		<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center">
 			{/* <Icon /> */}
-			<img src={DollarSign} className="h-4 w-4 mr-3" alt=""></img>
+			<img src={icon || DollarSign} className="h-4 w-4 mr-3" alt=""></img>
 			<input
 				name={name}
 				value={value}
@@ -20,7 +20,7 @@ export const FormInput = (props) => {
 	);
 };
 export const FormInputPlain = (props) => {
-	const { value, onChange, type, placeholder, name } = props;
+	const { value, onChange, type, placeholder, name, onKeyPress } = props;
 	return (
 		<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex justify-center items-center">
 			{/* <Icon /> */}
@@ -28,6 +28,7 @@ export const FormInputPlain = (props) => {
 				value={value}
 				name={name}
 				onChange={onChange}
+				onKeyPress={onKeyPress}
 				type={type}
 				placeholder={placeholder}
 				className="bg-gray-50 borde text-gray-900 text-sm rounded-sm focus:outline-none block w-full px-1 py-1"
@@ -123,6 +124,30 @@ export const FormTextArea = (props) => {
 				onChange={onChange}
 			/>
 			{error && touched && <Error message={props.error} />}
+		</div>
+	);
+};
+
+export const FormCheckBoxPlain = ({
+	type,
+	onChange,
+	value,
+	name,
+	label,
+}) => {
+	return (
+		<div className="flex items-center mb-5 ml-2 mt-2">
+			<input
+				type="checkbox"
+				onChange={onChange}
+				value={value}
+				name={name}
+				checked={value ? true : false}
+				className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+			/>
+			<label for="default-radio-1" className="ml-2 text-base text-gray-900">
+				{label}
+			</label>
 		</div>
 	);
 };

@@ -616,3 +616,87 @@ export const DPSFormalGeneralConditionSchema = Yup.object().shape({
 	finalCompletion: Yup.string().required("Field is required"),
 	amount: Yup.string().required("Field is required")
 });
+
+export const CPCSchema = [
+	Yup.object().shape({
+		contractType: Yup.string().required("Field is required"),
+		signDate: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		mostRecent: Yup.string(),
+		bidDocument: Yup.string(),
+		projectNumber: Yup.string(),
+		projectTitle: Yup.string(),
+		exhibit1: Yup.string(),
+		exhibit2: Yup.string(),
+		exhibitA: Yup.string(),
+		exhibitB: Yup.string(),
+		exhibitC: Yup.string(),
+	}),
+	Yup.object().shape({
+		attachmentA: Yup.string(),
+		performanceBond: Yup.string(),
+		materialBond: Yup.string(),
+		liabilityInsurance: Yup.string(),
+		dps: Yup.string(),
+		originals: Yup.string(),
+		singleSided: Yup.string(),
+		pagesInOrder: Yup.string(),
+	})
+]
+
+export const OwnerAndDesignMoreSchema = [
+	Yup.object().shape({
+		agreementDate: Yup.string().required("Field is required"),
+		projectObjective: Yup.string().required("Field is required"),
+		newSchool: Yup.string().required("Field is required"),
+		schoolName: Yup.string().required("Field is required"),
+		studentNumber: Yup.string().required("Field is required"),
+		squareFootage: Yup.string().required("Field is required"),
+		accomodateNumber: Yup.string().required("Field is required"),
+		street: Yup.string().required("Field is required"),
+		state: Yup.string().required("Field is required"),
+		city: Yup.string().required("Field is required"),
+		zipCode: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		schematicCompletionDate: Yup.string().required("Field is required"),
+		constructionCompletionDate: Yup.string().required("Field is required"),
+		noticeDate: Yup.string().required("Field is required"),
+		substantialCompletionDate: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		consultants: Yup.array().of(
+			Yup.object().shape({
+				consultantHired: Yup.string().required("Field is required"),
+				selectedField: Yup.string().required("Field is required")
+			})
+		)
+	}),
+	Yup.object().shape({
+		ccap: Yup.string().required("Field is required"),
+		ownerDeadline: Yup.string().required("Field is required"),
+		percentage: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		serviceCompensation: Yup.string().required("Field is required"),
+		narrativePhase: Yup.string().required("Field is required"),
+		schematicPhase: Yup.string().required("Field is required"),
+		developmentPhase: Yup.string().required("Field is required"),
+		constructionContractPhase: Yup.string().required("Field is required"),
+		negotiationPhase: Yup.string().required("Field is required"),
+		constructionPhase: Yup.string().required("Field is required"),
+		constructionServicesPhase: Yup.string().required("Field is required"),
+		maxCost: Yup.string().required("Field is required")
+	}),
+	Yup.object().shape({
+		// services: Yup.array().of(
+		// 	Yup.object().shape({
+		// 		service: Yup.string().required("Field is required")
+		// 	})
+		// ),
+		signDate: Yup.string().required("Field is required"),
+		approveDate: Yup.string().required("Field is required"),
+		notarySealDate: Yup.string().required("Field is required")
+	})
+]

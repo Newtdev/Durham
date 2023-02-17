@@ -64,6 +64,8 @@ import ChangeOrderDirectiveForm from "../../forms/Change Order Directive"
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer"
 import DPSFormalGeneralConditionForm from "../../forms/DPS Formal General Conditions - 1-17-20"
 import DesignPhaseChangeOrderForm from "../../forms/Design Phase Change Order";
+import CPCForm from "../../forms/Contract Preparation Checklist";
+import OwnerAndDesignMoreForm from "../../forms/owner and design consultant (more $200,000)"
 
 const ProjectDashboard = () => {
 	// const id = useSelector(getProjectID) 
@@ -391,6 +393,8 @@ const ProjectDashboard = () => {
 			<ChangeOrderDirectiveForm id={documentsID} />
 			<DPSShortFormEngineerForm id={documentsID} />
 			<DPSFormalGeneralConditionForm id={documentsID} />
+			<CPCForm id={documentsID} />
+			<OwnerAndDesignMoreForm id={documentsID} />
 		</section>
 	);
 };
