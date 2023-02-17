@@ -74,10 +74,14 @@ const FormThree = (props) => {
 															touched={props.touched.consultantHired}
 															onChange={props.handleChange}
 														>
-															<option value='option 1'>option 1</option>
-															<option value='option 2'>option 2</option>
-															<option value='option 3'>option 3</option>
-															<option value='option 4'>option 4</option>
+															<option value=''>Select Consultant</option>
+															<option value='Structural'>Structural</option>
+															<option value='Plumbing'>Plumbing</option>
+															<option value='Mechanical'>Mechanical</option>
+															<option value='Electrical'>Electrical</option>
+															<option value='Civil'>Civil</option>
+															<option value='Landscape'>Landscape</option>
+															<option value='Other'>Other</option>
 														</FormSelect>
 														<FormInputContainer name='Enter the <Selected Field>’s name'>
 															<FormInputPlain type={"text"} value={props?.values?.selectedField} onChange={props.handleChange} name={`consultants[${index}].selectedField`} placeholder={"Enter selectedField"} />
