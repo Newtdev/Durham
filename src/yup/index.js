@@ -66,6 +66,11 @@ export const PasswordResendEmailSchema = Yup.object().shape({
     .required("Email is required!")
     .email("provided is not correct!"),
 });
+export const AffidavitYup = Yup.object().shape({
+  email: Yup.string()
+    .required("Email is required!")
+    .email("provided is not correct!"),
+});
 
 export const AddProjectSchema = Yup.object().shape({
   first_name: Yup.string().required("First name is required!"),

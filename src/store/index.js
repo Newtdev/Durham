@@ -31,6 +31,7 @@ import CapitalForm from "../pages/forms/Budget/Capital Project Request Form/redu
 import shortformDesign from "../pages/forms/Contract/Short Small Form/reducer";
 import OwnerDesignConsultantLess from "../pages/forms/Contract/Owner and Design Consultant (Less than $200,000)/reducer";
 import OwnerAndContractor from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000)/reducer";
+import { Affidavit } from "../pages/forms/E-589C Affidavit Of Capital Improvement";
 
 export const store = configureStore({
   // reducers
@@ -68,6 +69,7 @@ export const store = configureStore({
     shortformDesign,
     OwnerDesignConsultantLess,
     OwnerAndContractor,
+    Affidavit,
   },
 
   // middlewares
