@@ -18,6 +18,7 @@ const CalculatePercentage = (a, b) => {
 		return ((Number(a) / Number(b)) * 100).toFixed(2);
 	}, [a, b]);
 };
+
 const RenderContractor = ({ formDetails, color }) => {
 	return formDetails?.contractors?.map((contractor, index) => {
 		return (
