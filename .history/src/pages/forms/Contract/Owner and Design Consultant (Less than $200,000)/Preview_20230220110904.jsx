@@ -94,8 +94,9 @@ const Preview = () => {
               className="bg-white -mt-4  pb-4 text-black arial-font text-[14.5px] leading-[1.3]"
               ref={downloadComponent}
             >
-              {!showPage && <PreviewPages {...pageProps} />}
-              {showPage && <DownloadPages {...pageProps} />}
+              {/* {!showPage && <PreviewPages {...pageProps} />}
+              {showPage && <DownloadPages {...pageProps} />} */}
+              <Doc {...pageProps} />
             </div>
           </div>
           {/* Buttons */}

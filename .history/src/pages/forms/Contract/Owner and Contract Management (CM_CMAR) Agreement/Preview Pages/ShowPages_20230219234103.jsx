@@ -1,5 +1,5 @@
 import React from "react";
-import "./ShowPages.css";
+import "./PreviewPart1.css";
 
 const ShowPages = () => {
   return (
@@ -2682,8 +2682,7 @@ const ShowPages = () => {
             class="pi"
             data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'
           ></div>
-        </div>{" "}
-        *
+        </div>
       </div>
     </body>
   );

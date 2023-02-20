@@ -1,3 +1,8 @@
+/*! 
+* Base CSS for pdf2htmlEX
+* Copyright 2012,2013 Lu Wang <coolwanglu@gmail.com> 
+* https://github.com/pdf2htmlEX/pdf2htmlEX/blob/master/share/LICENSE
+*/
 #sidebar {
   position: absolute;
   top: 0;
@@ -280,7 +285,6 @@
     background-color: white;
     -webkit-transition: left 500ms;
     transition: left 500ms;
-    margin-top: 4rem;
   }
   .pf {
     margin: 13px auto;

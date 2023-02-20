@@ -1,24 +1,21 @@
-import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import { ModalOverlay } from "../../../../ui";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import DownloadPages from "./Preview Pages/DownloadPages";
-import PreviewPages from "./Preview Pages/PreviewPages";
-import { closeModal, fields, openDownload, showDownload } from "../../reducer";
-import { useDispatch, useSelector } from "react-redux";
 import DownLoadForm from "../../Lundsford/Download";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../../features/services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal, openDownload, showDownload, fields } from "../../reducer";
 import { prevStep, stepDefault } from "./reducer";
-import { margin } from "@mui/system";
-import Doc from "../Owner and Contract Management (CM_CMAR) Agreement/Preview Pages/Doc";
+import TotalPreview from "./Preview Pages/TotalPreview";
+import ShowPages from "./Preview Pages/ShowPages";
+import PreviewPart1 from "./Preview Pages/PreviewPart1";
 
 const Preview = () => {
+  const show = useSelector(openDownload);
   const dispatch = useDispatch();
   const downloadComponent = useRef();
-  const show = useSelector(openDownload);
   const formID = useSelector(project_document_id);
   const content = useFetchFilledFormQuery(formID);
   const [highlighted, setHighlighed] = useState(false);
@@ -32,9 +29,9 @@ const Preview = () => {
 
   const props = {
     component: downloadComponent,
-    name: "Owner and Design Consultant (less than $200,000)",
-    show: !show ? "hidden" : "block",
-    stepDefault,
+    name: "Owner and Contract Management (CM & CMAR) Agreement",
+    show: show ? "block" : "hidden",
+    stepDefault: stepDefault,
   };
 
   const nottoBeHighlighted = !highlighted
@@ -62,24 +59,26 @@ const Preview = () => {
   return (
     <div>
       <DownLoadForm {...props} />
+
       <div>
+        {/* Modal content */}
         <div
           className={`${
-            !show ? "block" : "hidden"
-          } relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14 `}
+            show ? "hidden" : "block"
+          } relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}
         >
-          {" "}
           {/* Header */}
           <div
-            className="flex justify-between items-baseline border-b border-b-gray-200 py-3 z-50 bg-white "
+            className="flex justify-between items-baseline border-b border-b-gray-200 py-3"
             style={{ zIndex: 50, position: "relative" }}
           >
             <div className="ml-6">
               <h3 className="text-lg font-bold text-gray-900">
-                Owner and Design Consultant (less than $200,000)
+                Owner and Contract Management (CM_CMAR) Agreement
               </h3>
               <p className="text-base text-gray-700">Preview Document</p>
             </div>
+
             <button
               onClick={() => dispatch(closeModal())}
               type="button"
@@ -94,19 +93,21 @@ const Preview = () => {
               className="bg-white -mt-4  pb-4 text-black arial-font text-[14.5px] leading-[1.3]"
               ref={downloadComponent}
             >
-              {!showPage && <PreviewPages {...pageProps} />}
-              {showPage && <DownloadPages {...pageProps} />}
+              {/* <TotalPreview {...pageProps} /> */}
+              {/* <ShowPages {...pageProps} /> */}
+              <previewPart1 {...pageProps} />
             </div>
           </div>
+
           {/* Buttons */}
           <div
-            className="flex justify-end gap-4 pr-6 pb-4 bg-white"
+            className="flex justify-end gap-4 pr-6 pb-4"
             style={{ zIndex: 50, position: "relative" }}
           >
             <ButtonWhiteBG
               width="w-[171px]"
               name="Edit document"
-              onClick={() => dispatch(prevStep(1))}
+              onClick={() => dispatch(prevStep(4))}
             />
             <DashboardButton
               onClick={() => {
@@ -116,7 +117,7 @@ const Preview = () => {
               }}
               hidden
               name="CREATE DOCUMENT"
-              type="button"
+              type="submit"
               width="w-[198px]"
             />
           </div>

@@ -69,7 +69,7 @@ const ShowPages = () => {
             data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'
           ></div>
         </div>
-        <div id="pf4" class="pf w0 h0" data-page-no="4">
+        {/* <div id="pf4" class="pf w0 h0" data-page-no="4">
           <div class="pc pc4 w0 h0">
             <img
               class="bi x0 y0 w1 h1"
@@ -2682,8 +2682,7 @@ const ShowPages = () => {
             class="pi"
             data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'
           ></div>
-        </div>{" "}
-        *
+        </div> */}
       </div>
     </body>
   );
