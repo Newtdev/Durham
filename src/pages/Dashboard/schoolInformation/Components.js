@@ -136,7 +136,7 @@ const VendorInformationComponents = ({
 			// option: "together",
 		},
 		code: {
-			name: "School Identifier Number",
+			name: "School/Dept Identifier",
 			id: "code",
 			placeholder: "Enter School Identifier Number",
 			value: values.code,

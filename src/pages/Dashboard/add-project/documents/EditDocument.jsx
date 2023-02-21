@@ -360,11 +360,19 @@ const EditDocument = ({ documents, getData }) => {
 			<div className="bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8">
 				<div className="mb-6">
 					<h3 className="font-semibold text-gray-900 text-[32px]">
-						Edit Documents
+						Select Documents
 					</h3>
 					<p className="text-gray-700 text-base mb-4">
-						List of documents selected to complete this project
+						Select documents needed to complete this project
 					</p>
+					<div className="flex items-center gap-4 mb-4">
+						{/* <button className='border-none text-[#623F04] text-base'>
+                        Select Template
+                    </button> */}
+						{/* <button className="underline underline-offset-8 text-[#3B6979] text-base">
+							Load Template
+						</button> */}
+					</div>
 				</div>
 				{/* Document Accordions */}
 				<div className="w-full rounded-lg border border-gray-100">

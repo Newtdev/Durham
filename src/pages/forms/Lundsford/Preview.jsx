@@ -119,11 +119,11 @@ const PreviewForm = ({ value }) => {
 							</div>
 							<div className="mt-6 ">
 								<p className="text-justify ">
-									I,
+									I,{"  "}
 									<span className={` ${nottoBeHighlighted}  `}>
 										<span className="border-b border-black inline-block w-56">
 											{!awardee[0] ? "" : awardee[0].first_name}{" "}
-											{!awardee[0] ? "" : awardee[0].last_name},
+											{!awardee[0] ? "" : awardee[0].last_name}
 										</span>
 										(insert name),{" "}
 										<span className="border-b border-black inline-block w-48">
