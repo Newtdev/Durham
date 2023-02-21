@@ -21,7 +21,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted, project }) => {
 		<div className="text-[11pt] arial-font leading-[1.2] pt-[1in] ">
 			<div className={``}>
 				<div className="text-right ">
-					<p>Durham Public Schools</p>
+					<p className="text-[10pt]">Durham Public Schools</p>
 					<p className={`text-[10pt] ${nottoBeHighlighted}`}>
 						{!project ? "" : project.name}
 					</p>
@@ -122,7 +122,7 @@ const Preview = () => {
 							className="bg-white mx-[1in] py-10 text-black text-[11pt] leading-[1.2] h-[11in]"
 							ref={downloadComponent}>
 							<div className="text-right ">
-								<p>Durham Public Schools</p>
+								<p className="text-[10pt]">Durham Public Schools</p>
 								<p className={`text-[10pt] ${nottoBeHighlighted}`}>
 									{!project ? "" : project.name}
 								</p>

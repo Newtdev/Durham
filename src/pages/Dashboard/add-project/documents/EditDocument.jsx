@@ -274,18 +274,22 @@ const EditDocument = ({ documents, getData }) => {
 	};
 
 	async function SubmitDocument(values) {
-		const response = await AddProjectDocument({
-			project_id: getId(),
-			documents: selectDoc,
-		});
-		if (response?.error) {
-			toast.error(response?.error?.message, {
-				position: toast.POSITION.TOP_CENTER,
-			});
-		} else if (response?.data) {
-			// error alert
+		if (selectDoc.length > 1) {
 			navigate("/dashboard/add-new-project/preview");
+			const response = await AddProjectDocument({
+				project_id: getId(),
+				documents: selectDoc,
+			});
+			if (response?.error) {
+				toast.error(response?.error?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else if (response?.data) {
+				// error alert
+				navigate("/dashboard/add-new-project/preview");
+			}
 		}
+		navigate("/dashboard/add-new-project/preview");
 	}
 
 	useEffect(() => {

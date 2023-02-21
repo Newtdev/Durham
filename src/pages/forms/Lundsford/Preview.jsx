@@ -23,6 +23,7 @@ const PreviewForm = ({ value }) => {
 	let content = useFetchFilledFormQuery(formID);
 
 	const { vendors, project, form_fields } = content?.currentData?.data;
+
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
 
