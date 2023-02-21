@@ -27,8 +27,8 @@ const ProfileSettings = () => {
 	const [uploadProfilePhoto, data] = useUploadProfilePhotoMutation();
 
 	const HandleRequest = async (values) => {
-		const { id, first_name, last_name, email, password } = values;
-		const data = { id, first_name, last_name, email, password };
+		const { id, first_name, last_name, email, password, phone } = values;
+		const data = { id, first_name, last_name, email, password, phone };
 
 		const response = await updateProfile(data);
 		if (response) {
@@ -64,6 +64,7 @@ const ProfileSettings = () => {
 			// validationSchema: EditProfileDetailsSchema,
 
 			onSubmit: (values) => {
+				console.log(values);
 				HandleRequest(values);
 			},
 		});
