@@ -8,7 +8,6 @@ import {
 	closeDownload,
 	closeModal,
 	openDownload,
-	savedResponse,
 	showDownload,
 } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -29,7 +28,7 @@ const PreviewForm = ({ value }) => {
 
 	useEffect(() => {
 		if (!vendors || !form_fields?.addressCopy) {
-			setAwardee(vendors);
+			setAwardee(vendors[0]);
 			return;
 		}
 		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
@@ -74,20 +73,20 @@ const PreviewForm = ({ value }) => {
 					{/* Forms */}
 					<div className="mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto">
 						<div
-							className="bg-white px-16 pt-8 pb-4 text-black"
+							className="bg-white pt-8 pb-4 text-black arial-font text-[11pt] h-[11in] ml-[1in] mr-[0.8in]  leading-[1.3]"
 							ref={downloadComponent}>
-							<p className="text-right mb-4">Attachment A</p>
+							<p className="text-right mb-4 text-[16pt]">Attachment A</p>
 							<div className="mb-6 text-center arial-font">
-								<h2 className="font-bold text-xl">Lunsford Act</h2>
-								<h3 className="font-bold text-lg">
+								<h2 className="font-bold text-[16pt]">Lunsford Act</h2>
+								<h3 className="font-bold text-[14pt]">
 									Sexual Offender Registry Check Certification Form
 								</h3>
 							</div>
-							<div className={`adverstise`}>
-								<p className={`adverstise ${nottoBeHighlighted} font-bold`}>
+							<div className={``}>
+								<p className={` ${nottoBeHighlighted} font-bold`}>
 									DPS Project Name: {project?.name || ""}{" "}
 								</p>
-								<p className={`adverstise ${nottoBeHighlighted} font-bold`}>
+								<p className={` ${nottoBeHighlighted} font-bold`}>
 									DPS Project Number: {project?.number || ""}{" "}
 								</p>
 								<p className="mt-3">
@@ -118,14 +117,27 @@ const PreviewForm = ({ value }) => {
 									<span>Annual</span>
 								</p>
 							</div>
-							<div className="mt-3 adverstise">
-								<p className="text-justify adverstise">
-									I,{" "}
-									<span
-										className={`adverstise ${nottoBeHighlighted} font-bold`}>
-										{!awardee[0] ? "" : awardee[0].first_name},{" "}
-										{!awardee[0] ? "" : awardee[0].title} of{" "}
-										{!awardee[0] ? "" : awardee[0].company_name}
+							<div className="mt-6 ">
+								<p className="text-justify ">
+									I,
+									<span className={` ${nottoBeHighlighted}  `}>
+										<span className="border-b border-black inline-block w-56">
+											{!awardee[0] ? "" : awardee[0].first_name}{" "}
+											{!awardee[0] ? "" : awardee[0].last_name},
+										</span>
+										(insert name),{" "}
+										<span className="border-b border-black inline-block w-48">
+											{" "}
+											{!awardee[0] ? "" : awardee[0].title}{" "}
+										</span>{" "}
+										(insert title),
+										<br />
+										<br />
+										of{" "}
+										<span className="border-b border-black inline-block w-64">
+											{!awardee[0] ? "" : awardee[0].company_name}
+										</span>{" "}
+										(insert company name)
 									</span>{" "}
 									hereby certify that I have conducted sexual offender registry
 									checks required under this Agreement for all employees,
@@ -157,9 +169,11 @@ const PreviewForm = ({ value }) => {
 								</p>
 							</div>
 
-							<div className="mt-4 mb-4 grid grid-cols-2 gap-16 adverstise">
+							<div className="mt-4 mb-4 grid grid-cols-2 gap-16 ">
 								<div className="overflow-hidden">
-									<p className="font-bold mb-2">Contractual Personnel Names</p>
+									<p className="font-bold text-[12pt] mb-2">
+										Contractual Personnel Names
+									</p>
 									<div className="flex gap-5">
 										<p>1.</p>
 										<p>_____________________________</p>
@@ -176,52 +190,49 @@ const PreviewForm = ({ value }) => {
 										<p>4.</p>
 										<p>_____________________________</p>
 									</div>
-									<p className="ml-3 adverstise">
+									<p className="ml-3 mt-2 ">
 										(Attach additional page(s) if needed)
 									</p>
 								</div>
 								<div>
-									<p className="font-bold adverstise">Job Title</p>
-									<div className="w-full h-[15px] bg-black mt-5"></div>
-									<div className="w-full h-[15px] bg-black mt-5"></div>
-									<div className="w-full h-[20px] bg-black mt-5"></div>
-									<div className="w-full h-[7.5px] bg-black mt-5"></div>
+									<p className="font-bold text-[12pt]">Job Title</p>
+									<div className="w-full  bg-black mt-5 border-b border-black"></div>
+									<div className="w-full bg-black mt-7 border-b border-black"></div>
+									<div className="w-full  bg-black mt-7  border-b border-black"></div>
+									<div className="w-full  bg-black mt-9  border-b border-black"></div>
 								</div>
 							</div>
 
-							<p className="adverstise">
+							<p className="">
 								I attest that the forgoing information is true and accurate to
 								the best of my knowledge.
 							</p>
 
-							<div className="mt-6 mb-4 pr-6 adverstise">
-								<div className="flex gap-8 justify-between">
-									<p className="flex flex-col items-center">
-										<span className="text-center">
+							<div className="mt-10 mb-4 pr-6 ">
+								<div className="flex justify-between">
+									<p className="flex  items-center  ">
+										<span className="text-center inline-block border-b border-black w-52">
 											{!awardee[0]
 												? ""
 												: awardee[0]?.first_name + " " + awardee[0]?.last_name}
 										</span>
-										<span>
-											__________________________________________(print name)
-										</span>
+										<span>(print name)</span>
 									</p>
-
-									<p className="mt-3">
-										___________________________________________(signature)
+									<p className="flex">
+										<span className="inline-block border-b border-black w-44"></span>
+										<span className="">(signature)</span>
 									</p>
 								</div>
-								<div className="mt-6 flex gap-8 adverstise justify-between">
-									<p className="flex flex-col items-center h-0">
-										<span className="text-center">
-											{!vendors[0] ? "" : vendors[0]?.title}
+								<div className="mt-6 flex items-center  justify-between">
+									<p className="flex  items-center h-0 mt-3">
+										<span className="text-center inline-block border-b border-black w-[16rem]">
+											{!awardee[0] ? "" : awardee[0]?.title}
 										</span>
-										<span>
-											_______________________________________________(title)
-										</span>
+										<span>(title)</span>
 									</p>
 									<p className="mt-3">
-										_______________________________________________(date)
+										<span className="inline-block border-b border-black w-52"></span>
+										<span className="">(date)</span>
 									</p>
 								</div>
 							</div>

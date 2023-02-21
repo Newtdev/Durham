@@ -29,46 +29,60 @@ import Vendor3Bid from "../pages/forms/3 bids/Reducer";
 import PreciseListReducer from "../pages/forms/Precis Checklist/Reducer";
 import CapitalForm from "../pages/forms/Budget/Capital Project Request Form/reducer";
 import shortformDesign from "../pages/forms/Contract/Short Small Form/reducer";
+import changeOrderDirectiveReducer from "../pages/forms/Budget/Change Order Directive/reducer";
+import Proposal from "../pages/forms/Budget/Change-Proposal-Form/reducer";
+import changeOrderFormReducer from "../pages/forms/Budget/Change order form/reducer";
+import designChangePhaseReducer from "../pages/forms/Budget/design-change-form/reducer";
+import Affidavit from "../pages/forms/E-589C Affidavit Of Capital Improvement/reducer";
+import ShortForm from "../pages/forms/DPS Short Form Engineer/reducer";
+import ownersContractorForm500 from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000)/reducer";
 
 export const store = configureStore({
-  // reducers
-  reducer: {
-    // API
-    [DurhamsApi.reducerPath]: DurhamsApi.reducer,
-    productRegistration: productManagerRegistration,
-    loginReducer,
-    editProject,
-    projectReducer,
-    SchoolReducer,
-    FormReducer,
-    projectManagerReducer,
-    AwardeeReducer,
-    ProjectDocumentReducer,
-    LundsfordReducer,
-    ModalReducer,
-    MultiFormReducer,
-    DurhamProfileReducer,
-    ProjectCloseoutStepReducer,
-    CertificateOfSubstantialReducer,
-    AddProjectReducer,
-    TechServiceReducer,
-    NoticeAwardContractorReducer,
-    NoticeAwardConsultantReducer,
-    NoticeOfProceedReducer,
-    LechaseReducer,
-    EsserPMReducer,
-    EsserContractTemplate,
-    DeterminationReducer,
-    ownersContractorFormReducer,
-    Vendor3Bid,
-    PreciseListReducer,
-    CapitalForm,
-    shortformDesign,
-  },
-  // middlewares
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(DurhamsApi.middleware),
-  ignoredState: true,
-  // devTools
-  devTools: true,
+	// reducers
+	reducer: {
+		// API
+		[DurhamsApi.reducerPath]: DurhamsApi.reducer,
+		productRegistration: productManagerRegistration,
+		changeOrderDirectiveReducer,
+		Proposal,
+		loginReducer,
+		editProject,
+		projectReducer,
+		SchoolReducer,
+		FormReducer,
+		projectManagerReducer,
+		AwardeeReducer,
+		ProjectDocumentReducer,
+		LundsfordReducer,
+		ModalReducer,
+		MultiFormReducer,
+		DurhamProfileReducer,
+		ProjectCloseoutStepReducer,
+		CertificateOfSubstantialReducer,
+		AddProjectReducer,
+		TechServiceReducer,
+		NoticeAwardContractorReducer,
+		NoticeAwardConsultantReducer,
+		NoticeOfProceedReducer,
+		LechaseReducer,
+		EsserPMReducer,
+		EsserContractTemplate,
+		DeterminationReducer,
+		ownersContractorFormReducer,
+		Vendor3Bid,
+		PreciseListReducer,
+		CapitalForm,
+		shortformDesign,
+		changeOrderFormReducer,
+		designChangePhaseReducer,
+		Affidavit,
+		ShortForm,
+		ownersContractorForm500,
+	},
+	// middlewares
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(DurhamsApi.middleware),
+	ignoredState: true,
+	// devTools
+	devTools: true,
 });

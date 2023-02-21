@@ -3,7 +3,7 @@ import moment from "moment";
 const PageTen = (props) => {
 	return (
 		<div
-			className="text-black  py-[0.8in] pr-[0.6in] pl-[0.8in] leading-[1.13] text-[13.5px]"
+			className="text-black  py-[0.8in] pr-[0.6in] mt-[1in] pl-[0.8in] leading-[1.13] text-[13.5px]"
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 10 */}

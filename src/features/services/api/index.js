@@ -641,7 +641,6 @@ export const DurhamsApi = createApi({
 		}),
 		fillProjectDocument: builder.mutation({
 			query: (formInfo) => {
-				console.log(formInfo);
 				return {
 					url: "projects/fill-form",
 					headers: {

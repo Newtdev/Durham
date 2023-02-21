@@ -55,6 +55,12 @@ import CapitalProjectForm from "../../forms/Budget/Capital Project Request Form"
 import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)";
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
 import { setDefault } from "../add-project/reducer";
+import ChangeOrderDirectiveForm from "../../forms/Budget/Change Order Directive";
+import ChangeOrderForm from "../../forms/Budget/Change order form/ChangeOrderForm";
+import DesignChangeOrderForm from "../../forms/Budget/design-change-form";
+import MainAffidavit from "../../forms/E-589C Affidavit Of Capital Improvement/MainAffidavit";
+import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer";
+import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)/OwnerAndContractor";
 
 const ProjectDashboard = () => {
 	const response = useFetchSingleProjectQuery(getId());
@@ -391,6 +397,12 @@ const ProjectDashboard = () => {
 			<Bids id={documentsID} />
 			<PFForProjects id={documentsID} />
 			<ShortSmallFormDesignForm id={documentsID} />
+			<ChangeOrderDirectiveForm id={documentsID} />
+			<ChangeOrderForm id={documentsID} />
+			<DesignChangeOrderForm id={documentsID} />
+			<MainAffidavit id={documentsID} />
+			<DPSShortFormEngineerForm id={documentsID} />
+			<OwnerAndContractorForm id={documentsID} />
 		</section>
 	);
 };

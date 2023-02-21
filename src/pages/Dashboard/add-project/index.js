@@ -221,10 +221,10 @@ const ProjectFormsController = () => {
 						<FormikProvider value={formik}>
 							{steps === 0 ? <ProjectInformation /> : null}
 							{steps === 1 ? <AwardeeInformation {...props} /> : null}
-							{steps === 2 && !details ? (
+							{/* {steps === 2 && !details ? (
 								<SelectDocuments {...selectprops} />
-							) : null}
-							{steps === 2 && details ? (
+							) : null} */}
+							{steps === 2 ? (
 								<EditDocument documents={details?.project_documents} />
 							) : null}
 						</FormikProvider>

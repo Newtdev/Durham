@@ -1,7 +1,7 @@
 const PageNine = () => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.13]"
+			className="text-black font11  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.13]"
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 9 */}

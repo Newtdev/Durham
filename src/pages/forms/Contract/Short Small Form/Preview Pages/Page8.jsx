@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const PageEight = () => {
 	return (
 		<div
-			className="text-black font11  py-[0.8in] px-[0.6in] leading-[1.1] text-[13.5px] "
+			className="text-black font11  py-[0.8in] px-[0.6in] mt-[1in] leading-[1.1] text-[13.5px] "
 			style={{ height: "10in" }}>
 			<div>
 				{/* Page 8 */}

@@ -4,7 +4,7 @@ const PageFour = (props) => {
 	};
 	return (
 		<div
-			className="text-black   py-[0.8in] px-[0.6in] leading-[1.1] text-[13.5px]"
+			className="text-black py-[0.8in] mt-[1in] px-[0.6in] leading-[1.1] text-[13.5px]"
 			style={{ height: "10.5in" }}>
 			<div>
 				{/* Page 4 */}

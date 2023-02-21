@@ -1,3 +1,3 @@
-import Change from "./Change";
+import ChangeOrderDirectiveForm from "./ChangeOrderDirective";
 
-export default Change;
+export default ChangeOrderDirectiveForm;

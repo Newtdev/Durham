@@ -48,7 +48,7 @@ const PageThree = (props) => {
 
 	return (
 		<div
-			className="text-black py-[0.7in] pl-[0.7in] pr-[0.6in] leading-[1.1]"
+			className="text-black py-[0.7in] mt-[1in] pl-[0.7in] pr-[0.6in] leading-[1.1]"
 			style={{ height: "11in" }}>
 			<div>
 				{/* Page 3 */}

@@ -274,21 +274,17 @@ const EditDocument = ({ documents, getData }) => {
 	};
 
 	async function SubmitDocument(values) {
-		if (selectDoc < 1) {
-			navigate("/dashboard/add-new-project/preview");
-		} else {
-			const response = await AddProjectDocument({
-				project_id: getId(),
-				documents: selectDoc,
+		const response = await AddProjectDocument({
+			project_id: getId(),
+			documents: selectDoc,
+		});
+		if (response?.error) {
+			toast.error(response?.error?.message, {
+				position: toast.POSITION.TOP_CENTER,
 			});
-			if (response?.error) {
-				toast.error(response?.error?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else if (response?.data) {
-				// error alert
-				navigate("/dashboard/add-new-project/preview");
-			}
+		} else if (response?.data) {
+			// error alert
+			navigate("/dashboard/add-new-project/preview");
 		}
 	}
 
@@ -321,13 +317,13 @@ const EditDocument = ({ documents, getData }) => {
 	}, [documents]);
 
 	useEffect(() => {
-		if (!documents) {
+		if (!formData) {
 			return;
 		}
 		setMergedData(() => {
 			return {
 				Budget: mergedDocuments(documents?.Budget, formData.Budget),
-				Contract: mergedDocuments(documents.Contract, formData.Contract),
+				Contract: mergedDocuments(documents?.Contract, formData.Contract),
 				MWBE_Forms: mergedDocuments(
 					documents?.MWBE_Forms,
 					formData?.MWBE_Forms
@@ -355,9 +351,9 @@ const EditDocument = ({ documents, getData }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	if (!documents) {
-		return <Navigate to={"/dashboard"} />;
-	}
+	// if (!documents) {
+	// 	return <Navigate to={"/dashboard"} />;
+	// }
 
 	return (
 		<form className="" onSubmit={() => console.log("esdklsdkf")}>

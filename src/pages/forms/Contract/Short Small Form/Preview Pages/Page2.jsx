@@ -3,7 +3,7 @@ import { Footer } from "./Page1";
 const PageTwo = () => {
 	return (
 		<div
-			className=" text-black pt-24  p-[0.3in] ml-[0.43in] mr-[0.69in] pb-0 text-[14.5px] flex flex-col justify-between"
+			className=" text-black  ml-[0.43in] mt-[1in] mr-[0.69in] pb-0 pt-36 text-[14.5px] flex flex-col justify-between "
 			style={{ height: "10.4in" }}>
 			<div>
 				{/* Page 2 */}

@@ -7,8 +7,67 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
-import { fields, openDownload, savedResponse, showDownload } from "../reducer";
+import {
+	closeModal,
+	fields,
+	openDownload,
+	savedResponse,
+	showDownload,
+} from "../reducer";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
+
+const PageTwo = ({ form_fields, nottoBeHighlighted, project }) => {
+	return (
+		<div className="text-[11pt] arial-font leading-[1.2] pt-[1in] ">
+			<div className={``}>
+				<div className="text-right ">
+					<p>Durham Public Schools</p>
+					<p className={`text-[10pt] ${nottoBeHighlighted}`}>
+						{!project ? "" : project.name}
+					</p>
+					<p className={`text-[10pt] ${nottoBeHighlighted}`}>
+						{!project ? "" : project.number}
+					</p>
+				</div>
+				<p>
+					<em>
+						{" "}
+						Prospective Bidders should contact{" "}
+						<span className={` font-bold ${nottoBeHighlighted}`}>
+							{!form_fields ? "" : form_fields.company_name}
+						</span>{" "}
+						at the contact noted below in order to be e-mailed a link to
+						download the project manual and bid documents.
+					</em>
+				</p>
+
+				<p className="mt-8 mb-3 ">
+					For questions regarding this bid, please contact:
+				</p>
+				<p className={` font-bold ${nottoBeHighlighted}`}>
+					{!form_fields ? "" : form_fields.company_name}
+				</p>
+				<p className={` font-bold ${nottoBeHighlighted}`}>
+					<span className=" font-bold">
+						{!form_fields ? "" : form_fields.manager_name}
+					</span>
+					<span>- Program Manager</span>
+				</p>
+				<p className={` font-bold ${nottoBeHighlighted}`}>
+					{!form_fields ? "" : form_fields.manager_phone_number}
+				</p>
+				<p className={` font-bold ${nottoBeHighlighted}`}>
+					{!form_fields ? "" : form_fields.manager_email_address}
+				</p>
+			</div>{" "}
+			<div className="mt-6 flex justify-start items-end  h-[66vh]">
+				<span className="">Advertisement for bids</span>
+				<span className=" inline-block ml-24 text-center">00 11 13-1</span>
+				<span> </span>
+			</div>
+		</div>
+	);
+};
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -50,7 +109,7 @@ const Preview = () => {
 							<p className="text-base text-gray-700">Preview Document</p>
 						</div>
 						<button
-							onClick={() => dispatch(prevChoiceStep(2))}
+							onClick={() => dispatch(closeModal())}
 							type="button"
 							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
 							data-modal-toggle="small-modal">
@@ -60,25 +119,25 @@ const Preview = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%] h-[380px]">
 						<div
-							className="bg-white px-16 py-10 text-black"
+							className="bg-white mx-[1in] py-10 text-black text-[11pt] leading-[1.2] h-[11in]"
 							ref={downloadComponent}>
-							<div className="text-right adverstise">
+							<div className="text-right ">
 								<p>Durham Public Schools</p>
-								<p className={`font-bold ${nottoBeHighlighted}`}>
+								<p className={`text-[10pt] ${nottoBeHighlighted}`}>
 									{!project ? "" : project.name}
 								</p>
-								<p className={`font-bold ${nottoBeHighlighted}`}>
+								<p className={`text-[10pt] ${nottoBeHighlighted}`}>
 									{!project ? "" : project.number}
 								</p>
 							</div>
-							<div className="text-center mb-8 arial-font">
+							<div className="text-center mb-8">
 								<h1 className="font-bold">ADVERTISEMENT FOR BIDS</h1>
 								<h2 className="font-bold">
 									Durham Public Schools / Durham County
 								</h2>
 							</div>
 							<div className="text-start">
-								<p className="adverstise">
+								<p className="">
 									Sealed bids from licensed contractors will be received by
 									Durham Public Schools, Durham, North Carolina on{" "}
 									<span className={`font-bold  ${nottoBeHighlighted}`}>
@@ -107,7 +166,7 @@ const Preview = () => {
 							{/* Lists */}
 							<div className="mt-4 px-8">
 								<ul className="list-disc">
-									<li className="adverstise">
+									<li className="">
 										No bid may be withdrawn after the scheduled closing time for
 										the receipt of bids for a period of{" "}
 										<span className={`font-bold ${nottoBeHighlighted}`}>
@@ -115,15 +174,15 @@ const Preview = () => {
 											{!form_fields ? "" : form_fields.withdrawingBid}) days.
 										</span>
 									</li>
-									<li className="adverstise">
+									<li className="">
 										Bid security required is 5% of the bid in cash, certified
 										check, or Bid Bond.
 									</li>
-									<li className="adverstise">
+									<li className="">
 										Performance and Payment Bonds for 100% of the contract
 										amount will be required.
 									</li>
-									<li className="adverstise">
+									<li className="">
 										Durham Public Schools reserves the right to reject any and
 										all bids and to waive informalities or irregularities.
 									</li>
@@ -131,7 +190,7 @@ const Preview = () => {
 							</div>
 
 							<div className="mt-4">
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className={`font-bold underline`}>
 											Minority Business Participation:
@@ -140,7 +199,7 @@ const Preview = () => {
 										Statute 143-128.2 (c) is required for this project.
 									</p>
 								</div>
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className="font-bold underline ">
 											Iran Divestment Act:
@@ -155,7 +214,7 @@ const Preview = () => {
 										Act”).
 									</p>
 								</div>
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className="font-bold underline">
 											Davis-Bacon Act:
@@ -172,14 +231,14 @@ const Preview = () => {
 										projects in the area.
 									</p>
 								</div>
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className="font-bold underline">Project scope:</span>{" "}
 										Provide additional security vestibules and/or measures at
 										entrances at multiple DPS Schools and Sites.
 									</p>
 								</div>
-								<div className=" adverstise">
+								<div className=" ">
 									<p>
 										<span className="font-bold underline ">
 											Pre-Bid Conference:
@@ -210,7 +269,7 @@ const Preview = () => {
 										Designer or Designer’s representative will be available to
 										answer questions.
 									</p>
-									<p className="adverstise">
+									<p className="">
 										It is{" "}
 										<span className={`font-bold  ${nottoBeHighlighted}`}>
 											{" "}
@@ -223,7 +282,7 @@ const Preview = () => {
 									</p>
 									<br />
 								</div>
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className="font-bold underline">
 											Statement of Qualifications:
@@ -234,7 +293,7 @@ const Preview = () => {
 										years with references.
 									</p>
 								</div>
-								<div className="mb-4 adverstise">
+								<div className="mb-3 ">
 									<p>
 										<span className="font-bold underline">
 											Statement of ability to staff project:
@@ -248,54 +307,56 @@ const Preview = () => {
 							</div>
 
 							{/* Next Page */}
-							{/* <div className='text-right adverstise'>
+							{/* <div className='text-right '>
                   <p>Durham Public Schools</p>
                   <p className=''>{!project?'': project.name}</p>
                   <p className=''>{!project?'': project.number}</p>
                 </div> */}
 
-							<div className={`adverstise`}>
+							{/* <div className={``}>
 								<p>
 									<em>
 										{" "}
 										Prospective Bidders should contact{" "}
-										<span
-											className={`adverstise font-bold ${nottoBeHighlighted}`}>
+										<span className={` font-bold ${nottoBeHighlighted}`}>
 											{!form_fields ? "" : form_fields.company_name}
 										</span>{" "}
 										at the contact noted below in order to be e-mailed a link to
 										download the project manual and bid documents.
 									</em>
 								</p>
-								{/* <p className='mt-4 font-bold'>Please contact:</p>
-                  <p className='font-bold'>Kevin Coyne-Project Manager</p>
-                  <p className='font-bold'>
-                    (ph) 919.897-3225 / (e-mail) kevin.coyne@lechase.com
-                  </p> */}
-								<p className="mt-8 mb-3 adverstise">
+					
+								<p className="mt-8 mb-3 ">
 									For questions regarding this bid, please contact:
 								</p>
-								<p className={`adverstise font-bold ${nottoBeHighlighted}`}>
+								<p className={` font-bold ${nottoBeHighlighted}`}>
 									{!form_fields ? "" : form_fields.company_name}
 								</p>
-								<p className={`adverstise font-bold ${nottoBeHighlighted}`}>
-									<span className="adverstise font-bold">
+								<p className={` font-bold ${nottoBeHighlighted}`}>
+									<span className=" font-bold">
 										{!form_fields ? "" : form_fields.manager_name}
 									</span>
 									<span>- Program Manager</span>
 								</p>
-								<p className={`adverstise font-bold ${nottoBeHighlighted}`}>
+								<p className={` font-bold ${nottoBeHighlighted}`}>
 									{!form_fields ? "" : form_fields.manager_phone_number}
 								</p>
-								<p className={`adverstise font-bold ${nottoBeHighlighted}`}>
+								<p className={` font-bold ${nottoBeHighlighted}`}>
 									{!form_fields ? "" : form_fields.manager_email_address}
 								</p>
-							</div>
-							<div className="mt-3 flex justify-evenly adverstise">
+							</div> */}
+							<div className="mt-6 flex justify-start">
 								<span className="">Advertisement for bids</span>
-								<span className=" text-center">00 11 13-1</span>
+								<span className=" inline-block ml-24 text-center">
+									00 11 13-1
+								</span>
 								<span> </span>
 							</div>
+							<PageTwo
+								nottoBeHighlighted={nottoBeHighlighted}
+								form_fields={form_fields}
+								project={project}
+							/>
 						</div>
 					</div>
 

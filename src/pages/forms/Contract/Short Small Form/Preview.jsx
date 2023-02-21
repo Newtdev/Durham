@@ -27,7 +27,7 @@ const ShortSmall = () => {
 	const formID = useSelector(project_document_id);
 	const content = useFetchFilledFormQuery(formID);
 	const [highlighted, setHighlighed] = useState(false);
-	const [showPage, setShowPage] = useState(false);
+	const [showPage, setShowPage] = useState(true);
 	const [awardee, setAwardee] = useState([]);
 	const form_fields = useSelector(fields);
 	let formData = !content?.data ? [] : content?.data?.data;

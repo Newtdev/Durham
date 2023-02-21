@@ -17,6 +17,7 @@ import {
 	FormFive,
 	FormSix,
 } from "./forms";
+import { setResult } from "../../../shared-component";
 
 const MainAffidavit = ({ id }) => {
 	const dispatch = useDispatch();
@@ -28,20 +29,9 @@ const MainAffidavit = ({ id }) => {
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-				{ field_name: param[5], field_value: val[5] },
-				{ field_name: param[6], field_value: val[6] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -85,9 +75,10 @@ const MainAffidavit = ({ id }) => {
 			conferenceCityD: "",
 			conferenceZipCodeD: "",
 		},
-		validationSchema: Affidavit[pages],
+		// validationSchema: Affidavit[pages],
 
 		onSubmit: (values) => {
+			console.log(values);
 			if (pages === 1) {
 				if (Formik.values.userType === "Single Use") {
 					return dispatch(nextChoiceStep(4));
@@ -97,14 +88,17 @@ const MainAffidavit = ({ id }) => {
 				dispatch(nextChoiceStep(2));
 			} else if (pages === 2) {
 				if (Formik.values.boxA === "Owner") {
-					return dispatch(saveFormField(values)), HandleSubmit(values);
+					return dispatch(nextChoiceStep(4));
+					// dispatch(saveFormField(values));
+					HandleSubmit(values);
 				}
 				dispatch(nextChoiceStep(3));
 			} else if (pages === 3) {
 				dispatch(nextChoiceStep(4));
 			} else if (pages === 4) {
 				if (Formik.values.boxA === "Owner") {
-					return dispatch(saveFormField(values)), HandleSubmit(values);
+					dispatch(saveFormField(values));
+					HandleSubmit(values);
 				}
 				dispatch(nextChoiceStep(5));
 			} else if (pages === 5) {
@@ -118,19 +112,19 @@ const MainAffidavit = ({ id }) => {
 
 	// console.log(Formik.values.userType);
 
-	if (Formik.values.userType === "Single Use") {
+	if (Formik.values?.userType === "Single Use") {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
 				{pages === 1 && <FormOne {...Formik} />}
 				{pages === 4 && <FormTwo {...Formik} />}
-				{Formik.values.boxA === "Lessee/Tenant" && pages === 5 && (
+				{Formik.values?.boxA === "Lessee/Tenant" && pages === 5 && (
 					<FormThree {...Formik} />
 				)}
 				{pages === 6 && <FormFour {...Formik} />}
 				{pages === 7 && <Preview />}
 			</ModalOverlay>
 		);
-	} else if (Formik.values.userType === "Blanket Use") {
+	} else if (Formik.values?.userType === "Blanket Use") {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
 				{pages === 1 && <FormOne {...Formik} />}
@@ -139,12 +133,12 @@ const MainAffidavit = ({ id }) => {
 				{pages === 7 && <Preview />}
 			</ModalOverlay>
 		);
-	} else if (Formik.values.userType === "Both") {
+	} else if (Formik.values?.userType === "Both") {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
 				{pages === 1 && <FormOne {...Formik} />}
 				{pages === 2 && <FormTwo {...Formik} />}
-				{Formik.values.boxA === "Lessee/Tenant" && pages === 3 && (
+				{Formik.values?.boxA === "Lessee/Tenant" && pages === 3 && (
 					<FormThree {...Formik} />
 				)}
 				{pages === 4 && <FormFour {...Formik} />}
