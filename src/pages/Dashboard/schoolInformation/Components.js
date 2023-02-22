@@ -129,7 +129,7 @@ const VendorInformationComponents = ({
 			name: "School/Dept Name",
 			id: "name",
 			placeholder: "School/Dept Name",
-			value: values.name,
+			value: values?.name,
 			onChange: handleChange,
 			error: errors.name,
 			touched: touched.name,

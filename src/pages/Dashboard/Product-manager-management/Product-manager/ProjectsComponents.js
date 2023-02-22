@@ -330,7 +330,9 @@ export function EditPojectsManagerModal({ close, data }) {
 		useUpdateProductManagerDetailsMutation();
 
 	async function HandleRequest(values) {
-		const data ={id:values.id, info:values}
+		const { phone, email, first_name, last_name, id } = values;
+
+		const data = { id: id, info: { phone, email, first_name, last_name } };
 		const response = await updateProductManagerDetails(data);
 		if (response) {
 			close();
@@ -388,7 +390,6 @@ export function DeleteProjectModal({ close, HandleRequest, isLoading }) {
 						<Close />
 					</button>
 				</div>
-				
 
 				{/* Buttons */}
 				<div className="mt-2 mr-5 flex gap-4 justify-end">
