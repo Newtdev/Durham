@@ -1,134 +1,147 @@
 import "react-datepicker/dist/react-datepicker.css";
+import { FormikProvider, useFormik } from "formik";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useFillProjectDocumentMutation } from "../../../../features/services/api";
+import { RFPTemplateWithMWBESlug } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
-import { useState } from "react";
-import { ButtonWhiteBG } from "../../../../ui";
-import { DashboardButton } from "../../../Dashboard/Components";
+import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import { getStates } from "../../Advertisement-for-bid-template/reducer";
+import { modal, saveFormField } from "../../reducer";
+import FormOne from "./Forms/FormsOne";
+import FormTwo from "./Forms/FormsTwo";
+import FormThree from "./Forms/FormsThree";
+import { nextStep, page } from "./reducer";
+import Preview from "./Preview";
 
-const RFPTemplate = () => {
-  const [showModal, setShowModal] = useState(true);
+const RFPTemplate = ({ id }) => {
+  const dispatch = useDispatch();
+  const pages = useSelector(page);
+  const show = useSelector(modal);
+
+  // const pages = 4;
+  const formID = useSelector(project_document_id);
+
+  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+
+  const HandleSubmit = async (values) => {
+    const param = Object.keys(values);
+    const val = Object.values(values);
+
+    console.log("values: ", values);
+
+    const response = await fillProjectDocument({
+      project_document_id: formID,
+      form_fields: [
+        { field_name: param[0], field_value: val[0] },
+        { field_name: param[1], field_value: val[1] },
+        { field_name: param[2], field_value: val[2] },
+        { field_name: param[3], field_value: val[3] },
+        { field_name: param[4], field_value: val[4] },
+        { field_name: param[5], field_value: val[5] },
+        { field_name: param[6], field_value: val[6] },
+        { field_name: param[7], field_value: val[7] },
+        { field_name: param[8], field_value: val[8] },
+        { field_name: param[9], field_value: val[9] },
+        { field_name: param[10], field_value: val[10] },
+        { field_name: param[11], field_value: val[11] },
+        { field_name: param[12], field_value: val[12] },
+        { field_name: param[13], field_value: val[13] },
+        { field_name: param[14], field_value: val[14] },
+        { field_name: param[15], field_value: val[15] },
+        { field_name: param[16], field_value: val[16] },
+        { field_name: param[17], field_value: val[17] },
+        { field_name: param[18], field_value: val[18] },
+        { field_name: param[19], field_value: val[19] },
+        { field_name: param[20], field_value: val[20] },
+        { field_name: param[21], field_value: val[21] },
+        { field_name: param[22], field_value: val[22] },
+        { field_name: param[23], field_value: val[23] },
+        { field_name: param[24], field_value: val[24] },
+        { field_name: param[25], field_value: val[25] },
+        { field_name: param[26], field_value: val[26] },
+        { field_name: param[27], field_value: val[27] },
+      ],
+    });
+
+    if (response) {
+      if (response?.error) {
+        toast.error(response?.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        dispatch(nextStep(4));
+      }
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      bidderName: "",
+      rfpNumber: "",
+      personName: "",
+      contractType: "",
+      issueDate: "",
+      proposalDate: "",
+      submissionDate: "",
+      answerDate: "",
+      bidOpeningDate: "",
+      proposalSubmissionDate: "",
+      proposalTime: "",
+      submissionTime: "",
+      answerTime: "",
+      bidOpeningTime: "",
+      proposalSubmissionTime: "",
+      street: "",
+      state: "",
+      city: "",
+      zipCode: "",
+      date: "",
+      time: "",
+      prototypeNotUtilized: "",
+      // Modify the information below if the prototype is not utilized: "",
+      proposalScope: "",
+      validityPeriod: "",
+      items: "",
+      attachment: "false",
+      // Enter the Proposal Scope: "",
+    },
+    // validationSchema: OwnerContractManageMent,
+    onSubmit: (values) => {
+      if (pages === 1) {
+        console.log("pages: ", pages);
+        dispatch(saveFormField(values));
+        dispatch(nextStep(2));
+      } else if (pages === 2) {
+        console.log(values);
+        dispatch(saveFormField(values));
+        dispatch(nextStep(3));
+      } else if (pages === 3) {
+        console.log(values);
+        dispatch(saveFormField(values));
+        dispatch(nextStep(4));
+        HandleSubmit(values);
+      }
+    },
+  });
+
+  useEffect(() => {
+    (async function () {
+      const response = await (await fetch("/states.json")).json();
+      dispatch(getStates(response));
+    })();
+  }, [dispatch]);
 
   return (
-    <div>
-      <ModalOverlay show={showModal} close={() => setShowModal(true)}>
-        <div>
-          {/* Modal content */}
-          <div className='relative w-[80%] mx-auto bg-white rounded-lg shadow mt-14'>
-            {/* Header */}
-            <div className='flex justify-between items-baseline border-b border-b-gray-200 py-3'>
-              <div className='ml-6'>
-                <h3 className='font-bold text-gray-900'>
-                  RFP Template with MWBE
-                </h3>
-                <p className='text-base text-gray-700'>Preview Document</p>
-              </div>
-              <button
-                type='button'
-                className='text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6'
-                data-modal-toggle='small-modal'
-              >
-                <svg
-                  aria-hidden='true'
-                  className='w-5 h-5'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
-                <span className='sr-only'>Close modal</span>
-              </button>
-            </div>
-
-            <div className='overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]'>
-              <div className='px-32 pt-8 pb-4 text-black'>
-                <div>
-                  {/* Pages 1 - 5 */}
-                  <div>
-                    <p className='mb-4 text-[11px]'>
-                      Bidder: <span className='bg-yellow-500'>F1</span>
-                    </p>
-
-                    <p className='text-center font-bold mb-6 text-base'>
-                      Durham Public Schools
-                    </p>
-
-                    <div className='grid grid-cols-2 border border-black border-collapse'>
-                      <div className='border-b border-b-black pt-4 text-center text-sm font-bold'>
-                        <p className='mb-5'>Durham Public Schools</p>
-                        <p className='mb-3'>
-                          <span className='bg-yellow-500'>F2</span>
-                        </p>
-                        <p className='mb-1'>
-                          <span className='bg-yellow-500'>F3</span>
-                        </p>
-                        <p className='mb-1'>511 Cleveland Street</p>
-                        <p className='mb-1'>Durham, NC 27701</p>
-                      </div>
-
-                      <div className='border-b border-l border-black p-1 font-bold text-xs overflow-x-hidden'>
-                        <p className='mb-10'>REQUEST FOR PROPOSALS NO:</p>
-                        <p className='mb-6 text-center'>
-                          <span className='bg-yellow-500'>F4</span>
-                        </p>
-                        <div className='text-center'>
-                          <p className='mb-0'>
-                            ____________________________________________________
-                          </p>
-                          <p>
-                            Proposals Due:{" "}
-                            <span className='bg-yellow-500'>F5</span>{" "}
-                            <span className='bg-yellow-500'>F6</span>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className='p-1 text-[10px]'>
-                        <p className='mb-4'>
-                          Direct all inquiries concerning this RFP to:
-                        </p>
-                        <p className='mb-4'>Durham Public Schools</p>
-                        <p className='font-bold mb-4'>
-                          Attn: <span className='bg-yellow-500'>F8</span>
-                        </p>
-                        <p className='font-bold'>
-                          All questions must be submitted{" "}
-                          <span className='underline'>via email</span> no later{" "}
-                          <span className='text-xs'>
-                            than <span className='bg-yellow-500'>F9</span> at{" "}
-                            <span className='bg-yellow-500'>10</span>
-                          </span>
-                        </p>
-                      </div>
-
-                      <div className='text-[10px] p-1 font-bold border-l border-black'>
-                        Contract Type: <span className='bg-yellow-500'>F7</span>{" "}
-                        using various funds; when using Federal Funds Durham
-                        Public Schools will follow all Federal guidelines.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className='flex justify-end gap-4 pr-6 pb-4'>
-              <ButtonWhiteBG width='w-[171px]' name='Edit document' />
-              <DashboardButton
-                hidden
-                name='CREATE DOCUMENT'
-                type='submit'
-                width='w-[198px]'
-              />
-            </div>
-          </div>
-        </div>
-      </ModalOverlay>
-    </div>
+    <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
+      <FormikProvider value={formik}>
+        {pages === 1 && <FormOne {...formik} />}
+        {pages === 2 && <FormTwo {...formik} />}
+        {pages === 3 && <FormThree {...formik} />}
+        {pages === 4 && <Preview />}
+      </FormikProvider>
+    </ModalOverlay>
   );
 };
 

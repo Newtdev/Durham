@@ -1,0 +1,622 @@
+ol.lst-kix_e2g1p2bmmlpt-3.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-3 0;
+}
+.lst-kix_8niinwec9rbz-0 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-0;
+}
+ol.lst-kix_8niinwec9rbz-3.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-3 0;
+}
+ol.lst-kix_ujrytllo2oit-6.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-6 0;
+}
+.lst-kix_e2g1p2bmmlpt-0 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-0;
+}
+ol.lst-kix_e2g1p2bmmlpt-6.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-6 0;
+}
+ol.lst-kix_ujrytllo2oit-3.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-3 0;
+}
+.lst-kix_8niinwec9rbz-1 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-1;
+}
+.lst-kix_ujrytllo2oit-0 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-0;
+}
+ol.lst-kix_ujrytllo2oit-0.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-0 0;
+}
+ol.lst-kix_8niinwec9rbz-8.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-8 0;
+}
+ol.lst-kix_e2g1p2bmmlpt-0.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-0 0;
+}
+.lst-kix_e2g1p2bmmlpt-2 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-2;
+}
+.lst-kix_e2g1p2bmmlpt-8 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-8;
+}
+.lst-kix_ujrytllo2oit-8 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-8;
+}
+ol.lst-kix_ujrytllo2oit-1 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-0 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-3 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-2 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-5 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-4 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-7 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-7.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-7 0;
+}
+ol.lst-kix_ujrytllo2oit-6 {
+  list-style-type: none;
+}
+.lst-kix_8niinwec9rbz-8 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-8;
+}
+.lst-kix_ujrytllo2oit-2 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-2;
+}
+.lst-kix_8niinwec9rbz-2 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-2;
+}
+ol.lst-kix_8niinwec9rbz-4.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-4 0;
+}
+.lst-kix_e2g1p2bmmlpt-1 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-1;
+}
+ol.lst-kix_ujrytllo2oit-8 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-1.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-1 0;
+}
+ol.lst-kix_e2g1p2bmmlpt-6 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-7 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-4 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-5 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-2 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-3 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-0 {
+  list-style-type: none;
+}
+ol.lst-kix_e2g1p2bmmlpt-1 {
+  list-style-type: none;
+}
+.lst-kix_e2g1p2bmmlpt-8 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-4, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-5, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-6, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-7, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-8, decimal) " ";
+}
+ol.lst-kix_e2g1p2bmmlpt-5.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-5 0;
+}
+.lst-kix_e2g1p2bmmlpt-6 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-4, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-5, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-6, decimal) " ";
+}
+.lst-kix_e2g1p2bmmlpt-7 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-4, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-5, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-6, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-7, decimal) " ";
+}
+ol.lst-kix_e2g1p2bmmlpt-8 {
+  list-style-type: none;
+}
+ol.lst-kix_ujrytllo2oit-8.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-8 0;
+}
+.lst-kix_e2g1p2bmmlpt-4 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-4, decimal) " ";
+}
+.lst-kix_e2g1p2bmmlpt-5 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-4, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-5, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-1 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-3 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-0 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-4 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-4, decimal) " ";
+}
+.lst-kix_e2g1p2bmmlpt-5 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-5;
+}
+ol.lst-kix_ujrytllo2oit-2.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-2 0;
+}
+.lst-kix_e2g1p2bmmlpt-1 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) " ";
+}
+.lst-kix_ujrytllo2oit-5 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-5;
+}
+.lst-kix_8niinwec9rbz-5 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-4, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-5, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-7 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-4, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-5, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-6, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-7, decimal) " ";
+}
+.lst-kix_e2g1p2bmmlpt-2 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) " ";
+}
+.lst-kix_e2g1p2bmmlpt-3 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-1, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-2, decimal) "."
+    counter(lst-ctn-kix_e2g1p2bmmlpt-3, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-7.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-7 0;
+}
+.lst-kix_8niinwec9rbz-6 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-6;
+}
+.lst-kix_8niinwec9rbz-6 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-4, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-5, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-6, decimal) " ";
+}
+.lst-kix_8niinwec9rbz-5 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-5;
+}
+ol.lst-kix_8niinwec9rbz-0 {
+  list-style-type: none;
+}
+.lst-kix_8niinwec9rbz-8 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-3, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-4, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-5, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-6, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-7, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-8, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-1 {
+  list-style-type: none;
+}
+.lst-kix_e2g1p2bmmlpt-0 > li:before {
+  content: "" counter(lst-ctn-kix_e2g1p2bmmlpt-0, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-2 {
+  list-style-type: none;
+}
+ol.lst-kix_8niinwec9rbz-3 {
+  list-style-type: none;
+}
+ol.lst-kix_8niinwec9rbz-4 {
+  list-style-type: none;
+}
+ol.lst-kix_8niinwec9rbz-5 {
+  list-style-type: none;
+}
+ol.lst-kix_8niinwec9rbz-6 {
+  list-style-type: none;
+}
+ol.lst-kix_8niinwec9rbz-7 {
+  list-style-type: none;
+}
+.lst-kix_e2g1p2bmmlpt-4 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-4;
+}
+ol.lst-kix_8niinwec9rbz-8 {
+  list-style-type: none;
+}
+.lst-kix_ujrytllo2oit-6 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-6;
+}
+.lst-kix_ujrytllo2oit-3 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-3;
+}
+ol.lst-kix_e2g1p2bmmlpt-4.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-4 0;
+}
+.lst-kix_e2g1p2bmmlpt-7 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-7;
+}
+.lst-kix_8niinwec9rbz-7 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-7;
+}
+.lst-kix_8niinwec9rbz-4 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-4;
+}
+li.li-bullet-1:before {
+  margin-left: -36pt;
+  white-space: nowrap;
+  display: inline-block;
+  min-width: 36pt;
+}
+ol.lst-kix_8niinwec9rbz-2.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-2 0;
+}
+ol.lst-kix_e2g1p2bmmlpt-7.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-7 0;
+}
+.lst-kix_8niinwec9rbz-2 > li:before {
+  content: "" counter(lst-ctn-kix_8niinwec9rbz-0, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-1, decimal) "."
+    counter(lst-ctn-kix_8niinwec9rbz-2, decimal) " ";
+}
+ol.lst-kix_ujrytllo2oit-4.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-4 0;
+}
+.lst-kix_ujrytllo2oit-7 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-7, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-5.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-5 0;
+}
+.lst-kix_8niinwec9rbz-3 > li {
+  counter-increment: lst-ctn-kix_8niinwec9rbz-3;
+}
+.lst-kix_ujrytllo2oit-6 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-6, decimal) " ";
+}
+ol.lst-kix_e2g1p2bmmlpt-8.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-8 0;
+}
+.lst-kix_ujrytllo2oit-0 > li:before {
+  content: "" counter(lst-ctn-kix_ujrytllo2oit-0, decimal) ". ";
+}
+.lst-kix_ujrytllo2oit-8 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-8, decimal) " ";
+}
+.lst-kix_ujrytllo2oit-1 > li:before {
+  content: "" counter(lst-ctn-kix_ujrytllo2oit-1, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-1.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-1 2;
+}
+.lst-kix_ujrytllo2oit-2 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-2, decimal) " ";
+}
+.lst-kix_ujrytllo2oit-3 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-3, decimal) " ";
+}
+.lst-kix_ujrytllo2oit-5 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-5, decimal) " ";
+}
+ol.lst-kix_e2g1p2bmmlpt-1.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-1 0;
+}
+.lst-kix_ujrytllo2oit-4 > li:before {
+  content: "." counter(lst-ctn-kix_ujrytllo2oit-4, decimal) " ";
+}
+ol.lst-kix_8niinwec9rbz-6.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-6 0;
+}
+ol.lst-kix_ujrytllo2oit-5.start {
+  counter-reset: lst-ctn-kix_ujrytllo2oit-5 0;
+}
+li.li-bullet-0:before {
+  margin-left: -18pt;
+  white-space: nowrap;
+  display: inline-block;
+  min-width: 18pt;
+}
+.lst-kix_e2g1p2bmmlpt-3 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-3;
+}
+.lst-kix_ujrytllo2oit-1 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-1;
+}
+.lst-kix_e2g1p2bmmlpt-6 > li {
+  counter-increment: lst-ctn-kix_e2g1p2bmmlpt-6;
+}
+ol.lst-kix_e2g1p2bmmlpt-2.start {
+  counter-reset: lst-ctn-kix_e2g1p2bmmlpt-2 0;
+}
+.lst-kix_ujrytllo2oit-7 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-7;
+}
+.lst-kix_ujrytllo2oit-4 > li {
+  counter-increment: lst-ctn-kix_ujrytllo2oit-4;
+}
+ol.lst-kix_8niinwec9rbz-0.start {
+  counter-reset: lst-ctn-kix_8niinwec9rbz-0 0;
+}
+ol {
+  margin: 0;
+  padding: 0;
+}
+table td,
+table th {
+  padding: 0;
+}
+.c9 {
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 11pt;
+  font-family: "Arial";
+  font-style: normal;
+}
+.c5 {
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 10pt;
+  font-family: "Arial";
+  font-style: normal;
+}
+.c12 {
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 10pt;
+  font-family: "Arial";
+  font-style: normal;
+}
+.c7 {
+  margin-left: 18pt;
+  padding-top: 0pt;
+  padding-left: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1;
+  text-align: left;
+}
+.c2 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1;
+  orphans: 2;
+  widows: 2;
+  text-align: center;
+}
+.c10 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 0.06;
+  text-align: left;
+  height: 11pt;
+}
+.c3 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1;
+  text-align: justify;
+  height: 11pt;
+}
+.c6 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1;
+  text-align: justify;
+}
+.c8 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1;
+  text-align: left;
+}
+.c15 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1.15;
+  text-align: left;
+}
+.c0 {
+  background-color: #ffffff;
+  max-width: 468pt;
+  padding: 72pt 72pt 72pt 72pt;
+}
+.c4 {
+  orphans: 2;
+  widows: 2;
+}
+.c1 {
+  padding: 0;
+  margin: 0;
+}
+.c11 {
+  margin-left: 18pt;
+  padding-left: 18pt;
+}
+.c14 {
+  margin-left: 36pt;
+}
+.c13 {
+  height: 11pt;
+}
+.title {
+  padding-top: 0pt;
+  color: #000000;
+  font-size: 26pt;
+  padding-bottom: 3pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+.subtitle {
+  padding-top: 0pt;
+  color: #666666;
+  font-size: 15pt;
+  padding-bottom: 16pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+li {
+  color: #000000;
+  font-size: 11pt;
+  font-family: "Arial";
+}
+p {
+  margin: 0;
+  color: #000000;
+  font-size: 11pt;
+  font-family: "Arial";
+}
+h1 {
+  padding-top: 20pt;
+  color: #000000;
+  font-size: 20pt;
+  padding-bottom: 6pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+h2 {
+  padding-top: 18pt;
+  color: #000000;
+  font-size: 16pt;
+  padding-bottom: 6pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+h3 {
+  padding-top: 16pt;
+  color: #434343;
+  font-size: 14pt;
+  padding-bottom: 4pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+h4 {
+  padding-top: 14pt;
+  color: #666666;
+  font-size: 12pt;
+  padding-bottom: 4pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+h5 {
+  padding-top: 12pt;
+  color: #666666;
+  font-size: 11pt;
+  padding-bottom: 4pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
+h6 {
+  padding-top: 12pt;
+  color: #666666;
+  font-size: 11pt;
+  padding-bottom: 4pt;
+  font-family: "Arial";
+  line-height: 1.15;
+  page-break-after: avoid;
+  font-style: italic;
+  orphans: 2;
+  widows: 2;
+  text-align: left;
+}
