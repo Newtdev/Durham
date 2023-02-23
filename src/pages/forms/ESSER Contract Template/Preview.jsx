@@ -9,10 +9,8 @@ import {
 	closeModal,
 	fields,
 	openDownload,
-	savedResponse,
 	showDownload,
 } from "../reducer";
-import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
@@ -28,8 +26,8 @@ import PageEight from "./PreviewPages/PageEight";
 
 const Preview = () => {
 	const [highlighted, setHighlighed] = useState(false);
-	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
+	const dispatch = useDispatch();
 	const downloadComponent = useRef();
 
 	const formID = useSelector(project_document_id);

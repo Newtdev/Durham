@@ -12,62 +12,62 @@ import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
 const ShortSmallFormDesignForm = ({ id }) => {
-  const dispatch = useDispatch();
-  const pages = useSelector(page);
-  const show = useSelector(modal);
+	const dispatch = useDispatch();
+	const pages = useSelector(page);
+	const show = useSelector(modal);
 
-  const formID = useSelector(project_document_id);
+	const formID = useSelector(project_document_id);
 
-  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-  const HandleSubmit = async (values) => {
-    const param = Object.keys(values);
-    const val = Object.values(values);
+	const HandleSubmit = async (values) => {
+		const param = Object.keys(values);
+		const val = Object.values(values);
 
-    console.log("values: ", values);
+		console.log("values: ", values);
 
-    const response = await fillProjectDocument({
-      project_document_id: formID,
-      form_fields: [
-        { field_name: param[0], field_value: val[0] },
-        { field_name: param[1], field_value: val[1] },
-        { field_name: param[2], field_value: val[2] },
-      ],
-    });
-    if (response) {
-      if (response?.error) {
-        toast.error(response?.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        dispatch(nextStep(2));
-      }
-    }
-  };
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: [
+				{ field_name: param[0], field_value: val[0] },
+				{ field_name: param[1], field_value: val[1] },
+				{ field_name: param[2], field_value: val[2] },
+			],
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				dispatch(nextStep(2));
+			}
+		}
+	};
 
-  // const show = useSelector(modal);
-  const formik = useFormik({
-    initialValues: {
-      agreementDate: "",
-      ownerEmail: "",
-      signDate: "",
-    },
-    validationSchema: ShortSmallFormDesignSchema,
-    onSubmit: (values) => {
-      if (pages === 1) {
-        console.log("pages: ", pages);
-        dispatch(saveFormField(values));
-        HandleSubmit(values);
-      }
-    },
-  });
+	// const show = useSelector(modal);
+	const formik = useFormik({
+		initialValues: {
+			agreementDate: "",
+			ownerEmail: "",
+			signDate: "",
+		},
+		validationSchema: ShortSmallFormDesignSchema,
+		onSubmit: (values) => {
+			if (pages === 1) {
+				console.log("pages: ", pages);
+				dispatch(saveFormField(values));
+				HandleSubmit(values);
+			}
+		},
+	});
 
-  // return <ModalOverlay show={true}>
-  return (
-    <ModalOverlay show={id === ShortSmallFormDesign && show}>
-      {pages === 1 && <FormOne {...formik} />}
-      {pages === 2 && <Preview />}
-    </ModalOverlay>
-  );
+	// return <ModalOverlay show={true}>
+	return (
+		<ModalOverlay show={id === ShortSmallFormDesign && show}>
+			{pages === 1 && <FormOne {...formik} />}
+			{pages === 2 && <Preview />}
+		</ModalOverlay>
+	);
 };
 export default ShortSmallFormDesignForm;

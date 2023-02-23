@@ -1,3 +1,3 @@
-import OwnerAndContractorForm from "./OwnerAndContractor";
+import Owner from "./Owner";
 
-export default OwnerAndContractorForm
+export default Owner;

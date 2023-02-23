@@ -13,8 +13,8 @@ const Forms = () => {
   const [showModal, setShowModal] = useState(false);
   const [fileName, setFileName] = useState("");
   // const [params, setParams] = useState("");
-  const [filteredForms, setFilteredForms] = useState(FormsArray);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredForms, setFilteredForms] = useState([...FormsArray]);
+  const [searchTerm, setSearchTerm] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Forms = () => {
   };
 
   const PER_PAGE = 6;
-  const pages = Math.ceil(filteredForms.length / PER_PAGE);
+  const pages = Math.floor(filteredForms.length / 5);
   const skip = page * PER_PAGE - PER_PAGE;
 
   const filterHandler = (e) => {
@@ -56,9 +56,8 @@ const Forms = () => {
 
   const searchHandler = (e) => {
     e.preventDefault();
-
     let searchResult = [];
-    if (!searchTerm) {
+    if (searchTerm.length < 1) {
       // setIsSearching(false);
       setFilteredForms(FormsArray);
     } else {
@@ -69,16 +68,9 @@ const Forms = () => {
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
       });
-
-      // console.log("Mother got: ", searchResult);
-
-      // Return the filtered array to its first page every time we run a search
-      setPage(1);
-
+      setFilteredForms(searchResult);
       if (searchResult.length < 1) {
         setFilteredForms(FormsArray);
-      } else {
-        setFilteredForms(searchResult);
       }
     }
   };
@@ -150,7 +142,7 @@ const Forms = () => {
           {/* <!-- Table --> */}
           <div className="overflow-x-auto relative rounded-lg  ">
             <table className="w-full text-sm text-left text-gray-900">
-              <TableBody key={page} {...FormsDownloadProps}></TableBody>
+              <TableBody {...FormsDownloadProps}></TableBody>
             </table>
           </div>
           {/* pagination */}

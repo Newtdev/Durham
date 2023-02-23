@@ -8,24 +8,24 @@
 @tailwind utilities;
 
 html {
-  font-family: "Inter", sans-serif;
+	font-family: "Inter", sans-serif;
 }
 .error-toast {
-  background: red;
-  color: white;
+	background: red;
+	color: white;
 }
 .adverstise {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
 }
 .arial-font {
-  font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .Times-font {
-  font-family: "Times New Roman", Times, serif;
+	font-family: "Times New Roman", Times, serif;
 }
 .calibri-font {
-  font-family: "Calibri", sans-serif;
+	font-family: "Calibri", sans-serif;
 }
 
 /* @media print {
@@ -34,15 +34,4 @@ html {
 		height: 29.7cm;
 		margin: 2cm;
 	}
-}
-
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+} */

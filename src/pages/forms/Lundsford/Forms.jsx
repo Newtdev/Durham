@@ -10,7 +10,6 @@ import { FormInputContainer } from "../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../reducer";
 
 const Forms = (props) => {
-	console.log(props);
 	const {
 		handleChange,
 		error,
@@ -72,9 +71,29 @@ const Forms = (props) => {
 					</div>
 
 					<div className="mx-6 mb-12">
+						<div className="mt-6">
+							{length > 1 ? (
+								<FormInputContainer name="For whom is this form being created?">
+									<FormSelect {...addressCopy}>
+										{!addressValue ? (
+											<option>Select</option>
+										) : (
+											<option value={addressValue}>{addressValue}</option>
+										)}
+										<option value="Design Consultant">Design Consultant</option>
+										<option value="Contractor">Contractor</option>
+										<option value="Engineering">Engineering</option>
+										<option value="Construction Manager">
+											Construction Manager
+										</option>
+									</FormSelect>
+								</FormInputContainer>
+							) : null}
+						</div>
 						<small className="text-gray-900 font-medium">
 							To Specify the type of check, check the relevant option.
 						</small>
+
 						<div className=" mt-3 ml-2">
 							<div className="flex items-center mb-5">
 								<input
@@ -126,25 +145,6 @@ const Forms = (props) => {
 							</div>
 						</div>
 						{error && touched && <Error message={error} />}
-						<div className="mt-6">
-							{length > 1 ? (
-								<FormInputContainer name="For whom is this form being created?">
-									<FormSelect {...addressCopy}>
-										{!addressValue ? (
-											<option>Select</option>
-										) : (
-											<option value={addressValue}>{addressValue}</option>
-										)}
-										<option value="Design Consultant">Design Consultant</option>
-										<option value="Contractor">Contractor</option>
-										<option value="Engineering">Engineering</option>
-										<option value="Construction Manager">
-											Construction Manager
-										</option>
-									</FormSelect>
-								</FormInputContainer>
-							) : null}
-						</div>
 					</div>
 
 					{/* Buttons */}
