@@ -61,7 +61,10 @@ import DesignChangeOrderForm from "../../forms/Budget/design-change-form";
 import MainAffidavit from "../../forms/E-589C Affidavit Of Capital Improvement/MainAffidavit";
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer";
 import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)/OwnerAndContractor";
+<<<<<<< HEAD
 import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER";
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 
 const ProjectDashboard = () => {
 	const response = useFetchSingleProjectQuery(getId());
@@ -404,7 +407,10 @@ const ProjectDashboard = () => {
 			<MainAffidavit id={documentsID} />
 			<DPSShortFormEngineerForm id={documentsID} />
 			<OwnerAndContractorForm id={documentsID} />
+<<<<<<< HEAD
 			<OwnerAndContractorFormESSER id={documentsID} />
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 		</section>
 	);
 };
