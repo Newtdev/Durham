@@ -4,19 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
-import {
-    useAddSchoolMutation,
-} from "../../../features/services/api";
+import { useAddSchoolMutation } from "../../../features/services/api";
 import { ButtonRedBG, ButtonWhiteBG, Error } from "../../../ui";
 import { AddSchoolSchema } from "../../../yup";
-import { getList, getStates } from "../../forms/Advertisement-for-bid-template/reducer";
+import {
+	getList,
+	getStates,
+} from "../../forms/Advertisement-for-bid-template/reducer";
 import { FormInputContainer } from "../../forms/Notice-of-intent-consultant/Forms";
 
-import {
-	Close,
-	DashboardButton,
-	DashboardInput,
-} from "../Components";
+import { Close, DashboardButton, DashboardInput } from "../Components";
 import { save_awardee } from "../Vendors-mangement/vendorSlice";
 // import { save_awardee } from "./vendorSlice";
 
@@ -26,45 +23,27 @@ export const VendorsHeader = [
 	"Type",
 	"Tag",
 	"Mailing Address",
-	
+
 	"",
 ];
 
-
-
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
-
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
-            {!dataArray && <tr>
-				
-                <td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							
-						</td>
-                <td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							
-						</td>
-                <td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							Loading Data...
-						</td>
-                <td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							
-						</td>
-                <td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
-							
-						</td>
-            </tr>}
+			{!dataArray && (
+				<tr>
+					<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap"></td>
+					<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap"></td>
+					<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+						Loading Data...
+					</td>
+					<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap"></td>
+					<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap"></td>
+				</tr>
+			)}
 
-            {dataArray?.map((vendor, index) => {
-				const {
-					id,
-					name,
-					code,
-					type,
-					tag,
-					address,
-					
-				} = vendor;
+			{dataArray?.map((vendor, index) => {
+				const { id, name, code, type, tag, address } = vendor;
 				const strip = index % 2 !== 0 ? "bg-white" : "bg-gray-50";
 
 				return (
@@ -81,7 +60,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-4 px-4">{type}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{tag}</td>
 						<td className="py-4 ">{address}</td>
-						
+
 						{/* <td className="py-4 px-4 whitespace-nowrap">{industry}</td> */}
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
 							<span className="w-4 cursor-pointer" onClick={() => onDelete(id)}>
@@ -111,17 +90,17 @@ const VendorInformationComponents = ({
 	onSubmit,
 	loading,
 	vendorInitValue,
-	modal_name,title
+	modal_name,
+	title,
 }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-        (async function () {
-          const response = await (await fetch('/states.json')).json();
-          dispatch(getStates(response))
-    
-        }())
-      }, [dispatch]);
+		(async function () {
+			const response = await (await fetch("/states.json")).json();
+			dispatch(getStates(response));
+		})();
+	}, [dispatch]);
 	const states = useSelector(getList);
 
 	const {
@@ -149,35 +128,35 @@ const VendorInformationComponents = ({
 		name: {
 			name: "School/Dept Name",
 			id: "name",
-			placeholder: "Enter School/Dept Name",
-			value: values.name,
+			placeholder: "School/Dept Name",
+			value: values?.name,
 			onChange: handleChange,
 			error: errors.name,
 			touched: touched.name,
 			// option: "together",
 		},
 		code: {
-			name: "School/Dept Identifier Number",
+			name: "School/Dept Identifier",
 			id: "code",
-			placeholder: "Enter School/Dept Identifier Number",
+			placeholder: "Enter School Identifier Number",
 			value: values.code,
 			onChange: handleChange,
 			error: errors.code,
 			touched: touched.code,
 		},
 		type: {
-			name: "Type of School/Dept",
+			name: "Type of School",
 			id: "type",
-			placeholder: "Enter/Select Type of School/Dept",
+			placeholder: "Enter Type of School",
 			value: values.type,
 			onChange: handleChange,
 			error: errors.type,
 			touched: touched.type,
 		},
 		tag: {
-			name: "Type of School/Dept",
+			name: "Tag",
 			id: "tag",
-			placeholder: "Enter/Select Tag",
+			placeholder: "Enter Tag",
 			value: values.tag,
 			onChange: handleChange,
 			error: errors.tag,
@@ -192,19 +171,25 @@ const VendorInformationComponents = ({
 			error: errors.address,
 			touched: touched.address,
 		},
-
 	};
 	function CheckState() {
-        if (!values.state) {
-            return;
-        }
-		let stat = Object.values(states)?.find((state) => state.name === values.state);
-	
-        return !stat ? '' : Object.keys(stat.cities)?.map((cur, id) => {
-         return <option key={id} value={cur}>{cur}</option>
-        })
-	};
+		if (!values.state) {
+			return;
+		}
+		let stat = Object.values(states)?.find(
+			(state) => state.name === values.state
+		);
 
+		return !stat
+			? ""
+			: Object.keys(stat.cities)?.map((cur, id) => {
+					return (
+						<option key={id} value={cur}>
+							{cur}
+						</option>
+					);
+			  });
+	}
 
 	const HandleClose = () => {
 		close();
@@ -219,7 +204,7 @@ const VendorInformationComponents = ({
 				<div className="flex justify-between items-baseline px-6 py-3 rounded-t border-b">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">{modal_name}</h3>
-                        <h4 className="text-gray-700">{title}</h4>
+						<h4 className="text-gray-700">{title}</h4>
 					</div>
 					<button
 						onClick={HandleClose}
@@ -245,44 +230,66 @@ const VendorInformationComponents = ({
 							<div>
 								<DashboardInput {...props.tag} />
 							</div>
-						
+
 							<div>
 								<DashboardInput {...props.address} />
-                            </div>
-                            <div className="grid grid-cols-2 content-center justify-content-between gap-x-2">
-							<FormInputContainer name='State'>
-							<input list="states" name={`state`} value={values.state} onChange={handleChange}
-								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
-							<datalist id="states">
-							{!states ? null : Object.entries(states).map((cur, index) => { 
-							return <option key={index} value={cur[1].name}>{cur[1].name}</option> })}
-							</datalist>
-                            {errors.state && touched.state && <Error message={errors.state}/>}
+							</div>
+							<div className="grid grid-cols-2 content-center justify-content-between gap-x-2">
+								<FormInputContainer name="State">
+									<input
+										list="states"
+										name={`state`}
+										value={values.state}
+										onChange={handleChange}
+										placeholder="Search State"
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+									/>
+									<datalist id="states">
+										{!states
+											? null
+											: Object.entries(states).map((cur, index) => {
+													return (
+														<option key={index} value={cur[1].name}>
+															{cur[1].name}
+														</option>
+													);
+											  })}
+									</datalist>
+									{errors.state && touched.state && (
+										<Error message={errors.state} />
+									)}
+								</FormInputContainer>
 
-						</FormInputContainer>
-
-							<FormInputContainer name='City'>
-								{modal_name === 'EDIT SCHOOL' && 
-									<select value={values.city} name='city' id='city' onChange={handleChange} className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`} placeholder='Enter/Select City'>
-									
-									{CheckState()}
-								</select>}
-								{modal_name !== 'EDIT SCHOOL' && 
-                                    <>
-								<input list="city" name={`city`} value={values.city} onChange={handleChange}
-								placeholder='Search Consultant State' className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}  />
-							<datalist id="city">
-							{CheckState()}
-                                        </datalist>
-                                        
-									</>
-                                    }
-                                    {errors.city && touched.city && <Error message={errors.city}/>}
-                                </FormInputContainer>
-                                </div>
-
-							
-							
+								<FormInputContainer name="City">
+									{modal_name === "EDIT SCHOOL" && (
+										<select
+											value={values.city}
+											name="city"
+											id="city"
+											onChange={handleChange}
+											className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+											placeholder="Enter/Select City">
+											{CheckState()}
+										</select>
+									)}
+									{modal_name !== "EDIT SCHOOL" && (
+										<>
+											<input
+												list="city"
+												name={`city`}
+												value={values.city}
+												onChange={handleChange}
+												placeholder="Search City"
+												className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+											/>
+											<datalist id="city">{CheckState()}</datalist>
+										</>
+									)}
+									{errors.city && touched.city && (
+										<Error message={errors.city} />
+									)}
+								</FormInputContainer>
+							</div>
 						</div>
 
 						{/* Buttons */}
@@ -329,8 +336,7 @@ export function AddVendor({ close }) {
 				setSuccess(true);
 				// onSuccess show the modal and ask the manager to login
 			}
-		} catch (error) {
-		}
+		} catch (error) {}
 	};
 
 	const vendorInfo = {
@@ -339,19 +345,17 @@ export function AddVendor({ close }) {
 		loading: isLoading,
 		close,
 		button_name: "ADD SCHOOL",
-        modal_name: "ADD SCHOOL",
-        title:'Add school’s information below',
-        initialValues: {
-            name: '',
-            level:'',
+		modal_name: "ADD SCHOOL",
+		title: "Add school’s information below",
+		initialValues: {
+			name: "",
+			level: "",
 			code: "",
 			type: "",
-            tag: "",
-            address:'',
-            state: "",
-            city:""
-            
-			
+			tag: "",
+			address: "",
+			state: "",
+			city: "",
 		},
 		onSubmit: (values) => {
 			dispatch(save_awardee(values));
@@ -403,10 +407,15 @@ export function SuccessModal({ close, reset, name }) {
 
 					{/* Buttons */}
 					<div className="mt-12 mr-5 flex gap-4 justify-end">
-						<DashboardButton name="PROCEED" onClick={() => {
+						<DashboardButton
+							name="PROCEED"
+							onClick={() => {
 								close();
 								reset();
-							}} hidden width="78px" />
+							}}
+							hidden
+							width="78px"
+						/>
 					</div>
 				</div>
 			</div>
@@ -428,18 +437,18 @@ export function EditVendorModal({
 		onSuccessClose: () => setShowVendorInfo(false),
 		close,
 		button_name: "SAVE",
-        modal_name: "EDIT SCHOOL",
-        title:'Edit school’s information below',
+		modal_name: "EDIT SCHOOL",
+		title: "Edit school’s information below",
 		loading: isLoading,
 		initialValues: {
-            name: '',
-            level:'',
+			name: "",
+			level: "",
 			code: "",
 			type: "",
-            tag: "",
-            address:'',
-            state: "",
-            city:""
+			tag: "",
+			address: "",
+			state: "",
+			city: "",
 		},
 		vendorInitValue,
 		onSubmit: (values) => {
@@ -448,10 +457,7 @@ export function EditVendorModal({
 		},
 	};
 
-	
-return <VendorInformationComponents {...vendorInfo} />;
-
-	
+	return <VendorInformationComponents {...vendorInfo} />;
 }
 
 export function DeleteVendorModal({ close, onClick, isLoading }) {

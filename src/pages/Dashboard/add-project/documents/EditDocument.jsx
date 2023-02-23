@@ -274,9 +274,8 @@ const EditDocument = ({ documents, getData }) => {
 	};
 
 	async function SubmitDocument(values) {
-		if (selectDoc < 1) {
+		if (selectDoc.length > 1) {
 			navigate("/dashboard/add-new-project/preview");
-		} else {
 			const response = await AddProjectDocument({
 				project_id: getId(),
 				documents: selectDoc,
@@ -290,6 +289,7 @@ const EditDocument = ({ documents, getData }) => {
 				navigate("/dashboard/add-new-project/preview");
 			}
 		}
+		navigate("/dashboard/add-new-project/preview");
 	}
 
 	useEffect(() => {
@@ -321,13 +321,13 @@ const EditDocument = ({ documents, getData }) => {
 	}, [documents]);
 
 	useEffect(() => {
-		if (!documents) {
+		if (!formData) {
 			return;
 		}
 		setMergedData(() => {
 			return {
 				Budget: mergedDocuments(documents?.Budget, formData.Budget),
-				Contract: mergedDocuments(documents.Contract, formData.Contract),
+				Contract: mergedDocuments(documents?.Contract, formData.Contract),
 				MWBE_Forms: mergedDocuments(
 					documents?.MWBE_Forms,
 					formData?.MWBE_Forms
@@ -355,20 +355,28 @@ const EditDocument = ({ documents, getData }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	if (!documents) {
-		return <Navigate to={"/dashboard"} />;
-	}
+	// if (!documents) {
+	// 	return <Navigate to={"/dashboard"} />;
+	// }
 
 	return (
 		<form className="" onSubmit={() => console.log("esdklsdkf")}>
 			<div className="bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8">
 				<div className="mb-6">
 					<h3 className="font-semibold text-gray-900 text-[32px]">
-						Edit Documents
+						Select Documents
 					</h3>
 					<p className="text-gray-700 text-base mb-4">
-						List of documents selected to complete this project
+						Select documents needed to complete this project
 					</p>
+					<div className="flex items-center gap-4 mb-4">
+						{/* <button className='border-none text-[#623F04] text-base'>
+                        Select Template
+                    </button> */}
+						{/* <button className="underline underline-offset-8 text-[#3B6979] text-base">
+							Load Template
+						</button> */}
+					</div>
 				</div>
 				{/* Document Accordions */}
 				<div className="w-full rounded-lg border border-gray-100">
