@@ -56,13 +56,29 @@ import MWBEParticipation from "../../forms/MWBE/MWBE Participation Sheet(_Form)"
 import ShortSmallFormDesignForm from "../../forms/Contract/Short Small Form";
 import OwnerDesignConsultantLessForm from "../../forms/Contract/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { setDefault } from "../add-project/reducer";
-
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)";
+import { MainAffidavit } from "../../forms/E-589C Affidavit Of Capital Improvement";
+=======
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 import ChangeOrderDirectiveForm from "../../forms/Budget/Change Order Directive";
 import ChangeOrderForm from "../../forms/Budget/Change order form/ChangeOrderForm";
 import DesignChangeOrderForm from "../../forms/Budget/design-change-form";
 import MainAffidavit from "../../forms/E-589C Affidavit Of Capital Improvement/MainAffidavit";
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer";
 import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)/OwnerAndContractor";
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
+=======
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 
 const ProjectDashboard = () => {
   const response = useFetchSingleProjectQuery(getId());
@@ -365,6 +381,7 @@ const ProjectDashboard = () => {
                 {/* AWARDEEE SPACE */}
                 <RenderAwardee />
 
+<<<<<<< HEAD
                 <div className="mb-5">
                   <div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
                     Project Manager
@@ -408,14 +425,63 @@ const ProjectDashboard = () => {
       <Bids id={documentsID} />
       <PFForProjects id={documentsID} />
       <ShortSmallFormDesignForm id={documentsID} />
-      <ChangeOrderDirectiveForm id={documentsID} />
-      <ChangeOrderForm id={documentsID} />
-      <DesignChangeOrderForm id={documentsID} />
-      <MainAffidavit id={documentsID} />
-      <DPSShortFormEngineerForm id={documentsID} />
+      <OwnerDesignConsultantLessForm id={documentsID} />
       <OwnerAndContractorForm id={documentsID} />
+      <MainAffidavit id={documentsID} />
     </section>
   );
+								<div className="mb-5">
+									<div className="border-b border-b-gray-100 pb-2 text-[#2f5461] font-bold">
+										Project Manager
+									</div>
+									<div className="flex items-center gap-2 mt-4">
+										<div className="w-6 h-6 rounded-full">
+											{/* <img className="w-full" src={!projectDetails} alt="user" /> */}
+										</div>
+										<span className="text-xs text-[#2f5461]">
+											{!projectDetails || !projectDetails.project_manager
+												? ""
+												: projectDetails?.project_manager.first_name +
+												  " " +
+												  projectDetails?.project_manager.last_name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<Lunsford id={documentsID} />
+			<PunchList id={documentsID} />
+			<NoticeOfIntentConsultant id={documentsID} />
+			<CertificateOfSubstantial id={documentsID} />
+			<NoticeToProceed id={documentsID} />
+			<ProjectCloseoutCheckList id={documentsID} />
+			<NoticeOfAwardConsultant id={documentsID} />
+			<AdvertisementBid id={documentsID} />
+			<CapitalProjectForm id={documentsID} />
+			<CCPRequisitionForm id={documentsID} />
+			<MWBEParticipation id={documentsID} />
+			<Esser id={documentsID} />
+			<EsserPM id={documentsID} />
+			<Lechase id={documentsID} />
+			<TechService id={documentsID} />
+			<NoticeOfAwardContrator id={documentsID} />
+			<DeterminationOFLowestBidder id={documentsID} />
+			<OwnerContractorManagementForm id={documentsID} />
+			<Bids id={documentsID} />
+			<PFForProjects id={documentsID} />
+			<ShortSmallFormDesignForm id={documentsID} />
+			<ChangeOrderDirectiveForm id={documentsID} />
+			<ChangeOrderForm id={documentsID} />
+			<DesignChangeOrderForm id={documentsID} />
+			<MainAffidavit id={documentsID} />
+			<DPSShortFormEngineerForm id={documentsID} />
+			<OwnerAndContractorForm id={documentsID} />
+		</section>
+	);
+>>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 };
 
 export default ProjectDashboard;
