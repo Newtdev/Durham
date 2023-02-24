@@ -273,9 +273,8 @@ const EditDocument = ({ documents, getData }) => {
 		return h;
 	};
 
-	async function SubmitDocument(values) {
+	async function SubmitDocument() {
 		if (selectDoc.length > 1) {
-			navigate("/dashboard/add-new-project/preview");
 			const response = await AddProjectDocument({
 				project_id: getId(),
 				documents: selectDoc,
@@ -288,8 +287,9 @@ const EditDocument = ({ documents, getData }) => {
 				// error alert
 				navigate("/dashboard/add-new-project/preview");
 			}
+		} else {
+			navigate("/dashboard/add-new-project/preview");
 		}
-		navigate("/dashboard/add-new-project/preview");
 	}
 
 	useEffect(() => {

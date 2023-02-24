@@ -36,6 +36,7 @@ import designChangePhaseReducer from "../pages/forms/Budget/design-change-form/r
 import Affidavit from "../pages/forms/E-589C Affidavit Of Capital Improvement/reducer";
 import ShortForm from "../pages/forms/DPS Short Form Engineer/reducer";
 import ownersContractorForm500 from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000)/reducer";
+import ownersContractorFormESSER from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER/reducer";
 
 export const store = configureStore({
 	// reducers
@@ -78,6 +79,7 @@ export const store = configureStore({
 		Affidavit,
 		ShortForm,
 		ownersContractorForm500,
+		ownersContractorFormESSER,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>

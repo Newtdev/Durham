@@ -327,7 +327,6 @@ export const handleResultWithArray = (res) => {
 		if (Array.isArray(d[1])) {
 			d[1].forEach((curs, ind) => {
 				Object.keys(curs).forEach((cur, index) => {
-					console.log(index);
 					dynamic = [
 						...dynamic,
 						{
