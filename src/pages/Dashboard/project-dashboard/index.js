@@ -62,6 +62,9 @@ import MainAffidavit from "../../forms/E-589C Affidavit Of Capital Improvement/M
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer";
 import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)/OwnerAndContractor";
 import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER";
+import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
+import RFPTemplate from "../../forms/RFP Template with MWBE";
+import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
 const ProjectDashboard = () => {
 	const response = useFetchSingleProjectQuery(getId());
@@ -405,6 +408,9 @@ const ProjectDashboard = () => {
 			<DPSShortFormEngineerForm id={documentsID} />
 			<OwnerAndContractorForm id={documentsID} />
 			<OwnerAndContractorFormESSER id={documentsID} />
+			<MWBEFormsForBidForm id={documentsID} />
+			<RFPTemplate id={documentsID} />
+			<OwnerDesignConsultantLessForm id={documentsID} />
 		</section>
 	);
 };

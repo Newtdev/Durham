@@ -111,7 +111,7 @@ const FormFour = (props) => {
 								}}
 								id="lesseeB"
 								name="">
-								<option>Selct Company</option>;
+								<option>Select Company</option>;
 								<option value="NewCompany">Add New Company</option>;
 								{vendorData?.map((cur) => {
 									return (
@@ -232,7 +232,13 @@ const FormFour = (props) => {
 						name="Cancel"
 						onClick={() => dispatch(prevChoiceStep(3))}
 					/>
-					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
+					<DashboardButton
+						hidden
+						name="NEXT"
+						type="submit"
+						width="w-[77px]"
+						loading={props?.isLoading}
+					/>
 				</div>
 			</form>
 		</div>

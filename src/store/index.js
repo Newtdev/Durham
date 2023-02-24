@@ -37,6 +37,9 @@ import Affidavit from "../pages/forms/E-589C Affidavit Of Capital Improvement/re
 import ShortForm from "../pages/forms/DPS Short Form Engineer/reducer";
 import ownersContractorForm500 from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000)/reducer";
 import ownersContractorFormESSER from "../pages/forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER/reducer";
+import MWBEFormForBidsReducer from "../pages/forms/MWBE/MWBE Form for Bids/reducer";
+import RFPTemplateWithMWBEReducer from "../pages/forms/RFP Template with MWBE/reducer";
+import OwnerDesignConsultantLess from "../pages/forms/Owner and Design Consultant (Less than $200,000)/reducer";
 
 export const store = configureStore({
 	// reducers
@@ -80,6 +83,9 @@ export const store = configureStore({
 		ShortForm,
 		ownersContractorForm500,
 		ownersContractorFormESSER,
+		MWBEFormForBidsReducer,
+		RFPTemplateWithMWBEReducer,
+		OwnerDesignConsultantLess,
 	},
 	// middlewares
 	middleware: (getDefaultMiddleware) =>
