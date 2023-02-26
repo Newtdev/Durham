@@ -7,26 +7,26 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = lazy(() => import("./pages/authentications/login/"));
 const Signup = lazy(() => import("./pages/authentications/sign-up"));
 const ResetPassword = lazy(() =>
-	import("./pages/authentications/change-password")
+  import("./pages/authentications/change-password")
 );
 
 function pages(id) {
-	return [
-		{ path: "/", element: <Login /> },
-		{ path: "/project-manager/activate/:token", element: <Signup /> },
-		{ path: "/password-reset/:email/:id", element: <ResetPassword /> },
-		{ path: "/dashboard/*", element: <Dashboard /> },
-	].map(({ path, element }, id) => {
-		return <Route key={id} path={path} element={element}></Route>;
-	});
+  return [
+    { path: "/", element: <Login /> },
+    { path: "/project-manager/activate/:token", element: <Signup /> },
+    { path: "/password-reset/:email/:id", element: <ResetPassword /> },
+    { path: "/dashboard/*", element: <Dashboard /> },
+  ].map(({ path, element }, id) => {
+    return <Route key={id} path={path} element={element}></Route>;
+  });
 }
 export default function App() {
-	return (
-		<main className="bg-white overflow-x-hidden">
-			<Suspense fallback={<div>Loading...</div>}>
-				<Routes>{pages()}</Routes>
-			</Suspense>
-			<ToastContainer theme="colored" />
-		</main>
-	);
+  return (
+    <main className="bg-white overflow-x-hidden">
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>{pages()}</Routes>
+      </Suspense>
+      <ToastContainer theme="colored" />
+    </main>
+  );
 }

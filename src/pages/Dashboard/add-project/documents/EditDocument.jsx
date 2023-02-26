@@ -273,14 +273,9 @@ const EditDocument = ({ documents, getData }) => {
 		return h;
 	};
 
-<<<<<<< HEAD
-	async function SubmitDocument() {
-		if (selectDoc.length > 1) {
-=======
 	async function SubmitDocument(values) {
 		if (selectDoc.length > 1) {
 			navigate("/dashboard/add-new-project/preview");
->>>>>>> 5c03d66ecf01b6a6af73dc171f90f40981506202
 			const response = await AddProjectDocument({
 				project_id: getId(),
 				documents: selectDoc,
@@ -293,8 +288,6 @@ const EditDocument = ({ documents, getData }) => {
 				// error alert
 				navigate("/dashboard/add-new-project/preview");
 			}
-		} else {
-			navigate("/dashboard/add-new-project/preview");
 		}
 		navigate("/dashboard/add-new-project/preview");
 	}
