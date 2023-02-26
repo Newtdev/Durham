@@ -111,7 +111,7 @@ const FormTwo = (props) => {
 								render={({ remove, push }) => (
 									<>
 										<div className="flex flex-col gap-3 mt-5">
-											{props?.values?.mwbeInfo.map((mwbeInfo, index) => (
+											{props?.values?.mwbeInfo?.map((mwbeInfo, index) => (
 												<Fragment key={index}>
 													<div className="flex flex-col w-full">
 														<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-1 rounded-t-lg">

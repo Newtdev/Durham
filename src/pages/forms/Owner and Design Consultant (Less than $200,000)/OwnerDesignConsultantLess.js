@@ -5,13 +5,12 @@ import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { OwnerDesignConsultantLessSlug } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { page } from "../Lundsford/lundsFormslice";
 import { modal, saveFormField } from "../reducer";
 import FormOne from "./FormOne";
 import FormTwo from "./FormTwo";
 import Preview from "./Preview";
 import { setResult } from "../../../shared-component";
-import { nextStep } from "./reducer";
+import { nextStep, page } from "./reducer";
 
 const OwnerDesignConsultantLessForm = ({ id }) => {
 	const dispatch = useDispatch();
@@ -52,7 +51,8 @@ const OwnerDesignConsultantLessForm = ({ id }) => {
 			if (pages === 1) {
 				// dispatch(saveFormField(values))
 				console.log(values);
-				dispatch(nextStep(2));
+
+				dispatch(nextStep(3));
 				// HandleSubmit(values);
 			} else if (pages === 2) {
 				dispatch(saveFormField(values));

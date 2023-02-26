@@ -320,6 +320,7 @@ export const YearsInWord = (a) => {
 export const handleResultWithArray = (res) => {
 	let dynamic = [];
 	let sum = [];
+
 	if (!res) return null;
 	const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
 

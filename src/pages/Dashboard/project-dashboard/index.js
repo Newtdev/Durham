@@ -65,6 +65,7 @@ import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contract
 import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
 import RFPTemplate from "../../forms/RFP Template with MWBE";
 import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
+import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
 
 const ProjectDashboard = () => {
 	const response = useFetchSingleProjectQuery(getId());
@@ -411,6 +412,7 @@ const ProjectDashboard = () => {
 			<MWBEFormsForBidForm id={documentsID} />
 			<RFPTemplate id={documentsID} />
 			<OwnerDesignConsultantLessForm id={documentsID} />
+			<ProposalForm id={documentsID} />
 		</section>
 	);
 };

@@ -1,36 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const OwnerDesignConsultantLess = createSlice({
-  name: "OwnerDesignConsultantLess",
-  initialState: {
-    form_data: [],
-    step: 1,
-  },
-  reducers: {
-    saveDoc: (state, { payload }) => {
-      state.form_data = payload;
-    },
-    nextStep: (state, { payload }) => {
-      state.step = payload;
-    },
-    prevStep: (state, { payload }) => {
-      state.step = payload;
-    },
-    stepDefault: (state) => {
-      state.step = 1;
-    },
-  },
+const OwnerDesignConsultantless = createSlice({
+	name: "OwnerDesignConsultantless",
+	initialState: {
+		form_data: [],
+		step: 1,
+	},
+	reducers: {
+		saveDoc: (state, { payload }) => {
+			state.form_data = payload;
+		},
+		nextStep: (state, { payload }) => {
+			state.step = payload;
+		},
+		prevStep: (state, { payload }) => {
+			state.step = payload;
+		},
+		stepDefault: (state) => {
+			state.step = 1;
+		},
+	},
 });
 
-export default OwnerDesignConsultantLess.reducer;
+export default OwnerDesignConsultantless.reducer;
 
 // CREATE AN ACTION CEATOR
-export const { saveDoc } = OwnerDesignConsultantLess.actions;
-export const { prevStep } = OwnerDesignConsultantLess.actions;
-export const { nextStep } = OwnerDesignConsultantLess.actions;
-export const { stepDefault } = OwnerDesignConsultantLess.actions;
+export const { saveDoc } = OwnerDesignConsultantless.actions;
+export const { prevStep } = OwnerDesignConsultantless.actions;
+export const { nextStep } = OwnerDesignConsultantless.actions;
+export const { stepDefault } = OwnerDesignConsultantless.actions;
 
 // SELECT THE TOKEN AND USER
 
-export const selectForm = (state) => state.OwnerDesignConsultantLess.form_data;
-export const page = (state) => state.OwnerDesignConsultantLess.step;
+export const selectForm = (state) => state.OwnerDesignConsultantless.form_data;
+export const page = (state) => state.OwnerDesignConsultantless.step;

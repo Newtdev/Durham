@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../../ui";
 import { modal, saveFormField } from "../../reducer";
 import { page, nextChoiceStep } from "./reducer";
-import { Proposal } from "../../../../yup";
+// import { ProposalYup } from "../../../../yup";
 import { ProposalSlug } from "../../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
@@ -11,6 +11,7 @@ import { useFillProjectDocumentMutation } from "../../../../features/services/ap
 import Preview from "./Preview";
 import FirstForm from "./Forms/FirstForm";
 import SecondForm from "./Forms/SecondForm";
+import ThirdForm from "./Forms/ThirdForm";
 
 const ProposalForm = ({ id }) => {
 	const dispatch = useDispatch();
@@ -51,33 +52,39 @@ const ProposalForm = ({ id }) => {
 	const Formik = useFormik({
 		initialValues: {
 			userType: "",
-			select: "",
-			slectDate: "",
-			date: "",
+			affectedDate: "",
+			signedPerson: "",
+			position: "",
+			overhead: 10,
+			sale: 6.75,
+			insurance: 30,
+			profit: 10,
+			allowable: 15.7,
+
+			signedDate: "",
 			contract: "",
 			contractor: "",
 			proposal: "",
 			numberDays: "",
-			userTypeChange: "",
-			selectChange: "",
-			slectDatChangee: "",
-			dateChange: "",
-			contractChange: "",
-			contractorChange: "",
-			proposalChange: "",
-			numberDaysChange: "",
+			material: "",
+			shipping: "",
+			hours: "",
+			amount: "",
+			Thours: "",
+			Tamount: "",
+			rental: "",
+			subcontractors: "",
 		},
-		// validationSchema: Proposal[pages],
+		// validationSchema: ProposalYup[pages],
 
 		onSubmit: (values) => {
-			console.log(pages);
 			if (pages === 1) {
 				dispatch(nextChoiceStep(2));
-				console.log("ense");
 			} else if (pages === 2) {
-				dispatch(nextChoiceStep(2));
+				dispatch(nextChoiceStep(3));
+			} else if (pages === 3) {
 				dispatch(saveFormField(values));
-				// HandleSubmit(values);
+				HandleSubmit(values);
 			}
 		},
 	});
@@ -86,7 +93,8 @@ const ProposalForm = ({ id }) => {
 		<ModalOverlay show={id === ProposalSlug && show}>
 			{pages === 1 && <FirstForm {...Formik} />}
 			{pages === 2 && <SecondForm {...Formik} />}
-			{pages === 3 && <Preview />}
+			{pages === 3 && <ThirdForm {...Formik} />}
+			{pages === 4 && <Preview />}
 		</ModalOverlay>
 	);
 };

@@ -22,17 +22,23 @@ const PreviewForm = ({ value }) => {
 	const formID = useSelector(project_document_id);
 	let content = useFetchFilledFormQuery(formID);
 
-	const { vendors, project, form_fields } = content?.currentData?.data;
+	const { vendors } = content?.currentData?.data?.vendors || [];
+	const { project } = content?.currentData?.data?.project || {};
+	const { form_fields } = content?.currentData?.data?.form_fields || {};
 
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
 
 	useEffect(() => {
 		if (!vendors || !form_fields?.addressCopy) {
-			setAwardee(vendors[0]);
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
+		const data = vendors?.filter(
+			(cur) => cur.role === form_fields?.addressCopy
+		);
+		if (!data) {
+			setAwardee(vendors[0]);
+		}
 		setAwardee(data);
 	}, [vendors, form_fields]);
 
