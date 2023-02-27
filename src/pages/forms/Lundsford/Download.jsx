@@ -24,7 +24,6 @@ const DownLoadForm = ({
 	const formID = useSelector(project_document_id);
 	useFetchFilledFormQuery(formID);
 	const content = useSelector(savedResponse);
-	console.log(content);
 	const { project } = content || "";
 
 	const handlePrint = useReactToPrint({

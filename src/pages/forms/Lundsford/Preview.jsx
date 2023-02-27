@@ -2,7 +2,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton, Close } from "../../Dashboard/Components";
 import DownLoadForm from "./Download";
 import { useDispatch, useSelector } from "react-redux";
-import { stepDefault, prevStep } from "./lundsFormslice";
+import { prevStep, stepDefault } from "./lundsFormslice";
 import { useEffect, useRef, useState } from "react";
 import {
 	closeDownload,
@@ -10,7 +10,10 @@ import {
 	openDownload,
 	showDownload,
 } from "../reducer";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 
 const PreviewForm = ({ value }) => {
@@ -21,10 +24,9 @@ const PreviewForm = ({ value }) => {
 
 	const formID = useSelector(project_document_id);
 	let content = useFetchFilledFormQuery(formID);
-
-	const { vendors } = content?.currentData?.data?.vendors || [];
-	const { project } = content?.currentData?.data?.project || {};
-	const { form_fields } = content?.currentData?.data?.form_fields || {};
+	const vendors = content?.currentData?.data?.vendors || [];
+	const project = content?.currentData?.data?.project || {};
+	const form_fields = content?.currentData?.data?.form_fields || {};
 
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
@@ -251,7 +253,10 @@ const PreviewForm = ({ value }) => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(selectFilled(false));
+								dispatch(prevStep(1));
+							}}
 						/>
 						<DashboardButton
 							hidden

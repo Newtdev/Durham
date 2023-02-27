@@ -1,53 +1,147 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
 import { FormInputBigContainer } from "../../../3 bids/forms/VendorsInfo";
-import { prevChoiceStep } from "../reducer";
+import { nextChoiceStep, prevChoiceStep } from "../reducer";
 import { closeModal } from "../../../reducer";
-import Component from "../Component";
+import Component, {
+	HandleMultiplication,
+	HandleSubTotal,
+	HandleTotal,
+	MasterhandleSubTotal,
+} from "../Component";
+import currency from "currency.js";
+import { project_document_id } from "../../../../Dashboard/project-dashboard/ReducerSlice";
+import { useFillProjectDocumentMutation } from "../../../../../features/services/api";
+import { setResult } from "../../../../../shared-component";
+import { toast } from "react-toastify";
 
 const ThirdForm = (props) => {
 	const dispatch = useDispatch();
-	const [overheadResult, setOverheadResult] = useState(0.0);
-	const [profitResult, setProfitResult] = useState(0.0);
-	//   const [overheadFocus, setOverheadFocus] = useState(false);
+
 	const [Focus, setFocus] = useState("");
-
-	const [percentage, setPercentage] = useState({
-		overhead: 6.0,
-		profit: 6.0,
-	});
-
-	const handlePercentageChange = (newPercentage) => {
-		setPercentage(newPercentage);
-	};
-
-	const mat = Number(props.values.rental);
-	const hour = Number(props.values.subcontractors);
-	useEffect(() => {
-		const over = percentage.overhead / 100;
-		const prof = percentage.profit / 100;
-
-		const result = over * mat;
-		const result1 = prof * hour;
-		setOverheadResult(result.toFixed(2));
-		setProfitResult(result1.toFixed(2));
-	}, [props.values.rental, props.values.subcontractors, percentage, hour, mat]);
 
 	const handleClick = (props) => {
 		if (props === "third") {
 			setFocus("third");
 		} else if (props === "fourth") {
 			setFocus("fourth");
+		} else if (props === "sixth") {
+			setFocus("sixth");
 		}
 	};
+
+	const formID = useSelector(project_document_id);
+
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+
+	const HandleSubmit = async (values) => {
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: setResult(values),
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				console.log("submitted");
+				dispatch(nextChoiceStep(4));
+			}
+		}
+	};
+
+	const BondsTotal = HandleTotal(
+		props?.values?.bonds,
+		MasterhandleSubTotal(
+			HandleSubTotal(
+				props?.values?.material,
+				HandleTotal(props?.values?.overhead, props?.values?.material),
+				HandleTotal(props?.values?.sale, props?.values?.material),
+				props.values?.shipping
+			),
+			HandleSubTotal(
+				HandleMultiplication(props?.values?.hours, props?.values?.amount),
+				HandleTotal(
+					props?.values?.profit,
+					HandleMultiplication(props?.values?.hours, props?.values?.amount)
+				),
+				HandleTotal(
+					props?.values?.insurance,
+					HandleMultiplication(props?.values?.hours, props?.values?.amount)
+				),
+				HandleTotal(
+					props?.values?.allowable,
+					HandleMultiplication(props?.values?.Thours, props?.values?.Tamount)
+				),
+				HandleMultiplication(props?.values?.Thours, props?.values?.Tamount)
+			),
+			HandleSubTotal(
+				HandleTotal(props?.values?.overhead_exprimental, props?.values?.rental),
+				props?.values?.rental
+			),
+			HandleSubTotal(
+				HandleTotal(
+					props?.values?.profit_subcontractor,
+					props?.values?.subcontractors
+				),
+				props?.values?.subcontractors
+			)
+		)
+	);
+
+	const SubTotal = MasterhandleSubTotal(
+		HandleSubTotal(
+			props?.values?.material,
+			HandleTotal(props?.values?.overhead, props?.values?.material),
+			HandleTotal(props?.values?.sale, props?.values?.material),
+			props.values?.shipping
+		),
+		HandleSubTotal(
+			HandleMultiplication(props?.values?.hours, props?.values?.amount),
+			HandleTotal(
+				props?.values?.profit,
+				HandleMultiplication(props?.values?.hours, props?.values?.amount)
+			),
+			HandleTotal(
+				props?.values?.insurance,
+				HandleMultiplication(props?.values?.hours, props?.values?.amount)
+			),
+			HandleTotal(
+				props?.values?.allowable,
+				HandleMultiplication(props?.values?.Thours, props?.values?.Tamount)
+			),
+			HandleMultiplication(props?.values?.Thours, props?.values?.Tamount)
+		),
+		HandleSubTotal(
+			HandleTotal(props?.values?.overhead_exprimental, props?.values?.rental),
+			props?.values?.rental
+		),
+		HandleSubTotal(
+			HandleTotal(
+				props?.values?.profit_subcontractor,
+				props?.values?.subcontractors
+			),
+			props?.values?.subcontractors
+		)
+	);
+
+	const GrandTotal = HandleSubTotal(BondsTotal, SubTotal);
 
 	return (
 		<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14">
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4 "
-				onSubmit={props.handleSubmit}>
+				onSubmit={(e) => {
+					e.preventDefault();
+					HandleSubmit({
+						...props?.values,
+						subtotalValue: SubTotal,
+						totalValue: GrandTotal,
+					});
+				}}>
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">
@@ -85,7 +179,7 @@ const ThirdForm = (props) => {
 										</label>
 										<div className="relative w-full">
 											<input
-												value={props.values.rental}
+												value={props.values?.rental}
 												id="rental"
 												onChange={(e) => {
 													if (isNaN(e.target.value)) {
@@ -111,16 +205,26 @@ const ThirdForm = (props) => {
 											<p className=" w-[10%]">
 												{Focus === "third" ? (
 													<Component
-														onChange={handlePercentageChange}
-														value={percentage}
-														id="overhead"
+														value={props?.values?.overhead_exprimental}
+														id="overhead_exprimental"
+														onChange={(e) =>
+															props?.setFieldValue(
+																"overhead_exprimental",
+																e.target.value
+															)
+														}
 													/>
 												) : (
-													`${percentage.overhead}%`
+													`${props?.values?.overhead_exprimental}%`
 												)}
 											</p>
 										</div>
-										<p className="text-[#693B79] font-bold">{`$ ${overheadResult}`}</p>
+										<p className="text-[#693B79] font-bold">
+											{`$ ${HandleTotal(
+												props?.values?.overhead_exprimental,
+												props?.values?.rental
+											)}` || "0.00"}
+										</p>
 									</div>
 									<div className="my-4">
 										<button
@@ -151,7 +255,7 @@ const ThirdForm = (props) => {
 										</label>
 										<div className="relative w-full">
 											<input
-												value={props.values.subcontractors}
+												value={props.values?.subcontractors}
 												id="subcontractors"
 												onChange={(e) => {
 													if (isNaN(e.target.value)) {
@@ -181,16 +285,26 @@ const ThirdForm = (props) => {
 											<p className=" w-[10%]">
 												{Focus === "fourth" ? (
 													<Component
-														onChange={handlePercentageChange}
-														value={percentage}
-														id="profit"
+														value={props?.values?.profit_subcontractor}
+														id="profit_subcontractor"
+														onChange={(e) =>
+															props?.setFieldValue(
+																"profit_subcontractor",
+																e.target.value
+															)
+														}
 													/>
 												) : (
-													`${percentage.profit}%`
+													`${props?.values?.profit_subcontractor}%`
 												)}
 											</p>
 										</div>
-										<p className="text-[#693B79] font-bold">{`$ ${profitResult}`}</p>
+										<p className="text-[#693B79] font-bold">
+											{`$ ${HandleTotal(
+												props?.values?.profit_subcontractor,
+												props?.values?.subcontractors
+											)}` || "0.00"}
+										</p>
 									</div>
 									<div className="my-4">
 										<button
@@ -208,19 +322,37 @@ const ThirdForm = (props) => {
 								<p className="">Subtotal of Proposal</p>
 								<p></p>
 							</div>
-							<p className="text-[#693B79] font-bold">$ 0.0</p>
+							<p className="text-[#693B79] font-bold">
+								{currency(SubTotal).format() || "0.00"}
+							</p>
 						</div>
 						<div className="flex flex-col gap-2 px-6 py-2 bg-[#F3F4F6] rounded-lg mt-4">
 							<div className="flex items-center justify-between">
 								<p className="">Bonds ( % of subtotal of proposal)</p>
-								<p>{"1.5%"}</p>
+
+								<div className=" w-[10%]">
+									{Focus === "sixth" ? (
+										<Component
+											value={props?.values?.bonds}
+											id="bonds"
+											onChange={(e) =>
+												props?.setFieldValue("bonds", e.target.value)
+											}
+										/>
+									) : (
+										`${props?.values?.bonds}%`
+									)}
+								</div>
 							</div>
-							<p className="text-[#693B79] font-bold">$ 0.0</p>
+							<p className="text-[#693B79] font-bold">
+								${BondsTotal || "0.00"}
+							</p>
 						</div>
 						<div className="my-4">
 							<button
 								className={`text-white text-md hover:bg-blue-600 hover:text-white focus:ring-4 bg-[#693B79] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
-								type="button">
+								type="button"
+								onClick={() => handleClick("sixth")}>
 								EDIT PERCENTAGE
 							</button>
 						</div>
@@ -229,7 +361,8 @@ const ThirdForm = (props) => {
 								<p className="text-base">TOTAL OF CHANGE PROPOSAL</p>
 								<p></p>
 							</div>
-							<p>$ 0.0</p>
+							{/*  */}
+							<p>{currency(GrandTotal).format() || "0.00"}</p>
 						</div>
 					</div>
 				</div>
@@ -240,7 +373,13 @@ const ThirdForm = (props) => {
 						name="Cancel"
 						onClick={() => dispatch(prevChoiceStep(2))}
 					/>
-					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
+					<DashboardButton
+						hidden
+						name="NEXT"
+						type="submit"
+						width="w-[77px]"
+						loading={isLoading}
+					/>
 				</div>
 			</form>
 		</div>

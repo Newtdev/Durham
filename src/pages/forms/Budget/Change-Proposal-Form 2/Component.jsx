@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 const Component = ({ onChange, value, id }) => {
 	return (
@@ -15,6 +15,56 @@ const Component = ({ onChange, value, id }) => {
 			</small>
 		</div>
 	);
+};
+
+export const HandleMultiplication = (c, d) => {
+	return useMemo(() => {
+		if (!c || !d) {
+			return;
+		}
+		return c * d;
+	}, [c, d]);
+};
+
+export const HandleTotal = (a, b) => {
+	return useMemo(() => {
+		if (!a) {
+			return b;
+		} else if (!b) {
+			return "";
+		}
+		let percentage = a / 100;
+		let total = percentage * Number(b);
+		return total?.toFixed(2);
+	}, [a, b]);
+};
+
+export const HandleSubTotal = (...val) => {
+	return useMemo(() => {
+		if (!val) {
+			return "";
+		}
+
+		let sum = 0;
+		for (let i of val) {
+			console.log(i);
+			sum = sum += Number(i);
+		}
+		return sum;
+	}, [val]);
+};
+export const MasterhandleSubTotal = (...val) => {
+	return useMemo(() => {
+		if (!val) {
+			return "";
+		}
+
+		let total = 0;
+		for (let i of val) {
+			total = total += Number(i);
+		}
+		return total;
+	}, [val]);
 };
 
 export default Component;

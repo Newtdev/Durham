@@ -23,11 +23,8 @@ const MWBEBids = () => {
 	const downloadComponent = useRef();
 
 	const [a] = UseFetchFilledFormDetails(formID);
-
 	const projectDetails = a?.data?.project;
 	const formDetails = a?.data?.form_fields;
-	const durham = a?.data?.durham_profile;
-	const vendors = a?.data?.vendors;
 
 	const props = {
 		component: downloadComponent,

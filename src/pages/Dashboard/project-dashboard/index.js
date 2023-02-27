@@ -20,6 +20,7 @@ import {
 	deleted,
 	hideHistory,
 	historyToggle,
+	isFilled,
 	onClose,
 	onDelete,
 	show,
@@ -75,6 +76,7 @@ const ProjectDashboard = () => {
 	const documentsID = useSelector(slug);
 	const remove = useSelector(deleted);
 	const toggle = useSelector(historyToggle);
+	const filled = useSelector(isFilled);
 	const [deleteProject, { isLoading }] = useDeleteProjectMutation();
 	const [duplicateProject, result] = useDuplicateProjectMutation();
 	const awardee = !projectDetails?.project_vendors
@@ -381,38 +383,38 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			<Lunsford id={documentsID} />
-			<PunchList id={documentsID} />
-			<NoticeOfIntentConsultant id={documentsID} />
-			<CertificateOfSubstantial id={documentsID} />
-			<NoticeToProceed id={documentsID} />
-			<ProjectCloseoutCheckList id={documentsID} />
-			<NoticeOfAwardConsultant id={documentsID} />
-			<AdvertisementBid id={documentsID} />
-			<CapitalProjectForm id={documentsID} />
-			<CCPRequisitionForm id={documentsID} />
-			<MWBEParticipation id={documentsID} />
-			<Esser id={documentsID} />
-			<EsserPM id={documentsID} />
-			<Lechase id={documentsID} />
-			<TechService id={documentsID} />
-			<NoticeOfAwardContrator id={documentsID} />
-			<DeterminationOFLowestBidder id={documentsID} />
-			<OwnerContractorManagementForm id={documentsID} />
-			<Bids id={documentsID} />
-			<PFForProjects id={documentsID} />
-			<ShortSmallFormDesignForm id={documentsID} />
-			<ChangeOrderDirectiveForm id={documentsID} />
-			<ChangeOrderForm id={documentsID} />
-			<DesignChangeOrderForm id={documentsID} />
-			<MainAffidavit id={documentsID} />
-			<DPSShortFormEngineerForm id={documentsID} />
-			<OwnerAndContractorForm id={documentsID} />
-			<OwnerAndContractorFormESSER id={documentsID} />
-			<MWBEFormsForBidForm id={documentsID} />
-			<RFPTemplate id={documentsID} />
-			<OwnerDesignConsultantLessForm id={documentsID} />
-			<ProposalForm id={documentsID} />
+			<Lunsford id={documentsID} filled={filled} />
+			<PunchList id={documentsID} filled={filled} />
+			<NoticeOfIntentConsultant id={documentsID} filled={filled} />
+			<CertificateOfSubstantial id={documentsID} filled={filled} />
+			<NoticeToProceed id={documentsID} filled={filled} />
+			<ProjectCloseoutCheckList id={documentsID} filled={filled} />
+			<NoticeOfAwardConsultant id={documentsID} filled={filled} />
+			<AdvertisementBid id={documentsID} filled={filled} />
+			<CapitalProjectForm id={documentsID} filled={filled} />
+			<CCPRequisitionForm id={documentsID} filled={filled} />
+			<MWBEParticipation id={documentsID} filled={filled} />
+			<Esser id={documentsID} filled={filled} />
+			<EsserPM id={documentsID} filled={filled} />
+			<Lechase id={documentsID} filled={filled} />
+			<TechService id={documentsID} filled={filled} />
+			<NoticeOfAwardContrator id={documentsID} filled={filled} />
+			<DeterminationOFLowestBidder id={documentsID} filled={filled} />
+			<OwnerContractorManagementForm id={documentsID} filled={filled} />
+			<Bids id={documentsID} filled={filled} />
+			<PFForProjects id={documentsID} filled={filled} />
+			<ShortSmallFormDesignForm id={documentsID} filled={filled} />
+			<ChangeOrderDirectiveForm id={documentsID} filled={filled} />
+			<ChangeOrderForm id={documentsID} filled={filled} />
+			<DesignChangeOrderForm id={documentsID} filled={filled} />
+			<MainAffidavit id={documentsID} filled={filled} />
+			<DPSShortFormEngineerForm id={documentsID} filled={filled} />
+			<OwnerAndContractorForm id={documentsID} filled={filled} />
+			<OwnerAndContractorFormESSER id={documentsID} filled={filled} />
+			<MWBEFormsForBidForm id={documentsID} filled={filled} />
+			<RFPTemplate id={documentsID} filled={filled} />
+			<OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
+			<ProposalForm id={documentsID} filled={filled} />
 		</section>
 	);
 };

@@ -9,14 +9,12 @@ const lundsfordSlice = createSlice({
 	reducers: {
 		saveDoc: (state, action) => {
 			state.form_data = action.payload;
-		
-			
 		},
-		nextStep: (state) => {
-			state.step += 1;
+		nextStep: (state, { payload }) => {
+			state.step = payload;
 		},
-		prevStep: (state) => {
-			state.step -= 1;
+		prevStep: (state, { payload }) => {
+			state.step = payload;
 		},
 		stepDefault: (state) => {
 			state.step = 1;

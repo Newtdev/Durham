@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import { LundsForm } from "../../../yup";
 import { ModalOverlay } from "../../../ui";
@@ -11,8 +11,10 @@ import { modal, saveFormField } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { toast } from "react-toastify";
+import { setResult } from "../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
-const Lunsford = ({ id }) => {
+const Lunsford = ({ id, filled }) => {
 	const Dispatch = useDispatch();
 	const pages = useSelector(page);
 	const showModal = useSelector(modal);
@@ -20,18 +22,12 @@ const Lunsford = ({ id }) => {
 
 	const formID = useSelector(project_document_id);
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -39,12 +35,12 @@ const Lunsford = ({ id }) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				Dispatch(nextStep());
+				Dispatch(nextStep(2));
 			}
 		}
 	};
 
-	const { values, touched, errors, handleChange, handleSubmit } = useFormik({
+	const Formik = useFormik({
 		initialValues: {
 			type: "",
 			addressCopy: "",
@@ -59,6 +55,8 @@ const Lunsford = ({ id }) => {
 			}
 		},
 	});
+	const { values, touched, errors, handleChange, handleSubmit, setValues } =
+		Formik;
 	const typeProps = {
 		addressValue: values.addressCopy,
 		value: values.type,
@@ -74,10 +72,22 @@ const Lunsford = ({ id }) => {
 		component,
 	};
 
+	useEffect(() => {
+		if (!a?.data?.form_fields) {
+			return;
+		}
+		// setFieldValue('')
+		setValues({
+			type: a?.data?.form_fields?.type,
+			addressCopy: a?.data?.form_fields?.addressCopy,
+		});
+	}, [a]);
+
 	return (
 		<div>
 			<ModalOverlay show={id === lundsford && showModal}>
-				{pages === 1 && <Forms {...typeProps} />}
+				{filled ? <PreviewForm {...previewProps} /> : null}
+				{pages === 1 ? <Forms {...typeProps} /> : null}
 				{pages === 2 && <PreviewForm {...previewProps} />}
 			</ModalOverlay>
 		</div>

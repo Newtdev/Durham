@@ -3,52 +3,11 @@ import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
 import { FormInputBigContainer } from "../../../3 bids/forms/VendorsInfo";
-import { moveSubTotal, prevChoiceStep } from "../reducer";
+import { prevChoiceStep } from "../reducer";
 import { closeModal } from "../../../reducer";
-import Component from "../Component";
-import currency from "currency.js";
+import Component, { HandleMultiplication, HandleTotal } from "../Component";
 
-export const HandleMultiplication = (c, d) => {
-	return useMemo(() => {
-		if (!c || !d) {
-			return;
-		}
-		return c * d;
-	}, [c, d]);
-};
-
-export const HandleTotal = (a, b) => {
-	// const dispatch = useDispatch();
-	return useMemo(() => {
-		if (!a) {
-			return b;
-		} else if (!b) {
-			return "";
-		}
-		let percentage = a / 100;
-		let total = percentage * Number(b);
-		// dispatch(moveSubTotal(total));
-		return total?.toFixed(2);
-	}, [a, b]);
-};
-
-export const HandleSubTotal = (...val) => {
-	return useMemo(() => {
-		let sum = 0;
-		for (let i of val) {
-			sum += Number(i);
-		}
-		return sum;
-	}, [val]);
-};
 const SecondForm = (props) => {
-	const [percentage, setPercentage] = useState({
-		overhead: 6.0,
-		sale: 6.75,
-		insurance: 30,
-		profit: 10,
-		allowable: 15.7,
-	});
 	const [focuse, setFocuse] = useState("");
 	const dispatch = useDispatch();
 
@@ -68,25 +27,8 @@ const SecondForm = (props) => {
 				className="relative w-[600px] bg-white rounded-lg shadow py-4 "
 				onSubmit={(e) => {
 					e.preventDefault();
-					// console.log(
-					// 	handleSubTotal(
-					// 		HandleTotal(percentage?.overhead, props?.values?.material),
-					// 		HandleTotal(percentage.sale, props?.values?.material),
-					// 		HandleTotal(
-					// 			percentage?.profit,
-					// 			HandleMultiplication(props.values?.hours, props?.values?.amount)
-					// 		),
-					// 		HandleTotal(
-					// 			percentage?.allowable,
-					// 			HandleMultiplication(
-					// 				props?.values?.Thours,
-					// 				props?.values?.Tamount
-					// 			)
-					// 		)
-					// 	)
-					// );
+
 					props.handleSubmit();
-					// dispatch(moveSubTotal());
 				}}>
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
@@ -159,7 +101,7 @@ const SecondForm = (props) => {
 														}
 													/>
 												) : (
-													`${percentage.overhead}%`
+													`${props?.values?.overhead}%`
 												)}
 											</p>
 										</div>
@@ -167,7 +109,7 @@ const SecondForm = (props) => {
 											{`$${HandleTotal(
 												props?.values?.overhead,
 												props?.values?.material
-											)}`}
+											)}` || "0.00"}
 										</p>
 									</div>
 									<div className="flex flex-col gap-2 px-6 py-2 bg-[#F3F4F6] rounded-lg my-4">
@@ -183,7 +125,7 @@ const SecondForm = (props) => {
 														}
 													/>
 												) : (
-													`${percentage.sale}%`
+													`${props?.values?.sale}%`
 												)}
 											</p>
 										</div>
@@ -191,7 +133,7 @@ const SecondForm = (props) => {
 											{`$${HandleTotal(
 												props?.values?.sale,
 												props?.values?.material
-											)}`}
+											)}` || "0.00"}
 										</p>
 									</div>
 									<div className="my-4">
@@ -223,17 +165,6 @@ const SecondForm = (props) => {
 											<small className="absolute text-gray-400 top-1/2 translate-y-[-9px] left-[12px]">
 												$
 											</small>
-											<p>
-												{HandleSubTotal(
-													props?.values?.material,
-													HandleTotal(
-														props?.values?.overhead,
-														props?.values?.material
-													),
-													HandleTotal(percentage.sale, props?.values?.material),
-													props.values?.shipping
-												)}
-											</p>
 										</div>
 										{props.errors.shipping && props.touched.shipping && (
 											<Error message={props.errors.shipping} />
@@ -306,18 +237,19 @@ const SecondForm = (props) => {
 														}
 													/>
 												) : (
-													`${percentage.profit}%`
+													`${props?.values?.profit}%`
 												)}
 											</p>
 										</div>
 										<p className="text-[#693B79] font-bold">
+											$
 											{HandleTotal(
 												props?.values?.profit,
 												HandleMultiplication(
 													props.values?.hours,
 													props?.values?.amount
 												)
-											)}
+											) || "0.00"}
 										</p>
 									</div>
 									<div className="flex flex-col gap-2 px-6 py-2 bg-[#F3F4F6] rounded-lg mb-4">
@@ -333,18 +265,19 @@ const SecondForm = (props) => {
 														}
 													/>
 												) : (
-													`${percentage.insurance}%`
+													`${props?.values?.insurance}%`
 												)}
 											</p>
 										</div>
 										<p className="text-[#693B79] font-bold">
+											$
 											{HandleTotal(
 												props?.values?.insurance,
 												HandleMultiplication(
 													props?.values?.hours,
 													props?.values?.amount
 												)
-											)}
+											) || "0.00"}
 										</p>
 									</div>
 
@@ -408,18 +341,19 @@ const SecondForm = (props) => {
 														}
 													/>
 												) : (
-													`${percentage.allowable}%`
+													`${props?.values?.allowable}%`
 												)}
 											</p>
 										</div>
-										<p>
+										<p className="text-[#693B79] font-bold">
+											$
 											{HandleTotal(
 												props?.values?.allowable,
 												HandleMultiplication(
 													props?.values?.Thours,
 													props?.values?.Tamount
 												)
-											)}
+											) || "0.00"}
 										</p>
 									</div>
 									<div className="my-4">
@@ -433,39 +367,6 @@ const SecondForm = (props) => {
 								</div>
 							</FormInputBigContainer>
 						</div>
-						<p>
-							{HandleSubTotal(
-								HandleMultiplication(
-									props?.values?.hours,
-									props?.values?.amount
-								),
-								HandleTotal(
-									props?.values?.profit,
-									HandleMultiplication(
-										props?.values?.hours,
-										props?.values?.amount
-									)
-								),
-								HandleTotal(
-									props?.values?.insurance,
-									HandleMultiplication(
-										props?.values?.hours,
-										props?.values?.amount
-									)
-								),
-								HandleTotal(
-									props?.values?.allowable,
-									HandleMultiplication(
-										props?.values?.Thours,
-										props?.values?.Tamount
-									)
-								),
-								HandleMultiplication(
-									props?.values?.Thours,
-									props?.values?.Tamount
-								)
-							)}
-						</p>
 					</div>
 				</div>
 				{/* Buttons */}
