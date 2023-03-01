@@ -1,15 +1,10 @@
 import { FormikProvider, useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import { CCPRequisition } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
-import { CCPRequisitionSchema } from "../../../../yup";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../../reducer";
-import FormFour from "./forms/FormFour";
 import FormOne from "./forms/FormOne";
 import FormThree from "./forms/FormThree";
 import FormTwo from "./forms/FormTwo";
@@ -22,37 +17,6 @@ const CCPRequisitionForm = ({ id }) => {
 	const show = useSelector(modal);
 
 	// const pages = 4;
-	const formID = useSelector(project_document_id);
-
-	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
-
-	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
-		const response = await fillProjectDocument({
-			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-				{ field_name: param[5], field_value: val[5] },
-				{ field_name: param[6], field_value: val[6] },
-			],
-		});
-		if (response) {
-			if (response?.error) {
-				toast.error(response?.message, {
-					position: toast.POSITION.TOP_CENTER,
-				});
-			} else {
-				dispatch(nextStep(5));
-			}
-		}
-	};
 
 	// const show = useSelector(modal);
 	const formik = useFormik({
@@ -61,64 +25,49 @@ const CCPRequisitionForm = ({ id }) => {
 			budgetCode: "",
 			commodityCode: "",
 			requisitionOrder: "",
-			poCode: "",
-			selectBox: "",
+			po: "",
 			attached: "",
-			signedDate: "",
+			signDate: "",
 			vendor: "",
 			vendorId: "",
 			companyName: "",
-			vendorState: "",
-			vendorCity: "",
-			vendorStreet: "",
-			vendorZipCode: "",
-			personName: "",
-			personStreet: "",
-			personCity: "",
-			personState: "",
-			personZipCode: "",
-
-			address: {
-				city: "",
-				street: "",
-				state: "",
-				zipCode: "",
-			},
+			addressCity: "",
+			addressStreet: "",
+			addressState: "",
+			addressZipCode: "",
+			ccpshippingCost: "",
+			ccpsalesTax: "YES",
+			ccptax: "4.75",
 			name: "",
-			shippingAddress: {
-				city: "",
-				street: "",
-				state: "",
-				zipCode: "",
-			},
+			city: "",
+			street: "",
+			state: "",
+			zipCode: "",
 			location: "",
-			items: {
-				stockNumber: "",
-				description: "",
-				quantity: {
+
+			items: [
+				{
 					quantity: "",
 					unit: "",
+					stockNumber: "",
+					description: "",
 					unitPrice: "",
 				},
-			},
-			shippingCost: "",
-			salesTax: "",
+			],
 		},
-		// validationSchema: CCPRequisitionSchema,
+		// validationSchema: CCPRequisitionSchema[pages - 1],
 		onSubmit: (values) => {
+			console.log(values);
 			if (pages === 1) {
-				console.log("pages: ", values);
+				console.log("pages: ", pages);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
 				console.log("pages: ", pages);
 				dispatch(nextStep(3));
 			} else if (pages === 3) {
 				console.log("pages: ", pages);
-				dispatch(nextStep(4));
-			} else if (pages === 4) {
-				console.log("pages: ", pages);
 				dispatch(saveFormField(values));
-				HandleSubmit(values);
+				// HandleSubmit(values);
 			}
 		},
 	});
@@ -130,15 +79,13 @@ const CCPRequisitionForm = ({ id }) => {
 		})();
 	}, [dispatch]);
 
-	// return <ModalOverlay show={true}>
 	return (
 		<ModalOverlay show={id === CCPRequisition && show}>
 			<FormikProvider value={formik}>
-				<form onSubmit={formik.handleSubmit}>
-					{pages === 1 && <FormOne {...formik} />}
-					{pages === 2 && <FormTwo {...formik} />}
-					{pages === 5 && <Preview />}
-				</form>
+				{pages === 1 && <FormOne {...formik} />}
+				{pages === 2 && <FormTwo {...formik} />}
+				{pages === 3 && <FormThree {...formik} />}
+				{pages === 4 && <Preview />}
 			</FormikProvider>
 		</ModalOverlay>
 	);

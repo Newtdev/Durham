@@ -11,10 +11,10 @@ const PageOne = ({
 }) => {
 	// console.log(formDetails);
 	return (
-		<div className=" pb-4 text-black font11  text-[11pt] leading-[1.3] h-[11in]">
+		<div className=" pb-4 text-black font11  text-[11pt] leading-[1.3] h-[11in] ">
 			<div>
 				{/* Page 1 */}
-				<div className="m-[1in]">
+				<div className="m-[1in] ">
 					<div className="text-center mb-4">
 						<h1 className=" font-bold underline mb-4 ">
 							OWNER-CONTRACTOR AGREEMENT

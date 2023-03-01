@@ -11,10 +11,10 @@ const PageOne = ({
 }) => {
 	// console.log(formDetails);
 	return (
-		<div className=" pb-4 text-black font11  text-[11pt] leading-[1.3] h-[11in]">
+		<div className=" pb-4 text-black font11  text-[11pt] leading-[1.3] h-[11in] ">
 			<div>
 				{/* Page 1 */}
-				<div className="m-[1in]">
+				<div className="mt-[1in] ml-[1in] mr-[1in] mb-[0.1in] flex flex-col justify-between bg-green-500">
 					<div className="text-center mb-4">
 						<h1 className=" font-bold underline mb-4 ">
 							OWNER-CONTRACTOR AGREEMENT
@@ -181,7 +181,7 @@ const PageOne = ({
 						</div>
 					</div>
 
-					<div className="flex justify-between mt-24 text-[8pt]">
+					<div className="flex justify-between mt-8 text-[8pt]">
 						<p className="text-[8pt]">Section C, Owner-Contractor Agreement</p>
 						<p>C-1</p>
 					</div>

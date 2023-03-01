@@ -13,70 +13,70 @@ import Logo from "../../../../assets/formlogo.png";
 import { prevStep } from "./reducer";
 import { CalculateAmount } from "../Change order form/form/FormOne";
 import { AddDate } from "../Change order form/form/FormTwo";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
-const ToApprove = ({ name, nottoBeHighlighted }) => {
-	return name?.map((person, i) => {
-		return (
-			<div className="grid grid-cols-4 gap-4 mb-3">
-				<div>
-					<p>
-						<span className={`${nottoBeHighlighted}`}>
-							Durham Public Schools
-						</span>
-					</p>
-					<p className="border-t border-black">
-						<i className="text-[7pt]">Durham Public Schools</i>
-					</p>
-				</div>
-				<div>
-					<p>
-						<span className={`${nottoBeHighlighted}`}>{person?.name}</span>
-					</p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">By</i>
-					</p>
-				</div>
-				<div>
-					<br />
-					<p></p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">Signature</i>
-					</p>
-				</div>
-				<div>
-					<br />
-					<p></p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">Date</i>
-					</p>
-				</div>
-			</div>
-		);
-	});
-};
+// const ToApprove = ({ name, nottoBeHighlighted }) => {
+// 	return name?.map((person, i) => {
+// 		return (
+// 			<div className="grid grid-cols-4 gap-4 mb-3">
+// 				<div>
+// 					<p>
+// 						<span className={`${nottoBeHighlighted}`}>
+// 							Durham Public Schools
+// 						</span>
+// 					</p>
+// 					<p className="border-t border-black">
+// 						<i className="text-[7pt]">Durham Public Schools</i>
+// 					</p>
+// 				</div>
+// 				<div>
+// 					<p>
+// 						<span className={`${nottoBeHighlighted}`}>{person?.name}</span>
+// 					</p>
+// 					<p className=" border-t border-black">
+// 						<i className="text-[7pt]">By</i>
+// 					</p>
+// 				</div>
+// 				<div>
+// 					<br />
+// 					<p></p>
+// 					<p className=" border-t border-black">
+// 						<i className="text-[7pt]">Signature</i>
+// 					</p>
+// 				</div>
+// 				<div>
+// 					<br />
+// 					<p></p>
+// 					<p className=" border-t border-black">
+// 						<i className="text-[7pt]">Date</i>
+// 					</p>
+// 				</div>
+// 			</div>
+// 		);
+// 	});
+// };
 
 const Preview = () => {
-	const forms_fields = useSelector(fields);
-	console.log(forms_fields);
-
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
 
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
+	// const content = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 	// const content = useSelector(savedResponse);
 	const [highlighted, setHighlighted] = useState(false);
 	// const project = content?.data?.data?.project;
 	// const vendors = content?.data?.data?.vendors;
-	let formData = !content?.data ? [] : content?.currentData?.data;
+	let formData = a?.data;
 
 	const vendors = formData?.vendors;
 	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
 	const manager = formData?.project_manager;
-	// const form_fields = formData?.form_fields;
+	const forms_fields = formData?.form_fields;
+	console.log(forms_fields);
 	// const form_fields = useSelector(fields);
 	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";

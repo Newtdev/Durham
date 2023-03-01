@@ -3,16 +3,27 @@ import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../../Dashboard/Overview-dashboard/OverviewComponents";
 import { getList } from "../../../Advertisement-for-bid-template/reducer";
-import SelectDate, { FormSelect } from "../../../components";
+import SelectDate from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
-import { FormInputPlain, FormCheckBox, FormInput } from "../../../components";
+import { FormInputPlain } from "../../../components";
 
 const FormOne = (props) => {
 	const dispatch = useDispatch();
 	const states = useSelector(getList);
 
-	const agreementDate = {
+	const signDate = {
+		...props,
+		value: props.values.signDate,
+		onChange: props.handleChange,
+		name: "signDate",
+		error: props.errors.signDate,
+		touched: props.touched.signDate,
+		placeholder: "Select date",
+		//    prevPage
+	};
+
+	const creationDate = {
 		...props,
 		value: props.values.creationDate,
 		onChange: props.handleChange,
@@ -22,97 +33,21 @@ const FormOne = (props) => {
 		placeholder: "Select date",
 		//    prevPage
 	};
-
-	const requisitionSignDate = {
-		...props,
-		value: props.values.signedDate,
-		onChange: props.handleChange,
-		name: "signedDate",
-		error: props.errors.signedDate,
-		touched: props.touched.signedDate,
-		placeholder: "Select date",
-		//    prevPage
-	};
-	const budgetCode = {
-		value: props.values.budgetCode,
-		onChange: props.handleChange,
-		name: "budgetCode",
-		error: props.errors.budgetCode,
-		touched: props.touched.budgetCode,
-		placeholder: "Budget Code",
-		//    prevPage
-	};
-	const commodityCode = {
-		value: props.values.commodityCode,
-		onChange: props.handleChange,
-		name: "commodityCode",
-		error: props.errors.commodityCode,
-		touched: props.touched.commodityCode,
-		placeholder: "Commodity Code",
-		//    prevPage
-	};
-	const requisitionOrder = {
-		value: props.values.requisitionOrder,
-		onChange: props.handleChange,
-		name: "requisitionOrder",
-		error: props.errors.requisitionOrder,
-		touched: props.touched.requisitionOrder,
-		placeholder: "Requisition/Work Order #",
-		//    prevPage
-	};
-	const poCode = {
-		value: props.values.poCode,
-		onChange: props.handleChange,
-		name: "poCode",
-		error: props.errors.poCode,
-		touched: props.touched.poCode,
-		placeholder: "P.O. #",
-		//    prevPage
-	};
-
-	const one = {
-		value: props.values.selectBox,
-		onChange: props.handleChange,
-		error: props.errors.selectBox,
-		touched: props.touched.selectBox,
-		name: "selectBox",
-	};
-	const two = {
-		value: props.values.selectBox,
-		onChange: props.handleChange,
-		error: props.errors.selectBox,
-		touched: props.touched.selectBox,
-		name: "selectBox",
-	};
-
-	const checkBox = [
-		{
-			id: 1,
-			numb: "1",
-			value: "Best Price(Attached)",
-		},
-		{
-			id: 2,
-			numb: "2",
-			value: "Franchise/Sole Source(Attached)",
-		},
-	];
-
 	return (
 		<div>
 			<div
 				className="relative w-full h-screen max-w-md mx-auto md:h-auto mt-14"
 				onClick={(e) => e.stopPropagation()}>
 				{/* Modal content */}
-				<div
+				<form
 					className="relative w-[600px] bg-white rounded-lg shadow py-4"
-					onSubmit={props.onSubmit}>
+					onSubmit={props.handleSubmit}>
 					<div className="flex items-baseline justify-between mx-6">
 						<div>
 							<h3 className="text-lg font-bold text-gray-900">
 								CCP Requisition - MODIFIED 4-22-22FM
 							</h3>
-							<p className="text-base text-gray-700">Aquisition Details</p>
+							<p className="text-base text-gray-700">Requisition Details</p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}
@@ -125,15 +60,15 @@ const FormOne = (props) => {
 
 					{/* Progress */}
 					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-						<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+						<div className="bg-[#2F5461] h-2.5 w-1/3"></div>
 					</div>
 
 					<div className="mx-6 mb-12">
 						<div className="mt-3 ml-2 ">
 							<FormInputContainer name="What day is this requisition being made?">
-								<SelectDate {...agreementDate} />
-								{props.errors.agreementDate && props.touched.agreementDate && (
-									<Error message={props.errors.agreementDate} />
+								<SelectDate {...creationDate} />
+								{props.errors.creationDate && props.touched.creationDate && (
+									<Error message={props.errors.creationDate} />
 								)}
 							</FormInputContainer>
 
@@ -144,10 +79,56 @@ const FormOne = (props) => {
 								</h2>
 								<div className="w-full h-[1px] bg-[#D1D5DB]"></div>
 								<div className="grid grid-cols-2 gap-2">
-									<FormInputPlain {...budgetCode} />
-									<FormInputPlain {...commodityCode} />
-									<FormInputPlain {...requisitionOrder} />
-									<FormInputPlain {...poCode} />
+									<div className="flex flex-col">
+										<FormInputPlain
+											type={"text"}
+											onChange={props.handleChange}
+											name="budgetCode"
+											placeholder={"Budget Code"}
+											value={props?.values.budgetCode}
+										/>
+										{props.errors.budgetCode && props.touched.budgetCode && (
+											<Error message={props.errors.budgetCode} />
+										)}
+									</div>
+									<div className="flex flex-col">
+										<FormInputPlain
+											type={"text"}
+											onChange={props.handleChange}
+											name="commodityCode"
+											value={props?.values.commodityCode}
+											placeholder={"Commodity Code"}
+										/>
+										{props.errors.commodityCode &&
+											props.touched.commodityCode && (
+												<Error message={props.errors.commodityCode} />
+											)}
+									</div>
+									<div className="flex flex-col">
+										<FormInputPlain
+											type={"text"}
+											onChange={props.handleChange}
+											name="requisitionOrder"
+											placeholder={"Requisition/Work Order #"}
+											value={props?.values?.requisitionOrder}
+										/>
+										{props.errors.requisitionOrder &&
+											props.touched.requisitionOrder && (
+												<Error message={props.errors.requisitionOrder} />
+											)}
+									</div>
+									<div className="flex flex-col">
+										<FormInputPlain
+											type={"text"}
+											onChange={props.handleChange}
+											name="po"
+											placeholder={"P.O. #"}
+											value={props?.values?.po}
+										/>
+										{props.errors.po && props.touched.po && (
+											<Error message={props.errors.po} />
+										)}
+									</div>
 								</div>
 							</div>
 
@@ -156,17 +137,58 @@ const FormOne = (props) => {
 									Select the appropriate boxes below.
 								</h2>
 								<div className="flex flex-col">
-									<FormCheckBox data={checkBox[0].value} props={one} />
-									<FormCheckBox data={checkBox[1].value} props={two} />
+									<div className="flex items-center mb-5">
+										<input
+											id="default-radio-1"
+											type="radio"
+											checked={
+												props?.values?.attached === "Best Price(Attached)"
+													? true
+													: false
+											}
+											value="Best Price(Attached)"
+											name="attached"
+											onChange={props.handleChange}
+											className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+										/>
+										<label
+											for="default-radio-1"
+											className="ml-2 text-base text-gray-900">
+											Best Price(Attached)
+										</label>
+									</div>
+									<div className="flex items-center">
+										<input
+											id="default-radio-2"
+											type="radio"
+											checked={
+												props?.values?.attached ===
+												"Franchise/Sole Source(Attached)"
+													? true
+													: false
+											}
+											value="Franchise/Sole Source(Attached)"
+											name="attached"
+											className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+											onChange={props.handleChange}
+										/>
+										<label
+											for="default-radio-2"
+											className="ml-2 text-base text-gray-900">
+											Franchise/Sole Source(Attached)
+										</label>
+									</div>
 								</div>
+								{props.errors.attached && props.touched.attached && (
+									<Error message={props.errors.attached} />
+								)}
 							</div>
 
-							<FormInputContainer name="When does the project manager sign the requisition?">
-								<SelectDate {...requisitionSignDate} />
-								{props.errors.requisitionSignDate &&
-									props.touched.requisitionSignDate && (
-										<Error message={props.errors.requisitionSignDate} />
-									)}
+							<FormInputContainer name="When does the project sign sign the requisition?">
+								<SelectDate {...signDate} />
+								{props.errors.signDate && props.touched.signDate && (
+									<Error message={props.errors.signDate} />
+								)}
 							</FormInputContainer>
 						</div>
 					</div>
@@ -175,7 +197,7 @@ const FormOne = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Previous"
+							name="Cancel"
 							onClick={() => dispatch(closeModal())}
 						/>
 						<DashboardButton
@@ -185,7 +207,7 @@ const FormOne = (props) => {
 							width="w-[77px]"
 						/>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	);
