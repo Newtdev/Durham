@@ -544,7 +544,7 @@ export const DurhamsApi = createApi({
 			},
 			invalidatesTags: ["projects", "school"],
 			transformResponse: (response) => response,
-			transformErrorResponse: (response, meta, arg) => response,
+			transformErrorResponse: (response, meta, arg) => response?.data,
 		}),
 
 		fetchSchool: builder.query({

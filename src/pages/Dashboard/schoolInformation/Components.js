@@ -23,7 +23,6 @@ export const VendorsHeader = [
 	"Type",
 	"Tag",
 	"Mailing Address",
-
 	"",
 ];
 
@@ -59,7 +58,7 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						</td>
 						<td className="py-4 px-4">{type}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{tag}</td>
-						<td className="py-4 ">{address}</td>
+						<td className="py-4 px-4">{address}</td>
 
 						{/* <td className="py-4 px-4 whitespace-nowrap">{industry}</td> */}
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
@@ -191,6 +190,26 @@ const VendorInformationComponents = ({
 			  });
 	}
 
+	function CheckZipCode() {
+		if (!values.city) {
+			return;
+		}
+		const city = !states
+			? ""
+			: Object.values(states)?.filter((state) => state.name === values.state);
+
+		const zipcode = city?.find((cities) => cities);
+		return !zipcode
+			? ""
+			: zipcode?.cities[values.city]?.map((zipcode, index) => {
+					return (
+						<option key={index} value={zipcode}>
+							{zipcode}
+						</option>
+					);
+			  });
+	}
+
 	const HandleClose = () => {
 		close();
 		handleReset();
@@ -261,18 +280,19 @@ const VendorInformationComponents = ({
 								</FormInputContainer>
 
 								<FormInputContainer name="City">
-									{modal_name === "EDIT SCHOOL" && (
+									{modal_name === "EDIT SCHOOL" ? (
 										<select
-											value={values.city}
+											value={values?.city}
 											name="city"
 											id="city"
 											onChange={handleChange}
 											className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 											placeholder="Enter/Select City">
+											<option value={values?.city}>{values?.city}</option>
 											{CheckState()}
 										</select>
-									)}
-									{modal_name !== "EDIT SCHOOL" && (
+									) : null}
+									{modal_name !== "EDIT SCHOOL" ? (
 										<>
 											<input
 												list="city"
@@ -284,12 +304,40 @@ const VendorInformationComponents = ({
 											/>
 											<datalist id="city">{CheckState()}</datalist>
 										</>
-									)}
+									) : null}
 									{errors.city && touched.city && (
 										<Error message={errors.city} />
 									)}
 								</FormInputContainer>
 							</div>
+
+							<FormInputContainer name="Zip code">
+								{modal_name !== "EDIT SCHOOL" ? (
+									<>
+										<input
+											list="zip_code"
+											name={`zip_code`}
+											value={values?.zip_code}
+											onChange={handleChange}
+											placeholder="Select Zip Code"
+											className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+										/>
+										<datalist id="zip_code">{CheckZipCode()}</datalist>
+									</>
+								) : null}
+								{modal_name === "EDIT SCHOOL" ? (
+									<select
+										value={values?.zip_code}
+										name="zip_code"
+										id="zip_code"
+										onChange={handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+										placeholder="Enter/Select City">
+										<option value={values?.zip_code}>{values?.zip_code}</option>
+										{CheckZipCode()}
+									</select>
+								) : null}
+							</FormInputContainer>
 						</div>
 
 						{/* Buttons */}
@@ -356,6 +404,7 @@ export function AddVendor({ close }) {
 			address: "",
 			state: "",
 			city: "",
+			zip_code: "",
 		},
 		onSubmit: (values) => {
 			dispatch(save_awardee(values));
