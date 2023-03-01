@@ -1,11 +1,7 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import {
-	useFetchFilledFormQuery,
-	useFillProjectDocumentMutation,
-} from "../../../features/services/api";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { techServices } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { TechServiceSchema } from "../../../yup";
@@ -14,10 +10,7 @@ import { modal, saveFormField } from "../reducer";
 import Forms from "./Forms";
 import { page, techNextStep } from "./reducer";
 import TechPreview from "./TechPreview";
-import techPDF from "../../Dashboard/files/Technology/Technology Service Agreement(developerVersion).pdf";
-import Quixote from "./Test";
-import { PDFViewer } from "@react-pdf/renderer";
-import Preview from "./Test";
+import { setResult } from "../../../shared-component";
 
 const TechService = ({ id }) => {
 	const dispatch = useDispatch();
@@ -25,21 +18,11 @@ const TechService = ({ id }) => {
 	const show = useSelector(modal);
 	const formID = useSelector(project_document_id);
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
-	// console.log(response)
 
 	const HandleFormSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -86,9 +69,6 @@ const TechService = ({ id }) => {
 		<ModalOverlay show={id === techServices && show}>
 			{pages === 1 && <Forms {...props} />}
 			{pages === 2 && <TechPreview {...Formik} />}
-
-			{/* {pages === 2 && <Preview {...Formik} />} */}
-			{/* {pages === 2 && } */}
 		</ModalOverlay>
 	);
 };

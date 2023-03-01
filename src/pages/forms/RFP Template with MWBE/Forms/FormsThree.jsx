@@ -1,14 +1,25 @@
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useFillProjectDocumentMutation } from "../../../../features/services/api";
+import RichTextComp from "../../../../Private/PrivateRoute";
+import { setResult } from "../../../../shared-component";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
+import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { FormInputPlain } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
-import { prevStep } from "../reducer";
+import { nextStep, prevStep } from "../reducer";
 
 const FormThree = (props) => {
 	const dispatch = useDispatch();
+	const [text, setText] = useState({ editorHtml: "", theme: "" });
+	const formID = useSelector(project_document_id);
+
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	console.log(text);
 
 	const prototypeNotUtilized = {
 		value:
@@ -28,6 +39,23 @@ const FormThree = (props) => {
 		placeholder: "Proposal Scope",
 	};
 
+	const HandleSubmit = async (values) => {
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: setResult(values),
+		});
+
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				dispatch(nextStep(4));
+			}
+		}
+	};
+
 	return (
 		<div>
 			<div
@@ -37,7 +65,10 @@ const FormThree = (props) => {
 
 				<form
 					className="relative w-[600px] bg-white rounded-lg shadow py-4"
-					onSubmit={props.handleSubmit}>
+					onSubmit={(e) => {
+						e.preventDefault();
+						HandleSubmit({ ...props?.values, proposalScope: text });
+					}}>
 					<div className="flex justify-between items-baseline mx-6">
 						<div>
 							<h3 className="text-lg font-bold text-gray-900">
@@ -157,7 +188,10 @@ const FormThree = (props) => {
 							<label className="text-base text-gray-900 mb-1">
 								Enter the Proposal Scope
 							</label>
-							<OverviewTextarea {...proposalScope} />
+							<div className="h-36">
+								<RichTextComp text={text} setText={(val) => setText(val)} />
+							</div>
+							{/* <OverviewTextarea {...proposalScope} /> */}
 						</div>
 					</div>
 
@@ -173,7 +207,7 @@ const FormThree = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
-							loading={props?.isLoading}
+							loading={isLoading}
 						/>
 					</div>
 				</form>

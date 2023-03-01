@@ -10,6 +10,7 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { toast } from "react-toastify";
 import { nextStep, page } from "./reducer";
+import { setResult } from "../../../shared-component";
 
 const NoticeOfAwardContrator = ({ id }) => {
 	const dispatch = useDispatch();
@@ -21,19 +22,9 @@ const NoticeOfAwardContrator = ({ id }) => {
 	// console.log(response)
 
 	const HandleFormSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-				{ field_name: param[5], field_value: val[5] },
-				{ field_name: param[6], field_value: val[6] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {

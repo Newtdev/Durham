@@ -12,6 +12,7 @@ import { ModalOverlay } from "../../../ui";
 import { choiceStep, getStates, nextChoiceStep } from "./Reducer";
 import PrecisFolder from "./Form";
 import Preview from "./Preview";
+import { setResult } from "../../../shared-component";
 
 const PFForProjects = ({ id }) => {
 	const dispatch = useDispatch();
@@ -23,19 +24,9 @@ const PFForProjects = ({ id }) => {
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: param[0] },
-				{ field_name: param[1], field_value: param[1] },
-				{ field_name: param[2], field_value: param[2] },
-				{ field_name: param[3], field_value: param[3] },
-				{ field_name: param[4], field_value: param[4] },
-				{ field_name: param[5], field_value: param[5] },
-				{ field_name: param[6], field_value: param[6] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
