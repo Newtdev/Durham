@@ -347,13 +347,13 @@ const ProjectDashboard = () => {
 										School Information
 									</div>
 									<div className="text-xs text-gray-900">
-										<p className="mt-4 font-bold">
-											{!school ? "" : school.name}
+										<p className="mt-4 font-bold text-base">
+											{!school ? "" : school?.name}
 										</p>
-										<p className="my-1">{`${!school ? "" : school.address}, ${
-											!school ? "" : school.city
-										}, ${!school ? "" : school.state}, ${
-											!school ? "" : school.zip_code
+										<p className="my-1">{`${!school ? "" : school?.address}, ${
+											!school ? "" : school?.city
+										}, ${!school ? "" : school?.state}, ${
+											!school ? "" : school?.zip_code
 										}`}</p>
 										{/* <p>+65 1234 1234</p> */}
 									</div>
