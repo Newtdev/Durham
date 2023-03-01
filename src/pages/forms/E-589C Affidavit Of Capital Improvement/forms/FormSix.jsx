@@ -237,7 +237,7 @@ const FormSix = (props) => {
 						name="NEXT"
 						type="submit"
 						width="w-[77px]"
-						loading={props.isLoading}
+						loading={props?.isLoading}
 					/>
 				</div>
 			</form>

@@ -46,7 +46,6 @@ const FormThree = (props) => {
 		let stat = Object.values(states)?.find(
 			(state) => state.name === props.values.conferenceStateA
 		);
-
 		if (!stat) {
 			return;
 		}
@@ -65,7 +64,7 @@ const FormThree = (props) => {
 			return;
 		}
 		const city = Object.values(states)?.filter(
-			(state) => state?.name === props.values.conferenceStateA
+			(state) => state.name === props.values.conferenceStateA
 		);
 		const zipcode = city?.find((cities) => cities);
 		return zipcode?.cities[props.values.conferenceCityA]?.map(
@@ -234,7 +233,15 @@ const FormThree = (props) => {
 					<ButtonWhiteBG
 						width="w-[100px]"
 						name="Cancel"
-						onClick={() => dispatch(prevChoiceStep(2))}
+						onClick={() => {
+							if (props.both) {
+								return dispatch(prevChoiceStep(2));
+							} else if (props.single) {
+								return dispatch(prevChoiceStep(4));
+							} else {
+								return;
+							}
+						}}
 					/>
 					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
 				</div>

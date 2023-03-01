@@ -20,7 +20,7 @@ const FormFive = (props) => {
 		if (!focus) {
 		} else {
 			vendorData?.forEach((cur) => {
-				if (cur.company_name === props.values?.lesseeC) {
+				if (cur.company_name === props.values.lesseeC) {
 					props.values.companyNameC = cur.company_name;
 					props.values.companyAddressC = cur.street;
 					props.values.conferenceCityC = cur.city;
@@ -44,13 +44,13 @@ const FormFive = (props) => {
 			return;
 		}
 		let stat = Object.values(states)?.find(
-			(state) => state?.name === props.values?.conferenceStateC
+			(state) => state.name === props.values.conferenceStateC
 		);
 		if (!stat) {
 			return;
 		}
 
-		return Object.keys(stat?.cities)?.map((cur, id) => {
+		return Object.keys(stat.cities)?.map((cur, id) => {
 			return (
 				<option key={id} value={cur}>
 					{cur}
@@ -60,7 +60,7 @@ const FormFive = (props) => {
 	}
 
 	function CheckZipCode() {
-		if (!props.values?.conferenceCityC) {
+		if (!props.values.conferenceCityC) {
 			return;
 		}
 		const city = Object.values(states)?.filter(
@@ -230,7 +230,15 @@ const FormFive = (props) => {
 					<ButtonWhiteBG
 						width="w-[100px]"
 						name="Cancel"
-						onClick={() => dispatch(prevChoiceStep(4))}
+						onClick={() => {
+							if (props.both) {
+								return dispatch(prevChoiceStep(4));
+							} else if (props.blanket) {
+								return dispatch(prevChoiceStep(1));
+							} else {
+								return;
+							}
+						}}
 					/>
 					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
 				</div>

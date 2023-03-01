@@ -1,8 +1,9 @@
-import { useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalOverlay } from "../../../ui";
 import { modal, saveFormField } from "../reducer";
 import { page, nextChoiceStep } from "./reducer";
+import { AffidavitYup } from "../../../yup";
 import { AffidavitSlug } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -74,7 +75,6 @@ const MainAffidavit = ({ id }) => {
 			conferenceCityD: "",
 			conferenceZipCodeD: "",
 		},
-		// validationSchema: Affidavit[pages],
 
 		onSubmit: (values) => {
 			if (pages === 1) {
@@ -86,16 +86,17 @@ const MainAffidavit = ({ id }) => {
 				dispatch(nextChoiceStep(2));
 			} else if (pages === 2) {
 				if (Formik.values.boxA === "Owner") {
-					// dispatch(saveFormField(values));
-					// HandleSubmit(values);
+					return dispatch(nextChoiceStep(4));
 				}
 				dispatch(nextChoiceStep(3));
 			} else if (pages === 3) {
 				dispatch(nextChoiceStep(4));
 			} else if (pages === 4) {
-				if (Formik.values.boxA === "Owner") {
-					// dispatch(saveFormField(values));
-					// HandleSubmit(values);
+				if (
+					Formik.values.userType === "Single Use" &&
+					Formik.values.boxA === "Owner"
+				) {
+					return dispatch(nextChoiceStep(6));
 				}
 				dispatch(nextChoiceStep(5));
 			} else if (pages === 5) {
@@ -107,7 +108,6 @@ const MainAffidavit = ({ id }) => {
 		},
 	});
 
-	// console.log(Formik.values.userType);
 	const formProps = {
 		...Formik,
 		isLoading,
@@ -117,11 +117,16 @@ const MainAffidavit = ({ id }) => {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
 				{pages === 1 && <FormOne {...Formik} />}
-				{pages === 4 && <FormTwo {...Formik} />}
+				{pages === 4 && <FormTwo {...Formik} single />}
 				{Formik.values.boxA === "Lessee/Tenant" && pages === 5 && (
-					<FormThree {...Formik} />
+					<FormThree {...Formik} single />
 				)}
-				{pages === 6 && <FormFour {...formProps} />}
+				{pages === 6 && (
+					<FormFour
+						{...formProps}
+						single={Formik.values.boxA === "Owner" ? "owner" : "lessee"}
+					/>
+				)}
 				{pages === 7 && <Preview />}
 			</ModalOverlay>
 		);
@@ -129,8 +134,8 @@ const MainAffidavit = ({ id }) => {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
 				{pages === 1 && <FormOne {...Formik} />}
-				{pages === 5 && <FormFive {...Formik} />}
-				{pages === 6 && <FormSix {...formProps} />}
+				{pages === 5 && <FormFive {...Formik} blanket />}
+				{pages === 6 && <FormSix {...formProps} blanket />}
 				{pages === 7 && <Preview />}
 			</ModalOverlay>
 		);
@@ -140,18 +145,23 @@ const MainAffidavit = ({ id }) => {
 				{pages === 1 && <FormOne {...Formik} />}
 				{pages === 2 && <FormTwo {...Formik} />}
 				{Formik.values.boxA === "Lessee/Tenant" && pages === 3 && (
-					<FormThree {...Formik} />
+					<FormThree {...Formik} both />
 				)}
-				{pages === 4 && <FormFour {...Formik} />}
-				{pages === 5 && <FormFive {...Formik} />}
-				{pages === 6 && <FormSix {...formProps} />}
+				{pages === 4 && (
+					<FormFour
+						{...Formik}
+						both={Formik.values.boxA === "Owner" ? "owner" : "lessee"}
+					/>
+				)}
+				{pages === 5 && <FormFive {...Formik} both />}
+				{pages === 6 && <FormSix {...formProps} both />}
 				{pages === 7 && <Preview />}
 			</ModalOverlay>
 		);
 	} else {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>
-				{pages === 1 && <FormOne {...Formik} />}
+				{pages === 1 && <FormOne {...Formik} disabled />}
 			</ModalOverlay>
 		);
 	}
