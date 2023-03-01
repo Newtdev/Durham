@@ -20,12 +20,7 @@ import { Spinner } from "../../../assets";
 import { useState } from "react";
 import { useFetchSingleProjectManagerQuery } from "../../../features/services/api";
 import { userDetails } from "../../../features/auth";
-import { useDispatch, useSelector } from "react-redux";
-import {
-	addNewDocToProject,
-	doc,
-	RemoveNewDocToProject,
-} from "../add-project/reducer";
+import { useSelector } from "react-redux";
 
 /***** DASHBOARD HEADER AND NAVIGATION ********/
 export function DashboardNav() {
@@ -72,9 +67,13 @@ export function DashboardNav() {
 			<div
 				className="container flex flex-wrap items-center justify-start mx-auto"
 				onClick={() => setShow(!show)}>
-				<span className="w-20 mr-8">
+				<span className="w-36 bg-red mr-8">
 					<Link to="/dashboard">
-						<img src={Logo} className="w-full object-cover" alt="Durham Logo" />
+						<img
+							src={Logo}
+							className="w-full object-contain"
+							alt="Durham Logo"
+						/>
 					</Link>
 				</span>
 				<div className=" ml-auto md:order-2 relative">

@@ -26,7 +26,7 @@ export const VendorsHeader = [
 	"Last name",
 	"Title",
 	"Company Name",
-	"Address",
+	"Mailing Address",
 	"President/Vp",
 	"Secretary",
 	"",
@@ -57,15 +57,15 @@ export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
 							{!vendor_id ? "none" : vendor_id}
 						</td>
-						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+						<td className="py-3  font-normal text-gray-900 whitespace-nowrap">
 							{first_name}
 						</td>
-						<td className="py-3 px-4 font-normal text-gray-900 whitespace-nowrap">
+						<td className="py-3 font-normal text-gray-900 whitespace-nowrap">
 							{last_name}
 						</td>
 						<td className="py-4 px-4">{title}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{company_name}</td>
-						<td className="py-4 ">{`${street}, ${city}, ${state}, ${zip_code}`}</td>
+						<td className="py-4 px-4">{`${street}, ${city}, ${state}, ${zip_code}`}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{president}</td>
 						<td className="py-4 px-4 whitespace-nowrap">{secretary}</td>
 						{/* <td className="py-4 px-4 whitespace-nowrap">{industry}</td> */}
