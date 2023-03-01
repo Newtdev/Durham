@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { setResult } from "../../../shared-component";
 import { Determination_bidder } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { DeterminationFormContractor } from "../../../yup";
@@ -21,15 +22,9 @@ const DeterminationOFLowestBidder = ({ id }) => {
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {

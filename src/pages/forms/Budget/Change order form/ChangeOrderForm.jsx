@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { setResult } from "../../../../shared-component";
+import { handleResultWithArray, setResult } from "../../../../shared-component";
 import { ChangeOrder } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { ChangeOrderSchema } from "../../../../yup";
@@ -27,7 +27,8 @@ const ChangeOrderForm = ({ id }) => {
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: setResult(values),
+			form_fields: handleResultWithArray(values).form_fields,
+			dynamic_inputs: handleResultWithArray(values).form_fields,
 		});
 		if (response) {
 			if (response?.error) {

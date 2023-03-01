@@ -232,7 +232,13 @@ const FormSix = (props) => {
 						name="Cancel"
 						onClick={() => dispatch(prevChoiceStep(5))}
 					/>
-					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
+					<DashboardButton
+						hidden
+						name="NEXT"
+						type="submit"
+						width="w-[77px]"
+						loading={props?.isLoading}
+					/>
 				</div>
 			</form>
 		</div>

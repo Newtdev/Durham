@@ -24,7 +24,6 @@ const DownLoadForm = ({
 	const formID = useSelector(project_document_id);
 	useFetchFilledFormQuery(formID);
 	const content = useSelector(savedResponse);
-	console.log(content);
 	const { project } = content || "";
 
 	const handlePrint = useReactToPrint({
@@ -74,7 +73,7 @@ const DownLoadForm = ({
 
 							dispatch(slugIdDefault());
 							dispatch(documentDefault());
-							dispatch(stepDefault());
+							// dispatch(stepDefault());
 							dispatch(close());
 						}}
 						className="flex items-center justify-center uppercase w-[360px] bg-white text-[#3b6979] font-semibold px-4 h-[38px] border border-[#3b6979] rounded hover:bg-[#3b6979] hover:text-white cursor-pointer">

@@ -47,7 +47,7 @@ const FormFour = (props) => {
 			(state) => state.name === props.values.conferenceStateB
 		);
 
-		if (!stat?.cities) {
+		if (!stat) {
 			return;
 		}
 		return Object.keys(stat?.cities)?.map((cur, id) => {
@@ -230,9 +230,27 @@ const FormFour = (props) => {
 					<ButtonWhiteBG
 						width="w-[100px]"
 						name="Cancel"
-						onClick={() => dispatch(prevChoiceStep(3))}
+						onClick={() => {
+							if (props.both === "lessee") {
+								return dispatch(prevChoiceStep(3));
+							} else if (props.both === "owner") {
+								return dispatch(prevChoiceStep(2));
+							} else if (props.single === "lessee") {
+								return dispatch(prevChoiceStep(5));
+							} else if (props.single === "owner") {
+								return dispatch(prevChoiceStep(4));
+							} else {
+								return;
+							}
+						}}
 					/>
-					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
+					<DashboardButton
+						hidden
+						name="NEXT"
+						type="submit"
+						width="w-[77px]"
+						loading={props?.isLoading}
+					/>
 				</div>
 			</form>
 		</div>

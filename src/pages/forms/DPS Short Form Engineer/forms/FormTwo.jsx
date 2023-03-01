@@ -18,6 +18,9 @@ const FormTwo = (props) => {
 		let stat = Object.values(states)?.find(
 			(state) => state?.name === props?.values?.state
 		);
+		if (!stat) {
+			return;
+		}
 
 		return Object.keys(stat?.cities)?.map((cur, id) => {
 			return (

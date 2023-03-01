@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const Proposal = createSlice({
-  name: "Proposal",
+const Affidavit = createSlice({
+  name: "Affidavit",
   initialState: {
     form_data: [],
     step: 1,
@@ -22,15 +22,15 @@ const Proposal = createSlice({
   },
 });
 
-export default Proposal.reducer;
+export default Affidavit.reducer;
 
 // CREATE AN ACTION CEATOR
-export const { prevChoiceStep } = Proposal.actions;
-export const { nextChoiceStep } = Proposal.actions;
-export const { stepChoiceDefault } = Proposal.actions;
-export const { getStates } = Proposal.actions;
+export const { prevChoiceStep } = Affidavit.actions;
+export const { nextChoiceStep } = Affidavit.actions;
+export const { stepChoiceDefault } = Affidavit.actions;
+export const { getStates } = Affidavit.actions;
 
 // SELECT THE TOKEN AND USER
 
-export const selectForm = (state) => state.Proposal.form_data;
-export const page = (state) => state.Proposal.step;
+export const selectForm = (state) => state.Affidavit.form_data;
+export const page = (state) => state.Affidavit.step;

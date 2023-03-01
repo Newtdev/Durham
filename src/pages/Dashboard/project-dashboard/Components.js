@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "../../../ui";
 import { showModal } from "../../forms/reducer";
-import { getDocument, getID, getSlugId } from "./ReducerSlice";
+import { getDocument, getID, getSlugId, selectFilled } from "./ReducerSlice";
 
 export const ProjectCard = ({ name, value }) => {
 	return (
@@ -29,13 +29,15 @@ export const Accordion = ({ data }) => {
 	const newClass =
 		"bg-[#699bac] mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base  focus:border focus:border-black";
 
-	const onClick = (e) => {
+	const onClick = (e, v) => {
 		if (e.target) {
+			console.log(v);
 			const { value, name, id } = e.target;
-			console.log(value);
+			// console.log(value);
 			e.target.className = newClass;
 			dispatch(getDocument(name));
 			dispatch(getSlugId(value));
+			dispatch(selectFilled(value));
 
 			dispatch(getID(id));
 			dispatch(showModal());
@@ -80,21 +82,18 @@ export const Accordion = ({ data }) => {
 										{Object.values(data)[idx].map((cur, index) => {
 											return (
 												<label
-													htmlFor={cur.id}
+													htmlFor={cur?.id}
 													className={`bg-[#699bac] flex justify-between items-center mb-5
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer `}>
 													{cur.document_name}
 													<input
-														onChange={onClick}
+														onChange={(e) => onClick(e, cur?.filled)}
 														value={makeId(document, cur.document_name)}
-														// name={objName}
 														id={cur.id}
 														type="checkbox"
 														hidden
 														name={cur.document_name}
 														key={index}
-														// 							className={`bg-[#d8e1e4]
-														// mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer`}
 													/>
 												</label>
 											);

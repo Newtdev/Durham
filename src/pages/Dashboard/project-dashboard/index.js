@@ -20,6 +20,7 @@ import {
 	deleted,
 	hideHistory,
 	historyToggle,
+	isFilled,
 	onClose,
 	onDelete,
 	show,
@@ -61,6 +62,11 @@ import DesignChangeOrderForm from "../../forms/Budget/design-change-form";
 import MainAffidavit from "../../forms/E-589C Affidavit Of Capital Improvement/MainAffidavit";
 import DPSShortFormEngineerForm from "../../forms/DPS Short Form Engineer";
 import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000)/OwnerAndContractor";
+import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER";
+import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
+import RFPTemplate from "../../forms/RFP Template with MWBE";
+import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
+import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
 
 const ProjectDashboard = () => {
 	const response = useFetchSingleProjectQuery(getId());
@@ -70,6 +76,7 @@ const ProjectDashboard = () => {
 	const documentsID = useSelector(slug);
 	const remove = useSelector(deleted);
 	const toggle = useSelector(historyToggle);
+	const filled = useSelector(isFilled);
 	const [deleteProject, { isLoading }] = useDeleteProjectMutation();
 	const [duplicateProject, result] = useDuplicateProjectMutation();
 	const awardee = !projectDetails?.project_vendors
@@ -340,13 +347,13 @@ const ProjectDashboard = () => {
 										School Information
 									</div>
 									<div className="text-xs text-gray-900">
-										<p className="mt-4 font-bold">
-											{!school ? "" : school.name}
+										<p className="mt-4 font-bold text-base">
+											{!school ? "" : school?.name}
 										</p>
-										<p className="my-1">{`${!school ? "" : school.address}, ${
-											!school ? "" : school.city
-										}, ${!school ? "" : school.state}, ${
-											!school ? "" : school.zip_code
+										<p className="my-1">{`${!school ? "" : school?.address}, ${
+											!school ? "" : school?.city
+										}, ${!school ? "" : school?.state}, ${
+											!school ? "" : school?.zip_code
 										}`}</p>
 										{/* <p>+65 1234 1234</p> */}
 									</div>
@@ -376,33 +383,38 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			<Lunsford id={documentsID} />
-			<PunchList id={documentsID} />
-			<NoticeOfIntentConsultant id={documentsID} />
-			<CertificateOfSubstantial id={documentsID} />
-			<NoticeToProceed id={documentsID} />
-			<ProjectCloseoutCheckList id={documentsID} />
-			<NoticeOfAwardConsultant id={documentsID} />
-			<AdvertisementBid id={documentsID} />
-			<CapitalProjectForm id={documentsID} />
-			<CCPRequisitionForm id={documentsID} />
-			<MWBEParticipation id={documentsID} />
-			<Esser id={documentsID} />
-			<EsserPM id={documentsID} />
-			<Lechase id={documentsID} />
-			<TechService id={documentsID} />
-			<NoticeOfAwardContrator id={documentsID} />
-			<DeterminationOFLowestBidder id={documentsID} />
-			<OwnerContractorManagementForm id={documentsID} />
-			<Bids id={documentsID} />
-			<PFForProjects id={documentsID} />
-			<ShortSmallFormDesignForm id={documentsID} />
-			<ChangeOrderDirectiveForm id={documentsID} />
-			<ChangeOrderForm id={documentsID} />
-			<DesignChangeOrderForm id={documentsID} />
-			<MainAffidavit id={documentsID} />
-			<DPSShortFormEngineerForm id={documentsID} />
-			<OwnerAndContractorForm id={documentsID} />
+			<Lunsford id={documentsID} filled={filled} />
+			<PunchList id={documentsID} filled={filled} />
+			<NoticeOfIntentConsultant id={documentsID} filled={filled} />
+			<CertificateOfSubstantial id={documentsID} filled={filled} />
+			<NoticeToProceed id={documentsID} filled={filled} />
+			<ProjectCloseoutCheckList id={documentsID} filled={filled} />
+			<NoticeOfAwardConsultant id={documentsID} filled={filled} />
+			<AdvertisementBid id={documentsID} filled={filled} />
+			<CapitalProjectForm id={documentsID} filled={filled} />
+			<CCPRequisitionForm id={documentsID} filled={filled} />
+			<MWBEParticipation id={documentsID} filled={filled} />
+			<Esser id={documentsID} filled={filled} />
+			<EsserPM id={documentsID} filled={filled} />
+			<Lechase id={documentsID} filled={filled} />
+			<TechService id={documentsID} filled={filled} />
+			<NoticeOfAwardContrator id={documentsID} filled={filled} />
+			<DeterminationOFLowestBidder id={documentsID} filled={filled} />
+			<OwnerContractorManagementForm id={documentsID} filled={filled} />
+			<Bids id={documentsID} filled={filled} />
+			<PFForProjects id={documentsID} filled={filled} />
+			<ShortSmallFormDesignForm id={documentsID} filled={filled} />
+			<ChangeOrderDirectiveForm id={documentsID} filled={filled} />
+			<ChangeOrderForm id={documentsID} filled={filled} />
+			<DesignChangeOrderForm id={documentsID} filled={filled} />
+			<MainAffidavit id={documentsID} filled={filled} />
+			<DPSShortFormEngineerForm id={documentsID} filled={filled} />
+			<OwnerAndContractorForm id={documentsID} filled={filled} />
+			<OwnerAndContractorFormESSER id={documentsID} filled={filled} />
+			<MWBEFormsForBidForm id={documentsID} filled={filled} />
+			<RFPTemplate id={documentsID} filled={filled} />
+			<OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
+			<ProposalForm id={documentsID} filled={filled} />
 		</section>
 	);
 };

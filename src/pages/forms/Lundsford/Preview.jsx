@@ -2,7 +2,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { DashboardButton, Close } from "../../Dashboard/Components";
 import DownLoadForm from "./Download";
 import { useDispatch, useSelector } from "react-redux";
-import { stepDefault, prevStep } from "./lundsFormslice";
+import { prevStep, stepDefault } from "./lundsFormslice";
 import { useEffect, useRef, useState } from "react";
 import {
 	closeDownload,
@@ -10,8 +10,11 @@ import {
 	openDownload,
 	showDownload,
 } from "../reducer";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const PreviewForm = ({ value }) => {
 	const showModal = useSelector(openDownload);
@@ -20,19 +23,25 @@ const PreviewForm = ({ value }) => {
 	const [highlighted, setHighlighed] = useState(false);
 
 	const formID = useSelector(project_document_id);
-	let content = useFetchFilledFormQuery(formID);
-
-	const { vendors, project, form_fields } = content?.currentData?.data;
+	const [a] = UseFetchFilledFormDetails(formID);
+	const vendors = a?.data?.vendors || [];
+	const project = a?.data?.project || {};
+	const form_fields = a?.data?.form_fields || {};
 
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
 
 	useEffect(() => {
 		if (!vendors || !form_fields?.addressCopy) {
-			setAwardee(vendors[0]);
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
+		console.log(form_fields?.addressCopy);
+		const data = vendors?.filter(
+			(cur) => cur.role === form_fields?.addressCopy
+		);
+		if (!data) {
+			setAwardee(vendors[0]);
+		}
 		setAwardee(data);
 	}, [vendors, form_fields]);
 
@@ -245,7 +254,10 @@ const PreviewForm = ({ value }) => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(selectFilled(false));
+								dispatch(prevStep(1));
+							}}
 						/>
 						<DashboardButton
 							hidden

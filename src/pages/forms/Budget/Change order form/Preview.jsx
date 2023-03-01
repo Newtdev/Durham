@@ -12,8 +12,12 @@ import { CalculateAmount } from "./form/FormOne";
 import { AddDate } from "./form/FormTwo";
 import Logo from "../../../../assets/formlogo.png";
 import { prevStep } from "./reducer";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
 const ToApprove = ({ name, nottoBeHighlighted }) => {
+	if (!name) {
+		return null;
+	}
 	return name?.map((person, i) => {
 		return (
 			<div key={i} className="grid grid-cols-4 gap-4 mb-3">
@@ -55,27 +59,19 @@ const ToApprove = ({ name, nottoBeHighlighted }) => {
 };
 
 const ChangeOrderForm = () => {
-	const forms_fields = useSelector(fields);
-
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
-
 	const formID = useSelector(project_document_id);
-
-	const content = useFetchFilledFormQuery(formID);
-	// const content = useSelector(savedResponse);
+	const [a] = UseFetchFilledFormDetails(formID);
 	const [highlighted, setHighlighted] = useState(false);
-	// const project = content?.data?.data?.project;
-	// const vendors = content?.data?.data?.vendors;
-	let formData = !content?.data ? [] : content?.currentData?.data;
+
+	let formData = a?.data;
 
 	const vendors = formData?.vendors;
-	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
 	const manager = formData?.project_manager;
-	// const form_fields = formData?.form_fields;
-	// const form_fields = useSelector(fields);
+	const forms_fields = formData?.form_fields;
 	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
@@ -83,7 +79,6 @@ const ChangeOrderForm = () => {
 		if (!vendors) {
 			return;
 		}
-
 		vendors?.forEach((cur) => {
 			if (
 				cur.role === "Design Consultant" ||
@@ -113,7 +108,10 @@ const ChangeOrderForm = () => {
 
 			<div>
 				{/* Modal content */}
-				<div className="relative w-[80%] mx-auto bg-white rounded-lg shadow mt-14">
+				<div
+					className={`${
+						!show ? "block" : "hidden"
+					} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>
 					{/* Header */}
 					<div className="flex justify-between items-baseline border-b border-b-gray-200 py-3">
 						<div className="ml-6">
@@ -398,7 +396,7 @@ const ChangeOrderForm = () => {
 										</div>
 										<div className="w-full ml-[8.5rem] h-24 flex justify-between items-end pb-4">
 											<p className="text-[8pt]">1 of 2</p>
-											<p className="text-end text-[5pt] ">
+											<p className="text-end text-[5pt] mr-36">
 												{" "}
 												FILENAME \p \* MERGEFORMAT R:\01 Administration\04
 												Document & Form Templates\01 Document <br />
@@ -477,16 +475,20 @@ const ChangeOrderForm = () => {
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
 													<p>
-														{awardee?.contractor?.company_name}
+														{awardee?.contractor?.company_name || ""}
 														<span className={`${nottoBeHighlighted}`}></span>
 													</p>
-													<p className="border-t border-black">
+													<p className="border-t border-black ">
 														<i className="text-[7pt]">Contractor</i>
 													</p>
 												</div>
 												<div>
 													<p
-														className={`${nottoBeHighlighted} border-b border-black`}>{`${awardee?.contractor?.first_name} ${awardee?.contractor?.last_name}`}</p>
+														className={`${nottoBeHighlighted} border-b border-black`}>
+														{`${awardee?.contractor?.first_name || ""} ${
+															awardee?.contractor?.last_name || ""
+														}`}
+													</p>
 													<p>
 														<i className="text-[7pt]">By</i>
 													</p>
@@ -545,10 +547,10 @@ const ChangeOrderForm = () => {
 													</p>
 												</div>
 											</div>
-											<ToApprove
+											{/* <ToApprove
 												name={forms_fields?.persons}
 												nottoBeHighlighted={nottoBeHighlighted}
-											/>
+											/> */}
 
 											<div className="grid grid-cols-4 gap-4">
 												<div>

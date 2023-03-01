@@ -13,6 +13,7 @@ import { certificateOfSubstantialCompletion } from "../../../shared-component/sl
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { setResult } from "../../../shared-component";
 
 const CertificateOfSubstantial = ({ id }) => {
 	const dispatch = useDispatch();
@@ -24,25 +25,9 @@ const CertificateOfSubstantial = ({ id }) => {
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-				{ field_name: param[5], field_value: val[5] },
-				{ field_name: param[6], field_value: val[6] },
-				{ field_name: param[7], field_value: val[7] },
-				{ field_name: param[8], field_value: val[8] },
-				{ field_name: param[9], field_value: val[9] },
-				{ field_name: param[10], field_value: val[10] },
-				{ field_name: param[11], field_value: val[11] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {

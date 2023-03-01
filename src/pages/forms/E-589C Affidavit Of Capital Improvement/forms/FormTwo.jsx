@@ -11,7 +11,7 @@ const FormTwo = (props) => {
 	const dispatch = useDispatch();
 
 	const boxA = {
-		value: props.values?.boxA,
+		value: props.values.boxA,
 		onChange: props.handleChange,
 		id: "boxA",
 	};

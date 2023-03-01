@@ -44,3 +44,7 @@ export const OwnerAndContractor =
 	"Owner-and-Contractor-Agreement-Form-(more-$500,000)";
 export const OwnerAndContractorESSER =
 	"Owner-and-Contractor-Agreement-Form-(more-$500,000)-ESSER";
+export const MWBEFormsForBid = "MWBE-Form-for-Bids";
+export const RFPTemplateWithMWBESlug = "RFP-Template-with-MWBE";
+export const OwnerDesignConsultantLessSlug =
+	"Owner-and-Design-Consultant-(less-than-$200,000)";

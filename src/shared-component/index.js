@@ -320,7 +320,27 @@ export const YearsInWord = (a) => {
 export const handleResultWithArray = (res) => {
 	let dynamic = [];
 	let sum = [];
+
 	if (!res) return null;
+
+	// Reconstructure
+
+	// const araryItem = Object.entries(res)?.reduce(
+	// 	(acc, curr) => {
+	// 		if (Array.isArray(curr[1])) {
+	// 			return acc.arr.push({
+	// 				// 						section: d[0],
+	// 				// 						field_name: `${cur}${[ind]}`,
+	// 				// 						field_value: Object.values(curs)[index],
+	// 			});
+	// 		} else {
+	// 			// return acc.normal.push(curr);
+	// 		}
+	// 	},
+	// 	{ arr: [], normal: [] }
+	// );
+	// console.log(araryItem);
+
 	const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
 
 	Object.entries(res).forEach((d, i) => {
