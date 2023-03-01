@@ -87,7 +87,7 @@ const Lunsford = ({ id, filled }) => {
 		<div>
 			<ModalOverlay show={id === lundsford && showModal}>
 				{filled ? <PreviewForm {...previewProps} /> : null}
-				{pages === 1 ? <Forms {...typeProps} /> : null}
+				{pages === 1 && !filled ? <Forms {...typeProps} /> : null}
 				{pages === 2 && <PreviewForm {...previewProps} />}
 			</ModalOverlay>
 		</div>

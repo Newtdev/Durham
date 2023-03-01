@@ -14,7 +14,7 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const PreviewForm = ({ value }) => {
 	const showModal = useSelector(openDownload);
@@ -23,10 +23,10 @@ const PreviewForm = ({ value }) => {
 	const [highlighted, setHighlighed] = useState(false);
 
 	const formID = useSelector(project_document_id);
-	let content = useFetchFilledFormQuery(formID);
-	const vendors = content?.currentData?.data?.vendors || [];
-	const project = content?.currentData?.data?.project || {};
-	const form_fields = content?.currentData?.data?.form_fields || {};
+	const [a] = UseFetchFilledFormDetails(formID);
+	const vendors = a?.data?.vendors || [];
+	const project = a?.data?.project || {};
+	const form_fields = a?.data?.form_fields || {};
 
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 	const [awardee, setAwardee] = useState([]);
@@ -35,6 +35,7 @@ const PreviewForm = ({ value }) => {
 		if (!vendors || !form_fields?.addressCopy) {
 			return;
 		}
+		console.log(form_fields?.addressCopy);
 		const data = vendors?.filter(
 			(cur) => cur.role === form_fields?.addressCopy
 		);

@@ -67,7 +67,10 @@ const FormThree = (props) => {
 					className="relative w-[600px] bg-white rounded-lg shadow py-4"
 					onSubmit={(e) => {
 						e.preventDefault();
-						HandleSubmit({ ...props?.values, proposalScope: text });
+						HandleSubmit({
+							...props?.values,
+							proposalScope: text,
+						});
 					}}>
 					<div className="flex justify-between items-baseline mx-6">
 						<div>
