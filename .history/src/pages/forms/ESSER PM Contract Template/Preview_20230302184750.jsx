@@ -14,7 +14,7 @@ import {
 } from "../reducer";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { project_document_id, selectFilled } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import PageOne from "./PreviewPages/PageOne";
@@ -127,10 +127,7 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => {
-								dispatch(selectFilled(false))
-								dispatch(prevChoiceStep(2))
-							}}
+							onClick={() => dispatch(prevChoiceStep(2))}
 						/>
 						<DashboardButton
 							hidden
