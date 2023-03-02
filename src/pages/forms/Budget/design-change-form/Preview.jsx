@@ -76,7 +76,6 @@ const Preview = () => {
 	const project = formData?.project;
 	const manager = formData?.project_manager;
 	const forms_fields = formData?.form_fields;
-	console.log(forms_fields);
 	// const form_fields = useSelector(fields);
 	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";

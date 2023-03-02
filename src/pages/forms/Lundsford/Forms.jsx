@@ -1,7 +1,6 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { ButtonWhiteBG, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -20,16 +19,16 @@ const Forms = (props) => {
 		addressValue,
 	} = props;
 	const formID = useSelector(project_document_id);
-	const response = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 	const [length, setLength] = useState(0);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (!response?.data?.data) {
+		if (!a?.data) {
 			return;
 		}
-		setLength(response?.data?.data?.vendors.length);
-	}, [response?.data?.data]);
+		setLength(a?.data?.vendors.length);
+	}, [a.data]);
 
 	const addressCopy = {
 		value: addressValue,
