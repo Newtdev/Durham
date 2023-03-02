@@ -65,7 +65,7 @@ import OwnerAndContractorForm from "../../forms/Contract/Owner and Contractor Ag
 import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contractor Agreement Form (more $500,000) ESSER";
 import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
 import RFPTemplate from "../../forms/RFP Template with MWBE";
-// import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
+import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
 
 const ProjectDashboard = () => {
@@ -413,7 +413,7 @@ const ProjectDashboard = () => {
 			<OwnerAndContractorFormESSER id={documentsID} filled={filled} />
 			<MWBEFormsForBidForm id={documentsID} filled={filled} />
 			<RFPTemplate id={documentsID} filled={filled} />
-			{/* <OwnerDesignConsultantLessForm id={documentsID} filled={filled} /> */}
+			<OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
 			<ProposalForm id={documentsID} filled={filled} />
 		</section>
 	);

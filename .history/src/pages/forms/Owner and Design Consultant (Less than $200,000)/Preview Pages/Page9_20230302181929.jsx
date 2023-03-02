@@ -151,7 +151,7 @@ const Page9 = (props) => {
               </span>{" "}
               <span style={{}}>
                 {moment(props?.form_fields?.sustainaibilityDate).format("DD")}
-              </span>,{" "}
+              </span>{" "},
               <span>
                 {moment(props?.form_fields?.sustainaibilityDate).format("YYYY")}
               </span>
