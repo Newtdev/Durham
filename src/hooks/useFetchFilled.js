@@ -8,6 +8,9 @@ export const UseFetchFilledFormDetails = (id) => {
 		let isSubscribe = false;
 
 		const fetchDetails = async () => {
+			if (!id) {
+				return;
+			}
 			const response = await fetch(
 				`https://durham.cfcing.org/api/projects/forms/${id}`,
 				{
