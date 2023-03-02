@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
@@ -15,11 +14,9 @@ import { nextStep, prevStep } from "../reducer";
 
 const FormThree = (props) => {
 	const dispatch = useDispatch();
-	const [text, setText] = useState({ editorHtml: "", theme: "" });
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	console.log(text);
 
 	const prototypeNotUtilized = {
 		value:
@@ -69,7 +66,6 @@ const FormThree = (props) => {
 						e.preventDefault();
 						HandleSubmit({
 							...props?.values,
-							proposalScope: text,
 						});
 					}}>
 					<div className="flex justify-between items-baseline mx-6">
