@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import RichTextComp from "../../../../Private/PrivateRoute";
+// import RichTextComp from "../../../../Private/PrivateRoute";
 import { setResult } from "../../../../shared-component";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
@@ -188,12 +188,12 @@ const FormThree = (props) => {
               )}
             </div> */}
 						<div className="flex flex-col">
-							<label className="text-base text-gray-900 mb-1">
+							{/* <label className="text-base text-gray-900 mb-1">
 								Enter the Proposal Scope
 							</label>
 							<div className="h-36">
 								<RichTextComp text={text} setText={(val) => setText(val)} />
-							</div>
+							</div> */}
 							{/* <OverviewTextarea {...proposalScope} /> */}
 						</div>
 					</div>
