@@ -20,6 +20,9 @@ const FormTwo = (props) => {
 			(state) => state.name === props.values.location[index].projectState
 		);
 
+		if (!stat) {
+			return;
+		}
 		return Object.keys(stat.cities)?.map((cur, id) => {
 			return (
 				<option key={id} value={cur}>
@@ -47,15 +50,6 @@ const FormTwo = (props) => {
 			}
 		);
 	}
-
-	const items = [
-		{ name: "item 1" },
-		{ name: "item 2" },
-		{ name: "item 3" },
-		{ name: "item 4" },
-		{ name: "item 5" },
-		{ name: "item 6" },
-	];
 
 	const issueDate = {
 		...props,

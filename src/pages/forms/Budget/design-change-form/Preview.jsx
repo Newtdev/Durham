@@ -461,8 +461,9 @@ const Preview = () => {
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
 													<p className="border-b border-black">
-														<span
-															className={`${nottoBeHighlighted}`}>{`${awardee?.design?.company_name}`}</span>
+														<span className={`${nottoBeHighlighted}`}>{`${
+															awardee?.design?.company_name || ""
+														}`}</span>
 													</p>
 													<p>
 														<i className="text-[7pt]">Owner</i>
@@ -470,8 +471,11 @@ const Preview = () => {
 												</div>
 												<div>
 													<p className="border-b border-black">
-														<span
-															className={`${nottoBeHighlighted}`}>{`${awardee?.design?.first_name} ${awardee?.design?.last_name}`}</span>
+														<span className={`${nottoBeHighlighted}`}>
+															{`${awardee?.design?.first_name || ""} ${
+																awardee?.design?.last_name || ""
+															}`}
+														</span>
 													</p>
 													<p>
 														<i>
