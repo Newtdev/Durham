@@ -60,6 +60,8 @@ import Page48 from "./Previews/Page48";
 import Page49 from "./Previews/Page49";
 import Page50 from "./Previews/Page50";
 import Page51 from "./Previews/Page51";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+
 
 const Preview = () => {
   const show = useSelector(openDownload);
@@ -70,11 +72,19 @@ const Preview = () => {
   const [highlighted, setHighlighed] = useState(false);
   const [showPage, setShowPage] = useState(false);
   const [awardee, setAwardee] = useState([]);
-  const form_fields = useSelector(fields);
-  let formData = !content?.data ? [] : content?.data?.data;
-  const vendors = formData?.vendors;
-  const project = formData?.project;
-  const durham_profile = formData?.durham_profile;
+
+	const [a] = UseFetchFilledFormDetails(formID);
+	const vendors = a?.data?.vendors || [];
+	const project = a?.data?.project || {};
+  const form_fields = a?.data?.form_fields || {};
+  const durham_profile = a?.data?.durham_profile;
+
+
+  // const form_fields = useSelector(fields);
+  // let formData = !content?.data ? [] : content?.data?.data;
+  // const vendors = formData?.vendors;
+  // const project = formData?.project;
+  // const durham_profile = formData?.durham_profile;
 
   const props = {
     component: downloadComponent,
@@ -181,9 +191,9 @@ const Preview = () => {
                 <Page30 {...pageProps} />
                 <Page31 {...pageProps} />
                 <Page32 {...pageProps} />
-                <Page33 {...pageProps} />
-                <Page34 {...pageProps} />
-                <Page35 {...pageProps} />
+                <Page33 {...pageProps} /> 
+                {/* <Page34 {...pageProps} /> */}
+                {/* <Page35 {...pageProps} />
                 <Page36 {...pageProps} />
                 <Page37 {...pageProps} />
                 <Page38 {...pageProps} />
@@ -199,7 +209,7 @@ const Preview = () => {
                 <Page48 {...pageProps} />
                 <Page49 {...pageProps} />
                 <Page50 {...pageProps} />
-                <Page51 {...pageProps} />
+                <Page51 {...pageProps} /> */}
               </body>
             </div>
           </div>
