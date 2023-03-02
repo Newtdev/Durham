@@ -2,11 +2,11 @@
 // import { useSelector } from "react-redux";
 // import { Navigate, Outlet, useNavigate } from "react-router-dom";
 // import { selectToken } from "../features/auth";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-// import { useEffect, useState } from "react";
-// import { containerClasses } from "@mui/system";
+import { useEffect, useState } from "react";
+import { containerClasses } from "@mui/system";
 
 // const PrivateRoute = ({ children }) => {
 // 	const navigate = useNavigate();
@@ -52,47 +52,47 @@
 
 // export default Resolved;
 
-// const RichTextComp = ({ text, setText }) => {
-// 	const modules = {
-// 		toolbar: [
-// 			[{ header: [1, 2, false] }],
-// 			["bold", "italic", "underline", "strike", "blockquote"],
-// 			[
-// 				{ list: "ordered" },
-// 				{ list: "bullet" },
-// 				{ indent: "-1" },
-// 				{ indent: "+1" },
-// 			],
-// 			["link", "image"],
-// 			["clean"],
-// 		],
-// 	};
+const RichTextComp = ({ text, setText }) => {
+	const modules = {
+		toolbar: [
+			[{ header: [1, 2, false] }],
+			["bold", "italic", "underline", "strike", "blockquote"],
+			[
+				{ list: "ordered" },
+				{ list: "bullet" },
+				{ indent: "-1" },
+				{ indent: "+1" },
+			],
+			["link", "image"],
+			["clean"],
+		],
+	};
 
-// 	const formats = [
-// 		"header",
-// 		"bold",
-// 		"italic",
-// 		"underline",
-// 		"strike",
-// 		"blockquote",
-// 		"list",
-// 		"bullet",
-// 		"indent",
-// 		"link",
-// 		"image",
-// 	];
+	const formats = [
+		"header",
+		"bold",
+		"italic",
+		"underline",
+		"strike",
+		"blockquote",
+		"list",
+		"bullet",
+		"indent",
+		"link",
+		"image",
+	];
 
-// 	console.log(typeof text);
-// 	return (
-// 		<ReactQuill
-// 			modules={modules}
-// 			formats={formats}
-// 			theme="snow"
-// 			value={text}
-// 			onChange={setText}
-// 			style={{ height: "8rem" }}
-// 		/>
-// 	);
-// };
+	console.log(typeof text);
+	return (
+		<ReactQuill
+			modules={modules}
+			formats={formats}
+			theme="snow"
+			value={text}
+			onChange={setText}
+			style={{ height: "8rem" }}
+		/>
+	);
+};
 
-// export default RichTextComp;
+export default RichTextComp;
