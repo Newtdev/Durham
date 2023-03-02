@@ -62,6 +62,7 @@ const Preview = () => {
 	let formData = !content?.data ? [] : content?.data?.data;
 	const vendors = formData?.vendors;
 	const project = formData?.project;
+
 	const durham_profile = formData?.durham_profile;
 
 	const props = {

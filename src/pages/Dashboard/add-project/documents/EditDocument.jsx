@@ -274,7 +274,7 @@ const EditDocument = ({ documents, getData }) => {
 	};
 
 	async function SubmitDocument() {
-		if (selectDoc.length > 1) {
+		if (selectDoc.length > 0) {
 			const response = await AddProjectDocument({
 				project_id: getId(),
 				documents: selectDoc,
