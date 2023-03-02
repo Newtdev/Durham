@@ -93,8 +93,8 @@ const RFPTemplate = ({ id }) => {
 			<FormikProvider value={formik}>
 				{pages === 1 && <FormOne {...formik} />}
 				{pages === 2 && <FormTwo {...formik} />}
-				{/* {pages === 3 && <FormThree {...formik} />} */}
-				{pages === 4 && <Preview />}
+				{pages === 3 && <FormThree {...formik} />}
+				{/* {pages === 4 && <Preview />} */}
 			</FormikProvider>
 		</ModalOverlay>
 	);
