@@ -14,7 +14,7 @@ import {
 } from "../reducer";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { project_document_id, selectFilled } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import PageOne from "./PreviewPages/PageOne";
@@ -25,8 +25,6 @@ import PageFive from "./PreviewPages/PageFive";
 import PageSix from "./PreviewPages/PageSix";
 import PageSeven from "./PreviewPages/PageSeven";
 import PageEight from "./PreviewPages/PageEight";
-import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
-
 
 const Preview = () => {
 	const [highlighted, setHighlighed] = useState(false);
@@ -40,18 +38,9 @@ const Preview = () => {
 	const [awardee, setAwardee] = useState([]);
 	const [showPage, setShow] = useState(false);
 	// const content = useSelector(savedResponse);
-
-	const [a] = UseFetchFilledFormDetails(formID);
-	const vendors = a?.data?.vendors || [];
-	const project = a?.data?.project || {};
-	const form_fields = a?.data?.form_fields || {};
-	const pageContent = a?.data || {};
-
-	console.log(pageContent);
-
-	// const vendors = content?.data?.data.vendors;
-	// const form_fields = useSelector(fields);
-	// const pageContent = content?.data;
+	const vendors = content?.data?.data.vendors;
+	const form_fields = useSelector(fields);
+	const pageContent = content?.data;
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
 	const props = {
@@ -127,10 +116,7 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => {
-								dispatch(selectFilled(false))
-								dispatch(prevChoiceStep(2))
-							}}
+							onClick={() => dispatch(prevChoiceStep(2))}
 						/>
 						<DashboardButton
 							hidden
