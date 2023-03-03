@@ -2,12 +2,12 @@ import { useMemo, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, fields, openDownload, showDownload } from "../../reducer";
+import { closeModal, openDownload, showDownload } from "../../reducer";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { prevStep, stepDefault } from "./reducer";
 import moment from "moment";
 import currency from "currency.js";
-import { CalculateTotal, GrandTotals } from "./forms/FormThree";
+import { CalculateTotal } from "./forms/FormThree";
 import DownLoadForm from "../../Lundsford/Download";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
@@ -21,11 +21,12 @@ const Preview = () => {
 
 	const [a] = UseFetchFilledFormDetails(formID);
 	const forms = a?.data?.form_fields;
+	const school = a?.data?.project?.school;
 
 	// const pageContent = content?.data;
 	const nottoBeHighlighted = !highlighted
-		? "bg-yellow-300 text-[9pt]"
-		: "bg-white text-[9pt]";
+		? "bg-yellow-300 text-[10.9pt]"
+		: "bg-white text-[10.9pt]";
 
 	const props = {
 		component: downloadComponent,
@@ -35,32 +36,29 @@ const Preview = () => {
 		// close: closeDownload,
 	};
 
-	const subTotal = (a) => {
-		if (!a) {
-			return;
-		}
-		let quantitySum = 0;
-		for (const object of a) {
-			quantitySum += Number(object.quantity * object.unitPrice);
-		}
-		return quantitySum;
-	};
-
-	// const SubTotal = () => {
-	// 	return useMemo(() => {
-
-	// 	},[])
-	// }
+	// const subTotal = (a) => {
+	// 	if (!a) {
+	// 		return;
+	// 	}
+	// 	let quantitySum = 0;
+	// 	for (const object of a) {
+	// 		quantitySum += Number(object.quantity * object.unitPrice);
+	// 	}
+	// 	return quantitySum;
+	// };
 
 	const taxPercentage = useMemo(() => {
-		if (!forms?.ccpshippingCost) {
+		let per;
+		if (!forms?.ccpsubtotal) {
 			return "";
 		}
 
 		if (!forms?.ccptax) {
-			return Number(forms?.ccpshippingCost) * 4.75;
+			per = 4.75 / 100;
+			return Number(forms?.ccpsubtotal) * per;
 		} else {
-			return Number(forms?.ccpshippingCost) * Number(forms?.ccptax);
+			per = forms?.ccptax / 100;
+			return Number(forms?.ccpsubtotal) * Number(per);
 		}
 	}, [forms]);
 
@@ -97,12 +95,10 @@ const Preview = () => {
 							<div>
 								<div>
 									<div className="text-center mb-3">
-										<h2 className="font-bold text-[12pt] font-extrabold">
+										<h2 className=" text-[12pt] font-extrabold">
 											DURHAM PUBLIC SCHOOLS
 										</h2>
-										<h1 className="font-bold text-[14pt] font-extrabold">
-											REQUISITION
-										</h1>
+										<h1 className=" text-[14pt] font-extrabold">REQUISITION</h1>
 									</div>
 
 									<div className="border-b border-b-black flex justify-between pb-2">
@@ -120,7 +116,8 @@ const Preview = () => {
 											<div className="flex gap-2 items-end mb-2">
 												<p className="">BUDGET CODE:</p>
 												<p className="border border-black p-1 w-[10.9rem] flex justify-end">
-													<span className={`${nottoBeHighlighted}`}>
+													<span
+														className={`${nottoBeHighlighted} text-[10.9pt]`}>
 														{forms?.budgetCode}
 													</span>
 												</p>
@@ -135,7 +132,7 @@ const Preview = () => {
 											</div>
 											<div className="flex gap-2 items-center mt-6">
 												<p>BEST PRICE(ATTACHED):</p>
-												<p className="border border-black py-1 px-2">
+												<p className="border border-black h-5 w-5 flex justify-center items-center">
 													<span className={`${nottoBeHighlighted}`}>
 														{forms?.attached === "Best Price(Attached)" ? (
 															<span>&#10003;</span>
@@ -161,7 +158,7 @@ const Preview = () => {
 											</div>
 											<div className="flex gap-1 items-center mt-7 mr-6">
 												<p>FRANCHISE/SOLE SOURCE(ATTACHED):</p>
-												<p className="border border-black p-2">
+												<p className="border border-black  h-5 w-5 flex justify-center items-center">
 													<span className={`${nottoBeHighlighted}`}>
 														{forms?.attached ===
 														"Franchise/Sole Source(Attached)" ? (
@@ -212,9 +209,15 @@ const Preview = () => {
 											<div className="flex gap-2 items-end mb-[4.3rem]">
 												<p>SHIPPING #:</p>
 												<p className="border border-black p-1">
-													<span className={`${nottoBeHighlighted}`}>
-														{`${forms?.street}, ${forms?.city}, ${forms?.state}, ${forms?.zipCode}`}
-													</span>
+													{forms?.street ? (
+														<span className={`${nottoBeHighlighted}`}>
+															{`${forms?.street || ""}, ${forms?.city || ""}, ${
+																forms?.state || ""
+															}, ${forms?.zipCode || ""}`}
+														</span>
+													) : (
+														<span className={`${nottoBeHighlighted}`}></span>
+													)}
 												</p>
 											</div>
 
@@ -223,7 +226,7 @@ const Preview = () => {
 												<p>SCHOOL/DEPT. NAME:</p>
 												<p className="border border-black p-1">
 													<span className={`${nottoBeHighlighted}`}>
-														{forms?.location}
+														{`${school?.code} ${school?.name} ${school?.tag}`}
 													</span>
 												</p>
 											</div>
@@ -294,20 +297,19 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items[0] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												}  border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[3].field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[0] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[4]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[0] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{console.log(forms?.items[4]?.field_value)}
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
 														forms?.items[0]?.field_value,
@@ -321,21 +323,7 @@ const Preview = () => {
 												className={`${
 													forms?.items[1] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items
-													? ""
-													: forms?.items[1].forms?.items[5]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[6]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[7]?.field_value}
+												{!forms?.items ? "" : forms.items[7]?.field_value}
 											</td>
 											<td
 												className={`${
@@ -347,33 +335,33 @@ const Preview = () => {
 												className={`${
 													forms?.items[1] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
+												{!forms?.items ? "" : forms?.items[5]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[1] ? nottoBeHighlighted : ""
+												} border border-black border-collaps text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[6]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[1] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[9]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[1] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[5]?.field_value,
+														forms?.items[7]?.field_value,
 														forms?.items[9]?.field_value
 													)
 												).format()}
 											</td>
 										</tr>
 										<tr className="text-xs">
-											<td
-												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[10]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[11]?.field_value}
-											</td>
 											<td
 												className={`${
 													forms?.items[2] ? nottoBeHighlighted : ""
@@ -390,33 +378,33 @@ const Preview = () => {
 												className={`${
 													forms?.items[2] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
+												{!forms?.items ? "" : forms?.items[10]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[2] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[11]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[2] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[14]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[10] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[10]?.field_value,
+														forms?.items[7]?.field_value,
 														forms?.items[14]?.field_value
 													)
 												).format()}
 											</td>
 										</tr>
 										<tr className="text-xs">
-											<td
-												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[15]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[16]?.field_value}
-											</td>
 											<td
 												className={`${
 													forms?.items[3] ? nottoBeHighlighted : ""
@@ -433,33 +421,33 @@ const Preview = () => {
 												className={`${
 													forms?.items[3] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
+												{!forms?.items ? "" : forms?.items[15]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[3] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[16]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[3] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[19]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[3] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[15]?.quantity,
-														forms?.items[19]?.unitPrice
+														forms?.items[17]?.field_value,
+														forms?.items[19]?.field_value
 													)
 												).format()}
 											</td>
 										</tr>
 										<tr className="text-xs">
-											<td
-												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[20]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[21]?.field_value}
-											</td>
 											<td
 												className={`${
 													forms?.items[4] ? nottoBeHighlighted : ""
@@ -476,33 +464,33 @@ const Preview = () => {
 												className={`${
 													forms?.items[4] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
+												{!forms?.items ? "" : forms?.items[20]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[4] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[21]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[4] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[24]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[4] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[20]?.field_value,
+														forms?.items[22]?.field_value,
 														forms?.items[24]?.field_value
 													)
 												).format()}
 											</td>
 										</tr>
 										<tr className="text-xs">
-											<td
-												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[25]?.field_value}
-											</td>
-											<td
-												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[26]?.field_value}
-											</td>
 											<td
 												className={`${
 													forms?.items[5] ? nottoBeHighlighted : ""
@@ -519,15 +507,27 @@ const Preview = () => {
 												className={`${
 													forms?.items[5] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
+												{!forms?.items ? "" : forms?.items[25]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[5] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[26]?.field_value}
+											</td>
+											<td
+												className={`${
+													forms?.items[5] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[29]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[25] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[25]?.field_value,
+														forms?.items[27]?.field_value,
 														forms?.items[29]?.field_value
 													)
 												).format()}
@@ -538,39 +538,39 @@ const Preview = () => {
 												className={`${
 													forms?.items[30] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[30]?.field_value}
+												{!forms?.items ? "" : forms?.items[32]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[31] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[31]?.field_value}
+												{!forms?.items ? "" : forms?.items[33]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[32] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[32]?.field_value}
+												{!forms?.items ? "" : forms?.items[30]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[33] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[33]?.field_value}
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[31]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[34] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[34]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[34] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[30]?.field_value,
+														forms?.items[32]?.field_value,
 														forms?.items[34]?.field_value
 													)
 												).format()}
@@ -581,40 +581,40 @@ const Preview = () => {
 												className={`${
 													forms?.items[35] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items[7] ? "" : forms?.items[35]?.field_value}
+												{!forms?.items[7] ? "" : forms?.items[37]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[36] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items[7] ? "" : forms?.items[36]?.field_value}
+												{!forms?.items[7] ? "" : forms?.items[38]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[37] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items[7] ? "" : forms?.items[37]?.field_value}
+												{!forms?.items[7] ? "" : forms?.items[35]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[38] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items[7] ? "" : forms?.items[38]?.field_value}
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items[7] ? "" : forms?.items[36]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[39] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[39]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[39] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[35]?.quantity,
-														forms?.items[39]?.unitPrice
+														forms?.items[37]?.field_value,
+														forms?.items[39]?.field_value
 													)
 												).format()}
 											</td>
@@ -624,39 +624,39 @@ const Preview = () => {
 												className={`${
 													forms?.items[40] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[40]?.field_value}
+												{!forms?.items ? "" : forms?.items[42]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[41] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[41]?.field_value}
+												{!forms?.items ? "" : forms?.items[43]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[42] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[42]?.field_value}
+												{!forms?.items ? "" : forms?.items[40]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[43] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[43]?.field_value}
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[41]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[44] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[44]?.field_value).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items[44] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[40]?.field_value,
+														forms?.items[42]?.field_value,
 														forms?.items[44]?.field_value
 													)
 												).format()}
@@ -667,37 +667,40 @@ const Preview = () => {
 												className={`${
 													forms?.items[45] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[45]?.field_value}
+												{!forms?.items ? "" : forms?.items[47]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[46] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[46]?.field_value}
+												{!forms?.items ? "" : forms?.items[48]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[47] ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[47]?.field_value}
+												{!forms?.items ? "" : forms?.items[45]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[48] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
-												{!forms?.items ? "" : forms?.items[48]?.field_value}
+												} border border-black border-collapse text-left pl-2`}>
+												{!forms?.items ? "" : forms?.items[46]?.field_value}
 											</td>
 											<td
 												className={`${
 													forms?.items[49] ? nottoBeHighlighted : ""
-												} border border-black border-collapse`}>
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[49]?.field_value).format()}
 											</td>
-											<td className="border border-black border-collapse">
+											<td
+												className={`${
+													forms?.items[44] ? nottoBeHighlighted : ""
+												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
-														forms?.items[45]?.quantity,
-														forms?.items[49]?.unitPrice
+														forms?.items[47]?.field_value,
+														forms?.items[49]?.field_value
 													)
 												).format()}
 											</td>
@@ -716,42 +719,35 @@ const Preview = () => {
 											<div className="border border-black border-r-0 border-t-0 border-collapse">
 												<div className="flex justify-between h-14 pl-2 pr-2 border-b border-b-blue-300 pt-9 text-[10.9pt]">
 													<p>Project Manager:</p>
-													<p>
+													<p className="flex flex-col justify-center items-center">
 														<span className={`${nottoBeHighlighted}`}>
 															{moment(forms?.signDate).format("MMMM D, YYYY ")}
 														</span>
+														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-9 h-14 pl-2 pr-2 border-b border-b-blue-300 text-[10.9pt]">
 													<p>Business Manager:</p>
-													<p>
-														<span className={`${nottoBeHighlighted}`}>
-															{moment(forms?.signDate).format("MMMM D, YYYY ")}
-														</span>
+													<p className="flex justify-start items-start w-16 ">
+														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-9 h-14  pl-2 pr-2 border-b border-b-blue-300 text-[10.9pt]">
 													<p>Director of Construction and Sustainability</p>
-													<p>
-														<span className={`${nottoBeHighlighted}`}>
-															{moment(forms?.signDate).format("MMMM D, YYYY ")}
-														</span>
+													<p className="flex justify-start items-start w-16 ">
+														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-8 h-14 pl-2 pr-2 border-b border-b-blue-300 pt-9 text-[10.9pt]">
 													<p>Executive Director Building Services</p>
-													<p>
-														<span className={`${nottoBeHighlighted}`}>
-															{moment(forms?.signDate).format("MMMM D, YYYY ")}
-														</span>
+													<p className="flex justify-start items-start w-16 ">
+														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between h-14 pt-9 pb-[4px] pl-1 text-[10.9pt]">
 													<p>Deputy Superintendent Operational Services:</p>
-													<p className="mr-2">
-														<span className={`${nottoBeHighlighted}`}>
-															{moment(forms?.signDate).format("MMMM D, YYYY ")}
-														</span>
+													<p className="mr-2 flex justify-start items-start w-16 ">
+														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
 											</div>
@@ -762,7 +758,7 @@ const Preview = () => {
 												<div className="text-right p-2 h-[11rem]">
 													<div className="flex items-center gap-1 mb-2 justify-end text-[9pt]">
 														<p>SUB-TOTAL</p>
-														<p className="border border-2 border-black p-1 text-right w-28">
+														<p className=" border-2 border-black p-1 text-right w-28">
 															<span className={`${nottoBeHighlighted}`}>
 																{currency(forms?.ccpsubtotal).format() ||
 																	"0.00"}
@@ -774,7 +770,7 @@ const Preview = () => {
 															SHIPPING <br />
 															(IF APPLICABLE)
 														</p>
-														<p className="border border-2 border-black p-1 text-right w-28">
+														<p className="border-2 border-black p-1 text-right w-28">
 															<span className={`${nottoBeHighlighted}`}>
 																{currency(forms?.ccpshippingCost).format()}
 															</span>
@@ -788,7 +784,7 @@ const Preview = () => {
 																{forms?.ccptax}%
 															</span>
 														</p>
-														<p className="border border-2 border-black p-1 text-right w-28">
+														<p className=" border-2 border-black p-1 text-right w-28">
 															<span className={`${nottoBeHighlighted}`}>
 																{currency(taxPercentage).format()}
 															</span>
@@ -796,7 +792,7 @@ const Preview = () => {
 													</div>
 													<div className="flex items-center gap-1 mb-2 justify-end text-[12pt]">
 														<p>GRAND TOTAL</p>
-														<p className="border border-2 border-black p-1 text-right  w-28">
+														<p className=" border-2 border-black p-1 text-right  w-28">
 															<span className={`${nottoBeHighlighted}`}>
 																{forms?.ccpgrandTotal}
 															</span>

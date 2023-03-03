@@ -1,21 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { closeModal, fields } from "../../../reducer";
+import { closeModal } from "../../../reducer";
 import { nextStep, prevStep } from "../reducer";
 import { FormSelect, FormInputPlain } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { FieldArray } from "formik";
 import { Fragment, useMemo } from "react";
 import currency from "currency.js";
-import { values } from "pdf-lib";
 import { project_document_id } from "../../../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../../../features/services/api";
 import { handleResultWithArray } from "../../../../../shared-component";
 import { toast } from "react-toastify";
 
 export const CalculateTotal = (a, b) => {
-	console.log(a, b);
 	if (!a && !b) {
 		return "";
 	}
@@ -37,13 +35,28 @@ export const GrandTotals = (a, b, c, d) => {
 	return useMemo(() => {
 		// subtotal, shipping, sales total
 		let subTotals = subTotal(a);
+
 		if (d === "NO") {
-			console.log(subTotals + b);
 			return currency(subTotals + Number(b)).format();
 		}
-
-		return currency(subTotals + Number(b) + c).format();
+		return currency(c + subTotals + Number(b)).format();
 	}, [a, b, c, d]);
+};
+
+export const TaxPercentage = (a, b) => {
+	return useMemo(() => {
+		if (!a) {
+			return;
+		}
+		let subTotals = subTotal(a);
+		let percentage = 4.75 / 100;
+		if (!b) {
+			return subTotals * percentage;
+		} else {
+			let newPercentage = Number(b) / 100;
+			return subTotals * newPercentage;
+		}
+	}, [a, b]);
 };
 
 const FormThree = (props) => {
@@ -51,24 +64,12 @@ const FormThree = (props) => {
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-	const taxPercentage = useMemo(() => {
-		if (!props.values.ccpshippingCost) {
-			return "";
-		}
-
-		if (!props.values.tax) {
-			return Number(props.values.ccpshippingCost) * 4.75;
-		} else {
-			return Number(props.values.ccpshippingCost) * Number(props.values.ccptax);
-		}
-	}, [props]);
-
 	const dispatch = useDispatch();
 
 	const grandTotal = GrandTotals(
 		props?.values?.items,
 		props?.values?.ccpshippingCost,
-		taxPercentage,
+		TaxPercentage(props?.values?.items, props?.values?.ccptax),
 		props?.values?.ccpsalesTax
 	);
 
@@ -150,7 +151,7 @@ const FormThree = (props) => {
 										{props?.values?.items.map((unit, index) => (
 											<Fragment key={index}>
 												<div className="flex flex-col w-full">
-													<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-1 rounded-t-lg">
+													<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-3 rounded-t-lg">
 														<h2>Item {index + 1}</h2>
 														<button
 															onClick={() => remove(index)}
@@ -321,9 +322,9 @@ const FormThree = (props) => {
 						{/* {console.log(taxPercentage)} */}
 						<FormInputContainer name="Is this order subject to sales tax?">
 							<FormSelect
-								value={props.values.ccsalesTax}
+								value={props.values.ccpsalesTax}
 								// name="Select salesTax"
-								id="salesTax"
+								id="ccpsalesTax"
 								error={props.errors.ccpsalesTax}
 								touched={props.touched.ccpsalesTax}
 								onChange={props.handleChange}>
@@ -351,13 +352,20 @@ const FormThree = (props) => {
 							</FormInputContainer>
 						) : null}
 						<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
+							<h2 className="text-sm font-medium">Sales Tax Total</h2>
+							<span className="text-sm font-bold">
+								${TaxPercentage(props?.values?.items, props?.values?.ccptax)}
+							</span>
+						</div>
+
+						<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
 							<h2 className="text-sm font-medium">Grand Total</h2>
 							<span className="text-sm font-bold">
 								{/* {currency(props?.values?.items).format()} */}
 								{GrandTotals(
 									props?.values?.items,
 									props?.values?.ccpshippingCost,
-									taxPercentage,
+									TaxPercentage(props?.values?.items, props?.values?.ccptax),
 									props?.values?.ccpsalesTax
 								)}
 							</span>

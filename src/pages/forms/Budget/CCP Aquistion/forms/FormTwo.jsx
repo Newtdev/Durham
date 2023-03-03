@@ -1,5 +1,3 @@
-import { FieldArray } from "formik";
-import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
@@ -11,7 +9,6 @@ import { prevStep } from "../reducer";
 import { useGetVendorsQuery } from "../../../../../features/services/api";
 import { useState } from "react";
 import { useEffect } from "react";
-import { location } from "../../../../../lib/data";
 
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
@@ -75,7 +72,9 @@ const FormTwo = (props) => {
 		let stat = Object.values(states)?.find(
 			(state) => state.name === props.values.state
 		);
-
+		if (!stat) {
+			return;
+		}
 		return Object.keys(stat?.cities)?.map((cur, id) => {
 			return (
 				<option key={id} value={cur}>
@@ -113,17 +112,7 @@ const FormTwo = (props) => {
 					props.values.addressCity = cur?.city;
 					props.values.addressStreet = cur?.street;
 					props.values.addressZipCode = cur?.zip_code;
-					// data.values.information[index].city = cur.city;
-					// data.values.information[index].state = cur.state;
-					// data.values.information[index].zip_code = cur.zip_code;
 				}
-				// else if (
-				// 	// cur.company_name !== data.values.information[index].selectVendor
-				// )
-				// {
-				// 	return;
-				// 	// data.setFieldValue(`information.${index}.company_name`, "");
-				// }
 			});
 		}
 	}, [focus, props.values, vendor]);
@@ -133,7 +122,7 @@ const FormTwo = (props) => {
 				className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14"
 				onClick={(e) => e.stopPropagation()}>
 				<form
-					className="relative w-[600px] bg-white rounded-lg shadow py-4"
+					className="relative w-[600px] bg-white rounded-lg shadow py-1"
 					onSubmit={props.handleSubmit}>
 					<div className="flex justify-between items-baseline mx-6">
 						<div>
@@ -221,21 +210,19 @@ const FormTwo = (props) => {
 								{props.errors.addressStreet && props.touched.addressStreet && (
 									<Error message={props.errors.addressStreet} />
 								)}
-								<div className="flex gap-2 justify-center items-end">
-									{console.log(props.values.addressState)}
-									<FormSelect
+
+								<div className="flex gap-2 mt-4 justify-center items-end">
+									<input
+										list="states"
 										id="addressState"
 										value={props?.values?.addressState}
 										error={props.errors.addressState}
 										touched={props.touched.addressState}
-										onChange={props.handleChange}>
-										{!props?.values?.addressState ? (
-											<option value="">Select State</option>
-										) : (
-											<option value={props?.values?.addressState}>
-												{props?.values?.addressState}
-											</option>
-										)}
+										onChange={props.handleChange}
+										placeholder="Select State"
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+									/>
+									<datalist id="states">
 										{!states
 											? null
 											: Object.entries(states).map((cur, index) => {
@@ -245,23 +232,30 @@ const FormTwo = (props) => {
 														</option>
 													);
 											  })}
-									</FormSelect>
-									<FormSelect
+									</datalist>
+									<input
+										list="city"
 										id="addressCity"
 										value={props?.values?.addressCity}
 										error={props.errors.addressCity}
 										touched={props.touched.addressCity}
-										onChange={props.handleChange}>
-										{!props?.values?.addressCity ? (
-											<option value="">Select CitaddressCity</option>
-										) : (
-											<option value={props?.values?.addressCity}>
-												{props?.values?.addressCity}
-											</option>
-										)}
-										{CheckAddressState()}
-									</FormSelect>
-									<FormSelect
+										onChange={props.handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+										placeholder="Select City"
+									/>
+									<datalist id="city">{CheckAddressState()}</datalist>
+									<input
+										list="zip_code"
+										id="addressZipCode"
+										value={props?.values?.addressZipCode}
+										error={props.errors.addressZipCode}
+										touched={props.touched.addressZipCode}
+										onChange={props.handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `}
+										placeholder="Select Zip Code"
+									/>
+									<datalist id="zip_code">{CheckAddressZipCode()}</datalist>
+									{/* <FormSelect
 										id="addressZipCode"
 										value={props?.values?.addressZipCode}
 										error={props.errors.addressZipCode}
@@ -275,7 +269,7 @@ const FormTwo = (props) => {
 											</option>
 										)}
 										{CheckAddressZipCode()}
-									</FormSelect>
+									</FormSelect> */}
 								</div>
 							</FormInputContainer>
 							<FormInputContainer name="Enter the persons name for the ATTN field.">
@@ -303,20 +297,18 @@ const FormTwo = (props) => {
 										<Error message={props.errors.street} />
 									)}
 								</div>
-								<div className="flex gap-2 justify-center items-end">
-									<FormSelect
-										value={props?.values?.vendor}
+								<div className="flex gap-2 mt-4 justify-center items-end">
+									<input
+										list="states"
+										value={props?.values?.state}
 										id="state"
 										error={props.errors.state}
 										touched={props.touched.state}
-										onChange={props.handleChange}>
-										{!props?.values?.state ? (
-											<option value="">Select state</option>
-										) : (
-											<option value={props?.values?.state}>
-												{props?.values?.state}
-											</option>
-										)}
+										onChange={props.handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `}
+										placeholder="Select State"
+									/>
+									<datalist id="states">
 										{!states
 											? null
 											: Object.entries(states).map((cur, index) => {
@@ -326,30 +318,38 @@ const FormTwo = (props) => {
 														</option>
 													);
 											  })}
-									</FormSelect>
+									</datalist>
 
-									<FormSelect
-										value={props?.values?.vendor}
+									<input
+										list="cities"
+										value={props?.values?.city}
 										id="city"
 										error={props.errors.city}
 										touched={props.touched.city}
-										onChange={props.handleChange}>
-										{!props?.values?.city ? (
-											<option value="">Select city</option>
-										) : (
-											<option value={props?.values?.city}>
-												{props?.values?.city}
-											</option>
-										)}
-										{CheckState()}
-									</FormSelect>
+										onChange={props.handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
+										placeholder="Select City"
+									/>
+									<datalist id="cities">{CheckState()}</datalist>
 
-									<FormSelect
+									<input
+										list="zcode"
 										id="zipCode"
 										value={props?.values?.zipCode}
 										error={props?.errors.zipCode}
 										touched={props?.touched.zipCode}
-										onChange={props?.handleChange}>
+										onChange={props?.handleChange}
+										className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2 `}
+										placeholder="Select Zip Code"
+									/>
+									<datalist id="zcode">{CheckZipCode()}</datalist>
+									{/* <FormSelect
+										id="zipCode"
+										value={props?.values?.zipCode}
+										error={props?.errors.zipCode}
+										touched={props?.touched.zipCode}
+										onChange={props?.handleChange}
+										>
 										{!props?.values?.zipCode ? (
 											<option value="">Select zip code</option>
 										) : (
@@ -358,10 +358,10 @@ const FormTwo = (props) => {
 											</option>
 										)}
 										{CheckZipCode()}
-									</FormSelect>
+									</FormSelect> */}
 								</div>
 							</FormInputContainer>
-							<FormSelect
+							{/* <FormSelect
 								value={props?.values?.vendor}
 								id="location"
 								error={props?.errors.location}
@@ -383,7 +383,7 @@ const FormTwo = (props) => {
 										</option>
 									);
 								})}
-							</FormSelect>
+							</FormSelect> */}
 						</div>
 
 						<div className="flex justify-end gap-8 pr-4">
