@@ -104,7 +104,7 @@ const RFPTemplate = ({ id }) => {
       proposalScope: "",
       validityPeriod: "",
       items: "",
-      attachment: "false",
+      attachment: "",
     },
     // validationSchema: RFPTemplatewithMWBESchema,
     onSubmit: (values) => {

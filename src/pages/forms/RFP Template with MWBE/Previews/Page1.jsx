@@ -61,7 +61,7 @@ const Page1 = (props) => {
             <p class="c163">
               {/* <span class="c81 c80 c92">Attn: Tanita Nicholson</span> */}
               <span class={`c81 c80 c92 ${props?.nottoBeHighlighted}`}>
-                {props?.form_fields?.personName}
+                Attn:{props?.form_fields?.personName}
               </span>
             </p>
             <p class="c163">
@@ -102,11 +102,11 @@ const Page1 = (props) => {
                   {moment(props?.form_fields?.proposalDate).format("YYYY")}
                 </span> */}
                 {moment(props?.form_fields?.proposalDate).format(
-                  "MMMM, D YYYY"
+                  "MMMM D, YYYY"
                 )}
 
                 <span className={`inline-block ml-2`}>
-                  {moment(props?.form_fields?.proposalTime).format("hh:mm a")}{" "}
+                  {moment(props?.form_fields?.proposalTime).format("h:mm a")}{" "}
                 </span>
               </span>
             </p>
@@ -134,14 +134,22 @@ const Page1 = (props) => {
             <p class="c129">
               <span class="c98 c45 c168">All questions must be submitted </span>
               <span class="c130 c98 c168 c45">via email</span>
-              <span class="c98 c168 c45">&nbsp;no later </span>
+              <span class="c98 c168 c45">&nbsp;no later</span>
+              <span
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                {" "}
+                than{" "}
+              </span>
               <span class={`c66  ${props?.nottoBeHighlighted}`}>
                 {moment(props?.form_fields?.submissionDate).format(
-                  "MMMM, D YYYY "
+                  "MMMM Do YYYY "
                 )}
 
                 <span className={`inline-block`}>
-                  at {moment(props?.form_fields?.submissionTime).format("hha")}{" "}
+                  at {moment(props?.form_fields?.submissionTime).format("ha")}{" "}
                 </span>
               </span>
               {/* <span class="c89 c68">&nbsp;2022 at 2pm</span> */}
@@ -185,19 +193,19 @@ const Page1 = (props) => {
           </td>
         </tr>
       </table>
-      <p class="c129">
-        <span class="c192 c98 c68">
+      <p class={`c129 `}>
+        <span class={`c192 c98 c68 ${props?.nottoBeHighlighted}`}>
           Bids will be publicly opened on: &nbsp;{" "}
         </span>
         <span class={`c89  ${props?.nottoBeHighlighted}`}>
-          {moment(props?.form_fields?.bidOpeningDate).format("MMMM, D YYYY ")}
+          {moment(props?.form_fields?.bidOpeningDate).format("MMMM D, YYYY ")}
 
           <span className={`inline-block`}>
-            {moment(props?.form_fields?.bidOpeningTime).format("hh:mm a")}{" "}
+            {moment(props?.form_fields?.bidOpeningTime).format("h:mm a")}{" "}
           </span>
         </span>{" "}
       </p>
-      <p class="c8">
+      <p class="c8" style={{ lineHeight: 1.2 }}>
         <span class="c130 c98 c45">NOTE:</span>
         <span class="c98 c45">
           &nbsp; Questions concerning the specifications in this Request for
@@ -228,9 +236,9 @@ const Page1 = (props) => {
         </span>
         <span class={`c66  ${props?.nottoBeHighlighted}`}>
           <span className={`inline-block mr-2`}>
-            {moment(props?.form_fields?.submissionTime).format("hh:mm a")} on
+            {moment(props?.form_fields?.submissionTime).format("h:mm a")} on
           </span>
-          {moment(props?.form_fields?.submissionDate).format("MMMM, Do YYYY ")}
+          {moment(props?.form_fields?.submissionDate).format("MMMM Do YYYY ")}
         </span>
         {/* <span class="c89 c68">1:00pm on March 18</span>
         <span class="c85 c68">th</span>
@@ -256,9 +264,9 @@ const Page1 = (props) => {
       <p class="c3 c12">
         <span class="c70 c81 c45"></span>
       </p>
-      <p class="c3">
-        {/* <span class="c98 c45 c68">Digital submissions through the </span> */}
-        {/* <span class="c130 c45 c68 c307">
+      <p class={`c3 ${props?.nottoBeHighlighted}`}>
+        <span class="c98 c45 c68">Digital submissions through the </span>
+        <span class="c130 c45 c68 c307">
           <a
             class="c78"
             href="https://www.google.com/url?q=http://www.ips.state.nc.us/&amp;sa=D&amp;source=editors&amp;ust=1676889196068145&amp;usg=AOvVaw3iEUJEsvtdgejWQLQv3zYU"
@@ -270,13 +278,13 @@ const Page1 = (props) => {
           &nbsp;is preferred. &nbsp;Submission type, online or hard copy, will
           not affect proposal scoring. If submitting a hard copy, please submit
           1 copy.
-        </span> */}
-        <span className={` ${props?.nottoBeHighlighted}`}>
+        </span>
+        {/* <span className={` ${props?.nottoBeHighlighted}`}>
           {props?.form_fields?.prototypeNotUtilized}Digital submissions through
           the &nbsp;is preferred. &nbsp;Submission type, online or hard copy,
           will not affect proposal scoring. If submitting a hard copy, please
           submit 1 copy.
-        </span>
+        </span> */}
         <span class="c24">&nbsp; </span>
       </p>
       <p class="c3 c12">
@@ -298,7 +306,17 @@ const Page1 = (props) => {
         </span>
       </p>
 
-      <Footer page={1} />
+      <div className=" h-[1rem] flex flex-col justify-center">
+        <p className="font-extrabold text-black mb-3 text-center">
+          <b></b>
+        </p>
+        <div>
+          <p className="text-[10px]"></p>
+        </div>
+        <div className="w-1  mx-auto">
+          <p>1</p>
+        </div>
+      </div>
     </div>
   );
 };
