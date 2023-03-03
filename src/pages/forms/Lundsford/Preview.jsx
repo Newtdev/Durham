@@ -16,6 +16,14 @@ import {
 } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
+const PageTwo = () => {
+	return (
+		<div className="bg-white pt-8 pb-4 text-black arial-font text-[11pt] h-[11in] mt-[1in]  leading-[1.3]">
+			<p className="text-right mb-4 text-[16pt]">Attachment B</p>
+		</div>
+	);
+};
+
 const PreviewForm = ({ value }) => {
 	const showModal = useSelector(openDownload);
 	const downloadComponent = useRef();
@@ -32,17 +40,18 @@ const PreviewForm = ({ value }) => {
 	const [awardee, setAwardee] = useState([]);
 
 	useEffect(() => {
-		if (!vendors || !form_fields?.addressCopy) {
+		if (!vendors) {
 			return;
 		}
-		console.log(form_fields?.addressCopy);
+
 		const data = vendors?.filter(
 			(cur) => cur.role === form_fields?.addressCopy
 		);
-		if (!data) {
-			setAwardee(vendors[0]);
+		if (data.length < 1) {
+			setAwardee(vendors);
+		} else {
+			setAwardee(data);
 		}
-		setAwardee(data);
 	}, [vendors, form_fields]);
 
 	const props = {
@@ -83,7 +92,7 @@ const PreviewForm = ({ value }) => {
 					{/* Forms */}
 					<div className="mx-auto mt-6  w-[95%] h-[35rem] overflow-y-auto">
 						<div
-							className="bg-white pt-8 pb-4 text-black arial-font text-[11pt] h-[11in] ml-[1in] mr-[0.8in]  leading-[1.3]"
+							className="bg-white pt-8 pb-10 text-black arial-font text-[11pt] h-[11in] ml-[0.8in] mr-[0.7in]  leading-[1.3]"
 							ref={downloadComponent}>
 							<p className="text-right mb-4 text-[16pt]">Attachment A</p>
 							<div className="mb-6 text-center arial-font">
@@ -178,7 +187,6 @@ const PreviewForm = ({ value }) => {
 									Agreement (annual check).
 								</p>
 							</div>
-
 							<div className="mt-4 mb-4 grid grid-cols-2 gap-16 ">
 								<div className="overflow-hidden">
 									<p className="font-bold text-[12pt] mb-2">
@@ -212,13 +220,11 @@ const PreviewForm = ({ value }) => {
 									<div className="w-full  bg-black mt-9  border-b border-black"></div>
 								</div>
 							</div>
-
 							<p className="">
 								I attest that the forgoing information is true and accurate to
 								the best of my knowledge.
 							</p>
-
-							<div className="mt-10 mb-4 pr-6 ">
+							<div className="mt-8 mb-4 pr-6 ">
 								<div className="flex justify-between">
 									<p className="flex  items-center  ">
 										<span className="text-center inline-block border-b border-black w-52">
@@ -246,6 +252,7 @@ const PreviewForm = ({ value }) => {
 									</p>
 								</div>
 							</div>
+							<PageTwo />
 						</div>
 					</div>
 
