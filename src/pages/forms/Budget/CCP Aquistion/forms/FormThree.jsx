@@ -15,7 +15,6 @@ import { handleResultWithArray } from "../../../../../shared-component";
 import { toast } from "react-toastify";
 
 export const CalculateTotal = (a, b) => {
-	console.log(a, b);
 	if (!a && !b) {
 		return "";
 	}
@@ -35,15 +34,29 @@ export const subTotal = (a) => {
 
 export const GrandTotals = (a, b, c, d) => {
 	return useMemo(() => {
-		// subtotal, shipping, sales total
 		let subTotals = subTotal(a);
+
 		if (d === "NO") {
-			console.log(subTotals + b);
 			return currency(subTotals + Number(b)).format();
 		}
-
-		return currency(subTotals + Number(b) + c).format();
+		return currency(c + subTotals + Number(b)).format();
 	}, [a, b, c, d]);
+};
+
+const TaxPercentage = (a, b) => {
+	return useMemo(() => {
+		if (!a) {
+			return;
+		}
+		let subTotals = subTotal(a);
+		let percentage = 4.75 / 100;
+		if (!b) {
+			return subTotals * percentage;
+		} else {
+			let newPercentage = Number(b) / 100;
+			return subTotals * newPercentage;
+		}
+	}, [a, b]);
 };
 
 const FormThree = (props) => {
@@ -51,24 +64,12 @@ const FormThree = (props) => {
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-	const taxPercentage = useMemo(() => {
-		if (!props.values.ccpshippingCost) {
-			return "";
-		}
-
-		if (!props.values.tax) {
-			return Number(props.values.ccpshippingCost) * 4.75;
-		} else {
-			return Number(props.values.ccpshippingCost) * Number(props.values.ccptax);
-		}
-	}, [props]);
-
 	const dispatch = useDispatch();
 
 	const grandTotal = GrandTotals(
 		props?.values?.items,
 		props?.values?.ccpshippingCost,
-		taxPercentage,
+		TaxPercentage(props?.values?.items),
 		props?.values?.ccpsalesTax
 	);
 
@@ -357,7 +358,7 @@ const FormThree = (props) => {
 								{GrandTotals(
 									props?.values?.items,
 									props?.values?.ccpshippingCost,
-									taxPercentage,
+									TaxPercentage(props?.values?.items, props?.values?.ccptax),
 									props?.values?.ccpsalesTax
 								)}
 							</span>

@@ -15,7 +15,6 @@ import { setResult } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Lunsford = ({ id, filled }) => {
-	console.log(id, filled);
 	const Dispatch = useDispatch();
 	const pages = useSelector(page);
 	const showModal = useSelector(modal);
