@@ -16,13 +16,10 @@ const Page22 = (props) => {
         <span class="c21"></span>
       </p>
       <p class="c229 c23 c128 c316" id="h.3fwokq0">
-        <span class={`c89 c80 c140 ${props?.nottoBeHighlighted}`}>
+        <span class={`c89 c80 c140 `}>
           ATTACHMENT C: &nbsp; PRICING
         </span>
-        <span className={`${props?.nottoBeHighlighted}`}>
-          {" "}
-          {props?.form_fields?.attachment}
-        </span>
+   
         <span class="c89 c80 c140">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>

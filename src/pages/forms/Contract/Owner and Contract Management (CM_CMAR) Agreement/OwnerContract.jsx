@@ -16,7 +16,8 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const OwnerContractorManagementForm = ({ id }) => {
+const OwnerContractorManagementForm = ({ id, filled }) => {
+  console.log(id, filled);
   const dispatch = useDispatch();
   const pages = useSelector(page);
   const show = useSelector(modal);
@@ -41,6 +42,21 @@ const OwnerContractorManagementForm = ({ id }) => {
         { field_name: param[4], field_value: val[4] },
         { field_name: param[5], field_value: val[5] },
         { field_name: param[6], field_value: val[6] },
+        { field_name: param[7], field_value: val[7] },
+        { field_name: param[8], field_value: val[8] },
+        { field_name: param[9], field_value: val[9] },
+        { field_name: param[10], field_value: val[10] },
+        { field_name: param[11], field_value: val[11] },
+        { field_name: param[12], field_value: val[12] },
+        { field_name: param[13], field_value: val[13] },
+        { field_name: param[14], field_value: val[14] },
+        { field_name: param[15], field_value: val[15] },
+        { field_name: param[16], field_value: val[16] },
+        { field_name: param[17], field_value: val[17] },
+        { field_name: param[18], field_value: val[18] },
+        { field_name: param[19], field_value: val[19] },
+        { field_name: param[20], field_value: val[20] },
+        { field_name: param[21], field_value: val[21] },
       ],
     });
     if (response) {
@@ -101,12 +117,14 @@ const OwnerContractorManagementForm = ({ id }) => {
     },
   });
 
-  useEffect(() => {
-    (async function () {
-      const response = await (await fetch("/states.json")).json();
-      dispatch(getStates(response));
-    })();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   (async function () {
+  //     const response = await (await fetch("/states.json")).json();
+  //     dispatch(getStates(response));
+  //   })();
+  // }, [dispatch]);
+
+  const props = {...formik, isLoading}
 
   return (
     <ModalOverlay show={id === OwnerContractManagement && show}>
@@ -115,7 +133,7 @@ const OwnerContractorManagementForm = ({ id }) => {
           {pages === 1 && <FormOne {...formik} />}
           {pages === 2 && <FormTwo {...formik} />}
           {pages === 3 && <FormThree {...formik} />}
-          {pages === 4 && <FormFour {...formik} />}
+          {pages === 4 && <FormFour {...props} />}
           {pages === 5 && <Preview />}
         </form>
       </FormikProvider>

@@ -42,6 +42,7 @@ import Page29 from "./Previews/Page29";
 import Page30 from "./Previews/Page30";
 
 const Preview = () => {
+
   const dispatch = useDispatch();
   const downloadComponent = useRef();
   const show = useSelector(openDownload);
@@ -86,6 +87,7 @@ const Preview = () => {
   };
 
   console.log(pageProps);
+  console.log(pageProps?.form_fields?.attachment);
 
   return (
     <div>
@@ -131,31 +133,31 @@ const Preview = () => {
                 <Page3 {...pageProps} />
                 <Page4 {...pageProps} />
                 <Page5 {...pageProps} />
-                {showDownload && <Page6 />}
+                {showPage && <Page6 />}
                 <Page7 {...pageProps} />
-                {showDownload && <Page8 />}
-                {showDownload && <Page9 />}
-                {showDownload && <Page10 />}
-                {showDownload && <Page11 />}
+                {showPage && <Page8 />}
+                {showPage && <Page9 />}
+                {showPage && <Page10 />}
+                {showPage && <Page11 />}
                 <Page12 {...pageProps} />
-                {showDownload && <Page13 />}
-                {showDownload && <Page14 />}
-                {showDownload && <Page15 />}
-                {showDownload && <Page16 />}
-                {showDownload && <Page17 />}
-                {showDownload && <Page18 />}
-                {showDownload && <Page19 />}
-                {showDownload && <Page20 />}
-                {showDownload && <Page21 />}
-                <Page22 {...pageProps} />
-                {showDownload && <Page23 />}
-                {showDownload && <Page24 />}
-                {showDownload && <Page25 />}
-                {showDownload && <Page26 />}
-                {showDownload && <Page27 />}
-                {showDownload && <Page28 />}
-                {showDownload && <Page29 />}
-                {showDownload && <Page30 />}
+                {showPage && <Page13 />}
+                {showPage && <Page14 />}
+                {showPage && <Page15 />}
+                {showPage && <Page16 />}
+                {showPage && <Page17 />}
+                {showPage && <Page18 />}
+                {showPage && <Page19 />}
+                {showPage && <Page20 />}
+                {showPage && <Page21 />}
+                {pageProps?.form_fields?.attachment === "Yes" ? showPage && <Page22 /> : null}
+                {showPage && <Page23 />}
+                {showPage && <Page24 />}
+                {showPage && <Page25 />}
+                {showPage && <Page26 />}
+                {showPage && <Page27 />}
+                {showPage && <Page28 />}
+                {showPage && <Page29 />}
+                {showPage && <Page30 />}
               </body>
             </div>
           </div>

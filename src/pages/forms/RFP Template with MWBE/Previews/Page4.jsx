@@ -164,7 +164,7 @@ const Page4 = (props) => {
           items and those attachments should be arranged in the following order:
         </span>
       </p>
-      <ol class="c14 lst-kix_list_24-0 start" start="1">
+      {/* <ol class="c14 lst-kix_list_24-0 start" start="1">
         <li class="c119 c32 c23 c68 li-bullet-0">
           <span class="c21">Cover Letter</span>
         </li>
@@ -180,6 +180,15 @@ const Page4 = (props) => {
             of the RFP, and signed receipt pages of any addenda released in
             conjunction with this RFP (if required to be returned).
           </span>
+        </li>
+      </ol> */}
+      <ol
+        class="c14 lst-kix_list_24-0 start"
+        start="1"
+        className={`${props.nottoBeHighlighted}`}
+      >
+        <li class="c119 c32 c23 c68 li-bullet-0">
+          <span class="c21"> {props?.form_fields?.items}</span>
         </li>
       </ol>
       <Footer page={4} />

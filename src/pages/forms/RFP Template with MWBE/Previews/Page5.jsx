@@ -8,11 +8,11 @@ const Page5 = () => {
       style={{
         height: "27cm",
         // padding: "0.5cm 0",
-        paddingTop: "0.5cm",
+        paddingTop: "1cm",
         // border: "1px solid black",
       }}
     >
-      <ol class="c14 lst-kix_list_24-0 start" start="1">
+      {/* <ol class="c14 lst-kix_list_24-0 start" start="1">
         <li class="c119 c32 c23 c68 li-bullet-0">
           <span class="c21">
             Completed and accurate MWBE/HUB Affidavits with supporting
@@ -30,7 +30,7 @@ const Page5 = () => {
             or repair projects in excess of $500,000.
           </span>
         </li>
-      </ol>
+      </ol> */}
       <p class="c23 c12 c101 c119">
         <span class="c21"></span>
       </p>
@@ -38,7 +38,7 @@ const Page5 = () => {
         <span class="c51">2.2 DEFINITIONS, ACRONYMS, AND ABBREVIATIONS</span>
       </p>
       <a id="id.3dy6vkm"></a>
-      <ol class="c14 lst-kix_list_28-0 start" start="1">
+      <ol class="c14 lst-kix_list_28-0 start" start="1" >
         <li class="c23 c112 li-bullet-0" id="h.1t3h5sf">
           <span class="c66 c45">BAFO</span>
           <span class="c21">
@@ -46,28 +46,28 @@ const Page5 = () => {
             initial offer, made in response to a request by the issuing agency.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             BUYER: The employee of Durham Public Schools or Other Eligible
             Entity that places an order with the Vendor.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             CONTRACT LEAD: Representative of Durham Public Schools who
             corresponds with potential Vendors in order to identify and contract
             with that Vendor providing the greatest benefit to Durham Public
             Schools and who will administer this contract
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             E-PROCUREMENT SERVICES: The program, system, and associated services
             through which the State conducts electronic procurement.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             FOB-DESTINATION:&nbsp; Title changes hand from Vendor to purchaser
             at the destination point of the shipment; Vendor owns commodity in
             transit and files any claims, and Vendor pays all freight and any
@@ -77,54 +77,49 @@ const Page5 = () => {
             price will be paid.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             LOT: &nbsp;A grouping of similar products within this RFP.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             ON-TIME DELIVERY: The delivery of all items within a single order to
             the receiving point designated by the ordering entity within the
             delivery time required.
           </span>
         </li>
         <li class="c112 c23 li-bullet-0">
-          <span class="c66 c45">
+          <span class="c21" style={{fontWeight: "bold"}}>
             QUALIFIED PROPOSAL: A responsive proposal submitted by a responsible
             Vendor.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">RFP: Request for Proposal</span>
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>RFP: Request for Proposal</span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             STATE:&nbsp; The State of North Carolina, including any of its
             sub-units recognized under North Carolina law.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0">
+          <span class="c21" style={{fontWeight: "bold"}}>
             STATE AGENCY: Any of the more than 400 sub-units within the
             executive branch of the State, including its departments, boards,
             commissions, institutions of higher education and other institution.
           </span>
         </li>
-        <li class="c112 c23 subtitle li-bullet-0" id="h.4d34og8">
-          <span class="c34">
+        <li class="c112 c23 li-bullet-0" id="h.4d34og8">
+          <span class="c21" style={{fontWeight: "bold"}}>
             VENDOR:&nbsp; Supplier, bidder, proposer, company, firm,
             corporation, partnership, individual or other entity submitting a
             response to a Request for Proposal.
           </span>
         </li>
       </ol>
-      <p class="c4 c253 subtitle">
-        <span class="c9"></span>
-      </p>
-      <p class="c23 c12 c71 subtitle">
-        <span class="c9"></span>
-      </p>
+    
       <p class="c71 c23 c12 subtitle">
         <span class="c9"></span>
       </p>
