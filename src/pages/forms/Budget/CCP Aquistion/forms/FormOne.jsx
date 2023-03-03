@@ -73,7 +73,7 @@ const FormOne = (props) => {
 							</FormInputContainer>
 
 							<div className="p-2 border rounded-lg border-[#D1D5DB] flex flex-col gap-2">
-								<h2 className="font-bold">
+								<h2 className="font-bold text-sm">
 									For the following items, enter the corresponding codes or
 									numbers.
 								</h2>
@@ -133,7 +133,7 @@ const FormOne = (props) => {
 							</div>
 
 							<div className="p-2 flex flex-col gap-2">
-								<h2 className="font-bold">
+								<h2 className="font-bold text-sm">
 									Select the appropriate boxes below.
 								</h2>
 								<div className="flex flex-col">
@@ -153,7 +153,7 @@ const FormOne = (props) => {
 										/>
 										<label
 											for="default-radio-1"
-											className="ml-2 text-base text-gray-900">
+											className="ml-2 text-sm text-gray-900">
 											Best Price(Attached)
 										</label>
 									</div>
@@ -174,7 +174,7 @@ const FormOne = (props) => {
 										/>
 										<label
 											for="default-radio-2"
-											className="ml-2 text-base text-gray-900">
+											className="ml-2 text-sm text-gray-900">
 											Franchise/Sole Source(Attached)
 										</label>
 									</div>
@@ -184,7 +184,7 @@ const FormOne = (props) => {
 								)}
 							</div>
 
-							<FormInputContainer name="When does the project sign sign the requisition?">
+							<FormInputContainer name="When does the project manager sign the requisition?">
 								<SelectDate {...signDate} />
 								{props.errors.signDate && props.touched.signDate && (
 									<Error message={props.errors.signDate} />

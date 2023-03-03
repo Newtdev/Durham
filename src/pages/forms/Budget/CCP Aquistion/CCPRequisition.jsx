@@ -36,7 +36,7 @@ const CCPRequisitionForm = ({ id }) => {
 			addressState: "",
 			addressZipCode: "",
 			ccpshippingCost: "",
-			ccpsalesTax: "YES",
+			ccpsalesTax: "",
 			ccptax: "4.75",
 			name: "",
 			city: "",
