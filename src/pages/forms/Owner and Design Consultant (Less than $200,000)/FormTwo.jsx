@@ -118,6 +118,7 @@ const FormTwo = (props) => {
             />
             <DashboardButton
               hidden
+              loading={props.isLoading}
               name="NEXT"
               type="submit"
               width="w-[77px]"

@@ -208,7 +208,6 @@ const FormFour = (props) => {
                     <ButtonWhiteBG width='w-[100px]' name='Previous' onClick={() => dispatch(prevStep(3))} />
                     <DashboardButton
                         hidden
-                        loading={props.isLoading}
                         name='NEXT'
                         type='submit'
                         width='w-[77px]'
