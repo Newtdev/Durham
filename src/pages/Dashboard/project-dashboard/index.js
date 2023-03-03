@@ -336,7 +336,7 @@ const ProjectDashboard = () => {
 							</div>
 							{/* Accordions */}
 							<div className="mt-6 bg-white border border-gray-100 rounded-lg">
-								<Accordion data={projectDetails.project_documents} />
+								<Accordion data={projectDetails?.project_documents} />
 							</div>
 						</div>
 

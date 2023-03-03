@@ -15,6 +15,7 @@ import { setResult } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Lunsford = ({ id, filled }) => {
+	console.log(id, filled);
 	const Dispatch = useDispatch();
 	const pages = useSelector(page);
 	const showModal = useSelector(modal);
@@ -25,6 +26,7 @@ const Lunsford = ({ id, filled }) => {
 	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
+		console.log(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
 			form_fields: setResult(values),
@@ -50,8 +52,11 @@ const Lunsford = ({ id, filled }) => {
 		onSubmit: (values) => {
 			if (pages === 1) {
 				Dispatch(saveFormField(values));
-
-				HandleSubmit(values);
+				if (!values?.addressCopy) {
+					HandleSubmit({ type: values?.type, addressCopy: "" });
+				} else {
+					HandleSubmit(values);
+				}
 			}
 		},
 	});
@@ -76,19 +81,26 @@ const Lunsford = ({ id, filled }) => {
 		if (!a?.data?.form_fields) {
 			return;
 		}
-		// setFieldValue('')
 		setValues({
 			type: a?.data?.form_fields?.type,
 			addressCopy: a?.data?.form_fields?.addressCopy,
 		});
 	}, [a]);
 
+	if (!filled) {
+		return (
+			<div>
+				<ModalOverlay show={id === lundsford && showModal}>
+					{pages === 1 ? <Forms {...typeProps} /> : null}
+					{pages === 2 ? <PreviewForm {...previewProps} /> : null}
+				</ModalOverlay>
+			</div>
+		);
+	}
 	return (
 		<div>
 			<ModalOverlay show={id === lundsford && showModal}>
-				{filled ? <PreviewForm {...previewProps} /> : null}
-				{pages === 1 && !filled ? <Forms {...typeProps} /> : null}
-				{pages === 2 && <PreviewForm {...previewProps} />}
+				<PreviewForm {...previewProps} />
 			</ModalOverlay>
 		</div>
 	);

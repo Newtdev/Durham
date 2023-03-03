@@ -31,13 +31,12 @@ export const Accordion = ({ data }) => {
 
 	const onClick = (e, v) => {
 		if (e.target) {
-			console.log(v);
 			const { value, name, id } = e.target;
 			// console.log(value);
 			e.target.className = newClass;
 			dispatch(getDocument(name));
 			dispatch(getSlugId(value));
-			dispatch(selectFilled(value));
+			dispatch(selectFilled(v));
 
 			dispatch(getID(id));
 			dispatch(showModal());
