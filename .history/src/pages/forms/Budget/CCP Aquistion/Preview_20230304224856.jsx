@@ -330,7 +330,7 @@ const Preview = () => {
                       >
                         {currency(
                           CalculateTotal(
-                            forms?.items[0]?.field_value,
+                            // forms?.items[0]?.field_value,
                             forms?.items[4]?.field_value
                           )
                         ).format()}
