@@ -577,34 +577,34 @@ export const EditDocumentData = {
 			type: "MWBE_Forms",
 		},
 	],
-	Notice_letters: [
+	Notice_Letters: [
 		{
 			id: 23,
 			document_name: "Notice of Award - Consultant",
 			identifier: "Notice-of-Award---Consultant",
 			name: "edit",
-			type: "Notice_letters",
+			type: "Notice_Letters",
 		},
 		{
 			id: 24,
 			document_name: "Notice of Award - Contractor",
 			identifier: "Notice-of-Award---Contractor",
 			name: "edit",
-			type: "Notice_letters",
+			type: "Notice_Letters",
 		},
 		{
 			id: 25,
 			document_name: "Notice of Intent to Award - Consultant",
 			identifier: "Notice-of-Intent-to-Award---Consultant",
 			name: "edit",
-			type: "Notice_letters",
+			type: "Notice_Letters",
 		},
 		{
 			id: 26,
 			document_name: "Notice to Proceed - Contractor",
 			identifier: "Notice-to-Proceed---Contractor",
 			name: "edit",
-			type: "Notice_letters",
+			type: "Notice_Letters",
 		},
 	],
 	Project_Closeout: [

@@ -74,6 +74,7 @@ const MainAffidavit = ({ id }) => {
 			conferenceStateD: "",
 			conferenceCityD: "",
 			conferenceZipCodeD: "",
+			improvement: "",
 		},
 
 		onSubmit: (values) => {

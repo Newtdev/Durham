@@ -31,7 +31,9 @@ const Affidavit = () => {
 	};
 
 	const projectInfo = a?.data?.project;
-	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
+	const nottoBeHighlighted = !highlighted
+		? "bg-yellow-300 text-[9pt]"
+		: "bg-white";
 
 	return (
 		<div>
@@ -64,10 +66,10 @@ const Affidavit = () => {
 						<div
 							className="px-12 pt-8 pb-4 text-black text-[8pt] leading-[1.1] arial-font"
 							ref={downloadComponent}>
-							<div>
+							<div className=" h-[10.5in]">
 								<div className="border-b border-b-black pb-4 flex items-center mb-3 mt-4">
 									<div className="flex flex-col items-center -ml-8">
-										<img src={Logo} alt="" className=" object-contain h-14" />
+										<img src={Logo} alt="" className=" object-contain h-16" />
 										<span className="inline-block -mt-2">Web-Fill</span>
 										<span>7-18</span>
 									</div>
@@ -103,18 +105,18 @@ const Affidavit = () => {
 									</p>
 								</div>
 
-								<div className="border border-black">
+								<div className="border border-black ">
 									<p className="border-b border-b-black p-2 mb-2">
 										<span className="font-bold">Section I. Single Use </span>
 										<em>
 											Complete this section to issue the affidavit for a single
-											capital improvement.)
+											capital improvement.
 										</em>
 									</p>
 
-									<div className="py-2 px-4">
+									<div className="py-1 px-2">
 										<div className="grid grid-cols-2 gap-3 mb-3">
-											<div className="relative border border-black px-2 py-1">
+											<div className="relative border border-black px-2 pt-1">
 												<div className="inline-flex absolute -top-[0.8rem] -left-2 justify-center items-center w-5 h-5 rounded-full border border-black bg-white">
 													A
 												</div>
@@ -155,7 +157,9 @@ const Affidavit = () => {
 															</div>
 															<div className="w-[25%]">
 																<p className="font-bold">Zipcode</p>
-																<p className="bg-blue-100 p-1 ">27704</p>
+																<p className={`${nottoBeHighlighted} p-1 `}>
+																	27704
+																</p>
 															</div>
 														</div>
 													</>
@@ -168,7 +172,7 @@ const Affidavit = () => {
 																{form_fields?.companyAddressA}
 															</p>
 														</div>
-														<div className="flex justify-between mb-1">
+														<div className="flex justify-between ">
 															<div className="w-[50%]">
 																<p className=" font-bold">City</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
@@ -266,7 +270,10 @@ const Affidavit = () => {
 											<p className=" font-bold mb-0.5">
 												Describe capital improvement to be performed:
 											</p>
-											<div className={` ${nottoBeHighlighted} p-2 h-24 `}></div>
+											<div
+												className={` ${nottoBeHighlighted} py-2 px-0.5 h-20 `}>
+												{form_fields?.improvement || ""}
+											</div>
 										</div>
 
 										<div className="mb-3">
@@ -503,7 +510,7 @@ const Affidavit = () => {
 									</div>
 								</div>
 
-								<div className=" mt-[1in] pt-3">
+								<div className=" mt-[1in] h-[11in] pt-3">
 									<div className="flex justify-between items-center mt-10 mb-6">
 										<div className="text-sm text-center leading-[1.1]">
 											<p className="font-bold text-[9pt]">Page 2</p>

@@ -4,7 +4,7 @@ import { useGetVendorsQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { getList } from "../../Advertisement-for-bid-template/reducer";
-import { FormSelect } from "../../components";
+import { FormSelect, FormTextArea } from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import { prevChoiceStep } from "../reducer";
@@ -222,6 +222,14 @@ const FormFour = (props) => {
 										<Error message={props.errors.conferenceZipCodeB} />
 									)}
 							</div>
+						</div>
+						<div className="flex flex-col gap-1 mt-4">
+							<FormTextArea
+								onChange={props.handleChange}
+								id="improvement"
+								placeholder={"Describe the capital improvement to be performed"}
+								name="Describe the capital improvement to be performed."
+							/>
 						</div>
 					</div>
 				</div>
