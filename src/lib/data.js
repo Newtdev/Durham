@@ -676,8 +676,8 @@ export const EditDocumentData = {
 		},
 		{
 			id: 36,
-			document_name: "OK to Change Template",
-			identifier: "OK-to-Change-Template",
+			document_name: "OK to Template",
+			identifier: "OK-to-Template",
 			name: "edit",
 			type: "Budget",
 		},

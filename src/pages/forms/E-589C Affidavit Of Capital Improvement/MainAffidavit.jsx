@@ -19,7 +19,7 @@ import {
 } from "./forms";
 import { setResult } from "../../../shared-component";
 
-const MainAffidavit = ({ id }) => {
+const MainAffidavit = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -114,6 +114,13 @@ const MainAffidavit = ({ id }) => {
 		isLoading,
 	};
 
+	if (filled) {
+		return (
+			<ModalOverlay show={id === AffidavitSlug && filled ? show : null}>
+				<Preview />
+			</ModalOverlay>
+		);
+	}
 	if (Formik.values.userType === "Single Use") {
 		return (
 			<ModalOverlay show={id === AffidavitSlug && show}>

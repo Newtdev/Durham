@@ -1,7 +1,7 @@
 import { Close, DashboardNav } from "../Components";
 import RedDelete from "../../../assets/redDelete.svg";
 import BackArrow from "../../../assets/backArrow.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Accordion, ProjectCard, ProjectDetails } from "./Components";
 import { useDispatch, useSelector } from "react-redux";
 import { project_details } from "../add-project/projectSlice";
@@ -23,7 +23,6 @@ import {
 	isFilled,
 	onClose,
 	onDelete,
-	show,
 	slug,
 } from "./ReducerSlice";
 import NoticeToProceed from "../../forms/Notice-to-Proceed";

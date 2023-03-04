@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonRedBG, ButtonWhiteBG, ModalOverlay } from "../../../ui";
 import { AddNewProjectSchema } from "../../../yup";
 import { ProjectOverviewNav } from "../Components";
-import { SelectDocuments } from "./AddNewProjects";
+// import { SelectDocuments } from "./AddNewProjects";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";

@@ -4,7 +4,10 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { useDispatch, useSelector } from "react-redux";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { closeModal, fields, openDownload, showDownload } from "../reducer";
 import { prevChoiceStep } from "./reducer";
 import { useRef, useState } from "react";
@@ -13,12 +16,14 @@ import Logo from "../../../assets/affidavit.png";
 
 const Affidavit = () => {
 	const formID = useSelector(project_document_id);
-	const form_fields = useSelector(fields);
+	// const form_fields = useSelector(fields);
 	const dispatch = useDispatch();
 
 	const [a] = UseFetchFilledFormDetails(formID);
 	const [highlighted, setHighlighed] = useState(false);
 	const downloadComponent = useRef();
+
+	const form_fields = a?.data?.form_fields;
 
 	const show = useSelector(openDownload);
 
@@ -69,7 +74,7 @@ const Affidavit = () => {
 							<div className=" h-[10.5in]">
 								<div className="border-b border-b-black pb-4 flex items-center mb-3 mt-4">
 									<div className="flex flex-col items-center -ml-8">
-										<img src={Logo} alt="" className=" object-contain h-16" />
+										<img src={Logo} alt="" className=" object-contain h-14" />
 										<span className="inline-block -mt-2">Web-Fill</span>
 										<span>7-18</span>
 									</div>
@@ -121,7 +126,7 @@ const Affidavit = () => {
 													A
 												</div>
 												<div className="mb-1">
-													<p className="font-bold mb-[0.5rem]">
+													<p className="font-bold mb-[0.5rem] text-[6pt]">
 														Owner, Lessee//Tenant, or Real Property Contractor
 													</p>
 													{form_fields?.boxA === "Owner" ? (
@@ -137,26 +142,26 @@ const Affidavit = () => {
 												{form_fields?.boxA === "Owner" ? (
 													<>
 														<div className="mb-1">
-															<p className="text-xs font-bold">Address</p>
+															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																2011 HAMLIN ROAD
 															</p>
 														</div>
 														<div className="flex justify-between mb-1">
 															<div className="w-[58%]">
-																<p className="font-bold">City</p>
+																<p className="font-bold text-[6pt]">City</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
 																	Durham
 																</p>
 															</div>
 															<div className="w-[10%]">
-																<p className=" font-bold">State</p>
+																<p className=" font-bold text-[6pt]">State</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
 																	NC
 																</p>
 															</div>
 															<div className="w-[25%]">
-																<p className="font-bold">Zipcode</p>
+																<p className="font-bold text-[6pt]">Zipcode</p>
 																<p className={`${nottoBeHighlighted} p-1 `}>
 																	27704
 																</p>
@@ -166,7 +171,7 @@ const Affidavit = () => {
 												) : (
 													<>
 														<div className="mb-1">
-															<p className="text-xs font-bold">Address</p>
+															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{/* 2011 HAMLIN ROAD */}
 																{form_fields?.companyAddressA}
@@ -174,19 +179,21 @@ const Affidavit = () => {
 														</div>
 														<div className="flex justify-between ">
 															<div className="w-[50%]">
-																<p className=" font-bold">City</p>
+																<p className=" font-bold text-[6pt]">City</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
 																	{form_fields?.conferenceCityA}
 																</p>
 															</div>
 															<div className="">
-																<p className=" font-bold">state</p>
+																<p className=" font-bold text-[6pt]">state</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
 																	{form_fields?.conferenceStateA}
 																</p>
 															</div>
 															<div className="w-[25%]">
-																<p className=" font-bold">zip code</p>
+																<p className=" font-bold text-[6pt]">
+																	zip code
+																</p>
 																<p className={`${nottoBeHighlighted} py-1`}>
 																	{form_fields?.conferenceZipCodeA}
 																</p>
@@ -202,13 +209,13 @@ const Affidavit = () => {
 												</div>
 												<div className="mb-1">
 													<div className="flex justify-between">
-														<p className=" font-bold">
+														<p className=" text-[6pt] font-bold">
 															Real Property Contractor{" "}
 															<em className="font-normal">
 																(General Contractor or Subcontractor)
 															</em>
 														</p>
-														<p className="text-[0.5rem] text-center mr-6">
+														<p className="text-[6pt] text-center mr-6">
 															<em>Hired to perform</em> <br />
 															<em>capital improvement</em>
 														</p>
@@ -222,7 +229,9 @@ const Affidavit = () => {
 													</p>
 												</div>
 												<div className="mb-1">
-													<p className="text-xs font-bold">Address</p>
+													<p className="text-[11px] font-bold text-[6pt]">
+														Address
+													</p>
 													<p className={`${nottoBeHighlighted} py-1`}>
 														{" "}
 														{form_fields?.userType === "Single Use" ||
@@ -233,7 +242,7 @@ const Affidavit = () => {
 												</div>
 												<div className="flex justify-between mb-1">
 													<div className="w-[58%]">
-														<p className=" font-bold">City</p>
+														<p className=" font-bold text-[6pt]">City</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{" "}
 															{form_fields?.userType === "Single Use" ||
@@ -243,7 +252,7 @@ const Affidavit = () => {
 														</p>
 													</div>
 													<div className="">
-														<p className="text-xs font-bold">State</p>
+														<p className=" font-bold text-[6pt]">State</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{" "}
 															{form_fields?.userType === "Single Use" ||
@@ -253,7 +262,7 @@ const Affidavit = () => {
 														</p>
 													</div>
 													<div className="">
-														<p className=" font-bold">Zip Code</p>
+														<p className=" font-bold text-[6pt]">Zip Code</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{" "}
 															{form_fields?.userType === "Single Use" ||
@@ -271,13 +280,13 @@ const Affidavit = () => {
 												Describe capital improvement to be performed:
 											</p>
 											<div
-												className={` ${nottoBeHighlighted} py-2 px-0.5 h-20 `}>
+												className={` ${nottoBeHighlighted} py-2 px-0.5 h-24 `}>
 												{form_fields?.improvement || ""}
 											</div>
 										</div>
 
 										<div className="mb-3">
-											<p className=" font-bold">Project Name</p>
+											<p className=" font-bold text-[6pt]">Project Name</p>
 											<div className={`${nottoBeHighlighted} py-1`}>
 												{projectInfo?.name}
 											</div>
@@ -285,30 +294,30 @@ const Affidavit = () => {
 
 										<div className="flex justify-between mb-3">
 											<div className="w-[46%]">
-												<p className=" font-bold">
+												<p className=" font-bold text-[6pt]">
 													Project Address{" "}
-													<span className="font-normal">
+													<span className="font-normal text-[6pt]">
 														(where the work is to be performed)
 													</span>
 												</p>
-												<p className={`${nottoBeHighlighted} py-1`}>
+												<p className={`${nottoBeHighlighted} py-1 `}>
 													{projectInfo?.location}
 												</p>
 											</div>
 											<div className="w-[25%]">
-												<p className="t font-bold">City</p>
+												<p className="t font-bold ">City</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.city}
 												</p>
 											</div>
 											<div className="w-[10%]">
-												<p className="text-xs font-bold">State</p>
+												<p className="text-[11px] font-bold">State</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.state}
 												</p>
 											</div>
 											<div className="w-[17%]">
-												<p className="text-xs font-bold">Zip Code</p>
+												<p className="text-[11px] font-bold">Zip Code</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.zip_code}
 												</p>
@@ -359,7 +368,7 @@ const Affidavit = () => {
 														C
 													</div>
 													<div className="mb-1">
-														<p className="text-xs font-bold mb-[0.5rem]">
+														<p className="text-[6pt] font-bold mb-[0.5rem]">
 															Real Property Contractor
 														</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
@@ -380,7 +389,7 @@ const Affidavit = () => {
 													</div>
 													<div className="flex justify-between mb-1">
 														<div className="w-[58%]">
-															<p className=" font-bold">City</p>
+															<p className=" font-bold text-[6pt]">City</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{" "}
 																{form_fields?.userType === "Blanket Use" ||
@@ -390,7 +399,7 @@ const Affidavit = () => {
 															</p>
 														</div>
 														<div className="">
-															<p className=" font-bold">State</p>
+															<p className=" font-bold text-[6pt]">State</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{" "}
 																{form_fields?.userType === "Blanket Use" ||
@@ -400,7 +409,7 @@ const Affidavit = () => {
 															</p>
 														</div>
 														<div className="w-[25%]">
-															<p className=" font-bold">Zip Code</p>
+															<p className=" font-bold text-[6pt]">Zip Code</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{" "}
 																{form_fields?.userType === "Blanket Use" ||
@@ -418,10 +427,10 @@ const Affidavit = () => {
 													</div>
 													<div className="mb-1">
 														<div className="flex">
-															<p className="text-xs font-bold">
+															<p className="text-[6pt] font-bold">
 																Real Property Contractor or Subcontractor
 															</p>
-															<p className="text-[0.5rem] text-center ml-12">
+															<p className="text-[6pt] text-center ml-12 ">
 																<em>Hired to perform</em> <br />
 																<em>capital improvement</em>
 															</p>
@@ -435,7 +444,7 @@ const Affidavit = () => {
 														</p>
 													</div>
 													<div className="mb-1">
-														<p className=" font-bold">Address</p>
+														<p className=" font-bold text-[6pt]">Address</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{form_fields?.userType === "Blanket Use" ||
 															form_fields?.userType === "Both"
@@ -445,9 +454,8 @@ const Affidavit = () => {
 													</div>
 													<div className="flex justify-between mb-1">
 														<div className="w-[58%]">
-															<p className=" font-bold">City</p>
-															<p
-																className={`${nottoBeHighlighted} py-1 h-[32px]`}>
+															<p className=" font-bold text-[6pt]">City</p>
+															<p className={`${nottoBeHighlighted} py-1`}>
 																{form_fields?.userType === "Blanket Use" ||
 																form_fields?.userType === "Both"
 																	? form_fields?.conferenceCityD
@@ -455,7 +463,7 @@ const Affidavit = () => {
 															</p>
 														</div>
 														<div className="">
-															<p className=" font-bold">State</p>
+															<p className=" font-bold text-[6pt]">State</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{" "}
 																{form_fields?.userType === "Blanket Use" ||
@@ -465,7 +473,7 @@ const Affidavit = () => {
 															</p>
 														</div>
 														<div className="w-[25%]">
-															<p className=" font-bold">Zip Code</p>
+															<p className=" font-bold text-[6pt]">Zip Code</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{" "}
 																{form_fields?.userType === "Blanket Use" ||
@@ -867,7 +875,10 @@ const Affidavit = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevChoiceStep(1))}
+							onClick={() => {
+								dispatch(selectFilled(false));
+								dispatch(prevChoiceStep(1));
+							}}
 						/>
 						<DashboardButton
 							hidden

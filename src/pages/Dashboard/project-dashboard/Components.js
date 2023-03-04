@@ -103,7 +103,9 @@ export const Accordion = ({ data }) => {
 														key={index}
 													/>
 
-													{cur?.filled ? <img src={Selected} alt="" /> : null}
+													{cur?.filled ? (
+														<img src={Selected} alt="" className="w-4" />
+													) : null}
 												</label>
 											);
 										})}
