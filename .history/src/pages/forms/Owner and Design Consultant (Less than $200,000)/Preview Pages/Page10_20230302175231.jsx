@@ -40,14 +40,14 @@ const Page10 = (props) => {
           class={`${props?.nottoBeHighlighted}`}
           style={{ fontSize: "10pt", fontFamily: "Arial" }}
         >
-          {moment(props?.form_fields?.notarizedDate).format("Do") || "____"}
+          {moment(props?.form_fields?.notarizedDate).format("Do")}
         </span>{" "}
         <span class="p4">&nbsp;day of </span>
         <span
           class={`${props?.nottoBeHighlighted}`}
           style={{ fontSize: "10pt", fontFamily: "Arial" }}
         >
-          {moment(props?.form_fields?.notarizedDate).format("MMMM") || "____"}
+          {moment(props?.form_fields?.notarizedDate).format("MMMM")}
         </span>
         <span class="p1">
           ,
@@ -55,10 +55,7 @@ const Page10 = (props) => {
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "10pt", fontFamily: "Arial" }}
           >
-            &nbsp;
-            {moment(props?.form_fields?.notarizedDate).format("YYYY") ||
-              "20___"}
-            .
+            &nbsp;{moment(props?.form_fields?.notarizedDate).format("YYYY")}.
           </span>
         </span>
       </p>

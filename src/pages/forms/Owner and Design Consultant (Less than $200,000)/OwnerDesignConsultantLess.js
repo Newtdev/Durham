@@ -50,10 +50,10 @@ const OwnerDesignConsultantLessForm = ({ id, filled }) => {
   // const show = useSelector(modal);
   const formik = useFormik({
     initialValues: {
-      agreementDate: new Date(),
-      sustainaibilityDate: new Date(),
-      financialOfficerSignDate: new Date(),
-      notarizedDate: new Date(),
+      agreementDate: "",
+      sustainaibilityDate: "",
+      financialOfficerSignDate: "",
+      notarizedDate: "",
       sexualOffenderOption: "",
     },
     // validationSchema: OwnerDesignConsultantLessSchema,
