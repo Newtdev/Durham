@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "../../../ui";
 import { showModal } from "../../forms/reducer";
 import { getDocument, getID, getSlugId, selectFilled } from "./ReducerSlice";
+import Selected from "../../../assets/selected.svg";
 
 export const ProjectCard = ({ name, value }) => {
 	return (
@@ -47,6 +48,15 @@ export const Accordion = ({ data }) => {
 		return arg[1].split(" ").join("-");
 	};
 
+	const remove_ = (data) => {
+		if (!data) {
+			return;
+		}
+		let capitalizeFirstLetter = data.charAt(0).toUpperCase() + data.slice(1);
+		capitalizeFirstLetter = capitalizeFirstLetter.split("_").join(" ");
+		return capitalizeFirstLetter;
+	};
+
 	return (
 		<>
 			{!data
@@ -66,9 +76,7 @@ export const Accordion = ({ data }) => {
 										}}
 										type="button"
 										className="flex items-center justify-between w-full p-4 font-semibold text-left text-gray-900 border border-l-0 border-r-0 border-b-0 border-gray-100 rounded-t-lg">
-										<span>
-											{document.charAt(0).toUpperCase() + document.slice(1)}
-										</span>
+										<span>{remove_(document)}</span>
 										{/* Down Arrow */}
 										{activeIndex !== idx && <ChevronDown />}
 										{activeIndex === idx && (
@@ -82,7 +90,7 @@ export const Accordion = ({ data }) => {
 											return (
 												<label
 													htmlFor={cur?.id}
-													className={`bg-[#699bac] flex justify-between items-center mb-5
+													className={`bg-[#C3CFD3] flex justify-between items-center 
 						mt-2 mb-2 w-full text-left  rounded-lg py-2 px-4 text-gray-900 text-base active:bg-[#699bac] focus:border focus:border-black cursor-pointer `}>
 													{cur.document_name}
 													<input
@@ -94,6 +102,10 @@ export const Accordion = ({ data }) => {
 														name={cur.document_name}
 														key={index}
 													/>
+
+													{cur?.filled ? (
+														<img src={Selected} alt="" className="w-4" />
+													) : null}
 												</label>
 											);
 										})}

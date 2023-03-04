@@ -234,25 +234,19 @@ const Accordion = ({ data, fetchData }) => {
 };
 
 const EditDocument = ({ documents, getData }) => {
+	const init = {
+		Contract: [],
+		Budget: [],
+		Notice_Letter: [],
+		MWBE_Forms: [],
+		Procurement: [],
+		Project_Closeout: [],
+	};
 	const selectDoc = useSelector(doc);
 	const [AddProjectDocument, result] = useAddProjectDocumentMutation();
 
-	const [formData, setFormData] = useState({
-		Contract: [],
-		Budget: [],
-		Notice_Letter: [],
-		MWBE_Forms: [],
-		Procurement: [],
-		Project_Closeout: [],
-	});
-	const [mergedData, setMergedData] = useState({
-		Contract: [],
-		Budget: [],
-		Notice_Letter: [],
-		MWBE_Forms: [],
-		Procurement: [],
-		Project_Closeout: [],
-	});
+	const [formData, setFormData] = useState(init);
+	const [mergedData, setMergedData] = useState(init);
 	// EXTRACTING THE UNSELETED DOCUMENT FROM THE LIST OF DOCUMENT.
 	const unAssignedDocument = (edit, saved) => {
 		return edit?.filter(
@@ -305,7 +299,7 @@ const EditDocument = ({ documents, getData }) => {
 					documents?.MWBE_Forms
 				),
 				Notice_Letter: unAssignedDocument(
-					EditDocumentData?.Notice_letters,
+					EditDocumentData?.Notice_Letters,
 					documents?.Notice_letters
 				),
 				Procurement: unAssignedDocument(
