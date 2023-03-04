@@ -195,7 +195,7 @@ const Page4 = () => {
 
       <div
         className="h-[4rem] mb-6 flex items-end"
-        style={{ fontFamily: "Arial", fontSize: "10pt" }}
+        style={{ fontFamily: "Arial" }}
       >
         <div>
           <p className="text-[10px]"></p>
