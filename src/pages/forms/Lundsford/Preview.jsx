@@ -102,10 +102,10 @@ const PreviewForm = ({ value }) => {
 								</h3>
 							</div>
 							<div className={``}>
-								<p className={` ${nottoBeHighlighted} font-bold`}>
+								<p className={` ${nottoBeHighlighted} `}>
 									DPS Project Name: {project?.name || ""}{" "}
 								</p>
-								<p className={` ${nottoBeHighlighted} font-bold`}>
+								<p className={` ${nottoBeHighlighted} `}>
 									DPS Project Number: {project?.number || ""}{" "}
 								</p>
 								<p className="mt-3">

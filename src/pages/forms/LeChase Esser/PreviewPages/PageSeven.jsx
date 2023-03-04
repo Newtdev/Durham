@@ -1,6 +1,6 @@
 const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	//vendors, project, durham_profile
-	const project = content?.data?.project || "";
+	const project = content?.project;
 	// const vendors = content?.data?.vendors || "";
 	return (
 		<div className="mt-[30rem] pt-16 leading-[1.15]">
@@ -36,7 +36,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Initial"
 						name="type"
-						checked={form_fields.type === "Initial" ? true : false}
+						checked={form_fields?.type === "Initial" ? true : false}
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
@@ -50,7 +50,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Supplimental"
 						name="type"
-						checked={form_fields.type === "Supplemental" ? true : false}
+						checked={form_fields?.type === "Supplemental" ? true : false}
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
@@ -64,7 +64,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Annual"
 						name="type"
-						checked={form_fields.type === "Annual" ? true : false}
+						checked={form_fields?.type === "Annual" ? true : false}
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
 					<label for="default-radio-1" className="ml-2  text-gray-900">

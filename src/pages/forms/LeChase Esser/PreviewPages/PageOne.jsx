@@ -4,7 +4,7 @@ import moment from "moment";
 const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
 		<div
-			className="-mt-4 leading-[1.3] flex flex-col justify-between"
+			className="-mt-4 leading-[1.3] flex flex-col justify-between "
 			style={{ height: "10in" }}>
 			<div>
 				<div className="text-center mb-3">
@@ -18,14 +18,14 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 					This contract for services (the “Contract”) is made and entered into
 					this{" "}
 					<span className={`${nottoBeHighlighted}`}>
-						{moment(form_fields.contractStartDate).format(" Do ")}{" "}
+						{moment(form_fields?.contractStartDate).format(" Do ")}{" "}
 					</span>{" "}
 					day of{" "}
 					<span className={`${nottoBeHighlighted}`}>
-						{moment(form_fields.contractStartDate).format(" MMMM ")}
+						{moment(form_fields?.contractStartDate).format(" MMMM ")}
 					</span>{" "}
 					<span className={`${nottoBeHighlighted}`}>
-						{moment(form_fields.contractStartDate).format(" YYYY ")}
+						{moment(form_fields?.contractStartDate).format(" YYYY ")}
 					</span>
 					, between the Durham Public Schools Board of Education (the “School
 					System”), 511 Cleveland Street, Durham, NC 27702, and
@@ -184,11 +184,11 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 											: !form_fields?.calculatePayment
 											? "N/A"
 											: form_fields?.calculatePayment}
-										{/* {currency(form_fields.calculatePayment).format()} */}
+										{/* {currency(form_fields?.calculatePayment).format()} */}
 									</span>{" "}
 									for services rendered, with total payments not to exceed{" "}
 									<span className={`${nottoBeHighlighted}`}>
-										{currency(form_fields.allowablePayment).format()}
+										{currency(form_fields?.allowablePayment).format()}
 									</span>
 									. With the School System’s written consent, payments may be
 									made in monthly installments for work performed and accepted
@@ -220,11 +220,13 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 									{" "}
 									The services described in the Contract will be provided from{" "}
 									<span className={`${nottoBeHighlighted}`}>
-										{moment(form_fields.fromDuration).format("MMMM Do, YYYY ")}
+										{moment(form_fields?.fromDuration).format("MMMM Do, YYYY ")}
 									</span>
 									through{" "}
 									<span className={`${nottoBeHighlighted}`}>
-										{moment(form_fields.startDuration).format("MMMM Do, YYYY ")}
+										{moment(form_fields?.startDuration).format(
+											"MMMM Do, YYYY "
+										)}
 									</span>
 									unless sooner terminated as herein provided.
 								</span>

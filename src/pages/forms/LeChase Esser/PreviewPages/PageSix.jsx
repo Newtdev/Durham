@@ -1,7 +1,7 @@
 import moment from "moment";
 
 const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
-	const durham_profile = content?.data?.durham_profile;
+	const durham_profile = content?.durham_profile;
 	const durham = !durham_profile ? "" : durham_profile;
 	return (
 		<div className="mt-96 pt-16" style={{ height: "10in" }}>
@@ -29,9 +29,9 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 						<p className="mb-0 border-b border-black">
 							{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{!durham.chief_finance_officer
+								{!durham?.chief_finance_officer
 									? ""
-									: durham.chief_finance_officer.name}
+									: durham?.chief_finance_officer?.name}
 							</span>
 						</p>
 						<span>School System Finance Officer </span>
@@ -39,7 +39,7 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 					<div>
 						<p className="mb-0 border-b border-black ">
 							<span className={`${nottoBeHighlighted}`}>
-								{moment(form_fields.signedDate).format(" MMMM Do YYYY ")}
+								{moment(form_fields?.signedDate).format(" MMMM Do YYYY ")}
 							</span>
 						</p>
 						<span>Date</span>

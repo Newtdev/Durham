@@ -1,22 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG } from "../../../ui";
-import Logo from "../../../assets/formlogo.png";
+import Logo from "../../../assets/newlogo.jpg";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { prevStep, stepDefault } from "./reducer";
-import {
-	closeModal,
-	fields,
-	openDownload,
-	savedResponse,
-	showDownload,
-} from "../reducer";
+import { closeModal, fields, openDownload, showDownload } from "../reducer";
 import { useEffect, useRef, useState } from "react";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
 import moment from "moment";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -27,11 +23,11 @@ const Preview = () => {
 	const [awardee, setAwardee] = useState([]);
 
 	const formID = useSelector(project_document_id);
-	useFetchFilledFormQuery(formID);
-	const content = useSelector(savedResponse);
-	const projectDetails = useSelector(project_details);
-	const school = !projectDetails ? "" : projectDetails.school;
-	const { vendors, project, durham_profile } = content;
+	const [a] = UseFetchFilledFormDetails(formID);
+	const project = a?.data?.project;
+	const vendors = a?.data?.vendors;
+	const durham_profile = a?.data?.durham_profile;
+	const school = project?.school;
 
 	const props = {
 		component: downloadComponent,
@@ -281,7 +277,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(1))}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

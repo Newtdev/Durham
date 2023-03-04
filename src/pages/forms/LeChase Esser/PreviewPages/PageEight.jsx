@@ -1,6 +1,5 @@
 const PageEight = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	//vendors, project, durham_profile
-	const project = content?.data?.project || "";
 	// const vendors = content?.data?.vendors || "";
 	return (
 		<div className="mt-[30rem] pt-10" style={{ height: "10in" }}>

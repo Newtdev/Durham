@@ -1,14 +1,11 @@
 import { DashboardButton } from "../../Dashboard/Components";
 import Success from "../../../assets/success.png";
 import { useDispatch, useSelector } from "react-redux";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import {
 	documentDefault,
-	project_document_id,
 	slugIdDefault,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useReactToPrint } from "react-to-print";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { closeDownload, savedResponse } from "../reducer";
 
 const DownLoadForm = ({

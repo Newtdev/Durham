@@ -161,7 +161,13 @@ const DeterminationForm = (props) => {
 						name="cancel"
 						onClick={() => dispatch(closeModal())}
 					/>
-					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />
+					<DashboardButton
+						hidden
+						name="NEXT"
+						type="submit"
+						width="w-[77px]"
+						loading={props?.isLoading}
+					/>
 				</div>
 			</form>
 		</div>

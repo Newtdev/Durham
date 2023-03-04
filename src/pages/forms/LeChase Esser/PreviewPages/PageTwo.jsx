@@ -14,7 +14,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							The School System hereby agrees to compensate Provider in the
 							amount of{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{currency(form_fields.providerCompensation).format()}
+								{currency(form_fields?.providerCompensation).format()}
 							</span>{" "}
 							once all services have been rendered in accordance with the terms
 							of this Contract. Provider shall provide School System with
@@ -98,7 +98,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							forty-five (45) days of submission of such invoices. Invoices
 							should be sent to{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{!form_fields ? "" : form_fields.providerInvoice},
+								{!form_fields ? "" : form_fields?.providerInvoice},
 							</span>{" "}
 							Durham Public Schools, 511 Cleveland Street, Durham, NC 27702, for
 							review and approval.
