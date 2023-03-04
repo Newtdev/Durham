@@ -144,32 +144,20 @@ const Page13 = (props) => {
           1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________
         </span>
       </p>
-      <p class="p9 p12">
-        <span class="p7"></span>
-      </p>
       <p class="p9">
         <span>
           2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________
         </span>
-      </p>
-      <p class="p9 p12">
-        <span class="p7"></span>
       </p>
       <p class="p9">
         <span>
           3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________
         </span>
       </p>
-      <p class="p9 p12">
-        <span class="p7"></span>
-      </p>
       <p class="p9">
         <span>
           4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;________________________
         </span>
-      </p>
-      <p class="p9 p12">
-        <span class="p7"></span>
       </p>
       <p class="p9">
         <span>
@@ -225,11 +213,14 @@ const Page13 = (props) => {
       <p class="p9 p12">
         <span class="p7"></span>
       </p>{" "}
+      <p class="p9 p12">
+        <span class="p7"></span>
+      </p>
       <p class="p9">
         <span class="p45 flex justify-between">
           <span className="inline-block">
             <span
-              class={`border-b border-b-black inline-block text-center leading-5 ${props?.nottoBeHighlighted}`}
+              class={`border-b border-b-black inline-block text-center ${props?.nottoBeHighlighted}`}
               style={{ fontSize: "10pt", fontFamily: "Arial", width: "15rem" }}
             >
               <span>{props?.awardee[0]?.title}</span>

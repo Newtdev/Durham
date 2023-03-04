@@ -18,7 +18,7 @@ const Page3 = () => {
         <span class="p1"></span>
       </p>
 
-      <div className="w-full text-[10pt] pl-[0.8in] pr-4">
+      <div className="w-full text-[10pt] ml-2 pl-[1in]">
         <p className="flex justify-between">
           <span>Insurance Description</span>{" "}
           <span className="ml-auto">Minimum Required </span>
@@ -31,81 +31,61 @@ const Page3 = () => {
         </p>
         <p className="flex justify-between">
           <span>
-            <span className="mr-2">a.</span> Workers' Compensation
-          </span>
-          <span className="flex items-start w-36">Statutory</span>
+            <span className="mr-2">a.</span> Workers' Compensation <br></br>Statutory
+          </span>{" "}
         </p>
         <p class="p9 p12 p57">
           <span class="p1"></span>
         </p>
         <p className="flex justify-between">
           <span>
-            <span className="mr-2">b.</span> Public Liability
+          <span className="mr-2">b.</span> Public Liability <br></br>Combined Limit
           </span>{" "}
-          <span className="flex items-start w-36">Combined Limit</span>
         </p>
         <p class="p9 p12 p57">
           <span class="p1"></span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Bloody Injury: Each Person</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Bloody Injury: Each Person</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Bloody Injury: Each Accident</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Bloody Injury: Each Accident</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Property Damage: Each Accident</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Property Damage: Each Accident</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p class="p9 p12 p57">
           <span class="p1"></span>
         </p>
         <p className="flex justify-between">
           <span>
-            <span className="mr-2">c.</span> Utomobile Liability & Property
-            Damage
+          <span className="mr-2">c.</span> Utomobile Liability & Property Damage <br></br>Combined Limit
           </span>{" "}
-          <span className="flex items-start w-36">Combined Limit</span>
         </p>
         <p class="p9 p12 p57">
           <span class="p1"></span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Bloody Injury: Each Person</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Bloody Injury: Each Person</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Bloody Injury: Each Accident</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Bloody Injury: Each Accident</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p className="flex justify-between">
-          <span className="pl-10">Property Damage: Each Accident</span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span>Property Damage: Each Accident</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
         <p class="p9 p12 p57">
           <span class="p1"></span>
         </p>
         <p className="flex justify-between">
-          <span>
-            <span className="mr-2">d.</span> Professional Liability
-          </span>{" "}
-          <span className="flex items-start w-48">
-            <span className="mr-10">$</span>1,000,000.00
-          </span>
+          <span><span className="mr-2">d.</span> Professional Liability</span>{" "}
+          <span className="ml-auto">$1,000,000.00</span>
         </p>
       </div>
 

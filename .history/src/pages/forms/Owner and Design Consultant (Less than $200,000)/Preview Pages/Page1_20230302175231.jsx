@@ -10,7 +10,7 @@ const Page1 = (props) => {
       }}
     >
       <p class="p2">
-        <span class="c38 font-bold" style={{fontSize: "10pt"}}>CONSULTANT SERVICES AGREEMENT</span>
+        <span class="c38 font-bold">CONSULTANT SERVICES AGREEMENT</span>
       </p>
       <p class="p20 p12">
         <span class="p1"></span>
@@ -37,7 +37,7 @@ const Page1 = (props) => {
         <span class="p1"></span>
       </p>
       <p class="p2">
-        <span class="c38 font-bold" style={{fontSize: "10pt"}}>
+        <span class="c38 font-bold">
           Durham Public Schools Board of Education
         </span>
       </p>

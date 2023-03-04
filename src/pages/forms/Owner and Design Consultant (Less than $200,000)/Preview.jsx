@@ -41,12 +41,12 @@ const Preview = () => {
 
   const [a] = UseFetchFilledFormDetails(formID);
 
-  console.log(a);
+  // console.log(a);
   const vendors = a?.data?.vendors || [];
   const project = a?.data?.project || {};
   const form_fields = a?.data?.form_fields || {};
   // const pageContent = a?.data || {};
-  const durham_profile = a?.data?.durham_profile;
+  const durham_profile = a?.data?.durham_profile || {};
 
   // const form_fields = useSelector(fields);
   // let formData = !content?.data ? [] : content?.data?.data;
@@ -70,7 +70,10 @@ const Preview = () => {
       return null;
     }
     const data = vendors?.filter((cur) => {
-      return cur.role === "Design Consultant" || cur.role === "Engineering";
+      return (
+        cur.role === "Design Consultant" ||
+        cur.role === "Engineering Consultant"
+      );
     });
     setAwardee(data);
   }, [vendors]);
@@ -82,6 +85,8 @@ const Preview = () => {
     project,
     durham_profile,
   };
+
+  console.log(pageProps);
 
   return (
     <div>
@@ -126,6 +131,7 @@ const Preview = () => {
                 <Page1 {...pageProps} />
                 <Page2 {...pageProps} />
                 {showPage && <Page3 />}
+                {/* <Page3 {...pageProps} /> */}
                 {showPage && <Page4 />}
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
