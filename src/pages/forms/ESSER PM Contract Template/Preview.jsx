@@ -14,7 +14,10 @@ import {
 } from "../reducer";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { project_document_id, selectFilled } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import PageOne from "./PreviewPages/PageOne";
@@ -26,7 +29,6 @@ import PageSix from "./PreviewPages/PageSix";
 import PageSeven from "./PreviewPages/PageSeven";
 import PageEight from "./PreviewPages/PageEight";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
-
 
 const Preview = () => {
 	const [highlighted, setHighlighed] = useState(false);
@@ -47,8 +49,6 @@ const Preview = () => {
 	const form_fields = a?.data?.form_fields || {};
 	const pageContent = a?.data || {};
 
-	console.log(pageContent);
-
 	// const vendors = content?.data?.data.vendors;
 	// const form_fields = useSelector(fields);
 	// const pageContent = content?.data;
@@ -63,7 +63,6 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		console.log(vendors);
 		if (!vendors || !form_fields?.addressCopy) {
 			setAwardee(vendors);
 			return;
@@ -111,7 +110,6 @@ const Preview = () => {
 							className="bg-white text-black Times-font text-[14.7px]"
 							ref={downloadComponent}
 							style={{ margin: "1in 0.5in" }}>
-							{console.log(pageProps)}
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
 							{showPage && <PageThree />}
@@ -128,8 +126,8 @@ const Preview = () => {
 							width="w-[171px]"
 							name="Edit document"
 							onClick={() => {
-								dispatch(selectFilled(false))
-								dispatch(prevChoiceStep(2))
+								dispatch(selectFilled(false));
+								dispatch(prevChoiceStep(2));
 							}}
 						/>
 						<DashboardButton

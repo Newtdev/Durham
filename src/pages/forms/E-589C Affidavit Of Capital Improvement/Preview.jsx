@@ -8,7 +8,7 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { closeModal, fields, openDownload, showDownload } from "../reducer";
+import { closeModal, openDownload, showDownload } from "../reducer";
 import { prevChoiceStep } from "./reducer";
 import { useRef, useState } from "react";
 import DownLoadForm from "../Lundsford/Download";

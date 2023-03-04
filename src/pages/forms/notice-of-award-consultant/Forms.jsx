@@ -4,6 +4,7 @@ import { useFetchDurhamQuery } from "../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { OverviewTextarea } from "../../Dashboard/Overview-dashboard/OverviewComponents";
+import { selectFilled } from "../../Dashboard/project-dashboard/ReducerSlice";
 import SelectDate, { FormInputPlain, FormSelect } from "../components";
 import { FormInputContainer } from "../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../reducer";
@@ -116,7 +117,7 @@ const Form = (props) => {
 		},
 		error: props.errors.recipientCopy,
 		touched: props.touched.recipientCopy,
-		name: "recipientrecipientCopy",
+		name: "recipientCopy",
 
 		type: "text",
 		placeholder: "Enter Recipient Name",
@@ -291,13 +292,17 @@ const Form = (props) => {
 						<ButtonWhiteBG
 							width="w-[100px]"
 							name="cancel"
-							onClick={() => dispatch(closeModal())}
+							onClick={() => {
+								dispatch(closeModal());
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
+							loading={props?.isLoading}
 						/>
 					</div>
 				</form>

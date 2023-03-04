@@ -1,1148 +1,1148 @@
 ol.lst-kix_list_3-1 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-2 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_3-1 > li {
-  counter-increment: lst-ctn-kix_list_3-1;
+	counter-increment: lst-ctn-kix_list_3-1;
 }
 ol.lst-kix_list_3-3 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-4.start {
-  counter-reset: lst-ctn-kix_list_3-4 0;
+	counter-reset: lst-ctn-kix_list_3-4 0;
 }
 ol.lst-kix_list_3-4 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_2-1 > li {
-  counter-increment: lst-ctn-kix_list_2-1;
+	counter-increment: lst-ctn-kix_list_2-1;
 }
 ol.lst-kix_list_3-0 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_1-1 > li {
-  counter-increment: lst-ctn-kix_list_1-1;
+	counter-increment: lst-ctn-kix_list_1-1;
 }
 ol.lst-kix_list_2-6.start {
-  counter-reset: lst-ctn-kix_list_2-6 0;
+	counter-reset: lst-ctn-kix_list_2-6 0;
 }
 .lst-kix_list_3-0 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) " ";
 }
 ol.lst-kix_list_3-1.start {
-  counter-reset: lst-ctn-kix_list_3-1 0;
+	counter-reset: lst-ctn-kix_list_3-1 0;
 }
 .lst-kix_list_3-1 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) " ";
 }
 .lst-kix_list_3-2 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) " ";
 }
 ol.lst-kix_list_1-8.start {
-  counter-reset: lst-ctn-kix_list_1-8 0;
+	counter-reset: lst-ctn-kix_list_1-8 0;
 }
 ol.lst-kix_list_2-3.start {
-  counter-reset: lst-ctn-kix_list_2-3 0;
+	counter-reset: lst-ctn-kix_list_2-3 0;
 }
 .lst-kix_list_3-5 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) "."
-    counter(lst-ctn-kix_list_3-4, decimal) "."
-    counter(lst-ctn-kix_list_3-5, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) "."
+		counter(lst-ctn-kix_list_3-4, decimal) "."
+		counter(lst-ctn-kix_list_3-5, decimal) " ";
 }
 .lst-kix_list_3-4 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) "."
-    counter(lst-ctn-kix_list_3-4, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) "."
+		counter(lst-ctn-kix_list_3-4, decimal) " ";
 }
 ol.lst-kix_list_1-5.start {
-  counter-reset: lst-ctn-kix_list_1-5 0;
+	counter-reset: lst-ctn-kix_list_1-5 0;
 }
 .lst-kix_list_3-3 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) " ";
 }
 ol.lst-kix_list_3-5 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-6 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-7 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-8 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_3-8 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) "."
-    counter(lst-ctn-kix_list_3-4, decimal) "."
-    counter(lst-ctn-kix_list_3-5, decimal) "."
-    counter(lst-ctn-kix_list_3-6, decimal) "."
-    counter(lst-ctn-kix_list_3-7, decimal) "."
-    counter(lst-ctn-kix_list_3-8, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) "."
+		counter(lst-ctn-kix_list_3-4, decimal) "."
+		counter(lst-ctn-kix_list_3-5, decimal) "."
+		counter(lst-ctn-kix_list_3-6, decimal) "."
+		counter(lst-ctn-kix_list_3-7, decimal) "."
+		counter(lst-ctn-kix_list_3-8, decimal) " ";
 }
 .lst-kix_list_2-0 > li {
-  counter-increment: lst-ctn-kix_list_2-0;
+	counter-increment: lst-ctn-kix_list_2-0;
 }
 .lst-kix_list_2-3 > li {
-  counter-increment: lst-ctn-kix_list_2-3;
+	counter-increment: lst-ctn-kix_list_2-3;
 }
 .lst-kix_list_3-6 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) "."
-    counter(lst-ctn-kix_list_3-4, decimal) "."
-    counter(lst-ctn-kix_list_3-5, decimal) "."
-    counter(lst-ctn-kix_list_3-6, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) "."
+		counter(lst-ctn-kix_list_3-4, decimal) "."
+		counter(lst-ctn-kix_list_3-5, decimal) "."
+		counter(lst-ctn-kix_list_3-6, decimal) " ";
 }
 .lst-kix_list_3-7 > li:before {
-  content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
-    counter(lst-ctn-kix_list_3-1, decimal) "."
-    counter(lst-ctn-kix_list_3-2, decimal) "."
-    counter(lst-ctn-kix_list_3-3, decimal) "."
-    counter(lst-ctn-kix_list_3-4, decimal) "."
-    counter(lst-ctn-kix_list_3-5, decimal) "."
-    counter(lst-ctn-kix_list_3-6, decimal) "."
-    counter(lst-ctn-kix_list_3-7, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_3-0, decimal) "."
+		counter(lst-ctn-kix_list_3-1, decimal) "."
+		counter(lst-ctn-kix_list_3-2, decimal) "."
+		counter(lst-ctn-kix_list_3-3, decimal) "."
+		counter(lst-ctn-kix_list_3-4, decimal) "."
+		counter(lst-ctn-kix_list_3-5, decimal) "."
+		counter(lst-ctn-kix_list_3-6, decimal) "."
+		counter(lst-ctn-kix_list_3-7, decimal) " ";
 }
 .lst-kix_list_1-2 > li {
-  counter-increment: lst-ctn-kix_list_1-2;
+	counter-increment: lst-ctn-kix_list_1-2;
 }
 ol.lst-kix_list_3-7.start {
-  counter-reset: lst-ctn-kix_list_3-7 0;
+	counter-reset: lst-ctn-kix_list_3-7 0;
 }
 .lst-kix_list_3-2 > li {
-  counter-increment: lst-ctn-kix_list_3-2;
+	counter-increment: lst-ctn-kix_list_3-2;
 }
 ol.lst-kix_list_2-2 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_2-3 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_2-4 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_2-5 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_1-4 > li {
-  counter-increment: lst-ctn-kix_list_1-4;
+	counter-increment: lst-ctn-kix_list_1-4;
 }
 ol.lst-kix_list_2-0 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-6.start {
-  counter-reset: lst-ctn-kix_list_1-6 0;
+	counter-reset: lst-ctn-kix_list_1-6 0;
 }
 ol.lst-kix_list_2-1 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-3.start {
-  counter-reset: lst-ctn-kix_list_3-3 0;
+	counter-reset: lst-ctn-kix_list_3-3 0;
 }
 ol.lst-kix_list_2-6 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_2-7 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_2-8 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-0.start {
-  counter-reset: lst-ctn-kix_list_1-0 3;
+	counter-reset: lst-ctn-kix_list_1-0 3;
 }
 .lst-kix_list_3-0 > li {
-  counter-increment: lst-ctn-kix_list_3-0;
+	counter-increment: lst-ctn-kix_list_3-0;
 }
 .lst-kix_list_3-3 > li {
-  counter-increment: lst-ctn-kix_list_3-3;
+	counter-increment: lst-ctn-kix_list_3-3;
 }
 .lst-kix_list_3-6 > li {
-  counter-increment: lst-ctn-kix_list_3-6;
+	counter-increment: lst-ctn-kix_list_3-6;
 }
 li.li-bullet-2:before {
-  margin-left: -40.5pt;
-  white-space: nowrap;
-  display: inline-block;
-  min-width: 40.5pt;
+	margin-left: -40.5pt;
+	white-space: nowrap;
+	display: inline-block;
+	min-width: 40.5pt;
 }
 .lst-kix_list_2-5 > li {
-  counter-increment: lst-ctn-kix_list_2-5;
+	counter-increment: lst-ctn-kix_list_2-5;
 }
 .lst-kix_list_2-8 > li {
-  counter-increment: lst-ctn-kix_list_2-8;
+	counter-increment: lst-ctn-kix_list_2-8;
 }
 ol.lst-kix_list_3-2.start {
-  counter-reset: lst-ctn-kix_list_3-2 0;
+	counter-reset: lst-ctn-kix_list_3-2 0;
 }
 .lst-kix_list_2-2 > li {
-  counter-increment: lst-ctn-kix_list_2-2;
+	counter-increment: lst-ctn-kix_list_2-2;
 }
 ol.lst-kix_list_2-4.start {
-  counter-reset: lst-ctn-kix_list_2-4 0;
+	counter-reset: lst-ctn-kix_list_2-4 0;
 }
 ol.lst-kix_list_1-3 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-4 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_2-6 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) "."
-    counter(lst-ctn-kix_list_2-4, decimal) "."
-    counter(lst-ctn-kix_list_2-5, decimal) "."
-    counter(lst-ctn-kix_list_2-6, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) "."
+		counter(lst-ctn-kix_list_2-4, decimal) "."
+		counter(lst-ctn-kix_list_2-5, decimal) "."
+		counter(lst-ctn-kix_list_2-6, decimal) " ";
 }
 .lst-kix_list_2-7 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) "."
-    counter(lst-ctn-kix_list_2-4, decimal) "."
-    counter(lst-ctn-kix_list_2-5, decimal) "."
-    counter(lst-ctn-kix_list_2-6, decimal) "."
-    counter(lst-ctn-kix_list_2-7, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) "."
+		counter(lst-ctn-kix_list_2-4, decimal) "."
+		counter(lst-ctn-kix_list_2-5, decimal) "."
+		counter(lst-ctn-kix_list_2-6, decimal) "."
+		counter(lst-ctn-kix_list_2-7, decimal) " ";
 }
 .lst-kix_list_2-7 > li {
-  counter-increment: lst-ctn-kix_list_2-7;
+	counter-increment: lst-ctn-kix_list_2-7;
 }
 .lst-kix_list_3-7 > li {
-  counter-increment: lst-ctn-kix_list_3-7;
+	counter-increment: lst-ctn-kix_list_3-7;
 }
 ol.lst-kix_list_1-5 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-6 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-0 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_2-4 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) "."
-    counter(lst-ctn-kix_list_2-4, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) "."
+		counter(lst-ctn-kix_list_2-4, decimal) " ";
 }
 .lst-kix_list_2-5 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) "."
-    counter(lst-ctn-kix_list_2-4, decimal) "."
-    counter(lst-ctn-kix_list_2-5, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) "."
+		counter(lst-ctn-kix_list_2-4, decimal) "."
+		counter(lst-ctn-kix_list_2-5, decimal) " ";
 }
 .lst-kix_list_2-8 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) "."
-    counter(lst-ctn-kix_list_2-4, decimal) "."
-    counter(lst-ctn-kix_list_2-5, decimal) "."
-    counter(lst-ctn-kix_list_2-6, decimal) "."
-    counter(lst-ctn-kix_list_2-7, decimal) "."
-    counter(lst-ctn-kix_list_2-8, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) "."
+		counter(lst-ctn-kix_list_2-4, decimal) "."
+		counter(lst-ctn-kix_list_2-5, decimal) "."
+		counter(lst-ctn-kix_list_2-6, decimal) "."
+		counter(lst-ctn-kix_list_2-7, decimal) "."
+		counter(lst-ctn-kix_list_2-8, decimal) " ";
 }
 ol.lst-kix_list_1-1 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_1-2 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-0.start {
-  counter-reset: lst-ctn-kix_list_3-0 5;
+	counter-reset: lst-ctn-kix_list_3-0 5;
 }
 ol.lst-kix_list_1-7 {
-  list-style-type: none;
+	list-style-type: none;
 }
 .lst-kix_list_1-7 > li {
-  counter-increment: lst-ctn-kix_list_1-7;
+	counter-increment: lst-ctn-kix_list_1-7;
 }
 ol.lst-kix_list_1-8 {
-  list-style-type: none;
+	list-style-type: none;
 }
 ol.lst-kix_list_3-8.start {
-  counter-reset: lst-ctn-kix_list_3-8 0;
+	counter-reset: lst-ctn-kix_list_3-8 0;
 }
 ol.lst-kix_list_2-5.start {
-  counter-reset: lst-ctn-kix_list_2-5 0;
+	counter-reset: lst-ctn-kix_list_2-5 0;
 }
 li.li-bullet-1:before {
-  margin-left: -43.2pt;
-  white-space: nowrap;
-  display: inline-block;
-  min-width: 43.2pt;
+	margin-left: -43.2pt;
+	white-space: nowrap;
+	display: inline-block;
+	min-width: 43.2pt;
 }
 .lst-kix_list_2-6 > li {
-  counter-increment: lst-ctn-kix_list_2-6;
+	counter-increment: lst-ctn-kix_list_2-6;
 }
 .lst-kix_list_3-8 > li {
-  counter-increment: lst-ctn-kix_list_3-8;
+	counter-increment: lst-ctn-kix_list_3-8;
 }
 li.li-bullet-3:before {
-  margin-left: -40.5pt;
-  white-space: nowrap;
-  display: inline-block;
-  min-width: 40.5pt;
+	margin-left: -40.5pt;
+	white-space: nowrap;
+	display: inline-block;
+	min-width: 40.5pt;
 }
 ol.lst-kix_list_1-7.start {
-  counter-reset: lst-ctn-kix_list_1-7 0;
+	counter-reset: lst-ctn-kix_list_1-7 0;
 }
 ol.lst-kix_list_2-2.start {
-  counter-reset: lst-ctn-kix_list_2-2 0;
+	counter-reset: lst-ctn-kix_list_2-2 0;
 }
 .lst-kix_list_1-5 > li {
-  counter-increment: lst-ctn-kix_list_1-5;
+	counter-increment: lst-ctn-kix_list_1-5;
 }
 .lst-kix_list_1-8 > li {
-  counter-increment: lst-ctn-kix_list_1-8;
+	counter-increment: lst-ctn-kix_list_1-8;
 }
 ol.lst-kix_list_1-4.start {
-  counter-reset: lst-ctn-kix_list_1-4 0;
+	counter-reset: lst-ctn-kix_list_1-4 0;
 }
 .lst-kix_list_3-5 > li {
-  counter-increment: lst-ctn-kix_list_3-5;
+	counter-increment: lst-ctn-kix_list_3-5;
 }
 ol.lst-kix_list_1-1.start {
-  counter-reset: lst-ctn-kix_list_1-1 1;
+	counter-reset: lst-ctn-kix_list_1-1 1;
 }
 .lst-kix_list_3-4 > li {
-  counter-increment: lst-ctn-kix_list_3-4;
+	counter-increment: lst-ctn-kix_list_3-4;
 }
 .lst-kix_list_2-4 > li {
-  counter-increment: lst-ctn-kix_list_2-4;
+	counter-increment: lst-ctn-kix_list_2-4;
 }
 ol.lst-kix_list_3-6.start {
-  counter-reset: lst-ctn-kix_list_3-6 0;
+	counter-reset: lst-ctn-kix_list_3-6 0;
 }
 ol.lst-kix_list_1-3.start {
-  counter-reset: lst-ctn-kix_list_1-3 0;
+	counter-reset: lst-ctn-kix_list_1-3 0;
 }
 ol.lst-kix_list_2-8.start {
-  counter-reset: lst-ctn-kix_list_2-8 0;
+	counter-reset: lst-ctn-kix_list_2-8 0;
 }
 ol.lst-kix_list_1-2.start {
-  counter-reset: lst-ctn-kix_list_1-2 0;
+	counter-reset: lst-ctn-kix_list_1-2 0;
 }
 .lst-kix_list_1-0 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) " ";
 }
 .lst-kix_list_1-1 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) " ";
 }
 .lst-kix_list_1-2 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) " ";
 }
 ol.lst-kix_list_2-0.start {
-  counter-reset: lst-ctn-kix_list_2-0 4;
+	counter-reset: lst-ctn-kix_list_2-0 4;
 }
 .lst-kix_list_1-3 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) " ";
 }
 .lst-kix_list_1-4 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) "."
-    counter(lst-ctn-kix_list_1-4, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) "."
+		counter(lst-ctn-kix_list_1-4, decimal) " ";
 }
 ol.lst-kix_list_3-5.start {
-  counter-reset: lst-ctn-kix_list_3-5 0;
+	counter-reset: lst-ctn-kix_list_3-5 0;
 }
 .lst-kix_list_1-0 > li {
-  counter-increment: lst-ctn-kix_list_1-0;
+	counter-increment: lst-ctn-kix_list_1-0;
 }
 .lst-kix_list_1-6 > li {
-  counter-increment: lst-ctn-kix_list_1-6;
+	counter-increment: lst-ctn-kix_list_1-6;
 }
 .lst-kix_list_1-7 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) "."
-    counter(lst-ctn-kix_list_1-4, decimal) "."
-    counter(lst-ctn-kix_list_1-5, decimal) "."
-    counter(lst-ctn-kix_list_1-6, decimal) "."
-    counter(lst-ctn-kix_list_1-7, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) "."
+		counter(lst-ctn-kix_list_1-4, decimal) "."
+		counter(lst-ctn-kix_list_1-5, decimal) "."
+		counter(lst-ctn-kix_list_1-6, decimal) "."
+		counter(lst-ctn-kix_list_1-7, decimal) " ";
 }
 ol.lst-kix_list_2-7.start {
-  counter-reset: lst-ctn-kix_list_2-7 0;
+	counter-reset: lst-ctn-kix_list_2-7 0;
 }
 .lst-kix_list_1-3 > li {
-  counter-increment: lst-ctn-kix_list_1-3;
+	counter-increment: lst-ctn-kix_list_1-3;
 }
 .lst-kix_list_1-5 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) "."
-    counter(lst-ctn-kix_list_1-4, decimal) "."
-    counter(lst-ctn-kix_list_1-5, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) "."
+		counter(lst-ctn-kix_list_1-4, decimal) "."
+		counter(lst-ctn-kix_list_1-5, decimal) " ";
 }
 .lst-kix_list_1-6 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) "."
-    counter(lst-ctn-kix_list_1-4, decimal) "."
-    counter(lst-ctn-kix_list_1-5, decimal) "."
-    counter(lst-ctn-kix_list_1-6, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) "."
+		counter(lst-ctn-kix_list_1-4, decimal) "."
+		counter(lst-ctn-kix_list_1-5, decimal) "."
+		counter(lst-ctn-kix_list_1-6, decimal) " ";
 }
 li.li-bullet-0:before {
-  margin-left: -39.7pt;
-  white-space: nowrap;
-  display: inline-block;
-  min-width: 39.7pt;
+	margin-left: -39.7pt;
+	white-space: nowrap;
+	display: inline-block;
+	min-width: 39.7pt;
 }
 li.li-bullet-4:before {
-  margin-left: -39.7pt;
-  white-space: nowrap;
-  display: inline-block;
-  min-width: 39.7pt;
+	margin-left: -39.7pt;
+	white-space: nowrap;
+	display: inline-block;
+	min-width: 39.7pt;
 }
 .lst-kix_list_2-0 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) " ";
 }
 .lst-kix_list_2-1 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) " ";
 }
 ol.lst-kix_list_2-1.start {
-  counter-reset: lst-ctn-kix_list_2-1 0;
+	counter-reset: lst-ctn-kix_list_2-1 0;
 }
 .lst-kix_list_1-8 > li:before {
-  content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
-    counter(lst-ctn-kix_list_1-1, decimal) "."
-    counter(lst-ctn-kix_list_1-2, decimal) "."
-    counter(lst-ctn-kix_list_1-3, decimal) "."
-    counter(lst-ctn-kix_list_1-4, decimal) "."
-    counter(lst-ctn-kix_list_1-5, decimal) "."
-    counter(lst-ctn-kix_list_1-6, decimal) "."
-    counter(lst-ctn-kix_list_1-7, decimal) "."
-    counter(lst-ctn-kix_list_1-8, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_1-0, decimal) "."
+		counter(lst-ctn-kix_list_1-1, decimal) "."
+		counter(lst-ctn-kix_list_1-2, decimal) "."
+		counter(lst-ctn-kix_list_1-3, decimal) "."
+		counter(lst-ctn-kix_list_1-4, decimal) "."
+		counter(lst-ctn-kix_list_1-5, decimal) "."
+		counter(lst-ctn-kix_list_1-6, decimal) "."
+		counter(lst-ctn-kix_list_1-7, decimal) "."
+		counter(lst-ctn-kix_list_1-8, decimal) " ";
 }
 .lst-kix_list_2-2 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) " ";
 }
 .lst-kix_list_2-3 > li:before {
-  content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
-    counter(lst-ctn-kix_list_2-1, decimal) "."
-    counter(lst-ctn-kix_list_2-2, decimal) "."
-    counter(lst-ctn-kix_list_2-3, decimal) " ";
+	content: "" counter(lst-ctn-kix_list_2-0, decimal) "."
+		counter(lst-ctn-kix_list_2-1, decimal) "."
+		counter(lst-ctn-kix_list_2-2, decimal) "."
+		counter(lst-ctn-kix_list_2-3, decimal) " ";
 }
->>>>>>> 691ed3774bf0b948617c46791733e3d647b83ad9
+/* >>>>>>> 691ed3774bf0b948617c46791733e3d647b83ad9 */
 ol {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 table td,
 table th {
-  padding: 0;
+	padding: 0;
 }
 .p11 {
-  border-right-style: solid;
-  padding-top: 2pt;
-  border-top-width: 3pt;
-  border-bottom-color: #c0c0c0;
-  border-right-width: 3pt;
-  padding-left: 2pt;
-  border-left-color: #c0c0c0;
-  padding-bottom: 2pt;
-  line-height: 1;
-  border-right-color: #c0c0c0;
-  border-left-width: 3pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 3pt;
-  border-top-color: #c0c0c0;
-  border-bottom-style: solid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
-  padding-right: 2pt;
+	border-right-style: solid;
+	padding-top: 2pt;
+	border-top-width: 3pt;
+	border-bottom-color: #c0c0c0;
+	border-right-width: 3pt;
+	padding-left: 2pt;
+	border-left-color: #c0c0c0;
+	padding-bottom: 2pt;
+	line-height: 1;
+	border-right-color: #c0c0c0;
+	border-left-width: 3pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 3pt;
+	border-top-color: #c0c0c0;
+	border-bottom-style: solid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
+	padding-right: 2pt;
 }
 .p67 {
-  border-right-style: solid;
-  padding: 0pt 5.4pt 0pt 5.4pt;
-  border-bottom-color: #000000;
-  border-top-width: 0pt;
-  border-right-width: 0pt;
-  border-left-color: #000000;
-  vertical-align: top;
-  border-right-color: #000000;
-  border-left-width: 0pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 0pt;
-  width: 13.5pt;
-  border-top-color: #000000;
-  border-bottom-style: solid;
+	border-right-style: solid;
+	padding: 0pt 5.4pt 0pt 5.4pt;
+	border-bottom-color: #000000;
+	border-top-width: 0pt;
+	border-right-width: 0pt;
+	border-left-color: #000000;
+	vertical-align: top;
+	border-right-color: #000000;
+	border-left-width: 0pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 0pt;
+	width: 13.5pt;
+	border-top-color: #000000;
+	border-bottom-style: solid;
 }
 .p50 {
-  border-right-style: solid;
-  padding: 0pt 5.4pt 0pt 5.4pt;
-  border-bottom-color: #000000;
-  border-top-width: 0pt;
-  border-right-width: 0pt;
-  border-left-color: #000000;
-  vertical-align: top;
-  border-right-color: #000000;
-  border-left-width: 0pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 0pt;
-  width: 13.4pt;
-  border-top-color: #000000;
-  border-bottom-style: solid;
+	border-right-style: solid;
+	padding: 0pt 5.4pt 0pt 5.4pt;
+	border-bottom-color: #000000;
+	border-top-width: 0pt;
+	border-right-width: 0pt;
+	border-left-color: #000000;
+	vertical-align: top;
+	border-right-color: #000000;
+	border-left-width: 0pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 0pt;
+	width: 13.4pt;
+	border-top-color: #000000;
+	border-bottom-style: solid;
 }
 .p40 {
-  border-right-style: solid;
-  padding: 0pt 5.4pt 0pt 5.4pt;
-  border-bottom-color: #000000;
-  border-top-width: 1.5pt;
-  border-right-width: 0pt;
-  border-left-color: #000000;
-  vertical-align: top;
-  border-right-color: #000000;
-  border-left-width: 0pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 0pt;
-  width: 364.5pt;
-  border-top-color: #000000;
-  border-bottom-style: solid;
+	border-right-style: solid;
+	padding: 0pt 5.4pt 0pt 5.4pt;
+	border-bottom-color: #000000;
+	border-top-width: 1.5pt;
+	border-right-width: 0pt;
+	border-left-color: #000000;
+	vertical-align: top;
+	border-right-color: #000000;
+	border-left-width: 0pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 0pt;
+	width: 364.5pt;
+	border-top-color: #000000;
+	border-bottom-style: solid;
 }
 .p47 {
-  border-right-style: solid;
-  padding: 0pt 5.4pt 0pt 5.4pt;
-  border-bottom-color: #000000;
-  border-top-width: 1.5pt;
-  border-right-width: 0pt;
-  border-left-color: #000000;
-  vertical-align: top;
-  border-right-color: #000000;
-  border-left-width: 0pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 0pt;
-  width: 98pt;
-  border-top-color: #000000;
-  border-bottom-style: solid;
+	border-right-style: solid;
+	padding: 0pt 5.4pt 0pt 5.4pt;
+	border-bottom-color: #000000;
+	border-top-width: 1.5pt;
+	border-right-width: 0pt;
+	border-left-color: #000000;
+	vertical-align: top;
+	border-right-color: #000000;
+	border-left-width: 0pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 0pt;
+	width: 98pt;
+	border-top-color: #000000;
+	border-bottom-style: solid;
 }
 .p30 {
-  border-right-style: solid;
-  padding: 0pt 5.4pt 0pt 5.4pt;
-  border-bottom-color: #000000;
-  border-top-width: 1.5pt;
-  border-right-width: 0pt;
-  border-left-color: #000000;
-  vertical-align: top;
-  border-right-color: #000000;
-  border-left-width: 0pt;
-  border-top-style: solid;
-  border-left-style: solid;
-  border-bottom-width: 0pt;
-  width: 102pt;
-  border-top-color: #000000;
-  border-bottom-style: solid;
+	border-right-style: solid;
+	padding: 0pt 5.4pt 0pt 5.4pt;
+	border-bottom-color: #000000;
+	border-top-width: 1.5pt;
+	border-right-width: 0pt;
+	border-left-color: #000000;
+	vertical-align: top;
+	border-right-color: #000000;
+	border-left-width: 0pt;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-bottom-width: 0pt;
+	width: 102pt;
+	border-top-color: #000000;
+	border-bottom-style: solid;
 }
 .p56 {
-  margin-left: 18pt;
-  padding-top: 6pt;
-  padding-left: 25.2pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 18pt;
+	padding-top: 6pt;
+	padding-left: 25.2pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p6 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 700;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 12pt;
-  font-family: "Times New Roman";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 12pt;
+	font-family: "Times New Roman";
+	font-style: normal;
 }
 .p1 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 10pt;
-  font-family: "Arial";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 10pt;
+	font-family: "Arial";
+	font-style: normal;
 }
 .p13 {
-  margin-left: 46.2pt;
-  padding-top: 0pt;
-  text-indent: -46.2pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 46.2pt;
+	padding-top: 0pt;
+	text-indent: -46.2pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p15 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 9pt;
-  font-family: "Arial";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 9pt;
+	font-family: "Arial";
+	font-style: normal;
 }
 .p5 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 12pt;
-  font-family: "Times New Roman";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 12pt;
+	font-family: "Times New Roman";
+	font-style: normal;
 }
 .p0 {
-  margin-left: 45pt;
-  padding-top: 0pt;
-  text-indent: -45pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: center;
+	margin-left: 45pt;
+	padding-top: 0pt;
+	text-indent: -45pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: center;
 }
 .p26 {
-  margin-left: 18pt;
-  padding-top: 0pt;
-  padding-left: 21.7pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 18pt;
+	padding-top: 0pt;
+	padding-left: 21.7pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p38 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 700;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 10pt;
-  font-family: "Arial";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 10pt;
+	font-family: "Arial";
+	font-style: normal;
 }
 .p8 {
-  margin-left: 45.3pt;
-  padding-top: 0pt;
-  text-indent: -0.3pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	margin-left: 45.3pt;
+	padding-top: 0pt;
+	text-indent: -0.3pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .p23 {
-  margin-left: 18pt;
-  padding-top: 0pt;
-  padding-left: 22.5pt;
-  padding-bottom: 4pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 18pt;
+	padding-top: 0pt;
+	padding-left: 22.5pt;
+	padding-bottom: 4pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p25 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 10pt;
-  font-family: "Arial Rounded";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 10pt;
+	font-family: "Arial Rounded";
+	font-style: normal;
 }
 .p28 {
-  margin-left: 45pt;
-  padding-top: 0pt;
-  text-indent: -45pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 45pt;
+	padding-top: 0pt;
+	text-indent: -45pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p48 {
-  margin-left: 36pt;
-  padding-top: 6pt;
-  text-indent: -36pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 36pt;
+	padding-top: 6pt;
+	text-indent: -36pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p3 {
-  margin-left: 46.2pt;
-  padding-top: 6pt;
-  text-indent: -46.2pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 46.2pt;
+	padding-top: 6pt;
+	text-indent: -46.2pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p18 {
-  margin-left: 48.2pt;
-  padding-top: 0pt;
-  text-indent: -48.2pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 48.2pt;
+	padding-top: 0pt;
+	text-indent: -48.2pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p19 {
-  margin-left: 18pt;
-  padding-top: 6pt;
-  padding-left: 21.7pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	margin-left: 18pt;
+	padding-top: 6pt;
+	padding-left: 21.7pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p7 {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 12pt;
-  font-family: "Arial";
-  font-style: normal;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 12pt;
+	font-family: "Arial";
+	font-style: normal;
 }
 .p14 {
-  background-color: #ffffff;
-  -webkit-text-decoration-skip: none;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
-  font-size: 10pt;
-  font-family: "Arial";
+	background-color: #ffffff;
+	-webkit-text-decoration-skip: none;
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	font-size: 10pt;
+	font-family: "Arial";
 }
 .p34 {
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 12pt;
-  font-family: "Times New Roman";
-  font-style: normal;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 12pt;
+	font-family: "Times New Roman";
+	font-style: normal;
 }
 .p44 {
-  margin-left: 18pt;
-  padding-top: 0pt;
-  padding-left: 22.5pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  text-align: justify;
+	margin-left: 18pt;
+	padding-top: 0pt;
+	padding-left: 22.5pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	text-align: justify;
 }
 .p63 {
-  padding-top: 6pt;
-  padding-bottom: 14pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	padding-top: 6pt;
+	padding-bottom: 14pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p9 {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 0pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .p21 {
-  padding-top: 10pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 10pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .p2 {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: center;
+	padding-top: 0pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: center;
 }
 .p51 {
-  padding-top: 0pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: center;
+	padding-top: 0pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: center;
 }
 .p10 {
-  -webkit-text-decoration-skip: none;
-  color: #000000;
-  text-decoration: underline;
-  vertical-align: baseline;
-  text-decoration-skip-ink: none;
-  font-style: normal;
+	-webkit-text-decoration-skip: none;
+	color: #000000;
+	text-decoration: underline;
+	vertical-align: baseline;
+	text-decoration-skip-ink: none;
+	font-style: normal;
 }
 .p70 {
-  padding-top: 6pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	padding-top: 6pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p59 {
-  padding-top: 0pt;
-  padding-bottom: 14pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 0pt;
+	padding-bottom: 14pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .p20 {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	padding-top: 0pt;
+	padding-bottom: 0pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p36 {
-  padding-top: 0pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	padding-top: 0pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p32 {
-  padding-top: 0pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 0pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .p61 {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  line-height: 1.1666666666666667;
-  orphans: 2;
-  widows: 2;
-  text-align: justify;
+	padding-top: 0pt;
+	padding-bottom: 0pt;
+	line-height: 1.1666666666666667;
+	orphans: 2;
+	widows: 2;
+	text-align: justify;
 }
 .p71 {
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 8pt;
-  font-family: "Times New Roman";
-  font-style: normal;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 8pt;
+	font-family: "Times New Roman";
+	font-style: normal;
 }
 .p4 {
-  background-color: #ffffff;
-  font-size: 10pt;
-  font-family: "Arial";
-  font-weight: 400;
+	background-color: #ffffff;
+	font-size: 10pt;
+	font-family: "Arial";
+	font-weight: 400;
 }
 .p54 {
-  margin-left: -5.4pt;
-  border-spacing: 0;
-  border-collapse: collapse;
-  margin-right: auto;
+	margin-left: -5.4pt;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-right: auto;
 }
 .p55 {
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 12pt;
-  font-style: normal;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 12pt;
+	font-style: normal;
 }
 .p68 {
-  padding-top: 0pt;
-  padding-bottom: 6pt;
-  line-height: 1;
-  text-align: center;
+	padding-top: 0pt;
+	padding-bottom: 6pt;
+	line-height: 1;
+	text-align: center;
 }
 .p29 {
-  background-color: #ffffff;
-  max-width: 468pt;
-  padding: 72pt 72pt 72pt 72pt;
+	background-color: #ffffff;
+	max-width: 468pt;
+	padding: 72pt 72pt 72pt 72pt;
 }
 .p33 {
-  -webkit-text-decoration-skip: none;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
+	-webkit-text-decoration-skip: none;
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
 }
 .p65 {
-  text-decoration: none;
-  vertical-align: baseline;
-  font-style: italic;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-style: italic;
 }
 .p52 {
-  background-color: #ffffff;
-  font-family: "Arial";
-  font-weight: 700;
+	background-color: #ffffff;
+	font-family: "Arial";
+	font-weight: 700;
 }
 .p62 {
-  background-color: #ffffff;
-  font-weight: 400;
-  font-family: "Times";
+	background-color: #ffffff;
+	font-weight: 400;
+	font-family: "Times";
 }
 .p45 {
-  background-color: #ffffff;
-  font-family: "Arial";
-  font-weight: 400;
+	background-color: #ffffff;
+	font-family: "Arial";
+	font-weight: 400;
 }
 .p64 {
-  margin-left: 63.3pt;
-  text-indent: -63.3pt;
+	margin-left: 63.3pt;
+	text-indent: -63.3pt;
 }
 .p24 {
-  margin-left: 36pt;
-  text-indent: 36pt;
+	margin-left: 36pt;
+	text-indent: 36pt;
 }
 .p31 {
-  margin-left: 54pt;
-  text-indent: -54pt;
+	margin-left: 54pt;
+	text-indent: -54pt;
 }
 .p43 {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 .p57 {
-  margin-left: 45.4pt;
-  text-indent: -45.4pt;
+	margin-left: 45.4pt;
+	text-indent: -45.4pt;
 }
 .p35 {
-  margin-left: 45pt;
-  text-indent: -45pt;
+	margin-left: 45pt;
+	text-indent: -45pt;
 }
 .p16 {
-  margin-left: 45.3pt;
-  text-indent: -0.3pt;
+	margin-left: 45.3pt;
+	text-indent: -0.3pt;
 }
 .p27 {
-  text-indent: 21.6pt;
+	text-indent: 21.6pt;
 }
 .p17 {
-  margin-left: 46.1pt;
+	margin-left: 46.1pt;
 }
 .p22 {
-  margin-left: 46.2pt;
+	margin-left: 46.2pt;
 }
 .p53 {
-  text-indent: -45.3pt;
+	text-indent: -45.3pt;
 }
 .p39 {
-  text-indent: -5.4pt;
+	text-indent: -5.4pt;
 }
 .p41 {
-  margin-left: 45.3pt;
+	margin-left: 45.3pt;
 }
 .p66 {
-  text-indent: -46.2pt;
+	text-indent: -46.2pt;
 }
 .p58 {
-  margin-left: 49.5pt;
+	margin-left: 49.5pt;
 }
 .p69 {
-  margin-left: -5.7pt;
+	margin-left: -5.7pt;
 }
 .p42 {
-  height: 0pt;
+	height: 0pt;
 }
 .p46 {
-  text-indent: 36pt;
+	text-indent: 36pt;
 }
 .p12 {
-  height: 8pt;
+	height: 8pt;
 }
 .p60 {
-  font-size: 10pt;
+	font-size: 10pt;
 }
 .p49 {
-  color: #000000;
+	color: #000000;
 }
 .p37 {
-  text-indent: -46.1pt;
+	text-indent: -46.1pt;
 }
 .title {
-  padding-top: 24pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 36pt;
-  padding-bottom: 6pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 24pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 36pt;
+	padding-bottom: 6pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .subtitle {
-  padding-top: 18pt;
-  color: #666666;
-  font-size: 24pt;
-  padding-bottom: 4pt;
-  font-family: "Georgia";
-  line-height: 1;
-  page-break-after: avoid;
-  font-style: italic;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 18pt;
+	color: #666666;
+	font-size: 24pt;
+	padding-bottom: 4pt;
+	font-family: "Georgia";
+	line-height: 1;
+	page-break-after: avoid;
+	font-style: italic;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .pli {
-  color: #000000;
-  font-size: 12pt;
-  font-family: "Times New Roman";
+	color: #000000;
+	font-size: 12pt;
+	font-family: "Times New Roman";
 }
 .pp {
-  margin: 0;
-  color: #000000;
-  font-size: 12pt;
-  font-family: "Times New Roman";
+	margin: 0;
+	color: #000000;
+	font-size: 12pt;
+	font-family: "Times New Roman";
 }
 .ph1 {
-  padding-top: 24pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 24pt;
-  padding-bottom: 6pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 24pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 24pt;
+	padding-bottom: 6pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .ph2 {
-  padding-top: 18pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 18pt;
-  padding-bottom: 4pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 18pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 18pt;
+	padding-bottom: 4pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .ph3 {
-  padding-top: 14pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 14pt;
-  padding-bottom: 4pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 14pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 14pt;
+	padding-bottom: 4pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .ph4 {
-  padding-top: 12pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 12pt;
-  padding-bottom: 2pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 12pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 12pt;
+	padding-bottom: 2pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .ph5 {
-  padding-top: 11pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 11pt;
-  padding-bottom: 2pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 11pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 11pt;
+	padding-bottom: 2pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 .ph6 {
-  padding-top: 10pt;
-  color: #000000;
-  font-weight: 700;
-  font-size: 10pt;
-  padding-bottom: 2pt;
-  font-family: "Times New Roman";
-  line-height: 1;
-  page-break-after: avoid;
-  orphans: 2;
-  widows: 2;
-  text-align: left;
+	padding-top: 10pt;
+	color: #000000;
+	font-weight: 700;
+	font-size: 10pt;
+	padding-bottom: 2pt;
+	font-family: "Times New Roman";
+	line-height: 1;
+	page-break-after: avoid;
+	orphans: 2;
+	widows: 2;
+	text-align: left;
 }
 
 .ppr {
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 10pt;
-  font-family: "Arial";
-  line-height: 1;
+	color: #000000;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: baseline;
+	font-size: 10pt;
+	font-family: "Arial";
+	line-height: 1;
 }
 
 .ppg {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  line-height: 1;
+	padding-top: 0pt;
+	padding-bottom: 0pt;
+	line-height: 1;
 }
 
 /* .p18 {

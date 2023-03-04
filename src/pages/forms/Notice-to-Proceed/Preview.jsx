@@ -1,22 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
-import Logo from "../../../assets/formlogo.png";
+// import Logo from "../../../assets/formlogo.png";
+import Logo from "../../../assets/newlogo.jpg";
+
 import { prevStep, stepDefault } from "./reducerSlice";
 import {
 	showDownload,
 	openDownload,
 	closeDownload,
-	savedResponse,
-	fields,
 	closeModal,
 } from "../reducer";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import DownLoadForm from "../Lundsford/Download";
 import moment from "moment";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Preview = (data) => {
 	const dispatch = useDispatch();
@@ -24,17 +26,16 @@ const Preview = (data) => {
 	const downloadComponent = useRef();
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 	// const content = useSelector(savedResponse);
-	const form_fields = useSelector(fields);
 	// const { vendors, durham_profile, project } = content?.data?.data;
-	let formData = !content?.data ? [] : content?.data?.data;
+	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
+	const school = formData?.project?.school;
+	const form_fields = formData?.form_fields;
 
-	const projectDetails = useSelector(project_details);
-	const school = !projectDetails ? "" : projectDetails.school;
 	const [highlighted, setHighlighed] = useState(false);
 
 	const [awardee, setAwardee] = useState({});
@@ -107,7 +108,7 @@ const Preview = (data) => {
 							<div className="text-[14.5px] leading-[1.2]">
 								<p className="mb-2">
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
+										{moment(form_fields?.creationDate).format("MMMM D, YYYY ")}
 									</span>
 								</p>
 								<p>
@@ -196,11 +197,11 @@ const Preview = (data) => {
 									</span>
 									. Effective{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.startDate).format("MMMM D, YYYY ")}
+										{moment(form_fields?.startDate).format("MMMM D, YYYY ")}
 									</span>{" "}
 									at{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.startTime).format("hh:mm A, ")}
+										{moment(form_fields?.startTime).format("hh:mm A, ")}
 									</span>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
 										{!awardee ? "" : awardee[0]?.company_name}
@@ -214,7 +215,7 @@ const Preview = (data) => {
 									Contract Time until Substantial Completion is achieved on or
 									before{" "}
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										{moment(form_fields.effectiveDate).format("MMMM D, YYYY.")}
+										{moment(form_fields?.effectiveDate).format("MMMM D, YYYY.")}
 									</span>
 								</p>
 								<p className="mb-3 leading-[1.2]">
@@ -284,7 +285,7 @@ const Preview = (data) => {
 								<div className="">
 									<span className="mr-3">File:</span>
 									<span className={`${nottoBeHighlighted} bg-grey-800`}>
-										DPS Project No. {!project ? "" : project.number}
+										DPS Project No. {!project ? "" : project?.number}
 									</span>
 								</div>
 							</div>
@@ -296,7 +297,10 @@ const Preview = (data) => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

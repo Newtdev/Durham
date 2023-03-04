@@ -3,18 +3,19 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import Logo from "../../../assets/formlogo.png";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
+import Logo from "../../../assets/newlogo.jpg";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { ButtonWhiteBG } from "../../../ui";
-import { setDefault } from "../../Dashboard/add-project/reducer";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
 
 import {
 	closeDownload,
 	closeModal,
-	fields,
 	openDownload,
 	showDownload,
 } from "../reducer";
@@ -29,14 +30,14 @@ const Preview = () => {
 
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
-	let content = useFetchFilledFormQuery(formID);
-	let formData = !content?.data ? [] : content?.data?.data;
+	const [a] = UseFetchFilledFormDetails(formID);
+	let formData = a?.data;
 	const vendors = formData?.vendors;
 	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
 
 	// const content = useSelector(savedResponse);
-	const form_fields = useSelector(fields);
+	const form_fields = formData?.form_fields;
 	const [highlighted, setHighlighed] = useState(false);
 	const [awardee, setAwardee] = useState([]);
 
@@ -114,7 +115,9 @@ const Preview = () => {
 								<div className="mb-4 text-[14.5px] leading-[1.3]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
-											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
+											{moment(form_fields?.creationDate).format(
+												"MMMM D, YYYY "
+											)}
 										</span>
 									</p>
 									<p>
@@ -140,7 +143,7 @@ const Preview = () => {
 										<p>RE:</p>
 										<div className="ml-10">
 											<p className={`${nottoBeHighlighted}`}>
-												{!project ? "" : project.name}
+												{!project ? "" : project?.name}
 											</p>
 											<p className="font-bold">Notice of Award</p>
 										</div>
@@ -158,12 +161,14 @@ const Preview = () => {
 										This letter is to serve as your{" "}
 										<span className="font-bold">Notice of Award</span> for the{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!project ? "" : project.name}
+											{!project ? "" : project?.name}
 										</span>{" "}
 										project, which was approved by the Durham Public Schools
 										Board of Education on{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{moment(form_fields.approvalDate).format("MMMM D, YYYY ")}
+											{moment(form_fields?.approvalDate).format(
+												"MMMM D, YYYY "
+											)}
 										</span>
 										.
 									</p>
@@ -175,13 +180,13 @@ const Preview = () => {
 										to{" "}
 										<span
 											className={`${nottoBeHighlighted} underline-offset-4`}>
-											{!form_fields ? "" : form_fields.contractorContact}
+											{!form_fields ? "" : form_fields?.contractorContact}
 										</span>{" "}
 										along with all required bonds and insurances, to Durham
 										Public Schools, 2011 Hamlin Rd. Durham, NC 27704 or via
 										email to:{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!form_fields ? "" : form_fields.email}
+											{!form_fields ? "" : form_fields?.email}
 										</span>
 									</p>
 									<p className="mb-2">
@@ -205,13 +210,13 @@ const Preview = () => {
 									</p>
 									<p>
 										Cc:{" "}
-										{form_fields.recipientCopy && (
+										{form_fields?.recipientCopy && (
 											<span className={`${nottoBeHighlighted}`}>
 												{!form_fields ? "" : form_fields?.recipientCopy} -{" "}
 												{!form_fields ? "" : form_fields?.position}
 											</span>
 										)}
-										{!form_fields.recipientCopy && (
+										{!form_fields?.recipientCopy && (
 											<>
 												<span className={`${nottoBeHighlighted}`}>
 													{!form_fields ? "" : form_fields?.recipientName}-
@@ -233,7 +238,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

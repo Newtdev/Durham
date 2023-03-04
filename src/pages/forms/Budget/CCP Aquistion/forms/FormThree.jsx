@@ -49,9 +49,9 @@ export const TaxPercentage = (a, b) => {
 			return;
 		}
 		let subTotals = subTotal(a);
-		let percentage = 4.75 / 100;
+		// let percentage = 4.75 / 100;
 		if (!b) {
-			return subTotals * percentage;
+			return "";
 		} else {
 			let newPercentage = Number(b) / 100;
 			return subTotals * newPercentage;
@@ -114,11 +114,6 @@ const FormThree = (props) => {
 					className="relative w-[600px] bg-white rounded-lg shadow py-4"
 					onSubmit={(e) => {
 						e.preventDefault();
-						// console.log({
-						// 	...props.values,
-						// 	subtotal: subtotal,
-						// 	grandTotal: grandTotal,
-						// });
 						HandleSubmit(props.values);
 					}}>
 					<div className="flex justify-between items-baseline mx-6">
@@ -319,7 +314,6 @@ const FormThree = (props) => {
 									<Error message={props.errors.ccpshippingCost} />
 								)}
 						</FormInputContainer>
-						{/* {console.log(taxPercentage)} */}
 						<FormInputContainer name="Is this order subject to sales tax?">
 							<FormSelect
 								value={props.values.ccpsalesTax}
@@ -328,10 +322,18 @@ const FormThree = (props) => {
 								error={props.errors.ccpsalesTax}
 								touched={props.touched.ccpsalesTax}
 								onChange={props.handleChange}>
+								{!props?.values?.ccpsalesTax ? (
+									<option>Choose</option>
+								) : (
+									<option value={props?.values?.ccpsalesTax}>
+										{props?.values?.ccpsalesTax}
+									</option>
+								)}
 								<option value="YES">Yes</option>
 								<option value="NO">No</option>
 							</FormSelect>
 						</FormInputContainer>
+
 						{props?.values?.ccpsalesTax === "YES" ? (
 							<FormInputContainer name="">
 								<div className="flex justify-center items-center">
@@ -340,7 +342,7 @@ const FormThree = (props) => {
 										onChange={props.handleChange}
 										name="ccptax"
 										placeholder={"@ 4.75%"}
-										value={props?.ccptax}
+										value={props?.values?.ccptax}
 									/>
 									{props.errors.ccpsalesTax && props.touched.ccpsalesTax && (
 										<Error message={props.errors.ccpsalesTax} />
@@ -351,7 +353,10 @@ const FormThree = (props) => {
 								</div>
 							</FormInputContainer>
 						) : null}
-						<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
+						<div
+							className={`${
+								props?.values?.ccpsalesTax === "NO" ? "hidden" : "flex"
+							} flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg`}>
 							<h2 className="text-sm font-medium">Sales Tax Total</h2>
 							<span className="text-sm font-bold">
 								${TaxPercentage(props?.values?.items, props?.values?.ccptax)}
