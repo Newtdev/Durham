@@ -1,6 +1,7 @@
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import Logo from "../../../assets/formlogo.png";
+import New from "../../../assets/newlogo.jpg";
+
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
@@ -8,7 +9,6 @@ import {
 	closeModal,
 	fields,
 	openDownload,
-	savedResponse,
 	showDownload,
 } from "../reducer";
 import { useEffect, useRef, useState } from "react";
@@ -16,13 +16,13 @@ import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import {
-	useFetchDurhamQuery,
-	useFetchFilledFormQuery,
-} from "../../../features/services/api";
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { prevStep, stepDefault } from "./reducer";
 import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -30,22 +30,19 @@ const Preview = () => {
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
 	const formID = useSelector(project_document_id);
-	const content = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 	const [highlighted, setHighlighed] = useState(false);
 
 	// const content = useSelector(savedResponse);
-	const projectDetails = useSelector(project_details);
-	const school = !projectDetails ? "" : projectDetails.school;
-	// const { vendors, durham_profile, project } = content?.data?.data;
-	// const vendors = content?.data?.data?.vendors;
-	// const project = content?.data?.data?.project;
-	// const durham_profile = content?.data?.data?.durham_profile;
-	let formData = !content?.data ? [] : content?.data?.data;
+	// const school = !projectDetails ? "" : projectDetails.school;
+
+	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
+	const school = formData?.project?.school;
 
-	const form_fields = useSelector(fields);
+	const form_fields = formData?.form_fields;
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 font-bold"
 		: "bg-white";
@@ -54,7 +51,7 @@ const Preview = () => {
 
 	useEffect(() => {
 		if (!vendors) {
-			return null;
+			return;
 		}
 		const data = vendors?.filter((cur) => {
 			return (
@@ -106,7 +103,11 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
-									<img src={Logo} alt="logo" className="h-16 object-cover" />
+									<img
+										src={New}
+										alt="logo"
+										className=" object-cover h-16 bg-red-900"
+									/>
 									<div className="ml-[12rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning
@@ -124,9 +125,11 @@ const Preview = () => {
 								<div className="mb-4 pl-20 leading-[1.3] text-[14.5px]">
 									<p className="mb-4">
 										<span className={`${nottoBeHighlighted}`}>
-											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
+											{moment(form_fields?.creationDate).format(
+												"MMMM D, YYYY "
+											)}
 										</span>{" "}
-										{form_fields.approval === "Yes" && (
+										{form_fields?.approval === "Yes" && (
 											<span className={`${nottoBeHighlighted} ml-12`}>
 												**NOTE:Exec Director approval is required to issue this
 												letter**
@@ -224,7 +227,7 @@ const Preview = () => {
 										</span>{" "}
 										at a lump sum fee of{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{currency(form_fields.amount).format()}
+											{currency(form_fields?.amount).format()}
 										</span>
 										. Consultant services shall include the deliverables and
 										scopes of work as outlined in the Consultant proposal
@@ -244,7 +247,7 @@ const Preview = () => {
 										</span>{" "}
 										no later than{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{moment(form_fields.deliveryDate).format(
+											{moment(form_fields?.deliveryDate).format(
 												"dddd, MMMM D, YYYY"
 											)}
 											.{" "}
@@ -301,23 +304,23 @@ const Preview = () => {
                                         </>
                                     } */}
 									<p className="pl-20  text-[14.5px]">Enclosure</p>
-									{!form_fields.recipientCopy && (
+									{!form_fields?.recipientCopy && (
 										<p className="pl-20  text-[14.5px]">
 											Cc:{" "}
 											<span className={`${nottoBeHighlighted}`}>
 												{" "}
-												{!form_fields ? "" : form_fields.recipientName} -{" "}
-												{!form_fields ? "" : form_fields.recipientTitle}
+												{!form_fields ? "" : form_fields?.recipientName} -{" "}
+												{!form_fields ? "" : form_fields?.recipientTitle}
 											</span>
 										</p>
 									)}
-									{form_fields.recipientCopy && (
+									{form_fields?.recipientCopy && (
 										<p className="pl-20  text-[14.5px]">
 											Cc:{" "}
 											<span className={`${nottoBeHighlighted}`}>
 												{" "}
-												{!form_fields ? "" : form_fields.recipientCopy} -{" "}
-												{!form_fields ? "" : form_fields.position}
+												{!form_fields ? "" : form_fields?.recipientCopy} -{" "}
+												{!form_fields ? "" : form_fields?.position}
 											</span>
 										</p>
 									)}
@@ -331,7 +334,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

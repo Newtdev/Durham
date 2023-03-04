@@ -6,6 +6,7 @@ import {
 	useFetchFilledFormQuery,
 	useFillProjectDocumentMutation,
 } from "../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { setResult } from "../../../shared-component";
 import { notice_of_award_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
@@ -16,13 +17,13 @@ import Form from "./Forms";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const NoticeOfAwardConsultant = ({ id }) => {
+const NoticeOfAwardConsultant = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -35,8 +36,7 @@ const NoticeOfAwardConsultant = ({ id }) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				dispatch(nextStep());
-				// dispatch(techNextStep())
+				dispatch(nextStep(2));
 			}
 		}
 	};
@@ -64,20 +64,32 @@ const NoticeOfAwardConsultant = ({ id }) => {
 		},
 	});
 
-	// useEffect(() => {
-	//   if (!response?.data?.data) {
-	//     return;
-	//   }
-	//   formik.setFieldValue('amount',response?.data?.data?.form_fields.amount)
-	//   formik.setFieldValue('services',response?.data?.data?.form_fields.services)
-	//   formik.setFieldValue('email',response?.data?.data?.form_fields.email)
-	//   formik.setFieldValue('approval',response?.data?.data?.form_fields.approval)
-	// },[response?.data?.data])
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		formik.setFieldValue("amount", a?.data?.form_fields.amount);
+		formik.setFieldValue("services", a?.data?.form_fields.services);
+		formik.setFieldValue("email", a?.data?.form_fields.email);
+		formik.setFieldValue("approval", a?.data?.form_fields.approval);
+	}, [a?.data]);
 
+	const formProps = {
+		...formik,
+		isLoading,
+	};
+
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === notice_of_award_consultant && show}>
+				{pages === 1 && <Form {...formProps} />}
+				{pages === 2 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === notice_of_award_consultant && show}>
-			{pages === 1 && <Form {...formik} />}
-			{pages === 2 && <Preview />}
+			{<Preview />}
 		</ModalOverlay>
 	);
 };

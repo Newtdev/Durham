@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import Logo from "../../../assets/formlogo.png";
+import Logo from "../../../assets/newlogo.jpg";
 import { prevStep, stepDefault } from "./reducerSlice";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import { useEffect, useRef, useState } from "react";
 import moment from "moment";
-import { closeDownload, fields, savedResponse } from "../reducer";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
+import { closeDownload } from "../reducer";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { closeModal } from "../reducer";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const PreviewElement = () => {
 	const dispatch = useDispatch();
@@ -21,23 +23,16 @@ const PreviewElement = () => {
 
 	const formID = useSelector(project_document_id);
 	// RETURNS DURHAM PROFILE DETAILS, FORM FIELDS, VENDOR AND PROJECT MANAGER INFO
-	const content = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 
-	// const content = useSelector(savedResponse);
-	const form_fields = useSelector(fields);
-	const projectDetails = useSelector(project_details);
-	const school = !projectDetails ? "" : projectDetails.school;
 	const [awardee, setAwardee] = useState([]);
-	// const { vendors, durham_profile, project } = content?.data?.data;
 
-	// const vendors = content?.data?.data?.vendors;
-	// const project = content?.data?.data?.project;
-	// const durham_profile = content?.data?.data?.durham_profile;
-
-	let formData = !content?.data ? [] : content?.data?.data;
+	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
+	const form_fields = formData?.form_fields;
+	const school = formData?.school;
 
 	const props = {
 		component: downloadComponent,
@@ -56,7 +51,6 @@ const PreviewElement = () => {
 				cur.role === "Design Consultant" ||
 				cur.role === "Engineering Consultant"
 		);
-		console.log(data);
 		setAwardee(data);
 	}, [vendors]);
 
@@ -116,9 +110,11 @@ const PreviewElement = () => {
 										{" "}
 										<p
 											className={`${nottoBeHighlighted} text-[13.5px]  text-justify my-2`}>
-											{moment(form_fields.creationDate).format("MMMM D, YYYY ")}
+											{moment(form_fields?.creationDate).format(
+												"MMMM D, YYYY "
+											)}
 										</p>
-										{form_fields.approval === "Yes" && (
+										{form_fields?.approval === "Yes" && (
 											<p
 												className={`${nottoBeHighlighted} text-[13.5px] ml-10`}>
 												**NOTE: Director approval is required to issue this
@@ -199,13 +195,13 @@ const PreviewElement = () => {
 											</span>{" "}
 											at a lump sum fee of{" "}
 											<span className={`${nottoBeHighlighted}`}>
-												{currency(form_fields.projectAmount).format()}
+												{currency(form_fields?.projectAmount).format()}
 											</span>
 											. Consultant services shall include the deliverables and
 											scopes of work as outlined in the Contract.
 										</p>
 									</div>
-									{form_fields.approval === "Yes" && (
+									{form_fields?.approval === "Yes" && (
 										<div className="mt-2 flex gap-8 leading-[1.2]">
 											<p>
 												Issuance of this contract does not represent any
@@ -214,7 +210,7 @@ const PreviewElement = () => {
 												anticipate the project being presented to the Board of
 												Education for consideration of award on{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{moment(form_fields.approvalDate).format(
+													{moment(form_fields?.approvalDate).format(
 														"MMMM D, YYYY"
 													)}
 												</span>
@@ -234,8 +230,8 @@ const PreviewElement = () => {
 											Durham, North Carolina 27704 no later than{" "}
 											<span className={`${nottoBeHighlighted}`}>
 												{" "}
-												{moment(form_fields.deliveryDate).format("dddd")},{" "}
-												{moment(form_fields.deliveryDate).format(
+												{moment(form_fields?.deliveryDate).format("dddd")},{" "}
+												{moment(form_fields?.deliveryDate).format(
 													"MMMM D, YYYY."
 												)}
 											</span>{" "}
@@ -307,7 +303,10 @@ const PreviewElement = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep())}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

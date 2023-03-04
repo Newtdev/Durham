@@ -119,7 +119,7 @@ const PreviewForm = ({ value }) => {
 									/>
 									<span>Initial</span>
 								</p>
-								<p className="mt-2">
+								<p className="mt-1">
 									<input
 										className="mr-2"
 										type="checkbox"
@@ -127,7 +127,7 @@ const PreviewForm = ({ value }) => {
 									/>
 									<span>Supplemental</span>
 								</p>
-								<p className="mt-2">
+								<p className="mt-1">
 									<input
 										className="mr-2"
 										type="checkbox"
@@ -140,7 +140,7 @@ const PreviewForm = ({ value }) => {
 								<p className="text-justify ">
 									I,{"  "}
 									<span className={` ${nottoBeHighlighted}  `}>
-										<span className="border-b border-black inline-block w-56">
+										<span className="border-b border-black inline-block w-64">
 											{!awardee[0] ? "" : awardee[0].first_name}{" "}
 											{!awardee[0] ? "" : awardee[0].last_name}
 										</span>

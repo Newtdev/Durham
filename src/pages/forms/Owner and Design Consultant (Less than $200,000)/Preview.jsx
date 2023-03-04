@@ -34,7 +34,6 @@ const Preview = () => {
   const downloadComponent = useRef();
   const show = useSelector(openDownload);
   const formID = useSelector(project_document_id);
-  // const content = useFetchFilledFormQuery(formID);
   const [highlighted, setHighlighed] = useState(false);
   const [showPage, setShowPage] = useState(false);
   const [awardee, setAwardee] = useState([]);
@@ -85,8 +84,6 @@ const Preview = () => {
     project,
     durham_profile,
   };
-
-  console.log(pageProps);
 
   return (
     <div>

@@ -5,15 +5,14 @@ import { NoticeProceed } from "../../../yup";
 import NoticeForm from "./Forms";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducerSlice";
-import { modal, saveFormField } from "../reducer";
+import { modal } from "../reducer";
 import { notice_to_proceed } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { setResult } from "../../../shared-component";
 
-const NoticeToProceed = ({ id }) => {
-	// console.log(modal)
+const NoticeToProceed = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const showModal = useSelector(modal);
@@ -33,7 +32,7 @@ const NoticeToProceed = ({ id }) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				dispatch(nextStep());
+				dispatch(nextStep(2));
 			}
 		}
 	};
@@ -49,7 +48,7 @@ const NoticeToProceed = ({ id }) => {
 		onSubmit: (values) => {
 			if (pages === 1) {
 				HandleSubmit(values);
-				dispatch(saveFormField(values));
+				// dispatch(saveFormField(values));
 				// formik.handleReset();
 			}
 		},
@@ -59,10 +58,17 @@ const NoticeToProceed = ({ id }) => {
 		...formik,
 		isLoading,
 	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === notice_to_proceed && showModal}>
+				{pages === 1 && <NoticeForm {...props} />}
+				{pages === 2 && <Preview {...formik} />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === notice_to_proceed && showModal}>
-			{pages === 1 && <NoticeForm {...props} />}
-			{pages === 2 && <Preview {...formik} />}
+			<Preview {...formik} />
 		</ModalOverlay>
 	);
 };

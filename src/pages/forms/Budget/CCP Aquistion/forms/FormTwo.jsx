@@ -6,7 +6,10 @@ import { FormSelect, FormInputPlain } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { prevStep } from "../reducer";
-import { useGetVendorsQuery } from "../../../../../features/services/api";
+import {
+	useFetchSchoolsQuery,
+	useGetVendorsQuery,
+} from "../../../../../features/services/api";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -14,6 +17,8 @@ const FormTwo = (props) => {
 	const dispatch = useDispatch();
 	const states = useSelector(getList);
 	const vendors = useGetVendorsQuery({ queryValue: "" });
+	const school = useFetchSchoolsQuery();
+	const schoolInfo = school?.currentData?.data;
 	const vendor = vendors?.data?.data?.data;
 	const [focus, setShow] = useState(false);
 
@@ -343,26 +348,10 @@ const FormTwo = (props) => {
 										placeholder="Select Zip Code"
 									/>
 									<datalist id="zcode">{CheckZipCode()}</datalist>
-									{/* <FormSelect
-										id="zipCode"
-										value={props?.values?.zipCode}
-										error={props?.errors.zipCode}
-										touched={props?.touched.zipCode}
-										onChange={props?.handleChange}
-										>
-										{!props?.values?.zipCode ? (
-											<option value="">Select zip code</option>
-										) : (
-											<option value={props?.values?.zipCode}>
-												{props?.values?.zipCode}
-											</option>
-										)}
-										{CheckZipCode()}
-									</FormSelect> */}
 								</div>
 							</FormInputContainer>
-							{/* <FormSelect
-								value={props?.values?.vendor}
+							<FormSelect
+								value={props?.values?.location}
 								id="location"
 								error={props?.errors.location}
 								touched={props?.touched.location}
@@ -376,14 +365,15 @@ const FormTwo = (props) => {
 									</option>
 								)}
 
-								{location?.map((location) => {
+								{schoolInfo?.data?.map((location) => {
+									const { code, name, tag } = location;
 									return (
-										<option key={location?.id} value={location?.name}>
-											{location?.name}
+										<option key={location?.id} value={`${code} ${name} ${tag}`}>
+											{`${code} ${name} ${tag}`}
 										</option>
 									);
 								})}
-							</FormSelect> */}
+							</FormSelect>
 						</div>
 
 						<div className="flex justify-end gap-8 pr-4">

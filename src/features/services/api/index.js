@@ -576,6 +576,20 @@ export const DurhamsApi = createApi({
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response,
 		}),
+		fetchSchools: builder.query({
+			query: () => {
+				return {
+					url: `schools?limit=200`,
+					headers: {
+						Accept: "application/json",
+					},
+					method: "GET",
+				};
+			},
+			providesTags: ["projects", "school"],
+			transformResponse: (response) => response,
+			transformErrorResponse: (response, meta, arg) => response,
+		}),
 
 		UpdateProfile: builder.mutation({
 			query: (data) => {
@@ -1086,4 +1100,5 @@ export const {
 	useDuplicateProjectMutation,
 	useGetAllProjectManagerQuery,
 	useDeleteFormMutation,
+	useFetchSchoolsQuery,
 } = DurhamsApi;

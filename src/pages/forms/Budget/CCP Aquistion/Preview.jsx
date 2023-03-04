@@ -226,7 +226,7 @@ const Preview = () => {
 												<p>SCHOOL/DEPT. NAME:</p>
 												<p className="border border-black p-1">
 													<span className={`${nottoBeHighlighted}`}>
-														{`${school?.code} ${school?.name} ${school?.tag}`}
+														{forms?.location}
 													</span>
 												</p>
 											</div>
@@ -278,37 +278,39 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[0].field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[1].field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[2].field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												}  border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[3].field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
-												{currency(forms?.items[4]?.field_value).format()}
+												{currency(
+													!forms?.items ? 0 : forms?.items[4]?.field_value || ""
+												).format()}
 											</td>
 											<td
 												className={`${
-													forms?.items[0] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
@@ -321,37 +323,37 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms.items[7]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[8]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[5]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collaps text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[6]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[9]?.field_value).format()}
 											</td>
 											<td
 												className={`${
-													forms?.items[1] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
@@ -364,31 +366,31 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[12]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[13]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[10]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[11]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[2] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[14]?.field_value).format()}
 											</td>
@@ -407,37 +409,37 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[17]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[18]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[15]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[16]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[19]?.field_value).format()}
 											</td>
 											<td
 												className={`${
-													forms?.items[3] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
@@ -450,37 +452,37 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[22]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[23]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[20]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[21]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[24]?.field_value).format()}
 											</td>
 											<td
 												className={`${
-													forms?.items[4] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(
 													CalculateTotal(
@@ -493,31 +495,31 @@ const Preview = () => {
 										<tr className="text-xs">
 											<td
 												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[27]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[28]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse`}>
 												{!forms?.items ? "" : forms?.items[25]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-left pl-2`}>
 												{!forms?.items ? "" : forms?.items[26]?.field_value}
 											</td>
 											<td
 												className={`${
-													forms?.items[5] ? nottoBeHighlighted : ""
+													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-right pr-1`}>
 												{currency(forms?.items[29]?.field_value).format()}
 											</td>
@@ -720,9 +722,16 @@ const Preview = () => {
 												<div className="flex justify-between h-14 pl-2 pr-2 border-b border-b-blue-300 pt-9 text-[10.9pt]">
 													<p>Project Manager:</p>
 													<p className="flex flex-col justify-center items-center">
-														<span className={`${nottoBeHighlighted}`}>
-															{moment(forms?.signDate).format("MMMM D, YYYY ")}
-														</span>
+														{!forms?.signDate ? (
+															<span
+																className={`block w-24 h-4 bg-red-900`}></span>
+														) : (
+															<span className={`${nottoBeHighlighted}`}>
+																{moment(forms?.signDate).format(
+																	"MMMM D, YYYY "
+																)}
+															</span>
+														)}
 														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
@@ -744,10 +753,10 @@ const Preview = () => {
 														<span className="inline-block my-2">Date</span>
 													</p>
 												</div>
-												<div className="flex justify-between h-14 pt-9 pb-[4px] pl-1 text-[10.9pt]">
+												<div className="flex justify-between h-10 pt-5 pb-[4px] pl-1 text-[10.9pt]">
 													<p>Deputy Superintendent Operational Services:</p>
 													<p className="mr-2 flex justify-start items-start w-16 ">
-														<span className="inline-block my-2">Date</span>
+														<span className="inline-block mt-1">Date</span>
 													</p>
 												</div>
 											</div>

@@ -11,7 +11,7 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const CCPRequisitionForm = ({ id }) => {
+const CCPRequisitionForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -36,7 +36,7 @@ const CCPRequisitionForm = ({ id }) => {
 			addressState: "",
 			addressZipCode: "",
 			ccpshippingCost: "",
-			ccpsalesTax: "",
+			ccpsalesTax: "NO",
 			ccptax: "4.75",
 			name: "",
 			city: "",
@@ -57,15 +57,11 @@ const CCPRequisitionForm = ({ id }) => {
 		},
 		// validationSchema: CCPRequisitionSchema[pages - 1],
 		onSubmit: (values) => {
-			console.log(values);
 			if (pages === 1) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(3));
 			} else if (pages === 3) {
-				console.log("pages: ", pages);
 				dispatch(saveFormField(values));
 				// HandleSubmit(values);
 			}
@@ -78,6 +74,14 @@ const CCPRequisitionForm = ({ id }) => {
 			dispatch(getStates(response));
 		})();
 	}, [dispatch]);
+
+	// if (filled) {
+	// 	return (
+	// 		<ModalOverlay show={id === CCPRequisition && show}>
+	// 			<Preview />
+	// 		</ModalOverlay>
+	// 	);
+	// }
 
 	return (
 		<ModalOverlay show={id === CCPRequisition && show}>

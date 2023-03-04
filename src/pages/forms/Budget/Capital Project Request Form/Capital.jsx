@@ -1,7 +1,6 @@
-import { FormikProvider, useFormik } from "formik";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { choiceStep, nextChoiceStep } from "./reducer";
-import { CapitalPForm } from "../../../../yup";
 import Preview from "./Preview";
 import { CapitalProjectRequestForm } from "../../../../shared-component/slug";
 import { toast } from "react-toastify";
@@ -10,9 +9,12 @@ import { useFillProjectDocumentMutation } from "../../../../features/services/ap
 import Cinput from "./forms/FormOne";
 import Estimate from "./forms/FormTwo";
 import { ModalOverlay } from "../../../../ui";
-import { modal, saveFormField } from "../../reducer";
+import { modal } from "../../reducer";
+import { setResult } from "../../../../shared-component";
+import { useEffect } from "react";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
-const CapitalProjectForm = ({ id }) => {
+const CapitalProjectForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(choiceStep);
 	const show = useSelector(modal);
@@ -20,19 +22,12 @@ const CapitalProjectForm = ({ id }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -65,7 +60,6 @@ const CapitalProjectForm = ({ id }) => {
 			if (pages === 0) {
 				dispatch(nextChoiceStep(1));
 			} else if (pages === 1) {
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
@@ -76,11 +70,34 @@ const CapitalProjectForm = ({ id }) => {
 		isLoading,
 	};
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+
+		Formik.setFieldValue("selectOption", a?.data?.form_fields.selectOption);
+		Formik.setFieldValue("Source", a?.data?.form_fields.Source);
+		Formik.setFieldValue("design", a?.data?.form_fields.design);
+		Formik.setFieldValue("purchase", a?.data?.form_fields.purchase);
+		Formik.setFieldValue("construction", a?.data?.form_fields.construction);
+		Formik.setFieldValue("renovation", a?.data?.form_fields.renovation);
+		Formik.setFieldValue("repair", a?.data?.form_fields.repair);
+		Formik.setFieldValue("furniture", a?.data?.form_fields.furniture);
+		Formik.setFieldValue("funding_source", a?.data?.form_fields.funding_source);
+	}, [a]);
+
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === CapitalProjectRequestForm && show}>
+				{pages === 0 && <Cinput {...Formik} />}
+				{pages === 1 && <Estimate {...props} />}
+				{pages === 2 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === CapitalProjectRequestForm && show}>
-			{pages === 0 && <Cinput {...Formik} />}
-			{pages === 1 && <Estimate {...props} />}
-			{pages === 2 && <Preview />}
+			<Preview />
 		</ModalOverlay>
 	);
 };

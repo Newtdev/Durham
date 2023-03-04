@@ -5,33 +5,30 @@ import { Close, DashboardButton } from "../../../Dashboard/Components";
 import {
 	closeDownload,
 	closeModal,
-	fields,
 	openDownload,
 	showDownload,
 } from "../../reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import Logo from "../../../../assets/formlogo.png";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
+import Logo from "../../../../assets/newlogo.jpg";
 
 import currency from "currency.js";
 import moment from "moment";
 import DownLoadForm from "../../Lundsford/Download";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
 const Capital = () => {
 	const show = useSelector(openDownload);
-
 	const dispatch = useDispatch();
 	const formID = useSelector(project_document_id);
 	const downloadComponent = useRef();
-	let content = useFetchFilledFormQuery(formID);
-	let formData = !content?.data ? [] : content?.data?.data;
-	// const durham_profile = formData?.durham_profile;
-	const project = formData?.project;
+	const [a] = UseFetchFilledFormDetails(formID);
+	let formData = a?.data;
 
-	// const content = useSelector(savedResponse);
-	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
 
 	const props = {
@@ -45,15 +42,16 @@ const Capital = () => {
 		? "bg-yellow-300 font-bold"
 		: "bg-white";
 
-	const form_details = !form_fields ? "" : form_fields;
-	const project_details = !project ? "" : project;
+	const form_details = formData?.form_fields;
+	const project_details = formData?.project;
+	console.log(form_details);
 
-	const pur = Number(form_fields?.purchase);
-	const des = Number(form_fields?.design);
-	const con = Number(form_fields?.construction);
-	const ren = Number(form_fields?.renovation);
-	const rep = Number(form_fields?.repair);
-	const fur = Number(form_fields?.furniture);
+	const pur = Number(formData?.form_fields?.purchase);
+	const des = Number(formData?.form_fields?.design);
+	const con = Number(formData?.form_fields?.construction);
+	const ren = Number(formData?.form_fields?.renovation);
+	const rep = Number(formData?.form_fields?.repair);
+	const fur = Number(formData?.form_fields?.furniture);
 	const val = pur + des + con + ren + rep + fur;
 
 	return (
@@ -116,7 +114,7 @@ const Capital = () => {
 
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block w-[13rem] ml-0.5`}>
-												{form_details.selectOption}
+												{form_details?.selectOption}
 											</span>
 										</p>
 									</div>
@@ -126,7 +124,7 @@ const Capital = () => {
 											<span className="inline-block w-24">Project Title: </span>
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block w-full`}>
-												{!project.name ? "" : project_details?.name}
+												{!project_details ? "" : project_details?.name}
 											</span>
 										</p>
 									</div>
@@ -136,10 +134,10 @@ const Capital = () => {
 											Location:{" "}
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block w-full ml-1`}>
-												{!project.name ? "" : project_details?.location},{" "}
-												{!project.name ? "" : project_details?.city},{" "}
-												{!project.name ? "" : project_details?.state},{" "}
-												{!project.name ? "" : project_details?.zip_code}
+												{!project_details ? "" : project_details?.location},{" "}
+												{!project_details ? "" : project_details?.city},{" "}
+												{!project_details ? "" : project_details?.state},{" "}
+												{!project_details ? "" : project_details?.zip_code}
 											</span>
 										</p>
 									</div>
@@ -148,7 +146,7 @@ const Capital = () => {
 										<p>Project Description:</p>
 										<div className="p-2 border border-black w-full h-16">
 											<span className={`${nottoBeHighlighted}`}>
-												{!project.name ? "" : project_details?.description}
+												{!project_details ? "" : project_details?.description}
 											</span>
 										</div>
 									</div>
@@ -225,14 +223,14 @@ const Capital = () => {
 											<span>Estimated Project Beginning Date: </span>
 											<span
 												className={`${nottoBeHighlighted} border-b border-black`}>
-												{moment(form_fields.startDate).format("MMMM D, YYYY")}
+												{moment(form_details?.startDate).format("MMMM D, YYYY")}
 											</span>
 										</p>
 										<p className="flex justify-center items-center">
 											Est. Project Completion Date:{" "}
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block`}>
-												{moment(form_fields.completionDate).format(
+												{moment(form_details?.completionDate).format(
 													"MMMM D, YYYY "
 												)}
 											</span>
@@ -267,7 +265,7 @@ const Capital = () => {
 												<input
 													type="checkbox"
 													checked={
-														form_details.Source === "Capital_Outlay"
+														form_details?.Source === "Capital_Outlay"
 															? true
 															: false
 													}
@@ -287,7 +285,7 @@ const Capital = () => {
 													name="other"
 													id="other"
 													checked={
-														form_details.Source === "Other" ? true : false
+														form_details?.Source === "Other" ? true : false
 													}
 												/>
 												<span
@@ -326,6 +324,7 @@ const Capital = () => {
 							name="Edit document"
 							onClick={() => {
 								dispatch(prevChoiceStep(1));
+								dispatch(selectFilled(false));
 							}}
 						/>
 						<DashboardButton

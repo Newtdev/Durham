@@ -7,12 +7,12 @@ import { notice_of_intent_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { NoticeConsultant } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { modal, saveFormField } from "../reducer";
+import { modal } from "../reducer";
 import NoticeForm from "./Forms";
 import PreviewElement from "./PreviewElement";
-import { saveDoc, nextStep, page } from "./reducerSlice";
+import { nextStep, page } from "./reducerSlice";
 
-const NoticeOfIntentConsultant = ({ id }) => {
+const NoticeOfIntentConsultant = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -32,7 +32,7 @@ const NoticeOfIntentConsultant = ({ id }) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				dispatch(nextStep());
+				dispatch(nextStep(2));
 			}
 		}
 	};
@@ -48,8 +48,6 @@ const NoticeOfIntentConsultant = ({ id }) => {
 		validationSchema: NoticeConsultant,
 		onSubmit: (values) => {
 			if (pages === 1) {
-				dispatch(saveFormField(values));
-
 				HandleSubmit(values);
 			}
 		},
@@ -59,10 +57,17 @@ const NoticeOfIntentConsultant = ({ id }) => {
 		isLoading,
 	};
 
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === notice_of_intent_consultant && show}>
+				{pages === 1 && <NoticeForm {...props} />}
+				{pages === 2 && <PreviewElement />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === notice_of_intent_consultant && show}>
-			{pages === 1 && <NoticeForm {...props} />}
-			{pages === 2 && <PreviewElement />}
+			<PreviewElement />
 		</ModalOverlay>
 	);
 };
