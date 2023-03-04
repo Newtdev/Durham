@@ -17,7 +17,7 @@ import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
 const OwnerContractorManagementForm = ({ id, filled }) => {
-  console.log(id, filled);
+  // console.log(id, filled);
   const dispatch = useDispatch();
   const pages = useSelector(page);
   const show = useSelector(modal);
@@ -124,7 +124,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
   //   })();
   // }, [dispatch]);
 
-  const props = {...formik, isLoading}
+  const props = { ...formik, isLoading };
 
   return (
     <ModalOverlay show={id === OwnerContractManagement && show}>
@@ -132,6 +132,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
         <form onSubmit={formik.handleSubmit}>
           {pages === 1 && <FormOne {...formik} />}
           {pages === 2 && <FormTwo {...formik} />}
+
           {pages === 3 && <FormThree {...formik} />}
           {pages === 4 && <FormFour {...props} />}
           {pages === 5 && <Preview />}
