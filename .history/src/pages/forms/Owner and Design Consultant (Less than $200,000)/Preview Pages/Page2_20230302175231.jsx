@@ -4,7 +4,7 @@ import "./OwnerLessPages.css";
 
 const Page2 = (props) => {
   return (
-    <div style={{ margin: "1in", paddingTop: "7rem", height: "10in" }}>
+    <div style={{ margin: "1in", paddingTop: "6rem", height: "10in" }}>
       <p class="p2 p41">
         <span class="p1">ENGINEERING CONSULTANT AGREEMENT</span>
       </p>
@@ -58,16 +58,10 @@ const Page2 = (props) => {
       <p class="p20 p35 p12">
         <span class="p1"></span>
       </p>
-      <p class="p20 p35 p12">
-        <span class="p1"></span>
-      </p>
       <p class="p2 p35">
         <span class="p1">ARTICLE 1</span>
       </p>
       <p class="p2 p35 p12">
-        <span class="p1"></span>
-      </p>
-      <p class="p20 p35 p12">
         <span class="p1"></span>
       </p>
       <p class="p2 p35">
@@ -241,7 +235,7 @@ const Page2 = (props) => {
 
       <div
         className="h-[7rem] mb-6 flex items-end"
-        style={{ fontFamily: "Arial", fontSize: "10pt" }}
+        style={{ fontFamily: "Arial" }}
       >
         <div>
           <p className="text-[10px]"></p>

@@ -4,7 +4,7 @@ import "./OwnerLessPages.css";
 
 const Page2 = (props) => {
   return (
-    <div style={{ margin: "1in", paddingTop: "7rem", height: "10in" }}>
+    <div style={{ margin: "1in", paddingTop: "6rem", height: "10in" }}>
       <p class="p2 p41">
         <span class="p1">ENGINEERING CONSULTANT AGREEMENT</span>
       </p>

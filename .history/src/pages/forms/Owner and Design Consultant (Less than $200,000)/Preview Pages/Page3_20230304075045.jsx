@@ -18,7 +18,7 @@ const Page3 = () => {
         <span class="p1"></span>
       </p>
 
-      <div className="w-full text-[10pt] pl-[0.8in] pr-4">
+      <div className="w-full text-[10pt] pl-[0.9in] pr-4">
         <p className="flex justify-between">
           <span>Insurance Description</span>{" "}
           <span className="ml-auto">Minimum Required </span>

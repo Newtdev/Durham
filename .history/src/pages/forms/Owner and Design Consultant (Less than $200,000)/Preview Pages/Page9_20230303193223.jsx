@@ -52,9 +52,9 @@ const Page9 = (props) => {
         <span className="mr-8">6.15</span>
         <li class="pli ">
           <span class="p4 ">
-            For the purpose of this Agreement unless the context clearly
-            indicates otherwise, the singular includes the plural, and the
-            plural includes the singular.
+            For the purpose of this Agreement unless the
+            context clearly indicates otherwise, the singular includes the
+            plural, and the plural includes the singular.
           </span>
         </li>
       </ol>
@@ -65,10 +65,10 @@ const Page9 = (props) => {
         <span className="mr-8">6.16</span>
         <li class="pli ">
           <span class="p4 ">
-            This Agreement may be executed in any number of counterparts, each
-            of which shall be deemed an original, and the counterparts shall
-            constitute one and the same instrument, which shall be sufficient
-            evidence by any one thereof.
+            This Agreement may be executed in any number of
+            counterparts, each of which shall be deemed an original, and the
+            counterparts shall constitute one and the same instrument, which
+            shall be sufficient evidence by any one thereof.
           </span>
         </li>
       </ol>
@@ -79,10 +79,10 @@ const Page9 = (props) => {
         <span className="mr-8">6.17</span>
         <li class="pli ">
           <span class="p4 ">
-            This Agreement shall inure to the benefit of and be binding on the
-            heirs, successors, assigns, trustees and personal representatives of
-            the Owner, as well as the permitted assigns and trustees of the
-            Engineer.
+            This Agreement shall inure to the benefit of and
+            be binding on the heirs, successors, assigns, trustees and personal
+            representatives of the Owner, as well as the permitted assigns and
+            trustees of the Engineer.
           </span>
         </li>
       </ol>
@@ -135,36 +135,28 @@ const Page9 = (props) => {
             </p>
           </td>
           <td class="p47" colspan="1" rowspan="2">
-            {props?.sustainaibilityDate === "" ? (
-              <span> </span>
-            ) : (
-              <span
-                class={`${props?.nottoBeHighlighted} inline-block`}
-                style={{
-                  fontSize: "10pt",
-                  fontFamily: "Arial",
-                  position: "relative",
-                  bottom: "1.3rem",
-                  right: "0.8rem",
-                  width: "9rem",
-                }}
-              >
-                <span>
-                  {moment(props?.form_fields?.sustainaibilityDate).format(
-                    "MMMM"
-                  )}
-                </span>{" "}
-                <span style={{}}>
-                  {moment(props?.form_fields?.sustainaibilityDate).format("DD")}
-                </span>
-                ,{" "}
-                <span>
-                  {moment(props?.form_fields?.sustainaibilityDate).format(
-                    "YYYY"
-                  )}
-                </span>
+            <span
+              class={`${props?.nottoBeHighlighted} inline-block`}
+              style={{
+                fontSize: "10pt",
+                fontFamily: "Arial",
+                position: "relative",
+                bottom: "1.3rem",
+                right: "0.8rem",
+                width: "9rem",
+              }}
+            >
+              <span>
+                {moment(props?.form_fields?.sustainaibilityDate).format("MMMM")}
+              </span>{" "}
+              <span style={{}}>
+                {moment(props?.form_fields?.sustainaibilityDate).format("DD")}
               </span>
-            )}
+              ,{" "}
+              <span>
+                {moment(props?.form_fields?.sustainaibilityDate).format("YYYY")}
+              </span>
+            </span>
             <p class="p9">
               <span class="p1">Date</span>
             </p>
@@ -214,37 +206,34 @@ const Page9 = (props) => {
           </td>
 
           <td class="p47" colspan="1" rowspan="2">
-            {props?.financialOfficerSignDate === "" ? (
-              <span> </span>
-            ) : (
-              <span
-                class={`${props?.nottoBeHighlighted} inline-block`}
-                style={{
-                  fontSize: "10pt",
-                  fontFamily: "Arial",
-                  position: "relative",
-                  bottom: "1.3rem",
-                  right: "0.8rem",
-                  width: "9rem",
-                }}
-              >
-                <span>
-                  {moment(props?.form_fields?.financialOfficerSignDate).format(
-                    "MMMM"
-                  )}
-                </span>{" "}
-                <span style={{}}>
-                  {moment(props?.form_fields?.financialOfficerSignDate).format(
-                    "DD"
-                  )}
-                </span>
-                ,{" "}
-                <span>
-                  {moment(props?.form_fields?.financialOfficerSignDate).format(
-                    "YYYY"
-                  )}
-                </span>
-              </span>)}
+            <span
+              class={`${props?.nottoBeHighlighted} inline-block`}
+              style={{
+                fontSize: "10pt",
+                fontFamily: "Arial",
+                position: "relative",
+                bottom: "1.3rem",
+                right: "0.8rem",
+                width: "9rem",
+              }}
+            >
+              <span>
+                {moment(props?.form_fields?.financialOfficerSignDate).format(
+                  "MMMM"
+                )}
+              </span>{" "}
+              <span style={{}}>
+                {moment(props?.form_fields?.financialOfficerSignDate).format(
+                  "DD"
+                )}
+              </span>
+              ,{" "}
+              <span>
+                {moment(props?.form_fields?.financialOfficerSignDate).format(
+                  "YYYY"
+                )}
+              </span>
+            </span>
             <p class="p9">
               <span class="p1">Date</span>
             </p>

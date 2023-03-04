@@ -15,6 +15,7 @@ const Page8 = () => {
         <span className="mr-11">6.5</span>
         <li class="pli ">
           <span class="p4 ">
+            &nbsp;&nbsp;&nbsp;
             <span class="p10 p4">Relationship of Parties</span>
             <span class="p1">
               . &nbsp;Engineer shall be an independent contractor of the School
@@ -31,6 +32,7 @@ const Page8 = () => {
         <span className="mr-11">6.6</span>
         <li class="pli ">
           <span class="p4 ">
+            &nbsp;&nbsp;&nbsp;
             <span class="p10 p4">Compliance with Applicable Laws.</span>
             <span class="p1">
               &nbsp;The Engineer shall comply with all applicable laws and
@@ -67,6 +69,7 @@ const Page8 = () => {
         <span className="mr-11">6.7</span>
         <li class="pli ">
           <span class="p4 ">
+            &nbsp;&nbsp;&nbsp;
             <span class="p10 p4">
               Applicable Durham Public Schools Board of Education Policies
             </span>
@@ -96,6 +99,7 @@ const Page8 = () => {
         <span className="mr-11">6.8</span>
         <li class="pli ">
           <span class="p4 ">
+            &nbsp;&nbsp;&nbsp;
             <span class="p10 p4">Restricted Companies List</span>
             <span class="p1">
               . Engineer represents that as of the date of this Agreement,
@@ -119,6 +123,7 @@ const Page8 = () => {
         <span className="mr-11">6.9</span>
         <li class="pli ">
           <span class="p4 ">
+            &nbsp;&nbsp;&nbsp;
             <span class="p10 p4">Anti-Nepotism</span>
             <span class="p1">
               .&nbsp; Engineer warrants that, to the best of its knowledge and
@@ -152,7 +157,7 @@ const Page8 = () => {
         <span className="mr-8">6.10</span>
         <li class="pli ">
           <span class="p4 ">
-            This Agreement and its Exhibits represent the
+            &nbsp;&nbsp;&nbsp;This Agreement and its Exhibits represent the
             entire and integrated agreement between the Owner and the Engineer
             and supersedes all prior negotiations, representations or
             agreements, either written or oral. &nbsp;This Agreement may be
@@ -170,7 +175,7 @@ const Page8 = () => {
         <span className="mr-8">6.11</span>
         <li class="pli ">
           <span class="p4 ">
-            This Agreement shall be governed by the laws of
+            &nbsp;&nbsp;&nbsp;This Agreement shall be governed by the laws of
             the State of North Carolina
           </span>
         </li>
