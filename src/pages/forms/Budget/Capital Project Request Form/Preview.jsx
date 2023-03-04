@@ -44,8 +44,6 @@ const Capital = () => {
 
 	const form_details = formData?.form_fields;
 	const project_details = formData?.project;
-	console.log(form_details);
-
 	const pur = Number(formData?.form_fields?.purchase);
 	const des = Number(formData?.form_fields?.design);
 	const con = Number(formData?.form_fields?.construction);
@@ -289,7 +287,7 @@ const Capital = () => {
 													}
 												/>
 												<span
-													className={`${nottoBeHighlighted} inline-block w-36 inline-block border-b border-black mt-2`}>
+													className={`${nottoBeHighlighted} inline-block w-36  border-b border-black mt-2`}>
 													{form_details?.funding_source}
 												</span>
 											</div>

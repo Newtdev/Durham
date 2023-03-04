@@ -43,6 +43,7 @@ export const SelectDate = (props) => {
 			<DatePicker
 				{...props}
 				selected={value}
+				dateFormat="MMMM d, yyyy"
 				name={name}
 				onChange={(e) => setFieldValue(name, e)}
 				className="w-full p-2.5 bg-gray-50"

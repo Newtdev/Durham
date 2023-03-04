@@ -66,6 +66,11 @@ import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
 import RFPTemplate from "../../forms/RFP Template with MWBE";
 import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
+import {
+	lundsford,
+	notice_of_intent_consultant,
+	punchList,
+} from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
 const ProjectDashboard = () => {
@@ -383,9 +388,15 @@ const ProjectDashboard = () => {
 					</div>
 				</div>
 			</main>
-			<Lunsford id={documentsID} filled={filled} />
-			<PunchList id={documentsID} filled={filled} />
-			<NoticeOfIntentConsultant id={documentsID} filled={filled} />
+			{documentsID === lundsford ? (
+				<Lunsford id={documentsID} filled={filled} />
+			) : null}
+			{documentsID === punchList ? (
+				<PunchList id={documentsID} filled={filled} />
+			) : null}
+			{documentsID === notice_of_intent_consultant ? (
+				<NoticeOfIntentConsultant id={documentsID} filled={filled} />
+			) : null}
 			<CertificateOfSubstantial id={documentsID} filled={filled} />
 			<NoticeToProceed id={documentsID} filled={filled} />
 			<ProjectCloseoutCheckList id={documentsID} filled={filled} />

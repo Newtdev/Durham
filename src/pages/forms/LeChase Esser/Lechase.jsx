@@ -13,15 +13,17 @@ import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { setResult } from "../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { useEffect } from "react";
 
-const LeChase = ({ id }) => {
+const LeChase = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(choiceStep);
 	const show = useSelector(modal);
-
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -72,12 +74,27 @@ const LeChase = ({ id }) => {
 		isLoading,
 	};
 
+	// useEffect(() => {
+	// 	if (!a?.data) {
+	// 		return;
+	// 	}
+	// 	Formik.setValues({ ...a?.data?.form_fields });
+	// }, [a]);
+
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === leChase && show}>
+				{pages === 0 && <ContractDetails {...Formik} />}
+				{pages === 1 && <Compensation {...Formik} />}
+				{pages === 2 && <SexualOffender {...props} />}
+				{pages === 3 && <Preview />}
+			</ModalOverlay>
+		);
+	}
+
 	return (
 		<ModalOverlay show={id === leChase && show}>
-			{pages === 0 && <ContractDetails {...Formik} />}
-			{pages === 1 && <Compensation {...Formik} />}
-			{pages === 2 && <SexualOffender {...props} />}
-			{pages === 3 && <Preview {...Formik} />}
+			<Preview />
 		</ModalOverlay>
 	);
 };

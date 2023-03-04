@@ -7,12 +7,12 @@ import { Determination_bidder } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { DeterminationFormContractor } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { modal, saveFormField } from "../reducer";
+import { modal } from "../reducer";
 import DeterminationForm from "./Form";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const DeterminationOFLowestBidder = ({ id }) => {
+const DeterminationOFLowestBidder = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -47,22 +47,26 @@ const DeterminationOFLowestBidder = ({ id }) => {
 
 		onSubmit: (values) => {
 			if (pages === 1) {
-				dispatch(saveFormField(values));
-
 				HandleSubmit(values);
 			}
 		},
 	});
 
-	// console.log(pages)
 	const props = {
 		...Formik,
 		isLoading,
 	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === Determination_bidder && show}>
+				{pages === 1 && <DeterminationForm {...props} />}
+				{pages === 2 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === Determination_bidder && show}>
-			{pages === 1 && <DeterminationForm {...props} />}
-			{pages === 2 && <Preview {...Formik} />}
+			<Preview />
 		</ModalOverlay>
 	);
 };
