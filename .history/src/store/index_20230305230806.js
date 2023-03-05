@@ -39,7 +39,7 @@ import ownersContractorFormESSER from "../pages/forms/Contract/Owner and Contrac
 import MWBEFormForBidsReducer from "../pages/forms/MWBE/MWBE Form for Bids/reducer";
 import RFPTemplateWithMWBEReducer from "../pages/forms/RFP Template with MWBE/reducer";
 import OwnerDesignConsultantless from "../pages/forms/Owner and Design Consultant (Less than $200,000)/reducer";
-import OwnerDesignMoreFormReducer from "../pages/forms/Contract/Owner and Design Consultant (more than $200,000)/reducer";
+import OwnerDesignMoreFormReducer from "../pages/forms/Contract/Owner and Design Consultant (More than $200,000)/reducer";
 // import Proposal from "../pages/forms/Budget/Change-Proposal-Form/reducer";
 import { Proposal } from "../pages/forms/Budget/Change-Proposal-Form 2/";
 
