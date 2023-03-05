@@ -513,8 +513,8 @@ ol.lst-kix_list_2-1.start {
 }
 .lst-kix_list_4-2 > li {
   counter-increment: lst-ctn-kix_list_4-2;
-}
-ol {
+} */
+/* ol {
   margin: 0;
   padding: 0;
 }
@@ -1006,4 +1006,4 @@ table th {
   font-family: "Times New Roman";
   line-height: 1;
   text-align: justify;
-}
+} 
