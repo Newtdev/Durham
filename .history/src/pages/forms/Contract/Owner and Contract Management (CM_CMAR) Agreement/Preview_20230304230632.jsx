@@ -8,7 +8,6 @@ import { useFetchFilledFormQuery } from "../../../../features/services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openDownload, showDownload, fields } from "../../reducer";
 import { prevStep, stepDefault } from "./reducer";
-import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import "./Previews/CMPagesStyle.css";
 import Page1 from "./Previews/Page1";
 import Page2 from "./Previews/Page2";
@@ -71,19 +70,11 @@ const Preview = () => {
   const [highlighted, setHighlighed] = useState(false);
   const [showPage, setShowPage] = useState(false);
   const [awardee, setAwardee] = useState([]);
-
-  const [a] = UseFetchFilledFormDetails(formID);
-
-  const project = a?.data?.project;
-  const form_fields = a?.data?.form_fields;
-  const durham_profile = a?.data?.durham_profile;
-  const vendors = a?.data?.vendors;
-
-  // const form_fields = useSelector(fields);
-  // let formData = !content?.data ? [] : content?.data?.data;
-  // const vendors = formData?.vendors;
-  // const project = formData?.project;
-  // const durham_profile = formData?.durham_profile;
+  const form_fields = useSelector(fields);
+  let formData = !content?.data ? [] : content?.data?.data;
+  const vendors = formData?.vendors;
+  const project = formData?.project;
+  const durham_profile = formData?.durham_profile;
 
   const props = {
     component: downloadComponent,

@@ -30,8 +30,6 @@ const RFPTemplate = ({ id }) => {
     const param = Object.keys(values);
     const val = Object.values(values);
 
-    console.log("values: ", values);
-
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: [
@@ -109,17 +107,14 @@ const RFPTemplate = ({ id }) => {
     // validationSchema: RFPTemplatewithMWBESchema,
     onSubmit: (values) => {
       if (pages === 1) {
-        console.log("pages: ", pages);
         dispatch(saveFormField(values));
         dispatch(nextStep(2));
       } else if (pages === 2) {
-        console.log(values);
         dispatch(saveFormField(values));
         dispatch(nextStep(3));
       } else if (pages === 3) {
-        console.log(values);
         dispatch(saveFormField(values));
-        dispatch(nextStep(4));
+        // dispatch(nextStep(4));
         HandleSubmit(values);
       }
     },

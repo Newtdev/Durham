@@ -21,6 +21,7 @@ const Preview = () => {
 
   const [a] = UseFetchFilledFormDetails(formID);
   const forms = a?.data?.form_fields;
+  const school = a?.data?.project?.school;
 
   // const pageContent = content?.data;
   const nottoBeHighlighted = !highlighted

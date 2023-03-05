@@ -21,6 +21,7 @@ const Preview = () => {
 
   const [a] = UseFetchFilledFormDetails(formID);
   const forms = a?.data?.form_fields;
+  const school = a?.data?.project?.school;
 
   // const pageContent = content?.data;
   const nottoBeHighlighted = !highlighted
@@ -329,7 +330,7 @@ const Preview = () => {
                       >
                         {currency(
                           CalculateTotal(
-                            forms?.items[0]?.field_value,
+                            // forms?.items[0]?.field_value,
                             forms?.items[4]?.field_value
                           )
                         ).format()}

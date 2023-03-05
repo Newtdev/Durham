@@ -92,13 +92,6 @@ import {
   AffidavitSlug,
   DPSShortFormEngineer,
   OwnerAndContractor,
-  OwnerAndContractorESSER,
-  MWBEFormsForBid,
-  RFPTemplateWithMWBESlug,
-  OwnerDesignConsultantLessSlug,
-  ProposalSlug,
-  MWBEFormId,
-  precise_checkList,
 } from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
@@ -456,9 +449,10 @@ const ProjectDashboard = () => {
       {documentsID === CCPRequisition ? (
         <CCPRequisitionForm id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === MWBEFormId ? (
-        <MWBEParticipation id={documentsID} filled={filled} />
-      ) : null}
+      {/* {documentsID === CCPRequisition  ? (
+      <MWBEParticipation id={documentsID} filled={filled} />
+      ) : null} */}
+      <MWBEParticipation id={documentsID} filled={filled} />
       {documentsID === ESSERContract ? (
         <Esser id={documentsID} filled={filled} />
       ) : null}
@@ -483,6 +477,10 @@ const ProjectDashboard = () => {
       {documentsID === Vendor3BidSlug ? (
         <Bids id={documentsID} filled={filled} />
       ) : null}
+      {/* {documentsID === Vendor3BidSlug  ? (
+      <PFForProjects id={documentsID} filled={filled} />
+      ) : null} */}
+      <PFForProjects id={documentsID} filled={filled} />
       {documentsID === ShortSmallFormDesign ? (
         <ShortSmallFormDesignForm id={documentsID} filled={filled} />
       ) : null}
@@ -504,24 +502,13 @@ const ProjectDashboard = () => {
       {documentsID === OwnerAndContractor ? (
         <OwnerAndContractorForm id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === OwnerAndContractorESSER ? (
+      {documentsID === OwnerAndContractor ? (
         <OwnerAndContractorFormESSER id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === MWBEFormsForBid ? (
-        <MWBEFormsForBidForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === RFPTemplateWithMWBESlug ? (
-        <RFPTemplate id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === OwnerDesignConsultantLessSlug ? (
-        <OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ProposalSlug ? (
-        <ProposalForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === precise_checkList ? (
-        <PFForProjects id={documentsID} filled={filled} />
-      ) : null}
+      <MWBEFormsForBidForm id={documentsID} filled={filled} />
+      <RFPTemplate id={documentsID} filled={filled} />
+      <OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
+      <ProposalForm id={documentsID} filled={filled} />
     </section>
   );
 };

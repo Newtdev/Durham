@@ -66,40 +66,6 @@ import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
 import RFPTemplate from "../../forms/RFP Template with MWBE";
 import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
-import {
-  lundsford,
-  notice_of_intent_consultant,
-  punchList,
-  certificateOfSubstantialCompletion,
-  notice_to_proceed,
-  project_closeout_checklist,
-  notice_of_award_consultant,
-  advertisement_bid,
-  CapitalProjectRequestForm,
-  CCPRequisition,
-  ESSERContract,
-  ESSERContractPM,
-  leChase,
-  techServices,
-  notice_of_award_contractor,
-  Determination_bidder,
-  OwnerContractManagement,
-  Vendor3BidSlug,
-  ShortSmallFormDesign,
-  ChangeOrderDirective,
-  ChangeOrder,
-  DesignChangeFrom,
-  AffidavitSlug,
-  DPSShortFormEngineer,
-  OwnerAndContractor,
-  OwnerAndContractorESSER,
-  MWBEFormsForBid,
-  RFPTemplateWithMWBESlug,
-  OwnerDesignConsultantLessSlug,
-  ProposalSlug,
-  MWBEFormId,
-  precise_checkList,
-} from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
 const ProjectDashboard = () => {
@@ -426,102 +392,38 @@ const ProjectDashboard = () => {
           </div>
         </div>
       </main>
-      {documentsID === lundsford ? (
-        <Lunsford id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === punchList ? (
-        <PunchList id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === notice_of_intent_consultant ? (
-        <NoticeOfIntentConsultant id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === certificateOfSubstantialCompletion ? (
-        <CertificateOfSubstantial id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === notice_to_proceed ? (
-        <NoticeToProceed id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === project_closeout_checklist ? (
-        <ProjectCloseoutCheckList id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === notice_of_award_consultant ? (
-        <NoticeOfAwardConsultant id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === advertisement_bid ? (
-        <AdvertisementBid id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === CapitalProjectRequestForm ? (
-        <CapitalProjectForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === CCPRequisition ? (
-        <CCPRequisitionForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === MWBEFormId ? (
-        <MWBEParticipation id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ESSERContract ? (
-        <Esser id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ESSERContractPM ? (
-        <EsserPM id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === leChase ? (
-        <Lechase id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === techServices ? (
-        <TechService id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === notice_of_award_contractor ? (
-        <NoticeOfAwardContrator id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === Determination_bidder ? (
-        <DeterminationOFLowestBidder id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === OwnerContractManagement ? (
-        <OwnerContractorManagementForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === Vendor3BidSlug ? (
-        <Bids id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ShortSmallFormDesign ? (
-        <ShortSmallFormDesignForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ChangeOrderDirective ? (
-        <ChangeOrderDirectiveForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ChangeOrder ? (
-        <ChangeOrderForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === DesignChangeFrom ? (
-        <DesignChangeOrderForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === AffidavitSlug ? (
-        <MainAffidavit id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === DPSShortFormEngineer ? (
-        <DPSShortFormEngineerForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === OwnerAndContractor ? (
-        <OwnerAndContractorForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === OwnerAndContractorESSER ? (
-        <OwnerAndContractorFormESSER id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === MWBEFormsForBid ? (
-        <MWBEFormsForBidForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === RFPTemplateWithMWBESlug ? (
-        <RFPTemplate id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === OwnerDesignConsultantLessSlug ? (
-        <OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === ProposalSlug ? (
-        <ProposalForm id={documentsID} filled={filled} />
-      ) : null}
-      {documentsID === precise_checkList ? (
-        <PFForProjects id={documentsID} filled={filled} />
-      ) : null}
+      <Lunsford id={documentsID} filled={filled} />
+      <PunchList id={documentsID} filled={filled} />
+      <NoticeOfIntentConsultant id={documentsID} filled={filled} />
+      <CertificateOfSubstantial id={documentsID} filled={filled} />
+      <NoticeToProceed id={documentsID} filled={filled} />
+      <ProjectCloseoutCheckList id={documentsID} filled={filled} />
+      <NoticeOfAwardConsultant id={documentsID} filled={filled} />
+      <AdvertisementBid id={documentsID} filled={filled} />
+      <CapitalProjectForm id={documentsID} filled={filled} />
+      {/* <CCPRequisitionForm id={documentsID} filled={filled} /> */}
+      <MWBEParticipation id={documentsID} filled={filled} />
+      <Esser id={documentsID} filled={filled} />
+      <EsserPM id={documentsID} filled={filled} />
+      <Lechase id={documentsID} filled={filled} />
+      <TechService id={documentsID} filled={filled} />
+      <NoticeOfAwardContrator id={documentsID} filled={filled} />
+      <DeterminationOFLowestBidder id={documentsID} filled={filled} />
+      <OwnerContractorManagementForm id={documentsID} filled={filled} />
+      <Bids id={documentsID} filled={filled} />
+      <PFForProjects id={documentsID} filled={filled} />
+      <ShortSmallFormDesignForm id={documentsID} filled={filled} />
+      <ChangeOrderDirectiveForm id={documentsID} filled={filled} />
+      <ChangeOrderForm id={documentsID} filled={filled} />
+      <DesignChangeOrderForm id={documentsID} filled={filled} />
+      <MainAffidavit id={documentsID} filled={filled} />
+      <DPSShortFormEngineerForm id={documentsID} filled={filled} />
+      <OwnerAndContractorForm id={documentsID} filled={filled} />
+      <OwnerAndContractorFormESSER id={documentsID} filled={filled} />
+      <MWBEFormsForBidForm id={documentsID} filled={filled} />
+      <RFPTemplate id={documentsID} filled={filled} />
+      <OwnerDesignConsultantLessForm id={documentsID} filled={filled} />
+      <ProposalForm id={documentsID} filled={filled} />
     </section>
   );
 };
