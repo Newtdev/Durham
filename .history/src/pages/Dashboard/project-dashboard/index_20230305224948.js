@@ -100,7 +100,6 @@ import {
   ProposalSlug,
   MWBEFormId,
   precise_checkList,
-  OwnerDesignConsultantMoreSlug,
 } from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
@@ -524,7 +523,7 @@ const ProjectDashboard = () => {
       {documentsID === precise_checkList ? (
         <PFForProjects id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === OwnerDesignConsultantMoreSlug ? (
+      {documentsID === precise_checkList ? (
         <OwnerDesignMore id={documentsID} filled={filled} />
       ) : null}
     </section>

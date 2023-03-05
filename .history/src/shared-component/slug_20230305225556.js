@@ -49,4 +49,4 @@ export const RFPTemplateWithMWBESlug = "RFP-Template-with-MWBE";
 export const OwnerDesignConsultantLessSlug =
   "Owner-and-Design-Consultant-(less-than-$200,000)";
 export const OwnerDesignConsultantMoreSlug =
-  "Owner-and-Design-Consultant-(more-$200,000)";
+  "Owner-and-Design-Consultant-(more-than-$200,000)";

@@ -65,7 +65,7 @@ import OwnerAndContractorFormESSER from "../../forms/Contract/Owner and Contract
 import MWBEFormsForBidForm from "../../forms/MWBE/MWBE Form for Bids";
 import RFPTemplate from "../../forms/RFP Template with MWBE";
 import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
-import OwnerDesignMore from "../../forms/Contract/Owner and Design Consultant (more than $200,000)/OwnerDesignMore";
+import OwnerDesignMore from "../../forms/Contract/Owner and Design Consultant (more than ,000)/OwnerDesignMore";
 import { ProposalForm } from "../../forms/Budget/Change-Proposal-Form 2";
 import {
   lundsford,
@@ -100,7 +100,6 @@ import {
   ProposalSlug,
   MWBEFormId,
   precise_checkList,
-  OwnerDesignConsultantMoreSlug,
 } from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
@@ -524,7 +523,7 @@ const ProjectDashboard = () => {
       {documentsID === precise_checkList ? (
         <PFForProjects id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === OwnerDesignConsultantMoreSlug ? (
+      {documentsID === precise_checkList ? (
         <OwnerDesignMore id={documentsID} filled={filled} />
       ) : null}
     </section>
