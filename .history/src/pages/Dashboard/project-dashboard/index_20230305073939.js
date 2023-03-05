@@ -98,7 +98,6 @@ import {
   OwnerDesignConsultantLessSlug,
   ProposalSlug,
   MWBEFormId,
-  precise_checkList,
 } from "../../../shared-component/slug";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
@@ -483,6 +482,7 @@ const ProjectDashboard = () => {
       {documentsID === Vendor3BidSlug ? (
         <Bids id={documentsID} filled={filled} />
       ) : null}
+
       {documentsID === ShortSmallFormDesign ? (
         <ShortSmallFormDesignForm id={documentsID} filled={filled} />
       ) : null}
@@ -519,9 +519,7 @@ const ProjectDashboard = () => {
       {documentsID === ProposalSlug ? (
         <ProposalForm id={documentsID} filled={filled} />
       ) : null}
-      {documentsID === precise_checkList ? (
-        <PFForProjects id={documentsID} filled={filled} />
-      ) : null}
+      <PFForProjects id={documentsID} filled={filled} />
     </section>
   );
 };
