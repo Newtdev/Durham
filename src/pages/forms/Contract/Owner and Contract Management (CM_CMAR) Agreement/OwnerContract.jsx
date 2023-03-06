@@ -18,7 +18,6 @@ import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
 const OwnerContractorManagementForm = ({ id, filled }) => {
-  // console.log(id, filled);
   const dispatch = useDispatch();
   const pages = useSelector(page);
   const show = useSelector(modal);
