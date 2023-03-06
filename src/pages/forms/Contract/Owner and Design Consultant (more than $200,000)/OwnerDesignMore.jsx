@@ -50,13 +50,28 @@ const OwnerDesignMore = ({ id, filled }) => {
   const formik = useFormik({
     initialValues: {
       agreementDate: "",
+      projectObjective: "",
+      newSchool: "",
+      schoolName: "",
+      studentNumber: "",
+      squareFootage: "",
+      accomodateNumber: "",
+      street: "",
+      state: "",
+      city: "",
+      zipCode: "",
+      schematicCompletionDate: "",
+      constructionCompletionDate: "",
+      noticeDate: "",
+      substantialCompletionDate: "",
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
       if (pages === 1) {
-        console.log("page:", pages);
+        console.log(values);
         dispatch(nextStep(2));
       } else if (pages === 2) {
+        console.log(values);
         dispatch(nextStep(3));
       } else if (pages === 3) {
         dispatch(nextStep(4));
@@ -85,15 +100,15 @@ const OwnerDesignMore = ({ id, filled }) => {
     <div>
       <ModalOverlay show={id === OwnerDesignConsultantMoreSlug && show}>
         <FormikProvider value={formik}>
-          <form onSubmit={formik.handleSubmit}>
-            {pages === 1 && <FormOne {...formik} />}
-            {pages === 2 && <FormTwo {...formik} />}
-            {pages === 3 && <FormThree {...formik} />}
-            {pages === 4 && <FormFour {...formik} />}
-            {pages === 5 && <FormFive {...formik} />}
-            {pages === 6 && <FormSix {...props} />}
-            {pages === 7 && <Preview />}
-          </form>
+          {/* <form onSubmit={formik.handleSubmit}> */}
+          {pages === 1 && <FormOne {...formik} />}
+          {pages === 2 && <FormTwo {...formik} />}
+          {pages === 3 && <FormThree {...formik} />}
+          {pages === 4 && <FormFour {...formik} />}
+          {pages === 5 && <FormFive {...formik} />}
+          {pages === 6 && <FormSix {...props} />}
+          {pages === 7 && <Preview />}
+          {/* </form> */}
         </FormikProvider>
       </ModalOverlay>
     </div>
