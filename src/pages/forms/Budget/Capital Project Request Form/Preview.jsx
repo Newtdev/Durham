@@ -13,8 +13,7 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import Logo from "../../../../assets/newlogo.jpg";
-
+import LogoOne from "../../../../assets/Durham.png";
 import currency from "currency.js";
 import moment from "moment";
 import DownLoadForm from "../../Lundsford/Download";
@@ -88,9 +87,9 @@ const Capital = () => {
 							<div>
 								<div className="mb-4 ml-16">
 									<img
-										src={Logo}
+										src={LogoOne}
 										alt="logo"
-										className="h-12 -ml-20 -mt-1 object-cover"
+										className="h-16 -ml-20 -mt-1 object-cover"
 									/>
 								</div>
 

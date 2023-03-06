@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import Logo from "../../../assets/newlogo.jpg";
+import LogoOne from "../../../assets/Durham.png";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
@@ -92,11 +92,7 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex justify-between mb-4">
-									<img
-										src={Logo}
-										alt="logo"
-										className="h-16 -ml-20 -mt-1 object-cover"
-									/>
+									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
 
 									<div className="ml-[10rem] arial-font text-[10.5px] mt-2.5">
 										<p className=" text-[#3B6979]">

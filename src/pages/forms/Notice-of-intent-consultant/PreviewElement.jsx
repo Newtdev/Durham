@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import Logo from "../../../assets/newlogo.jpg";
+import LogoOne from "../../../assets/Durham.png";
 import { prevStep, stepDefault } from "./reducerSlice";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
@@ -92,7 +92,7 @@ const PreviewElement = () => {
 							<div className="mb-6 text-center"></div>
 							<div className="flex justify-between items-center pt-3 pl-16 pr-4 ">
 								<div>
-									<img src={Logo} alt="logo" className="h-16 object-cover" />
+									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
 								</div>
 								<div className="arial-font text-[10.5px] mt-1.5 text-[#3B6979] pr-4">
 									<p className="">Construction and Capital planning</p>

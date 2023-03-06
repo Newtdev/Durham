@@ -1,13 +1,12 @@
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import New from "../../../assets/newlogo.jpg";
+import LogoOne from "../../../assets/Durham.png";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
 	closeDownload,
 	closeModal,
-	fields,
 	openDownload,
 	showDownload,
 } from "../reducer";
@@ -21,7 +20,6 @@ import {
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { prevStep, stepDefault } from "./reducer";
-import { project_details } from "../../Dashboard/add-project/projectSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Preview = () => {
@@ -32,10 +30,6 @@ const Preview = () => {
 	const formID = useSelector(project_document_id);
 	const [a] = UseFetchFilledFormDetails(formID);
 	const [highlighted, setHighlighed] = useState(false);
-
-	// const content = useSelector(savedResponse);
-	// const school = !projectDetails ? "" : projectDetails.school;
-
 	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const durham_profile = formData?.durham_profile;
@@ -103,11 +97,8 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
-									<img
-										src={New}
-										alt="logo"
-										className=" object-cover h-16 bg-red-900"
-									/>
+									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
+
 									<div className="ml-[12rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
 										<p className=" text-[#3B6979]">
 											Construction and Capital Planning

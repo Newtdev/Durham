@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG } from "../../../ui";
-import Logo from "../../../assets/newlogo.jpg";
+import LogoOne from "../../../assets/Durham.png";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { prevStep, stepDefault } from "./reducer";
@@ -42,6 +42,7 @@ const Preview = () => {
 			return;
 		}
 		const data = vendors?.filter((cur) => cur.role === "Contractor");
+
 		setAwardee(data);
 	}, [vendors]);
 
@@ -82,9 +83,9 @@ const Preview = () => {
 								<div className="flex mb-4">
 									<div className="w-1/2">
 										<img
-											src={Logo}
+											src={LogoOne}
 											alt="logo"
-											className="h-16 -ml-16 w-full object-contain"
+											className="h-20 -ml-16 w-full object-contain"
 										/>
 									</div>
 									<div className="ml-[6rem] mt-4">
@@ -171,7 +172,7 @@ const Preview = () => {
 										Your firm has been determined to be the apparent low bidder
 										by Durham Public Schools.
 									</p>
-									<p className="mb-3 pl-20 text-[14.5px] text-[14.5px]">
+									<p className="mb-3 pl-20 text-[14.5px]">
 										You are required to submit MWBE Affidavit C (Portion of Work
 										to be Performed by Minority Firms) and, if necessary,
 										Affidavit D (Good Faith Efforts) within 72 hours of receipt
