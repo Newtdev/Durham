@@ -73,8 +73,8 @@ const Affidavit = () => {
 							ref={downloadComponent}>
 							<div className=" h-[10.5in]">
 								<div className="border-b border-b-black pb-4 flex items-center mb-3 mt-4">
-									<div className="flex flex-col items-center -ml-8">
-										<img src={Logo} alt="" className=" object-contain h-10" />
+									<div className="flex flex-col items-center -ml-6">
+										<img src={Logo} alt="" className=" object-contain h-11" />
 										<span className="inline-block -mt-2">Web-Fill</span>
 										<span>7-18</span>
 									</div>
@@ -292,7 +292,7 @@ const Affidavit = () => {
 										</div>
 
 										<div className="flex justify-between mb-3">
-											<div className="w-[46%]">
+											<div className="w-full">
 												<p className=" font-bold text-[6pt]">
 													Project Address{" "}
 													<span className="font-normal text-[6pt]">
@@ -303,20 +303,20 @@ const Affidavit = () => {
 													{projectInfo?.location}
 												</p>
 											</div>
-											<div className="w-[25%]">
-												<p className="t font-bold ">City</p>
+											<div className="w-full  ml-10">
+												<p className="text-[6pt] font-bold">City</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.city}
 												</p>
 											</div>
-											<div className="w-[10%]">
-												<p className="text-[11px] font-bold">State</p>
+											<div className="w-full">
+												<p className="text-[6pt] font-bold">State</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.state}
 												</p>
 											</div>
 											<div className="w-[17%]">
-												<p className="text-[11px] font-bold">Zip Code</p>
+												<p className="text-[6pt] font-bold">Zip Code</p>
 												<p className={`${nottoBeHighlighted} py-1`}>
 													{projectInfo?.zip_code}
 												</p>
@@ -339,7 +339,7 @@ const Affidavit = () => {
 												of any additional taxes determined to be due.
 											</p>
 
-											<div className="flex -mb-4">
+											<div className="flex -mb-2">
 												<p>
 													Signature of Authorized Person:
 													______________________________Title:

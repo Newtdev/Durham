@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { ModalOverlay } from "../../../../ui";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import { ChangeOrderDirective } from "../../../../shared-component/slug";
-import { ChangeOrderDirectiveSchema } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { modal, saveFormField } from "../../reducer";
 import Preview from "./Preview";
@@ -12,7 +11,7 @@ import { nextStep, page } from "./reducer";
 import FormOne from "./form/formOne";
 import { setResult } from "../../../../shared-component";
 
-const ChangeOrderDirectiveForm = ({ id }) => {
+const ChangeOrderDirectiveForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -44,6 +43,10 @@ const ChangeOrderDirectiveForm = ({ id }) => {
 		initialValues: {
 			triggered: "",
 			maxPrice: "",
+			unitPrice: "",
+			exceed: "",
+			exceedAmount: "",
+			price: "",
 			amount: "",
 			contractTime: "",
 			contractTimePerHour: "",
@@ -56,19 +59,28 @@ const ChangeOrderDirectiveForm = ({ id }) => {
 		onSubmit: (values) => {
 			if (pages === 1) {
 				// dispatch(nextStep(2));
-				dispatch(saveFormField(values));
+				// dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
 	});
 
+	const formProps = {
+		...formik,
+		isLoading,
+	};
 	// return <ModalOverlay show={true}>
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === ChangeOrderDirective && show}>
+				{pages === 1 && <FormOne {...formProps} />}
+				{pages === 2 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === ChangeOrderDirective && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <Preview />}
-			</FormikProvider>
+			<Preview />
 		</ModalOverlay>
 	);
 };

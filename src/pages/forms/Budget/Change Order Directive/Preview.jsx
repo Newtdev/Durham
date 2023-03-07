@@ -1,21 +1,17 @@
-import { ModalOverlay } from "../../../../ui";
 import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import DownLoadForm from "../../Lundsford/Download";
 import { useDispatch, useSelector } from "react-redux";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
 import {
-	closeModal,
-	fields,
-	openDownload,
-	savedResponse,
-	showDownload,
-} from "../../reducer";
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
+import { closeModal, openDownload, showDownload } from "../../reducer";
 import { prevStep, stepDefault } from "./reducer";
 import currency from "currency.js";
 import moment from "moment";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
 const Change = () => {
 	const [awardee, setAwardee] = useState([]);
@@ -25,20 +21,18 @@ const Change = () => {
 
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
-	const form_fields = useSelector(fields);
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const [highlighted, setHighlighted] = useState(false);
 	// const project = content?.data?.data?.project;
 	// const vendors = content?.data?.data?.vendors;
-	let formData = !content?.data ? [] : content?.currentData?.data;
+	let formData = a?.data;
 
 	const vendors = formData?.vendors;
 	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
+	const form_fields = formData?.form_fields;
 	// const form_fields = formData?.form_fields;
-	console.log(form_fields);
-	console.log(project);
 
 	useEffect(() => {
 		if (!vendors) {
@@ -93,6 +87,7 @@ const Change = () => {
 								<div className="">
 									<h1 className="font-bold pb-2 w-full border-b-1 border-b-black text-[15.9pt]">
 										<em>Construction Change Directive</em>
+										<span className="block bg-gray-400 w-full h-0.5 mt-1  "></span>
 									</h1>
 
 									<div className="grid grid-cols-2 pb-16 mb-4 mt-1 border-b border-b-black">
@@ -142,86 +137,56 @@ const Change = () => {
 													The proposed basis of adjustment to the Contract Sum
 													or Guaranteed Maximum Price is:
 												</p>
+												<div className="flex items-center gap-1 mb-2 Times-font">
+													<input
+														type="checkbox"
+														name="lump"
+														id="lump"
+														checked={form_fields?.maxPrice ? true : false}
+													/>
+													<label htmlFor="lump">
+														Lump Sum increase of{" "}
+														<span className={`${nottoBeHighlighted}`}>
+															{currency(form_fields?.amount).format()}
+														</span>
+													</label>
+												</div>
+												<div className="flex items-center gap-1 mb-2 Times-font">
+													<input
+														type="checkbox"
+														name="lump"
+														id="lump"
+														checked={form_fields?.unitPrice ? true : false}
+													/>
+													<label htmlFor="lump">
+														Unit Price of{" "}
+														<span className={`${nottoBeHighlighted}`}>
+															{currency(form_fields?.price).format()}
+														</span>{" "}
+														per{" "}
+														<span className={`${nottoBeHighlighted}`}>
+															{!form_fields
+																? "0"
+																: form_fields?.contractTimePerHour}
+															days
+														</span>
+													</label>
+												</div>
 
-												{form_fields?.maxPrice === "Lump Sum increase" ? (
-													<div className="flex items-center gap-1 mb-2 Times-font">
-														<input
-															type="checkbox"
-															name="lump"
-															id="lump"
-															checked={
-																form_fields?.maxPrice === "Lump Sum increase"
-																	? true
-																	: false
-															}
-														/>
-														<label htmlFor="lump">
-															Lump Sum increase of{" "}
-															{form_fields?.maxPrice === "Lump Sum increase" ? (
-																<span className={`${nottoBeHighlighted}`}>
-																	{currency(form_fields?.amount).format()}
-																</span>
-															) : (
-																""
-															)}
-														</label>
-													</div>
-												) : null}
-												{form_fields?.maxPrice === "Unit Price" ? (
-													<div className="flex items-center gap-1 mb-2 Times-font">
-														<input
-															type="checkbox"
-															name="lump"
-															id="lump"
-															checked={
-																form_fields?.maxPrice === "Unit Price"
-																	? true
-																	: false
-															}
-														/>
-														<label htmlFor="lump">
-															Unit Price of $
-															{form_fields?.maxPrice === "Unit Price" ? (
-																<span className={`${nottoBeHighlighted}`}>
-																	{currency(form_fields?.amount).format()}
-																</span>
-															) : (
-																""
-															)}{" "}
-															per{" "}
-															<span className={`${nottoBeHighlighted}`}>
-																{!form_fields
-																	? "0"
-																	: form_fields?.contractTimePerHour}
-																days
-															</span>
-														</label>
-													</div>
-												) : null}
-												{form_fields?.maxPrice === "Not to exceed" ? (
-													<div className="flex items-center gap-1 mb-2 Times-font">
-														<input
-															type="checkbox"
-															name="lump"
-															id="lump"
-															checked={
-																form_fields?.maxPrice === "Not to exceed"
-																	? true
-																	: false
-															}
-														/>
-														<label htmlFor="lump">
-															Not to Exceed{" "}
-															{form_fields?.maxPrice === "Not to exceed" ? (
-																<span className={`${nottoBeHighlighted}`}>
-																	{currency(form_fields?.amount).format()}
-																</span>
-															) : (
-																""
-															)}
-														</label>
-													</div>
-												) : null}
+												<div className="flex items-center gap-1 mb-2 Times-font">
+													<input
+														type="checkbox"
+														name="lump"
+														id="lump"
+														checked={form_fields?.exceed ? true : false}
+													/>
+													<label htmlFor="lump">
+														Not to Exceed{" "}
+														<span className={`${nottoBeHighlighted}`}>
+															{currency(form_fields?.exceedAmount).format()}
+														</span>
+													</label>
+												</div>
 											</div>
 										</div>
 
@@ -251,11 +216,10 @@ const Change = () => {
 										</p>
 
 										<div className="border-t border-t-black pt-4">
-											<div className="flex justify-between mb-7 Times-font">
+											<div className="flex justify-between mb-12 Times-font">
 												<p className="text-[15pt]">OWNER </p>
 												<p className="text-[15pt]">CONTRACTOR</p>
 											</div>
-
 											<div className="grid grid-cols-2  mb-12">
 												<div>
 													<div className="mb-12">
@@ -269,7 +233,8 @@ const Change = () => {
 															<span className={`${nottoBeHighlighted}`}>
 																{form_fields?.ownerDatabase}{" "}
 															</span>{" "}
-															<span className={`${nottoBeHighlighted} ml-4`}>
+															<br />
+															<span className={`${nottoBeHighlighted}`}>
 																{form_fields?.position}
 															</span>
 														</p>
@@ -289,39 +254,40 @@ const Change = () => {
 														<p className="font-bold">DATE</p>
 													</div>
 												</div>
-
 												<div>
 													<div className="mb-12 ml-10">
 														{/* <p>_____________________________</p> */}
-														<p className="flex justify-center border-t border-black font-bold">
+														<p className="flex justify-start border-t border-black font-bold">
 															SIGNATURE
 														</p>
 													</div>
 
 													<div className="mb-12 ml-10">
-														<div className="mb-12 text-end">
+														<div className="mb-12 text-start">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
 																	{awardee[0]?.first_name}{" "}
 																	{awardee[0]?.last_name}
 																</span>{" "}
-																<span className={`${nottoBeHighlighted} ml-4`}>
+																<br />
+																<span className={`${nottoBeHighlighted}`}>
 																	{awardee[0]?.title}
 																</span>
 															</p>
-															<p className=" border-t border-black text-end font-bold">
+															<p className=" border-t border-black text-start font-bold">
 																PRINTED NAME AND TITLE
 															</p>
 														</div>
 													</div>
 
-													<div className="mb-12 ml-10 mt-10 pt-4">
+													<div className=" ml-10 mt-10 pt-4">
 														<p className="border-t border-black font-bold">
 															DATE
 														</p>
 													</div>
 												</div>
 											</div>
+											<span className="block bg-gray-400 w-full h-0.5 -mt-10 "></span>
 										</div>
 									</div>
 								</div>
@@ -334,7 +300,10 @@ const Change = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(1))}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

@@ -106,8 +106,17 @@ export const FormCheckBox = ({ props, data }) => {
 };
 
 export const FormTextArea = (props) => {
-	const { onChange, value, placeholder, id, name, error, touched, onBlur } =
-		props;
+	const {
+		onChange,
+		value,
+		placeholder,
+		id,
+		name,
+		error,
+		touched,
+		onBlur,
+		limit,
+	} = props;
 	return (
 		<div className="mb-4">
 			<Label
@@ -119,6 +128,7 @@ export const FormTextArea = (props) => {
 				rows={4}
 				className="bg-white border border-gray-400 placeholder-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 				name={id}
+				maxLength={limit}
 				placeholder={placeholder}
 				type="text"
 				value={value}

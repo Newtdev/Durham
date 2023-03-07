@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-	useFetchDurhamQuery,
-	useGetAllProjectManagerQuery,
-} from "../../../../../features/services/api";
+import {} from "../../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { OverviewTextarea } from "../../../../Dashboard/Overview-dashboard/OverviewComponents";
-import SelectDate, { FormInputPlain, FormSelect } from "../../../components";
+import SelectDate, { FormInputPlain } from "../../../components";
 import { FormInputContainer } from "../../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../../reducer";
 import { PointOfContact } from "../Component";

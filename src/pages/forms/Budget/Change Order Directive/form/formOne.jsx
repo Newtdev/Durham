@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { getList } from "../../../Advertisement-for-bid-template/reducer";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
-import { FormInputPlain, FormInput, FormSelect } from "../../../components";
+import { FormInputPlain, FormSelect } from "../../../components";
 import { Fragment, useState } from "react";
 import SelectDate from "../../../components";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
@@ -14,7 +13,7 @@ import {
 
 const FormOne = (props) => {
 	const dispatch = useDispatch();
-	const [value, setValue] = useState("");
+	const [value] = useState("");
 	const [show, setShow] = useState(false);
 	const durham = useFetchDurhamQuery();
 	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
@@ -51,10 +50,6 @@ const FormOne = (props) => {
 		return list;
 	};
 
-	const handleRadioChange = (e) => {
-		props.setFieldValue("maxPrice", e.target.value);
-	};
-
 	const signDate = {
 		...props,
 		value: props.values.signDate,
@@ -80,7 +75,7 @@ const FormOne = (props) => {
 							<h3 className="text-lg font-bold text-gray-900">
 								Change Order Directive
 							</h3>
-							<p className="text-base text-gray-700">Section I</p>
+							<p className="text-base text-gray-700"></p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}
@@ -105,56 +100,54 @@ const FormOne = (props) => {
 								</h2>
 								<div className="flex gap-3 items-center">
 									<input
-										id="default-radio-1"
-										type="radio"
+										id="default-checkbox-1"
+										type="checkbox"
 										value="Lump Sum increase"
 										name="maxPrice"
-										checked={
-											props?.values?.maxPrice === "Lump Sum increase"
-												? true
-												: false
+										// checked={props?.values?.maxPrice ? true : false}
+										onChange={(e) =>
+											props.setFieldValue("maxPrice", e.target.value)
 										}
-										onChange={handleRadioChange}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
 									/>
 									<label
-										for="default-radio-1"
+										for="default-checkbox-1"
 										className="text-base text-gray-900">
 										Lump Sum increase
 									</label>
 								</div>
 								<div className="flex gap-3 items-center">
 									<input
-										id="default-radio-2"
-										type="radio"
+										id="default-checkbox-2"
+										type="checkbox"
 										value="Unit Price"
-										name="maxPrice"
-										checked={
-											props?.values?.maxPrice === "Unit Price" ? true : false
-										}
+										name="unitPrice"
+										// checked={props?.values?.unitPrice ? true : false}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={handleRadioChange}
+										onChange={(e) =>
+											props.setFieldValue("unitPrice", e.target.value)
+										}
 									/>
 									<label
-										for="default-radio-2"
+										for="default-checkbox-2"
 										className="text-base text-gray-900">
 										Unit Price
 									</label>
 								</div>
 								<div className="flex gap-3 items-center">
 									<input
-										id="default-radio-2"
-										type="radio"
+										id="default-checkbox-2"
+										type="checkbox"
 										value="Not to exceed"
-										checked={
-											props?.values?.maxPrice === "Not to exceed" ? true : false
-										}
-										name="maxPrice"
+										// checked={props?.values?.exceed ? true : false}
+										name="exceed"
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={handleRadioChange}
+										onChange={(e) => {
+											props?.setFieldValue("exceed", e.target.value);
+										}}
 									/>
 									<label
-										for="default-radio-3"
+										for="default-checkbox-3"
 										className="text-base text-gray-900">
 										Not to exceed
 									</label>
@@ -164,24 +157,37 @@ const FormOne = (props) => {
 								)}
 							</div>
 
-							<FormInputContainer name={`Amount ${value}`}>
-								<div className="flex gap-2">
-									<div className="w-full">
-										<FormInputPlain
-											type={"number"}
-											onChange={props.handleChange}
-											name="amount"
-											placeholder={"0.00"}
-											value={props?.values?.amount}
-										/>
-										{props.errors.amount && props.touched.amount && (
-											<Error message={props.errors.amount} />
-										)}
-									</div>
-									{props?.values?.maxPrice === "Unit Price" && (
+							<FormInputContainer name={"Amount (Lump Sum Increase)"}>
+								<div className="w-full">
+									<FormInputPlain
+										type={"number"}
+										onChange={props.handleChange}
+										name="amount"
+										placeholder={"$0.00"}
+										value={props?.values?.amount}
+									/>
+									{props.errors.amount && props.touched.amount && (
+										<Error message={props.errors.amount} />
+									)}
+								</div>
+							</FormInputContainer>
+
+							{props?.values?.unitPrice ? (
+								<FormInputContainer name={`Unit price ${value}`}>
+									<div className="flex gap-2">
 										<div className="w-full">
 											<FormInputPlain
 												type={"number"}
+												onChange={props.handleChange}
+												name="price"
+												placeholder={"$0.00"}
+												value={props?.values?.price}
+											/>
+										</div>
+
+										<div className="w-full">
+											<FormInputPlain
+												type={"text"}
 												onChange={props.handleChange}
 												name="contractTimePerHour"
 												placeholder={"per hour, day...."}
@@ -192,9 +198,23 @@ const FormOne = (props) => {
 													<Error message={props.errors.contractTimePerHour} />
 												)}
 										</div>
-									)}
-								</div>
-							</FormInputContainer>
+									</div>
+								</FormInputContainer>
+							) : null}
+
+							{props?.values?.exceed ? (
+								<FormInputContainer name={`Amount (Not to exceed)`}>
+									<div className="w-full">
+										<FormInputPlain
+											type={"number"}
+											onChange={props.handleChange}
+											name="exceedAmount"
+											placeholder={"$0.00"}
+											value={props?.values?.exceedAmount}
+										/>
+									</div>
+								</FormInputContainer>
+							) : null}
 
 							<FormInputContainer name="Enter the proposed contract time adjustments, if any">
 								<FormInputPlain
@@ -225,7 +245,6 @@ const FormOne = (props) => {
 										props.setFieldValue("position", "");
 									} else {
 										setShow(false);
-										console.log(e.target.selectedOptions[0].id);
 										props.setFieldValue(
 											"position",
 											e.target.selectedOptions[0].id
@@ -298,6 +317,7 @@ const FormOne = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
+							loading={props?.isLoading}
 						/>
 					</div>
 				</form>

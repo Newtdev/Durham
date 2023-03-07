@@ -233,6 +233,7 @@ const FormFour = (props) => {
 							<FormTextArea
 								onChange={props.handleChange}
 								id="improvement"
+								limit="100"
 								placeholder={"Describe the capital improvement to be performed"}
 								name="Describe the capital improvement to be performed."
 							/>
