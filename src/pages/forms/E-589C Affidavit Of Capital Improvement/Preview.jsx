@@ -74,7 +74,7 @@ const Affidavit = () => {
 							<div className=" h-[10.5in]">
 								<div className="border-b border-b-black pb-4 flex items-center mb-3 mt-4">
 									<div className="flex flex-col items-center -ml-8">
-										<img src={Logo} alt="" className=" object-contain h-14" />
+										<img src={Logo} alt="" className=" object-contain h-10" />
 										<span className="inline-block -mt-2">Web-Fill</span>
 										<span>7-18</span>
 									</div>
@@ -129,19 +129,20 @@ const Affidavit = () => {
 													<p className="font-bold mb-[0.5rem] text-[6pt]">
 														Owner, Lessee//Tenant, or Real Property Contractor
 													</p>
+													<br />
 													{form_fields?.boxA === "Owner" ? (
 														<p className={`${nottoBeHighlighted} py-1`}>
 															Durham Public Schools
 														</p>
 													) : (
-														<p className={`bg-blue-0.500 p-1`}>
+														<p className={`${nottoBeHighlighted} p-1`}>
 															{form_fields?.lesseeA}
 														</p>
 													)}
 												</div>
 												{form_fields?.boxA === "Owner" ? (
 													<>
-														<div className="mb-1">
+														<div className="mb-2">
 															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																2011 HAMLIN ROAD
@@ -229,9 +230,7 @@ const Affidavit = () => {
 													</p>
 												</div>
 												<div className="mb-1">
-													<p className="text-[11px] font-bold text-[6pt]">
-														Address
-													</p>
+													<p className=" font-bold text-[6pt]">Address</p>
 													<p className={`${nottoBeHighlighted} py-1`}>
 														{" "}
 														{form_fields?.userType === "Single Use" ||
@@ -379,7 +378,7 @@ const Affidavit = () => {
 														</p>
 													</div>
 													<div className="mb-1">
-														<p className=" font-bold">Address</p>
+														<p className="font-bold text-[6pt]">Address</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{form_fields?.userType === "Blanket Use" ||
 															form_fields?.userType === "Both"
@@ -491,7 +490,7 @@ const Affidavit = () => {
 													To be completed by the Real Property Contractor
 													identified in Box C.
 												</p>
-												<p className="mb-6 ">
+												<p className="mb-12 ">
 													I certify that I am a Real Property Contractor who
 													performs capital improvements to real property and all
 													transactions with the real property contractor
@@ -519,7 +518,7 @@ const Affidavit = () => {
 								</div>
 
 								<div className=" mt-[1in] h-[11in] pt-3">
-									<div className="flex justify-between items-center mt-10 mb-6">
+									<div className="flex justify-between items-center mt-10 mb-2">
 										<div className="text-sm text-center leading-[1.1]">
 											<p className="font-bold text-[9pt]">Page 2</p>
 											<p className="text-[8pt]">E-589CI</p>

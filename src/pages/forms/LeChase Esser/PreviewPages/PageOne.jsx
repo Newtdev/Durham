@@ -29,12 +29,12 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 					</span>
 					, between the Durham Public Schools Board of Education (the “School
 					System”), 511 Cleveland Street, Durham, NC 27702, and
-					<span className={`${nottoBeHighlighted} font-bold`}>
+					<span className={`${nottoBeHighlighted}`}>
 						{" "}
 						{!awardee[0] ? "" : awardee[0].company_name}{" "}
 					</span>
 					(the “Provider”),{" "}
-					<span className={`${nottoBeHighlighted} font-bold`}>
+					<span className={`${nottoBeHighlighted} `}>
 						{!awardee[0] ? "" : awardee[0].street},{" "}
 						{!awardee[0] ? "" : awardee[0].city},{" "}
 						{!awardee[0] ? "" : awardee[0].state},{" "}

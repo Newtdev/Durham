@@ -57,6 +57,8 @@ const PreviewElement = () => {
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 font-bold"
 		: "bg-white";
+
+	const vendor = awardee[0] || {};
 	return (
 		<>
 			<div>
@@ -128,24 +130,26 @@ const PreviewElement = () => {
 									</div>
 									<p
 										className={`${nottoBeHighlighted}  text-justify leading-[1.2]`}>
-										{!awardee
+										{!vendor
 											? ""
-											: awardee[0]?.first_name + " " + awardee[0]?.last_name}
-										, {!awardee ? "" : awardee[0]?.title}
+											: vendor?.first_name ||
+											  "" + " " + vendor?.last_name ||
+											  ""}
+										, {!vendor ? "" : vendor?.title || ""}
 									</p>
 									<p
 										className={`${nottoBeHighlighted} leading-[1.2]  text-justify`}>
-										{!awardee ? "" : awardee[0]?.company_name}
+										{!vendor ? "" : vendor?.company_name || ""}
 									</p>
 									<p
 										className={`${nottoBeHighlighted} leading-[1.2] text-justify`}>
-										{!awardee ? "" : awardee[0]?.street}
+										{!vendor ? "" : vendor?.street || ""}
 									</p>
 									<p
 										className={`${nottoBeHighlighted} leading-[1.2] text-justify`}>
-										{!awardee?.city ? "" : awardee[0]?.city}
-										{!awardee?.state ? "" : ", " + awardee[0]?.state}
-										{!awardee?.zip_code ? "" : ", " + awardee[0]?.zip_code}
+										{!vendor?.city ? "" : vendor?.city}
+										{!vendor?.state ? "" : ", " + vendor?.state}
+										{!vendor?.zip_code ? "" : ", " + vendor?.zip_code}
 									</p>
 									{/* <p className='text-base text-justify'>City, State XXXXX</p> */}
 									{/* //{`${nottoBeHighlighted}`} */}
@@ -176,7 +180,7 @@ const PreviewElement = () => {
 
 								<div className="mt-6 mb-4">
 									<p className={`${nottoBeHighlighted}`}>
-										Dear Mr./Ms. {awardee[0]?.last_name}:
+										Dear Mr./Ms. {vendor?.last_name}:
 									</p>
 									<div className="mt-2 flex gap-8 leading-[1.2]">
 										<p>
@@ -191,7 +195,7 @@ const PreviewElement = () => {
 											in Durham, North Carolina. Durham Public School
 											Administration is recommending award of the work to{" "}
 											<span className={`${nottoBeHighlighted}`}>
-												{!awardee ? "" : awardee[0]?.company_name}
+												{!vendor ? "" : vendor?.company_name}
 											</span>{" "}
 											at a lump sum fee of{" "}
 											<span className={`${nottoBeHighlighted}`}>
@@ -234,7 +238,7 @@ const PreviewElement = () => {
 												{!form_fields?.deliveryDate
 													? ""
 													: moment(form_fields?.deliveryDate).format(
-															", dddd"
+															"dddd"
 													  )}{" "}
 												{!form_fields?.deliveryDate
 													? ""

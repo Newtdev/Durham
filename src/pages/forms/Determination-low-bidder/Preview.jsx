@@ -18,7 +18,6 @@ const Preview = () => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
-	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
 	const [awardee, setAwardee] = useState([]);
 
@@ -28,6 +27,7 @@ const Preview = () => {
 	const vendors = a?.data?.vendors;
 	const durham_profile = a?.data?.durham_profile;
 	const school = project?.school;
+	const form_fields = a?.data?.form_fields;
 
 	const props = {
 		component: downloadComponent,
@@ -88,7 +88,7 @@ const Preview = () => {
 											className="h-20 -ml-16 w-full object-contain"
 										/>
 									</div>
-									<div className="ml-[6rem] mt-4">
+									<div className="ml-[5.7rem] mt-5">
 										<p className="text-[9.9px] text-[#3B6979]">
 											Construction and Capital Planning
 										</p>
@@ -247,10 +247,10 @@ const Preview = () => {
 												</span>
 												{!form_fields
 													? ""
-													: form_fields.userValue &&
-													  !form_fields.recipientCopy && (
+													: form_fields?.userValue &&
+													  !form_fields?.recipientCopy && (
 															<span className={`${nottoBeHighlighted}  `}>
-																{!form_fields ? "" : form_fields.userValue}
+																{!form_fields ? "" : form_fields?.userValue}
 															</span>
 													  )}
 											</p>

@@ -1,5 +1,5 @@
 const PageFive = ({ content, nottoBeHighlighted }) => {
-	const durham_profile = content?.data?.durham_profile;
+	const durham_profile = content?.durham_profile;
 	const durham = !durham_profile ? "" : durham_profile;
 	return (
 		<div
@@ -241,9 +241,10 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 						</div>
 						<p className={`mb-0 mt-10 mr-8 border-t border-black`}>
 							<span className={`${nottoBeHighlighted} mb-0`}>
-								{!durham.chairdps_board_of_education
+								{console.log(durham)}
+								{!durham_profile
 									? ""
-									: durham_profile.chairdps_board_of_education.name}
+									: durham_profile.chairdps_board_of_education?.name}
 								{",  "}
 							</span>
 							<span className="">Board Chair </span>
