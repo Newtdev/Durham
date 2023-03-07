@@ -60,7 +60,7 @@ const Preview = () => {
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 font-bold"
 		: "bg-white";
-
+	let awardees = awardee[0] || {};
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -93,11 +93,6 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex justify-between mb-4">
-									{/* <img
-										src={Logo}
-										alt="logo"
-										className="h-16 -ml-20 -mt-1 object-cover"
-									/> */}
 									<img
 										src={LogoOne}
 										alt="logo"
@@ -128,19 +123,19 @@ const Preview = () => {
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.company_name || ""}
+											{!awardees ? "" : awardees?.company_name || ""}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted} block`}>
-											{!awardee ? "" : awardee[0]?.street || ""}
+											{!awardees ? "" : awardees?.street || ""}
 										</span>
 										<span className={`${nottoBeHighlighted} block mb-4`}>
-											{!awardee.city ? "" : awardee[0]?.city}{" "}
-											{!awardee.state ? "" : ", " + awardee[0]?.state || ""}
-											{!awardee.zip_code
+											{!awardees.city ? "" : awardees?.city}{" "}
+											{!awardees.state ? "" : ", " + awardees?.state || ""}
+											{!awardees.zip_code
 												? ""
-												: ", " + awardee[0]?.zip_code || ""}
+												: ", " + awardees?.zip_code || ""}
 										</span>
 									</p>
 									<div className="flex mt-4 mb-4 text-[14.5px]">
@@ -155,7 +150,7 @@ const Preview = () => {
 									<p className="mb-4 ml[-3rem]">
 										Dear Mr./Ms.{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.first_name}:
+											{!awardee ? "" : awardees?.first_name}:
 										</span>
 									</p>
 								</div>
@@ -178,7 +173,7 @@ const Preview = () => {
 									</p>
 									<p className="mb-2 leading-[1.3]">
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.company_name}
+											{!awardee ? "" : awardees?.company_name}
 										</span>{" "}
 										shall execute the attached enclosed contract and forward it
 										to{" "}

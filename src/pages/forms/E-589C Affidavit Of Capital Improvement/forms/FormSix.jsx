@@ -43,6 +43,10 @@ const FormSix = (props) => {
 		if (!props.values.conferenceStateD) {
 			return;
 		}
+
+		if (!states) {
+			return;
+		}
 		let stat = Object.values(states)?.find(
 			(state) => state.name === props.values.conferenceStateD
 		);
@@ -61,6 +65,10 @@ const FormSix = (props) => {
 
 	function CheckZipCode() {
 		if (!props.values.conferenceCityD) {
+			return;
+		}
+
+		if (!states) {
 			return;
 		}
 		const city = Object.values(states)?.filter(

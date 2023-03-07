@@ -43,6 +43,9 @@ const FormThree = (props) => {
 		if (!props.values.conferenceStateA) {
 			return;
 		}
+		if (!states) {
+			return;
+		}
 		let stat = Object.values(states)?.find(
 			(state) => state.name === props.values.conferenceStateA
 		);
@@ -63,9 +66,13 @@ const FormThree = (props) => {
 		if (!props.values.conferenceCityA) {
 			return;
 		}
+		if (!states) {
+			return;
+		}
 		const city = Object.values(states)?.filter(
 			(state) => state.name === props.values.conferenceStateA
 		);
+
 		const zipcode = city?.find((cities) => cities);
 		return zipcode?.cities[props.values.conferenceCityA]?.map(
 			(zipcode, index) => {

@@ -151,14 +151,7 @@ const Capital = () => {
 										<div className="p-2 border border-black w-full min-h-16">
 											<span
 												className={`${nottoBeHighlighted} inline-block h-full`}>
-												This project will upgrade HVAC equipment, including
-												boilers, chillers, controls, AHUs, FCUs and other
-												associated equipment and systems throughout the
-												district. This project will improve IAQ as well as
-												thermal comfort throughout out buildings. *All ESSER
-												funds will be tracked by ESSER allocation (II, III) and
-												will be expended prior to their deadlines.
-												{/* {!project_details ? "" : project_details?.description} */}
+												{!project_details ? "" : project_details?.description}
 											</span>
 										</div>
 									</div>
