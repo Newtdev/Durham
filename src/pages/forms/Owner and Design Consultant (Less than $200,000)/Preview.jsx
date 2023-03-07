@@ -85,6 +85,8 @@ const Preview = () => {
     durham_profile,
   };
 
+  console.log(form_fields);
+
   return (
     <div>
       <DownLoadForm {...props} />
@@ -128,7 +130,6 @@ const Preview = () => {
                 <Page1 {...pageProps} />
                 <Page2 {...pageProps} />
                 {showPage && <Page3 />}
-                {/* <Page3 {...pageProps} /> */}
                 {showPage && <Page4 />}
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
