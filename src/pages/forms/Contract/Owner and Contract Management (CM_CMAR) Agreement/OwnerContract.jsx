@@ -86,7 +86,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
         dispatch(nextStep(4));
       } else if (pages === 4) {
         // console.log(values);
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
