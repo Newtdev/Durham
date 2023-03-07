@@ -85,7 +85,7 @@ const Preview = () => {
     durham_profile,
   };
 
-  console.log(form_fields);
+  console.log(pageProps);
 
   return (
     <div>
@@ -131,6 +131,7 @@ const Preview = () => {
                 <Page2 {...pageProps} />
                 {showPage && <Page3 />}
                 {showPage && <Page4 />}
+                {/* {<Page4 {...pageProps} />} */}
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
                 {showPage && <Page7 />}

@@ -26,12 +26,6 @@ const OwnerDesignConsultantLessForm = ({ id, filled }) => {
   const [a] = UseFetchFilledFormDetails(formID);
 
   const HandleSubmit = async (values) => {
-    // const param = Object.keys(values);
-    // const val = Object.values(values);
-
-    // console.log("values: ", values);
-    // console.log("pages: ", pages);
-
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: setResult(values),
