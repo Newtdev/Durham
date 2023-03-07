@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { prevChoiceStep } from "../Advertisement-for-bid-template/reducer";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
+// import { prevChoiceStep } from "../Advertisement-for-bid-template/reducer";
 import DownLoadForm from "../Lundsford/Download";
 import { closeModal, fields, openDownload, showDownload } from "../reducer";
 import PageOne from "./Preview/Page1";
@@ -132,7 +135,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(2))}
+							onClick={() => {
+								dispatch(prevStep(2));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

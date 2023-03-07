@@ -145,7 +145,7 @@ const PreviewForm = ({ value }) => {
 											{!awardee[0] ? "" : awardee[0].last_name}
 										</span>
 										(insert name),{" "}
-										<span className="border-b border-black inline-block w-48">
+										<span className="border-b border-black inline-block w-[12.6rem]">
 											{" "}
 											{!awardee[0] ? "" : awardee[0].title}{" "}
 										</span>{" "}
@@ -196,11 +196,11 @@ const PreviewForm = ({ value }) => {
 										<p>1.</p>
 										<p>_____________________________</p>
 									</div>
-									<div className="flex gap-5 mt-3">
+									<div className="flex gap-5 mt-2">
 										<p>2.</p>
 										<p>_____________________________</p>
 									</div>
-									<div className="flex gap-5 mt-3">
+									<div className="flex gap-5 mt-2">
 										<p>3.</p>
 										<p>_____________________________</p>
 									</div>
@@ -217,7 +217,7 @@ const PreviewForm = ({ value }) => {
 									<div className="w-full  bg-black mt-5 border-b border-black"></div>
 									<div className="w-full bg-black mt-7 border-b border-black"></div>
 									<div className="w-full  bg-black mt-7  border-b border-black"></div>
-									<div className="w-full  bg-black mt-9  border-b border-black"></div>
+									<div className="w-full  bg-black mt-7  border-b border-black"></div>
 								</div>
 							</div>
 							<p className="">

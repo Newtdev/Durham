@@ -48,11 +48,15 @@ const ProjectInformation = () => {
 	const states = useSelector(getList);
 
 	function CheckState() {
-		if (!values.state) {
+		if (!values?.state) {
 			return;
 		}
+		if (!states) {
+			return;
+		}
+
 		let stat = Object.values(states)?.find(
-			(state) => state.name === values.state
+			(state) => state?.name === values?.state
 		);
 
 		return !stat
@@ -73,7 +77,9 @@ const ProjectInformation = () => {
 		const city = !states
 			? ""
 			: Object.values(states)?.filter((state) => state.name === values.state);
-
+		if (!city) {
+			return;
+		}
 		const zipcode = city?.find((cities) => cities);
 		return !zipcode
 			? ""

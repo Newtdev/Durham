@@ -45,7 +45,7 @@ const NoticeOfIntentConsultant = ({ id, filled }) => {
 			approvalDate: "",
 			deliveryDate: "",
 		},
-		validationSchema: NoticeConsultant,
+		// validationSchema: NoticeConsultant,
 		onSubmit: (values) => {
 			if (pages === 1) {
 				HandleSubmit(values);

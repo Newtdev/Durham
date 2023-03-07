@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import Logo from "../../../assets/newlogo.jpg";
 import LogoOne from "../../../assets/Durham.png";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { ButtonWhiteBG } from "../../../ui";
@@ -92,7 +93,16 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex justify-between mb-4">
-									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
+									{/* <img
+										src={Logo}
+										alt="logo"
+										className="h-16 -ml-20 -mt-1 object-cover"
+									/> */}
+									<img
+										src={LogoOne}
+										alt="logo"
+										className="h-20 object-cover -ml-[4.7rem] -mt-1"
+									/>
 
 									<div className="ml-[10rem] arial-font text-[10.5px] mt-2.5">
 										<p className=" text-[#3B6979]">
@@ -118,21 +128,19 @@ const Preview = () => {
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{!awardee ? "" : awardee[0]?.company_name}
+											{!awardee ? "" : awardee[0]?.company_name || ""}
 										</span>
 									</p>
 									<p>
 										<span className={`${nottoBeHighlighted} block`}>
-											{!awardee ? "" : awardee[0]?.street}
+											{!awardee ? "" : awardee[0]?.street || ""}
 										</span>
 										<span className={`${nottoBeHighlighted} block mb-4`}>
-											{!awardee
+											{!awardee.city ? "" : awardee[0]?.city}{" "}
+											{!awardee.state ? "" : ", " + awardee[0]?.state || ""}
+											{!awardee.zip_code
 												? ""
-												: awardee[0]?.city +
-												  ", " +
-												  awardee[0]?.state +
-												  ", " +
-												  awardee[0]?.zip_code}
+												: ", " + awardee[0]?.zip_code || ""}
 										</span>
 									</p>
 									<div className="flex mt-4 mb-4 text-[14.5px]">

@@ -16,21 +16,24 @@ import PageTen from "./Preview Pages/Page10";
 import { closeModal, fields, openDownload, showDownload } from "../../reducer";
 import { useDispatch, useSelector } from "react-redux";
 import DownLoadForm from "../../Lundsford/Download";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { prevStep, stepDefault } from "./reducer";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
 const ShortSmall = () => {
 	const dispatch = useDispatch();
 	const downloadComponent = useRef();
 	const show = useSelector(openDownload);
 	const formID = useSelector(project_document_id);
-	const content = useFetchFilledFormQuery(formID);
 	const [highlighted, setHighlighed] = useState(false);
 	const [showPage, setShowPage] = useState(true);
 	const [awardee, setAwardee] = useState([]);
 	const form_fields = useSelector(fields);
-	let formData = !content?.data ? [] : content?.data?.data;
+	const [a] = UseFetchFilledFormDetails(formID);
+	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const project = formData?.project;
 	const durham_profile = formData?.durham_profile;
@@ -48,7 +51,7 @@ const ShortSmall = () => {
 
 	useEffect(() => {
 		if (!vendors) {
-			return null;
+			return;
 		}
 		const data = vendors?.filter((cur) => {
 			return (
@@ -113,7 +116,10 @@ const ShortSmall = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(1))}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

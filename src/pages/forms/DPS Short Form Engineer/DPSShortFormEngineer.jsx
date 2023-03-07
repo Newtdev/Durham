@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { DPSShortFormEngineer } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
-import { DPSShortFormEngineerSchema } from "../../../yup";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../reducer";
@@ -15,7 +14,7 @@ import Preview from "./Preview";
 // import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const DPSShortFormEngineerForm = ({ id }) => {
+const DPSShortFormEngineerForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -89,14 +88,25 @@ const DPSShortFormEngineerForm = ({ id }) => {
 		})();
 	}, [dispatch]);
 
-	// return <ModalOverlay show={true}`>
+	const formProps = {
+		...formik,
+		isLoading,
+	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === DPSShortFormEngineer && show}>
+				<FormikProvider value={formik}>
+					{pages === 1 && <FormOne {...formik} />}
+					{pages === 2 && <FormTwo {...formProps} />}
+					{pages === 3 && <Preview />}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
+
 	return (
 		<ModalOverlay show={id === DPSShortFormEngineer && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <FormTwo {...formik} />}
-				{pages === 3 && <Preview />}
-			</FormikProvider>
+			<Preview />
 		</ModalOverlay>
 	);
 };

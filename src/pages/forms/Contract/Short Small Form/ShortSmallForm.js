@@ -11,7 +11,7 @@ import FormOne from "./FormOne";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const ShortSmallFormDesignForm = ({ id }) => {
+const ShortSmallFormDesignForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -61,12 +61,23 @@ const ShortSmallFormDesignForm = ({ id }) => {
 			}
 		},
 	});
+	const formProps = {
+		...formik,
+		isLoading,
+	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === ShortSmallFormDesign && show}>
+				{pages === 1 && <FormOne {...formProps} />}
+				{pages === 2 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 
 	// return <ModalOverlay show={true}>
 	return (
 		<ModalOverlay show={id === ShortSmallFormDesign && show}>
-			{pages === 1 && <FormOne {...formik} />}
-			{pages === 2 && <Preview />}
+			<Preview />
 		</ModalOverlay>
 	);
 };

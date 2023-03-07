@@ -32,7 +32,7 @@ const PreviewElement = () => {
 	const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
 	const form_fields = formData?.form_fields;
-	const school = formData?.school;
+	const school = formData?.project?.school;
 
 	const props = {
 		component: downloadComponent,
@@ -92,7 +92,11 @@ const PreviewElement = () => {
 							<div className="mb-6 text-center"></div>
 							<div className="flex justify-between items-center pt-3 pl-16 pr-4 ">
 								<div>
-									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
+									<img
+										src={LogoOne}
+										alt="logo"
+										className="h-20 object-cover ml-1"
+									/>
 								</div>
 								<div className="arial-font text-[10.5px] mt-1.5 text-[#3B6979] pr-4">
 									<p className="">Construction and Capital planning</p>
@@ -139,13 +143,9 @@ const PreviewElement = () => {
 									</p>
 									<p
 										className={`${nottoBeHighlighted} leading-[1.2] text-justify`}>
-										{!awardee
-											? ""
-											: awardee[0]?.city +
-											  ", " +
-											  awardee[0]?.state +
-											  ", " +
-											  awardee[0]?.zip_code}
+										{!awardee?.city ? "" : awardee[0]?.city}
+										{!awardee?.state ? "" : ", " + awardee[0]?.state}
+										{!awardee?.zip_code ? "" : ", " + awardee[0]?.zip_code}
 									</p>
 									{/* <p className='text-base text-justify'>City, State XXXXX</p> */}
 									{/* //{`${nottoBeHighlighted}`} */}
@@ -210,9 +210,11 @@ const PreviewElement = () => {
 												anticipate the project being presented to the Board of
 												Education for consideration of award on{" "}
 												<span className={`${nottoBeHighlighted}`}>
-													{moment(form_fields?.approvalDate).format(
-														"MMMM D, YYYY"
-													)}
+													{!form_fields?.approvalDate
+														? ""
+														: moment(form_fields?.approvalDate).format(
+																"MMMM D, YYYY."
+														  )}
 												</span>
 											</p>
 										</div>
@@ -229,11 +231,16 @@ const PreviewElement = () => {
 											to Construction & Capital Planning, 2011 Hamlin Road,
 											Durham, North Carolina 27704 no later than{" "}
 											<span className={`${nottoBeHighlighted}`}>
-												{" "}
-												{moment(form_fields?.deliveryDate).format("dddd")},{" "}
-												{moment(form_fields?.deliveryDate).format(
-													"MMMM D, YYYY."
-												)}
+												{!form_fields?.deliveryDate
+													? ""
+													: moment(form_fields?.deliveryDate).format(
+															", dddd"
+													  )}{" "}
+												{!form_fields?.deliveryDate
+													? ""
+													: moment(form_fields?.deliveryDate).format(
+															"MMMM D, YYYY."
+													  )}
 											</span>{" "}
 											Pending award, one (1) fully executed copy of the contract
 											will be returned for your records.

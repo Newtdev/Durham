@@ -98,8 +98,8 @@ const Capital = () => {
 										Capital Project Request Form
 									</h1>
 
-									<div className="mb-4 w-full flex ">
-										<p className="mr-10">
+									<div className="mb-4 w-full flex justify-between ">
+										<p>
 											Department:{" "}
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block`}>
@@ -125,25 +125,40 @@ const Capital = () => {
 											</span>
 										</p>
 									</div>
-
 									<div className="mb-4">
 										<p className="flex">
 											Location:{" "}
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block w-full ml-1`}>
-												{!project_details ? "" : project_details?.location},{" "}
-												{!project_details ? "" : project_details?.city},{" "}
-												{!project_details ? "" : project_details?.state},{" "}
-												{!project_details ? "" : project_details?.zip_code}
+												{!project_details?.location
+													? ""
+													: project_details?.location}
+												{!project_details?.city
+													? ""
+													: ", " + project_details?.city + ","}{" "}
+												{!project_details?.state
+													? ""
+													: project_details?.state + ","}{" "}
+												{!project_details?.zip_code
+													? ""
+													: project_details?.zip_code}
 											</span>
 										</p>
 									</div>
 
 									<div className="mb-4">
 										<p>Project Description:</p>
-										<div className="p-2 border border-black w-full h-16">
-											<span className={`${nottoBeHighlighted}`}>
-												{!project_details ? "" : project_details?.description}
+										<div className="p-2 border border-black w-full min-h-16">
+											<span
+												className={`${nottoBeHighlighted} inline-block h-full`}>
+												This project will upgrade HVAC equipment, including
+												boilers, chillers, controls, AHUs, FCUs and other
+												associated equipment and systems throughout the
+												district. This project will improve IAQ as well as
+												thermal comfort throughout out buildings. *All ESSER
+												funds will be tracked by ESSER allocation (II, III) and
+												will be expended prior to their deadlines.
+												{/* {!project_details ? "" : project_details?.description} */}
 											</span>
 										</div>
 									</div>
@@ -220,7 +235,7 @@ const Capital = () => {
 											<span>Estimated Project Beginning Date: </span>
 											<span
 												className={`${nottoBeHighlighted} border-b border-black`}>
-												{moment(form_details?.startDate).format("MMMM D, YYYY")}
+												{moment(form_details?.startDate).format("M/D/YYYY ")}
 											</span>
 										</p>
 										<p className="flex justify-center items-center">
@@ -228,7 +243,7 @@ const Capital = () => {
 											<span
 												className={`${nottoBeHighlighted} border-b border-black inline-block`}>
 												{moment(form_details?.completionDate).format(
-													"MMMM D, YYYY "
+													"M/D/YYYY "
 												)}
 											</span>
 										</p>

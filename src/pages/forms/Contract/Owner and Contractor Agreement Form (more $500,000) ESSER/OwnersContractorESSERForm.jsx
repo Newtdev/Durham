@@ -16,7 +16,7 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const OwnerAndContractorFormESSER = ({ id }) => {
+const OwnerAndContractorFormESSER = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -99,17 +99,24 @@ const OwnerAndContractorFormESSER = ({ id }) => {
 	}, [dispatch]);
 
 	const formProps = { ...formik, isLoading };
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === OwnerAndContractorESSER && show}>
+				<FormikProvider value={formik}>
+					{pages === 1 && <FormOne {...formik} />}
+					{pages === 2 && <FormTwo {...formik} />}
+					{pages === 3 && <FormThree {...formik} />}
+					{pages === 4 && <FormFour {...formProps} />}
+					{pages === 5 && <Preview />}
+					{/* <FormThree {...formik} /> */}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
 
 	return (
 		<ModalOverlay show={id === OwnerAndContractorESSER && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <FormTwo {...formik} />}
-				{pages === 3 && <FormThree {...formik} />}
-				{pages === 4 && <FormFour {...formProps} />}
-				{pages === 5 && <Preview />}
-				{/* <FormThree {...formik} /> */}
-			</FormikProvider>
+			<Preview />
 		</ModalOverlay>
 	);
 };

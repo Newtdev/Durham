@@ -9,7 +9,10 @@ import PageFour from "./Preview Pages/Page4";
 import PageFive from "./Preview Pages/Page5";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import { useDispatch, useSelector } from "react-redux";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { closeModal, openDownload, showDownload } from "../../reducer";
 import { prevStep, stepDefault } from "./reducer";
 import DownLoadForm from "../../Lundsford/Download";
@@ -114,7 +117,10 @@ const Owner = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(4))}
+							onClick={() => {
+								dispatch(prevStep(4));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

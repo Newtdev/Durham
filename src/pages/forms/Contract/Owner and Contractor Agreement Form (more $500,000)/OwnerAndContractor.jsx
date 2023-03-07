@@ -16,7 +16,7 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const OwnerAndContractorForm = ({ id }) => {
+const OwnerAndContractorForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -75,13 +75,10 @@ const OwnerAndContractorForm = ({ id }) => {
 		// validationSchema: OwnerAndContractorSchema[pages - 1],
 		onSubmit: (values) => {
 			if (pages === 1) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(3));
 			} else if (pages === 3) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(4));
 				// dispatch(nextStep(4));
 			} else if (pages === 4) {
@@ -99,17 +96,24 @@ const OwnerAndContractorForm = ({ id }) => {
 	}, [dispatch]);
 
 	const formProps = { ...formik, isLoading };
-
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === OwnerAndContractor && show}>
+				<FormikProvider value={formik}>
+					{pages === 1 && <FormOne {...formik} />}
+					{pages === 2 && <FormTwo {...formik} />}
+					{pages === 3 && <FormThree {...formik} />}
+					{pages === 4 && <FormFour {...formProps} />}
+					{pages === 5 && <Preview />}
+					{/* <FormThree {...formik} /> */}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === OwnerAndContractor && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <FormTwo {...formik} />}
-				{pages === 3 && <FormThree {...formik} />}
-				{pages === 4 && <FormFour {...formProps} />}
-				{pages === 5 && <Preview />}
-				{/* <FormThree {...formik} /> */}
-			</FormikProvider>
+			<Preview />
+			{/* <FormThree {...formik} /> */}
 		</ModalOverlay>
 	);
 };

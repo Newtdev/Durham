@@ -150,6 +150,7 @@ const FormTwo = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
+							loading={props.isLoading}
 						/>
 					</div>
 				</form>

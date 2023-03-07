@@ -97,7 +97,11 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								<div className="flex mb-4">
-									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
+									<img
+										src={LogoOne}
+										alt="logo"
+										className="h-20 ml-1 object-cover"
+									/>
 
 									<div className="ml-[12rem] arial-font text-[10.5px] mt-4 leading-[1.3]">
 										<p className=" text-[#3B6979]">
