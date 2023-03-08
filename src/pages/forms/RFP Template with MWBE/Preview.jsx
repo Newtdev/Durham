@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DownLoadForm from "../Lundsford/Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { prevStep, stepDefault } from "./reducer";
 import Page1 from "./Previews/Page1";
 import Page2 from "./Previews/Page2";
@@ -42,7 +43,6 @@ import Page29 from "./Previews/Page29";
 import Page30 from "./Previews/Page30";
 
 const Preview = () => {
-
   const dispatch = useDispatch();
   const downloadComponent = useRef();
   const show = useSelector(openDownload);
@@ -51,11 +51,19 @@ const Preview = () => {
   const [highlighted, setHighlighed] = useState(false);
   const [showPage, setShowPage] = useState(false);
   const [awardee, setAwardee] = useState([]);
-  const form_fields = useSelector(fields);
-  let formData = !content?.data ? [] : content?.data?.data;
-  const vendors = formData?.vendors;
-  const project = formData?.project;
-  const durham_profile = formData?.durham_profile;
+
+  const [a] = UseFetchFilledFormDetails(formID);
+
+  const project = a?.data?.project;
+  const form_fields = a?.data?.form_fields;
+  const durham_profile = a?.data?.durham_profile;
+  const vendors = a?.data?.vendors;
+
+  // const form_fields = useSelector(fields);
+  // let formData = !content?.data ? [] : content?.data?.data;
+  // const vendors = formData?.vendors;
+  // const project = formData?.project;
+  // const durham_profile = formData?.durham_profile;
 
   const props = {
     component: downloadComponent,
@@ -70,7 +78,7 @@ const Preview = () => {
 
   useEffect(() => {
     if (!vendors) {
-      return null;
+      return;
     }
     const data = vendors?.filter((cur) => {
       return cur.role === "Design Consultant";
@@ -149,7 +157,9 @@ const Preview = () => {
                 {showPage && <Page19 />}
                 {showPage && <Page20 />}
                 {showPage && <Page21 />}
-                {pageProps?.form_fields?.attachment === "Yes" ? showPage && <Page22 /> : null}
+                {pageProps?.form_fields?.attachment === "Yes"
+                  ? showPage && <Page22 />
+                  : null}
                 {showPage && <Page23 />}
                 {showPage && <Page24 />}
                 {showPage && <Page25 />}
