@@ -14,8 +14,9 @@ import FormTwo from "./Forms/FormsTwo";
 import FormThree from "./Forms/FormsThree";
 import { nextStep, page } from "./reducer";
 import Preview from "./Preview";
-import { RFPTemplatewithMWBESchema } from "../../../yup";
+// import { RFPTemplatewithMWBESchema } from "../../../yup";
 import { handleResultWithArray } from "../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const RFPTemplate = ({ id }) => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const RFPTemplate = ({ id }) => {
   const formID = useSelector(project_document_id);
 
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+  const [a] = UseFetchFilledFormDetails(formID);
 
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
@@ -93,7 +95,44 @@ const RFPTemplate = ({ id }) => {
       const response = await (await fetch("/states.json")).json();
       dispatch(getStates(response));
     })();
-  }, [dispatch]);
+
+    if (!a?.data?.form_fields) {
+      return;
+    }
+    formik.setValues({
+      bidderName: a?.data?.form_fields?.bidderName,
+      rfpNumber: a?.data?.form_fields?.rfpNumber,
+      personName: a?.data?.form_fields?.personName,
+      contractType: a?.data?.form_fields?.contractType,
+
+      // issueDate: a?.data?.form_fields?.issueDate,
+      // proposalDate: a?.data?.form_fields?.proposalDate,
+      // submissionDate: a?.data?.form_fields?.submissionDate,
+      // answerDate: a?.data?.form_fields?.answerDate,
+      // bidOpeningDate: a?.data?.form_fields?.bidOpeningDate,
+      // proposalSubmissionDate: a?.data?.form_fields?.proposalSubmissionDate,
+
+      // proposalTime: a?.data?.form_fields?.proposalTime,
+      // submissionTime: a?.data?.form_fields?.submissionTime,
+      // answerTime: a?.data?.form_fields?.answerTime,
+      // bidOpeningTime: a?.data?.form_fields?.bidOpeningTime,
+      // proposalSubmissionTime: a?.data?.form_fields?.proposalSubmissionTime,
+
+      street: a?.data?.form_fields?.street,
+      state: a?.data?.form_fields?.state,
+      city: a?.data?.form_fields?.city,
+      zipCode: a?.data?.form_fields?.zipCode,
+
+      // date: a?.data?.form_fields?.date,
+      // time: a?.data?.form_fields?.time,
+
+      prototypeNotUtilized: a?.data?.form_fields?.prototypeNotUtilized,
+      proposalScope: a?.data?.form_fields?.proposalScope,
+      validityPeriod: a?.data?.form_fields?.validityPeriod,
+      items: a?.data?.form_fields?.items,
+      attachment: a?.data?.form_fields?.attachment,
+    });
+  }, [dispatch, a]);
 
   const props = { ...formik, isLoading };
 

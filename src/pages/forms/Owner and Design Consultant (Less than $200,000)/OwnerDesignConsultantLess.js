@@ -53,12 +53,12 @@ const OwnerDesignConsultantLessForm = ({ id, filled }) => {
     // validationSchema: OwnerDesignConsultantLessSchema,
     onSubmit: (values) => {
       if (pages === 1) {
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         dispatch(nextStep(2));
         // HandleSubmit(values);
       } else if (pages === 2) {
         console.log(values);
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
@@ -68,7 +68,6 @@ const OwnerDesignConsultantLessForm = ({ id, filled }) => {
     if (!a?.data?.form_fields) {
       return;
     }
-    // setFieldValue('')
     formik.setValues({
       // ...a?.data?.form_fields,
       // type: a?.data?.form_fields?.type,
