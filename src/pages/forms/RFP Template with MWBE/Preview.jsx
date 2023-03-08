@@ -47,7 +47,7 @@ const Preview = () => {
   const downloadComponent = useRef();
   const show = useSelector(openDownload);
   const formID = useSelector(project_document_id);
-  const content = useFetchFilledFormQuery(formID);
+  // const content = useFetchFilledFormQuery(formID);
   const [highlighted, setHighlighed] = useState(false);
   const [showPage, setShowPage] = useState(false);
   const [awardee, setAwardee] = useState([]);
@@ -58,12 +58,6 @@ const Preview = () => {
   const form_fields = a?.data?.form_fields;
   const durham_profile = a?.data?.durham_profile;
   const vendors = a?.data?.vendors;
-
-  // const form_fields = useSelector(fields);
-  // let formData = !content?.data ? [] : content?.data?.data;
-  // const vendors = formData?.vendors;
-  // const project = formData?.project;
-  // const durham_profile = formData?.durham_profile;
 
   const props = {
     component: downloadComponent,
@@ -93,9 +87,6 @@ const Preview = () => {
     project,
     durham_profile,
   };
-
-  console.log(pageProps);
-  console.log(pageProps?.form_fields?.attachment);
 
   return (
     <div>
