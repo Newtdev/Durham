@@ -40,18 +40,11 @@ const Preview = () => {
 
   const [a] = UseFetchFilledFormDetails(formID);
 
-  // console.log(a);
   const vendors = a?.data?.vendors || [];
   const project = a?.data?.project || {};
   const form_fields = a?.data?.form_fields || {};
   // const pageContent = a?.data || {};
   const durham_profile = a?.data?.durham_profile || {};
-
-  // const form_fields = useSelector(fields);
-  // let formData = !content?.data ? [] : content?.data?.data;
-  // const vendors = formData?.vendors;
-  // const project = formData?.project;
-  // const durham_profile = formData?.durham_profile;
 
   const props = {
     component: downloadComponent,
@@ -66,7 +59,7 @@ const Preview = () => {
 
   useEffect(() => {
     if (!vendors) {
-      return null;
+      return;
     }
     const data = vendors?.filter((cur) => {
       return (
@@ -84,8 +77,6 @@ const Preview = () => {
     project,
     durham_profile,
   };
-
-  console.log(pageProps);
 
   return (
     <div>
@@ -131,7 +122,6 @@ const Preview = () => {
                 <Page2 {...pageProps} />
                 {showPage && <Page3 />}
                 {showPage && <Page4 />}
-                {/* {<Page4 {...pageProps} />}   */}
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
                 {showPage && <Page7 />}
@@ -151,7 +141,7 @@ const Preview = () => {
               name="Edit document"
               onClick={() => {
                 dispatch(selectFilled(false));
-                dispatch(prevStep(1));
+                dispatch(prevStep(2));
               }}
             />
             <DashboardButton

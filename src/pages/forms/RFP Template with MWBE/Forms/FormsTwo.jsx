@@ -12,45 +12,6 @@ const FormTwo = (props) => {
   const dispatch = useDispatch();
   const states = useSelector(getList);
 
-  // function CheckState(index) {
-  //   if (!props.values.location[index].projectState) {
-  //     return;
-  //   }
-  //   let stat = Object.values(states)?.find(
-  //     (state) => state.name === props.values.location[index].projectState
-  //   );
-
-  //   if (!stat) {
-  //     return;
-  //   }
-  //   return Object.keys(stat.cities)?.map((cur, id) => {
-  //     return (
-  //       <option key={id} value={cur}>
-  //         {cur}
-  //       </option>
-  //     );
-  //   });
-  // }
-
-  // function CheckZipCode(index) {
-  //   if (!props.values.location[index].projectCity) {
-  //     return;
-  //   }
-  //   const city = Object.values(states)?.filter(
-  //     (state) => state.name === props.values.location[index].projectState
-  //   );
-  //   const zipcode = city?.find((cities) => cities);
-  //   return zipcode.cities[props.values.location[index].projectCity]?.map(
-  //     (zipcode, index) => {
-  //       return (
-  //         <option key={index} value={zipcode}>
-  //           {zipcode}
-  //         </option>
-  //       );
-  //     }
-  //   );
-  // }
-
   const issueDate = {
     ...props,
     value: props.values.issueDate,
@@ -201,44 +162,6 @@ const FormTwo = (props) => {
     placeholder: "Select time",
     //    prevPage
   };
-
-  // const state = [
-  //   { name: "Alabama" },
-  //   { name: "Alaska" },
-  //   { name: "Arizona" },
-  //   { name: "Arkansas" },
-  //   { name: "California" },
-  //   { name: "Colorado" },
-  //   { name: "Connecticut" },
-  //   { name: "Deleware" },
-  //   { name: "Florida" },
-  //   { name: "Georgia" },
-  //   { name: "Florida" },
-  //   { name: "Georgia" },
-  //   { name: "Hawaii" },
-  //   { name: "Idaho" },
-  //   { name: "Illinois" },
-  //   { name: "Indiana" },
-  //   { name: "Lowa" },
-  //   { name: "Kandas" },
-  //   { name: "Kentucky" },
-  //   { name: "Louisiana" },
-  //   { name: "Maine" },
-  //   { name: "Maryland" },
-  //   { name: "Massachusetts" },
-  //   { name: "Michigan" },
-  //   { name: "Minnesota" },
-  //   { name: "Mississippi" }
-  // ];
-
-  // const city = [
-  //   { name: "New York" },
-  //   { name: "Los Angeles" },
-  //   { name: "Chicago" },
-  //   { name: "Houston" },
-  //   { name: "Philadelphia" },
-  //   { name: "Phoenix" },
-  // ];
 
   const state = {
     value: props.values.state,
@@ -476,50 +399,47 @@ const FormTwo = (props) => {
                     )}
                   </div>
                 </div> */}
-                 <div className="grid grid-cols-3 gap-x-4">
-                <FormInputContainer name="">
-                  <FormSelect {...state}>
-                    <option value="">Select State</option>
-                    {!states
-                      ? null
-                      : Object.entries(states).map((cur, index) => {
-                          return (
-                            <option key={index} value={cur[1].name}>
-                              {cur[1].name}
-                            </option>
-                          );
-                        })}
-                  </FormSelect>
-                  {props.errors.state &&
-                    props.touched.state && (
+                <div className="grid grid-cols-3 gap-x-4">
+                  <FormInputContainer name="">
+                    <FormSelect {...state}>
+                      <option value="">Select State</option>
+                      {!states
+                        ? null
+                        : Object.entries(states).map((cur, index) => {
+                            return (
+                              <option key={index} value={cur[1].name}>
+                                {cur[1].name}
+                              </option>
+                            );
+                          })}
+                    </FormSelect>
+                    {props.errors.state && props.touched.state && (
                       <Error message={props.errors.state} />
                     )}
-                </FormInputContainer>
+                  </FormInputContainer>
 
-                <FormInputContainer name="">
-                  <FormSelect {...city}>
-                    <option value="">Select City</option>
-                    {CheckState()}
-                  </FormSelect>
+                  <FormInputContainer name="">
+                    <FormSelect {...city}>
+                      <option value="">Select City</option>
+                      {CheckState()}
+                    </FormSelect>
 
-                  {props.errors.city &&
-                    props.touched.city && (
+                    {props.errors.city && props.touched.city && (
                       <Error message={props.errors.city} />
                     )}
-                </FormInputContainer>
+                  </FormInputContainer>
 
-                <FormInputContainer name="">
-                  <FormSelect {...zipCode}>
-                    <option value="">Select zipcode</option>
-                    {CheckZipCode()}
-                  </FormSelect>
+                  <FormInputContainer name="">
+                    <FormSelect {...zipCode}>
+                      <option value="">Select zipcode</option>
+                      {CheckZipCode()}
+                    </FormSelect>
 
-                  {props.errors.zipCode &&
-                    props.touched.zipCode && (
+                    {props.errors.zipCode && props.touched.zipCode && (
                       <Error message={props.errors.zipCode} />
                     )}
-                </FormInputContainer>
-              </div>
+                  </FormInputContainer>
+                </div>
 
                 <div className="flex gap-2 mt-3 justify-center w-full items-end">
                   <div className="w-full">
