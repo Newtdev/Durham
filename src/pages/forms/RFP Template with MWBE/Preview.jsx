@@ -167,7 +167,7 @@ const Preview = () => {
             <ButtonWhiteBG
               width="w-[171px]"
               name="Edit document"
-              onClick={() => dispatch(prevStep(1))}
+              onClick={() => dispatch(prevStep(3))}
             />
             <DashboardButton
               onClick={() => {
