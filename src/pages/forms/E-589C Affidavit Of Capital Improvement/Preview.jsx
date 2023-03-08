@@ -13,6 +13,7 @@ import { prevChoiceStep } from "./reducer";
 import { useRef, useState } from "react";
 import DownLoadForm from "../Lundsford/Download";
 import Logo from "../../../assets/affidavit.png";
+import { trucateText } from "../../../shared-component";
 
 const Affidavit = () => {
 	const formID = useSelector(project_document_id);
@@ -280,7 +281,7 @@ const Affidavit = () => {
 											</p>
 											<div
 												className={` ${nottoBeHighlighted} py-2 px-0.5 h-24 `}>
-												{form_fields?.improvement || ""}
+												{trucateText(form_fields?.improvement) || ""}
 											</div>
 										</div>
 

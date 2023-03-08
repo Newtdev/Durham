@@ -364,3 +364,14 @@ export const handleResultWithArray = (res) => {
 	});
 	return { form_fields: sum, dynamic_inputs: dynamic };
 };
+
+export const trucateText = (str, limit = 100) => {
+	if (!str) {
+		return;
+	}
+	let strTotal = str.split(" ");
+	if (strTotal.length > limit) {
+		return strTotal.slice(0, limit).join(" ") + "...";
+	}
+	return str;
+};

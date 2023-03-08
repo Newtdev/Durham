@@ -148,7 +148,6 @@ const FormTwo = (props) => {
 							<h3 className="text-lg font-bold text-gray-900">
 								Change Order Form
 							</h3>
-							<p className="text-base text-gray-700">Section II</p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}

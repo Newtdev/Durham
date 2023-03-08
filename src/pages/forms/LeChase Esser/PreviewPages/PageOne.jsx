@@ -1,5 +1,6 @@
 import currency from "currency.js";
 import moment from "moment";
+import { trucateText } from "../../../../shared-component";
 
 const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	return (
@@ -204,7 +205,7 @@ const PageOne = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 										? ""
 										: !form_fields?.reimburseObligation
 										? "N/A"
-										: form_fields?.reimburseObligation}
+										: trucateText(form_fields?.reimburseObligation, 50)}
 								</span>
 							</div>
 						</div>

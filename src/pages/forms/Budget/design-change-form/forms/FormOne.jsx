@@ -51,9 +51,8 @@ const FormOne = (props) => {
 					<div className="flex items-baseline justify-between mx-6">
 						<div>
 							<h3 className="text-lg font-bold text-gray-900">
-								Change Order Form
+								Design Phase Change Order
 							</h3>
-							<p className="text-base text-gray-700">Section I</p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}
@@ -71,13 +70,13 @@ const FormOne = (props) => {
 
 					<div className="mx-6 mb-12">
 						<div className="mt-3 ml-2 flex flex-col gap-3 ">
-							<FormInputContainer name="Enter the Change order Number">
+							<FormInputContainer name="Enter the change order number">
 								<FormInputPlain
 									type={"text"}
 									value={props?.values?.number}
 									onChange={props.handleChange}
 									name="number"
-									placeholder={"Enter the Change order Number."}
+									placeholder={"Enter the change order number."}
 								/>
 								{props.errors.number && props.touched.number && (
 									<Error message={props.errors.number} />
@@ -88,6 +87,19 @@ const FormOne = (props) => {
 								<SelectDate {...creatingDate} />
 								{props.errors.creatingDate && props.touched.creatingDate && (
 									<Error message={props.errors.creatingDate} />
+								)}
+							</FormInputContainer>
+
+							<FormInputContainer name="Enter file number">
+								<FormInputPlain
+									type={"number"}
+									value={props?.values?.file}
+									onChange={props.handleChange}
+									name="file"
+									placeholder={"Enter file Number."}
+								/>
+								{props.errors.number && props.touched.number && (
+									<Error message={props.errors.number} />
 								)}
 							</FormInputContainer>
 

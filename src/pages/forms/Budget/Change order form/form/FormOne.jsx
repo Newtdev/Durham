@@ -55,7 +55,6 @@ const FormOne = (props) => {
 							<h3 className="text-lg font-bold text-gray-900">
 								Change Order Form
 							</h3>
-							<p className="text-base text-gray-700">Section I</p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}

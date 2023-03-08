@@ -19,6 +19,7 @@ import moment from "moment";
 import DownLoadForm from "../../Lundsford/Download";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { trucateText } from "../../../../shared-component";
 
 const Capital = () => {
 	const show = useSelector(openDownload);
@@ -151,7 +152,9 @@ const Capital = () => {
 										<div className="p-2 border border-black w-full min-h-16">
 											<span
 												className={`${nottoBeHighlighted} inline-block h-full`}>
-												{!project_details ? "" : project_details?.description}
+												{!project_details
+													? ""
+													: trucateText(project_details?.description)}
 											</span>
 										</div>
 									</div>

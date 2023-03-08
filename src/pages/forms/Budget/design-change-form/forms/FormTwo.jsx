@@ -134,9 +134,8 @@ const FormTwo = (props) => {
 					<div className="flex justify-between items-baseline mx-6">
 						<div>
 							<h3 className="text-lg font-bold text-gray-900">
-								Change Order Form
+								Design Phase Change Order
 							</h3>
-							<p className="text-base text-gray-700">Section II</p>
 						</div>
 						<button
 							onClick={() => dispatch(closeModal())}
@@ -196,7 +195,7 @@ const FormTwo = (props) => {
 							</div>
 						</div>
 
-						<div className="flex flex-col w-full mb-2 bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
+						<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
 							<h2 className="text-sm font-medium">
 								New contract completion date
 							</h2>
@@ -209,22 +208,15 @@ const FormTwo = (props) => {
 							</span>
 						</div>
 
-						<FormInputContainer name="When does the project manager sign this form?">
-							<SelectDate {...signDate} />
-							{props.errors.signDate && props.touched.signDate && (
-								<Error message={props.errors.signDate} />
-							)}
-						</FormInputContainer>
-
-						<div className="flex flex-col py-3">
+						<div className="flex flex-col">
 							<FormSelect
 								value={props?.values?.persons}
-								name="How does this change order's amount affect the original contract sum?"
+								name="Select Owner Representative"
 								id={`persons`}
 								error={props.errors.persons}
 								touched={props.touched.persons}
 								onChange={props.handleChange}>
-								{props?.values?.persons ? (
+								{!props?.values?.persons ? (
 									<option value="">Select</option>
 								) : (
 									<option value={props?.values?.persons}>
@@ -264,6 +256,13 @@ const FormTwo = (props) => {
 								)}
 							</FormInputContainer>
 						</div>
+
+						<FormInputContainer name="When does the project manager sign this form?">
+							<SelectDate {...signDate} />
+							{props.errors.signDate && props.touched.signDate && (
+								<Error message={props.errors.signDate} />
+							)}
+						</FormInputContainer>
 					</div>
 
 					{/* Buttons */}

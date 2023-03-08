@@ -28,6 +28,10 @@ html {
 	font-family: "Calibri", sans-serif;
 }
 
+.narrow-font {
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 /* @media print {
 	body.printableArea {
 		width: 21cm;
@@ -35,6 +39,3 @@ html {
 		margin: 2cm;
 	}
 } */
-
-
-
