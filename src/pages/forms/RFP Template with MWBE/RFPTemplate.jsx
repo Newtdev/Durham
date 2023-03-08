@@ -28,9 +28,6 @@ const RFPTemplate = ({ id }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
   const HandleSubmit = async (values) => {
-    const param = Object.keys(values);
-    const val = Object.values(values);
-
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: handleResultWithArray(values).form_fields,
@@ -86,7 +83,6 @@ const RFPTemplate = ({ id }) => {
         dispatch(nextStep(3));
       } else if (pages === 3) {
         dispatch(saveFormField(values));
-        // dispatch(nextStep(4));
         HandleSubmit(values);
       }
     },
@@ -99,12 +95,14 @@ const RFPTemplate = ({ id }) => {
     })();
   }, [dispatch]);
 
+  const props = { ...formik, isLoading };
+
   return (
     <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
       <FormikProvider value={formik}>
         {pages === 1 && <FormOne {...formik} />}
         {pages === 2 && <FormTwo {...formik} />}
-        {pages === 3 && <FormThree {...formik} />}
+        {pages === 3 && <FormThree {...props} />}
         {pages === 4 && <Preview />}
       </FormikProvider>
     </ModalOverlay>
