@@ -68,13 +68,13 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
           projectZipCode: "",
         },
       ],
-      procurementAmount: "",
-      constructionAmount: "",
-      costOfWork: "",
-      CMContingency: "",
-      generalConditions: "",
-      fees: "",
-      preConstruction: "",
+      ocmprocurementAmount: "",
+      ocmconstructionAmount: "",
+      ocmcostOfWork: "",
+      ocmCMContingency: "",
+      ocmgeneralConditions: "",
+      ocmfees: "",
+      ocmpreConstruction: "",
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
@@ -85,8 +85,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       } else if (pages === 3) {
         dispatch(nextStep(4));
       } else if (pages === 4) {
-        // console.log(values);
-        // dispatch(saveFormField(values));
+        console.log(values);
         HandleSubmit(values);
       }
     },
