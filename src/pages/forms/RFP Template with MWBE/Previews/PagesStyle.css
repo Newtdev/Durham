@@ -6364,7 +6364,7 @@ table th {
 .c8 {
   padding-top: 14pt;
   padding-bottom: 0pt;
-  line-height: 1;
+  /* line-height: 1; */
   text-align: justify;
 }
 .c272 {
