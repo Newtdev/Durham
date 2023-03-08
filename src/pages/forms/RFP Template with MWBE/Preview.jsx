@@ -124,7 +124,8 @@ const Preview = () => {
                 class="c225 doc-content"
                 style={{
                   width: "100%",
-                  padding: "0pt 60pt 0pt 60pt",
+                  padding: "0pt 30pt 0pt 60pt",
+                  border: "1px solid black",
                 }}
               >
                 <Page1 {...pageProps} />

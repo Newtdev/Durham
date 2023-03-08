@@ -30,7 +30,10 @@ const Page3 = (props) => {
         <span class="c80 c45">
           Written questions concerning this RFP will be received until{" "}
         </span>
-        <span class={`c89  ${props?.nottoBeHighlighted}`}>
+        <span
+          class={`c89  ${props?.nottoBeHighlighted}`}
+          style={{ fontSize: "10pt" }}
+        >
           {moment(props?.form_fields?.submissionDate).format("MMMM, D YYYY ")}
 
           <span className={`inline-block`}>
@@ -45,7 +48,10 @@ const Page3 = (props) => {
         <span class="c80 c45">
           &nbsp;please insert &ldquo;Questions for bid{" "}
         </span>
-        <span class={`c89 ${props?.nottoBeHighlighted}`}>
+        <span
+          class={`c89 ${props?.nottoBeHighlighted}`}
+          style={{ fontSize: "10pt" }}
+        >
           {props?.form_fields?.rfpNumber}
         </span>
         <span class="c89">&nbsp;</span>
@@ -115,7 +121,7 @@ const Page3 = (props) => {
         </span>
       </p>
       <p class="c27">
-        <span class="c45 c80">
+        <span class="c30 c80" style={{ fontSize: "10pt" }}>
           If Vendors have questions, issues, or exceptions regarding any term,
           condition, or other component within this RFP, those must be submitted
           as questions in accordance with in the instructions in Section 1.1
@@ -135,7 +141,7 @@ const Page3 = (props) => {
           to further negotiation. &nbsp;Vendor&rsquo;s proposal shall constitute
           a firm offer. &nbsp;
         </span>
-        <span class="c24">
+        <span class="c24" style={{ fontSize: "10pt" }}>
           By execution and delivery of this RFP Response, the Vendor agrees that
           any additional or modified terms and conditions, whether submitted
           purposely or inadvertently, shall have no force or effect, and will be
@@ -154,7 +160,17 @@ const Page3 = (props) => {
           or exceptions to Durham Public
         </span>
       </p>
-      <Footer page={3} />
+      <div className="h-[15rem] flex flex-col justify-center">
+        <p className="font-extrabold text-black mb-3 text-center">
+          <b></b>
+        </p>
+        <div>
+          <p className="text-[10px]"></p>
+        </div>
+        <div className="w-1  mx-auto">
+          <p>3</p>
+        </div>
+      </div>
     </div>
   );
 };

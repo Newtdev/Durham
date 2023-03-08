@@ -8,7 +8,7 @@ const Page4 = (props) => {
       style={{
         height: "27cm",
         padding: "1cm 0",
-        // border: "1px solid black",
+        border: "1px solid black",
       }}
     >
       <p class="c27">
@@ -76,7 +76,7 @@ const Page4 = (props) => {
             </p>
             <p class="c74 c23">
               <span class={`c53 ${props?.nottoBeHighlighted}`}>
-                {props?.form_fields?.personName}
+                Attn:&nbsp;{props?.form_fields?.personName}
               </span>
             </p>
             <p class="c74 c23">
@@ -191,7 +191,17 @@ const Page4 = (props) => {
           <span class="c21"> {props?.form_fields?.items}</span>
         </li>
       </ol>
-      <Footer page={4} />
+      <div className="h-[12rem] flex flex-col justify-center">
+        <p className="font-extrabold text-black mb-3 text-center">
+          <b></b>
+        </p>
+        <div>
+          <p className="text-[10px]"></p>
+        </div>
+        <div className="w-1  mx-auto">
+          <p>4</p>
+        </div>
+      </div>
     </div>
   );
 };

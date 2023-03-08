@@ -154,9 +154,7 @@ const Page2 = (props) => {
         <span class="c83 c121 c80 c140 c107">
           Offer valid for at least 120 days from date of proposal opening,
           unless otherwise stated here: &nbsp;
-          <span
-            className={`border-b borber-b-2 border-b-black ${props?.nottoBeHighlighted}`}
-          >
+          <span className={` ${props?.nottoBeHighlighted}`}>
             {props?.form_fields?.validityPeriod}
           </span>{" "}
           days. &nbsp; After this time, any withdrawal of offer shall be made in
@@ -179,7 +177,7 @@ const Page2 = (props) => {
         </span>
       </p>
       <p class="c39 c23">
-        <span
+        {/* <span
           style={{
             overflow: "hidden",
             display: "inline-block",
@@ -202,8 +200,20 @@ const Page2 = (props) => {
             }}
             title=""
           />
-        </span>
+        </span> */}
       </p>
+      <div className="w-[25rem] border-2 border-black bg-[#d8d8d8] px-2 pt-1 pb-3">
+        <span className="underline font-bold" style={{ fontSize: "10pt" }}>
+          FOR DURHAM PUBLIC SCHOOLS USE ONLY:
+        </span>{" "}
+        <span style={{ fontSize: "10pt" }}> Offer accepted a</span>{" "}
+        <span style={{ fontSize: "10pt" }}>
+          Contract awarded this ____ day of __________, 20_____, as
+        </span>{" "}
+        <span style={{ fontSize: "10pt" }}>
+          indicated on the attached certification, by
+        </span>
+      </div>
       <p class="c39 c23 c12">
         <span class="c83 c121 c80 c140 c107"></span>
       </p>
