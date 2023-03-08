@@ -3,7 +3,7 @@ import moment from "moment";
 const PageOne = ({ formDetails }) => {
 	// console.log(formDetails);
 	return (
-		<div className="pt-8 pb-4 text-black text-[10pt] h-[11in] leading-[1.2]">
+		<div className=" pb-4 text-black text-[10pt] h-[10.5in] leading-[1.2] ">
 			<div>
 				{/* Page 1 */}
 				<div className="ml-[1in] my-[0.5in] mr-[0.7in] ">
@@ -16,7 +16,7 @@ const PageOne = ({ formDetails }) => {
 							.
 						</p>
 
-						<p className="text-center font-bold text-[15.5pt] mb-4">
+						<p className="text-center font-bold text-[15.5pt] mb-3">
 							AFFIDAVIT A
 						</p>
 
@@ -30,11 +30,11 @@ const PageOne = ({ formDetails }) => {
 					{/* Section I */}
 					<div className="mb-4">
 						<div className="mb-4">
-							<p className="font-bold text-[13.5pt] mb-4">
+							<p className="font-bold text-[13.5pt] mb-3">
 								Section I - Listing of the Good Faith Effort
 							</p>
 
-							<p className="text-xs text-[#9f0002] text-justify mb-4 text-[11pt]">
+							<p className="text-xs font-bold text-[#9f0002] text-justify mb-3 text-[11pt]">
 								Bidder must earn at least 50 points from the Good Faith Efforts
 								list for their Bid to be considered responsive and must submit
 								documentation supporting all items checked within the timeframes
@@ -52,16 +52,12 @@ const PageOne = ({ formDetails }) => {
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F2</span> */}
 
-									<label
-										htmlFor="one"
-										className="h-5 w-5 bg-[#9f0002] shadow-md flex justify-center rounded-sm">
-										<input
-											type="checkbox"
-											name=""
-											id="one"
-											className="text-transparent checked:text-transparent border-0 rounded-md focus:ring-0e"
-										/>
-									</label>
+									<input
+										type="checkbox"
+										name=""
+										id="one"
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -83,7 +79,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F3</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -98,7 +99,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F4</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -111,7 +117,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F5</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -126,7 +137,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F6</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -138,7 +154,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F7</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -151,7 +172,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F8</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -173,7 +199,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F9</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -190,7 +221,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F10</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -205,7 +241,12 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex items-start gap-2 mb-2">
 								<div className="flex items-center gap-2">
 									{/* <span className="bg-yellow-500">F11</span> */}
-									<input type="checkbox" name="" id="" />
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
+									/>
 								</div>
 
 								<p className="text-justify">
@@ -229,7 +270,11 @@ const PageOne = ({ formDetails }) => {
 								<p>
 									Date:{" "}
 									<span className="bg-yellow-500 inline-block border-b border-black">
-										{moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
+										{!formDetails?.ownerRepDate
+											? ""
+											: moment(formDetails?.ownerRepDate).format(
+													"MMMM D, YYYY"
+											  )}
 									</span>
 								</p>
 								<p>
@@ -240,7 +285,7 @@ const PageOne = ({ formDetails }) => {
 								</p>
 							</div>
 
-							<p className="text-right">
+							<p className="text-right -mt-2">
 								Signature: _______________________________________
 							</p>
 						</div>

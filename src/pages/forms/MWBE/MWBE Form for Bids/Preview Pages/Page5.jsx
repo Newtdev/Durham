@@ -1,36 +1,47 @@
 import moment from "moment";
 
-const PageFive = ({ formDetails, project }) => {
+const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 	return (
 		<div className=" pt-8 pb-4 text-black h-[11in] leading-[1.2] text-[11pt]">
 			<div>
 				{/* Page 5 */}
 				<div className="ml-[1in] mr-[0.7in] mt-[0.5in] ">
-					<p className="font-bold text-center text-[15.9pt] mb-0">
+					<p className="font-bold text-center text-[15.8pt] mb-0">
 						State of North Carolina --AFFIDAVIT B-- Intent to Perform Contract
 						with Own Workforce.
 					</p>
 
 					<div className="mb-10">
 						<p className="font-bold mb-4">
-							County of <span className="bg-yellow-500">Durham</span>
+							County of <span className={`border-b border-black`}>Durham</span>
 						</p>
-						<p className="mb-0">
+						<p
+							className="mb-0 flex justify-between
+						items-center">
 							Affidavit of{" "}
-							<span className="bg-yellow-500">
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block w-[90%]`}>
 								Durham Public Schools Board of Education
 							</span>
 						</p>
 						<p className="mb-4 text-[10px] text-center">(Name of Bidder)</p>
 
-						<p className="mb-4">
+						<p className="mb-4 ">
 							I hereby certify that it is our intent to perform 100% of the work
 							required for the{" "}
-							<span>
-								<span className="bg-yellow-500">{project?.name}</span> <br />{" "}
-								(Name of Project)
+							<span className="">
+								<span
+									className={`${nottoBeHighlighted} inline-block w-[14.8rem] border-b border-black`}>
+									{project?.name}
+								</span>{" "}
+								<span className="flex items-center">
+									<span
+										className={`mt-7 inline-block w-[90%] border-t text-center border-black`}>
+										<p>(Name of Project)</p>
+									</span>
+									<p>contract.</p>
+								</span>
 							</span>{" "}
-							contract.
 						</p>
 
 						<p className="mb-4 text-jusify">

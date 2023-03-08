@@ -71,9 +71,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[4]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[5]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[5]?.field_value
 											  ).format()}
@@ -101,9 +103,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[10]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[11]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[11]?.field_value
 											  ).format()}
@@ -130,9 +134,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[22]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[23]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[23]?.field_value
 											  ).format()}
@@ -159,9 +165,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[28]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[29]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[29]?.field_value
 											  ).format()}
@@ -188,9 +196,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[34]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[35]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[35]?.field_value
 											  ).format()}
@@ -217,9 +227,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[40]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[41]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[41]?.field_value
 											  ).format()}
@@ -246,9 +258,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[45]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[46]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[46]?.field_value
 											  ).format()}
@@ -275,9 +289,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[51]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[6]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[52]?.field_value
 											  ).format()}
@@ -304,9 +320,11 @@ const PageTwo = ({ formDetails }) => {
 											? ""
 											: formDetails?.mwbeInfo[57]?.field_value}
 									</td>
-									<td className="border border-black border-collapse text-left pl-1">
+									<td className="border border-black border-collapse text-right pr-1">
 										{!formDetails?.mwbeInfo
 											? ""
+											: !formDetails?.mwbeInfo[6]
+											? "0.00"
 											: currency(
 													formDetails?.mwbeInfo[51]?.field_value
 											  ).format()}

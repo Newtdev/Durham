@@ -12,7 +12,7 @@ const PageFour = ({ formDetails }) => {
 							Notification)
 						</p>
 
-						<p className="text-red-900 mb-3 text-justify text-[11pt] leading-[1.1]">
+						<p className="text-red-900 mb-3 text-justify text-[11pt] font-bold leading-[1.1]">
 							Certain documentation <strong>MUST</strong> be provided within 72
 							hours of notification of being the apparent lowest responsible,
 							responsive bidder in order to receive credit for certain
@@ -154,7 +154,7 @@ const PageFour = ({ formDetails }) => {
 								</span>
 							</p>
 
-							<div className="flex gap-4 justify-center items-center">
+							<div className="flex gap-4 justify-between items-center pr-6">
 								<div className="h-24 w-24 rounded-full flex items-center justify-center border border-black">
 									<p className="text-sm">SEAL</p>
 								</div>

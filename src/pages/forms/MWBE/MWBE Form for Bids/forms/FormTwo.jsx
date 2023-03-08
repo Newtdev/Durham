@@ -24,12 +24,12 @@ const FormTwo = (props) => {
 	const vendorData = !vendors?.data ? [] : vendors?.currentData?.data?.data;
 
 	const mwbeCategories = [
-		{ name: "Black", id: 1 },
-		{ name: "African American (B)", id: 2 },
-		{ name: "Hispanic (H)", id: 3 },
-		{ name: "Asian American (A)", id: 4 },
-		{ name: "American Indian (I)", id: 5 },
-		{ name: "Female (F) Socially and Economically Disadvantaged (D)", id: 6 },
+		{ name: "Black, African American", value: "(B)", id: 2 },
+		{ name: "Hispanic", value: " (H)", id: 3 },
+		{ name: "Asian American", value: " (A)", id: 4 },
+		{ name: "American Indian", value: "(I)", id: 5 },
+		{ name: "Female", value: "(F)", id: 6 },
+		{ name: "Socially and Economically Disadvantaged", value: "(D)", id: 6 },
 	];
 
 	useEffect(() => {
@@ -80,6 +80,7 @@ const FormTwo = (props) => {
 						<div className="">
 							<FormInputContainer name="What is the total value of contracts with minority-owned businesses?">
 								<FormInput
+									Symbol={"$"}
 									type={"text"}
 									onChange={props.handleChange}
 									name="totalValue"
@@ -92,12 +93,13 @@ const FormTwo = (props) => {
 							</FormInputContainer>
 						</div>
 						<div className="pt-4">
-							<FormInputContainer name="What is the minimum percentage of the total contract sum that will be allocated to MWBEs?">
+							<FormInputContainer name="What is the minimum percentage of the total contract sum that will be allocated to MWBE?">
 								<FormInput
+									Symbol={"%"}
 									type={"text"}
 									onChange={props.handleChange}
 									name="minPercentage"
-									placeholder={"0.0"}
+									placeholder={"100%"}
 									value={props?.values?.minPercentage}
 								/>
 								{props.errors.minPercentage && props.touched.minPercentage && (
@@ -114,7 +116,7 @@ const FormTwo = (props) => {
 											{props?.values?.mwbeInfo?.map((mwbeInfo, index) => (
 												<Fragment key={index}>
 													<div className="flex flex-col w-full">
-														<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-1 rounded-t-lg">
+														<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-3 rounded-t-lg">
 															<h2>MWBE Information {index + 1}</h2>
 															<button
 																onClick={() => remove(index)}
@@ -177,8 +179,7 @@ const FormTwo = (props) => {
 
 															<div className="flex flex-col gap-3 p-2">
 																<h2 className="font-bold">
-																	For the following items, enter the
-																	corresponding codes or numbers.
+																	Enter the above MWBE company details?
 																</h2>
 																<div className="w-full h-[1px] bg-[#D1D5DB]"></div>
 
@@ -216,7 +217,7 @@ const FormTwo = (props) => {
 																			return (
 																				<option
 																					key={index}
-																					value={mwbeCategory.name}>
+																					value={mwbeCategory.value}>
 																					{mwbeCategory.name}
 																				</option>
 																			);

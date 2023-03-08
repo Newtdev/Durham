@@ -12,6 +12,7 @@ import moment from "moment";
 import currency from "currency.js";
 
 import Logo from "../../../../assets/formlogo.png";
+import LogoOne from "../../../../assets/Durham.png";
 import { prevStep } from "./reducer";
 import { CalculateAmount } from "../Change order form/form/FormOne";
 import { AddDate } from "../Change order form/form/FormTwo";
@@ -145,12 +146,17 @@ const Preview = () => {
 							ref={downloadComponent}>
 							<div>
 								{/* Page 1 */}
-								<div className="ml-[0.5in] mt-[0.5in] mr-[0.6in] h-[11in]  overflow-x-hidden  ">
-									<div className="mb-8 w-full pl-36">
-										<img
+								<div className="ml-[0.5in] mt-[0.3in] mr-[0.6in] h-[11in]  overflow-x-hidden  ">
+									<div className=" w-full pl-36">
+										{/* <img
 											src={Logo}
 											alt="logo"
 											className="h-20 object-cover mb-12"
+										/> */}
+										<img
+											src={LogoOne}
+											alt="logo"
+											className="h-24 object-cover mb-6"
 										/>
 									</div>
 									<div className="mb-16 -ml-3">
@@ -233,7 +239,7 @@ const Preview = () => {
 														<span>
 															<span
 																className={`${nottoBeHighlighted} break-word narrow-font text-[10pt]`}>
-																{forms_fields?.description}{" "}
+																{forms_fields?.description + "."}{" "}
 															</span>
 															<span>
 																{forms_fields?.amountEffect === "Increased"
@@ -303,7 +309,7 @@ const Preview = () => {
 														</div>
 													</div>
 
-													<div className="grid grid-cols-4 border-b-2 border-b-black">
+													<div className="grid grid-cols-4 border-b-2 border-b-black py-0.5">
 														<div className="text-center border-r border-r-gray-300 text-[9pt] font-thin">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
@@ -393,7 +399,7 @@ const Preview = () => {
 														</div>
 													</div>
 
-													<div className="grid grid-cols-4 border-b-2 border-b-black text-[9pt]">
+													<div className="grid grid-cols-4 border-b-2 border-b-black text-[9pt] py-0.5">
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
@@ -434,7 +440,7 @@ const Preview = () => {
 											</div>
 										</div>
 
-										<div className="w-full ml-[8.5rem] h-24 flex justify-between items-end pb-4">
+										<div className="w-full ml-[8.5rem] h-16 flex justify-between items-end pb-4">
 											<p className="text-[8pt]">1 of 2</p>
 											<p className="text-end text-[5pt] mr-36">
 												FILENAME \p \* MERGEFORMAT R:\01 Administration\04
@@ -447,7 +453,7 @@ const Preview = () => {
 								</div>
 
 								{/* Page 2 */}
-								<div className="ml-[0.5in] mt-[1in] pt-[1in] pr-[0.6in]">
+								<div className="ml-[0.5in] pr-[0.6in]">
 									<p>
 										{" "}
 										<span>

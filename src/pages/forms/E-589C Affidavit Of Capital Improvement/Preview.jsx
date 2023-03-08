@@ -70,7 +70,7 @@ const Affidavit = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="px-12 pt-8 pb-4 text-black text-[8pt] leading-[1.1] arial-font"
+							className="px-12 pt-8 pb-4 text-black text-[8pt] leading-[1.1] arial-font mb-10"
 							ref={downloadComponent}>
 							<div className=" h-[10.5in]">
 								<div className="border-b border-b-black pb-4 flex items-center mb-3 mt-4">
@@ -126,7 +126,7 @@ const Affidavit = () => {
 												<div className="inline-flex absolute -top-[0.8rem] -left-2 justify-center items-center w-5 h-5 rounded-full border border-black bg-white">
 													A
 												</div>
-												<div className="mb-1">
+												<div className="mb-1 pl-1">
 													<p className="font-bold mb-[0.5rem] text-[6pt]">
 														Owner, Lessee//Tenant, or Real Property Contractor
 													</p>
@@ -143,28 +143,28 @@ const Affidavit = () => {
 												</div>
 												{form_fields?.boxA === "Owner" ? (
 													<>
-														<div className="mb-2">
+														<div className="mb-2 ml-1">
 															<p className="text-[6pt] font-bold">Address</p>
-															<p className={`${nottoBeHighlighted} py-1`}>
+															<p className={`${nottoBeHighlighted} pb-1`}>
 																2011 HAMLIN ROAD
 															</p>
 														</div>
 														<div className="flex justify-between mb-1">
-															<div className="w-[58%]">
+															<div className="w-[58%] ml-1">
 																<p className="font-bold text-[6pt]">City</p>
-																<p className={`${nottoBeHighlighted} py-1`}>
+																<p className={`${nottoBeHighlighted} pb-1`}>
 																	Durham
 																</p>
 															</div>
 															<div className="w-[10%]">
 																<p className=" font-bold text-[6pt]">State</p>
-																<p className={`${nottoBeHighlighted} py-1`}>
+																<p className={`${nottoBeHighlighted} pb-1`}>
 																	NC
 																</p>
 															</div>
 															<div className="w-[25%]">
 																<p className="font-bold text-[6pt]">Zipcode</p>
-																<p className={`${nottoBeHighlighted} p-1 `}>
+																<p className={`${nottoBeHighlighted} pb-1 `}>
 																	27704
 																</p>
 															</div>
@@ -172,23 +172,23 @@ const Affidavit = () => {
 													</>
 												) : (
 													<>
-														<div className="mb-1">
+														<div className="mb-1 ml-1">
 															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{/* 2011 HAMLIN ROAD */}
 																{form_fields?.companyAddressA}
 															</p>
 														</div>
-														<div className="flex justify-between ">
-															<div className="w-[50%]">
+														<div className="flex justify-between ml-1">
+															<div className="w-[58%]">
 																<p className=" font-bold text-[6pt]">City</p>
-																<p className={`${nottoBeHighlighted} py-1`}>
+																<p className={`${nottoBeHighlighted} pb-1`}>
 																	{form_fields?.conferenceCityA}
 																</p>
 															</div>
 															<div className="">
 																<p className=" font-bold text-[6pt]">state</p>
-																<p className={`${nottoBeHighlighted} py-1`}>
+																<p className={`${nottoBeHighlighted} pb-1`}>
 																	{form_fields?.conferenceStateA}
 																</p>
 															</div>
@@ -196,7 +196,7 @@ const Affidavit = () => {
 																<p className=" font-bold text-[6pt]">
 																	zip code
 																</p>
-																<p className={`${nottoBeHighlighted} py-1`}>
+																<p className={`${nottoBeHighlighted} pb-1`}>
 																	{form_fields?.conferenceZipCodeA}
 																</p>
 															</div>
@@ -261,7 +261,7 @@ const Affidavit = () => {
 																: ""}
 														</p>
 													</div>
-													<div className="">
+													<div className="w-[25%]">
 														<p className=" font-bold text-[6pt]">Zip Code</p>
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{" "}
@@ -275,12 +275,12 @@ const Affidavit = () => {
 											</div>
 										</div>
 
-										<div className="mb-3">
+										<div className="mb-2">
 											<p className=" font-bold mb-0.5">
 												Describe capital improvement to be performed:
 											</p>
 											<div
-												className={` ${nottoBeHighlighted} py-2 px-0.5 h-24 `}>
+												className={` ${nottoBeHighlighted} py-2 px-0.5 h-20 `}>
 												{trucateText(form_fields?.improvement) || ""}
 											</div>
 										</div>
@@ -361,7 +361,7 @@ const Affidavit = () => {
 											</em>
 										</p>
 
-										<div className="py-2 px-4">
+										<div className="py-2 px-2">
 											<div className="grid grid-cols-2 gap-3 mb-3">
 												<div className="relative border border-black px-2 py-1">
 													<div className="inline-flex absolute -top-[0.8rem] -left-2 justify-center items-center w-5 h-5 rounded-full border border-black bg-white">
@@ -518,7 +518,7 @@ const Affidavit = () => {
 									</div>
 								</div>
 
-								<div className=" mt-[1in] h-[11in] pt-3">
+								<div className=" mt-[1in] h-[11in] pt-3 ">
 									<div className="flex justify-between items-center mt-10 mb-2">
 										<div className="text-sm text-center leading-[1.1]">
 											<p className="font-bold text-[9pt]">Page 2</p>
@@ -532,7 +532,7 @@ const Affidavit = () => {
 										<p></p>
 									</div>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										Form E-589CI, Affidavit of Capital Improvement, may be
 										issued to substantiate that a contract, or a portion of work
 										performed to fulfill a contract, is a capital improvement to
@@ -548,7 +548,7 @@ const Affidavit = () => {
 										improvement to real property.{" "}
 									</p>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										A mixed transaction contract is a contract that includes
 										both a real property contract for a capital improvement and
 										repair, maintenance, and installation services for real
@@ -566,7 +566,7 @@ const Affidavit = () => {
 										property contract for sales and use tax purposes.
 									</p>
 
-									<div className="mb-3">
+									<div className="mb-2">
 										<div className="flex">
 											<p>•</p>
 											<p className="ml-4">
@@ -607,7 +607,7 @@ const Affidavit = () => {
 										</div>
 									</div>
 
-									<p className="mb-3 text-justify">
+									<p className="mb-2 text-justify">
 										<strong className="underline">
 											Exceptions from the Issuance of Form E-589CI to Establish
 											a Transaction is to be Taxed as a Real Property Contract
@@ -622,7 +622,7 @@ const Affidavit = () => {
 										E-589CI to ensure proper application of the sales and use
 										tax laws.
 									</p>
-									<p className="mb-3 text-justify">
+									<p className="mb-2 text-justify">
 										<strong className="underline">
 											Section I. Single Use Instructions
 										</strong>{" "}
@@ -641,13 +641,13 @@ const Affidavit = () => {
 										property contract.
 									</p>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										The following scenarios are for reference to assist a person
 										to complete and issue Form E-589CI. The scenarios presented
 										are not intended to cover all possible uses of the form.
 									</p>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										A <span className="underline">property owner</span> oversees
 										the entire activity to real property that is a real property
 										contract for a capital improvement to real property. The
@@ -656,8 +656,8 @@ const Affidavit = () => {
 										to complete the real property contract or portions thereof:
 									</p>
 
-									<div className="mb-3">
-										<div className="flex">
+									<div className="mb-2">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>
@@ -667,7 +667,7 @@ const Affidavit = () => {
 												Enter property owner’s name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>Box B - Real Property Contractor</strong>{" "}
@@ -675,21 +675,21 @@ const Affidavit = () => {
 												Enter a single subcontractor’s name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Owner listed in Box A must describe the real property
 												contract activity to be performed.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Owner listed in Box A must enter the project address (if
 												different than the address entered in Box A).
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Authorized Person (owner) signs, enters title (owner),
@@ -699,7 +699,7 @@ const Affidavit = () => {
 										</div>
 									</div>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										A property owner hires a{" "}
 										<span className="underline">general contractor</span> to
 										oversee the entire activity to real property that is a real
@@ -709,8 +709,8 @@ const Affidavit = () => {
 										the real property contract, or portion thereof:
 									</p>
 
-									<div className="mb-3">
-										<div className="flex">
+									<div className="mb-2">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>
@@ -720,7 +720,7 @@ const Affidavit = () => {
 												Enter general contractor's name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>Box B - Real Property Contractor</strong>{" "}
@@ -728,21 +728,21 @@ const Affidavit = () => {
 												Enter subcontractor’s name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												General contractor listed in Box A must describe the
 												real property contract activity to be performed.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												General contractor listed in Box A must enter the
 												project address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Authorized Person (general contractor) signs, enters
@@ -752,7 +752,7 @@ const Affidavit = () => {
 										</div>
 									</div>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										A <span className="underline">lessee/tenant</span> hires a{" "}
 										<span className="underline">general contractor</span> for
 										the installation of equipment that is to be attached to real
@@ -760,8 +760,8 @@ const Affidavit = () => {
 										Code:
 									</p>
 
-									<div className="mb-3">
-										<div className="flex">
+									<div className="mb-2">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>
@@ -771,7 +771,7 @@ const Affidavit = () => {
 												Enter lessee/tenant's name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>Box B - Real Property Contractor</strong>{" "}
@@ -779,7 +779,7 @@ const Affidavit = () => {
 												Enter general contractor's name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Lessee or tenant listed in Box A must describe the
@@ -788,7 +788,7 @@ const Affidavit = () => {
 												Code.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-2">
 											<p>•</p>
 											<p className="ml-4">
 												Authorized Person (typically lessee or tenant) signs,
@@ -798,7 +798,7 @@ const Affidavit = () => {
 										</div>
 									</div>
 
-									<p className="mb-3 text-justify">
+									<p className="mb-2 text-justify ml-2">
 										<strong className="underline">
 											Section II. Blanket Use Instructions
 										</strong>{" "}
@@ -817,7 +817,7 @@ const Affidavit = () => {
 										otherwise notified by the issuer of the form.
 									</p>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2 ml-2">
 										The blanket use will generally apply for the following: (1)
 										a builder who hires the same contractor(s) only for new
 										construction; (2) a real property contractor who hires the
@@ -833,22 +833,22 @@ const Affidavit = () => {
 										properties.
 									</p>
 
-									<p className="text-justify mb-3">
+									<p className="text-justify mb-2">
 										A <span className="underline">general contractor</span> or{" "}
 										<span className="underline">subcontractor</span> hires a
 										subcontractor that will replace the complete electrical
 										wiring in all renovated homes:
 									</p>
 
-									<div className="mb-3">
-										<div className="flex">
+									<div className="mb-2">
+										<div className="flex ml-1">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>Box C - Real Property Contractor:</strong> Enter
 												the hiring real property contractor’s name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-1">
 											<p>•</p>
 											<p className="ml-4">
 												<strong>Box D - Real Property Contractor</strong>{" "}
@@ -856,7 +856,7 @@ const Affidavit = () => {
 												Enter the hired subcontractor's name and address.
 											</p>
 										</div>
-										<div className="flex">
+										<div className="flex ml-1">
 											<p>•</p>
 											<p className="ml-4">
 												Authorized person listed in Box C signs, enters title,

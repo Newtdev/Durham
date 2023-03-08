@@ -21,6 +21,7 @@ const MWBEBids = () => {
 	const [highlighted, setHighlighed] = useState(false);
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
+	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
 	const [a] = UseFetchFilledFormDetails(formID);
 	const projectDetails = a?.data?.project;
@@ -57,11 +58,27 @@ const MWBEBids = () => {
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div className="pb-4 text-black arial-font" ref={downloadComponent}>
-							<PageOne formDetails={formDetails} />
-							<PageTwo formDetails={formDetails} />
-							<PageThree formDetails={formDetails} />
-							<PageFour formDetails={formDetails} />
-							<PageFive formDetails={formDetails} project={projectDetails} />
+							<PageOne
+								formDetails={formDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
+							<PageTwo
+								formDetails={formDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
+							<PageThree
+								formDetails={formDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
+							<PageFour
+								formDetails={formDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
+							<PageFive
+								formDetails={formDetails}
+								project={projectDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
 						</div>
 					</div>
 

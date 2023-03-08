@@ -43,7 +43,7 @@ const SelectDurham = ({ props, index }) => {
 
 	useEffect(() => {
 		if (!durhamProfile) {
-			return null;
+			return;
 		}
 
 		const data = durhamProfile?.filter(
@@ -99,7 +99,7 @@ const SelectProjectManager = ({ props, index }) => {
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {
-		return null;
+		return;
 	}
 	return (
 		<>

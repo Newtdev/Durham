@@ -31,12 +31,13 @@ const PageThree = ({ formDetails }) => {
 						</p>
 
 						<p className="mb-4 text-[#9f0002] text-justify">
-							Documentation <strong>MUST</strong> be provided{" "}
-							<strong>WITH THE BID</strong> in order for the bidder to receive
-							credit for certain items checked. If the bidder checked Items 1 or
-							7 in Section I, the bidder <strong>MUST</strong> provide
-							documentation supporting those Good Faith Efforts{" "}
-							<strong>WITH THE BID</strong>.
+							Documentation <small className="font-bold">MUST</small> be
+							provided <small className="font-bold">WITH THE BID</small> in
+							order for the bidder to receive credit for certain items checked.
+							If the bidder checked Items 1 or 7 in Section I, the bidder{" "}
+							<small className="font-bold">MUST</small> provide documentation
+							supporting those Good Faith Efforts{" "}
+							<small className="font-bold">WITH THE BID</small>.
 						</p>
 
 						<p>
@@ -118,7 +119,7 @@ const PageThree = ({ formDetails }) => {
 								</span>
 							</p>
 
-							<div className="flex gap-8 justify-center items-center text-[10pt]">
+							<div className="flex pr-10 justify-between items-center text-[10pt] ">
 								<div className="h-24 w-24 rounded-full flex items-center justify-center border border-black">
 									<p className="text-sm">SEAL</p>
 								</div>

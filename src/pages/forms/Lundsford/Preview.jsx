@@ -145,7 +145,7 @@ const PreviewForm = ({ value }) => {
 											{!awardee[0] ? "" : awardee[0].last_name}
 										</span>
 										(insert name),{" "}
-										<span className="border-b border-black inline-block w-[12.6rem]">
+										<span className="border-b border-black inline-block w-[14rem]">
 											{" "}
 											{!awardee[0] ? "" : awardee[0].title}{" "}
 										</span>{" "}
@@ -224,7 +224,7 @@ const PreviewForm = ({ value }) => {
 								I attest that the forgoing information is true and accurate to
 								the best of my knowledge.
 							</p>
-							<div className="mt-8 mb-4 pr-6 ">
+							<div className="mt-7 mb-4 pr-6 ">
 								<div className="flex justify-between">
 									<p className="flex  items-center  ">
 										<span className="text-center inline-block border-b border-black w-52">
@@ -240,13 +240,13 @@ const PreviewForm = ({ value }) => {
 									</p>
 								</div>
 								<div className="mt-6 flex items-center  justify-between">
-									<p className="flex  items-center h-0 mt-3">
+									<p className="flex  items-center h-0 mt-2">
 										<span className="text-center inline-block border-b border-black w-[16rem]">
 											{!awardee[0] ? "" : awardee[0]?.title}
 										</span>
 										<span>(title)</span>
 									</p>
-									<p className="mt-3">
+									<p className="mt-2">
 										<span className="inline-block border-b border-black w-52"></span>
 										<span className="">(date)</span>
 									</p>
