@@ -176,7 +176,7 @@ const Compensation = (props) => {
 							onChange={props.handleChange}
 							id="reimburseObligation"
 							value={props?.values?.reimburseObligation}
-							placeholder={"Obligation Must be under 50 characters or words. "}
+							placeholder={"Obligation Must be under 40 words. "}
 						/>
 						{props.errors.reimburseObligation &&
 							props.touched.reimburseObligation && (

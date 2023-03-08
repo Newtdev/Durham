@@ -168,7 +168,6 @@ const Change = () => {
 															{!form_fields
 																? "0"
 																: form_fields?.contractTimePerHour}
-															days
 														</span>
 													</label>
 												</div>
@@ -198,7 +197,7 @@ const Change = () => {
 												<span className={`${nottoBeHighlighted}`}>
 													{!form_fields?.contractTime
 														? "0"
-														: form_fields.contractTime}
+														: form_fields.contractTime}{" "}
 													days
 												</span>
 												.

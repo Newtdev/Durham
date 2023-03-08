@@ -72,7 +72,6 @@ const ContractDetails = (props) => {
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4"
 				onSubmit={props.handleSubmit}>
-				{console.log(length)}
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">
