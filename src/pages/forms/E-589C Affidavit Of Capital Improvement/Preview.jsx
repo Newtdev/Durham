@@ -126,7 +126,7 @@ const Affidavit = () => {
 												<div className="inline-flex absolute -top-[0.8rem] -left-2 justify-center items-center w-5 h-5 rounded-full border border-black bg-white">
 													A
 												</div>
-												<div className="mb-1 pl-1">
+												<div className="mb-1">
 													<p className="font-bold mb-[0.5rem] text-[6pt]">
 														Owner, Lessee//Tenant, or Real Property Contractor
 													</p>
@@ -143,7 +143,7 @@ const Affidavit = () => {
 												</div>
 												{form_fields?.boxA === "Owner" ? (
 													<>
-														<div className="mb-2 ml-1">
+														<div className="mb-2">
 															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} pb-1`}>
 																2011 HAMLIN ROAD
@@ -172,14 +172,14 @@ const Affidavit = () => {
 													</>
 												) : (
 													<>
-														<div className="mb-1 ml-1">
+														<div className="mb-1">
 															<p className="text-[6pt] font-bold">Address</p>
 															<p className={`${nottoBeHighlighted} py-1`}>
 																{/* 2011 HAMLIN ROAD */}
 																{form_fields?.companyAddressA}
 															</p>
 														</div>
-														<div className="flex justify-between ml-1">
+														<div className="flex justify-between">
 															<div className="w-[58%]">
 																<p className=" font-bold text-[6pt]">City</p>
 																<p className={`${nottoBeHighlighted} pb-1`}>

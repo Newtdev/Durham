@@ -7,6 +7,7 @@ import { getList } from "../../Advertisement-for-bid-template/reducer";
 import { FormSelect } from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
+import { DataListComponent, GetState } from "../Affidavit";
 import { prevChoiceStep } from "../reducer";
 
 const FormFive = (props) => {
@@ -168,71 +169,34 @@ const FormFive = (props) => {
 						</div>
 						<div className="flex items-center gap-4">
 							<div className="flex-1">
-								<FormSelect
+								<DataListComponent
+									name="State"
+									inputname="conferenceStateC"
 									value={props.values.conferenceStateC}
-									id="conferenceStateC"
-									onChange={props.handleChange}>
-									{props.values.conferenceStateC ? (
-										<option value={props.values.conferenceStateC}>
-											{props.values.conferenceStateC}
-										</option>
-									) : (
-										<option value="">Select State</option>
-									)}
-									{!states
-										? null
-										: Object.entries(states).map((cur, index) => {
-												return (
-													<option key={index} value={cur[1].name}>
-														{cur[1].name}
-													</option>
-												);
-										  })}
-								</FormSelect>
-								{props.errors.conferenceStateC &&
-									props.touched.conferenceStateC && (
-										<Error message={props.errors.conferenceStateC} />
-									)}
+									handleChange={props.handleChange}
+									fn={() => GetState(states)}
+									placeholder="State"
+								/>
 							</div>
 							<div className="flex-1">
-								<FormSelect
+								<DataListComponent
+									name="City"
+									inputname="conferenceCityC"
 									value={props.values.conferenceCityC}
-									id="conferenceCityC"
-									onChange={props.handleChange}>
-									{props.values.conferenceCityC ? (
-										<option value={props.values.conferenceCityC}>
-											{props.values.conferenceCityC}
-										</option>
-									) : (
-										<option value="">Select City</option>
-									)}
-									{CheckState()}
-								</FormSelect>
-
-								{props.errors.conferenceCityC &&
-									props.touched.conferenceCityC && (
-										<Error message={props.errors.conferenceCityC} />
-									)}
+									handleChange={props.handleChange}
+									fn={() => CheckState()}
+									placeholder="City"
+								/>
 							</div>
 							<div className="flex-1">
-								<FormSelect
+								<DataListComponent
+									name="Zip code"
+									inputname="conferenceZipCodeC"
 									value={props.values.conferenceZipCodeC}
-									id="conferenceZipCodeC"
-									onChange={props.handleChange}>
-									{props.values.conferenceZipCodeC ? (
-										<option value={props.values.conferenceZipCodeC}>
-											{props.values.conferenceZipCodeC}
-										</option>
-									) : (
-										<option value="">Zip Code</option>
-									)}
-									{CheckZipCode()}
-								</FormSelect>
-
-								{props.errors.conferenceZipCodeC &&
-									props.touched.conferenceZipCodeC && (
-										<Error message={props.errors.conferenceZipCodeC} />
-									)}
+									handleChange={props.handleChange}
+									fn={() => CheckZipCode()}
+									placeholder="Zip code"
+								/>
 							</div>
 						</div>
 					</div>
