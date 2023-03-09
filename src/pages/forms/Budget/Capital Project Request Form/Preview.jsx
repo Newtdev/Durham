@@ -19,7 +19,6 @@ import moment from "moment";
 import DownLoadForm from "../../Lundsford/Download";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { trucateText } from "../../../../shared-component";
 
 const Capital = () => {
 	const show = useSelector(openDownload);
@@ -52,6 +51,7 @@ const Capital = () => {
 	const fur = Number(formData?.form_fields?.furniture);
 	const val = pur + des + con + ren + rep + fur;
 
+	const handleText = project_details?.description.split(" ").length;
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -149,12 +149,13 @@ const Capital = () => {
 
 									<div className="mb-4">
 										<p>Project Description:</p>
-										<div className="p-2 border border-black w-full min-h-16">
+										<div
+											className={`${
+												handleText > 60 ? "text-[8pt]" : "text-[pt]"
+											} p-2 border border-black w-full leading-[1.1]  h-24 overflow-y-hidden`}>
 											<span
 												className={`${nottoBeHighlighted} inline-block h-full`}>
-												{!project_details
-													? ""
-													: trucateText(project_details?.description)}
+												{!project_details ? "" : project_details?.description}
 											</span>
 										</div>
 									</div>
@@ -226,7 +227,7 @@ const Capital = () => {
 										</div>
 									</div>
 
-									<div className="flex justify-between mb-6 w-full">
+									<div className="flex justify-between mb-3 w-full">
 										<p className="flex items-center w-[53%]">
 											<span>Estimated Project Beginning Date: </span>
 											<span
@@ -245,7 +246,7 @@ const Capital = () => {
 										</p>
 									</div>
 
-									<div className="mb-4">
+									<div className="mb-3">
 										<p className="overflow-x-hidden">
 											____________________________________________________________________________________________________________________________________________________
 										</p>

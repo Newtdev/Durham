@@ -1,16 +1,19 @@
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, fields, openDownload, showDownload } from "../../reducer";
+import { closeModal, openDownload, showDownload } from "../../reducer";
 import { useEffect, useRef, useState } from "react";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../../Lundsford/Download";
 import moment from "moment";
 import currency from "currency.js";
 import { CalculateAmount } from "./form/FormOne";
 import { AddDate } from "./form/FormTwo";
 import Logo from "../../../../assets/formlogo.png";
+import LogoOne from "../../../../assets/Durham.png";
 import { prevStep } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
@@ -136,9 +139,9 @@ const ChangeOrderForm = () => {
 								<div className="ml-[0.5in] mt-[0.5in] mr-[0.6in] h-[10.5in]  overflow-x-hidden ">
 									<div className="mb-8 w-full pl-36">
 										<img
-											src={Logo}
+											src={LogoOne}
 											alt="logo"
-											className="h-20 object-cover mb-12"
+											className="h-24 object-cover mb-"
 										/>
 									</div>
 									<div className="mb-16 -ml-3">
@@ -254,7 +257,7 @@ const ChangeOrderForm = () => {
 														</div>
 													</div>
 
-													<div className="grid grid-cols-4 border-b-2 border-b-black">
+													<div className="grid grid-cols-4 border-b-2 border-b-black py-0.5">
 														<div className="text-center border-r border-r-gray-300 text-[9pt] font-thin">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
@@ -343,7 +346,7 @@ const ChangeOrderForm = () => {
 														</div>
 													</div>
 
-													<div className="grid grid-cols-4 border-b-2 border-b-black text-[9pt]">
+													<div className="grid grid-cols-4 border-b-2 border-b-black text-[9pt] py-0.5">
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
@@ -384,17 +387,7 @@ const ChangeOrderForm = () => {
 											</div>
 										</div>
 
-										<div className="flex w-full">
-											<div className="ml-[5.5rem]">
-												<p>4.</p>
-											</div>
-											<div className="ml-[2.5rem] w-full">
-												<p className="border-b-2 border-b-black font-extrabold text-[11pt] w-full">
-													APPROVAL SIGNATURES
-												</p>
-											</div>
-										</div>
-										<div className="w-full ml-[8.5rem] h-24 flex justify-between items-end pb-4">
+										<div className="w-full ml-[8.5rem] h-16 flex justify-between items-end pb-4">
 											<p className="text-[8pt]">1 of 2</p>
 											<p className="text-end text-[5pt] mr-36">
 												{" "}
@@ -408,7 +401,17 @@ const ChangeOrderForm = () => {
 								</div>
 
 								{/* Page 2 */}
-								<div className="ml-[0.5in] mt-[1in] pt-[1in] pr-[0.6in]">
+								<div className="ml-[0.5in] pt-[1in] pr-[0.6in]">
+									<div className="flex w-full">
+										<div className="ml-[5.5rem]">
+											<p>4.</p>
+										</div>
+										<div className="ml-[2.5rem] w-full">
+											<p className="border-b-2 border-b-black font-extrabold text-[11pt] w-full">
+												APPROVAL SIGNATURES
+											</p>
+										</div>
+									</div>
 									<p>
 										{" "}
 										<span>
@@ -428,8 +431,8 @@ const ChangeOrderForm = () => {
 										</p>
 
 										<div>
-											<div className="grid grid-cols-4 gap-4 mb-3">
-												{forms_fields?.approval === "Approved" ? (
+											{forms_fields?.approval === "Approved" ? (
+												<div className="grid grid-cols-4 gap-4 mb-3">
 													<div>
 														<p>
 															<span className={`${nottoBeHighlighted}`}>
@@ -440,37 +443,38 @@ const ChangeOrderForm = () => {
 															<i className="text-[7pt]">Designer</i>
 														</p>
 													</div>
-												) : null}
-												<div>
-													<p className="border-b border-black">
-														<span
-															className={`${nottoBeHighlighted}`}>{`${awardee?.design?.first_name} ${awardee?.design?.last_name}`}</span>
-													</p>
-													<p>
-														<i>
-															<span className="text-[7pt]">By</span>
-														</i>
-													</p>
+
+													<div>
+														<p className="border-b border-black">
+															<span
+																className={`${nottoBeHighlighted}`}>{`${awardee?.design?.first_name} ${awardee?.design?.last_name}`}</span>
+														</p>
+														<p>
+															<i>
+																<span className="text-[7pt]">By</span>
+															</i>
+														</p>
+													</div>
+													<div>
+														<p>
+															<span></span>
+														</p>
+														<br />
+														<p className="border-t border-black ">
+															<i className="text-[7pt]">Signature</i>
+														</p>
+													</div>
+													<div>
+														<p>
+															<span></span>
+														</p>
+														<br />
+														<p className="border-t border-black">
+															<i className="text-[7pt]">Date</i>
+														</p>
+													</div>
 												</div>
-												<div>
-													<p>
-														<span></span>
-													</p>
-													<br />
-													<p className="border-t border-black ">
-														<i className="text-[7pt]">Signature</i>
-													</p>
-												</div>
-												<div>
-													<p>
-														<span></span>
-													</p>
-													<br />
-													<p className="border-t border-black">
-														<i className="text-[7pt]">Date</i>
-													</p>
-												</div>
-											</div>
+											) : null}
 
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
@@ -594,7 +598,10 @@ const ChangeOrderForm = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(2))}
+							onClick={() => {
+								dispatch(prevStep(2));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

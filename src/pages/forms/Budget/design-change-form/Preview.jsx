@@ -213,8 +213,7 @@ const Preview = () => {
 
 										<div className="border-y-2 border-y-black bg-gray-200 ml-6">
 											<p className="font-bold">
-												<span className="font-thin text-[9pt]">THE</span>{" "}
-												CONTRACT IS CHANGED AS FOLLOWS:
+												THE CONTRACT IS CHANGED AS FOLLOWS:
 											</p>
 										</div>
 									</div>
@@ -484,7 +483,7 @@ const Preview = () => {
 										<div className="mt-10">
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
-													<p className="border-b border-black">
+													<p className="border-b border-black -mt-0.5">
 														<span
 															className={`${nottoBeHighlighted} text-[9pt]`}>{`${
 															awardee?.design?.company_name || ""
@@ -496,7 +495,7 @@ const Preview = () => {
 												</div>
 												<div>
 													<p className="border-b border-black text-[9pt]">
-														<span className={`${nottoBeHighlighted}`}>
+														<span className={`${nottoBeHighlighted} mt-0.1`}>
 															{`${awardee?.design?.first_name || ""} ${
 																awardee?.design?.last_name || ""
 															}`}
@@ -512,7 +511,8 @@ const Preview = () => {
 													<p>
 														<span></span>
 													</p>
-													<p className="border-t border-black ">
+
+													<p className="border-t border-black mt-3.5">
 														<i className="text-[7pt]">Signature</i>
 													</p>
 												</div>
@@ -520,7 +520,7 @@ const Preview = () => {
 													<p>
 														<span></span>
 													</p>
-													<p className="border-t border-black">
+													<p className="border-t border-black mt-3.5">
 														<i className="text-[7pt]">Date</i>
 													</p>
 												</div>

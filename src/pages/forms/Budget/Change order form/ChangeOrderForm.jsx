@@ -15,7 +15,7 @@ import FormTwo from "./form/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const ChangeOrderForm = ({ id }) => {
+const ChangeOrderForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -28,7 +28,7 @@ const ChangeOrderForm = ({ id }) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
 			form_fields: handleResultWithArray(values).form_fields,
-			dynamic_inputs: handleResultWithArray(values).form_fields,
+			dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
 		});
 		if (response) {
 			if (response?.error) {
@@ -68,31 +68,30 @@ const ChangeOrderForm = ({ id }) => {
 			if (pages === 1) {
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
 	});
-
-	useEffect(() => {
-		(async function () {
-			const response = await (await fetch("/states.json")).json();
-			dispatch(getStates(response));
-		})();
-	}, [dispatch]);
 
 	const props = {
 		...formik,
 		isLoading: isLoading,
 	};
 
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === ChangeOrder && show}>
+				<FormikProvider value={formik}>
+					{pages === 1 && <FormOne {...formik} />}
+					{pages === 2 && <FormTwo {...props} />}
+					{pages === 3 && <Preview />}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === ChangeOrder && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <FormTwo {...props} />}
-				{pages === 3 && <Preview />}
-			</FormikProvider>
+			<Preview />
 		</ModalOverlay>
 	);
 };
