@@ -6,12 +6,14 @@ const Page26 = () => {
   return (
     <div
       style={{
-        height: "27cm",
-        padding: "1.54cm 0 1.54cm 0",
-        // border: "1px solid black",
+        margin: "1in 30pt 3rem 60pt",
+        paddingTop: "3rem",
+        height: "10.7in",
       }}
+      className=" flex flex-col justify-between h-full "
     >
-      <p class="c23 c203">
+      <div>
+        {/* <p class="c23 c203">
         <span class="c47 c126 c45">Dat</span>
         <span class="c130 c126 c117 c80 c45">
           e:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -26,10 +28,30 @@ const Page26 = () => {
         <span class="c29 c117 c80 c45">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
-      </p>
+      </p> */}
+        <p className="c47 c45 ">
+          <span>Date:___________________________</span>
+          <span>
+            Name Of Authorized Officer:______________________________________
+          </span>
+        </p>
+        <p className="c47 c45 mt-4">
+          <span className="ml-[22rem]">
+            Signature:_________________________________________
+          </span>
+        </p>
+      </div>
 
-      <div className="mt-[52rem]">
-        <Footer page={26} />
+      <div className=" flex flex-col justify-center">
+        <p className="font-extrabold text-black mb-3 text-center">
+          <b></b>
+        </p>
+        <div>
+          <p className="text-[10px]"></p>
+        </div>
+        <div className="w-1  mx-auto">
+          <p>27</p>
+        </div>
       </div>
     </div>
   );

@@ -5215,7 +5215,7 @@ table th {
   margin-right: 29.6pt;
 }
 .c171 {
-  margin-left: 16.9pt;
+  /* margin-left: 16.9pt; */
   padding-top: 10.8pt;
   text-indent: -0.1pt;
   padding-bottom: 10pt;
@@ -5279,7 +5279,7 @@ table th {
 }
 .c112 {
   background-color: #ffffff;
-  margin-left: 18pt;
+  /* margin-left: 18pt; */
   padding-top: 0pt;
   padding-left: 0pt;
   padding-bottom: 3pt;
@@ -5805,7 +5805,7 @@ table th {
   padding-top: 0pt;
   padding-left: 0pt;
   padding-bottom: 12pt;
-  line-height: 1.0999999999999999;
+  /* line-height: 1.0999999999999999; */
   text-align: justify;
 }
 .c70 {
@@ -6761,7 +6761,7 @@ table th {
   background-color: #00ff00;
 }
 .c12 {
-  height: 11pt;
+  height: 10pt;
 }
 .c215 {
   font-size: 14.5pt;

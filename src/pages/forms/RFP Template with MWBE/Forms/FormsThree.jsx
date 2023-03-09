@@ -7,10 +7,12 @@ import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { FormInputPlain } from "../../components";
+import { FormInputPlain, FormInput } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
 import { nextStep, prevStep } from "../reducer";
+import { FieldArray } from "formik";
+import { Fragment, useMemo } from "react";
 
 const FormThree = (props) => {
   const dispatch = useDispatch();
@@ -126,7 +128,7 @@ const FormThree = (props) => {
               )}
             </FormInputContainer>
 
-            <FormInputContainer name="What items should the Vendor include in their RFP responses? Enter the items in the order that the vendor has to set up.">
+            {/* <FormInputContainer name="What items should the Vendor include in their RFP responses? Enter the items in the order that the vendor has to set up.">
               <FormInputPlain
                 type={"text"}
                 onChange={props.handleChange}
@@ -136,7 +138,39 @@ const FormThree = (props) => {
               {props.errors.items && props.touched.items && (
                 <Error message={props.errors.items} />
               )}
-            </FormInputContainer>
+            </FormInputContainer> */}
+
+            <FieldArray
+              name="items"
+              render={({ remove, push }) => (
+                <>
+                  <div>
+                    {props?.values?.items?.map((item, index) => (
+                      <Fragment key={index}>
+                        <FormInputContainer name="What items should the Vendor include in their RFP responses? Enter the items in the order that the vendor has to set up.">
+                          <FormInputPlain
+                            type={"text"}
+                            onChange={props.handleChange}
+                            name={`items[${index}].item`}
+                            value={props?.values?.items[index].item}
+                            placeholder="Items"
+                          />
+                        </FormInputContainer>
+                      </Fragment>
+                    ))}
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+                        onClick={() => push({ item: "" })}
+                      >
+                        ADD ITEMS
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            ></FieldArray>
 
             <div className="flex flex-col gap-3">
               <h2 className="text-sm text-gray-600 font-semibold">

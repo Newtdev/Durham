@@ -41,6 +41,7 @@ import Page27 from "./Previews/Page27";
 import Page28 from "./Previews/Page28";
 import Page29 from "./Previews/Page29";
 import Page30 from "./Previews/Page30";
+import ExtraPage from "./Previews/ExtraPage";
 
 const Preview = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,8 @@ const Preview = () => {
     durham_profile,
   };
 
+  console.log(pageProps);
+
   return (
     <div>
       <DownLoadForm {...props} />
@@ -124,8 +127,9 @@ const Preview = () => {
                 class="c225 doc-content"
                 style={{
                   width: "100%",
-                  padding: "0pt 30pt 0pt 60pt",
-                  border: "1px solid black",
+                  // padding: "0pt 30pt 0pt 60pt",
+                  padding: "0",
+                  // border: "1px solid black",
                 }}
               >
                 <Page1 {...pageProps} />
@@ -135,12 +139,40 @@ const Preview = () => {
                 <Page5 {...pageProps} />
                 {showPage && <Page6 />}
                 <Page7 {...pageProps} />
-                {showPage && <Page8 />}
-                {showPage && <Page9 />}
-                {showPage && <Page10 />}
-                {showPage && <Page11 />}
+                <Page8 {...pageProps} />
+                {/* {showPage && <Page8 />} */}
+                {/* {showPage && <Page9 />} */}
+                <Page9 {...pageProps} />
+                {/* {showPage && <Page10 />} */}
+                {/* {showPage && <Page11 />} */}
+                <Page10 {...pageProps} />
+                <Page11 {...pageProps} />
                 <Page12 {...pageProps} />
-                {showPage && <Page13 />}
+                <Page13 {...pageProps} />
+                <Page14 {...pageProps} />
+                <Page15 {...pageProps} />
+                <Page16 {...pageProps} />
+                <Page17 {...pageProps} />
+                <Page18 {...pageProps} />
+                <Page19 {...pageProps} />
+                <Page20 {...pageProps} />
+                <Page21 {...pageProps} />
+                <ExtraPage {...pageProps} />
+                {/* {pageProps?.form_fields?.attachment === "Yes"
+                  ? showPage && <Page22 />
+                  : null} */}
+                <Page22 {...pageProps} />
+
+                <Page23 {...pageProps} />
+                <Page24 {...pageProps} />
+                <Page25 {...pageProps} />
+                <Page26 {...pageProps} />
+                <Page27 {...pageProps} />
+                <Page28 {...pageProps} />
+                <Page29 {...pageProps} />
+                <Page30 {...pageProps} />
+
+                {/* {showPage && <Page13 />}
                 {showPage && <Page14 />}
                 {showPage && <Page15 />}
                 {showPage && <Page16 />}
@@ -148,18 +180,18 @@ const Preview = () => {
                 {showPage && <Page18 />}
                 {showPage && <Page19 />}
                 {showPage && <Page20 />}
-                {showPage && <Page21 />}
-                {pageProps?.form_fields?.attachment === "Yes"
+                {showPage && <Page21 />} */}
+                {/* {pageProps?.form_fields?.attachment === "Yes"
                   ? showPage && <Page22 />
-                  : null}
-                {showPage && <Page23 />}
+                  : null} */}
+                {/* {showPage && <Page23 />}
                 {showPage && <Page24 />}
                 {showPage && <Page25 />}
                 {showPage && <Page26 />}
                 {showPage && <Page27 />}
                 {showPage && <Page28 />}
                 {showPage && <Page29 />}
-                {showPage && <Page30 />}
+                {showPage && <Page30 />} */}
               </body>
             </div>
           </div>

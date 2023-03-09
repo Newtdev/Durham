@@ -33,6 +33,7 @@ const RFPTemplate = ({ id }) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: handleResultWithArray(values).form_fields,
+      dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
     });
 
     if (response) {
@@ -72,19 +73,24 @@ const RFPTemplate = ({ id }) => {
       prototypeNotUtilized: "",
       proposalScope: "",
       validityPeriod: "",
-      items: "",
       attachment: "",
+      // items: "",
+      items: [
+        {
+          item: "",
+        },
+      ],
     },
     // validationSchema: RFPTemplatewithMWBESchema,
     onSubmit: (values) => {
       if (pages === 1) {
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         dispatch(nextStep(2));
       } else if (pages === 2) {
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         dispatch(nextStep(3));
       } else if (pages === 3) {
-        dispatch(saveFormField(values));
+        // dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
@@ -129,7 +135,9 @@ const RFPTemplate = ({ id }) => {
       prototypeNotUtilized: a?.data?.form_fields?.prototypeNotUtilized,
       proposalScope: a?.data?.form_fields?.proposalScope,
       validityPeriod: a?.data?.form_fields?.validityPeriod,
-      items: a?.data?.form_fields?.items,
+      // items: {
+      //   item: a?.data?.form_fields?.items?.item,
+      // },
       attachment: a?.data?.form_fields?.attachment,
     });
   }, [dispatch, a]);
