@@ -113,7 +113,13 @@ const FormFive = (props) => {
 								value={props.values.lesseeC}
 								onChange={(e) => {
 									setValue(true);
-									props.setFieldValue(`lesseeC`, e.target.value);
+									if (e.target.value === "Add New Lessee") {
+										setValue(false);
+
+										props.setFieldValue(`lesseeC`, props.values.companyNameA);
+									} else {
+										props.setFieldValue(`lesseeC`, e.target.value);
+									}
 								}}
 								id="lesseeC"
 								name="">

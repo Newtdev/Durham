@@ -40,6 +40,7 @@ const FormThree = (props) => {
 	}, [props.values, vendorData, focus]);
 
 	function CheckState() {
+		console.log(states);
 		if (!props.values.conferenceStateA) {
 			return;
 		}
@@ -114,7 +115,16 @@ const FormThree = (props) => {
 								value={props.values.lesseeA}
 								onChange={(e) => {
 									setValue(true);
-									props.setFieldValue(`lesseeA`, e.target.value);
+
+									if (e.target.value === "Add New Lessee") {
+										setValue(false);
+										props.setFieldValue(
+											`companyNameA`,
+											props.values.companyNameA
+										);
+									} else {
+										props.setFieldValue(`lesseeA`, e.target.value);
+									}
 								}}
 								id="lesseeA"
 								name="">
@@ -129,6 +139,7 @@ const FormThree = (props) => {
 									);
 								})}
 							</FormSelect>
+							{console.log(props.values)}
 
 							{props.errors.lesseeA && props.touched.lesseeA && (
 								<Error message={props.errors.lesseeA} />

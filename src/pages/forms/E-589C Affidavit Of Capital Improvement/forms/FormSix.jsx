@@ -115,7 +115,13 @@ const FormSix = (props) => {
 								value={props.values.lesseeD}
 								onChange={(e) => {
 									setValue(true);
-									props.setFieldValue(`lesseeD`, e.target.value);
+									if (e.target.value === "Add New Lessee") {
+										setValue(false);
+
+										props.setFieldValue(`lesseeD`, props.values.companyNameA);
+									} else {
+										props.setFieldValue(`lesseeD`, e.target.value);
+									}
 								}}
 								id="lesseeD"
 								name="">

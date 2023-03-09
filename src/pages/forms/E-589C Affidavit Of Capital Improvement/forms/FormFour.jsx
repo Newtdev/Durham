@@ -113,7 +113,12 @@ const FormFour = (props) => {
 								value={props.values.lesseeB}
 								onChange={(e) => {
 									setValue(true);
-									props.setFieldValue(`lesseeB`, e.target.value);
+									if (e.target.value === "Add New Lessee") {
+										setValue(false);
+										props.setFieldValue(`lesseeB`, props.values.companyNameA);
+									} else {
+										props.setFieldValue(`lesseeB`, e.target.value);
+									}
 								}}
 								id="lesseeB"
 								name="">

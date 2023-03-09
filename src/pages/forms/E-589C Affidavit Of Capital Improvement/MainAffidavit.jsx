@@ -18,6 +18,8 @@ import {
 	FormSix,
 } from "./forms";
 import { setResult } from "../../../shared-component";
+import { useEffect } from "react";
+import { getStates } from "../Advertisement-for-bid-template/reducer";
 
 const MainAffidavit = ({ id, filled }) => {
 	const dispatch = useDispatch();
@@ -113,6 +115,13 @@ const MainAffidavit = ({ id, filled }) => {
 		...Formik,
 		isLoading,
 	};
+
+	useEffect(() => {
+		(async function () {
+			const response = await (await fetch("/states.json")).json();
+			dispatch(getStates(response));
+		})();
+	}, []);
 
 	if (filled) {
 		return (

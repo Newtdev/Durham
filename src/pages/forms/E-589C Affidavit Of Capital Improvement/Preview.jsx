@@ -137,7 +137,7 @@ const Affidavit = () => {
 														</p>
 													) : (
 														<p className={`${nottoBeHighlighted} p-1`}>
-															{form_fields?.lesseeA}
+															{form_fields?.companyNameA}
 														</p>
 													)}
 												</div>
@@ -226,7 +226,7 @@ const Affidavit = () => {
 														{" "}
 														{form_fields?.userType === "Single Use" ||
 														form_fields?.userType === "Both"
-															? form_fields.lesseeB
+															? form_fields.companyNameB
 															: ""}
 													</p>
 												</div>
@@ -374,7 +374,7 @@ const Affidavit = () => {
 														<p className={`${nottoBeHighlighted} py-1`}>
 															{form_fields?.userType === "Blanket Use" ||
 															form_fields?.userType === "Both"
-																? form_fields?.lesseeC
+																? form_fields?.companyNameC
 																: ""}
 														</p>
 													</div>
@@ -439,7 +439,7 @@ const Affidavit = () => {
 															{" "}
 															{form_fields?.userType === "Blanket Use" ||
 															form_fields?.userType === "Both"
-																? form_fields?.lesseeD
+																? form_fields?.companyNameD
 																: ""}
 														</p>
 													</div>
