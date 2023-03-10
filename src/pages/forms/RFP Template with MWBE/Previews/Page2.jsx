@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PagesStyle.css";
-import { Footer } from "./Page1";
-import image6 from "../images/image6.png";
+import he from "he";
 
 const Page2 = (props) => {
+  // const [proposalScope, setProposalScope] = useState("");
+  // useEffect(() => {
+  //   const proposal = props?.form_fields?.proposalScope;
+  //   setProposalScope(proposal);
+  // }, [props?.form_fields?.proposalScope]);
+  // let encodedProposalScope = "";
+  // if (proposalScope) {
+  //   encodedProposalScope = he.decode(proposalScope);
+  // }
+
   return (
     <div
       className="flex flex-col justify-between h-full"
@@ -15,6 +24,14 @@ const Page2 = (props) => {
       // className="border border-black"
     >
       <>
+        {/* {proposalScope && (
+          <section
+            className="list-disc"
+            dangerouslySetInnerHTML={{
+              __html: he.decode(encodedProposalScope),
+            }}
+          />
+        )} */}
         <p class="c270 c23" id="h.gjdgxs">
           <span class="c83 c121 c80 c140 c107">
             any violations of Chapter 78A of the General Statutes, the

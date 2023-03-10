@@ -1,6 +1,5 @@
 import React from "react";
 import "./PagesStyle.css";
-import { Footer } from "./Page1";
 
 const Page25 = () => {
   return (
@@ -10,7 +9,7 @@ const Page25 = () => {
         paddingTop: "3rem",
         height: "10.7in",
       }}
-      className=" flex flex-col justify-between h-full "
+      className=" flex flex-col justify-between h-full border"
     >
       <div>
         <hr style={{ pageBreakBefore: "always", display: "none" }} />
@@ -42,9 +41,12 @@ const Page25 = () => {
         </p>
         {/* <a id="id.4f1mdlm"></a> */}
         <h2 class="c122">
-          <span class="c63">
+          <span
+            class="c63 font-bold italic"
+            style={{ fontFamily: "Helvetica Neue", fontSize: "14pt" }}
+          >
             The total value of minority business contracting will be ($)
-            __________________________{" "}
+            ___________________{" "}
           </span>
           {/* <span class="c238 c63">(</span>
         <span class="c63 c161">$</span>
@@ -74,9 +76,7 @@ const Page25 = () => {
           />
         </span> */}
         </h2>
-        <p class="c5">
-          <span class="c47 c66 c45"></span>
-        </p>
+
         <p class="c327 text-xl font-bold">
           <span class="c200">AFFIDAVIT A</span>
         </p>
@@ -109,7 +109,7 @@ const Page25 = () => {
           <span class="c63">.</span>
         </h3>
         <p class="c269">
-          <span class="c24">
+          <span class="c24 text-[10pt]">
             I have made Good Faith Effort to comply under the following areas
             checked:
           </span>
@@ -260,6 +260,22 @@ const Page25 = () => {
             bidder to the commitment herein set forth.
           </span>
         </p>
+        <div className="mt-4 ml-4">
+          <p className="c47 c45 ">
+            <span>Date:_________________</span>
+            <span>
+              Name Of Authorized Officer:
+              <span className="">
+                _____________________________________________
+              </span>
+            </span>
+          </p>
+          <p className="c47 c45 mt-4">
+            <span className="ml-[14rem]">
+              Signature:______________________________________
+            </span>
+          </p>
+        </div>
       </div>
       <div className=" flex flex-col justify-center">
         <p className="font-extrabold text-black mb-3 text-center">

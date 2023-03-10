@@ -6,17 +6,20 @@ const Page15 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 104pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
-      className=" flex flex-col justify-between h-full "
+      className=" flex flex-col justify-between h-full"
       // className="border border-black"
     >
       <div>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <ol class="c14" start="1">
-          <li class="c201 c23 flex">
-            <span className="mr-14"></span>
+          <li class=" c23 flex">
+            <span className="mr-[2.8rem]"></span>
             <span class="c21">
               continuing and not created solely to meet the M/WBE requirement.
               &nbsp;In addition, the M/WBE must itself perform satisfactory work
@@ -25,8 +28,8 @@ const Page15 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 flex">
-            <span className="mr-12">d.</span>
+          <li class=" c23 flex">
+            <span className="mr-8">d.</span>
             <span class="c21">
               Owned and controlled: &nbsp;(1) A sole proprietorship legitimately
               owned by an individual who is a minority group member or female;
@@ -40,22 +43,22 @@ const Page15 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 flex">
-            <span className="mr-12">e.</span>
+          <li class=" c23 flex">
+            <span className="mr-8">e.</span>
             <span class="c21">
               <span class="c21">
                 A person who is a citizen or lawful permanent resident of the
                 United States and who is:
               </span>
 
-              <p class="c38 c23 ml-12">
+              <p class="c38 c23 ml-8">
                 <span class="c21">
                   i. &ldquo;Black American&rdquo;; a person having origins in
                   any of the Black racial groups of Africa;
                 </span>
               </p>
               <p class="c38 c23">
-                <span className="ml-12"></span>
+                <span className="ml-8"></span>
                 <span class="c21">
                   ii. &ldquo;Hispanic American&rdquo;; a person of Spanish
                   culture with origins in Mexico, Central or South America, or
@@ -63,7 +66,7 @@ const Page15 = () => {
                 </span>
               </p>
               <p class="c38 c23">
-                <span className="ml-12"></span>
+                <span className="ml-8"></span>
                 <span class="c21">
                   iii. &ldquo;Native American&rdquo;; a person who is a member
                   or is eligible to be a member of a federally recognized Indian
@@ -87,8 +90,8 @@ const Page15 = () => {
         </ol>
 
         <ol class="c14 " start="6">
-          <li class="c201 c23 mt-1 flex">
-            <span className="mr-12">f.</span>
+          <li class=" c23 flex">
+            <span className="mr-[2.3rem]">f.</span>
             <span class="c21">
               During the construction of a project, if it becomes necessary to
               replace an M/WBE subcontractor, the prime contractor shall advise
@@ -101,8 +104,8 @@ const Page15 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 flex">
-            <span className="mr-12">g.</span>
+          <li class=" c23 flex">
+            <span className="mr-8">g.</span>
             <span class="c21">
               Good faith efforts as set forth in N.C. Gen. &nbsp;State. &sect;
               143-131(b) shall apply to the selection of a substitute
@@ -113,8 +116,8 @@ const Page15 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 flex">
-            <span className="mr-12">h.</span>
+          <li class=" c23 flex">
+            <span className="mr-8">h.</span>
             <span class="c21">
               If during the construction of a project additional subcontracting
               opportunities become available, the prime contractor shall make a
@@ -178,7 +181,7 @@ const Page15 = () => {
         </p>
         <ol class="c14 " start="10">
           <li class="c201 c106 c23 mt-1 flex">
-            <span className="mr-4">10.</span>
+            <span className="mr-1 ml-[-1.5rem]">10.</span>
             <span class="c21">
               <span class="c10">RECIPROCAL PREFERENCE</span>
               <span class="c66 c45">:</span>

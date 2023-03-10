@@ -42,7 +42,7 @@ const Page5 = () => {
         <a id="id.3dy6vkm"></a>
         <ol type="a">
           <li class="c23 c112 flex">
-            <span className="mr-4">a)</span>
+            <span className="mr-4 font-bold">a)</span>
             <span>
               <span class="c66 c45">BAFO</span>
               <span class="c21">
@@ -53,14 +53,14 @@ const Page5 = () => {
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">b)</span>
+            <span className="mr-4 font-bold">b)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               BUYER: The employee of Durham Public Schools or Other Eligible
               Entity that places an order with the Vendor.
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">c)</span>
+            <span className="mr-4 font-bold">c)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               CONTRACT LEAD: Representative of Durham Public Schools who
               corresponds with potential Vendors in order to identify and
@@ -69,14 +69,14 @@ const Page5 = () => {
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">d)</span>
+            <span className="mr-4 font-bold">d)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               E-PROCUREMENT SERVICES: The program, system, and associated
               services through which the State conducts electronic procurement.
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">e)</span>
+            <span className="mr-4 font-bold">e)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               FOB-DESTINATION:&nbsp; Title changes hand from Vendor to purchaser
               at the destination point of the shipment; Vendor owns commodity in
@@ -88,13 +88,13 @@ const Page5 = () => {
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">f)</span>
+            <span className="mr-4 font-bold">f)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               LOT: &nbsp;A grouping of similar products within this RFP.
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">g)</span>
+            <span className="mr-4 font-bold">g)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               ON-TIME DELIVERY: The delivery of all items within a single order
               to the receiving point designated by the ordering entity within
@@ -102,27 +102,27 @@ const Page5 = () => {
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">h)</span>
+            <span className="mr-4 font-bold">h)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               QUALIFIED PROPOSAL: A responsive proposal submitted by a
               responsible Vendor.
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">i)</span>
+            <span className="mr-4 font-bold">i)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               RFP: Request for Proposal
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">j)</span>
+            <span className="mr-4 font-bold">j)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               STATE:&nbsp; The State of North Carolina, including any of its
               sub-units recognized under North Carolina law.
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">k)</span>
+            <span className="mr-4 font-bold">k)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               STATE AGENCY: Any of the more than 400 sub-units within the
               executive branch of the State, including its departments, boards,
@@ -131,7 +131,7 @@ const Page5 = () => {
             </span>
           </li>
           <li class="c112 c23 flex">
-            <span className="mr-4">l)</span>
+            <span className="mr-4 font-bold">l)</span>
             <span class="c21" style={{ fontWeight: "bold" }}>
               VENDOR:&nbsp; Supplier, bidder, proposer, company, firm,
               corporation, partnership, individual or other entity submitting a

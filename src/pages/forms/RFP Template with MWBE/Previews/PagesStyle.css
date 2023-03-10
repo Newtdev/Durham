@@ -4194,7 +4194,7 @@ table th {
   border-right-color: #000000;
   border-left-width: 1pt;
   border-top-style: solid;
-  background-color: #eeece1;
+  /* background-color: #eeece1; */
   border-left-style: solid;
   border-bottom-width: 1pt;
   width: 151.4pt;
@@ -4266,7 +4266,6 @@ table th {
   border-right-color: #000000;
   border-left-width: 1pt;
   border-top-style: solid;
-  background-color: #eeece1;
   border-left-style: solid;
   border-bottom-width: 1pt;
   width: 167.8pt;
@@ -4284,7 +4283,7 @@ table th {
   border-right-color: #000000;
   border-left-width: 1pt;
   border-top-style: solid;
-  background-color: #eeece1;
+  /* background-color: #eeece1; */
   border-left-style: solid;
   border-bottom-width: 1pt;
   width: 184.2pt;
@@ -5278,7 +5277,7 @@ table th {
   font-style: italic;
 }
 .c112 {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   /* margin-left: 18pt; */
   padding-top: 0pt;
   padding-left: 0pt;
@@ -6012,7 +6011,7 @@ table th {
   margin-right: 12.5pt;
 }
 .c71 {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   padding-top: 0pt;
   padding-bottom: 0pt;
   line-height: 1;
@@ -6398,7 +6397,7 @@ table th {
   text-align: justify;
 }
 .c225 {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   /* max-width: 800pt; */
   max-width: 100vw;
   /* padding: 72pt 72pt 72pt 72pt; */
@@ -6480,7 +6479,7 @@ table th {
   margin: 0;
 }
 .c89 {
-  font-size: 12pt;
+  font-size: 10pt;
   font-weight: 700;
 }
 .c88 {
@@ -6641,7 +6640,7 @@ table th {
   font-size: 11.5pt;
 }
 .c253 {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .c104 {
   color: #020102;

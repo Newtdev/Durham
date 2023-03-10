@@ -6,13 +6,16 @@ const Page14 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 70pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
       className=" flex flex-col justify-between h-full "
     >
       <div>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <p className="c27">
           <span class="c21">
             equal opportunity to participate in all aspects of the school
@@ -93,7 +96,7 @@ const Page14 = () => {
           </span>
         </p>
         <ol class="c14 " start="1">
-          <li class="c201 c23 mt-2 flex">
+          <li class=" c23 flex" style={{ lineHeight: "1.15" }}>
             <span className="mr-12">a.</span>
             <span class="c21">
               Bidders are required to submit information about participating
@@ -118,7 +121,7 @@ const Page14 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class=" c23 flex" style={{ lineHeight: "1.15" }}>
             <span className="mr-12">b.</span>
             <span class="c21">
               The apparent lowest responsible, responsive bidder, within three
@@ -137,7 +140,7 @@ const Page14 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class=" c23 flex" style={{ lineHeight: "1.15" }}>
             <span className="mr-12">c.</span>
             <span class="c21">
               M/WBE: A business which is at least 51% owned and controlled by

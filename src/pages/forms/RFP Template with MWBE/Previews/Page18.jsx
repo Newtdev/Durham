@@ -10,14 +10,12 @@ const Page18 = () => {
         paddingTop: "3rem",
         height: "10.7in",
       }}
-      className=" flex flex-col justify-between h-full "
+      className=" flex flex-col justify-between h-full  "
     >
       <div>
-        <hr style={{ pageBreakBefore: "always", display: "none" }} />
-        <p class="c229 c23 c128 c12" id="h.2grqrue">
-          <span class="c70 c137 c121"></span>
-        </p>
-        <p class="c229 c23 c128" id="h.vx1227">
+        {/* <hr style={{ pageBreakBefore: "always", display: "none" }} /> */}
+
+        <p class=" c23 c128" id="h.vx1227">
           <span class="c51">
             ATTACHMENT B: &nbsp;NORTH CAROLINA GENERAL CONTRACT TERMS &amp;
             CONDITIONS
@@ -73,7 +71,7 @@ const Page18 = () => {
         </ol>
 
         <ol class="c14" start="2">
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">2.</span>
             <span class="c21">
               <span class="c10">GOVERNMENTAL RESTRICTIONS</span>
@@ -92,7 +90,7 @@ const Page18 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">3.</span>
             <span class="c21">
               <span class="c10">AVAILABILITY OF FUNDS</span>
@@ -105,7 +103,7 @@ const Page18 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">4.</span>
             <span class="c21">
               <span class="c10">TAXES</span>
@@ -117,7 +115,7 @@ const Page18 = () => {
           </li>
         </ol>
         <ol class="c14 " start="1">
-          <li class="c201 c106 c23 mt-2 flex ml-12">
+          <li class="c201 c106 c23 mt-1 flex ml-12">
             <span className="mr-4">a.</span>
             <span class="c21">
               G.S. 143-59.1 bars the Secretary of Administration from entering
@@ -135,7 +133,7 @@ const Page18 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23 mt-2 flex ml-12">
+          <li class="c201 c106 c23 mt-1 flex ml-12">
             <span className="mr-4">b.</span>
             <span class="c21">
               <span class="c21">
@@ -147,7 +145,7 @@ const Page18 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23 mt-2 flex ml-12">
+          <li class="c201 c106 c23 mt-1 flex ml-12">
             <span className="mr-4">c.</span>
             <span class="c21">
               <span class="c21">
@@ -158,7 +156,7 @@ const Page18 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23 mt-2 flex ml-12">
+          <li class="c201 c106 c23 mt-1 flex ml-12">
             <span className="mr-4">d.</span>
             <span class="c21">
               <span class="c21">
@@ -172,7 +170,7 @@ const Page18 = () => {
           </li>
         </ol>
         <ol class="c14" start="5">
-          <li class="c201 c106 c23 mt-2 flex">
+          <li class="c201 c106 c23 mt-1 flex">
             <span className="mr-4">5.</span>
             <span class="c21">
               <span class="c10">SITUS</span>

@@ -14,6 +14,9 @@ const Page8 = () => {
       // className="border border-black"
     >
       <>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <p class="c143 c23">
           <span class="c22">
             the services provided are substantially similar in scope to
@@ -38,28 +41,25 @@ const Page8 = () => {
         <table class="c108">
           <tr class="c159">
             <td class="c198" colspan="1" rowspan="1">
-              <p class="c23 c162">
-                <span class="c34">COMPANY NAME</span>
-              </p>
-              <p class="c18 c12">
-                <span class="c7"></span>
+              <p class="c23 c162 ">
+                <span class="c34 ">COMPANY NAME</span>
               </p>
             </td>
             <td class="c82" colspan="1" rowspan="1">
-              <p class="c162 c23">
+              <p class="c162 c23 ">
                 <span class="c34">CONTACT NAME</span>
               </p>
-              <p class="c18 c12">
+              {/* <p class="c18 c12">
                 <span class="c7"></span>
-              </p>
+              </p> */}
             </td>
             <td class="c142" colspan="1" rowspan="1">
-              <p class="c162 c23">
+              <p class="c162 c23 ">
                 <span class="c34">TELEPHONE NUMBER</span>
               </p>
-              <p class="c18 c12">
+              {/* <p class="c18 c12">
                 <span class="c7"></span>
-              </p>
+              </p> */}
             </td>
           </tr>
           <tr class="c11">
@@ -161,7 +161,7 @@ const Page8 = () => {
           </span>
         </p>
         <ol class="c14 " start="1">
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">a)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>
@@ -177,7 +177,7 @@ const Page8 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">b)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>
@@ -191,7 +191,7 @@ const Page8 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">c)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>
@@ -209,7 +209,7 @@ const Page8 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">d)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>
@@ -223,7 +223,7 @@ const Page8 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">e)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>
@@ -237,7 +237,7 @@ const Page8 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex">
+          <li class="c201 c23 mt-1 flex">
             <span className="mr-4">f)</span>
             <span class="c21">
               <span class="c22 c80">Any </span>

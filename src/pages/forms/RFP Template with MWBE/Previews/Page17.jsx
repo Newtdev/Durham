@@ -6,13 +6,16 @@ const Page17 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 70pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
       className=" flex flex-col justify-between h-full "
     >
       <div>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <ol class="c14 " start="10">
           <li class="c201 c106 c23 flex">
             <span className="mr-8"></span>
@@ -27,7 +30,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">17.</span>
             <span class="c21">
               <span class="c10">WITHDRAWAL OF PROPOSAL</span>
@@ -45,7 +48,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">18.</span>
             <span class="c21">
               <span class="c10">INFORMAL COMMENTS</span>
@@ -61,7 +64,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">19.</span>
             <span class="c21">
               <span class="c10">COST FOR PROPOSAL PREPARATION</span>
@@ -75,7 +78,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">20.</span>
             <span class="c21">
               <span class="c10">VENDOR&rsquo;S REPRESENTATIVE</span>
@@ -89,7 +92,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">21.</span>
             <span class="c21">
               <span class="c10">SUBCONTRACTING</span>
@@ -106,7 +109,7 @@ const Page17 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 c106 flex">
+          <li class="c201 c23 mt-1 c106 flex">
             <span className="mr-4">22.</span>
             <span class="c21">
               <span class="c10">INSPECTION AT VENDOR&rsquo;S SITE</span>
