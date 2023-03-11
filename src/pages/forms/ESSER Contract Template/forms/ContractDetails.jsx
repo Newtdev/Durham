@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
@@ -10,11 +10,11 @@ import { closeModal } from "../../reducer";
 
 const ContractDetails = (props) => {
 	const formID = useSelector(project_document_id);
-	const response = useFetchFilledFormQuery(formID);
-	const [length, setLength] = useState(0);
+	const [a] = UseFetchFilledFormDetails(formID);
+
+	const [vendor, setVendor] = useState([]);
 
 	const dispatch = useDispatch();
-
 	const contractStartDate = {
 		...props,
 		value: props.values.contractStartDate,
@@ -48,40 +48,18 @@ const ContractDetails = (props) => {
 		placeholder: "Select",
 	};
 
-	/***
-     *  contractStartDate: '',
-      fromDuration: '',
-      startDuration: '',
-      calculatePayment: '',
-      allowablePayment: '',
-      reimburseObligation: '',
-      providerCompensation: '',
-      providerInvoice: '',
-      signedDocument: '',
-      type: ''
-     */
-
 	useEffect(() => {
-		if (!response?.data?.data) {
+		if (!a?.data) {
 			return;
 		}
-		setLength(response?.data?.data?.vendors.length);
-		// console.log(response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
-		// props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
-		// props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)
-		// props.setFieldValue('providerCompensation',response?.data?.data?.form_fields.providerCompensation)
-		// props.setFieldValue('signedDocument',response?.data?.data?.form_fields.signedDocument)
-		// props.setFieldValue('providerInvoice',response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('type',response?.data?.data?.form_fields.type)
-	}, [response?.data?.data]);
+		setVendor(a?.data);
+	}, [a?.data]);
 
 	return (
 		<div className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14">
 			<form
 				className="relative w-[600px] bg-white rounded-lg shadow py-4"
 				onSubmit={props.handleSubmit}>
-				{console.log(length)}
 				<div className="flex justify-between items-baseline mx-6">
 					<div>
 						<h3 className="text-lg font-bold text-gray-900">
@@ -102,25 +80,25 @@ const ContractDetails = (props) => {
 					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
 				</div>
 				<div className="px-4">
-					{length > 1 ? (
-						<FormInputContainer name="Who is the provider?">
-							<FormSelect {...addressCopy}>
-								{!props.values.addressCopy ? (
-									<option>Select</option>
-								) : (
-									<option value={props.values.addressCopy}>
-										{props.values.addressCopy}
-									</option>
-								)}
-								<option value="Design Consultant">Design Consultant</option>
-								<option value="Contractor">Contractor</option>
-								<option value="Engineering">Engineering</option>
-								<option value="Construction Manager">
-									Construction Manager
+					<FormInputContainer name="Who is the provider?">
+						<FormSelect {...addressCopy}>
+							{!props.values.addressCopy ? (
+								<option>Select</option>
+							) : (
+								<option value={props.values.addressCopy}>
+									{props.values.addressCopy}
 								</option>
-							</FormSelect>
-						</FormInputContainer>
-					) : null}
+							)}
+							{vendor?.vendors?.map((d, i) => {
+								return (
+									<option key={d?.id} value={d?.company_name}>
+										{d?.company_name}
+									</option>
+								);
+							})}
+						</FormSelect>
+					</FormInputContainer>
+
 					<FormInputContainer name="What day is the contract formally made and entered into?">
 						<SelectDate {...contractStartDate} />
 						{props.errors.contractStartDate &&

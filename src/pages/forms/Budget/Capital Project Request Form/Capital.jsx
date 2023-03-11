@@ -10,7 +10,7 @@ import Cinput from "./forms/FormOne";
 import Estimate from "./forms/FormTwo";
 import { ModalOverlay } from "../../../../ui";
 import { modal } from "../../reducer";
-import { setResult } from "../../../../shared-component";
+import { handleSavedDate, setResult } from "../../../../shared-component";
 import { useEffect } from "react";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 
@@ -75,6 +75,14 @@ const CapitalProjectForm = ({ id, filled }) => {
 			return;
 		}
 
+		Formik.setFieldValue(
+			"startDate",
+			handleSavedDate(a?.data?.form_fields.startDate)
+		);
+		Formik.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields.completionDate)
+		);
 		Formik.setFieldValue("selectOption", a?.data?.form_fields.selectOption);
 		Formik.setFieldValue("Source", a?.data?.form_fields.Source);
 		Formik.setFieldValue("design", a?.data?.form_fields.design);

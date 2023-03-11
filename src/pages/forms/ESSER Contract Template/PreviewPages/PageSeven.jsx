@@ -1,9 +1,9 @@
 const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 	//vendors, project, durham_profile
-	const project = content?.data?.project || "";
+	const project = content?.project;
 	// const vendors = content?.data?.vendors || "";
 	return (
-		<div className="mt-[30rem] pt-20 leading-[1.3]">
+		<div className="mt-[30rem] pt-16 leading-[1.15]">
 			<p className="font-bold mb-4">Exhibit A</p>
 			<p className="font-bold mb-4 text-center">
 				Sexual Offender Registry Check Certification Form
@@ -36,7 +36,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Initial"
 						name="type"
-						checked={form_fields.type === "Initial" ? true : false}
+						checked={form_fields?.type === "Initial" ? true : false}
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
@@ -50,7 +50,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Supplimental"
 						name="type"
-						checked={form_fields.type === "Supplemental" ? true : false}
+						checked={form_fields?.type === "Supplemental" ? true : false}
 						readOnly
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
@@ -64,7 +64,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 						type="checkbox"
 						value="Annual"
 						name="type"
-						checked={form_fields.type === "Annual" ? true : false}
+						checked={form_fields?.type === "Annual" ? true : false}
 						className="w-6 h-6 text-gray-600 bg-gray-100 border-gray-300"
 					/>
 					<label for="default-radio-1" className="ml-2  text-gray-900">
@@ -189,7 +189,7 @@ const PageSeven = ({ form_fields, content, nottoBeHighlighted, awardee }) => {
 			</p>
 
 			{/* <small className="text-[11px]">R2468186</small> */}
-			<div className="w-full flex justify-center mt-6">
+			<div className="w-full flex justify-center mt-24 Times-font">
 				<p>7</p>
 			</div>
 		</div>

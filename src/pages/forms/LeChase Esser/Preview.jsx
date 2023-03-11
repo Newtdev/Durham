@@ -55,9 +55,11 @@ const Preview = () => {
 		if (!vendors) {
 			return;
 		}
+
 		const data = vendors?.filter(
-			(cur) => cur.role === form_fields?.addressCopy
+			(cur) => cur.company_name === form_fields?.addressCopy
 		);
+		console.log(data);
 		if (data.length < 1) {
 			setAwardee(vendors);
 		} else {
@@ -104,8 +106,7 @@ const Preview = () => {
 							style={{ margin: "1in 0.5in" }}>
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
-							{/* <PageThree {...pageProps} /> */}
-							{/* <PageFour {...pageProps} /> */}
+
 							{showPage && <PageThree {...pageProps} />}
 							{showPage && <PageFour {...pageProps} />}
 							<PageFive {...pageProps} />

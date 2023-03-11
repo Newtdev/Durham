@@ -49,7 +49,7 @@ const SexualOffender = ({
 
 					<div className="mx-6 mb-12">
 						<small className="text-gray-900 font-medium">
-							Does this letter need the executive director's approval?
+							To Specify the type of check, check the relevant option.
 						</small>
 						<div className=" mt-3 ml-2">
 							<div className="flex items-center mb-5">
@@ -57,8 +57,8 @@ const SexualOffender = ({
 									id="default-radio-1"
 									type="radio"
 									value="Initial"
-									checked={values.type === "Initial" ? true : false}
 									name="type"
+									checked={values.type === "Initial" ? true : false}
 									onChange={handleChange}
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
 								/>
@@ -89,8 +89,8 @@ const SexualOffender = ({
 									id="default-radio-1"
 									type="radio"
 									value="Annual"
-									name="type"
 									checked={values.type === "Annual" ? true : false}
+									name="type"
 									className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
 									onChange={handleChange}
 								/>

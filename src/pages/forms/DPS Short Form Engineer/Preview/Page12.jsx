@@ -9,7 +9,7 @@ const PageTwelve = () => {
 					</p>
 				</div>
 			</div>
-			<div className="h-[76vh] text-[12pt] mt-auto flex items-end justify-center">
+			<div className="h-[73.5vh] text-[12pt] mt-auto flex items-end justify-center">
 				12
 			</div>
 		</div>

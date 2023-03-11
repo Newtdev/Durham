@@ -116,7 +116,7 @@ const FormOne = (props) => {
 							</FormInputContainer>
 
 							<div className="p-2 flex flex-col gap-2">
-								<h2 className="font-bold">
+								<h2 className="text-sm text-gray-600">
 									To specify the type of check, check the relevant box.
 								</h2>
 								<div className="flex flex-col gap-3">

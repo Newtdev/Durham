@@ -12,16 +12,18 @@ import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { choiceStep, nextChoiceStep } from "./reducer";
-import { setResult } from "../../../shared-component";
+import { handleSavedDate, setResult } from "../../../shared-component";
+import { useEffect } from "react";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
-const EsserContract = ({ id }) => {
+const EsserContract = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(choiceStep);
 	const show = useSelector(modal);
-
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -51,9 +53,11 @@ const EsserContract = ({ id }) => {
 			providerInvoice: "",
 			signedDocument: "",
 			type: "",
+			addressCopy: "",
 		},
 		validationSchema: EESSERContractSchema[pages],
 		validateOnChange: false,
+
 		onSubmit: (values) => {
 			if (pages === 2) {
 				dispatch(saveFormField(values));
@@ -61,9 +65,7 @@ const EsserContract = ({ id }) => {
 				HandleSubmit(values);
 			} else if (pages === 1) {
 				dispatch(nextChoiceStep(2));
-			} else if (pages === 0) {
-				dispatch(nextChoiceStep(1));
-			}
+			} else if (pages === 0) dispatch(nextChoiceStep(1));
 		},
 	});
 
@@ -72,12 +74,68 @@ const EsserContract = ({ id }) => {
 		isLoading,
 	};
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		Formik.setFieldValue(
+			"contractStartDate",
+			handleSavedDate(a?.data?.form_fields.contractStartDate)
+		);
+		Formik.setFieldValue(
+			"fromDuration",
+			handleSavedDate(a?.data?.form_fields.fromDuration)
+		);
+		Formik.setFieldValue(
+			"signedDocument",
+			handleSavedDate(a?.data?.form_fields.signedDocument)
+		);
+		Formik.setFieldValue(
+			"startDuration",
+			handleSavedDate(a?.data?.form_fields.startDuration)
+		);
+		Formik.setFieldValue(
+			"calculatePayment",
+			a?.data?.form_fields.calculatePayment
+		);
+		Formik.setFieldValue(
+			"allowablePayment",
+			a?.data?.form_fields.allowablePayment
+		);
+		Formik.setFieldValue(
+			"reimburseObligation",
+			a?.data?.form_fields.reimburseObligation
+		);
+		Formik.setFieldValue(
+			"providerInvoice",
+			a?.data?.form_fields.providerInvoice
+		);
+		Formik.setFieldValue(
+			"signedDocument",
+			handleSavedDate(a?.data?.form_fields.signedDocument)
+		);
+		Formik.setFieldValue(
+			"providerCompensation",
+			a?.data?.form_fields?.providerCompensation
+		);
+		Formik.setFieldValue("type", a?.data?.form_fields.type);
+		Formik.setFieldValue("addressCopy", a?.data?.form_fields.addressCopy);
+	}, [a?.data]);
+
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === ESSERContract && show}>
+				{pages === 0 && <ContractDetails {...Formik} />}
+				{pages === 1 && <Compensation {...Formik} />}
+				{pages === 2 && <SexualOffender {...props} />}
+				{pages === 3 && <Preview />}
+			</ModalOverlay>
+		);
+	}
+
 	return (
 		<ModalOverlay show={id === ESSERContract && show}>
-			{pages === 0 && <ContractDetails {...Formik} />}
-			{pages === 1 && <Compensation {...Formik} />}
-			{pages === 2 && <SexualOffender {...props} />}
-			{pages === 3 && <Preview {...Formik} />}
+			<Preview />
 		</ModalOverlay>
 	);
 };

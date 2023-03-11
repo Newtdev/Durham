@@ -2,7 +2,7 @@ import currency from "currency.js";
 
 const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 	return (
-		<div className="mt-[31rem] pt-20 leading-[1.21]">
+		<div className="mt-[31rem] pt-[5rem] leading-[1.15] flex flex-col justify-between">
 			{/* 4 */}
 			<div className="flex mb-2">
 				<p>4.</p>
@@ -14,7 +14,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							The School System hereby agrees to compensate Provider in the
 							amount of{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{currency(form_fields.providerCompensation).format()}
+								{currency(form_fields?.providerCompensation).format()}
 							</span>{" "}
 							once all services have been rendered in accordance with the terms
 							of this Contract. Provider shall provide School System with
@@ -98,7 +98,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 							forty-five (45) days of submission of such invoices. Invoices
 							should be sent to{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{!form_fields ? "" : form_fields.providerInvoice},
+								{!form_fields ? "" : form_fields?.providerInvoice},
 							</span>{" "}
 							Durham Public Schools, 511 Cleveland Street, Durham, NC 27702, for
 							review and approval.
@@ -197,7 +197,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted }) => {
 				</div>
 			</div>
 
-			<div className="w-full flex justify-center mt-6">
+			<div className="w-full flex justify-center mt-6 Times-font">
 				<p>2</p>
 			</div>
 		</div>

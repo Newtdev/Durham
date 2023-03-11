@@ -2,8 +2,8 @@ import moment from "moment";
 
 const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 	return (
-		<div className="pt-8 pb-4 text-black text-[10pt] h-[11in] ">
-			<div>
+		<div className="pt-8 pb-4 text-black text-[10pt] h-[11in]">
+			<div className="flex flex-col justify-between">
 				{/* Page 10 */}
 				<div className="m-[1in]">
 					<div className="mt-12">
@@ -17,10 +17,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 
 						<div className="grid grid-cols-4 gap-4 mb-8">
 							<div className="col-span-3">
-								<p>
-									____________________________________________________________________________________________
-								</p>
-								<p>
+								<p className="border-b border-black">
 									<span className={`${nottoBeHighlighted}`}>
 										{durham?.director_of_construction_and_sustainability?.name}
 									</span>
@@ -28,7 +25,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 								</p>
 							</div>
 							<div>
-								<p>
+								<p className=" border-b border-black">
 									<span className={`${nottoBeHighlighted}`}>
 										{moment(formDetails?.directorSignDate).format(
 											"MMMM D, YYYY"
@@ -46,10 +43,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 
 						<div className="grid grid-cols-4 gap-4 mb-6">
 							<div className="col-span-3">
-								<p>
-									____________________________________________________________________________________________
-								</p>
-								<p>
+								<p className="border-b border-black">
 									<span className={`${nottoBeHighlighted}`}>
 										{durham?.chief_finance_officer?.name}
 									</span>
@@ -57,7 +51,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 								</p>
 							</div>
 							<div>
-								<p>
+								<p className="border-b border-black">
 									<span className={`${nottoBeHighlighted}`}>
 										{moment(formDetails?.officerSignDate).format(
 											"MMMM D, YYYY"
@@ -88,7 +82,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 							</div>
 						</div>
 
-						<p className="mb-8">
+						<p className="mb-8 ">
 							<span className={`${nottoBeHighlighted}`}>
 								{!vendor[0] ? "" : vendor[0]?.company_name}
 							</span>
@@ -103,7 +97,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 						<p>STATE OF NORTH CAROLINA</p>
 						<p>COUNTY OF DURHAM</p>
 
-						<p className="my-4 text-justify">
+						<p className="my-4 text-justify leading-[1.3]">
 							<span className="ml-12">I,</span> a Notary Public in and for the
 							aforesaid County and State, do hereby certify that
 							____________________ personally appeared before me this day and
@@ -143,7 +137,7 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 						<p>My commission expires:___________</p>
 					</div>
 				</div>
-				<div className="h-[4.5rem] text-[12pt] mt-auto flex items-end justify-center">
+				<div className=" text-[12pt] flex items-end justify-center mb-6">
 					10
 				</div>
 			</div>

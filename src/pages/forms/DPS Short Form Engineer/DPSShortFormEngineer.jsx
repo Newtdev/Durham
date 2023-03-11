@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import { DPSShortFormEngineer } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
@@ -22,26 +24,12 @@ const DPSShortFormEngineerForm = ({ id, filled }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
-		const param = Object.keys(values);
-		const val = Object.values(values);
-
-		console.log("values: ", values);
-
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: [
-				{ field_name: param[0], field_value: val[0] },
-				{ field_name: param[1], field_value: val[1] },
-				{ field_name: param[2], field_value: val[2] },
-				{ field_name: param[3], field_value: val[3] },
-				{ field_name: param[4], field_value: val[4] },
-				{ field_name: param[5], field_value: val[5] },
-				{ field_name: param[6], field_value: val[6] },
-				{ field_name: param[7], field_value: val[7] },
-				{ field_name: param[8], field_value: val[8] },
-			],
+			form_fields: setResult(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -70,12 +58,8 @@ const DPSShortFormEngineerForm = ({ id, filled }) => {
 		// validationSchema: DPSShortFormEngineerSchema[pages - 1],
 		onSubmit: (values) => {
 			if (pages === 1) {
-				console.log("pages: ", values);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
-				console.log("pages: ", pages);
-				// dispatch(nextStep(3));
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
@@ -87,6 +71,36 @@ const DPSShortFormEngineerForm = ({ id, filled }) => {
 			dispatch(getStates(response));
 		})();
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		console.log(a?.data);
+		formik.setFieldValue(
+			"agreementDate",
+			handleSavedDate(a?.data?.form_fields.agreementDate)
+		);
+		formik.setFieldValue(
+			"directorSignDate",
+			handleSavedDate(a?.data?.form_fields.directorSignDate)
+		);
+		formik.setFieldValue(
+			"officerSignDate",
+			handleSavedDate(a?.data?.form_fields.officerSignDate)
+		);
+		formik.setFieldValue(
+			"notarySealDate",
+			handleSavedDate(a?.data?.form_fields.notarySealDate)
+		);
+
+		formik.setFieldValue("checkType", a?.data?.form_fields.checkType);
+		formik.setFieldValue("address", a?.data?.form_fields.address);
+		formik.setFieldValue("state", a?.data?.form_fields.state);
+		formik.setFieldValue("city", a?.data?.form_fields.city);
+
+		formik.setFieldValue("zipCode", a?.data?.form_fields?.zipCode);
+	}, [a?.data]);
 
 	const formProps = {
 		...formik,

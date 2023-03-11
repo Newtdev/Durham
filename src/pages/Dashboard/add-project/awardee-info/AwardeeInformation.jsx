@@ -38,24 +38,7 @@ const AwardeeInformation = (props) => {
 										<div className="w-1/2"></div>
 										<button
 											className={`${index === 0 ? "hidden" : "block"}`}
-											onClick={() =>
-												arrayHelpers.remove({
-													role: "",
-													type: "old",
-													// awardee: "",
-													company_name: "",
-													street: "",
-													state: "",
-													city: "",
-													zip_code: "",
-													president: "",
-													secretary: "",
-													first_name: "",
-													last_name: "",
-													title: "",
-													vendor_id: "",
-												})
-											}>
+											onClick={() => arrayHelpers.remove(index)}>
 											<Close />
 										</button>
 										<hr />

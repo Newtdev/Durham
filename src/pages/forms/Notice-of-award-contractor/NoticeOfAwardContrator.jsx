@@ -76,6 +76,7 @@ const NoticeOfAwardContrator = ({ id, filled }) => {
 		formik.setFieldValue("position", a?.data?.form_fields.position);
 		formik.setFieldValue("recipientName", a?.data?.form_fields.recipientName);
 		formik.setFieldValue("recipientTitle", a?.data?.form_fields.recipientTitle);
+		formik.setFieldValue("sendersName", a?.data?.form_fields.sendersName);
 	}, [a?.data]);
 
 	const formProps = {

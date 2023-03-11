@@ -7,7 +7,7 @@ const PageThirteen = () => {
 					<p className="text-center text-xs">Exhibit B - Hourly Rates</p>
 				</div>
 			</div>
-			<div className="h-[76vh]   text-[12pt] mt-auto flex items-end justify-center">
+			<div className="h-[74vh]   text-[12pt] mt-auto flex items-end justify-center">
 				13
 			</div>
 		</div>

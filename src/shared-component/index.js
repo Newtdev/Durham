@@ -1,5 +1,6 @@
 import moment from "moment";
 import { PDFDocument } from "pdf-lib";
+import { string } from "yup";
 
 export const fetchData = () => {
 	const durhamProfile = JSON.parse(localStorage.getItem("DurhamProfiles"));
@@ -344,11 +345,19 @@ export const parseDynamicInput = (data) => {
 	return JSON.parse(data);
 };
 
+export const handleSavedDate = (data) => {
+	if (!data) {
+		return new Date();
+	}
+	return new Date(data);
+};
+
 export const trucateText = (str, limit = 100) => {
 	if (!str) {
 		return;
 	}
-	let strTotal = str.split(" ");
+
+	let strTotal = str.trim().split(" ");
 	if (strTotal.length > limit) {
 		return strTotal.slice(0, limit).join(" ") + "...";
 	}

@@ -2,23 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	closeDownload,
 	closeModal,
-	fields,
 	openDownload,
-	savedResponse,
 	showDownload,
 } from "../reducer";
-import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
 import {
 	project_document_id,
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { prevChoiceStep, stepChoiceDefault } from "./reducer";
 import PageOne from "./PreviewPages/PageOne";
 import PageTwo from "./PreviewPages/PageTwo";
@@ -38,20 +33,14 @@ const Preview = () => {
 
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
 	const [awardee, setAwardee] = useState([]);
 	const [showPage, setShow] = useState(false);
-	// const content = useSelector(savedResponse);
 
 	const [a] = UseFetchFilledFormDetails(formID);
-	const vendors = a?.data?.vendors || [];
-	const project = a?.data?.project || {};
-	const form_fields = a?.data?.form_fields || {};
-	const pageContent = a?.data || {};
 
-	// const vendors = content?.data?.data.vendors;
-	// const form_fields = useSelector(fields);
-	// const pageContent = content?.data;
+	const vendors = a?.data?.vendors;
+	const form_fields = a?.data?.form_fields;
+	const pageContent = a?.data;
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
 	const props = {
@@ -63,13 +52,17 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!vendors || !form_fields?.addressCopy) {
-			setAwardee(vendors);
+		if (!vendors) {
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
-
-		setAwardee(vendors);
+		const data = vendors?.filter(
+			(cur) => cur.company_name === form_fields?.addressCopy
+		);
+		if (data.length < 1) {
+			setAwardee(vendors);
+		} else {
+			setAwardee(data);
+		}
 	}, [vendors, form_fields]);
 
 	const pageProps = {
@@ -81,7 +74,6 @@ const Preview = () => {
 	return (
 		<div>
 			<DownLoadForm {...props} />
-
 			<div>
 				{/* Modal content */}
 				<div
@@ -107,17 +99,18 @@ const Preview = () => {
 					</div>
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
-							className="bg-white text-black Times-font text-[14.7px]"
+							className="bg-white text-black Times-font text-[15.5px]"
 							ref={downloadComponent}
 							style={{ margin: "1in 0.5in" }}>
 							<PageOne {...pageProps} />
 							<PageTwo {...pageProps} />
-							{showPage && <PageThree />}
-							{showPage && <PageFour />}
+
+							{showPage && <PageThree {...pageProps} />}
+							{showPage && <PageFour {...pageProps} />}
 							<PageFive {...pageProps} />
 							<PageSix {...pageProps} />
 							<PageSeven {...pageProps} />
-							<PageEight />
+							<PageEight {...pageProps} />
 						</div>
 					</div>
 					{/* Buttons */}
@@ -126,8 +119,8 @@ const Preview = () => {
 							width="w-[171px]"
 							name="Edit document"
 							onClick={() => {
-								dispatch(selectFilled(false));
 								dispatch(prevChoiceStep(2));
+								dispatch(selectFilled(false));
 							}}
 						/>
 						<DashboardButton
