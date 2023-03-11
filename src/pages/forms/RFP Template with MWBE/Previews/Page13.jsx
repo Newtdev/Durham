@@ -6,7 +6,7 @@ const Page13 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 70pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
@@ -30,7 +30,7 @@ const Page13 = () => {
           <span class="c34"></span>
         </p>
         <ol class="c14" start="1">
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">1.</span>
             <span class="c21">
               <span class="c10">READ, REVIEW AND COMPLY</span>
@@ -44,7 +44,7 @@ const Page13 = () => {
               </span>
             </span>
           </li>
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">2.</span>
             <span class="c21">
               <span class="c10">LATE PROPOSALS</span>
@@ -58,7 +58,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">3.</span>
             <span class="c21">
               <span class="c10">ACCEPTANCE AND REJECTION</span>
@@ -74,7 +74,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">4.</span>
             <span class="c21">
               <span class="c10">BASIS FOR REJECTION</span>
@@ -96,7 +96,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">5.</span>
             <span class="c21">
               <span class="c10">EXECUTION</span>
@@ -108,7 +108,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">6.</span>
             <span class="c21">
               <span class="c10">ORDER OF PRECEDENCE</span>
@@ -127,7 +127,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">7.</span>
             <span class="c21">
               <span class="c10">INFORMATION AND DESCRIPTIVE LITERATURE</span>
@@ -146,7 +146,7 @@ const Page13 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 c106 flex ml-4">
             <span className="mr-4">8.</span>
             <span class="c21">
               <span class="c10">SUSTAINABILITY</span>
@@ -171,7 +171,7 @@ const Page13 = () => {
               minimum post-consumer content of 30%.
             </span>
           </li>
-          <li class="c42 c32 c23">
+          <li class="c42 c32 c23 ">
             <span class="c21">
               Unless absolutely necessary, all proposals and copies should
               minimize or eliminate use of non-recyclable or non-reusable
@@ -180,7 +180,7 @@ const Page13 = () => {
               paper clips, and staples are acceptable.
             </span>
           </li>
-          <li class="c218 c23 c101 ">
+          <li class="c218 c23 c101">
             <span class="c21">
               Materials should be submitted in a format which allows for easy
               removal, filing and/or recycling of paper and binder materials.
@@ -190,7 +190,7 @@ const Page13 = () => {
           </li>
         </ul>
         <ol class="c14 " start="9">
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-1 flex ml-4 c106">
             <span className="mr-4">9.</span>
             <span class="c21">
               <span class="c10 c121 c80">

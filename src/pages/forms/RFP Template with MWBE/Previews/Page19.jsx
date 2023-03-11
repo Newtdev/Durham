@@ -6,7 +6,7 @@ const Page19 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 72pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
@@ -80,7 +80,7 @@ const Page19 = () => {
           </li>
 
           <li class="c201 c23 mt-1 c106 flex">
-            <span className="mr-4">10.</span>
+            <span className="mr-2">10.</span>
             <span class="c21">
               <span class="c10">ADVERTISING</span>
               <span class="c66 c45">:</span>
@@ -96,7 +96,7 @@ const Page19 = () => {
           </li>
 
           <li class="c201 c23 mt-1 c106 flex">
-            <span className="mr-4">11.</span>
+            <span className="mr-2">11.</span>
             <span class="c21">
               <span class="c10">ACCESS TO PERSONS AND RECORDS</span>
               <span class="c66 c45">:</span>
@@ -111,7 +111,7 @@ const Page19 = () => {
           </li>
 
           <li class="c201 c23 mt-1 c106 flex">
-            <span className="mr-4">12.</span>
+            <span className="mr-2">12.</span>
             <span class="c21">
               <span class="c10">ASSIGNMENT</span>
               <span class="c66 c45">:</span>
@@ -124,7 +124,7 @@ const Page19 = () => {
           </li>
         </ol>
 
-        <li class="c201 c23 mt-1 c106 flex">
+        <li class="c201 c23 c106 flex">
           <span className="mr-4"></span>
           <span class="c21 ml-4">
             <span class="c21">
@@ -146,7 +146,7 @@ const Page19 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 c106 flex ml-24">
+          <li class="c201 c23 c106 flex ml-24">
             <span className="mr-4">b)</span>
             <span class="c21">
               <span class="c21">
@@ -156,7 +156,7 @@ const Page19 = () => {
             </span>
           </li>
         </ol>
-        <p class="c79">
+        <p class="c79" style={{ marginLeft: "2rem" }}>
           <span class="c21 c106">
             In no event shall such approval and action obligate Durham Public
             Schools to anyone other than the Vendor and the Vendor shall remain
@@ -190,7 +190,7 @@ const Page19 = () => {
         </ol>
 
         <ol>
-          <li class="c201 c23 mt-1 c106 flex ml-8">
+          <li class="c201 c23 mt-1 c106  ml-9">
             <span className="mr-4">a.</span>
             <span class="c21">
               <span class="c10">Worker&rsquo;s Compensation</span>

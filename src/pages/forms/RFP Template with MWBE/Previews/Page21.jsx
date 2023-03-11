@@ -10,9 +10,12 @@ const Page21 = () => {
         paddingTop: "3rem",
         height: "10.7in",
       }}
-      className=" flex flex-col justify-between h-full "
+      className=" flex flex-col justify-between h-full"
     >
       <div>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <ol class="c14 " start="15">
           <li class="c201 c23 c106 flex">
             <span className="mr-4">20.</span>
@@ -184,6 +187,19 @@ const Page21 = () => {
             </span>
           </li>
         </ol>
+
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
+        <p
+          className="text-center"
+          style={{ fontFamily: "Arial", fontSize: "14pt" }}
+        >
+          This Space is Intentionally Left Blank
+        </p>
       </div>
 
       <div className="flex flex-col justify-center">

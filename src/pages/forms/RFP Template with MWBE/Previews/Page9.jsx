@@ -10,9 +10,12 @@ const Page9 = () => {
         paddingTop: "3rem",
         height: "10.7in",
       }}
-      className=" flex flex-col justify-between h-full "
+      className=" flex flex-col justify-between h-full"
     >
       <>
+        <p class="c17 c12 c60">
+          <span class="c51"></span>
+        </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
             <span className="c89 mr-2">4.10</span>{" "}
@@ -21,7 +24,7 @@ const Page9 = () => {
         </ol>
 
         <ol class="c14 " start="1">
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-2 flex ml-4 c106">
             <span className="mr-4">a)</span>
             <span class="c21">
               Vendor warrants that qualified personnel shall provide services
@@ -44,7 +47,7 @@ const Page9 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-2 flex ml-4 c106">
             <span className="mr-4">b)</span>
             <span class="c21">
               If any services, deliverables, functions, or responsibilities not
@@ -63,7 +66,7 @@ const Page9 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex ml-4">
+          <li class="c201 c23 mt-2 flex ml-4 c106">
             <span className="mr-4">c)</span>
             <span class="c21">
               Vendor warrants that it has the financial capacity to perform and

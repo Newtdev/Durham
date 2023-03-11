@@ -20,7 +20,14 @@ const Page24 = () => {
         <p class="c15 c12">
           <span class="c2"></span>
         </p>
-        <p class="c15 " style={{ lineHeight: "1.15" }}>
+        <p
+          class="c15 "
+          style={{
+            fontFamily: "calibri",
+            fontSize: "11pt",
+            lineHeight: "1.15",
+          }}
+        >
           <span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lessee&rsquo;s
             operations are funded under appropriations or budgetary approvals
@@ -65,7 +72,13 @@ const Page24 = () => {
         <p class="c15 c12">
           <span class="c2"></span>
         </p>
-        <h5 class="c15 c23 c128" style={{ textAlign: "center" }}>
+        <p class="c15 c12">
+          <span class="c2"></span>
+        </p>
+        <p class="c15 c12">
+          <span class="c2"></span>
+        </p>
+        <h5 class="c15 c23 c128 ml-[20rem]">
           <span class="c34">Durham Public Schools</span>
         </h5>
       </div>

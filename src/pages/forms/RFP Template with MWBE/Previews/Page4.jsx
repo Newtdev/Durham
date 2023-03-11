@@ -12,7 +12,7 @@ const Page4 = (props) => {
       }}
       className=" flex flex-col justify-between h-full"
     >
-      <>
+      <div>
         <p class="c27">
           <span class="c30">
             Schools terms and conditions in the proposal itself shall not be
@@ -131,71 +131,35 @@ const Page4 = (props) => {
           </span>
           <span class="c66 c45">&nbsp;</span>
         </p>
-        <ol class="c14 lst-kix_list_35-0 start" start="1">
-          <li class="c23 c189 c282 li-bullet-0">
-            <span class="c22">
-              Submit your proposal in a sealed package. &nbsp;Clearly mark each
-              package with: (1){" "}
-            </span>
-            <span class="c22 c130">Vendor name</span>
-            <span class="c22">; (2) </span>
-            <span class="c22 c130">the RFP</span>
-            <span class="c22">&nbsp;</span>
-            <span class="c22 c130">number</span>
-            <span class="c22">; and (3) </span>
-            <span class="c22 c130">the due date</span>
+        <ol class="c14 " start="1">
+          <li class="c201 c23 c106 flex">
+            <span className="mr-4">a)</span>
             <span class="c21">
-              . Address the package(s) for delivery as shown in the table above.
-              If Vendor is submitting more than one (1) proposal, each proposal
-              shall be submitted in separate sealed envelopes and marked
-              accordingly. &nbsp;For delivery purposes, separate sealed
-              envelopes from a single Vendor may be included in the same outer
-              package. &nbsp;Proposals are subject to rejection unless submitted
-              with the information above included on the outside of the sealed
-              proposal package. &nbsp;
+              <span class="c22">
+                Submit your proposal in a sealed package. &nbsp;Clearly mark
+                each package with: (1){" "}
+              </span>
+              <span class="c22 c130">Vendor name</span>
+              <span class="c22">; (2) </span>
+              <span class="c22 c130">the RFP</span>
+              <span class="c22">&nbsp;</span>
+              <span class="c22 c130">number</span>
+              <span class="c22">; and (3) </span>
+              <span class="c22 c130">the due date</span>
+              <span class="c21">
+                . Address the package(s) for delivery as shown in the table
+                above. If Vendor is submitting more than one (1) proposal, each
+                proposal shall be submitted in separate sealed envelopes and
+                marked accordingly. &nbsp;For delivery purposes, separate sealed
+                envelopes from a single Vendor may be included in the same outer
+                package. &nbsp;Proposals are subject to rejection unless
+                submitted with the information above included on the outside of
+                the sealed proposal package. &nbsp;
+              </span>
             </span>
           </li>
         </ol>
-        <p class="c58 c23 c305" id="h.2et92p0">
-          <span class="c51">2.1 PROPOSAL CONTENTS</span>
-        </p>
-        <p class="c23 c179">
-          <span class="c22 c80">
-            Vendors shall populate all attachments of this RFP that require the
-            Vendor to provide information and include an authorized signature
-            where requested. Vendor RFP responses shall include the following
-            items and those attachments should be arranged in the following
-            order:
-          </span>
-        </p>
-        {/* <ol class="c14 lst-kix_list_24-0 start" start="1">
-        <li class="c119 c32 c23 c68 li-bullet-0">
-          <span class="c21">Cover Letter</span>
-        </li>
-        <li class="c119 c32 c23 c68 li-bullet-0">
-          <span class="c21">
-            Title Page: Include the company name, address, phone number and
-            authorized representative along with the Proposal Number.
-          </span>
-        </li>
-        <li class="c119 c32 c23 c68 li-bullet-0">
-          <span class="c21">
-            Completed and signed version of EXECUTION PAGES, along with the body
-            of the RFP, and signed receipt pages of any addenda released in
-            conjunction with this RFP (if required to be returned).
-          </span>
-        </li>
-      </ol> */}
-        <ol
-          class="c14 lst-kix_list_24-0 start"
-          start="1"
-          className={`${props.nottoBeHighlighted}`}
-        >
-          <li class="c119 c32 c23 c68 li-bullet-0">
-            <span class="c21"> {props?.form_fields?.items}</span>
-          </li>
-        </ol>
-      </>
+      </div>
       <div className=" flex flex-col justify-center">
         <p className="font-extrabold text-black mb-3 text-center">
           <b></b>

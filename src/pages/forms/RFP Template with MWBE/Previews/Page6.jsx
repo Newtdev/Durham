@@ -13,7 +13,7 @@ const Page6 = () => {
       className=" flex flex-col justify-between h-full"
       // className="border border-black"
     >
-      <>
+      <div>
         <p class="c23 c139" id="h.3rdcrjn">
           <span class="c22">
             having any communications with any person inside or outside the
@@ -162,7 +162,7 @@ const Page6 = () => {
             stated in the Request for
           </span>
         </p>
-      </>
+      </div>
       <div className=" flex flex-col justify-center">
         <p className="font-extrabold text-black mb-3 text-center">
           <b></b>

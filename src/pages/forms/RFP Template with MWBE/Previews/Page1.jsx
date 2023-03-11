@@ -56,7 +56,7 @@ const Page1 = (props) => {
               <p class="c3 c12">
                 <span class="c92 c81 c80"></span>
               </p>
-              <p class="c182">
+              <p class="c182" style={{ fontSize: "10pt" }}>
                 {/* <span class="c68 c89">RFP# 179-2122-621-LF-SOLAR</span> */}
                 <span class={`c89 ${props?.nottoBeHighlighted}`}>
                   {props?.form_fields?.rfpNumber}
@@ -82,29 +82,20 @@ const Page1 = (props) => {
               <p class="c15 c12">
                 <span class="c46"></span>
               </p>
-              <p class="c182">
+              <p class="c182" style={{ fontSize: "10pt" }}>
                 {/* <span class="c89 c68">RFP# 179-2122-621-LF-SOLAR</span> */}
                 <span class={`c89 ${props?.nottoBeHighlighted}`}>
                   {props?.form_fields?.rfpNumber}
                 </span>
               </p>
-              <p class="c15">
+              <p class="c15 z-50" style={{ zIndex: "5" }}>
                 <span class="c46">
                   &nbsp;_______________________________________
                 </span>
               </p>
-              <p class="c163">
+              <p class="c163 mt-1">
                 <span class="c89">Proposals Due: &nbsp;</span>
                 <span class={`c66  ${props?.nottoBeHighlighted}`}>
-                  {/* <span className={`inline-block`}>
-                  {moment(props?.form_fields?.proposalDate).format("MMMM")}
-                </span>{" "}
-                <span className={` inline-block`}>
-                  {moment(props?.form_fields?.proposalDate).format("Do")},
-                </span>{" "}
-                <span className={` inline-block`}>
-                  {moment(props?.form_fields?.proposalDate).format("YYYY")}
-                </span> */}
                   {moment(props?.form_fields?.proposalDate).format(
                     "MMMM D, YYYY"
                   )}
@@ -121,7 +112,7 @@ const Page1 = (props) => {
           </tr>
           <tr class="c185">
             <td class="c13" colspan="1" rowspan="1">
-              <p class="c3">
+              <p class="c3 mt-1">
                 <span class="c24">
                   Direct all inquiries concerning this RFP to:
                 </span>
@@ -130,13 +121,12 @@ const Page1 = (props) => {
                 <span class="c24">Durham Public Schools</span>
               </p>
               <p class="c15">
-                <span className="mr-2 font-bold">Attn:</span>
                 <span class={`c26 ${props?.nottoBeHighlighted}`}>
-                  {" "}
+                  <span className="mr-2 font-bold">Attn:</span>{" "}
                   {props?.form_fields?.personName}
                 </span>
               </p>
-              <p class="c129">
+              <p class="c129 font-extrabold" style={{ fontSize: "10pt" }}>
                 <span class="c98 c45 c168">
                   All questions must be submitted{" "}
                 </span>
@@ -150,7 +140,10 @@ const Page1 = (props) => {
                   {" "}
                   than{" "}
                 </span>
-                <span class={`c66  ${props?.nottoBeHighlighted}`}>
+                <span
+                  class={`c66  ${props?.nottoBeHighlighted}`}
+                  style={{ fontSize: "10pt" }}
+                >
                   {moment(props?.form_fields?.submissionDate).format(
                     "MMMM Do YYYY "
                   )}
@@ -163,8 +156,8 @@ const Page1 = (props) => {
               </p>
             </td>
             <td class="c118" colspan="1" rowspan="1">
-              <p class="c3">
-                <span class="c45 c98">Contract Type: &nbsp;</span>
+              <p class="c3 mt-1" style={{ fontSize: "10pt" }}>
+                <span class="c45 c98 ">Contract Type: &nbsp;</span>
                 <span class={`c98 c45 c130 ${props?.nottoBeHighlighted}`}>
                   {props?.form_fields?.contractType}
                 </span>
@@ -218,8 +211,16 @@ const Page1 = (props) => {
             </span>
           </span>{" "}
         </p>
-        <p class="c8" style={{ lineHeight: 1.2, fontSize: "9pt" }}>
-          <span class="c130 c98 c45">NOTE:</span>
+        <p
+          class="c8"
+          style={{
+            lineHeight: 1.2,
+            fontSize: "10pt",
+            fontFamily: "calibri",
+            fontWeight: 700,
+          }}
+        >
+          <span class="c130 c45">NOTE:</span>
           <span class="c98 c45">
             &nbsp; Questions concerning the specifications in this Request for
             Proposals will be received until date and time listed above.
@@ -239,15 +240,40 @@ const Page1 = (props) => {
         <p class="c3 c12">
           <span class="c70 c81 c96"></span>
         </p>
-        <p class="c3">
-          <span class="c70 c81 c96">NOTICE TO BIDDERS</span>
+        <p
+          class="c3 mb-2"
+          style={{
+            lineHeight: 1.2,
+            fontSize: "10pt",
+            fontFamily: "calibri",
+            fontWeight: 700,
+          }}
+        >
+          <span class="c70 c81 c96 ">NOTICE TO BIDDERS</span>
         </p>
-        <p class="c3" style={{ fontSize: "10pt", lineHeight: "1.2" }}>
-          <span class="c98 c45">
+
+        <p
+          class="c3"
+          style={{
+            lineHeight: 1.2,
+            fontSize: "10pt",
+            fontFamily: "calibri",
+            fontWeight: 700,
+          }}
+        >
+          <span class=" c45">
             Sealed and online (IPS) proposals subject to the conditions made a
             part hereof, will be received until{" "}
           </span>
-          <span class={`c66  ${props?.nottoBeHighlighted}`}>
+          <span
+            class={`c66  ${props?.nottoBeHighlighted}`}
+            style={{
+              lineHeight: 1.2,
+              fontSize: "10pt",
+              fontFamily: "calibri",
+              fontWeight: 700,
+            }}
+          >
             <span className={`inline-block mr-2`}>
               {moment(props?.form_fields?.submissionTime).format("h:mma")} on
             </span>
@@ -262,8 +288,16 @@ const Page1 = (props) => {
             herein and then publically opened. &nbsp;
           </span>
         </p>
-        <p class="c8" style={{ fontSize: "10pt", lightHeight: "1.5" }}>
-          <span class="c98 c45">
+        <p
+          class="c8"
+          style={{
+            lineHeight: 1.5,
+            fontSize: "10pt",
+            fontFamily: "calibri",
+            fontWeight: 700,
+          }}
+        >
+          <span class=" c45">
             Bids submitted via telegraph, facsimile (FAX) machine, telephone and
             electronic means, including but not limited to e-mail, in response
             to this Request for Proposals{" "}
@@ -279,9 +313,19 @@ const Page1 = (props) => {
         </p>
         <p
           class={`c3 ${props?.nottoBeHighlighted}`}
-          style={{ fontSize: "10pt", lineHeight: "1.5" }}
+          style={{ fontSize: "10pt", lineHeight: "1.2" }}
         >
-          <span class="c98 c45 c68">Digital submissions through the </span>
+          <span
+            class="c45 c68"
+            style={{
+              lineHeight: 1.2,
+              fontSize: "10pt",
+              fontFamily: "calibri",
+              fontWeight: 700,
+            }}
+          >
+            Digital submissions through the{" "}
+          </span>
           <span class="c130 c45 c68 c307">
             <a
               class="c78"
@@ -290,7 +334,15 @@ const Page1 = (props) => {
               Interactive Purchasing System (IPS)
             </a>
           </span>
-          <span class="c98 c45 c68">
+          <span
+            class="c98 c45 c68"
+            style={{
+              lineHeight: 1.2,
+              fontSize: "10pt",
+              fontFamily: "calibri",
+              fontWeight: 700,
+            }}
+          >
             &nbsp;is preferred. &nbsp;Submission type, online or hard copy, will
             not affect proposal scoring. If submitting a hard copy, please
             submit 1 copy.

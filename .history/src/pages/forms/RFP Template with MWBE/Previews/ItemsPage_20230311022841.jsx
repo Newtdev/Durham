@@ -1,0 +1,72 @@
+import React from "react";
+
+const ItemsPage = (props) => {
+  let itemsList = [];
+
+  if (props.form_fields.items) {
+    itemsList = JSON.parse(props.form_fields.items);
+  }
+  console.log(itemsList);
+
+  return (
+    <div
+      style={{
+        margin: "1in 30pt 3rem 60pt",
+        paddingTop: "3rem",
+        height: "10.7in",
+      }}
+      className=" flex flex-col justify-between h-full"
+    >
+      <div>
+        <p class="c58 c23 c305" id="h.2et92p0">
+          <span class="c51">2.1 PROPOSAL CONTENTS</span>
+        </p>
+        <p class="c23 c179">
+          <span class="c22 c80">
+            Vendors shall populate all attachments of this RFP that require the
+            Vendor to provide information and include an authorized signature
+            where requested. Vendor RFP responses shall include the following
+            items and those attachments should be arranged in the following
+            order:
+          </span>
+        </p>
+        <ol
+          class="c14 lst-kix_list_24-0 start"
+          start="1"
+          className={`${props.nottoBeHighlighted}`}
+        >
+          <li class="c201 c23 mt-1 c106 flex">
+            <span className="mr-4">17.</span>
+            <span class="c21">
+              <span class="c10">WITHDRAWAL OF PROPOSAL</span>
+              <span class="c21">
+                : &nbsp;a Proposal may be withdrawn only in writing and actually
+                received by the office issuing the RFP prior to the time for the
+                opening of Proposals identified on the cover page of this RFP
+                (or such later date included in an Addendum to the RFP). &nbsp;A
+                withdrawal request must be on Vendor&rsquo;s letterhead and
+                signed by an official of the Vendor authorized to make such
+                request. &nbsp;Any withdrawal request made after the opening of
+                Proposals shall be allowed only for good cause shown and in the
+                sole discretion of the Division of Purchase and Contract.
+              </span>
+            </span>
+          </li>
+        </ol>
+      </div>
+      <div className=" flex flex-col justify-center">
+        <p className="font-extrabold text-black mb-3 text-center">
+          <b></b>
+        </p>
+        <div>
+          <p className="text-[10px]"></p>
+        </div>
+        <div className="w-full  mx-auto">
+          <p>Page No</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ItemsPage;

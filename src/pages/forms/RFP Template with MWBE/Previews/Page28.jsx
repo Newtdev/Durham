@@ -13,13 +13,13 @@ const Page28 = () => {
       }}
       className=" flex flex-col justify-between h-full "
     >
-      <div>
-        <h1 class="c145 c128 c289">
+      <div style={{ lineHeight: "1.15" }}>
+        <h1 class=" c128 c289 ml-2">
           <span class="c121 c80 c148 c98 c294 c202">
             Section III - Documentation of Good Faith Efforts
           </span>
         </h1>
-        <p class="c23 c243 c297">
+        <p class="c23 c243 c297" style={{ lineHeight: "1.15" }}>
           <span class="c47 c66 c45">ALL BIDDERS, </span>
           <span class="c47 c22">
             regardless of percentage of MWBE participation,{" "}
@@ -44,7 +44,7 @@ const Page28 = () => {
             PART A (Documentation Required to be Submitted With Bid)
           </span>
         </h3>
-        <p class="c23 c333">
+        <p class="c23 c333" style={{ lineHeight: "1.15" }}>
           <span class="c22 c131 c117">Documentation </span>
           <span class="c28">MUST </span>
           <span class="c22 c131 c117">be provided </span>
@@ -72,45 +72,62 @@ const Page28 = () => {
         <p class="c23 c12 c291">
           <span class="c47 c137 c152"></span>
         </p>
-        <h3 class="c23 c128 c164">
+        <p class="c127 c23 c12">
+          <span class="c47 c22"></span>
+        </p>
+        <h3 class="ml-5 mb-2">
           <span class="c95 c80 c148 c98">ITEM1</span>
         </h3>
         <ul class="c14 list-disc">
-          <li class="c340">
+          <li class="c201 c23 c106 flex ml-12">
+            <span className="mr-4 text-[0.75rem]">&#9679;</span>
             <span class="c48">
-              Copies of solicitations for quotes to at least three (3)
-              MWBE&#39;s from the source list provided by the State for each
-              subcontract to be let under this contract (if 3 or more firms are
-              shown on the source list). Each solicitation shall contain a
-              specific description of the work to be subcontracted, location
-              where bid documents can be reviewed, representative of the Prime
-              Bidder to contact, and location, date and time when quotes must be
-              received.
+              <span class="c48">
+                Copies of solicitations for quotes to at least three (3)
+                MWBE&#39;s from the source list provided by the State for each
+                subcontract to be let under this contract (if 3 or more firms
+                are shown on the source list). Each solicitation shall contain a
+                specific description of the work to be subcontracted, location
+                where bid documents can be reviewed, representative of the Prime
+                Bidder to contact, and location, date and time when quotes must
+                be received.
+              </span>
             </span>
           </li>
-          <li class="c338 ">
+
+          <li class="c201 c23 c106 flex ml-12">
+            <span className="mr-4 text-[0.75rem]">&#9679;</span>
             <span class="c48">
-              Copies of quotes and responses received from each firm responding
-              to the solicitation.
+              <span class="c48">
+                Copies of quotes and responses received from each firm
+                responding to the solicitation.
+              </span>
             </span>
           </li>
-          <li class="c318 ">
+
+          <li class="c201 c23 c106 flex ml-12">
+            <span className="mr-4 text-[0.75rem]">&#9679;</span>
             <span class="c48">
-              A telephone log of follow-up calls to each firm sent a
-              solicitation.
+              <span class="c48">
+                A telephone log of follow-up calls to each firm sent a
+                solicitation.
+              </span>
             </span>
           </li>
         </ul>
-        <h3 class="c23 c128 c280">
+        <h3 class="ml-5 mb-2">
           <span class="c95 c80 c148 c98">ITEM7</span>
         </h3>
         <ul class="c14 list-disc">
-          <li class="c287 ">
+          <li class="c201 c23 c106 flex ml-12">
+            <span className="mr-4 text-[0.75rem]">&#9679;</span>
             <span class="c48">
-              Copies of quotes or responses received from all firms submitting
-              quotes or responses for each subcontract, and, if applicable a
-              letter detailing the reason(s) for any rejection of minority
-              business(es) due to lack of qualification.
+              <span class="c48">
+                Copies of quotes or responses received from all firms submitting
+                quotes or responses for each subcontract, and, if applicable a
+                letter detailing the reason(s) for any rejection of minority
+                business(es) due to lack of qualification.
+              </span>
             </span>
           </li>
         </ul>
@@ -147,24 +164,39 @@ const Page28 = () => {
           </span>
         </p>
         {/* <p className="border border-black"></p> */}
-        <hr className="border-black"></hr>
+        <div className="ml-5">
+          <hr className="border-black"></hr>
+        </div>
+        <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p>
         <p class="c100 c23 c266">
           <span class="c22 c47">
             I do certify the attached documentation as true and accurate
             representation of my good faith efforts
           </span>
         </p>
+        <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p>
         <p class="c23 c100">
           <span class="c22 c121 c148 c156">
-            Date_________________________ &nbsp; Name of Authorized
-            Officer____________________________________
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date_________________________
+            &nbsp;&nbsp; Name of Authorized
+            Officer______________________________
           </span>
         </p>
         <p class="c120 c23 c12">
           <span class="c69 c22"></span>
         </p>
+        <p class="c127 c23 c12">
+          <span class="c47 c22"></span>
+        </p>
         <p class="c23 c120">
-          <span class="c69 c22">Title:________________________ Signature</span>
+          <span class="c69 c22">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:________________________
+            &nbsp;&nbsp;&nbsp;&nbsp;Signature____________________________________________
+          </span>
           <span class="c69 c45 c73">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
@@ -190,28 +222,32 @@ const Page28 = () => {
               }}
               title=""
             />
-            <div className="ml-4">
-              <p>
+            <div
+              className="ml-12 text-[10pt]"
+              style={{ fontFamily: "Calibri" }}
+            >
+              <p class="c23 c12 c102">
+                <span class="c47 c22"></span>
+              </p>
+              <p className="mb-2">
                 <span>
-                  State &nbsp; &nbsp; &nbsp; &nbsp; of &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp;North &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Carolina,
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;County &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp;of ______________ <br></br>Subscribed and sworn
-                  to before me this
+                  State of North Carolina, County of ______________ <br></br>
                 </span>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>day of _____________20</span>
-                <span class="c29 c45 c230">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </p>
+
+              <p className="mb-2">
+                <span>
+                  Subscribed and sworn to before me this day of
+                  _____________20____.
                 </span>
-              </p>{" "}
-              <p className="mt-4">
-                <span>Notary Public</span>
-                <span>________________________</span>
-                <span>&nbsp;</span>
-                <br></br>
-                <span>My commission expires </span>
-                <span>________________</span>
+              </p>
+
+              <p className="mb-2">
+                <span>Notary Public________________________</span>
+              </p>
+
+              <p>
+                <span>My commission expires________________ </span>
               </p>
             </div>
           </div>
