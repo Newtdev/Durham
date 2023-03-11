@@ -91,7 +91,6 @@ const Preview = (data) => {
 							ref={downloadComponent}>
 							<div className="flex justify-between items-center mb-8">
 								<div>
-									<img src={Logo} alt="logo" className="h-16 object-cover" />
 									<img src={LogoOne} alt="logo" className="h-20 object-cover" />
 								</div>
 								<div className="text-[#3B6979] arial-font mt-3 text-[13px]">

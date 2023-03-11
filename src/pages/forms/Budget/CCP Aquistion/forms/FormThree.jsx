@@ -14,8 +14,8 @@ import { handleResultWithArray } from "../../../../../shared-component";
 import { toast } from "react-toastify";
 
 export const CalculateTotal = (a, b) => {
-	if (!a && !b) {
-		return "";
+	if (!a || !b) {
+		return 0;
 	}
 
 	return (Number(a) * Number(b)).toFixed(2);
@@ -88,10 +88,8 @@ const FormThree = (props) => {
 				ccpsubtotal: subtotal,
 				ccpgrandTotal: grandTotal,
 				...values,
-			}).form_fields,
-			dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+			}),
 		});
-
 		if (response) {
 			if (response?.error) {
 				toast.error(response?.message, {

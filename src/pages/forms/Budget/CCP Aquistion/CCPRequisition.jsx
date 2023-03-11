@@ -75,22 +75,22 @@ const CCPRequisitionForm = ({ id, filled }) => {
 		})();
 	}, [dispatch]);
 
-	// if (filled) {
-	// 	return (
-	// 		<ModalOverlay show={id === CCPRequisition && show}>
-	// 			<Preview />
-	// 		</ModalOverlay>
-	// 	);
-	// }
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === CCPRequisition && show}>
+				<FormikProvider value={formik}>
+					{pages === 1 && <FormOne {...formik} />}
+					{pages === 2 && <FormTwo {...formik} />}
+					{pages === 3 && <FormThree {...formik} />}
+					{pages === 4 && <Preview />}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
 
 	return (
 		<ModalOverlay show={id === CCPRequisition && show}>
-			<FormikProvider value={formik}>
-				{pages === 1 && <FormOne {...formik} />}
-				{pages === 2 && <FormTwo {...formik} />}
-				{pages === 3 && <FormThree {...formik} />}
-				{pages === 4 && <Preview />}
-			</FormikProvider>
+			<Preview />
 		</ModalOverlay>
 	);
 };

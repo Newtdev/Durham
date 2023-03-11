@@ -323,46 +323,25 @@ export const handleResultWithArray = (res) => {
 
 	if (!res) return null;
 
-	// Reconstructure
-
-	// const araryItem = Object.entries(res)?.reduce(
-	// 	(acc, curr) => {
-	// 		if (Array.isArray(curr[1])) {
-	// 			return acc.arr.push({
-	// 				// 						section: d[0],
-	// 				// 						field_name: `${cur}${[ind]}`,
-	// 				// 						field_value: Object.values(curs)[index],
-	// 			});
-	// 		} else {
-	// 			// return acc.normal.push(curr);
-	// 		}
-	// 	},
-	// 	{ arr: [], normal: [] }
-	// );
-	// console.log(araryItem);
-
 	const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
 
 	Object.entries(res).forEach((d, i) => {
 		if (Array.isArray(d[1])) {
-			d[1].forEach((curs, ind) => {
-				Object.keys(curs).forEach((cur, index) => {
-					dynamic = [
-						...dynamic,
-						{
-							section: d[0],
-							field_name: `${cur}${[ind]}`,
-							field_value: Object.values(curs)[index],
-						},
-					];
-				});
-			});
+			dynamic = [{ field_name: d[0], field_value: JSON.stringify(d[1]) }];
 		}
 		sum = [...sum, { field_name: d[0], field_value: d[1] }];
 
 		sum.splice(a, 1);
 	});
-	return { form_fields: sum, dynamic_inputs: dynamic };
+
+	return [...sum, ...dynamic];
+};
+
+export const parseDynamicInput = (data) => {
+	if (!data) {
+		return;
+	}
+	return JSON.parse(data);
 };
 
 export const trucateText = (str, limit = 100) => {

@@ -217,7 +217,7 @@ const Change = () => {
 										<div className="border-t border-t-black pt-4">
 											<div className="flex justify-between mb-12 Times-font">
 												<p className="text-[15pt]">OWNER </p>
-												<p className="text-[15pt]">CONTRACTOR</p>
+												<p className="text-[15pt] mr-[8.5rem]">CONTRACTOR</p>
 											</div>
 											<div className="grid grid-cols-2  mb-12">
 												<div>
