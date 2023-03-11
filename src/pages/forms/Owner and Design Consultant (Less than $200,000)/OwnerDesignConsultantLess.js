@@ -12,7 +12,7 @@ import FormOne from "./FormOne";
 import FormTwo from "./FormTwo";
 import { nextStep, page } from "./reducer";
 import Preview from "./Preview";
-import { setResult } from "../../../shared-component";
+import { setResult, handleSavedDate } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const OwnerDesignConsultantLessForm = ({ id, filled }) => {
@@ -49,42 +49,62 @@ const OwnerDesignConsultantLessForm = ({ id, filled }) => {
       financialOfficerSignDate: "",
       notarizedDate: "",
       sexualOffenderOption: "",
+      type: "",
     },
     // validationSchema: OwnerDesignConsultantLessSchema,
     onSubmit: (values) => {
       if (pages === 1) {
-        // dispatch(saveFormField(values));
         dispatch(nextStep(2));
-        // HandleSubmit(values);
       } else if (pages === 2) {
         console.log(values);
-        // dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
   });
 
   useEffect(() => {
-    if (!a?.data?.form_fields) {
+    if (!a?.data) {
       return;
     }
-    formik.setValues({
-      // ...a?.data?.form_fields,
-      // type: a?.data?.form_fields?.type,
-      // addressCopy: a?.data?.form_fields?.addressCopy,
-      sexualOffenderOption: a?.data?.form_fields?.sexualOffenderOption,
-    });
-  }, [a]);
+    formik.setFieldValue(
+      "agreementDate",
+      handleSavedDate(a?.data?.form_fields.agreementDate)
+    );
+    formik.setFieldValue(
+      "sustainaibilityDate",
+      handleSavedDate(a?.data?.form_fields.sustainaibilityDate)
+    );
+    formik.setFieldValue(
+      "financialOfficerSignDate",
+      handleSavedDate(a?.data?.form_fields.financialOfficerSignDate)
+    );
+    formik.setFieldValue(
+      "notarizedDate",
+      handleSavedDate(a?.data?.form_fields.notarizedDate)
+    );
+    formik.setFieldValue(
+      "sexualOffenderOption",
+      a?.data?.form_fields.sexualOffenderOption
+    );
+    formik.setFieldValue("type", a?.data?.form_fields.type);
+  }, [a?.data]);
 
   //return <ModalOverlay show={show} />
   const props = { ...formik, isLoading };
 
+  if (!filled) {
+    return (
+      <ModalOverlay show={id === OwnerDesignConsultantLessSlug && show}>
+        {pages === 1 ? <FormOne {...formik} /> : null}
+        {pages === 2 ? <FormTwo {...props} /> : null}
+        {pages === 3 ? <Preview {...formik} /> : null}
+      </ModalOverlay>
+    );
+  }
+
   return (
     <ModalOverlay show={id === OwnerDesignConsultantLessSlug && show}>
-      {filled ? <Preview {...formik} /> : null}
-      {pages === 1 && !filled ? <FormOne {...formik} /> : null}
-      {pages === 2 && !filled ? <FormTwo {...props} /> : null}
-      {pages === 3 && <Preview {...formik} />}
+      <Preview {...formik} />
     </ModalOverlay>
   );
 };

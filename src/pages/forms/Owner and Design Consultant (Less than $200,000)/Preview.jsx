@@ -89,7 +89,7 @@ const Preview = () => {
         >
           {" "}
           {/* Header */}
-          <div className="flex justify-between items-baseline border-b border-b-gray-200 py-3 z-50 bg-white ">
+          <div className="flex justify-between items-baseline border-b rounded-lg border-b-gray-200 py-3 z-50 bg-white ">
             <div className="ml-6">
               <h3 className="text-lg font-bold text-gray-900">
                 Owner and Design Consultant (less than $200,000)
@@ -135,7 +135,7 @@ const Preview = () => {
             </div>
           </div>
           {/* Buttons */}
-          <div className="flex justify-end gap-4 pr-6 pb-4 bg-white">
+          <div className="flex justify-end gap-4 pr-6 pb-4 rounded-lg bg-white">
             <ButtonWhiteBG
               width="w-[171px]"
               name="Edit document"

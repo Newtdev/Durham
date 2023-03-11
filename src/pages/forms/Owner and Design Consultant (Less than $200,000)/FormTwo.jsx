@@ -106,6 +106,65 @@ const FormTwo = (props) => {
                     <Error message={props.errors.sexualOffenderOption} />
                   )}
               </FormInputContainer>
+
+              {/* <small className="text-gray-900 font-medium">
+                To Specify the type of check, check the relevant option.
+              </small> */}
+
+              {/* <div className=" mt-3 ml-2">
+                <div className="flex items-center mb-5">
+                  <input
+                    id="default-radio-1"
+                    type="radio"
+                    value="Initial"
+                    checked={props.value === "Initial" ? true : false}
+                    name="type"
+                    onChange={props.handleChange}
+                    className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+                  />
+                  <label
+                    for="default-radio-1"
+                    className="ml-2 text-base text-gray-900"
+                  >
+                    Initial
+                  </label>
+                </div>
+                <div className="flex items-center mb-5">
+                  <input
+                    id="default-radio-1"
+                    type="radio"
+                    value="Supplemental"
+                    checked={props.value === "Supplemental" ? true : false}
+                    name="type"
+                    onChange={props.handleChange}
+                    className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+                  />
+                  <label
+                    for="default-radio-1"
+                    className="ml-2 text-base text-gray-900"
+                  >
+                    Supplemental
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="default-radio-1"
+                    type="radio"
+                    value="Annual"
+                    checked={props.value === "Annual" ? true : false}
+                    name="type"
+                    className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
+                    onChange={props.handleChange}
+                  />
+                  <label
+                    for="default-radio-1"
+                    className="ml-2 text-base text-gray-900"
+                  >
+                    Annual
+                  </label>
+                </div>
+              </div> */}
+              {props.error && props.touched && <Error message={props.error} />}
             </div>
           </div>
 

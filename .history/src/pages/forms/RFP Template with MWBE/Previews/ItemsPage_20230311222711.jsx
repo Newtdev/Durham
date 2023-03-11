@@ -34,10 +34,12 @@ const ItemsPage = (props) => {
         </p>
         <ol
           type="a"
-          className={`c14 laparent ${props.nottoBeHighlighted} ml-8`}
+          class="c14 laparent"
+          className={`${props.nottoBeHighlighted} ml-8`}
           style={{
             fontFamily: "Arial",
             fontSize: "10pt",
+            // listStyle: "lower-latin",
           }}
         >
           {itemsList?.map((item, index) => (

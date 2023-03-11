@@ -38,6 +38,7 @@ const ItemsPage = (props) => {
           style={{
             fontFamily: "Arial",
             fontSize: "10pt",
+            // listStyle: "lower-latin",
           }}
         >
           {itemsList?.map((item, index) => (

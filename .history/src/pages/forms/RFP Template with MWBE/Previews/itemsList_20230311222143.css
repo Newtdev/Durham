@@ -1,0 +1,10 @@
+ol {
+  counter-reset: list;
+}
+ol > li {
+  list-style: lower-latin;
+}
+ol > li:before {
+  content: counter(list) ") ";
+  counter-increment: list;
+}

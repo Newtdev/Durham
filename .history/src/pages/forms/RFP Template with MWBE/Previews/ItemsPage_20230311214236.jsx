@@ -1,5 +1,4 @@
 import React from "react";
-import "./itemsList.css";
 
 const ItemsPage = (props) => {
   let itemsList = [];
@@ -15,7 +14,6 @@ const ItemsPage = (props) => {
         margin: "1in 30pt 3rem 60pt",
         paddingTop: "3rem",
         height: "10.7in",
-        overflow: "hidden",
       }}
       className=" flex flex-col justify-between h-full"
     >
@@ -34,16 +32,20 @@ const ItemsPage = (props) => {
         </p>
         <ol
           type="a"
-          className={`c14 laparent ${props.nottoBeHighlighted} ml-8`}
-          style={{
-            fontFamily: "Arial",
-            fontSize: "10pt",
-          }}
+          class="c14"
+          className={`${props.nottoBeHighlighted} ml-8`}
+          style={{ fontFamily: "Arial", fontSize: "10pt" }}
         >
           {itemsList?.map((item, index) => (
-            <li class="c201 c23 c106">
-              <span class="c21 ml-2">{item.item}</span>
-            </li>
+            <0l style={{ listStyleType: "lower-latin" }}>
+              {" "}
+              <li class="c201 c23 c106 flex">
+                <span className="mr-4">)</span>
+                <span class="c21">
+                  <span class="c21">{item.item}</span>
+                </span>
+              </li>
+            </0l>
           ))}
         </ol>
       </div>
