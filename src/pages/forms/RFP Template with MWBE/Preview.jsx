@@ -42,6 +42,7 @@ import Page28 from "./Previews/Page28";
 import Page29 from "./Previews/Page29";
 import Page30 from "./Previews/Page30";
 import ExtraPage from "./Previews/ExtraPage";
+import ItemsPage from "./Previews/ItemsPage";
 
 const Preview = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,11 @@ const Preview = () => {
     project,
     durham_profile,
   };
+
+  const items = form_fields?.items || "";
+  if (items) {
+    console.log(JSON.parse(items));
+  }
 
   console.log(pageProps);
 
@@ -136,6 +142,7 @@ const Preview = () => {
                 <Page2 {...pageProps} />
                 <Page3 {...pageProps} />
                 <Page4 {...pageProps} />
+                <ItemsPage {...pageProps} />
                 <Page5 {...pageProps} />
                 {showPage && <Page6 />}
                 <Page7 {...pageProps} />

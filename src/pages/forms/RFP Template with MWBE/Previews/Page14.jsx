@@ -6,7 +6,7 @@ const Page14 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 70pt",
+        margin: "1in 30pt 3rem 90pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}

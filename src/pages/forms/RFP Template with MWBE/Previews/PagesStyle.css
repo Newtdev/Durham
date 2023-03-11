@@ -5220,7 +5220,7 @@ table th {
   padding-bottom: 10pt;
   line-height: 0.9666666666666667;
   text-align: left;
-  margin-right: 19.9pt;
+  /* margin-right: 19.9pt; */
 }
 .c287 {
   margin-left: 50.4pt;
@@ -5592,7 +5592,7 @@ table th {
   margin-right: 43.1pt;
 }
 .c324 {
-  margin-left: 15.7pt;
+  margin-left: 11.1pt;
   padding-top: 12.1pt;
   text-indent: 4.5pt;
   padding-bottom: 3pt;
@@ -6182,7 +6182,7 @@ table th {
   text-align: left;
 }
 .c221 {
-  margin-left: 10.6pt;
+  margin-left: 15.6pt;
   border-spacing: 0;
   border-collapse: collapse;
   margin-right: auto;

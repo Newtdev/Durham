@@ -12,7 +12,7 @@ const Page7 = (props) => {
       className=" flex flex-col justify-between h-full"
       // className="border border-black"
     >
-      <>
+      <div>
         <p class="c23 c208">
           <span class="c21">
             Proposal, no one requirement shall automatically disqualify a Vendor
@@ -73,11 +73,11 @@ const Page7 = (props) => {
               Complete ATTACHMENT C: PRICING FORM and include in Proposal.
               <span className={`${props?.nottoBeHighlighted}`}>
                 {" "}
-                {props?.form_fields?.attachment}
+                {/* {props?.form_fields?.attachment} */}
               </span>
             </span>
           )}
-          <span class="c21">.</span>
+          {/* <span class="c21">.</span> */}
         </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
@@ -155,7 +155,7 @@ const Page7 = (props) => {
           </li>
         </ol>
 
-        <p class="c170 c23">
+        <p class="c170 c23" style={{ lineSpacing: "1.2" }}>
           <span class="c21">
             Each Vendor shall certify it is financially stable by completing the
             ATTACHMENT D: CERTIFICATION OF FINANCIAL CONDITION. The State is
@@ -208,7 +208,7 @@ const Page7 = (props) => {
             determine{" "}
           </span>
         </p>
-      </>
+      </div>
 
       <div className=" flex flex-col justify-center">
         <p className="font-extrabold text-black mb-3 text-center">

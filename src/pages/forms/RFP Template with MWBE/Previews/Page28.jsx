@@ -14,7 +14,7 @@ const Page28 = () => {
       className=" flex flex-col justify-between h-full "
     >
       <div style={{ lineHeight: "1.15" }}>
-        <h1 class="c145 c128 c289">
+        <h1 class=" c128 c289 ml-2">
           <span class="c121 c80 c148 c98 c294 c202">
             Section III - Documentation of Good Faith Efforts
           </span>
@@ -164,7 +164,9 @@ const Page28 = () => {
           </span>
         </p>
         {/* <p className="border border-black"></p> */}
-        <hr className="border-black"></hr>
+        <div className="ml-5">
+          <hr className="border-black"></hr>
+        </div>
         <p class="c23 c12 c102">
           <span class="c47 c22"></span>
         </p>
@@ -220,30 +222,30 @@ const Page28 = () => {
               }}
               title=""
             />
-            <div className="ml-12 text-[10pt]">
-              <p>
+            <div
+              className="ml-12 text-[10pt]"
+              style={{ fontFamily: "Calibri" }}
+            >
+              <p class="c23 c12 c102">
+                <span class="c47 c22"></span>
+              </p>
+              <p className="mb-2">
                 <span>
                   State of North Carolina, County of ______________ <br></br>
                 </span>
               </p>
-              <p class="c23 c12 c102">
-                <span class="c47 c22"></span>
-              </p>
-              <p>
+
+              <p className="mb-2">
                 <span>
                   Subscribed and sworn to before me this day of
                   _____________20____.
                 </span>
               </p>
-              <p class="c23 c12 c102">
-                <span class="c47 c22"></span>
-              </p>
-              <p>
+
+              <p className="mb-2">
                 <span>Notary Public________________________</span>
               </p>
-              <p class="c23 c12 c102">
-                <span class="c47 c22"></span>
-              </p>
+
               <p>
                 <span>My commission expires________________ </span>
               </p>
