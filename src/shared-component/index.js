@@ -198,6 +198,7 @@ export const setResult = (values) => {
 	for (const object of Object.entries(values)) {
 		sum = [...sum, { field_name: object[0], field_value: object[1] }];
 	}
+	console.log(sum);
 	return sum;
 };
 
@@ -356,10 +357,19 @@ export const trucateText = (str, limit = 100) => {
 	if (!str) {
 		return;
 	}
-
-	let strTotal = str.trim().split(" ");
+	let strTotal = str.split(" ");
 	if (strTotal.length > limit) {
 		return strTotal.slice(0, limit).join(" ") + "...";
 	}
 	return str;
+};
+
+export const htmlencode = (str) => {
+	return str.replace(/[&<>"']/g, function ($0) {
+		return (
+			"&" +
+			{ "&": "amp", "<": "lt", ">": "gt", '"': "quot", "'": "#39" }[$0] +
+			";"
+		);
+	});
 };
