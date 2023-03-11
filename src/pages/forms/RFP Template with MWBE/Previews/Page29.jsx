@@ -15,13 +15,13 @@ const Page29 = () => {
       // className="border border-black"
     >
       <div>
-        <h3 class="c23 c128 c317">
+        <h3 class="c23 c128 c317" style={{ marginLeft: "52.5pt" }}>
           <span class="c95 c80 c148 c98">
             PART B (Documentation Required to be Submitted Within 72 Hours of
             Notification)
           </span>
         </h3>
-        <p class="c1">
+        <p class="c1" style={{ marginLeft: "16.6pt" }}>
           <span class="c116 c22">Certain documentation </span>
           <span class="c116 c66 c45">MUST </span>
           <span class="c116 c22">
@@ -159,58 +159,57 @@ const Page29 = () => {
             <span class="c81 c83 c45 c230">Copy of quick pay policies.</span>
           </li>
         </ul>
-        <hr className="border-black mt-2"></hr>
-        <p class="c291 c23 c315">
-          <span class="c47 c22">
+        <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p>
+        <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p>
+
+        <div className="ml-5">
+          <hr className="border-black"></hr>
+        </div>
+        {/* <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p> */}
+        <p class="c100 c23 c266">
+          <span class="c22 c47">
             I do certify the attached documentation as true and accurate
             representation of my good faith efforts
           </span>
-          <span
-            style={{
-              overflow: "hidden",
-              display: "inline-block",
-              margin: "0px 0px",
-              border: "0px solid #000000",
-              transform: "rotate(0rad) translateZ(0px)",
-              width: "659.87px",
-              height: "1.33px",
-            }}
-          >
-            <img
-              alt=""
-              src="images/image5.png"
-              style={{
-                width: "659.87px",
-                height: "1.33px",
-                marginLeft: "0px",
-                marginTop: "0px",
-                transform: "rotate(0rad) translateZ(0px)",
-              }}
-              title=""
-            />
-          </span>
         </p>
-        <p class="c100 c23">
+        {/* <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p> */}
+        <p class="c23 c100">
           <span class="c22 c121 c148 c156">
-            Date_________________________ &nbsp; Name of Authorized
-            Officer____________________________________
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date_________________________
+            &nbsp;&nbsp; Name of Authorized
+            Officer______________________________
           </span>
         </p>
         <p class="c120 c23 c12">
           <span class="c69 c22"></span>
         </p>
-        <p class="c120 c23">
-          <span class="c69 c22">Title:________________________ Signature</span>
-          <span class="c69 c73 c45">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
-          <span class="c29 c121 c45 c183">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
-        </p>
-        <p class="c102 c23 c12">
+        <p class="c127 c23 c12">
           <span class="c47 c22"></span>
         </p>
+        <p class="c23 c120">
+          <span class="c69 c22">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:________________________
+            &nbsp;&nbsp;&nbsp;&nbsp;Signature____________________________________________
+          </span>
+          <span class="c69 c45 c73">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+          {/* <span class="c29 c121 c183 c45">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span> */}
+        </p>
+        {/* <p class="c23 c12 c102">
+          <span class="c47 c22"></span>
+        </p> */}
+
         <div className="mt-4">
           <div className="flex items-center justify-center">
             <img
@@ -225,28 +224,32 @@ const Page29 = () => {
               }}
               title=""
             />
-            <div className="ml-4">
-              <p>
+            <div
+              className="ml-12 text-[10pt]"
+              style={{ fontFamily: "Calibri" }}
+            >
+              <p class="c23 c12 c102">
+                <span class="c47 c22"></span>
+              </p>
+              <p className="mb-2">
                 <span>
-                  State &nbsp; &nbsp; &nbsp; &nbsp; of &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp;North &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Carolina,
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;County &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp;of ______________ <br></br>Subscribed and sworn
-                  to before me this
+                  State of North Carolina, County of ______________ <br></br>
                 </span>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span>day of _____________20</span>
-                <span class="c29 c45 c230">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </p>
+
+              <p className="mb-2">
+                <span>
+                  Subscribed and sworn to before me this day of
+                  _____________20____.
                 </span>
-              </p>{" "}
-              <p className="mt-4">
-                <span>Notary Public</span>
-                <span>________________________</span>
-                <span>&nbsp;</span>
-                <br></br>
-                <span>My commission expires </span>
-                <span>________________</span>
+              </p>
+
+              <p className="mb-2">
+                <span>Notary Public________________________</span>
+              </p>
+
+              <p>
+                <span>My commission expires________________ </span>
               </p>
             </div>
           </div>

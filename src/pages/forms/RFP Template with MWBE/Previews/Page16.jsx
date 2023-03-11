@@ -6,15 +6,18 @@ const Page16 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 60pt",
+        margin: "1in 30pt 3rem 80pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
       className=" flex flex-col justify-between h-full "
     >
       <div>
+        <p class="c4">
+          <span class="c21"></span>
+        </p>
         <ol class="c14" start="10">
-          <li class="c201 c106 c23  flex">
+          <li class="c201 c106 c23  flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">11.</span>
             <span class="c21">
               <span class="c10">CONFIDENTIAL INFORMATION</span>
@@ -41,30 +44,9 @@ const Page16 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23 mt-1 flex">
+          <li class="c201 c106 c23 mt-1 flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">12.</span>
             <span class="c21">
-              <span class="c10">CONFIDENTIAL INFORMATION</span>
-              <span class="c66 c45">:</span>
-              <span class="c21">
-                &nbsp;To the extent permitted by applicable statutes and rules,
-                the State will maintain confidential trade secrets that the
-                Vendor does not wish disclosed. As a condition to confidential
-                treatment, each page containing trade secret information shall
-                be identified in boldface at the top and bottom as
-                &ldquo;CONFIDENTIAL&rdquo; by the Vendor, with specific trade
-                secret information enclosed in boxes or similar indication. Cost
-                information shall not be deemed confidential under any
-                circumstances. Regardless of what a Vendor may label as a trade
-                secret, the determination whether it is or is not entitled to
-                protection will be determined in accordance with G.S. 132-1.2.
-                Any material labeled as confidential constitutes a
-                representation by the Vendor that it has made a reasonable
-                effort in good faith to determine that such material is, in
-                fact, a trade secret under G.S. 132-1.2. Vendors are urged and
-                cautioned to limit the marking of information as a trade secret
-                or as confidential so far as is possible.
-              </span>
               <span class="c10">PROTEST PROCEDURES</span>
               <span class="c66 c45">:</span>
               <span class="c22">
@@ -109,7 +91,7 @@ const Page16 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-2 flex" style={{ lineHeight: "1.15" }}>
+          <li class="c201 c23 mt-2 flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">13.</span>
             <span class="c21">
               <span class="c10">MISCELLANEOUS</span>
@@ -122,7 +104,7 @@ const Page16 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 flex" style={{ lineHeight: "1.15" }}>
+          <li class="c201 c23 mt-1 flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">14.</span>
             <span class="c21">
               <span class="c10">COMMUNICATIONS BY VENDORS</span>
@@ -156,7 +138,7 @@ const Page16 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23 mt-1 flex">
+          <li class="c201 c106 c23 mt-1 flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">15.</span>
             <span class="c21">
               <span class="c10">TABULATIONS</span>
@@ -184,7 +166,7 @@ const Page16 = () => {
             </span>
           </li>
 
-          <li class="c201 c106 c23  flex">
+          <li class="c201 c106 c23  flex" style={{ lineHeight: "1.2" }}>
             <span className="mr-4">16.</span>
             <span class="c21">
               <span class="c10">
@@ -211,7 +193,7 @@ const Page16 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>16</p>
+          <p>17</p>
         </div>
       </div>
     </div>

@@ -13,19 +13,20 @@ const Page27 = () => {
       className=" flex flex-col justify-between h-full "
     >
       <div>
-        <h1 class="c128 c268">
+        <h1 class="c128 c268" style={{ marginLeft: "10pt" }}>
           <span class="c121 c80 c148 c98 c202 c294">
             Section II - Portion of the Work to be Performed by Minority Firms
           </span>
         </h1>
+        <p class="c180 c23 c12">
+          <span class="c34"></span>
+        </p>
         <p class="c90 c23 c12">
           <span class="c47 c66 c215"></span>
         </p>
         <p class="c23 c243 c246">
-          <span class="c47 c22">I will expend a minimum of __</span>
-          <span class="c29 c117 c80 c45">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
+          <span class="c47 c22">I will expend a minimum of _____</span>
+
           <span class="c47 c22">
             % of the total dollar amount of the contract with MWBE. MWBE will be
             employed as construction subcontractors, vendors, suppliers or
@@ -41,13 +42,13 @@ const Page27 = () => {
         </p>
         <a id="t.cbcdfada6851b08be504ecbd43896ea4ec60d6e1"></a>
         <a id="t.6"></a>
-        <table class="c221">
+        <table class="c221 mb-1" style={{ marginRight: "1rem" }}>
           <tr class="c325">
             <td class="c146" colspan="1" rowspan="1">
               <p class="c283">
                 <span class="c83 c121 c80 c150 c96">
                   Name and Phone
-                  Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*MWBE
+                  Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*MWBE
                 </span>
               </p>
               <p class="c249">
@@ -55,12 +56,12 @@ const Page27 = () => {
               </p>
             </td>
             <td class="c322" colspan="1" rowspan="1">
-              <p class="c345">
-                <span class="c83 c121 c80 c96 c150">Work description</span>
+              <p class="c345 " style={{ paddingTop: "0.25rem" }}>
+                <span class="c83 c121 c80 c96 c150 ">Work description</span>
               </p>
             </td>
             <td class="c210" colspan="1" rowspan="1">
-              <p class="c141">
+              <p class="c141 pt-2" style={{ paddingTop: "0.25rem" }}>
                 <span class="c83 c121 c80 c150 c96">Dollar Value</span>
               </p>
             </td>
@@ -226,7 +227,7 @@ const Page27 = () => {
             Economically Disadvantaged (D)
           </span>
         </p>
-        <p class="c23 c236">
+        <p class="c23 c236" style={{ lineHeight: "1.2" }}>
           <span class="c47 c22">Pursuant to GS143-128.2 (d)</span>
           {/* <span class="c286 c83 c80 c140">(</span>
         <span class="c47 c22">d</span>
@@ -238,7 +239,7 @@ const Page27 = () => {
             constitute a breach of the contract.
           </span>
         </p>
-        <p class="c180 c23">
+        <p class="c180 c23" style={{ lineHeight: "1.2" }}>
           <span class="c47 c22">
             The undersigned hereby certifies that he or she has read the terms
             of this commitment and is authorized to bind the bidder to the

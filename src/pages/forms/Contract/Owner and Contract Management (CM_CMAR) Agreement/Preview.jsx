@@ -167,7 +167,8 @@ const Preview = () => {
                 {showPage && <Page11 />}
                 {showPage && <Page12 />}
                 {showPage && <Page13 />}
-                {showPage && <Page14 />}
+                <Page14 {...pageProps} />
+                {/* {showPage && <Page14 />} */}
                 {showPage && <Page15 />}
                 {showPage && <Page16 />}
                 {showPage && <Page17 />}

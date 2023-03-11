@@ -1,8 +1,9 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-// import RichTextComp from "../../../../Private/PrivateRoute";
-import { setResult } from "../../../../shared-component";
+import RichTextComp from "../../../../Private/PrivateRoute";
+import { setResult, htmlencode } from "../../../../shared-component";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
@@ -15,6 +16,7 @@ import { FieldArray } from "formik";
 import { Fragment, useMemo } from "react";
 
 const FormThree = (props) => {
+  const [text, setText] = React.useState("");
   const dispatch = useDispatch();
   const formID = useSelector(project_document_id);
 
@@ -69,6 +71,7 @@ const FormThree = (props) => {
             e.preventDefault();
             HandleSubmit({
               ...props?.values,
+              proposalScope: htmlencode(text),
             });
           }}
         >
@@ -223,12 +226,12 @@ const FormThree = (props) => {
               )}
             </div> */}
             <div className="flex flex-col">
-              {/* <label className="text-base text-gray-900 mb-1">
-								Enter the Proposal Scope
-							</label>
-							<div className="h-36">
-								<RichTextComp text={text} setText={(val) => setText(val)} />
-							</div> */}
+              <label className="text-base text-gray-900 mb-1">
+                Enter the Proposal Scope
+              </label>
+              <div className="h-36">
+                <RichTextComp text={text} setText={(val) => setText(val)} />
+              </div>
               {/* <OverviewTextarea {...proposalScope} /> */}
             </div>
           </div>

@@ -39,76 +39,82 @@ const Page23 = () => {
         <p class="c42 c23 c12">
           <span class="c21"></span>
         </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Vendor is
-            in sound financial condition and, if applicable, has received an
-            unqualified audit opinion for the latest audit of its financial
-            statements.
-          </span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
-        </p>
-        <p class="c23 c33">
-          <span class="c21">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date of latest
-            audit: __________________________
-          </span>
-        </p>
-        <p class="c42 c23 c12">
-          <span class="c21"></span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Vendor
-            has no outstanding liabilities, including tax and judgment liens, to
-            the Internal Revenue Service or any other government entity.
-          </span>
-        </p>
-        <p class="c33 c23 c12">
-          <span class="c21"></span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Vendor is
-            current in all amounts due for payments of federal and state taxes
-            and required employment-related contributions and withholdings.
-          </span>
-        </p>
-        <p class="c42 c23 c12">
-          <span class="c21"></span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Vendor is
-            not the subject of any current litigation or findings of
-            noncompliance under federal or state law.
-          </span>
-        </p>
-        <p class="c33 c23 c12">
-          <span class="c21"></span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Vendor
-            has not been the subject of any past or current litigation, findings
-            in any past litigation, or findings of noncompliance under federal
-            or state law that may impact in any way its ability to fulfill the
-            requirements of this Contract.
-          </span>
-        </p>
-        <p class="c33 c23 c12">
-          <span class="c21"></span>
-        </p>
-        <p class="c33 c23">
-          <span class="c21">
-            &#9744;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;He or she is
-            authorized to make the foregoing statements on behalf of the Vendor.
-          </span>
-        </p>
+        <ol>
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                The Vendor is in sound financial condition and, if applicable,
+                has received an unqualified audit opinion for the latest audit
+                of its financial statements.
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-[2.85rem]"></span>
+            <span class="c21">
+              <span class="c21">
+                Date of latest audit: __________________________
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                The Vendor has no outstanding liabilities, including tax and
+                judgment liens, to the Internal Revenue Service or any other
+                government entity.
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                The Vendor is current in all amounts due for payments of federal
+                and state taxes and required employment-related contributions
+                and withholdings.
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                The Vendor is not the subject of any current litigation or
+                findings of noncompliance under federal or state law.
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                The Vendor has not been the subject of any past or current
+                litigation, findings in any past litigation, or findings of
+                noncompliance under federal or state law that may impact in any
+                way its ability to fulfill the requirements of this Contract.
+              </span>
+            </span>
+          </li>
+
+          <li class="c201 c23 c106 flex">
+            <span className="mr-8">&#9744;</span>
+            <span class="c21">
+              <span class="c21">
+                He or she is authorized to make the foregoing statements on
+                behalf of the Vendor.
+              </span>
+            </span>
+          </li>
+        </ol>
+
         <p class="c33 c23 c12">
           <span class="c21"></span>
         </p>
@@ -150,8 +156,17 @@ const Page23 = () => {
         <p class="c42 c23 c12">
           <span class="c34"></span>
         </p>
+        <p class="c42 c23 c12">
+          <span class="c21"></span>
+        </p>
+        <p class="c42 c23 c12">
+          <span class="c34"></span>
+        </p>
         <p class="c23 c12 c261">
           <span class="c34"></span>
+        </p>
+        <p class="c42 c23 c12">
+          <span class="c21"></span>
         </p>
         <p class="c42 c23 c12">
           <span class="c21"></span>
@@ -161,6 +176,7 @@ const Page23 = () => {
             ______________________________________________________________________________
           </span>
         </p>
+
         <p class="c42 c23">
           <span class="c21">
             Signature &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -173,6 +189,9 @@ const Page23 = () => {
           </span>
         </p>
         <p class="c42 c23 c12">
+          <span class="c21"></span>
+        </p>
+        <p class="c33 c23 c12">
           <span class="c21"></span>
         </p>
         <p class="c42 c23">
@@ -210,7 +229,7 @@ const Page23 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>24</p>
+          <p>25</p>
         </div>
       </div>
     </div>

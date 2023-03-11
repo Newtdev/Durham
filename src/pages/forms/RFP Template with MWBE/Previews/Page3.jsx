@@ -14,6 +14,9 @@ const Page3 = (props) => {
       className=" flex flex-col justify-between h-full"
     >
       <>
+        <p class="c23 c12 c186">
+          <span class="c47 c152 c140 c153"></span>
+        </p>
         <p class="c27" id="h.30j0zll">
           <span class="c46">1.0 REQUEST FOR PROPOSAL DOCUMENT</span>
         </p>
@@ -25,10 +28,17 @@ const Page3 = (props) => {
             incorporated herein by reference.
           </span>
         </p>
-        <p class="c27">
+        <p class="c27" style={{ paddingBottom: "0" }}>
           <span class="c46">1.1 Proposal Questions</span>
         </p>
-        <p class="c27">
+        <p
+          class="c27"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.5",
+            paddingBottom: "0",
+          }}
+        >
           <span class="c80 c45">
             Written questions concerning this RFP will be received until{" "}
           </span>
@@ -59,7 +69,14 @@ const Page3 = (props) => {
           <span class="c89">&nbsp;</span>
           <span class="c80 c45">as the subject for the email. &nbsp;</span>
         </p>
-        <p class="c27">
+        <p
+          class="c27"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+            paddingBottom: "0",
+          }}
+        >
           <span class="c80 c45">
             Durham Public Schools will prepare responses to all written
             questions submitted, and post an addendum to the Interactive
@@ -123,7 +140,10 @@ const Page3 = (props) => {
           </span>
         </p>
         <p class="c27">
-          <span class="c30 c80" style={{ fontSize: "10pt" }}>
+          <span
+            class="c30 c80"
+            style={{ fontSize: "10pt", fontFamily: "calibri" }}
+          >
             If Vendors have questions, issues, or exceptions regarding any term,
             condition, or other component within this RFP, those must be
             submitted as questions in accordance with in the instructions in

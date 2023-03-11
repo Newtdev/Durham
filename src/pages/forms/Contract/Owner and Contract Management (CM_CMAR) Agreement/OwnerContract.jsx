@@ -27,24 +27,28 @@ export const handleResultWithArray = (res) => {
 
   Object.entries(res).forEach((d, i) => {
     if (Array.isArray(d[1])) {
-      d[1].forEach((curs, ind) => {
-        Object.keys(curs).forEach((cur, index) => {
-          dynamic = [
-            ...dynamic,
-            {
-              section: d[0],
-              field_name: `${cur}${[ind]}`,
-              field_value: Object.values(curs)[index],
-            },
-          ];
-        });
-      });
+      dynamic = [...d[1]];
+      console.log(dynamic);
+      // d[1].forEach((curs, ind) => {
+      //   console.log(curs);
+      //   //   Object.keys(curs).forEach((cur, index) => {
+      //   //     dynamic = [
+      //   //       ...dynamic,
+      //   //       {
+      //   //         section: d[0],
+      //   //         field_name: `${cur}${[ind]}`,
+      //   //         field_value: Object.values(curs)[index],
+      //   //       },
+      //   //     ];
+      //   //   });
+      // });
     }
     sum = [...sum, { field_name: d[0], field_value: d[1] }];
 
     sum.splice(a, 1);
   });
-  return { form_fields: sum, dynamic_inputs: dynamic };
+  console.log({ form_fields: sum });
+  return { form_fields: sum };
 };
 
 const OwnerContractorManagementForm = ({ id, filled }) => {
@@ -115,7 +119,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       } else if (pages === 3) {
         dispatch(nextStep(4));
       } else if (pages === 4) {
-        console.log(values);
+        // console.log(values);
         HandleSubmit(values);
       }
     },

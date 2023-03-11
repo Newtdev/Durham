@@ -52,44 +52,7 @@ const Page22 = (props) => {
               <p class="c39 c12">
                 <span class="c2"></span>
               </p>
-              <p class="c39 c12">
-                <span class="c2"></span>
-              </p>
-            </td>
-            <td class="c55" colspan="1" rowspan="1">
               <p class="c61 c12">
-                <span class="c2"></span>
-              </p>
-            </td>
-            <td class="c0" colspan="2" rowspan="1">
-              <p class="c61 c12">
-                <span class="c2 c49"></span>
-              </p>
-            </td>
-          </tr>
-          <tr class="c11">
-            <td class="c20" colspan="1" rowspan="1">
-              <p class="c39 c12">
-                <span class="c2"></span>
-              </p>
-              <p class="c39 c12">
-                <span class="c2"></span>
-              </p>
-            </td>
-            <td class="c55" colspan="1" rowspan="1">
-              <p class="c61 c12">
-                <span class="c2"></span>
-              </p>
-            </td>
-            <td class="c0" colspan="2" rowspan="1">
-              <p class="c61 c12">
-                <span class="c2 c49"></span>
-              </p>
-            </td>
-          </tr>
-          <tr class="c11">
-            <td class="c20" colspan="1" rowspan="1">
-              <p class="c39 c12">
                 <span class="c2"></span>
               </p>
               <p class="c39 c12">
@@ -120,6 +83,67 @@ const Page22 = (props) => {
               <p class="c61 c12">
                 <span class="c2"></span>
               </p>
+              <p class="c61 c12">
+                <span class="c2"></span>
+              </p>
+            </td>
+            <td class="c0" colspan="2" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+            </td>
+          </tr>
+          <tr class="c11">
+            <td class="c20" colspan="1" rowspan="1">
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+            </td>
+            <td class="c55" colspan="1" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2"></span>
+              </p>
+            </td>
+            <td class="c0" colspan="2" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2"></span>
+              </p>
+            </td>
+          </tr>
+          <tr class="c11">
+            <td class="c20" colspan="1" rowspan="1">
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+            </td>
+            <td class="c55" colspan="1" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
             </td>
             <td class="c0" colspan="2" rowspan="1">
               <p class="c61 c12">
@@ -134,6 +158,9 @@ const Page22 = (props) => {
               </p>
               <p class="c39 c12">
                 <span class="c2"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
               </p>
             </td>
             <td class="c55" colspan="1" rowspan="1">
@@ -160,8 +187,14 @@ const Page22 = (props) => {
               <p class="c39 c12">
                 <span class="c2"></span>
               </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
             </td>
             <td class="c0" colspan="2" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
               <p class="c61 c12">
                 <span class="c2 c49"></span>
               </p>
@@ -180,25 +213,8 @@ const Page22 = (props) => {
               <p class="c39 c12">
                 <span class="c2"></span>
               </p>
-            </td>
-            <td class="c0" colspan="2" rowspan="1">
               <p class="c61 c12">
                 <span class="c2 c49"></span>
-              </p>
-            </td>
-          </tr>
-          <tr class="c11">
-            <td class="c20" colspan="1" rowspan="1">
-              <p class="c39 c12">
-                <span class="c2"></span>
-              </p>
-            </td>
-            <td class="c55" colspan="1" rowspan="1">
-              <p class="c61 c12">
-                <span class="c2"></span>
-              </p>
-              <p class="c39 c12">
-                <span class="c2"></span>
               </p>
             </td>
             <td class="c0" colspan="2" rowspan="1">
@@ -220,6 +236,9 @@ const Page22 = (props) => {
               <p class="c39 c12">
                 <span class="c2"></span>
               </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
             </td>
             <td class="c0" colspan="2" rowspan="1">
               <p class="c61 c12">
@@ -240,6 +259,9 @@ const Page22 = (props) => {
               <p class="c39 c12">
                 <span class="c2"></span>
               </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
             </td>
             <td class="c0" colspan="2" rowspan="1">
               <p class="c61 c12">
@@ -249,10 +271,36 @@ const Page22 = (props) => {
           </tr>
           <tr class="c11">
             <td class="c20" colspan="1" rowspan="1">
-              <p class="c39">
-                <span class="c130 c98 c172">TOTAL</span>
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+            </td>
+            <td class="c55" colspan="1" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c39 c12">
+                <span class="c2"></span>
+              </p>
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+            </td>
+            <td class="c0" colspan="2" rowspan="1">
+              <p class="c61 c12">
+                <span class="c2 c49"></span>
+              </p>
+            </td>
+          </tr>
+          <tr class="c11">
+            <td class="c20" colspan="1" rowspan="1">
+              <p
+                class="c39"
+                style={{ fontFamily: "calibri", fontSize: "20pt" }}
+              >
+                <span class="c130 c98">TOTAL</span>
                 <span class="c172">&nbsp;</span>
-                <span class="c130 c98 c172">COST</span>
+                <span class="c130 c98">COST</span>
               </p>
             </td>
             <td class="c55" colspan="1" rowspan="1">
@@ -269,9 +317,7 @@ const Page22 = (props) => {
           <tr class="c11">
             <td class="c184" colspan="3" rowspan="1">
               <p class="c39">
-                <span class="c2">
-                  You can price items individually or provide a turnkey cost.
-                </span>
+                <span class="c2">You can price items individually.</span>
               </p>
             </td>
           </tr>
@@ -284,7 +330,7 @@ const Page22 = (props) => {
           </tr>
           <tr class="c11">
             <td class="c20" colspan="1" rowspan="1">
-              <p class="c39">
+              <p class="c39 mt-1">
                 <span class="c130 c98">UNIT PRICING (if applicable)</span>
               </p>
             </td>
@@ -394,7 +440,7 @@ const Page22 = (props) => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>23</p>
+          <p>24</p>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import "./PagesStyle.css";
-import { Footer } from "./Page1";
 
 const Page25 = () => {
   return (
@@ -14,7 +13,7 @@ const Page25 = () => {
     >
       <div>
         <hr style={{ pageBreakBefore: "always", display: "none" }} />
-        <p class="c23 c206">
+        {/* <p class="c23 c206">
           <span
             style={{
               overflow: "hidden",
@@ -39,12 +38,15 @@ const Page25 = () => {
               title=""
             />
           </span>
-        </p>
+        </p> */}
         {/* <a id="id.4f1mdlm"></a> */}
         <h2 class="c122">
-          <span class="c63">
+          <span
+            class="c63 font-bold italic"
+            style={{ fontFamily: "Helvetica Neue", fontSize: "14pt" }}
+          >
             The total value of minority business contracting will be ($)
-            __________________________{" "}
+            ___________________{" "}
           </span>
           {/* <span class="c238 c63">(</span>
         <span class="c63 c161">$</span>
@@ -74,13 +76,18 @@ const Page25 = () => {
           />
         </span> */}
         </h2>
-        <p class="c5">
-          <span class="c47 c66 c45"></span>
-        </p>
+
         <p class="c327 text-xl font-bold">
           <span class="c200">AFFIDAVIT A</span>
         </p>
-        <p class="c171 ml-2">
+        <p
+          class="c171 ml-6"
+          style={{
+            fontSize: "10pt",
+            fontFamily: "calibri",
+            paddingBottom: "0",
+          }}
+        >
           <span class="c165 c45">This Affidavit and ALL THREE </span>
           <span class="c98 c165 c45">(3) SECTIONS </span>
           <span class="c165 c45">Here</span>
@@ -92,38 +99,70 @@ const Page25 = () => {
           <span class="c165 c45">tted with Bid</span>
           <span class="c45 c273">.</span>
         </p>
-        <h1 class="c128 c224">
+        <h1 class="c128 c224" style={{ lineHeight: "1.2" }}>
           <span class="c121 c80 c148 c98 c294 c202">
             Section I - Listing of the Good Faith Effort
           </span>
         </h1>
-        <h3 class="c23 c128 c292">
-          <span class="c174 font-bold">
+
+        <h3
+          class="c23 c128 mb-2 ml-6"
+          style={{
+            fontFamily: "Times New Roman",
+            fontSize: "12pt",
+            lineHeight: "1",
+            paddingBottom: "0",
+          }}
+        >
+          <span
+            class="c174 font-bold"
+            style={{
+              fontFamily: "Times New Roman",
+              fontSize: "12pt",
+              lineHeight: "1.2",
+            }}
+          >
             Bidder must earn at least 50 points from the Good Faith Efforts list
             for their Bid to be considered responsive and must submit
             documentation supporting all items checked within the timeframes set
-            forth in Section{" "}
+            forth in Section Ill below.{" "}
           </span>
-          <span class="c152 c174 c161 c334">Ill </span>
+          {/* #9f0002 */}
+          {/* <span class="c152 c174 c161 c334">Ill </span>
           <span class="c174">below</span>
-          <span class="c63">.</span>
+          <span class="c63">.</span> */}
         </h3>
-        <p class="c269">
-          <span class="c24">
+        <p
+          class="c269 text-black"
+          style={{ paddingBottom: "0", paddingTop: "0" }}
+        >
+          <span
+            class="c24 text-[10pt]"
+            style={{
+              fontFamily: "calibri",
+            }}
+          >
             I have made Good Faith Effort to comply under the following areas
             checked:
           </span>
         </p>
-        <p class="c337">
+        <p
+          class="c337"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c115 c45">
-            1 - Contacted minority businesses that reasonably could have been
-            expected to submit a quote and that were known to the contractor, or
-            available on State or local government maintained lists, at least 10
-            days before the bid date and notified them of the nature and scope
-            of the work to be performed. &quot;Contact&quot; means contact by
-            letter, fax, e-mail or other means to a viable and active address.{" "}
+            <span className="font-bold">1</span> - Contacted minority businesses
+            that reasonably could have been expected to submit a quote and that
+            were known to the contractor, or available on State or local
+            government maintained lists, at least 10 days before the bid date
+            and notified them of the nature and scope of the work to be
+            performed. &quot;Contact&quot; means contact by letter, fax, e-mail
+            or other means to a viable and active address.{" "}
           </span>
-          <span class="c98 c115">
+          <span class="c98 c115" style={{ fontSize: "11pt" }}>
             CONTRACTOR MUST ATTACH EVIDENCE OF CONTACT TO THIS AFFIDAVIT AND
             SUBMIT WITH BID.{" "}
           </span>
@@ -178,7 +217,13 @@ const Page25 = () => {
           <span class="c149 c98 c45">Value= 10 points</span>
           <span class="c149 c45">.</span>
         </p>
-        <p class="c39 c145">
+        <p
+          class="c39 c145"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c98 c45 c104">5 </span>
           <span class="c104 c45">
             -Attended prebid meetings scheduled by the public owner.{" "}
@@ -187,27 +232,46 @@ const Page25 = () => {
           <span class="c104 c45">.</span>
         </p>
         <p class="c207">
-          <span class="c149 c45">
-            6 - Provided assistance in getting required bonding or insurance or
-            provided alternatives to bonding or insurance for subcontractors.{" "}
+          <span
+            class="c149 c45"
+            style={{
+              fontFamily: "calibri",
+              lineHeight: "1.2",
+            }}
+          >
+            <span className="font-bold">6</span> - Provided assistance in
+            getting required bonding or insurance or provided alternatives to
+            bonding or insurance for subcontractors.{" "}
           </span>
           <span class="c149 c98 c45">Value= 20 points</span>
           <span class="c81 c83 c149 c45">.</span>
         </p>
-        <p class="c39 c267">
+        <p
+          class="c39 c267"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c115 c45">
-            7 - Negotiated in good faith with interested MWBE&#39;S and did not
-            reject them as unqualified without discussing with MWBE&#39;S sound
-            reasons based on their capabilities. CONTRACTOR MUST ATTACH TO THIS
-            AFFIDAVIT AND SUBMIT WITH BID COPIES OF QUOTES OR RESPONSES FROM ALL
-            FIRMS SUBMITTING QUOTES OR RESOPNSES, AND, IF APPLICABLE, WRITTEN
-            JUSTIFICATION FOR ANY REJECTION OF A MWBE BASED ON LACK OF
-            QUALIFICATION.{" "}
+            <span className="font-bold">7</span> - Negotiated in good faith with
+            interested MWBE&#39;S and did not reject them as unqualified without
+            discussing with MWBE&#39;S sound reasons based on their
+            capabilities. CONTRACTOR MUST ATTACH TO THIS AFFIDAVIT AND SUBMIT
+            WITH BID COPIES OF QUOTES OR RESPONSES FROM ALL FIRMS SUBMITTING
+            QUOTES OR RESOPNSES, AND, IF APPLICABLE, WRITTEN JUSTIFICATION FOR
+            ANY REJECTION OF A MWBE BASED ON LACK OF QUALIFICATION.{" "}
           </span>
           <span class="c25">Value= 15 points</span>
           <span class="c81 c83 c115 c45">.</span>
         </p>
-        <p class="c39 c243">
+        <p
+          class="c39 c243"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c76 c45">8 </span>
           <span class="c45 c230">
             - Provided assistance to an otherwise qualified MWBE in need of
@@ -226,7 +290,13 @@ const Page25 = () => {
           <span class="c45 c76">Value= 25 points</span>
           <span class="c45 c230">.</span>
         </p>
-        <p class="c39 c250">
+        <p
+          class="c39 c250"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c228 c98 c45">9 </span>
           <span class="c228 c45">
             - Negotiated joint venture and partnership arrangements with MWBE
@@ -240,7 +310,13 @@ const Page25 = () => {
           <span class="c98 c45 c228">Value= 20 points</span>
           <span class="c228 c45">.</span>
         </p>
-        <p class="c39 c332">
+        <p
+          class="c332"
+          style={{
+            fontFamily: "calibri",
+            lineHeight: "1.2",
+          }}
+        >
           <span class="c43">10 </span>
           <span class="c156 c45">
             - Provided quick pay agreements and policies to enable MWBE
@@ -250,7 +326,7 @@ const Page25 = () => {
           <span class="c98 c45">20 points</span>
           <span class="c30">.</span>
         </p>
-        <p class="c23 c301">
+        <p class="c23 c301" style={{ lineHeight: "1.2" }}>
           <span class="c47 c45 ">The undersigned hereby</span>{" "}
           {/* <span class="c16">y </span> */}
           <span class="c47  c45">
@@ -260,6 +336,22 @@ const Page25 = () => {
             bidder to the commitment herein set forth.
           </span>
         </p>
+        <div className="mt-4 ml-4">
+          <p className="c47 c45 ">
+            <span>Date:_____________</span>
+            <span>
+              Name Of Authorized Officer:
+              <span className="">
+                _________________________________________________
+              </span>
+            </span>
+          </p>
+          <p className="c47 c45 mt-4">
+            <span className="ml-[14rem]">
+              Signature:__________________________________________________
+            </span>
+          </p>
+        </div>
       </div>
       <div className=" flex flex-col justify-center">
         <p className="font-extrabold text-black mb-3 text-center">
@@ -269,7 +361,7 @@ const Page25 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>26</p>
+          <p>27</p>
         </div>
       </div>
     </div>
