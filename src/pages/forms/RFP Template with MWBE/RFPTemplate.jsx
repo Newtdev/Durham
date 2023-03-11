@@ -14,11 +14,12 @@ import FormTwo from "./Forms/FormsTwo";
 import FormThree from "./Forms/FormsThree";
 import { nextStep, page } from "./reducer";
 import Preview from "./Preview";
+import { handleSavedDate, setResult } from "../../../shared-component";
 // import { RFPTemplatewithMWBESchema } from "../../../yup";
 import { handleResultWithArray } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
-const RFPTemplate = ({ id }) => {
+const RFPTemplate = ({ id, filled }) => {
   const dispatch = useDispatch();
   const pages = useSelector(page);
   const show = useSelector(modal);
@@ -32,8 +33,10 @@ const RFPTemplate = ({ id }) => {
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResultWithArray(values).form_fields,
-      dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+      form_fields: setResult(values),
+
+      // form_fields: handleResultWithArray(values).form_fields,
+      // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
     });
 
     if (response) {
@@ -84,13 +87,10 @@ const RFPTemplate = ({ id }) => {
     // validationSchema: RFPTemplatewithMWBESchema,
     onSubmit: (values) => {
       if (pages === 1) {
-        // dispatch(saveFormField(values));
         dispatch(nextStep(2));
       } else if (pages === 2) {
-        // dispatch(saveFormField(values));
         dispatch(nextStep(3));
       } else if (pages === 3) {
-        // dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
@@ -102,58 +102,105 @@ const RFPTemplate = ({ id }) => {
       dispatch(getStates(response));
     })();
 
-    if (!a?.data?.form_fields) {
+    if (!a?.data) {
       return;
     }
-    formik.setValues({
-      bidderName: a?.data?.form_fields?.bidderName,
-      rfpNumber: a?.data?.form_fields?.rfpNumber,
-      personName: a?.data?.form_fields?.personName,
-      contractType: a?.data?.form_fields?.contractType,
+    formik.setFieldValue("bidderName", a?.data?.form_fields.bidderName);
+    formik.setFieldValue("rfpNumber", a?.data?.form_fields.rfpNumber);
+    formik.setFieldValue("personName", a?.data?.form_fields.personName);
+    formik.setFieldValue("contactType", a?.data?.form_fields.contactType);
+    formik.setFieldValue(
+      "issueDate",
+      handleSavedDate(a?.data?.form_fields.issueDate)
+    );
+    formik.setFieldValue(
+      "proposalDate",
+      handleSavedDate(a?.data?.form_fields.proposalDate)
+    );
+    formik.setFieldValue(
+      "submissionDate",
+      handleSavedDate(a?.data?.form_fields.submissionDate)
+    );
+    formik.setFieldValue(
+      "answerDate",
+      handleSavedDate(a?.data?.form_fields.answerDate)
+    );
+    formik.setFieldValue(
+      "bidOpeningDate",
+      handleSavedDate(a?.data?.form_fields.bidOpeningDate)
+    );
+    formik.setFieldValue(
+      "proposalSubmissionDate",
+      handleSavedDate(a?.data?.form_fields.proposalSubmissionDate)
+    );
+    formik.setFieldValue(
+      "proposalTime",
+      handleSavedDate(a?.data?.form_fields.proposalTime)
+    );
+    formik.setFieldValue(
+      "submissionTime",
+      handleSavedDate(a?.data?.form_fields.submissionTime)
+    );
+    formik.setFieldValue(
+      "answerTime",
+      handleSavedDate(a?.data?.form_fields.answerTime)
+    );
+    formik.setFieldValue(
+      "bidOpeningTime",
+      handleSavedDate(a?.data?.form_fields.bidOpeningTime)
+    );
+    formik.setFieldValue(
+      "proposalSubmissionTime",
+      handleSavedDate(a?.data?.form_fields.proposalSubmissionTime)
+    );
+    formik.setFieldValue("date", handleSavedDate(a?.data?.form_fields.date));
+    formik.setFieldValue("time", handleSavedDate(a?.data?.form_fields.time));
+    formik.setFieldValue("street", a?.data?.form_fields.street);
+    formik.setFieldValue("state", a?.data?.form_fields.state);
+    formik.setFieldValue("city", a?.data?.form_fields.city);
+    formik.setFieldValue("zipCode", a?.data?.form_fields.zipCode);
 
-      // issueDate: a?.data?.form_fields?.issueDate,
-      // proposalDate: a?.data?.form_fields?.proposalDate,
-      // submissionDate: a?.data?.form_fields?.submissionDate,
-      // answerDate: a?.data?.form_fields?.answerDate,
-      // bidOpeningDate: a?.data?.form_fields?.bidOpeningDate,
-      // proposalSubmissionDate: a?.data?.form_fields?.proposalSubmissionDate,
-
-      // proposalTime: a?.data?.form_fields?.proposalTime,
-      // submissionTime: a?.data?.form_fields?.submissionTime,
-      // answerTime: a?.data?.form_fields?.answerTime,
-      // bidOpeningTime: a?.data?.form_fields?.bidOpeningTime,
-      // proposalSubmissionTime: a?.data?.form_fields?.proposalSubmissionTime,
-
-      street: a?.data?.form_fields?.street,
-      state: a?.data?.form_fields?.state,
-      city: a?.data?.form_fields?.city,
-      zipCode: a?.data?.form_fields?.zipCode,
-
-      // date: a?.data?.form_fields?.date,
-      // time: a?.data?.form_fields?.time,
-
-      prototypeNotUtilized: a?.data?.form_fields?.prototypeNotUtilized,
-      proposalScope: a?.data?.form_fields?.proposalScope,
-      validityPeriod: a?.data?.form_fields?.validityPeriod,
-      // items: {
-      //   item: a?.data?.form_fields?.items?.item,
-      // },
-      attachment: a?.data?.form_fields?.attachment,
-    });
-  }, [dispatch, a]);
+    formik.setFieldValue(
+      "prototypeNotUtilized",
+      a?.data?.form_fields.prototypeNotUtilized
+    );
+    formik.setFieldValue("proposalScope", a?.data?.form_fields.proposalScope);
+    formik.setFieldValue("validityPeriod", a?.data?.form_fields.validityPeriod);
+    formik.setFieldValue("attachment", a?.data?.form_fields.attachment);
+    // formik.setFieldValue("items", a?.data?.form_fields.items);
+  }, [a?.data]);
 
   const props = { ...formik, isLoading };
 
+  if (!filled) {
+    return (
+      <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
+        <FormikProvider value={formik}>
+          {pages === 1 ? <FormOne {...formik} /> : null}
+          {pages === 2 ? <FormTwo {...formik} /> : null}
+          {pages === 3 ? <FormThree {...props} /> : null}
+          {pages === 4 ? <Preview /> : null}
+        </FormikProvider>
+      </ModalOverlay>
+    );
+  }
+
   return (
     <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
-      <FormikProvider value={formik}>
-        {pages === 1 && <FormOne {...formik} />}
-        {pages === 2 && <FormTwo {...formik} />}
-        {pages === 3 && <FormThree {...props} />}
-        {pages === 4 && <Preview />}
-      </FormikProvider>
+      <Preview />
     </ModalOverlay>
   );
+
+  // return (
+  //   <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
+  //     <FormikProvider value={formik}>
+  //       {pages === 1 && <FormOne {...formik} />}
+  //       {pages === 2 && <FormTwo {...formik} />}
+  //       {pages === 3 && <FormThree {...props} />}
+  //       {pages === 4 && <Preview />}
+  //     </FormikProvider>
+  //   </ModalOverlay>
+  // );
 };
 
 export default RFPTemplate;

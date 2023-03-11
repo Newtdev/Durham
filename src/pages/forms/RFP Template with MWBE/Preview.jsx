@@ -11,6 +11,7 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { prevStep, stepDefault } from "./reducer";
+import { selectFilled } from "../../Dashboard/project-dashboard/ReducerSlice";
 import Page1 from "./Previews/Page1";
 import Page2 from "./Previews/Page2";
 import Page3 from "./Previews/Page3";
@@ -108,7 +109,7 @@ const Preview = () => {
         >
           {" "}
           {/* Header */}
-          <div className="flex justify-between items-baseline border-b border-b-gray-200 py-3 z-50 bg-white ">
+          <div className="flex justify-between items-baseline border-b border-b-gray-200 rounded-lg py-3 z-50 bg-white ">
             <div className="ml-6">
               <h3 className="text-lg font-bold text-gray-900">
                 RFT Template with MWBE
@@ -133,9 +134,7 @@ const Preview = () => {
                 class="c225 doc-content"
                 style={{
                   width: "100%",
-                  // padding: "0pt 30pt 0pt 60pt",
                   padding: "0",
-                  // border: "1px solid black",
                 }}
               >
                 <Page1 {...pageProps} />
@@ -146,16 +145,11 @@ const Preview = () => {
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
                 <Page7 {...pageProps} />
-                <Page8 {...pageProps} />
                 {showPage && <Page8 />}
-                {/* {showPage && <Page9 />} */}
-                <Page9 {...pageProps} />
-                {/* {showPage && <Page10 />} */}
-                {/* {showPage && <Page11 />} */}
-                <Page10 {...pageProps} />
+                {showPage && <Page9 />}
+                {showPage && <Page10 />}
                 <Page11 {...pageProps} />
                 <Page12 {...pageProps} />
-
                 {showPage && <Page13 />}
                 {showPage && <Page14 />}
                 {showPage && <Page15 />}
@@ -180,11 +174,14 @@ const Preview = () => {
             </div>
           </div>
           {/* Buttons */}
-          <div className="flex justify-end gap-4 pr-6 pb-4 bg-white">
+          <div className="flex justify-end gap-4 pr-6 pb-4 bg-white rounded-lg">
             <ButtonWhiteBG
               width="w-[171px]"
               name="Edit document"
-              onClick={() => dispatch(prevStep(3))}
+              onClick={() => {
+                dispatch(selectFilled(false));
+                dispatch(prevStep(3));
+              }}
             />
             <DashboardButton
               onClick={() => {

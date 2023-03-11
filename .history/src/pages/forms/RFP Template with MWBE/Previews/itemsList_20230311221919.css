@@ -1,0 +1,4 @@
+li:before {
+  content: counter(list) ") ";
+  counter-increment: list;
+}

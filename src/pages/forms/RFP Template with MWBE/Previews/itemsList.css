@@ -1,0 +1,12 @@
+.laparent ol {
+  counter-reset: item;
+}
+.laparent li {
+  display: block;
+  counter-increment: item;
+}
+/* replace the counter before list item with
+          open parenthesis + counter + close parenthesis */
+.laparent li:before {
+  content: counter(item, lower-alpha) ") ";
+}

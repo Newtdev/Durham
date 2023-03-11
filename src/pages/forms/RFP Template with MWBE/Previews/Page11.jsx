@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./PagesStyle.css";
+// import "./PagesStyle.css";
+import "./proposalScope.css";
 import he from "he";
 
 const Page11 = (props) => {
@@ -27,17 +28,17 @@ const Page11 = (props) => {
         <p class="c38" id="h.1hmsyys">
           <span class="c89 c68">6.0 PROPOSAL SCOPE</span>
         </p>
-        <div className="mt-4 list-disc" style={{ listStyle: "inside" }}>
+        <section className="mt-4 " style={{ listStyle: "lower-latin" }}>
           {proposalScope && (
-            <section
-              className="list-disc"
-              style={{ listStyle: "inside" }}
+            <div
+              // className="list-disc"
+              style={{ listStyle: "lower-latin" }}
               dangerouslySetInnerHTML={{
                 __html: he.decode(encodedProposalScope),
               }}
             />
           )}
-        </div>
+        </section>
       </div>
 
       <div className="flex flex-col justify-center">
