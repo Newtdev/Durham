@@ -12,7 +12,7 @@ import { choiceStep, nextChoiceStep } from "./reducer";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import { setResult } from "../../../shared-component";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { useEffect } from "react";
 
@@ -74,12 +74,53 @@ const LeChase = ({ id, filled }) => {
 		isLoading,
 	};
 
-	// useEffect(() => {
-	// 	if (!a?.data) {
-	// 		return;
-	// 	}
-	// 	Formik.setValues({ ...a?.data?.form_fields });
-	// }, [a]);
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		Formik.setFieldValue(
+			"contractStartDate",
+			handleSavedDate(a?.data?.form_fields.contractStartDate)
+		);
+		Formik.setFieldValue(
+			"fromDuration",
+			handleSavedDate(a?.data?.form_fields.fromDuration)
+		);
+		Formik.setFieldValue(
+			"signedDocument",
+			handleSavedDate(a?.data?.form_fields.signedDocument)
+		);
+		Formik.setFieldValue(
+			"startDuration",
+			handleSavedDate(a?.data?.form_fields.startDuration)
+		);
+		Formik.setFieldValue(
+			"calculatePayment",
+			a?.data?.form_fields.calculatePayment
+		);
+		Formik.setFieldValue(
+			"allowablePayment",
+			a?.data?.form_fields.allowablePayment
+		);
+		Formik.setFieldValue(
+			"reimburseObligation",
+			a?.data?.form_fields.reimburseObligation
+		);
+		Formik.setFieldValue(
+			"providerInvoice",
+			a?.data?.form_fields.providerInvoice
+		);
+		Formik.setFieldValue(
+			"signedDocument",
+			handleSavedDate(a?.data?.form_fields.signedDocument)
+		);
+		Formik.setFieldValue(
+			"providerCompensation",
+			a?.data?.form_fields?.providerCompensation
+		);
+		Formik.setFieldValue("type", a?.data?.form_fields.type);
+		Formik.setFieldValue("addressCopy", a?.data?.form_fields.addressCopy);
+	}, [a?.data]);
 
 	if (!filled) {
 		return (

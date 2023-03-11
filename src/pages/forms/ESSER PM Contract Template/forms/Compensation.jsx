@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import { useFetchDurhamQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import SelectDate, { FormInputPlain, FormSelect } from "../../components";
+import SelectDate, {
+	FormInputPlain,
+	FormSelect,
+	FormTextArea,
+} from "../../components";
 import { FormInputContainer } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import { prevChoiceStep } from "../reducer";
@@ -41,19 +45,19 @@ const Compensation = (props) => {
 		placeholder: "NOT-TO-EXCEED Amount",
 		type: "text",
 	};
-	const reimburseObligation = {
-		value: props.values.reimburseObligation,
-		onChange: props.handleChange,
-		name: "reimburseObligation",
-		type: "text",
-		placeholder: "Obligations",
-	};
+	// const reimburseObligation = {
+	// 	value: props.values.reimburseObligation,
+	// 	onChange: props.handleChange,
+	// 	name: "reimburseObligation",
+	// 	type: "text",
+	// 	placeholder: "Obligations",
+	// };
 	const providerCompensation = {
 		value: props.values.providerCompensation,
 		onChange: props.handleChange,
 		name: "providerCompensation",
 		type: "text",
-		placeholder: "Amount",
+		placeholder: "",
 	};
 	const providerInvoice = {
 		value: props.values.providerInvoice,
@@ -164,9 +168,15 @@ const Compensation = (props) => {
 							Specify any additional obligations of the school system, including
 							reimbursement of expenses.
 						</label>
-						<input
+						{/* <input
 							{...reimburseObligation}
 							className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
+						/> */}
+						<FormTextArea
+							onChange={props.handleChange}
+							id="reimburseObligation"
+							value={props?.values?.reimburseObligation}
+							placeholder={"Obligation Must be under 40 words. "}
 						/>
 						{props.errors.reimburseObligation &&
 							props.touched.reimburseObligation && (

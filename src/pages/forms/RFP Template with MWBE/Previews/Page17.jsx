@@ -6,7 +6,7 @@ const Page17 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 70pt",
+        margin: "1in 30pt 3rem 90pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
@@ -137,7 +137,7 @@ const Page17 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>17</p>
+          <p>18</p>
         </div>
       </div>
     </div>

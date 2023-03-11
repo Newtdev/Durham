@@ -1,9 +1,9 @@
 const PageThree = () => {
 	return (
-		<div className="pt-8 pb-4 text-black text-[10pt] h-[11in] ">
-			<div>
+		<div className="pt-8 pb-4 text-black text-[10pt] h-[11in]  ">
+			<div className=" flex flex-col justify-between h-full">
 				{/* Page 3 */}
-				<div className="m-[1in]">
+				<div className="m-[1in] ">
 					<div className="ml-[64px]">
 						<p className="mb-1 text-justify">
 							of the performance of this Agreement and caused by negligent acts
@@ -13,84 +13,68 @@ const PageThree = () => {
 
 						<div className="ml-2 pr-8 mb-3">
 							<div className="flex justify-between mb-2">
-								<p>
-									Insurance Description <br />
-									Required Coverage
-								</p>
-								<p>Minimum</p>
+								<p>Insurance Description</p>
+								<p>Minimum Required Coverage</p>
 							</div>
-							<p className="mb-2">
-								<span className="mr-2">a.</span>Worker's Compensation <br />
-								Statutory
+							<p className="mb-2 flex justify-between">
+								<span className="mr-2">a. Worker's Compensation</span>
+								<span className="text-right">Statutory</span>
 							</p>
-							<p className="mb-3">
-								<span className="mr-2">b.</span>Public Liability <br />
-								Combined Limit
+							<p className="flex justify-between mb-1">
+								<span className="mr-2">b. Public Liability</span>
+								<span className="text-center">Combined Limit</span>
 							</p>
 
-							<div className="flex justify-between">
-								<p>
-									<span className="ml-8">Bodily</span> Injury: Each Person{" "}
-									<br />
-									1,000,000.00
+							<div>
+								<p className="flex justify-between">
+									<span className="ml-6">Bodily Injury: Each Person</span>{" "}
+									<span>$1,000,000.00</span>
 								</p>
-								<p>$</p>
 							</div>
-							<div className="flex justify-between">
-								<p>
-									<span className="ml-8">Bodily</span> Injury: Each Accident{" "}
-									<br />
-									1,000,000.00
+							<div className="my-1">
+								<p className="flex justify-between">
+									<span className="ml-6">Bodily Injury: Each Accident</span>{" "}
+									<p>$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
-							<div className="flex justify-between mb-2">
-								<p>
-									<span className="ml-8">Property</span> Damage: Each Accident{" "}
-									<br />
-									1,000,000.00
+							<div>
+								<p className="flex justify-between mb-2">
+									<span className="ml-6">Property Damage: Each Accident</span>{" "}
+									<p>$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
 
-							<p className="mb-3">
-								<span className="mr-2">c.</span>Automobile Liability & Property
-								Damage <br />
-								Combined Limit
+							<p className="flex justify-between">
+								<span className="mr-2">
+									c. Automobile Liability & Property Damage{" "}
+								</span>
+								<span>Combined Limit</span>
 							</p>
 
-							<div className="flex justify-between">
-								<p>
-									<span className="ml-8">Bodily</span> Injury: Each Person{" "}
-									<br />
-									1,000,000.00
+							<div>
+								<p className="flex justify-between mt-1">
+									<span className="ml-6">Bodily Injury: Each Person</span>{" "}
+									<p>$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
-							<div className="flex justify-between">
-								<p>
-									<span className="ml-8">Bodily</span> Injury: Each Accident{" "}
-									<br />
-									1,000,000.00
+							<div className="my-1">
+								<p className="flex justify-between">
+									<span className="ml-6">Bodily Injury: Each Accident</span>{" "}
+									<p className="">$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
-							<div className="flex justify-between mb-2">
-								<p>
-									<span className="ml-8">Property</span> Damage: Each Accident{" "}
-									<br />
-									1,000,000.00
+							<div>
+								<p className="flex justify-between mb-2">
+									<span className="ml-6">Property Damage: Each Accident</span>{" "}
+									<p>$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
 
-							<div className="flex justify-between">
-								<p>
-									<span className="mr-2">d.</span>Professional Liability:
-									<br />
-									1,000,000.00
+							<div>
+								<p className="flex justify-between">
+									<span className="mr-2">d. Professional Liability:</span>
+									<p>$1,000,000.00</p>
 								</p>
-								<p>$</p>
 							</div>
 						</div>
 					</div>
@@ -169,7 +153,7 @@ const PageThree = () => {
 						</div>
 					</div>
 				</div>
-				<div className="h-[2rem] text-[12pt] mt-auto flex items-end justify-center">
+				<div className="h-[6rem] text-[12pt] mt-auto flex items-end justify-center mb-4">
 					3
 				</div>
 			</div>

@@ -14,7 +14,7 @@ const Page20 = () => {
     >
       <div>
         <ol>
-          <li class="c201 c23 c106 flex ml-8">
+          <li class="c201 c23 c106 ml-9">
             <span className="mr-4">b.</span>
             <span class="c21">
               <span class="c10">Worker&rsquo;s Compensation</span>
@@ -27,7 +27,7 @@ const Page20 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 c106 flex ml-8">
+          <li class="c201 c23 mt-1 c106 ml-9">
             <span className="mr-4">c.</span>
             <span class="c21">
               <span class="c10">Automobile</span>
@@ -42,8 +42,8 @@ const Page20 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 mt-1 c106 flex ml-8">
-            <span className="mr-4">d.</span>
+          <li class="c201 c23 mt-1 c106 flex ml-5">
+            <span className="mr-4"></span>
             <span class="c21">
               <span class="c10">REQUIREMENTS</span>
               <span class="c66 c45">&nbsp;-</span>
@@ -192,7 +192,7 @@ const Page20 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>20</p>
+          <p>21</p>
         </div>
       </div>
     </div>

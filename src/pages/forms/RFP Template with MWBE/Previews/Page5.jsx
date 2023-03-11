@@ -208,7 +208,7 @@ const Page5 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>5</p>
+          <p>6</p>
         </div>
       </div>
     </div>

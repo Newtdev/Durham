@@ -6,6 +6,10 @@ import { FormSelect, FormInputPlain } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
 import { prevStep } from "../reducer";
+import {
+	DataListComponent,
+	GetState,
+} from "../../E-589C Affidavit Of Capital Improvement/Affidavit";
 
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
@@ -96,43 +100,40 @@ const FormTwo = (props) => {
 									)}
 								</div>
 								<div className="flex gap-2 justify-center items-end">
-									<FormSelect
+									{/* <FormSelect
 										value={props.values?.vendor}
 										id="state"
 										error={props.errors?.state}
 										touched={props.touched?.state}
 										onChange={props.handleChange}>
 										<option value="">Select State</option>
-										{!states
-											? null
-											: Object.entries(states).map((cur, index) => {
-													return (
-														<option key={index} value={cur[1].name}>
-															{cur[1].name}
-														</option>
-													);
-											  })}
-									</FormSelect>
+										
+									</FormSelect> */}
 
-									<FormSelect
-										value={props.values?.vendor}
-										id="city"
-										error={props.errors?.city}
-										touched={props.touched?.city}
-										onChange={props.handleChange}>
-										<option value="">Select City</option>
-										{CheckState()}
-									</FormSelect>
-
-									<FormSelect
-										id="zipCode"
-										value={props.values?.zipCode}
-										error={props.errors?.zipCode}
-										touched={props.touched.zipCode}
-										onChange={props.handleChange}>
-										<option value="">Select zipcode</option>
-										{CheckZipCode()}
-									</FormSelect>
+									<DataListComponent
+										name="State"
+										inputname="state"
+										value={props.values.state}
+										handleChange={props.handleChange}
+										fn={() => GetState(states)}
+										placeholder="State"
+									/>
+									<DataListComponent
+										name="City"
+										inputname="city"
+										value={props.values.city}
+										handleChange={props.handleChange}
+										fn={() => CheckState(states)}
+										placeholder="City"
+									/>
+									<DataListComponent
+										name="Zip code"
+										inputname="zipCode"
+										value={props.values.zipCode}
+										handleChange={props.handleChange}
+										fn={() => CheckZipCode()}
+										placeholder="Zip Code"
+									/>
 								</div>
 							</FormInputContainer>
 						</div>

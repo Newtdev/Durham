@@ -90,7 +90,7 @@ const Page24 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>25</p>
+          <p>26</p>
         </div>
       </div>
     </div>

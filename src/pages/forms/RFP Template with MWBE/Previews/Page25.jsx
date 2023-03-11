@@ -361,7 +361,7 @@ const Page25 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>26</p>
+          <p>27</p>
         </div>
       </div>
     </div>

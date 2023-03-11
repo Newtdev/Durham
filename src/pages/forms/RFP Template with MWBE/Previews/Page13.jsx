@@ -216,7 +216,7 @@ const Page13 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>13</p>
+          <p>14</p>
         </div>
       </div>
     </div>

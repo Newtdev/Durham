@@ -241,7 +241,6 @@ const PageFive = ({ content, nottoBeHighlighted }) => {
 						</div>
 						<p className={`mb-0 mt-10 mr-8 border-t border-black`}>
 							<span className={`${nottoBeHighlighted} mb-0`}>
-								{console.log(durham)}
 								{!durham_profile
 									? ""
 									: durham_profile.chairdps_board_of_education?.name}
