@@ -9,8 +9,10 @@ import { FormTextArea } from "../../components";
 import { useGetVendorsQuery } from "../../../../features/services/api";
 import { useEffect } from "react";
 import { FieldArray } from "formik";
+import { selectFilled } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import { prevStep } from "./reducer";
 
-const FormOne = (props) => {
+const FormThree = (props) => {
 	const dispatch = useDispatch();
 	const [index, setIndex] = useState(0);
 	const [focus, setFocus] = useState(false);
@@ -370,7 +372,7 @@ const FormOne = (props) => {
 							width="w-[100px]"
 							name="Cancel"
 							onClick={() => {
-								dispatch(closeModal());
+								dispatch(prevStep(3));
 							}}
 						/>
 						<DashboardButton
@@ -378,6 +380,7 @@ const FormOne = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
+							loading={props?.isLoading}
 						/>
 					</div>
 				</form>
@@ -386,4 +389,4 @@ const FormOne = (props) => {
 	);
 };
 
-export default FormOne;
+export default FormThree;

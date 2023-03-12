@@ -15,7 +15,7 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { setResult } from "../../../shared-component";
 
-const ProjectCloseoutCheckList = ({ id }) => {
+const ProjectCloseoutCheckList = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(step);
 	const show = useSelector(modal);
@@ -67,13 +67,20 @@ const ProjectCloseoutCheckList = ({ id }) => {
 		...formik,
 		isLoading,
 	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === project_closeout_checklist && show}>
+				{pages === 0 && <GeneralInformation {...formik} />}
+				{pages === 1 && <CheckList {...formik} />}
+				{pages === 2 && <CheckListTwo {...formik} />}
+				{pages === 3 && <CheckListThree {...props} />}
+				{pages === 4 && <ProjectCloseOutPreview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === project_closeout_checklist && show}>
-			{pages === 0 && <GeneralInformation {...formik} />}
-			{pages === 1 && <CheckList {...formik} />}
-			{pages === 2 && <CheckListTwo {...formik} />}
-			{pages === 3 && <CheckListThree {...props} />}
-			{pages === 4 && <ProjectCloseOutPreview />}
+			<ProjectCloseOutPreview />
 		</ModalOverlay>
 	);
 };
