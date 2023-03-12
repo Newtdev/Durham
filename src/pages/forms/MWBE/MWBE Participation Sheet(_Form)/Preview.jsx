@@ -1,25 +1,33 @@
-import { height } from "@mui/system";
 import currency from "currency.js";
 import { useMemo } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
+import { useRef, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchFilledFormQuery } from "../../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { parseDynamicInput } from "../../../../shared-component";
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../../Lundsford/Download";
-import { closeModal, fields, openDownload, showDownload } from "../../reducer";
+import { closeModal, openDownload, showDownload } from "../../reducer";
 import MainPreview from "./MainPreview";
+import PageTwo from "./pages/PageTwo";
 import { prevStep, stepDefault } from "./reducer";
 
-const CalculatePercentage = (a, b) => {
+export const CalculatePercentage = (a, b) => {
 	return useMemo(() => {
+		if (!b) {
+			return "";
+		}
 		return ((Number(a) / Number(b)) * 100).toFixed(2);
 	}, [a, b]);
 };
-const RenderContractor = ({ formDetails, color }) => {
-	return formDetails?.contractors?.map((contractor, index) => {
+export const RenderContractor = ({ formDetails, data, color }) => {
+	return data?.map((contractor, index) => {
 		return (
 			<tr className={`${color}`}>
 				<td className="border border-black border-collapse">
@@ -50,23 +58,26 @@ const RenderContractor = ({ formDetails, color }) => {
 	});
 };
 
-const RenderTotal = ({ formDetails, color }) => {
-	const getTotal = (type) => {
-		if (!formDetails?.contractors) return;
-		let sum = 0;
-		let a = formDetails?.contractors?.filter(
-			(contractor) => contractor?.companyType === type
-		);
+export const RenderTotal = ({ formDetails, data, color }) => {
+	// const contractors = parseDynamicInput(formDetails?.contractors);
+	// const getTotal = (type) => {
+	// };
+	const getTotal = useCallback(
+		(type) => {
+			if (!data) return;
+			let sum = 0;
+			let a = data?.filter((contractor) => contractor?.companyType === type);
+			for (const object of a) {
+				sum += Number(object.companyContractAmount);
+			}
+			return sum;
+		},
+		[data]
+	);
 
-		for (const object of a) {
-			sum += Number(object.companyContractAmount);
-		}
-		return sum;
-	};
-
-	const TotalAmount = () => {
+	const TotalAmount = useMemo(() => {
 		return getTotal("MBE") + getTotal("WBE");
-	};
+	}, [getTotal]);
 
 	return (
 		<>
@@ -114,12 +125,12 @@ const RenderTotal = ({ formDetails, color }) => {
 					TOTAL <br /> M/WBE
 				</th>
 				<th className="border border-black border-collapse">
-					<span className={`${color}`}>{currency(TotalAmount()).format()}</span>
+					<span className={`${color}`}>{currency(TotalAmount).format()}</span>
 				</th>
 				<th className="border border-black border-collapse">
 					<span className={`${color}`}>
 						{`${CalculatePercentage(
-							TotalAmount(),
+							TotalAmount,
 							formDetails?.totalContractAmount
 						)}%`}
 					</span>
@@ -127,6 +138,13 @@ const RenderTotal = ({ formDetails, color }) => {
 			</tr>
 		</>
 	);
+};
+
+export const slicedFunct = (contractors, start, end) => {
+	if (!contractors) {
+		return;
+	}
+	return contractors.slice(start, end);
 };
 
 const MWBEParticipation = () => {
@@ -137,13 +155,8 @@ const MWBEParticipation = () => {
 
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
-	const project = content?.currentData?.data?.project;
-	// const [awardee, setAwardee] = useState([]);
-	// const [showPage, setShow] = useState(false);
-	// const content = useSelector(savedResponse);
-	// const vendors = content?.data?.data.vendors;
-	const form_fields = useSelector(fields);
+	const [a] = UseFetchFilledFormDetails(formID);
+	const project = a?.data?.project;
 
 	// const pageContent = content?.data;
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
@@ -156,7 +169,10 @@ const MWBEParticipation = () => {
 		// close: closeDownload,
 	};
 	const projectDetails = !project ? "" : project;
-	const formDetails = !form_fields ? "" : form_fields;
+	const formDetails = a?.data?.form_fields;
+
+	const contractors = parseDynamicInput(formDetails?.contractors);
+	const handleText = projectDetails?.description?.split(" ").length;
 
 	return (
 		<div>
@@ -187,13 +203,11 @@ const MWBEParticipation = () => {
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
 						<div
 							cclassName=" text-black arial-font text-[11.5px]"
-							ref={downloadComponent}
-							style={{ margin: "1in 0.5in" }}>
-							{/* Condition to show the details or empty details */}
+							ref={downloadComponent}>
 							{formDetails?.purpose === "To provide it to the vendor" ? (
 								<MainPreview />
 							) : (
-								<div className="">
+								<div className="h-[11in]" style={{ padding: "1in 0.5in" }}>
 									<div className="mb-8">
 										<h1 className="font-extrabold text-[17px]  mb-8 text-center">
 											MWBE Participation Sheet (% Form)
@@ -213,14 +227,26 @@ const MWBEParticipation = () => {
 										</p>
 
 										<p className="mb-4">Description of Project:</p>
+										<div className="mb-4">
+											<p>Project Description:</p>
+											<div
+												className={`${
+													handleText > 60 ? "text-[8pt]" : "text-[10pt]"
+												} p-2 border border-black w-full leading-[1.1]  h-28 overflow-y-hidden`}>
+												<span
+													className={`${nottoBeHighlighted} inline-block h-full`}>
+													{!projectDetails ? "" : projectDetails?.description}
+												</span>
+											</div>
+										</div>
 
-										<div className="border border-black p-2 mb-4 break-words h-full">
+										{/* <div className="border border-black p-2 mb-4 break-words h-full">
 											<p className={`${nottoBeHighlighted}`}>
 												{!projectDetails?.description
 													? ""
 													: projectDetails.description}
 											</p>
-										</div>
+										</div> */}
 
 										<p>
 											Total Contract Amount:{" "}
@@ -263,17 +289,9 @@ const MWBEParticipation = () => {
 											<tbody>
 												<RenderContractor
 													formDetails={formDetails}
+													data={slicedFunct(contractors, 0, 10)}
 													color={nottoBeHighlighted}
 												/>
-
-												<tr>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-												</tr>
 
 												<tr>
 													<td></td>
@@ -289,13 +307,17 @@ const MWBEParticipation = () => {
 												</tr>
 												<RenderTotal
 													formDetails={formDetails}
-													color={nottoBeHighlighted}
+													data={slicedFunct(contractors, 0, 10)}
 												/>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							)}
+							<PageTwo
+								formDetails={formDetails}
+								nottoBeHighlighted={nottoBeHighlighted}
+							/>
 						</div>
 					</div>
 
@@ -304,7 +326,10 @@ const MWBEParticipation = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(1))}
+							onClick={() => {
+								dispatch(prevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

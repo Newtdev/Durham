@@ -1,3 +1,3 @@
-import CPC from "./CPC";
+import ContractPreparationCheckList from "./ContractPreparationChecklist";
 
-export default CPC;
+export default ContractPreparationCheckList;

@@ -16,7 +16,7 @@ import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import { parseDynamicInput } from "../../../../shared-component";
 
 const TableRow = ({ form, nottoBeHighlighted }) => {
-	console.log(form);
+	// console.log(form);
 	if (!form) {
 		return;
 	}
@@ -78,7 +78,6 @@ const Preview = () => {
 	const [a] = UseFetchFilledFormDetails(formID);
 	const forms = a?.data?.form_fields;
 
-	// const pageContent = content?.data;
 	const nottoBeHighlighted = !highlighted
 		? "bg-yellow-300 text-[10.9pt]"
 		: "bg-white text-[10.9pt]";
@@ -88,19 +87,7 @@ const Preview = () => {
 		name: "CCP Requisition - MODIFIED 4-22-22FM",
 		show: !show ? "hidden" : "block",
 		stepDefault,
-		// close: closeDownload,
 	};
-
-	// const subTotal = (a) => {
-	// 	if (!a) {
-	// 		return;
-	// 	}
-	// 	let quantitySum = 0;
-	// 	for (const object of a) {
-	// 		quantitySum += Number(object.quantity * object.unitPrice);
-	// 	}
-	// 	return quantitySum;
-	// };
 
 	const taxPercentage = useMemo(() => {
 		let per;
@@ -118,7 +105,6 @@ const Preview = () => {
 	}, [forms]);
 
 	const data = parseDynamicInput(forms?.items);
-	console.log(data);
 
 	return (
 		<div>

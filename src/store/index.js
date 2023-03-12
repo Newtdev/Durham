@@ -43,8 +43,10 @@ import OwnerDesignMoreFormReducer from "../pages/forms/Contract/Owner and Design
 import DpsFormalGeneralReducer from "../pages/forms/DPS Formal General/reducer";
 // import Proposal from "../pages/forms/Budget/Change-Proposal-Form/reducer";
 import { Proposal } from "../pages/forms/Budget/Change-Proposal-Form 2/";
+import ContractPreparationCheckListReducer from "../pages/forms/Contract Preparation Checklist/reducer";
 
 export const store = configureStore({
+
   // reducers
   reducer: {
     // API
@@ -99,4 +101,5 @@ export const store = configureStore({
   ignoredState: true,
   // devTools
   devTools: true,
+
 });
