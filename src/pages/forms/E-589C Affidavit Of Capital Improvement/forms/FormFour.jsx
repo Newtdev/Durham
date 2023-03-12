@@ -205,7 +205,7 @@ const FormFour = (props) => {
 								// limit="100"
 								value={props?.values?.improvement}
 								placeholder={
-									"Capital improvement to be performed must be under 100 characters or words. "
+									"Capital improvement to be performed must be under 100 words. "
 								}
 								name="Describe the capital improvement to be performed."
 							/>

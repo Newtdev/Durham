@@ -9,8 +9,10 @@ import { FormTextArea } from "../../components";
 import { useGetVendorsQuery } from "../../../../features/services/api";
 import { useEffect } from "react";
 import { FieldArray } from "formik";
+import { selectFilled } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import { prevStep } from "./reducer";
 
-const FormOne = (props) => {
+const FormTwo = (props) => {
 	const dispatch = useDispatch();
 	const [index, setIndex] = useState(0);
 	const [focus, setFocus] = useState(false);
@@ -127,7 +129,7 @@ const FormOne = (props) => {
 											onChange={props.handleChange}
 											name="totalContractAmount"
 											placeholder={"0.00"}
-											value={props?.values?.totalContractAmount}
+											value={props.values.totalContractAmount}
 										/>
 										{props.errors.totalContractAmount &&
 											props.touched.totalContractAmount && (
@@ -347,7 +349,7 @@ const FormOne = (props) => {
 																});
 															}}
 															disabled={
-																props?.values?.contractors?.length === 30
+																props?.values?.contractors?.length === 20
 																	? true
 																	: false
 															}
@@ -370,7 +372,7 @@ const FormOne = (props) => {
 							width="w-[100px]"
 							name="Cancel"
 							onClick={() => {
-								dispatch(closeModal());
+								dispatch(dispatch(prevStep(2)));
 							}}
 						/>
 						<DashboardButton
@@ -378,7 +380,6 @@ const FormOne = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
-							loading={props.isLoading}
 						/>
 					</div>
 				</form>
@@ -387,4 +388,4 @@ const FormOne = (props) => {
 	);
 };
 
-export default FormOne;
+export default FormTwo;

@@ -51,4 +51,3 @@ export const OwnerDesignConsultantLessSlug =
 export const OwnerDesignConsultantMoreSlug =
   "Owner-and-Design-Consultant-(more-$200,000)";
 export const DPSFormalGeneralSlug = "DPS-Formal-General-Conditions---1-17-20";
-export const ContractPreparationForm = "Contract-Preparation-Checklist";
