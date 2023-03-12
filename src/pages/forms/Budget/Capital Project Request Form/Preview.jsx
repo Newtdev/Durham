@@ -1,5 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import {
@@ -49,7 +49,10 @@ const Capital = () => {
 	const ren = Number(formData?.form_fields?.renovation);
 	const rep = Number(formData?.form_fields?.repair);
 	const fur = Number(formData?.form_fields?.furniture);
-	const val = pur + des + con + ren + rep + fur;
+
+	const val = useMemo(() => {
+		return pur + des + con + ren + rep + fur;
+	}, [pur, des, con, ren, rep, fur]);
 
 	const handleText = project_details?.description.split(" ").length;
 	return (
@@ -151,7 +154,7 @@ const Capital = () => {
 										<p>Project Description:</p>
 										<div
 											className={`${
-												handleText > 60 ? "text-[8pt]" : "text-[pt]"
+												handleText > 60 ? "text-[8pt]" : "text-[10pt]"
 											} p-2 border border-black w-full leading-[1.1]  h-24 overflow-y-hidden`}>
 											<span
 												className={`${nottoBeHighlighted} inline-block h-full`}>

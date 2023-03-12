@@ -80,7 +80,13 @@ const MWBEForm = ({ id, filled }) => {
 			"contractors",
 			parseDynamicInput(a?.data?.form_fields?.contractors)
 		);
+		formik?.setFieldValue(
+			"totalContractAmount",
+			a?.data?.form_fields?.totalContractAmount
+		);
+		formik?.setFieldValue("purpose", a?.data?.form_fields?.purpose);
 	}, [a?.data]);
+
 	if (!filled) {
 		return (
 			<ModalOverlay show={id === MWBEFormId && show}>

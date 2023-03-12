@@ -127,7 +127,7 @@ const FormOne = (props) => {
 											onChange={props.handleChange}
 											name="totalContractAmount"
 											placeholder={"0.00"}
-											value={props.values.totalContractAmount}
+											value={props?.values?.totalContractAmount}
 										/>
 										{props.errors.totalContractAmount &&
 											props.touched.totalContractAmount && (
@@ -378,6 +378,7 @@ const FormOne = (props) => {
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"
+							loading={props.isLoading}
 						/>
 					</div>
 				</form>
