@@ -16,7 +16,10 @@ import { nextStep, page } from "./reducer";
 import Preview from "./Preview";
 import { handleSavedDate, setResult } from "../../../shared-component";
 // import { RFPTemplatewithMWBESchema } from "../../../yup";
-import { handleResultWithArray } from "../../../shared-component";
+import {
+  handleResultWithArray,
+  parseDynamicInput,
+} from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const RFPTemplate = ({ id, filled }) => {
@@ -167,6 +170,10 @@ const RFPTemplate = ({ id, filled }) => {
     formik.setFieldValue("proposalScope", a?.data?.form_fields.proposalScope);
     formik.setFieldValue("validityPeriod", a?.data?.form_fields.validityPeriod);
     formik.setFieldValue("attachment", a?.data?.form_fields.attachment);
+    formik.setFieldValue(
+      "items",
+      parseDynamicInput(a?.data?.form_fields?.items)
+    );
   }, [a?.data]);
 
   const props = { ...formik, isLoading };

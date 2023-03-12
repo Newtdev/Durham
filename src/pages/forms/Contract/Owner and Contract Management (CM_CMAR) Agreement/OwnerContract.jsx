@@ -16,41 +16,11 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { handleSavedDate, setResult } from "../../../../shared-component";
-
-export const handleResultWithArray = (res) => {
-  let dynamic = [];
-  let sum = [];
-
-  if (!res) return null;
-
-  const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
-
-  Object.entries(res).forEach((d, i) => {
-    if (Array.isArray(d[1])) {
-      dynamic = [...d[1]];
-      console.log(dynamic);
-      // d[1].forEach((curs, ind) => {
-      //   console.log(curs);
-      //   //   Object.keys(curs).forEach((cur, index) => {
-      //   //     dynamic = [
-      //   //       ...dynamic,
-      //   //       {
-      //   //         section: d[0],
-      //   //         field_name: `${cur}${[ind]}`,
-      //   //         field_value: Object.values(curs)[index],
-      //   //       },
-      //   //     ];
-      //   //   });
-      // });
-    }
-    sum = [...sum, { field_name: d[0], field_value: d[1] }];
-
-    sum.splice(a, 1);
-  });
-  console.log({ form_fields: sum });
-  return { form_fields: sum };
-};
+import {
+  handleSavedDate,
+  handleResultWithArray,
+  parseDynamicInput,
+} from "../../../../shared-component";
 
 const OwnerContractorManagementForm = ({ id, filled }) => {
   const dispatch = useDispatch();
@@ -65,7 +35,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResultWithArray(values).form_fields,
+      form_fields: handleResultWithArray(values),
       // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
     });
     if (response) {
@@ -94,8 +64,9 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       conferenceState: "",
       conferenceCity: "",
       conferenceZipCode: "",
-      // flankSize: "rr",
-      // ocmCMContigency2: "",
+      // flankSize: "",
+      // contigency: 900,
+      ownerContingencyocm: "",
       procurementAmount: "",
       constructionAmount: "",
       ocmcostOfWork: "",
@@ -155,13 +126,6 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       ocmfees: a?.data?.form_fields?.ocmfees,
       ocmpreConstruction: a?.data?.form_fields?.ocmpreConstruction,
       projectName: a?.data?.form_fields?.projectName,
-      location: [
-        {
-          projectState: a?.data?.form_fields?.projectState,
-          projectCity: a?.data?.form_fields?.projectCity,
-          projectZipCode: a?.data?.form_fields?.projectZipCode,
-        },
-      ],
     });
     formik.setFieldValue(
       "substantialCompletionDate",
@@ -171,22 +135,48 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       "agreementDate",
       handleSavedDate(a?.data?.form_fields.agreementDate)
     );
+    formik.setFieldValue(
+      "location",
+      parseDynamicInput(a?.data?.form_fields?.location)
+    );
   }, [dispatch, a]);
 
   const props = { ...formik, isLoading };
 
+  if (!filled) {
+    return (
+      <ModalOverlay show={id === OwnerContractManagement && show}>
+        <FormikProvider value={formik}>
+          <form onSubmit={formik.handleSubmit}>
+            {pages === 1 ? <FormOne {...formik} /> : null}
+            {pages === 2 ? <FormTwo {...formik} /> : null}
+            {pages === 3 ? <FormThree {...formik} /> : null}
+            {pages === 4 ? <FormFour {...props} /> : null}
+            {pages === 5 ? <Preview /> : null}
+          </form>
+        </FormikProvider>
+      </ModalOverlay>
+    );
+  }
+
   return (
     <ModalOverlay show={id === OwnerContractManagement && show}>
-      <FormikProvider value={formik}>
-        <form onSubmit={formik.handleSubmit}>
-          {pages === 1 && <FormOne {...formik} />}
-          {pages === 2 && <FormTwo {...formik} />}
-          {pages === 3 && <FormThree {...formik} />}
-          {pages === 4 && <FormFour {...props} />}
-          {pages === 5 && <Preview />}
-        </form>
-      </FormikProvider>
+      <Preview />
     </ModalOverlay>
   );
+
+  // return (
+  //   <ModalOverlay show={id === OwnerContractManagement && show}>
+  //     <FormikProvider value={formik}>
+  //       <form onSubmit={formik.handleSubmit}>
+  //         {pages === 1 && <FormOne {...formik} />}
+  //         {pages === 2 && <FormTwo {...formik} />}
+  //         {pages === 3 && <FormThree {...formik} />}
+  //         {pages === 4 && <FormFour {...props} />}
+  //         {pages === 5 && <Preview />}
+  //       </form>
+  //     </FormikProvider>
+  //   </ModalOverlay>
+  // );
 };
 export default OwnerContractorManagementForm;
