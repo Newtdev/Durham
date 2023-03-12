@@ -346,59 +346,13 @@ const FormTwo = (props) => {
                     onChange={props.handleChange}
                     name="street"
                     placeholder={"Street"}
+                    value={props.values.street}
                   />
                   {props.errors.street && props.touched.street && (
                     <Error message={props.errors.street} />
                   )}
                 </FormInputContainer>
 
-                {/* <div className="flex gap-2 justify-center items-end">
-                  <FormSelect
-                    value={props.values.state}
-                    id="state"
-                    error={props.errors.state}
-                    touched={props.touched.state}
-                    onChange={props.handleChange}
-                  >
-                    <option value="">Select State</option>
-                    {state?.map((state, index) => {
-                      return (
-                        <option key={index} value={state.name}>
-                          {state.name}
-                        </option>
-                      );
-                    })}
-                  </FormSelect>
-
-                  <FormSelect
-                    value={props.values.city}
-                    id="city"
-                    error={props.errors.city}
-                    touched={props.touched.city}
-                    onChange={props.handleChange}
-                  >
-                    <option value="">Select City</option>
-                    {city?.map((city, index) => {
-                      return (
-                        <option key={index} value={city.name}>
-                          {city.name}
-                        </option>
-                      );
-                    })}
-                  </FormSelect>
-
-                  <div className="flex flex-col w-full">
-                    <FormInputPlain
-                      type={"text"}
-                      onChange={props.handleChange}
-                      name="zipCode"
-                      placeholder={"Zip Code"}
-                    />
-                    {props.errors.zipCode && props.touched.zipCode && (
-                      <Error message={props.errors.zipCode} />
-                    )}
-                  </div>
-                </div> */}
                 <div className="grid grid-cols-3 gap-x-4">
                   <FormInputContainer name="">
                     <FormSelect {...state}>

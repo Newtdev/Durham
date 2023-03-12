@@ -125,6 +125,7 @@ const FormThree = (props) => {
                 onChange={props.handleChange}
                 name="validityPeriod"
                 placeholder={"validityPeriod"}
+                value={props.values.validityPeriod}
               />
               {props.errors.validityPeriod && props.touched.validityPeriod && (
                 <Error message={props.errors.validityPeriod} />

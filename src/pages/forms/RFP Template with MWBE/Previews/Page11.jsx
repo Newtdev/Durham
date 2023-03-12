@@ -29,7 +29,7 @@ const Page11 = (props) => {
         <p class="c38" id="h.1hmsyys">
           <span class="c89 c68">6.0 PROPOSAL SCOPE</span>
         </p>
-        <section className="mt-4 " style={{ listStyle: "lower-latin" }}>
+        <section className="mt-4 proposalScope">
           {proposalScope && (
             <div
               // className="list-disc"
