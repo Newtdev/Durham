@@ -16,6 +16,7 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { handleSavedDate, setResult } from "../../../../shared-component";
 
 export const handleResultWithArray = (res) => {
   let dynamic = [];
@@ -65,7 +66,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: handleResultWithArray(values).form_fields,
-      dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+      // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
     });
     if (response) {
       if (response?.error) {
@@ -93,7 +94,8 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       conferenceState: "",
       conferenceCity: "",
       conferenceZipCode: "",
-      flankSize: "rr",
+      // flankSize: "rr",
+      // ocmCMContigency2: "",
       procurementAmount: "",
       constructionAmount: "",
       ocmcostOfWork: "",
@@ -148,6 +150,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       constructionAmount: a?.data?.form_fields?.constructionAmount,
       ocmcostOfWork: a?.data?.form_fields?.ocmcostOfWork,
       ocmCMContingency: a?.data?.form_fields?.ocmCMContingency,
+      // ocmCMContingency2: a?.data?.form_fields?.ocmCMContingency2,
       ocmgeneralConditions: a?.data?.form_fields?.ocmgeneralConditions,
       ocmfees: a?.data?.form_fields?.ocmfees,
       ocmpreConstruction: a?.data?.form_fields?.ocmpreConstruction,
@@ -160,6 +163,14 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
         },
       ],
     });
+    formik.setFieldValue(
+      "substantialCompletionDate",
+      handleSavedDate(a?.data?.form_fields.substantialCompletionDate)
+    );
+    formik.setFieldValue(
+      "agreementDate",
+      handleSavedDate(a?.data?.form_fields.agreementDate)
+    );
   }, [dispatch, a]);
 
   const props = { ...formik, isLoading };

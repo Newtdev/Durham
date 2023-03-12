@@ -20,6 +20,7 @@ const Page11 = (props) => {
         margin: "1in 30pt 3rem 60pt",
         paddingTop: "3rem",
         height: "10.7in",
+        overflow: "hidden",
       }}
       className=" flex flex-col justify-between h-full "
     >

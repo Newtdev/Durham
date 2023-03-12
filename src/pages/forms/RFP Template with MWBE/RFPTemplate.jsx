@@ -167,7 +167,6 @@ const RFPTemplate = ({ id, filled }) => {
     formik.setFieldValue("proposalScope", a?.data?.form_fields.proposalScope);
     formik.setFieldValue("validityPeriod", a?.data?.form_fields.validityPeriod);
     formik.setFieldValue("attachment", a?.data?.form_fields.attachment);
-    // formik.setFieldValue("items", a?.data?.form_fields.items);
   }, [a?.data]);
 
   const props = { ...formik, isLoading };
