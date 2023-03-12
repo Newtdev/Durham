@@ -20,6 +20,9 @@ import { prevStep, stepDefault } from "./reducer";
 
 export const CalculatePercentage = (a, b) => {
 	return useMemo(() => {
+		if (!b) {
+			return "";
+		}
 		return ((Number(a) / Number(b)) * 100).toFixed(2);
 	}, [a, b]);
 };
@@ -169,6 +172,7 @@ const MWBEParticipation = () => {
 	const formDetails = a?.data?.form_fields;
 
 	const contractors = parseDynamicInput(formDetails?.contractors);
+	const handleText = projectDetails?.description?.split(" ").length;
 
 	return (
 		<div>
@@ -223,14 +227,26 @@ const MWBEParticipation = () => {
 										</p>
 
 										<p className="mb-4">Description of Project:</p>
+										<div className="mb-4">
+											<p>Project Description:</p>
+											<div
+												className={`${
+													handleText > 60 ? "text-[8pt]" : "text-[10pt]"
+												} p-2 border border-black w-full leading-[1.1]  h-28 overflow-y-hidden`}>
+												<span
+													className={`${nottoBeHighlighted} inline-block h-full`}>
+													{!projectDetails ? "" : projectDetails?.description}
+												</span>
+											</div>
+										</div>
 
-										<div className="border border-black p-2 mb-4 break-words h-full">
+										{/* <div className="border border-black p-2 mb-4 break-words h-full">
 											<p className={`${nottoBeHighlighted}`}>
 												{!projectDetails?.description
 													? ""
 													: projectDetails.description}
 											</p>
-										</div>
+										</div> */}
 
 										<p>
 											Total Contract Amount:{" "}
@@ -276,15 +292,6 @@ const MWBEParticipation = () => {
 													data={slicedFunct(contractors, 0, 10)}
 													color={nottoBeHighlighted}
 												/>
-
-												<tr>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px] py-4"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-													<td className="border border-black border-b-2 border-collapse h-[19.5px]"></td>
-												</tr>
 
 												<tr>
 													<td></td>
