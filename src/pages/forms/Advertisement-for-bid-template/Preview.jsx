@@ -323,45 +323,6 @@ const Preview = () => {
 									</div>
 								</div>
 
-								{/* Next Page */}
-								{/* <div className='text-right '>
-                  <p>Durham Public Schools</p>
-                  <p className=''>{!project?'': project.name}</p>
-                  <p className=''>{!project?'': project.number}</p>
-                </div> */}
-
-								{/* <div className={``}>
-								<p>
-									<em>
-										{" "}
-										Prospective Bidders should contact{" "}
-										<span className={` font-bold ${nottoBeHighlighted}`}>
-											{!form_fields ? "" : form_fields.company_name}
-										</span>{" "}
-										at the contact noted below in order to be e-mailed a link to
-										download the project manual and bid documents.
-									</em>
-								</p>
-					
-								<p className="mt-8 mb-3 ">
-									For questions regarding this bid, please contact:
-								</p>
-								<p className={` font-bold ${nottoBeHighlighted}`}>
-									{!form_fields ? "" : form_fields.company_name}
-								</p>
-								<p className={` font-bold ${nottoBeHighlighted}`}>
-									<span className=" font-bold">
-										{!form_fields ? "" : form_fields.manager_name}
-									</span>
-									<span>- Program Manager</span>
-								</p>
-								<p className={` font-bold ${nottoBeHighlighted}`}>
-									{!form_fields ? "" : form_fields.manager_phone_number}
-								</p>
-								<p className={` font-bold ${nottoBeHighlighted}`}>
-									{!form_fields ? "" : form_fields.manager_email_address}
-								</p>
-							</div> */}
 								<div className="mt-10 flex justify-start">
 									<span className="">Advertisement for bids</span>
 									<span className=" inline-block ml-24 text-center">
