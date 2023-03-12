@@ -12,11 +12,17 @@ import Preview from "./Preview";
 import FirstForm from "./Forms/FirstForm";
 import SecondForm from "./Forms/SecondForm";
 import ThirdForm from "./Forms/ThirdForm";
+import { useEffect } from "react";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { handleSavedDate } from "../../../../shared-component";
 
-const ProposalForm = ({ id }) => {
+const ProposalForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
+	const formID = useSelector(project_document_id);
+
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const Formik = useFormik({
 		initialValues: {
@@ -60,12 +66,65 @@ const ProposalForm = ({ id }) => {
 		},
 	});
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+
+		Formik.setFieldValue("userType", a?.data?.form_fields.userType);
+		Formik.setFieldValue("signedPerson", a?.data?.form_fields.signedPerson);
+		Formik.setFieldValue("position", a?.data?.form_fields.position);
+		Formik.setFieldValue("overhead", a?.data?.form_fields.overhead);
+		Formik.setFieldValue("profit", a?.data?.form_fields.profit);
+		Formik.setFieldValue("allowable", a?.data?.form_fields.allowable);
+		Formik.setFieldValue(
+			"overhead_exprimental",
+			a?.data?.form_fields.overhead_exprimental
+		);
+		Formik.setFieldValue(
+			"profit_subcontractor",
+			a?.data?.form_fields.profit_subcontractor
+		);
+		Formik.setFieldValue("bonds", a?.data?.form_fields.bonds);
+		Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
+		Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
+		Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
+		Formik.setFieldValue("numberDays", a?.data?.form_fields?.numberDays);
+		Formik.setFieldValue("material", a?.data?.form_fields?.material);
+		Formik.setFieldValue("shipping", a?.data?.form_fields?.shipping);
+		Formik.setFieldValue("hours", a?.data?.form_fields?.hours);
+		Formik.setFieldValue(
+			"affectedDate",
+			handleSavedDate(a?.data?.form_fields?.affectedDate)
+		);
+		Formik.setFieldValue(
+			"signedDate",
+			handleSavedDate(a?.data?.form_fields?.signedDate)
+		);
+		Formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+		Formik.setFieldValue("Tamount", a?.data?.form_fields?.Tamount);
+		Formik.setFieldValue("Thours", a?.data?.form_fields?.Thours);
+		Formik.setFieldValue("rental", a?.data?.form_fields?.rental);
+		Formik.setFieldValue(
+			"subcontractors",
+			a?.data?.form_fields?.subcontractors
+		);
+		Formik.setFieldValue("items", a?.data?.form_fields?.items);
+	}, [a?.data]);
+
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === ProposalSlug && show}>
+				{pages === 1 && <FirstForm {...Formik} />}
+				{pages === 2 && <SecondForm {...Formik} />}
+				{pages === 3 && <ThirdForm {...Formik} />}
+				{pages === 4 && <Preview />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === ProposalSlug && show}>
-			{pages === 1 && <FirstForm {...Formik} />}
-			{pages === 2 && <SecondForm {...Formik} />}
-			{pages === 3 && <ThirdForm {...Formik} />}
-			{pages === 4 && <Preview />}
+			<Preview />
 		</ModalOverlay>
 	);
 };
