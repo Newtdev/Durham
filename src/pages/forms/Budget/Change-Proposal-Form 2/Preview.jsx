@@ -371,7 +371,7 @@ const Preview = () => {
 
 									{/* Second grid */}
 									<div>
-										<div className="mb-[1.6rem]">
+										<div className="mb-[1.3rem] -mt-2 ">
 											<p className="mb-[1.1rem]"></p>
 											<div>
 												<span
@@ -389,9 +389,9 @@ const Preview = () => {
 													)}
 												</span>
 											</div>
-											<div className="border-t border-t-black mt-[1.1rem] w-max">
+											<div className="border-t border-t-black mt-[0.6rem] w-max ">
 												<span
-													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
+													className={`inline-block w-24  border-b border-black  text-right ${nottoBeHighlighted}`}>
 													{" "}
 													$
 													{HandleTotal(
@@ -408,7 +408,7 @@ const Preview = () => {
 											</div>
 										</div>
 
-										<div className="mb-[1.6rem]">
+										<div className="mb-[1.6rem] ">
 											<div>
 												{/* F17 */}
 												<span
@@ -433,9 +433,10 @@ const Preview = () => {
 													) || "0.00"}
 												</span>
 											</div>
-											<div className="mt-[2.6rem]">
+											<div className="mt-[1.9rem]">
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
+													$
 													{HandleTotal(
 														formDetails?.insurance,
 														HandleMultiplication(
@@ -458,6 +459,7 @@ const Preview = () => {
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
+													$
 													{HandleTotal(
 														formDetails?.allowable,
 														HandleMultiplication(
@@ -516,7 +518,6 @@ const Preview = () => {
 											<p className="mt-2">
 												<span
 													className={`inline-block w-full border-b-2 border-black`}>
-													$
 													{HandleSubTotal(
 														formDetails?.material,
 														HandleTotal(
@@ -538,7 +539,6 @@ const Preview = () => {
 											<p className="mt-2">
 												<span
 													className={`inline-block w-full border-b-2 border-black`}>
-													$
 													{HandleSubTotal(
 														HandleMultiplication(
 															formDetails?.hours,
@@ -579,7 +579,6 @@ const Preview = () => {
 											<p className="mt-2">
 												<span
 													className={`inline-block w-full border-b-2 border-black`}>
-													$
 													{HandleSubTotal(
 														HandleTotal(
 															formDetails?.overhead_exprimental,
@@ -596,7 +595,6 @@ const Preview = () => {
 											<p className="mt-2">
 												<span
 													className={`inline-block w-full border-b-2 border-black`}>
-													$
 													{HandleSubTotal(
 														HandleTotal(
 															formDetails?.profit_subcontractor,

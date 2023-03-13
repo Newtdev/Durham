@@ -128,8 +128,8 @@ const PageTwo = ({ formsDetails, vendor, nottoBeHighlighted }) => {
 											</p>
 											<p className="border-b border-black w-48">
 												<span className={`${nottoBeHighlighted}`}>
-													{`${formsDetails?.city} 
-												${formsDetails?.state + ","} ${formsDetails?.zipCode}`}
+													{`${formsDetails?.city || ""} 
+												${formsDetails?.state || " " + "" || ""} ${formsDetails?.zipCode || ""}`}
 												</span>
 											</p>
 										</div>

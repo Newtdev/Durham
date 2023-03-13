@@ -10,7 +10,13 @@ import { notice_to_proceed } from "../../../shared-component/slug";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import { setResult } from "../../../shared-component";
+import {
+	handleDate,
+	handleSavedDate,
+	setResult,
+} from "../../../shared-component";
+import { useEffect } from "react";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const NoticeToProceed = ({ id, filled }) => {
 	const dispatch = useDispatch();
@@ -20,6 +26,7 @@ const NoticeToProceed = ({ id, filled }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -54,6 +61,28 @@ const NoticeToProceed = ({ id, filled }) => {
 		},
 	});
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+
+		formik.setFieldValue(
+			"effectiveDate",
+			handleSavedDate(a?.data?.form_fields?.effectiveDate)
+		);
+		formik.setFieldValue(
+			"creationDate",
+			handleSavedDate(a?.data?.form_fields?.creationDate)
+		);
+		formik.setFieldValue(
+			"startDate",
+			handleSavedDate(a?.data?.form_fields?.startDate)
+		);
+		formik.setFieldValue(
+			"startTime",
+			handleSavedDate(a?.data?.form_fields?.startTime)
+		);
+	}, [a?.data]);
 	const props = {
 		...formik,
 		isLoading,

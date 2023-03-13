@@ -141,7 +141,7 @@ const FormThree = (props) => {
 							render={({ remove, push }) => (
 								<>
 									<div className="mt-5">
-										{props?.values?.items.map((unit, index) => (
+										{props?.values?.items?.map((unit, index) => (
 											<Fragment key={index}>
 												<div className="flex flex-col w-full">
 													<div className="flex justify-between items-center bg-[#89A5AF] py-2 px-3 rounded-t-lg">
@@ -267,7 +267,7 @@ const FormThree = (props) => {
 											<button
 												type="button"
 												disabled={
-													props?.values?.items.length === 10 ? true : false
+													props?.values?.items?.length === 10 ? true : false
 												}
 												className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
 												onClick={() =>
