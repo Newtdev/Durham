@@ -11,7 +11,6 @@ import DownLoadForm from "../../Lundsford/Download";
 import moment from "moment";
 import currency from "currency.js";
 
-import Logo from "../../../../assets/formlogo.png";
 import LogoOne from "../../../../assets/Durham.png";
 import { prevStep } from "./reducer";
 import { CalculateAmount } from "../Change order form/form/FormOne";
@@ -66,24 +65,18 @@ const Preview = () => {
 
 	const formID = useSelector(project_document_id);
 
-	// const content = useFetchFilledFormQuery(formID);
 	const [a] = UseFetchFilledFormDetails(formID);
-	// const content = useSelector(savedResponse);
 	const [highlighted, setHighlighted] = useState(false);
-	// const project = content?.data?.data?.project;
-	// const vendors = content?.data?.data?.vendors;
+
 	let formData = a?.data;
 
 	const vendors = formData?.vendors;
-	// const durham_profile = formData?.durham_profile;
 	const project = formData?.project;
 	const manager = formData?.project_manager;
 	const forms_fields = formData?.form_fields;
 
 	const [awardee, setAwardee] = useState({ design: {}, contractor: {} });
 	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
-
-	// console.log(forms_fields);
 
 	useEffect(() => {
 		if (!vendors) {
@@ -113,6 +106,8 @@ const Preview = () => {
 		// stepDefault,
 		// close: closeDownload,
 	};
+	const companynameLength = awardee?.design?.company_name?.length;
+	console.log(companynameLength);
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -483,19 +478,33 @@ const Preview = () => {
 										<div className="mt-10">
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
-													<p className="border-b border-black -mt-0.5">
+													<p
+														className={`border-b border-black ${
+															companynameLength > 19
+																? "pb-2"
+																: companynameLength === 0
+																? "mt-3.5"
+																: ""
+														}`}>
 														<span
-															className={`${nottoBeHighlighted} text-[9pt]`}>{`${
-															awardee?.design?.company_name || ""
-														}`}</span>
+															className={`${nottoBeHighlighted} text-[9pt]`}>
+															{`${awardee?.design?.company_name || ""}`}
+														</span>
 													</p>
 													<p>
 														<i className="text-[7pt]">Consultant</i>
 													</p>
 												</div>
 												<div>
-													<p className="border-b border-black text-[9pt]">
-														<span className={`${nottoBeHighlighted} mt-0.1`}>
+													<p
+														className={`border-b border-black text-[9pt] ${
+															companynameLength > 19
+																? "pb-2"
+																: companynameLength === 0
+																? "mt-3.5"
+																: ""
+														}`}>
+														<span className={`${nottoBeHighlighted} `}>
 															{`${awardee?.design?.first_name || ""} ${
 																awardee?.design?.last_name || ""
 															}`}
@@ -512,7 +521,16 @@ const Preview = () => {
 														<span></span>
 													</p>
 
-													<p className="border-t border-black mt-3.5">
+													<p
+														className={`${
+															companynameLength > 19
+																? "mt-9"
+																: companynameLength === 0
+																? "mt-3.5"
+																: companynameLength <= 19
+																? "mt-3.5"
+																: ""
+														} border-t border-black`}>
 														<i className="text-[7pt]">Signature</i>
 													</p>
 												</div>
@@ -520,7 +538,16 @@ const Preview = () => {
 													<p>
 														<span></span>
 													</p>
-													<p className="border-t border-black mt-3.5">
+													<p
+														className={`${
+															companynameLength > 19
+																? "mt-9"
+																: companynameLength === 0
+																? "mt-3.5"
+																: companynameLength <= 19
+																? "mt-3.5"
+																: ""
+														} border-t border-black`}>
 														<i className="text-[7pt]">Date</i>
 													</p>
 												</div>
