@@ -108,6 +108,7 @@ const Owner = () => {
 								formDetails={formDetails}
 								nottoBeHighlighted={nottoBeHighlighted}
 								vendor={awardee}
+								durham={durham}
 							/>
 						</div>
 					</div>

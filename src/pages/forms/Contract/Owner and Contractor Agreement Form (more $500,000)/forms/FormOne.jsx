@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { getList } from "../../../Advertisement-for-bid-template/reducer";
 import SelectDate from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
@@ -9,7 +8,6 @@ import { FormInputPlain } from "../../../components";
 
 const FormOne = (props) => {
 	const dispatch = useDispatch();
-	const states = useSelector(getList);
 
 	const agreementDate = {
 		...props,
