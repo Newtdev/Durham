@@ -33,10 +33,10 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
   const [a] = UseFetchFilledFormDetails(formID);
 
   const HandleSubmit = async (values) => {
+    console.log(values);
     const response = await fillProjectDocument({
       project_document_id: formID,
       form_fields: handleResultWithArray(values),
-      // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
     });
     if (response) {
       if (response?.error) {
@@ -64,12 +64,11 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       conferenceState: "",
       conferenceCity: "",
       conferenceZipCode: "",
-      // flankSize: "",
-      // contigency: 900,
       ownerContingencyocm: "",
       procurementAmount: "",
       constructionAmount: "",
       ocmcostOfWork: "",
+      flankSize: "rr",
       ocmCMContingency: "",
       ocmgeneralConditions: "",
       ocmfees: "",
@@ -82,6 +81,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
           projectZipCode: "",
         },
       ],
+      cmContigency: "",
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
@@ -92,7 +92,6 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       } else if (pages === 3) {
         dispatch(nextStep(4));
       } else if (pages === 4) {
-        // console.log(values);
         HandleSubmit(values);
       }
     },
@@ -121,7 +120,6 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       constructionAmount: a?.data?.form_fields?.constructionAmount,
       ocmcostOfWork: a?.data?.form_fields?.ocmcostOfWork,
       ocmCMContingency: a?.data?.form_fields?.ocmCMContingency,
-      // ocmCMContingency2: a?.data?.form_fields?.ocmCMContingency2,
       ocmgeneralConditions: a?.data?.form_fields?.ocmgeneralConditions,
       ocmfees: a?.data?.form_fields?.ocmfees,
       ocmpreConstruction: a?.data?.form_fields?.ocmpreConstruction,
@@ -164,19 +162,5 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       <Preview />
     </ModalOverlay>
   );
-
-  // return (
-  //   <ModalOverlay show={id === OwnerContractManagement && show}>
-  //     <FormikProvider value={formik}>
-  //       <form onSubmit={formik.handleSubmit}>
-  //         {pages === 1 && <FormOne {...formik} />}
-  //         {pages === 2 && <FormTwo {...formik} />}
-  //         {pages === 3 && <FormThree {...formik} />}
-  //         {pages === 4 && <FormFour {...props} />}
-  //         {pages === 5 && <Preview />}
-  //       </form>
-  //     </FormikProvider>
-  //   </ModalOverlay>
-  // );
 };
 export default OwnerContractorManagementForm;

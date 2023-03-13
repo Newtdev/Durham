@@ -1,0 +1,11 @@
+.propsalScope > ol {
+  list-style-type: auto;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.proposalScope > ul {
+  list-style-type: disc;
+  margin-left: 0;
+  padding-left: 0;
+}
