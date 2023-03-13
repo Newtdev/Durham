@@ -18,8 +18,12 @@ const Page9 = () => {
         </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.10</span>{" "}
-            <span class="c89 c80 c140">VENDOR&rsquo;S REPRESENTATIONS</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.10
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              VENDOR&rsquo;S REPRESENTATIONS
+            </span>
           </li>
         </ol>
 
@@ -85,8 +89,12 @@ const Page9 = () => {
 
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">5.0</span>{" "}
-            <span class="c89 c80 c140">SCOPE OF WORK/ACCEPTANCE OF WORK</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              5.0
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              SCOPE OF WORK/ACCEPTANCE OF WORK
+            </span>
           </li>
         </ol>
 
@@ -115,8 +123,12 @@ const Page9 = () => {
         </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">5.1</span>{" "}
-            <span class="c89 c80 c140">LIQUIDATED DAMAGES</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              5.1
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              LIQUIDATED DAMAGES
+            </span>
           </li>
         </ol>
 
@@ -143,8 +155,12 @@ const Page9 = () => {
 
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">5.2</span>{" "}
-            <span class="c89 c80 c140">DISPUTE RESOLUTION</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              5.2
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              DISPUTE RESOLUTION
+            </span>
           </li>
         </ol>
 

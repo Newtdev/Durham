@@ -25,7 +25,7 @@ const Page7 = (props) => {
           <span class="c51"></span>
         </p>
         <p class="c208 c23">
-          <span class="c51">
+          <span class="c51" style={{ fontSize: "12pt" }}>
             <span>4.0 </span>REQUIREMENTS
           </span>
         </p>
@@ -43,9 +43,13 @@ const Page7 = (props) => {
           </span>
         </p>
         <ol class="c14 start" start="1">
-          <li class="c3 c23">
-            <span className="c89  mr-2">4.1</span>{" "}
-            <span class="c89 c80 c140">N/A</span>
+          <li class="c3 c23 ">
+            <span className="c89  mr-2" style={{ fontSize: "12pt" }}>
+              4.1
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              N/A
+            </span>
           </li>
         </ol>
         <p class="c208 c23">
@@ -53,8 +57,12 @@ const Page7 = (props) => {
         </p>
         <ol class="c14 " start="2">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.2</span>{" "}
-            <span class="c89 c80 c140">PRICING</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.2
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              PRICING
+            </span>
           </li>
         </ol>
         <p class="c3 c23 c128 c12">
@@ -81,8 +89,12 @@ const Page7 = (props) => {
         </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.3</span>{" "}
-            <span class="c89 c80 c140">INVOICES</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.3
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              INVOICES
+            </span>
           </li>
         </ol>
         <ol class="c14 t" start="1">
@@ -116,8 +128,12 @@ const Page7 = (props) => {
         </ol>
         <ol class="c14 " start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.4</span>{" "}
-            <span class="c89 c80 c140">PAYMENT TERMS</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.4
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              PAYMENT TERMS
+            </span>
           </li>
         </ol>
         <ol class="c14 " start="1">
@@ -150,8 +166,12 @@ const Page7 = (props) => {
         </p>
         <ol class="c14 " start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.5</span>{" "}
-            <span class="c89 c80 c140">FINANCIAL STABILITY</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.5
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              FINANCIAL STABILITY
+            </span>
           </li>
         </ol>
 
@@ -170,8 +190,12 @@ const Page7 = (props) => {
 
         <ol class="c14 " start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.6</span>{" "}
-            <span class="c89 c80 c140">VENDOR EXPERIENCE</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.6
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              VENDOR EXPERIENCE
+            </span>
           </li>
         </ol>
 
@@ -190,8 +214,12 @@ const Page7 = (props) => {
 
         <ol class="c14 " start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.7</span>{" "}
-            <span class="c89 c80 c140">REFERENCES</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.7
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              REFERENCES
+            </span>
           </li>
         </ol>
 

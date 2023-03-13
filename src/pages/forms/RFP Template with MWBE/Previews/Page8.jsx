@@ -275,8 +275,12 @@ const Page8 = () => {
         </p>
         <ol class="c14 start" start="3">
           <li class="c3 c23">
-            <span className="c89 mr-2">4.9</span>{" "}
-            <span class="c89 c80 c140">PERSONNEL</span>
+            <span className="c89 mr-2" style={{ fontSize: "12pt" }}>
+              4.9
+            </span>{" "}
+            <span class="c89 c80 c140" style={{ fontSize: "12pt" }}>
+              PERSONNEL
+            </span>
           </li>
         </ol>
 

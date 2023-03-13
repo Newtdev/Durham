@@ -140,7 +140,7 @@ const Preview = () => {
                 <Page1 {...pageProps} />
                 <Page2 {...pageProps} />
                 <Page3 {...pageProps} />
-                {showPage && <Page4 />}
+                <Page4 {...pageProps} />
                 <ItemsPage {...pageProps} />
                 {showPage && <Page5 />}
                 {showPage && <Page6 />}
