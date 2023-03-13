@@ -20,6 +20,7 @@ import {
   handleSavedDate,
   handleResultWithArray,
   parseDynamicInput,
+  setResult,
 } from "../../../../shared-component";
 
 const OwnerContractorManagementForm = ({ id, filled }) => {
@@ -36,7 +37,8 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
     console.log(values);
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResultWithArray(values),
+      // form_fields: handleResultWithArray(values),
+      form_fields: setResult(values),
     });
     if (response) {
       if (response?.error) {
@@ -74,6 +76,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       ocmfees: "",
       ocmpreConstruction: "",
       projectName: "",
+      cmContigency: "",
       location: [
         {
           projectState: "",
@@ -81,7 +84,6 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
           projectZipCode: "",
         },
       ],
-      cmContigency: "",
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
@@ -124,6 +126,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       ocmfees: a?.data?.form_fields?.ocmfees,
       ocmpreConstruction: a?.data?.form_fields?.ocmpreConstruction,
       projectName: a?.data?.form_fields?.projectName,
+      CMContigency: a?.data?.form_fields?.CMContigency,
     });
     formik.setFieldValue(
       "substantialCompletionDate",

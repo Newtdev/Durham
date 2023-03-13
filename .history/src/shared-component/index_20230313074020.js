@@ -336,6 +336,7 @@ export const handleResultWithArray = (res) => {
     sum.splice(a, 1);
   });
 
+  console.log(sum);
   return [...sum, ...dynamic];
 };
 
