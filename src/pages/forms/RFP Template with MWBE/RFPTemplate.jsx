@@ -111,7 +111,6 @@ const RFPTemplate = ({ id, filled }) => {
     formik.setFieldValue("bidderName", a?.data?.form_fields.bidderName);
     formik.setFieldValue("rfpNumber", a?.data?.form_fields.rfpNumber);
     formik.setFieldValue("personName", a?.data?.form_fields.personName);
-    formik.setFieldValue("contactType", a?.data?.form_fields.contactType);
     formik.setFieldValue(
       "issueDate",
       handleSavedDate(a?.data?.form_fields.issueDate)
@@ -174,6 +173,7 @@ const RFPTemplate = ({ id, filled }) => {
       "items",
       parseDynamicInput(a?.data?.form_fields?.items)
     );
+    formik.setFieldValue("contractType", a?.data?.form_fields.contractType);
   }, [a?.data]);
 
   const props = { ...formik, isLoading };
