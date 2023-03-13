@@ -112,6 +112,10 @@ const CertificateOfSubstantial = ({ id, filled }) => {
 			"signedDate",
 			handleSavedDate(a?.data?.form_fields?.signedDate)
 		);
+		formik.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields?.completionDate)
+		);
 	}, [a?.data]);
 
 	if (!filled) {
