@@ -17,9 +17,9 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { doConvert, trucateText } from "../../../shared-component";
 import PageTwo from "./PageTwo";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const CertificatePreview = () => {
 	const dispatch = useDispatch();
@@ -28,12 +28,12 @@ const CertificatePreview = () => {
 
 	const formID = useSelector(project_document_id);
 
-	const content = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
 	// const content = useSelector(savedResponse);
 	const [highlighted, setHighlighted] = useState(false);
 	// const project = content?.data?.data?.project;
 	// const vendors = content?.data?.data?.vendors;
-	let formData = !content?.data ? [] : content?.currentData?.data;
+	let formData = a?.data;
 
 	const vendors = formData?.vendors;
 	// const durham_profile = formData?.durham_profile;
@@ -293,9 +293,11 @@ const CertificatePreview = () => {
 										DATE OF SUBSTANTIAL COMPLETION:{" "}
 										<span
 											className={`font-bold inline-block ml-6 ] ${nottoBeHighlighted} `}>
-											{moment(form_fields?.completionDate).format(
-												"MMMM D, YYYY "
-											)}
+											{!form_fields?.completionDate
+												? ""
+												: moment(form_fields?.completionDate).format(
+														"MMMM D, YYYY "
+												  )}
 										</span>
 									</p>
 
@@ -389,9 +391,11 @@ const CertificatePreview = () => {
 											<span className="">Durham Public Schools</span>
 
 											<span className="">
-												{moment(form_fields?.signedDate).format(
-													"MMMM D, YYYY "
-												)}
+												{!form_fields?.signedDate
+													? ""
+													: moment(form_fields?.signedDate).format(
+															"MMMM D, YYYY "
+													  )}
 											</span>
 										</p>
 										<div className="w-full flex justify-between text-[12.5px]">

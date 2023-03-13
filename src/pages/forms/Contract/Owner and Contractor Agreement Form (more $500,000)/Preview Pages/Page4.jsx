@@ -121,7 +121,9 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 								<div>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} inline-block border-b border-black`}>
+											className={`${nottoBeHighlighted} inline-block border-b border-black ${
+												!formDetails?.chiefFinanceSign ? "w-16 mt-[1.2rem]" : ""
+											}`}>
 											{!formDetails?.notarySealDate
 												? ""
 												: moment(formDetails?.chairmanSign).format(
@@ -153,8 +155,10 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 								<div>
 									<p>
 										<span
-											className={`${nottoBeHighlighted} inline-block border-b border-black`}>
-											{!formDetails?.notarySealDate
+											className={`${nottoBeHighlighted} inline-block border-b border-black ${
+												!formDetails?.chiefFinanceSign ? "w-16 mt-[1.2rem]" : ""
+											}`}>
+											{!formDetails?.chiefFinanceSign
 												? ""
 												: moment(formDetails?.chiefFinanceSign).format(
 														"MMMM D, YYYY"

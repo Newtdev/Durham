@@ -647,7 +647,6 @@ const Preview = () => {
 											<p className="ml-auto">
 												<span
 													className={`inline-block w-24 border-b-2 my-0.5 border-black ${nottoBeHighlighted} text-right font-bold`}>
-													{console.log(BondsTotal)}
 													{currency(BondsTotal).format() || "0.00"}
 												</span>
 											</p>
@@ -709,7 +708,7 @@ const Preview = () => {
 													Owner's Representative Approval:{" "}
 													<span
 														className={`inline-block w-44  border-b border-black ${nottoBeHighlighted}`}>
-														{formDetails?.signedPerson || ""}
+														{formDetails?.signedContractPerson || ""}
 													</span>
 												</p>
 											</div>
@@ -735,8 +734,11 @@ const Preview = () => {
 													Date:{" "}
 													<span
 														className={`inline-block w-[4.5rem] border-b border-black`}>
-														{moment(formDetails?.signedDate).format("M/D/Y") ||
-															""}
+														{!formDetails?.signedDate
+															? ""
+															: moment(formDetails?.signedDate).format(
+																	"M/D/Y"
+															  ) || ""}
 													</span>
 												</p>
 											</div>

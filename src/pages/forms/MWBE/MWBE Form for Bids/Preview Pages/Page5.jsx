@@ -68,9 +68,12 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 							<p>
 								Date:{" "}
 								<span
-									className={`${nottoBeHighlighted}  border-b border-black`}>
-									{" "}
-									{moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
+									className={`${nottoBeHighlighted} border-b inline-block border-black ${
+										!formDetails?.ownerRepDate ? "w-12" : ""
+									}`}>
+									{!formDetails?.ownerRepDate
+										? ""
+										: moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
 								</span>
 							</p>
 							<p>

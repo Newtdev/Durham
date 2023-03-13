@@ -189,7 +189,7 @@ const PageOne = ({
 							</div>
 						</div>
 
-						<div className="flex justify-between mt-14 text-[8pt]">
+						<div className="flex justify-between mt-10 text-[8pt]">
 							<p className="text-[8pt]">
 								Section C, Owner-Contractor Agreement
 							</p>

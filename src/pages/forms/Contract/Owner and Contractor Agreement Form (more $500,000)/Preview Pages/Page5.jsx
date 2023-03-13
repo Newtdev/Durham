@@ -30,28 +30,36 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 					<div>
 						<p className="mb-4">
 							This contract was approved by the Board on the{" "}
-							<span className={`${nottoBeHighlighted}`}>
-								{" "}
-								{!formDetails?.notarySealDate
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.boardApprovalDate ? "w-4" : ""
+								}`}>
+								{!formDetails?.boardApprovalDate
 									? ""
-									: moment(formDetails?.notarySealDate).format("Do")}
+									: moment(formDetails?.boardApprovalDate).format("Do")}
 							</span>{" "}
 							day of{" "}
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.boardApprovalDate ? "w-10" : ""
+								}`}>
 								{" "}
-								{!formDetails?.notarySealDate
+								{!formDetails?.boardApprovalDate
 									? ""
-									: moment(formDetails?.notarySealDate).format("MMMM ")}
+									: moment(formDetails?.boardApprovalDate).format("MMMM ")}
 							</span>
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.boardApprovalDate ? "w-10" : ""
+								}`}>
 								{" "}
-								{!formDetails?.notarySealDate
+								{!formDetails?.boardApprovalDate
 									? ""
-									: moment(formDetails?.notarySealDate).format("YYYY")}
+									: moment(formDetails?.boardApprovalDate).format("YYYY")}
 							</span>
 						</p>
 						<p className="mb-8">
-							<span className={`${nottoBeHighlighted}`}>
+							<span className={`${nottoBeHighlighted} `}>
 								{!vendor[0] ? "" : vendor[0]?.company_name}
 							</span>
 						</p>
@@ -84,21 +92,30 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 						</p>
 						<p className="mb-8 text-justify">
 							Witness my hand and notarial seal this{" "}
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.notarySealDate ? "w-4" : ""
+								}`}>
 								{" "}
 								{!formDetails?.notarySealDate
 									? ""
 									: moment(formDetails?.notarySealDate).format("Do")}
 							</span>{" "}
 							day of{" "}
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.notarySealDate ? "w-10" : ""
+								}`}>
 								{" "}
 								{!formDetails?.notarySealDate
 									? ""
 									: moment(formDetails?.notarySealDate).format("MMMM ")}
 							</span>
 							, 20
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`${nottoBeHighlighted} border-b border-black inline-block ${
+									!formDetails?.notarySealDate ? "w-10" : ""
+								}`}>
 								{" "}
 								{!formDetails?.notarySealDate
 									? ""
