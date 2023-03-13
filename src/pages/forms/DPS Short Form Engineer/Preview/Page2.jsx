@@ -32,13 +32,17 @@ const PageTwo = ({ formsDetails, vendor, nottoBeHighlighted }) => {
 								{!vendor[0] ? "" : vendor[0]?.company_name}
 							</span>
 							, located at{" "}
-							<span className={`${nottoBeHighlighted}`}>
-								{`${!vendor[0] ? "" : vendor[0]?.street}, ${
-									!vendor[0] ? "" : vendor[0]?.city
-								}, ${!vendor[0] ? "" : vendor[0]?.state}, ${
-									!vendor[0] ? "" : vendor[0]?.zip_code
-								}`}
-							</span>{" "}
+							{!vendor[0] ? (
+								""
+							) : (
+								<span className={`${nottoBeHighlighted}`}>
+									{`${!vendor[0] ? "" : vendor[0]?.street}, ${
+										!vendor[0] ? "" : vendor[0]?.city
+									}, ${!vendor[0] ? "" : vendor[0]?.state}, ${
+										!vendor[0] ? "" : vendor[0]?.zip_code
+									}`}
+								</span>
+							)}{" "}
 							(hereinafter, the “Engineer”). The Agreement is for Professional
 							Services to be provided as authorized by the Owner and as outlined
 							in the Proposal and Scope of Services attached to this Agreement
@@ -128,8 +132,9 @@ const PageTwo = ({ formsDetails, vendor, nottoBeHighlighted }) => {
 											</p>
 											<p className="border-b border-black w-48">
 												<span className={`${nottoBeHighlighted}`}>
-													{`${formsDetails?.city || ""} 
-												${formsDetails?.state || " " + "" || ""} ${formsDetails?.zipCode || ""}`}
+													{console.log(formsDetails)}
+													{`${formsDetails?.city} 
+												${formsDetails?.state + ","} ${formsDetails?.zipCode}`}
 												</span>
 											</p>
 										</div>

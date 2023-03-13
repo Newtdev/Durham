@@ -178,7 +178,7 @@ const Preview = () => {
 											<span
 												className={`${nottoBeHighlighted}  inline-block w-56 border-b border-black`}>
 												{" "}
-												{formDetails?.contractor || ""}
+												{awardee?.contractor?.vendor_id || ""}
 											</span>
 										</p>
 									</div>
@@ -382,22 +382,24 @@ const Preview = () => {
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.overhead,
-														formDetails?.material
-													)}
+													{currency(
+														HandleTotal(
+															formDetails?.overhead,
+															formDetails?.material
+														)
+													).format()}
 												</span>
 											</div>
 											<div className="border-t border-t-black mt-[0.6rem] w-max ">
 												<span
-													className={`inline-block w-24  border-b border-black  text-right ${nottoBeHighlighted}`}>
+													className={`inline-block w-24  border-b border-black  text-right ${nottoBeHighlighted} `}>
 													{" "}
-													$
-													{HandleTotal(
-														formDetails?.sale,
-														formDetails?.material
-													)}
+													{currency(
+														HandleTotal(
+															formDetails?.sale,
+															formDetails?.material
+														)
+													).format()}
 												</span>
 											</div>
 											<div>
@@ -408,84 +410,90 @@ const Preview = () => {
 											</div>
 										</div>
 
-										<div className="mb-[1.6rem] ">
+										<div className="mb-[1.6rem] mt-6  ">
 											<div>
 												{/* F17 */}
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleMultiplication(
-														formDetails?.amount,
-														formDetails?.hours
-													)}
+													{currency(
+														HandleMultiplication(
+															formDetails?.amount,
+															formDetails?.hours
+														)
+													).format()}
 												</span>
 											</div>
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.profit,
-														HandleMultiplication(
-															formDetails?.hours,
-															formDetails?.amount
+													{currency(
+														HandleTotal(
+															formDetails?.profit,
+															HandleMultiplication(
+																formDetails?.hours,
+																formDetails?.amount
+															)
 														)
-													) || "0.00"}
+													).format() || "0.00"}
 												</span>
 											</div>
 											<div className="mt-[1.9rem]">
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.insurance,
-														HandleMultiplication(
-															formDetails?.hours,
-															formDetails?.amount
+													{currency(
+														HandleTotal(
+															formDetails?.insurance,
+															HandleMultiplication(
+																formDetails?.hours,
+																formDetails?.amount
+															)
 														)
-													) || "0.00"}
+													).format() || "0.00"}
 												</span>
 											</div>
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleMultiplication(
-														formDetails?.Thours,
-														formDetails?.Tamount
-													)}
-												</span>
-											</div>
-											<div>
-												<span
-													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.allowable,
+													{currency(
 														HandleMultiplication(
 															formDetails?.Thours,
 															formDetails?.Tamount
 														)
-													) || "0.00"}
+													).format()}
+												</span>
+											</div>
+											<div>
+												<span
+													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
+													{currency(
+														HandleTotal(
+															formDetails?.allowable,
+															HandleMultiplication(
+																formDetails?.Thours,
+																formDetails?.Tamount
+															)
+														)
+													).format() || "0.00"}
 												</span>
 											</div>
 										</div>
 
-										<div className="mb-[3rem]">
+										<div className="mb-[1.8rem] ">
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													${formDetails?.rental}
+													{currency(formDetails?.rental).format()}
 												</span>
 											</div>
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.overhead_exprimental,
-														formDetails?.rental
-													) || "0.00"}
+													{currency(
+														HandleTotal(
+															formDetails?.overhead_exprimental,
+															formDetails?.rental
+														)
+													).format() || "0.00"}
 												</span>
 											</div>
 										</div>
@@ -494,17 +502,18 @@ const Preview = () => {
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													${formDetails?.subcontractors}
+													{currency(formDetails?.subcontractors).format()}
 												</span>
 											</div>
 											<div>
 												<span
 													className={`inline-block w-24 border-b border-black  text-right ${nottoBeHighlighted}`}>
-													$
-													{HandleTotal(
-														formDetails?.profit_subcontractor,
-														formDetails?.subcontractors
-													)}
+													{currency(
+														HandleTotal(
+															formDetails?.profit_subcontractor,
+															formDetails?.subcontractors
+														)
+													).format()}
 												</span>
 											</div>
 										</div>
@@ -514,94 +523,102 @@ const Preview = () => {
 									<div>
 										<p className="font-bold">SUBTOTALS</p>
 										<div>
-											<div className="h-[3.8rem] bg-gray-400"></div>
-											<p className="mt-2">
+											<div className="h-[2.6rem] bg-gray-400"></div>
+											<p className="mt-1">
 												<span
-													className={`inline-block w-full border-b-2 border-black`}>
-													{HandleSubTotal(
-														formDetails?.material,
-														HandleTotal(
-															formDetails?.overhead,
-															formDetails?.material
-														),
-														HandleTotal(
-															formDetails?.sale,
-															formDetails?.material
-														),
-														formDetails?.shipping
-													) || "0.00"}
+													className={`inline-block w-full border-b-2 border-black text-right`}>
+													{currency(
+														HandleSubTotal(
+															formDetails?.material,
+															HandleTotal(
+																formDetails?.overhead,
+																formDetails?.material
+															),
+															HandleTotal(
+																formDetails?.sale,
+																formDetails?.material
+															),
+															formDetails?.shipping
+														)
+													).format() || "0.00"}
 												</span>
 											</p>
 										</div>
 
 										<div className="mt-[0.7rem]">
-											<div className="h-[7rem] bg-gray-400"></div>
-											<p className="mt-2">
+											<div className="h-[5.6rem] bg-gray-400"></div>
+											<p className="mt-1.5">
 												<span
-													className={`inline-block w-full border-b-2 border-black`}>
-													{HandleSubTotal(
-														HandleMultiplication(
-															formDetails?.hours,
-															formDetails?.amount
-														),
-														HandleTotal(
-															formDetails?.profit,
+													className={`inline-block w-full border-b-2 border-black text-right`}>
+													{currency(
+														HandleSubTotal(
 															HandleMultiplication(
 																formDetails?.hours,
 																formDetails?.amount
-															)
-														),
-														HandleTotal(
-															formDetails?.insurance,
-															HandleMultiplication(
-																formDetails?.hours,
-																formDetails?.amount
-															)
-														),
-														HandleTotal(
-															formDetails?.allowable,
+															),
+															HandleTotal(
+																formDetails?.profit,
+																HandleMultiplication(
+																	formDetails?.hours,
+																	formDetails?.amount
+																)
+															),
+															HandleTotal(
+																formDetails?.insurance,
+																HandleMultiplication(
+																	formDetails?.hours,
+																	formDetails?.amount
+																)
+															),
+															HandleTotal(
+																formDetails?.allowable,
+																HandleMultiplication(
+																	formDetails?.Thours,
+																	formDetails?.Tamount
+																)
+															),
 															HandleMultiplication(
 																formDetails?.Thours,
 																formDetails?.Tamount
 															)
-														),
-														HandleMultiplication(
-															formDetails?.Thours,
-															formDetails?.Tamount
 														)
-													)}
+													).format()}
 												</span>
 											</p>
 										</div>
 
-										<div className="mt-[0.4rem]">
-											<div className="h-[2rem] bg-gray-400"></div>
+										<div className="mt-[0.4rem] ">
+											<div className="h-[1.7rem] bg-gray-400"></div>
 											<p className="mt-2">
 												<span
-													className={`inline-block w-full border-b-2 border-black`}>
-													{HandleSubTotal(
-														HandleTotal(
-															formDetails?.overhead_exprimental,
+													className={`inline-block w-full border-b-2 border-black text-right`}>
+													{currency(
+														HandleSubTotal(
+															HandleTotal(
+																formDetails?.overhead_exprimental,
+																formDetails?.rental
+															),
 															formDetails?.rental
-														),
-														formDetails?.rental
-													)}
+														)
+													).format()}
 												</span>
 											</p>
 										</div>
 
-										<div className="mt-[2rem] mb-2">
+										<div className="mt-[0.6rem] mb-2">
 											<div className="h-[1.4rem] bg-gray-400"></div>
 											<p className="mt-2">
 												<span
-													className={`inline-block w-full border-b-2 border-black`}>
-													{HandleSubTotal(
-														HandleTotal(
-															formDetails?.profit_subcontractor,
+													className={`inline-block w-full border-b-2 border-black text-right`}>
+													{currency(
+														HandleSubTotal(
+															HandleTotal(
+																formDetails?.profit_subcontractor,
+																formDetails?.subcontractors
+															),
 															formDetails?.subcontractors
-														),
-														formDetails?.subcontractors
-													)}
+														)
+													).format()}
 												</span>
 											</p>
 										</div>
@@ -630,6 +647,7 @@ const Preview = () => {
 											<p className="ml-auto">
 												<span
 													className={`inline-block w-24 border-b-2 my-0.5 border-black ${nottoBeHighlighted} text-right font-bold`}>
+													{console.log(BondsTotal)}
 													{currency(BondsTotal).format() || "0.00"}
 												</span>
 											</p>

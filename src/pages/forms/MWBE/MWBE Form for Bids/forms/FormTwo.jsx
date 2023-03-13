@@ -281,6 +281,9 @@ const FormTwo = (props) => {
 												<button
 													type="button"
 													className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+													disabled={
+														props?.values?.mwbeInfo?.length === 9 ? true : false
+													}
 													onClick={() =>
 														push({
 															mwbeName: "",
@@ -304,7 +307,7 @@ const FormTwo = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Previous"
+							name="Back"
 							onClick={() => dispatch(prevStep(1))}
 						/>
 						<DashboardButton

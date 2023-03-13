@@ -38,7 +38,7 @@ const FormThree = (props) => {
 
 					{/* Progress */}
 					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-						<div className="bg-[#2F5461] h-2.5 w-1/2"></div>
+						<div className="bg-[#2F5461] h-2.5 w-[75%]"></div>
 					</div>
 
 					<div className="mx-6 mb-12">
@@ -151,7 +151,7 @@ const FormThree = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Cancel"
+							name="Back"
 							onClick={() => dispatch(prevStep(2))}
 						/>
 						<DashboardButton

@@ -1,4 +1,3 @@
-import currency from "currency.js";
 import React, { useMemo } from "react";
 
 const Component = ({ onChange, value, id }) => {
@@ -50,7 +49,7 @@ export const HandleSubTotal = (...val) => {
 		for (let i of val) {
 			sum = sum += Number(i);
 		}
-		return currency(sum).format();
+		return sum;
 	}, [val]);
 };
 export const MasterhandleSubTotal = (...val) => {

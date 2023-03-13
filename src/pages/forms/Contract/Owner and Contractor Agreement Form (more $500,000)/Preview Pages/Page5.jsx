@@ -32,16 +32,22 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 							This contract was approved by the Board on the{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("Do")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("Do")}
 							</span>{" "}
 							day of{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("MMMM ")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("MMMM ")}
 							</span>
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("YYYY")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("YYYY")}
 							</span>
 						</p>
 						<p className="mb-8">
@@ -80,17 +86,23 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 							Witness my hand and notarial seal this{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("Do")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("Do")}
 							</span>{" "}
 							day of{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("MMMM ")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("MMMM ")}
 							</span>
 							, 20
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("YY")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("YY")}
 							</span>
 							.
 						</p>

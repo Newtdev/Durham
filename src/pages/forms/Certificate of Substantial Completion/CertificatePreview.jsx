@@ -161,7 +161,6 @@ const CertificatePreview = () => {
 												<i>
 													{!form_fields ? "" : form_fields?.purposeOfContract}{" "}
 												</i>
-												Construction
 											</td>
 											<td className="border border-black pl-[1rem] text-[12.5px]">
 												Architect
