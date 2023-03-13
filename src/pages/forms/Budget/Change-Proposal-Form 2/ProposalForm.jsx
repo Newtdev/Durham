@@ -85,13 +85,13 @@ const ProposalForm = ({ id, filled }) => {
 			// 	a?.data?.form_fields?.profit_subcontractor
 			// );
 			// Formik.setFieldValue("bonds", a?.data?.form_fields?.bonds);
-			// Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
-			// Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
-			// Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
-			// Formik.setFieldValue("numberDays", a?.data?.form_fields?.numberDays);
-			// Formik.setFieldValue("material", a?.data?.form_fields?.material);
-			// Formik.setFieldValue("shipping", a?.data?.form_fields?.shipping);
-			// Formik.setFieldValue("hours", a?.data?.form_fields?.hours);
+			Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
+			Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
+			Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
+			Formik.setFieldValue("numberDays", a?.data?.form_fields?.numberDays);
+			Formik.setFieldValue("material", a?.data?.form_fields?.material);
+			Formik.setFieldValue("shipping", a?.data?.form_fields?.shipping);
+			Formik.setFieldValue("hours", a?.data?.form_fields?.hours);
 			Formik.setFieldValue(
 				"affectedDate",
 				handleSavedDate(a?.data?.form_fields?.affectedDate)
@@ -100,14 +100,14 @@ const ProposalForm = ({ id, filled }) => {
 				"signedDate",
 				handleSavedDate(a?.data?.form_fields?.signedDate)
 			);
-			// Formik.setFieldValue("amount", a?.data?.form_fields?.amount);
-			// Formik.setFieldValue("Tamount", a?.data?.form_fields?.Tamount);
-			// Formik.setFieldValue("Thours", a?.data?.form_fields?.Thours);
-			// Formik.setFieldValue("rental", a?.data?.form_fields?.rental);
-			// Formik.setFieldValue(
-			// 	"subcontractors",
-			// 	a?.data?.form_fields?.subcontractors
-			// );
+			Formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+			Formik.setFieldValue("Tamount", a?.data?.form_fields?.Tamount);
+			Formik.setFieldValue("Thours", a?.data?.form_fields?.Thours);
+			Formik.setFieldValue("rental", a?.data?.form_fields?.rental);
+			Formik.setFieldValue(
+				"subcontractors",
+				a?.data?.form_fields?.subcontractors
+			);
 			// Formik.setFieldValue("items", a?.data?.form_fields?.items);
 		}
 	}, [a?.data]);
