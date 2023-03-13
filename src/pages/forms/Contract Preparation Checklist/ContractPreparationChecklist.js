@@ -7,9 +7,11 @@ import { next, step } from "./reducer";
 import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import { setResult } from "../../../shared-component";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import Preview from "./Preview";
 import GeneralInformation from "./forms/GeneralInformation";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { useEffect } from "react";
 
 const ContractPreparationCheckList = ({ id, filled }) => {
 	const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const ContractPreparationCheckList = ({ id, filled }) => {
 	const show = useSelector(modal);
 
 	const formID = useSelector(project_document_id);
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
@@ -48,6 +51,17 @@ const ContractPreparationCheckList = ({ id, filled }) => {
 			}
 		},
 	});
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		formik.setFieldValue("contractType", a?.data?.form_fields?.contractType);
+		formik.setFieldValue(
+			"signedDate",
+			handleSavedDate(a?.data?.form_fields?.signedDate)
+		);
+	}, [a?.data]);
 
 	const props = {
 		...formik,

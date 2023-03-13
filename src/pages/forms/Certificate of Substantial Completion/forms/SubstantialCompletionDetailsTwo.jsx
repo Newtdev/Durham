@@ -1,15 +1,10 @@
-import { positions } from "@mui/system";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-	useFetchDurhamQuery,
-	useGetAllProjectManagerQuery,
-} from "../../../../features/services/api";
+import { useFetchDurhamQuery } from "../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import SelectDate, {
-	FormInput,
 	FormInputPlain,
 	FormSelect,
 	FormTextArea,
@@ -21,7 +16,6 @@ import { prev } from "../reducer";
 const DurhamSelect = ({ props, owners, durhamList }) => {
 	return (
 		<FormInputContainer>
-			{console.log(props.values.owner)}
 			<FormSelect {...owners}>
 				{!props.values.owner ? (
 					<option>Select</option>
@@ -209,7 +203,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 						/>
 						<DashboardButton
 							hidden
-							loading={props.loading}
+							loading={props.isLoading}
 							name="NEXT"
 							type="submit"
 							width="w-[77px]"

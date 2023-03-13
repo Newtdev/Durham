@@ -29,7 +29,7 @@ const ShortSmall = () => {
 	const show = useSelector(openDownload);
 	const formID = useSelector(project_document_id);
 	const [highlighted, setHighlighed] = useState(false);
-	const [showPage, setShowPage] = useState(true);
+	const [showPage, setShowPage] = useState(false);
 	const [awardee, setAwardee] = useState([]);
 	const form_fields = useSelector(fields);
 	const [a] = UseFetchFilledFormDetails(formID);

@@ -85,7 +85,7 @@ const PageTen = (props) => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[28.2rem] -mt-6 flex flex-col justify-end">
+			<div className=" h-[34.2rem] -mt-6 flex flex-col justify-end">
 				<div>
 					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
 				</div>

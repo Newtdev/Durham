@@ -1,7 +1,10 @@
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { handleSavedDate } from "../../../../shared-component";
 import { ShortSmallFormDesign } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { ShortSmallFormDesignSchema } from "../../../../yup";
@@ -17,6 +20,7 @@ const ShortSmallFormDesignForm = ({ id, filled }) => {
 	const show = useSelector(modal);
 
 	const formID = useSelector(project_document_id);
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
@@ -55,12 +59,25 @@ const ShortSmallFormDesignForm = ({ id, filled }) => {
 		validationSchema: ShortSmallFormDesignSchema,
 		onSubmit: (values) => {
 			if (pages === 1) {
-				console.log("pages: ", pages);
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
 	});
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		formik.setFieldValue(
+			"agreementDate",
+			handleSavedDate(a?.data?.form_fields?.agreementDate)
+		);
+		formik.setFieldValue("ownerEmail", a?.data?.form_fields?.ownerEmail);
+		formik.setFieldValue(
+			"signDate",
+			handleSavedDate(a?.data?.form_fields?.signDate)
+		);
+	}, [a?.data]);
 	const formProps = {
 		...formik,
 		isLoading,

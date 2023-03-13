@@ -1,4 +1,4 @@
-import Logo from "../../../assets/formlogo.png";
+import LogoOne from "../../../assets/Durham.png";
 import { useEffect, useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
@@ -7,17 +7,18 @@ import { prev, stepDefault } from "./reducer";
 import {
 	closeDownload,
 	closeModal,
-	fields,
 	openDownload,
-	savedResponse,
 	showDownload,
 } from "../reducer";
 import moment from "moment";
 import currency from "currency.js";
 import DownLoadForm from "../Lundsford/Download";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
-import { doConvert } from "../../../shared-component";
+import { doConvert, trucateText } from "../../../shared-component";
 import PageTwo from "./PageTwo";
 
 const CertificatePreview = () => {
@@ -113,9 +114,9 @@ const CertificatePreview = () => {
 							<div>
 								<div className="flex items-center mb-4 ">
 									<img
-										src={Logo}
+										src={LogoOne}
 										alt="logo"
-										className="h-14 object-cover mb-4"
+										className="h-20 object-cover mb-4"
 									/>
 
 									<h1 className="font-extrabold -mt-9 text-[23.5px] ml-8">
@@ -270,7 +271,9 @@ const CertificatePreview = () => {
 										<span
 											className={`inline-block font-light mt-4 ${nottoBeHighlighted} `}>
 											{" "}
-											{!form_fields ? "" : form_fields.areasCompleted}
+											{!form_fields
+												? ""
+												: trucateText(form_fields.areasCompleted, 40)}
 										</span>
 									</p>
 
@@ -415,7 +418,10 @@ const CertificatePreview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prev(2))}
+							onClick={() => {
+								dispatch(selectFilled(false));
+								dispatch(prev(2));
+							}}
 						/>
 						<DashboardButton
 							hidden

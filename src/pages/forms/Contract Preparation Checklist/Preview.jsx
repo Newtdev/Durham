@@ -1,14 +1,17 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { ModalOverlay } from "../../../ui";
 import { useRef, useState } from "react";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
-import { openDownload, showDownload } from "../reducer";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import { closeModal, openDownload, showDownload } from "../reducer";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import DownLoadForm from "../Lundsford/Download";
 import moment from "moment/moment";
+import { prev } from "./reducer";
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -51,6 +54,7 @@ const Preview = () => {
 							<p className="text-base text-gray-700">Preview Document</p>
 						</div>
 						<button
+							onClick={() => dispatch(closeModal())}
 							type="button"
 							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
 							data-modal-toggle="small-modal">
@@ -301,7 +305,14 @@ const Preview = () => {
 
 					{/* Buttons */}
 					<div className="flex justify-end gap-4 pr-6 pb-4">
-						<ButtonWhiteBG width="w-[171px]" name="Edit document" />
+						<ButtonWhiteBG
+							width="w-[171px]"
+							name="Edit document"
+							onClick={() => {
+								dispatch(prev(0));
+								dispatch(selectFilled(false));
+							}}
+						/>
 						<DashboardButton
 							hidden
 							name="CREATE DOCUMENT"

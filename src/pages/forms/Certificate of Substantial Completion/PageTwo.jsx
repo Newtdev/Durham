@@ -10,7 +10,7 @@ const PageTwo = ({ nottoBeHighlighted, form_fields }) => {
 			</p>
 			<div className="flex mb-2">
 				<div className="">
-					<p className={`  ${nottoBeHighlighted} text-justify text-[14.5px]`}>
+					<p className={`  ${nottoBeHighlighted} text-justify text-[9pt]`}>
 						{!form_fields ? "" : form_fields?.responsibility}
 					</p>
 				</div>

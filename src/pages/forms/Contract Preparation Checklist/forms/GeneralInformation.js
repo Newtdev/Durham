@@ -10,7 +10,7 @@ const GeneralInformation = (props) => {
 
 	const contractType = {
 		...props,
-		value: props.values.contractType,
+		value: props?.values?.contractType,
 		onChange: props.handleChange,
 		error: props.errors.contractType,
 		touched: props.touched.contractType,
@@ -20,7 +20,7 @@ const GeneralInformation = (props) => {
 
 	const signDate = {
 		...props,
-		value: props.values.signDate,
+		value: props?.values?.signDate,
 		onChange: props.handleChange,
 		error: props.errors.signDate,
 		touched: props.touched.signDate,
