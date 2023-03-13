@@ -211,7 +211,17 @@ const FormTwo = (props) => {
 																	error={props.errors.mwbeCategory}
 																	touched={props.touched.mwbeCategory}
 																	onChange={props.handleChange}>
-																	<option value="">Select the MWBE</option>
+																	{!props?.values?.mwbeInfo[index]
+																		.mwbeCategory ? (
+																		<option value="">Select the MWBE</option>
+																	) : (
+																		<option value="">
+																			{
+																				props?.values?.mwbeInfo[index]
+																					.mwbeCategory
+																			}
+																		</option>
+																	)}
 																	{mwbeCategories?.map(
 																		(mwbeCategory, index) => {
 																			return (
@@ -230,6 +240,10 @@ const FormTwo = (props) => {
 																		onChange={props.handleChange}
 																		name="Work Description"
 																		id={`mwbeInfo[${index}].workDescription`}
+																		value={
+																			props?.values?.mwbeInfo[index]
+																				.workDescription
+																		}
 																		placeholder={"Edit Work Description	"}
 																	/>
 																	{props.errors.workDescription &&

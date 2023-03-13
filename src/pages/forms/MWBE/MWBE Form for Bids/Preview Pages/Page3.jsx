@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const PageThree = ({ formDetails }) => {
+const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 	return (
 		<div className=" pt-8 pb-4 text-black h-[11in] leading-[1.2] text-[11pt]">
 			<div>
@@ -97,13 +97,14 @@ const PageThree = ({ formDetails }) => {
 							<div className="flex justify-between mb-4">
 								<p>
 									Date:{" "}
-									<span className="bg-yellow-500 ">
+									<span className={`${nottoBeHighlighted}`}>
 										{moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
 									</span>
 								</p>
 								<p>
 									Name of Authorized Officer:{" "}
-									<span className="bg-yellow-500 inline-block w-[17.7rem] border-b border-black">
+									<span
+										className={`${nottoBeHighlighted} inline-block w-[17.7rem] border-b border-black`}>
 										{formDetails?.ownerRepName}
 									</span>
 								</p>
@@ -114,12 +115,13 @@ const PageThree = ({ formDetails }) => {
 							</p>
 							<p className="text-right mb-4">
 								Title:
-								<span className="bg-yellow-500 text-left ml-1 inline-block border-b border-black w-[24.5rem] ">
+								<span
+									className={`${nottoBeHighlighted} text-left ml-1 inline-block border-b border-black w-[24.5rem] `}>
 									{formDetails?.ownerRepTitle}
 								</span>
 							</p>
 
-							<div className="flex pr-10 justify-between items-center text-[10pt] ">
+							<div className="flex justify-between items-center text-[10pt] ">
 								<div className="h-24 w-24 rounded-full flex items-center justify-center border border-black">
 									<p className="text-sm">SEAL</p>
 								</div>

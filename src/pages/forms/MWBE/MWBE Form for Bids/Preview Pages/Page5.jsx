@@ -69,14 +69,16 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 						<div className="flex justify-between mb-4">
 							<p>
 								Date:{" "}
-								<span className="bg-yellow-500 border-b border-black">
+								<span
+									className={`${nottoBeHighlighted}  border-b border-black`}>
 									{" "}
 									{moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
 								</span>
 							</p>
 							<p>
 								Name of Authorized Officer:{" "}
-								<span className="bg-yellow-500 inline-block w-[17.7rem] border-b border-black">
+								<span
+									className={`${nottoBeHighlighted} inline-block w-[17.7rem] border-b border-black`}>
 									{formDetails?.ownerRepName}
 								</span>{" "}
 							</p>
@@ -87,7 +89,8 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 						</p>
 						<p className="text-right mb-4">
 							Title:
-							<span className="bg-yellow-500 text-left pl-0.5 inline-block border-b border-black w-[24.3rem]">
+							<span
+								className={`${nottoBeHighlighted} text-left pl-0.5 inline-block border-b border-black w-[24.3rem]`}>
 								{formDetails?.ownerRepTitle}
 							</span>{" "}
 						</p>

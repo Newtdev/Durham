@@ -1,12 +1,15 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { ButtonWhiteBG } from "../../../../ui";
-import { DashboardButton } from "../../../Dashboard/Components";
+import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { useDispatch, useSelector } from "react-redux";
 import { prevStep } from "./reducer";
 import { closeModal, openDownload, showDownload } from "../../reducer";
 import PageOne from "./Preview Pages/Page1";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { useRef, useState } from "react";
 import PageTwo from "./Preview Pages/Page2";
 import PageThree from "./Preview Pages/Page3";
@@ -53,7 +56,9 @@ const MWBEBids = () => {
 							onClick={() => dispatch(closeModal())}
 							type="button"
 							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
-							data-modal-toggle="small-modal"></button>
+							data-modal-toggle="small-modal">
+							<Close />
+						</button>
 					</div>
 
 					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px]">
@@ -87,7 +92,10 @@ const MWBEBids = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevStep(2))}
+							onClick={() => {
+								dispatch(prevStep(2));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden
@@ -96,6 +104,7 @@ const MWBEBids = () => {
 							width="w-[198px]"
 							onClick={() => {
 								dispatch(showDownload());
+								setHighlighed(true);
 							}}
 						/>
 					</div>

@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const PageOne = ({ formDetails }) => {
+const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 	// console.log(formDetails);
 	return (
 		<div className=" pb-4 text-black text-[10pt] h-[10.5in] leading-[1.2] ">
@@ -10,7 +10,8 @@ const PageOne = ({ formDetails }) => {
 					<div className="mb-4">
 						<p className="font-bold text-[12pt] mb-8">
 							The total value of minority business contracting will be ($ ){" "}
-							<span className="bg-yellow-500 inline-block border-b border-black">
+							<span
+								className={`${nottoBeHighlighted} inline-block border-b border-black`}>
 								{formDetails?.totalValue}
 							</span>
 							.
@@ -269,7 +270,8 @@ const PageOne = ({ formDetails }) => {
 							<div className="flex justify-between mb-4">
 								<p>
 									Date:{" "}
-									<span className="bg-yellow-500 inline-block border-b border-black">
+									<span
+										className={`${nottoBeHighlighted} inline-block border-b border-black`}>
 										{!formDetails?.ownerRepDate
 											? ""
 											: moment(formDetails?.ownerRepDate).format(
@@ -279,7 +281,8 @@ const PageOne = ({ formDetails }) => {
 								</p>
 								<p>
 									Name of Authorized Officer:{" "}
-									<span className="bg-yellow-500 inline-block w-[17.7rem] border-b border-black">
+									<span
+										className={`${nottoBeHighlighted} inline-block w-[17.7rem] border-b border-black`}>
 										{formDetails?.ownerRepName}
 									</span>
 								</p>
