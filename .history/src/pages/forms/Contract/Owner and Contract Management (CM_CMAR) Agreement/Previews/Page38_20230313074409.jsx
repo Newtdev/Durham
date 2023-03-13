@@ -104,7 +104,7 @@ const Page38 = (props) => {
             <span className="fgh mr-[10.5rem]">Owner Contingency</span>{" "}
             <span
               className={`${props?.nottoBeHighlighted} `}
-            >{`$${props?.form_fields?.CMContigency}`}</span>
+            >{`$${props?.form_fields?.CMContingency}`}</span>
           </p>
           <p>
             <span className="fgh mr-[10.7rem]">General Conditions</span>{" "}
