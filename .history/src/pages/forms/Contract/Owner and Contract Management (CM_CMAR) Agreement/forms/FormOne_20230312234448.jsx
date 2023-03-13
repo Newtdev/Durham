@@ -369,9 +369,7 @@ const FormOne = (props) => {
 
                 <FormInputContainer name="">
                   <FormSelect {...conferenceCity}>
-                    <option value={conferenceCity.value}>
-                      {conferenceCity.value}
-                    </option>
+                    <option value="">Select City</option>
                     {CheckState()}
                   </FormSelect>
 
@@ -383,9 +381,7 @@ const FormOne = (props) => {
 
                 <FormInputContainer name="">
                   <FormSelect {...conferenceZipCode}>
-                    <option value={conferenceZipCode.value}>
-                      {conferenceZipCode.value}
-                    </option>
+                    <option value="">Select zipcode</option>
                     {CheckZipCode()}
                   </FormSelect>
 

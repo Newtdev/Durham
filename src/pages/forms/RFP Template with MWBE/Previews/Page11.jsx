@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./PagesStyle.css";
+import "./PagesStyle.css";
 import "./proposalScope.css";
 import he from "he";
 
@@ -32,8 +32,7 @@ const Page11 = (props) => {
         <section className="mt-4 proposalScope">
           {proposalScope && (
             <div
-              // className="list-disc"
-              style={{ listStyle: "lower-latin" }}
+              className="proposalScope"
               dangerouslySetInnerHTML={{
                 __html: he.decode(encodedProposalScope),
               }}

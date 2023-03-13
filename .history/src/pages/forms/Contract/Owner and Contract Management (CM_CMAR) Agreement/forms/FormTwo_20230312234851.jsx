@@ -132,11 +132,7 @@ const FormTwo = (props) => {
                                 id={`location.${[index]}.projectState`}
                                 onChange={props.handleChange}
                               >
-                                <option
-                                  value={
-                                    props.values.location[index].projectState
-                                  }
-                                >
+                                <option value="">
                                   {props.values.location[index].projectState}
                                 </option>
                                 {!states
@@ -162,13 +158,7 @@ const FormTwo = (props) => {
                                 id={`location.${[index]}.projectCity`}
                                 onChange={props.handleChange}
                               >
-                                <option
-                                  value={
-                                    props.values.location[index].projectCity
-                                  }
-                                >
-                                  {props.values.location[index].projectCity}
-                                </option>
+                                <option value="">Select City</option>
                                 {CheckState(index)}
                               </FormSelect>
 
@@ -187,13 +177,7 @@ const FormTwo = (props) => {
                                 id={`location.${[index]}.projectZipCode`}
                                 onChange={props.handleChange}
                               >
-                                <option
-                                  value={
-                                    props.values.location[index].projectZipCode
-                                  }
-                                >
-                                  {props.values.location[index].projectZipCode}
-                                </option>
+                                <option value="">Select zipcode</option>
                                 {CheckZipCode(index)}
                               </FormSelect>
 

@@ -356,7 +356,7 @@ const FormTwo = (props) => {
                 <div className="grid grid-cols-3 gap-x-4">
                   <FormInputContainer name="">
                     <FormSelect {...state}>
-                      <option value="">Select State</option>
+                      <option value={state.value}>{state.value}</option>
                       {!states
                         ? null
                         : Object.entries(states).map((cur, index) => {
@@ -374,7 +374,7 @@ const FormTwo = (props) => {
 
                   <FormInputContainer name="">
                     <FormSelect {...city}>
-                      <option value="">Select City</option>
+                      <option value={city.value}>{city.value}</option>
                       {CheckState()}
                     </FormSelect>
 
@@ -385,7 +385,7 @@ const FormTwo = (props) => {
 
                   <FormInputContainer name="">
                     <FormSelect {...zipCode}>
-                      <option value="">Select zipcode</option>
+                      <option value={zipCode.value}>{zipCode.value}</option>
                       {CheckZipCode()}
                     </FormSelect>
 

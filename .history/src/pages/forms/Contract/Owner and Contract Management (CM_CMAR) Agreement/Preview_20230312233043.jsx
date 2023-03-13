@@ -220,7 +220,7 @@ const Preview = () => {
               onClick={() => {
                 dispatch(selectFilled(false));
                 dispatch(prevStep(4));
-                // console.log("clicked");
+                console.log("clicked");
               }}
             />
             <DashboardButton

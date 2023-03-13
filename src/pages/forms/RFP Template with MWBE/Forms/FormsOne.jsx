@@ -4,13 +4,6 @@ import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { FormInputPlain } from "../../components";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../reducer";
-// import { Close, DashboardButton } from "../../../../../Dashboard/Components";
-// import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
-// import { getList } from "../../../../Advertisement-for-bid-template/reducer";
-// import SelectDate from "../../../../components";
-// import { FormInputContainer } from "../../../../Notice-of-intent-consultant/Forms";
-// import { closeModal } from "../../../../reducer";
-// import { FormInputPlain } from "../../../../components";
 
 const FormOne = (props) => {
   const dispatch = useDispatch();
