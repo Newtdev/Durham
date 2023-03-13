@@ -6,7 +6,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 			<div>
 				{/* Page 5 */}
 				<div className="m-[1in]  flex flex-col justify-between">
-					<div className="border-4 border-gray-300 p-2 mb-4">
+					<div className="border-4 border-gray-300 p-2 mb-4 w-1/2">
 						<div className="flex gap-12">
 							<p>Endorsement:</p>
 							<div>
@@ -22,7 +22,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 								<p>Executive Director</p>
 								<p>
 									Durham Public Schools{" "}
-									<span className="ml-12">Building services</span>
+									<span className="ml-1">Building services</span>
 								</p>
 							</div>
 						</div>
@@ -49,7 +49,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 								{!vendor[0] ? "" : vendor[0]?.company_name}
 							</span>
 						</p>
-						<p className="mb-8">
+						<p className="mb-3">
 							By:{" "}
 							<span className="ml-16">
 								________________________________________________________
@@ -85,7 +85,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 							day of{" "}
 							<span className={`${nottoBeHighlighted}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("MMMM, ")}
+								{moment(formDetails?.notarySealDate).format("MMMM ")}
 							</span>
 							, 20
 							<span className={`${nottoBeHighlighted}`}>

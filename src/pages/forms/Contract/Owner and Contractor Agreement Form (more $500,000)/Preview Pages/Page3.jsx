@@ -7,6 +7,7 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 	const units = parseDynamicInput(formDetails?.units) || "";
 	const modificationTotal =
 		parseDynamicInput(formDetails?.modificationArray) || "";
+
 	return (
 		<div className=" pt-2 pb-4 text-black text-[11pt] leading-[1.3] h-[11in] ">
 			<div>
@@ -117,7 +118,7 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 										other contract modifications noted in Section 2.3 above that
 										total{" "}
 										<span className={`${nottoBeHighlighted}`}>
-											{Total(modificationTotal?.modificationAmount)}
+											{Total(modificationTotal)}
 										</span>
 										.
 									</p>

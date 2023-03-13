@@ -26,7 +26,7 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 							demonstrated Good Faith Efforts.
 						</p>
 
-						<p className="font-bold text-xs mb-4">
+						<p className="font-bold mb-4">
 							PART A (Documentation Required to be Submitted With Bid)
 						</p>
 
@@ -123,19 +123,19 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 
 							<div className="flex justify-between items-center text-[10pt] ">
 								<div className="h-24 w-24 rounded-full flex items-center justify-center border border-black">
-									<p className="text-sm">SEAL</p>
+									<p className="text-sm calibri-font">SEAL</p>
 								</div>
 
 								<div>
-									<p className="mb-3">
+									<p className="mb-1">
 										State of North Carolina, County of
-										_______________________________________________
+										____________________________________________
 									</p>
-									<p className="mb-3">
+									<p className="mb-1">
 										Subscribed and sworn to before me this _________ day of
 										__________________ 20____
 									</p>
-									<p className="mb-3">Notary Public ________________________</p>
+									<p className="mb-1">Notary Public ________________________</p>
 									<p>My commission expires __________________</p>
 								</div>
 							</div>
