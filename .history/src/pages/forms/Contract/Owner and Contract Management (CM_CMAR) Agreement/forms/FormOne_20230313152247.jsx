@@ -224,6 +224,13 @@ const FormOne = (props) => {
                 <OverviewTextarea {...projectIntent} />
               </div>
 
+              {/* <div className="flex flex-col">
+              <label className="text-base text-gray-900 mb-1">
+                Modify the information below if the prototype is not utilized
+              </label>
+              <OverviewTextarea {...prototypeNotUtilized} />
+              </div> */}
+
               <FormInputContainer name="Enter the project's substantial completion date.">
                 <SelectDate {...substantialCompletionDate} />
                 {props.errors.substantialCompletionDate &&

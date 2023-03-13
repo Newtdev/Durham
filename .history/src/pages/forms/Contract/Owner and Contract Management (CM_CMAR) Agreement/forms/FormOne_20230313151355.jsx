@@ -110,7 +110,7 @@ const FormOne = (props) => {
     onChange: props.handleChange,
     error: props.errors.percentage,
     touched: props.touched.percentage,
-    // name: "projectIntent",
+    name: "projectIntent",
     placeholder: "Use as:",
     id: "projectIntent",
   };
@@ -223,7 +223,6 @@ const FormOne = (props) => {
                 </label>
                 <OverviewTextarea {...projectIntent} />
               </div>
-
               <FormInputContainer name="Enter the project's substantial completion date.">
                 <SelectDate {...substantialCompletionDate} />
                 {props.errors.substantialCompletionDate &&
@@ -315,9 +314,9 @@ const FormOne = (props) => {
                   </div>
                 </div>
               </div>
-              <p className="text-small text-[#676769] mb-3">
+              <p>
                 Contact Information for anyone else (other than the Owner and
-                CM) to whom a copy of wriiten notices may be given.
+                CM) to whom a copy of wriiten notices may be given
               </p>
               <div className="flex flex-col mb-5">
                 <label

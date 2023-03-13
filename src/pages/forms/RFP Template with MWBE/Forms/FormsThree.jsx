@@ -157,12 +157,17 @@ const FormThree = (props) => {
                             onChange={props.handleChange}
                             name={`items[${index}].item`}
                             value={props?.values?.items[index].item}
-                            placeholder="Items"
+                            placeholder={`Item ${index + 1}`}
                           />
                         </FormInputContainer>
                       </Fragment>
                     ))}
                     <div className="mt-4">
+                      <p className="text-sm text-[#a1a4aa]">
+                        What items should the Vendor include in their RFP
+                        responses? Enter the items in the order that the vendor
+                        has to set up.
+                      </p>
                       <button
                         type="button"
                         className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
