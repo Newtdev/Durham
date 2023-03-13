@@ -124,7 +124,7 @@ const Page29 = () => {
         {/* <hr style={{ pageBreakBefore: "always", display: "none" }} /> */}
 
         <p class="c212">
-          <span class="c24">ITEM 7</span>
+          <span class="c24">ITEM 8</span>
         </p>
         <ul class="c14 list-disc">
           <li class="c319 ">
@@ -231,20 +231,20 @@ const Page29 = () => {
               <p class="c23 c12 c102">
                 <span class="c47 c22"></span>
               </p>
-              <p className="mb-2">
+              <p className="mb-1">
                 <span>
                   State of North Carolina, County of ______________ <br></br>
                 </span>
               </p>
 
-              <p className="mb-2">
+              <p className="mb-1">
                 <span>
                   Subscribed and sworn to before me this day of
                   _____________20____.
                 </span>
               </p>
 
-              <p className="mb-2">
+              <p className="mb-1">
                 <span>Notary Public________________________</span>
               </p>
 
