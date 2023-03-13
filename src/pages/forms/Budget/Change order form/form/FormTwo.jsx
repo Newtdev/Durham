@@ -221,7 +221,7 @@ const FormTwo = (props) => {
 						</FormInputContainer>
 
 						<FormSelect
-							value={props.values.approval}
+							value={props?.values?.approval}
 							name="Does this form require the approval of the design consultant?"
 							id="approval"
 							error={props.errors.approval}
@@ -272,7 +272,7 @@ const FormTwo = (props) => {
 															error={props.errors.database}
 															touched={props.touched.database}
 															onChange={props.handleChange}>
-															{props?.values?.persons[index].database ? (
+															{!props?.values?.persons[index].database ? (
 																<option value="">Select</option>
 															) : (
 																<option
@@ -293,7 +293,7 @@ const FormTwo = (props) => {
 														</FormSelect>
 														<br />
 
-														<FormInputContainer name="Name">
+														<FormInputContainer name="">
 															{props?.values?.persons?.[index].database ===
 															"Durham Profile" ? (
 																<SelectDurham props={props} index={index} />

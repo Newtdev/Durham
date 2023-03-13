@@ -107,7 +107,7 @@ const Preview = () => {
 		// close: closeDownload,
 	};
 	const companynameLength = awardee?.design?.company_name?.length;
-	console.log(companynameLength);
+
 	return (
 		<div>
 			<DownLoadForm {...props} />

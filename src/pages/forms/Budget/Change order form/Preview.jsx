@@ -16,6 +16,7 @@ import Logo from "../../../../assets/formlogo.png";
 import LogoOne from "../../../../assets/Durham.png";
 import { prevStep } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { trucateText } from "../../../../shared-component";
 
 const ToApprove = ({ name, nottoBeHighlighted }) => {
 	if (!name) {
@@ -105,6 +106,10 @@ const ChangeOrderForm = () => {
 		// stepDefault,
 		// close: closeDownload,
 	};
+	const school = "Durham Public Schools";
+	const contractorlength = awardee?.contractor?.company_name?.length;
+	const designlength = awardee?.design?.company_name?.length;
+	const schoollength = school?.length;
 	return (
 		<div>
 			<DownLoadForm {...props} />
@@ -212,7 +217,7 @@ const ChangeOrderForm = () => {
 
 												<p>
 													<span className={`${nottoBeHighlighted} text-[9pt]`}>
-														{forms_fields?.description}
+														{trucateText(forms_fields?.description, 50)}
 													</span>
 												</p>
 											</div>
@@ -434,7 +439,16 @@ const ChangeOrderForm = () => {
 											{forms_fields?.approval === "Approved" ? (
 												<div className="grid grid-cols-4 gap-4 mb-3">
 													<div>
-														<p>
+														<p
+															className={`${
+																designlength > 19
+																	? "mt-5"
+																	: designlength === 0
+																	? "mt-4"
+																	: designlength <= 19
+																	? ""
+																	: "mt-4"
+															}`}>
 															<span className={`${nottoBeHighlighted}`}>
 																{awardee?.design?.company_name}
 															</span>
@@ -445,13 +459,26 @@ const ChangeOrderForm = () => {
 													</div>
 
 													<div>
-														<p className="border-b border-black">
-															<span
-																className={`${nottoBeHighlighted}`}>{`${awardee?.design?.first_name} ${awardee?.design?.last_name}`}</span>
+														<p
+															className={`border-b border-black ${
+																designlength > 19
+																	? "mt-5"
+																	: designlength === 0
+																	? "mt-4"
+																	: designlength <= 19
+																	? ""
+																	: "mt-4"
+															}`}>
+															<span className={`${nottoBeHighlighted}`}>
+																{`${awardee?.design?.first_name || ""} ${
+																	awardee?.design?.last_name || ""
+																}`}
+															</span>
 														</p>
+
 														<p>
 															<i>
-																<span className="text-[7pt]">By</span>
+																<span className="text-[7pt] ">By</span>
 															</i>
 														</p>
 													</div>
@@ -460,7 +487,16 @@ const ChangeOrderForm = () => {
 															<span></span>
 														</p>
 														<br />
-														<p className="border-t border-black ">
+														<p
+															className={`border-t border-black ${
+																designlength > 19
+																	? "mt-9"
+																	: designlength === 0
+																	? ""
+																	: designlength <= 19
+																	? ""
+																	: ""
+															}`}>
 															<i className="text-[7pt]">Signature</i>
 														</p>
 													</div>
@@ -469,7 +505,16 @@ const ChangeOrderForm = () => {
 															<span></span>
 														</p>
 														<br />
-														<p className="border-t border-black">
+														<p
+															className={`border-t border-black ${
+																designlength > 19
+																	? "mt-9"
+																	: designlength === 0
+																	? ""
+																	: designlength <= 19
+																	? ""
+																	: ""
+															}`}>
 															<i className="text-[7pt]">Date</i>
 														</p>
 													</div>
@@ -488,7 +533,15 @@ const ChangeOrderForm = () => {
 												</div>
 												<div>
 													<p
-														className={`${nottoBeHighlighted} border-b border-black`}>
+														className={`${nottoBeHighlighted} border-b border-black ${
+															contractorlength > 17
+																? "mt-9"
+																: contractorlength === 0
+																? ""
+																: contractorlength <= 17
+																? ""
+																: ""
+														}`}>
 														{`${awardee?.contractor?.first_name || ""} ${
 															awardee?.contractor?.last_name || ""
 														}`}
@@ -499,14 +552,32 @@ const ChangeOrderForm = () => {
 												</div>
 												<div>
 													<br />
-													<p className="border-b border-black"></p>
+													<p
+														className={`border-b border-black ${
+															contractorlength > 17
+																? "mt-9"
+																: contractorlength === 0
+																? ""
+																: contractorlength <= 17
+																? ""
+																: ""
+														}`}></p>
 													<p>
 														<i className="text-[7pt]">Signature</i>
 													</p>
 												</div>
 												<div>
 													<br />
-													<p className="border-b border-black"></p>
+													<p
+														className={`border-b border-black ${
+															contractorlength > 17
+																? "mt-9"
+																: contractorlength === 0
+																? ""
+																: contractorlength <= 17
+																? ""
+																: ""
+														}`}></p>
 													<p>
 														<i className="text-[7pt]">Date</i>
 													</p>
@@ -515,15 +586,22 @@ const ChangeOrderForm = () => {
 
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
-													<p className="border-b border-black">
-														Durham Public Schools
-													</p>
+													<p className="border-b border-black">{school}</p>
 													<p>
 														<i className="text-[7pt]">DPS Project Manager</i>
 													</p>
 												</div>
 												<div>
-													<p>
+													<p
+														className={`${
+															schoollength > 17
+																? "mt-4"
+																: schoollength === 0
+																? ""
+																: schoollength <= 17
+																? ""
+																: ""
+														}`}>
 														<span className={`${nottoBeHighlighted}`}>
 															{manager?.name}
 														</span>
@@ -534,17 +612,36 @@ const ChangeOrderForm = () => {
 												</div>
 												<div>
 													<br />
-													<p className="border-b border-black"></p>
+													<p
+														className={`border-b border-black ${
+															schoollength > 17
+																? "mt-4"
+																: schoollength === 0
+																? ""
+																: schoollength <= 17
+																? ""
+																: ""
+														}`}></p>
 													<p>
 														<i className="text-[7pt]">Signature</i>
 													</p>
 												</div>
 												<div>
 													<p
-														className={`${nottoBeHighlighted} border-b border-black`}>
-														{moment(forms_fields?.signDate).format(
-															"MMMM D, YYYY"
-														)}
+														className={`${nottoBeHighlighted} border-b border-black ${
+															schoollength > 17
+																? "mt-4"
+																: schoollength === 0
+																? ""
+																: schoollength <= 17
+																? ""
+																: ""
+														}`}>
+														{!forms_fields?.signDate
+															? ""
+															: moment(forms_fields?.signDate).format(
+																	"MMMM D, YYYY"
+															  )}
 													</p>
 													<p>
 														<i className="text-[7pt]">Date</i>

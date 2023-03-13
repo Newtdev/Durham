@@ -3,7 +3,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { handleResultWithArray, setResult } from "../../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import {
+	handleResultWithArray,
+	handleSavedDate,
+	setResult,
+} from "../../../../shared-component";
 import { ChangeOrder } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { ChangeOrderSchema } from "../../../../yup";
@@ -23,12 +28,12 @@ const ChangeOrderForm = ({ id, filled }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: handleResultWithArray(values).form_fields,
-			dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+			form_fields: handleResultWithArray(values),
 		});
 		if (response) {
 			if (response?.error) {
@@ -72,6 +77,59 @@ const ChangeOrderForm = ({ id, filled }) => {
 			}
 		},
 	});
+
+	/***
+	 * : "",
+			: "",
+			: "",
+			: "",
+			: "",
+			: "",
+			: "",
+			: "",
+			: "0",
+			: "0",
+			: "",
+			: "",
+			persons: [
+				{
+					database: "",
+					name: "",
+				},
+			],
+	 * 
+	 * 
+	 */
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		formik.setFieldValue("number", a?.data?.form_fields?.number);
+		formik.setFieldValue(
+			"creatingDate",
+			handleSavedDate(a?.data?.form_fields?.creatingDate)
+		);
+		formik.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields?.completionDate)
+		);
+		formik.setFieldValue(
+			"signDate",
+			handleSavedDate(a?.data?.form_fields?.signDate)
+		);
+		formik.setFieldValue("description", a?.data?.form_fields?.description);
+		formik.setFieldValue("originalSum", a?.data?.form_fields?.originalSum);
+		formik.setFieldValue("netSum", a?.data?.form_fields?.netSum);
+		formik.setFieldValue("amountEffect", a?.data?.form_fields?.amountEffect);
+		formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+		formik.setFieldValue(
+			"priorChangeDays",
+			a?.data?.form_fields?.priorChangeDays
+		);
+		formik.setFieldValue("changeDays", a?.data?.form_fields?.changeDays);
+		formik.setFieldValue("approval", a?.data?.form_fields?.approval);
+	}, [a?.data]);
 
 	const props = {
 		...formik,
