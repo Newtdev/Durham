@@ -6,6 +6,8 @@ import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { FormInputPlain } from "../../../components";
 import { prevStep } from "../reducer";
+import { FieldArray } from "formik";
+import { Fragment } from "react";
 
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
@@ -73,31 +75,28 @@ const FormTwo = (props) => {
 								)}
 							</FormInputContainer>
 
-							<FormInputContainer name="Enter the addenda to this project.">
+							<FormInputContainer name="Enter the agenda to this project.">
 								<FormInputPlain
 									type={"text"}
 									onChange={props.handleChange}
 									name="projectAgenda"
 									value={props?.values?.projectAgenda}
-									placeholder="Enter the addenda to this project."
+									placeholder="Enter the agenda to this project."
 								/>
 								{props.errors.projectAgenda && props.touched.projectAgenda && (
 									<Error message={props.errors.projectAgenda} />
 								)}
 							</FormInputContainer>
 
-							<FormInputContainer name="Enter the alternates to this project.">
+							<FormInputContainer
+								name={`Enter the alternates to this project.`}>
 								<FormInputPlain
 									type={"text"}
 									onChange={props.handleChange}
-									name="projectAlternates"
+									name={`projectAlternates`}
 									value={props?.values?.projectAlternates}
 									placeholder="Enter the alternates to this project."
 								/>
-								{props.errors.projectAlternates &&
-									props.touched.projectAlternates && (
-										<Error message={props.errors.projectAlternates} />
-									)}
 							</FormInputContainer>
 
 							<h2 className="font-bold border-b w-full border-b-gray-400 pb-1">
@@ -106,32 +105,64 @@ const FormTwo = (props) => {
 								applicable.
 							</h2>
 
-							<FormInputContainer name="Modifications">
-								<FormInputPlain
-									type={"text"}
-									onChange={props.handleChange}
-									name="modification"
-									placeholder="Modifications"
-									value={props?.values?.modification}
-								/>
-								{props.errors.modification && props.touched.modification && (
-									<Error message={props.errors.modification} />
-								)}
-							</FormInputContainer>
+							<FieldArray
+								name="modificationArray"
+								render={({ remove, push }) => (
+									<>
+										<div className="mt-5">
+											{props?.values?.modificationArray?.map((unit, index) => (
+												<Fragment key={index}>
+													<FormInputContainer name="Modifications">
+														<FormInputPlain
+															type={"text"}
+															onChange={props.handleChange}
+															name={`modificationArray[${index}].modification`}
+															placeholder="Modifications"
+															value={
+																props?.values?.modificationArray[index]
+																	.modification
+															}
+														/>
+													</FormInputContainer>
 
-							<FormInputContainer name="Total Amount for Modifications">
-								<FormInputPlain
-									type={"text"}
-									onChange={props.handleChange}
-									name="modificationAmount"
-									value={props?.values?.modificationAmount}
-									placeholder="Hereinafter referred to as the 'Project' or 'Work'"
-								/>
-								{props.errors.modificationAmount &&
-									props.touched.modificationAmount && (
-										<Error message={props.errors.modificationAmount} />
-									)}
-							</FormInputContainer>
+													<FormInputContainer name="Total Amount for Modifications">
+														<FormInputPlain
+															type={"text"}
+															onChange={props.handleChange}
+															name={`modificationArray[${index}].modificationAmount`}
+															value={
+																props?.values?.modificationArray[index]
+																	.modificationAmount
+															}
+															placeholder="Hereinafter referred to as the 'Project' or 'Work'"
+														/>
+														{props.errors.modificationAmount &&
+															props.touched.modificationAmount && (
+																<Error
+																	message={props.errors.modificationAmount}
+																/>
+															)}
+													</FormInputContainer>
+												</Fragment>
+											))}
+											<div className="mt-4">
+												<button
+													type="button"
+													className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+													disabled={
+														props?.values?.modificationArray?.length === 5
+															? true
+															: false
+													}
+													onClick={() =>
+														push({ modification: "", modificationAmount: "" })
+													}>
+													ADD MORE PROJECT ALTERNATIVES
+												</button>
+											</div>
+										</div>
+									</>
+								)}></FieldArray>
 						</div>
 					</div>
 

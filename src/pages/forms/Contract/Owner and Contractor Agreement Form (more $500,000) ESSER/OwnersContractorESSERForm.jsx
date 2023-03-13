@@ -3,12 +3,19 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
-import { handleResultWithArray } from "../../../../shared-component";
-import { OwnerAndContractorESSER } from "../../../../shared-component/slug";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import {
+	handleSavedDate,
+	parseDynamicInput,
+} from "../../../../shared-component";
+import {
+	OwnerAndContractor,
+	OwnerAndContractorESSER,
+} from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../../reducer";
+import { modal } from "../../reducer";
 import FormFour from "./forms/FormFour";
 import FormOne from "./forms/FormOne";
 import FormThree from "./forms/FormThree";
@@ -16,7 +23,7 @@ import FormTwo from "./forms/FormTwo";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 
-const OwnerAndContractorFormESSER = ({ id, filled }) => {
+const OwnerAndContractorFormESSR = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -25,13 +32,31 @@ const OwnerAndContractorFormESSER = ({ id, filled }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-	// const response = useFetchFilledFormQuery(formID);
+	const [a] = UseFetchFilledFormDetails(formID);
+	const handleResult = (res) => {
+		let dynamic = [];
+		let b = [];
+
+		if (!res) return null;
+
+		Object.entries(res).forEach((d, i) => {
+			if (Array.isArray(d[1])) {
+				dynamic = [
+					...dynamic,
+					{ field_name: d[0], field_value: JSON.stringify(d[1]) },
+				];
+			} else {
+				b = [...b, { field_name: d[0], field_value: d[1] }];
+			}
+		});
+		return [...b, ...dynamic];
+	};
 
 	const HandleSubmit = async (values) => {
+		handleResult(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: handleResultWithArray(values).form_fields,
-			dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+			form_fields: handleResult(values),
 		});
 
 		if (response) {
@@ -48,6 +73,14 @@ const OwnerAndContractorFormESSER = ({ id, filled }) => {
 	// const show = useSelector(modal);
 	const formik = useFormik({
 		initialValues: {
+			units: [
+				{
+					unit: "",
+				},
+			],
+			modificationArray: [{ modification: "", modificationAmount: "" }],
+			allowancesArray: [""],
+			projectAlternates: "",
 			agreementDate: "",
 			construction: "",
 			substantialCompletionDate: "",
@@ -55,42 +88,99 @@ const OwnerAndContractorFormESSER = ({ id, filled }) => {
 			project: "",
 			projectDate: "",
 			projectAgenda: "",
-			projectAlternates: "",
-			modification: "",
-			modificationAmount: "",
+
 			contractAmount: "",
-			allowances: "",
 			drawings: "",
 			specifications: "",
 			chairmanSign: "",
 			chiefFinanceSign: "",
 			boardApprovalDate: "",
 			notarySealDate: "",
-			units: [
-				{
-					unit: "",
-				},
-			],
 		},
 		// validationSchema: OwnerAndContractorSchema[pages - 1],
 		onSubmit: (values) => {
 			if (pages === 1) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(3));
 			} else if (pages === 3) {
-				console.log("pages: ", pages);
 				dispatch(nextStep(4));
 				// dispatch(nextStep(4));
 			} else if (pages === 4) {
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
 	});
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		formik.setFieldValue(
+			"agreementDate",
+			handleSavedDate(a?.data?.form_fields?.agreementDate)
+		);
+		formik.setFieldValue(
+			"substantialCompletionDate",
+			handleSavedDate(a?.data?.form_fields?.substantialCompletionDate)
+		);
+		formik.setFieldValue(
+			"finalCompletionDate",
+			handleSavedDate(a?.data?.form_fields?.finalCompletionDate)
+		);
+		formik.setFieldValue(
+			"projectDate",
+			handleSavedDate(a?.data?.form_fields?.projectDate)
+		);
+		formik.setFieldValue("construction", a?.data?.form_fields?.construction);
+		formik.setFieldValue("project", a?.data?.form_fields?.project);
+		formik.setFieldValue("projectAgenda", a?.data?.form_fields?.projectAgenda);
+		formik.setFieldValue(
+			"projectAlternates",
+			a?.data?.form_fields?.projectAlternates
+		);
+		formik.setFieldValue(
+			"modificationArray",
+			parseDynamicInput(a?.data?.form_fields?.modificationArray)
+		);
+		formik.setFieldValue(
+			"modificationAmount",
+			a?.data?.form_fields?.modificationAmount
+		);
+		formik.setFieldValue(
+			"contractAmount",
+			a?.data?.form_fields?.contractAmount
+		);
+		formik.setFieldValue(
+			"allowancesArray",
+			parseDynamicInput(a?.data?.form_fields?.allowancesArray)
+		);
+		formik.setFieldValue("drawings", a?.data?.form_fields?.drawings);
+		formik.setFieldValue(
+			"specifications",
+			a?.data?.form_fields?.specifications
+		);
+		formik.setFieldValue(
+			"chairmanSign",
+			handleSavedDate(a?.data?.form_fields?.chairmanSign)
+		);
+		formik.setFieldValue(
+			"chiefFinanceSign",
+			handleSavedDate(a?.data?.form_fields?.chiefFinanceSign)
+		);
+		formik.setFieldValue(
+			"boardApprovalDate",
+			handleSavedDate(a?.data?.form_fields?.boardApprovalDate)
+		);
+		formik.setFieldValue(
+			"notarySealDate",
+			handleSavedDate(a?.data?.form_fields?.notarySealDate)
+		);
+		formik.setFieldValue(
+			"units",
+			parseDynamicInput(a?.data?.form_fields?.units)
+		);
+	}, [a?.data]);
 	useEffect(() => {
 		(async function () {
 			const response = await (await fetch("/states.json")).json();
@@ -113,11 +203,11 @@ const OwnerAndContractorFormESSER = ({ id, filled }) => {
 			</ModalOverlay>
 		);
 	}
-
 	return (
 		<ModalOverlay show={id === OwnerAndContractorESSER && show}>
 			<Preview />
 		</ModalOverlay>
 	);
 };
-export default OwnerAndContractorFormESSER;
+
+export default OwnerAndContractorFormESSR;

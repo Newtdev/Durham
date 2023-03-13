@@ -57,23 +57,58 @@ const FormThree = (props) => {
 									)}
 							</FormInputContainer>
 
-							<FormInputContainer name="Enter the allowances that are included in the contract sum, if applicable.">
+							{/* <FormInputContainer name="Enter the allowancesArray that are included in the contract sum, if applicable.">
 								<FormInputPlain
 									type={"text"}
 									onChange={props.handleChange}
-									name="allowances"
-									placeholder="Allowances"
-									value={props?.values?.allowances}
+									name="allowancesArray"
+									placeholder="AllowancesArray"
+									value={props?.values?.allowancesArray}
 								/>
-								{props.errors.allowances && props.touched.allowances && (
-									<Error message={props.errors.allowances} />
+								{props.errors.allowancesArray && props.touched.allowancesArray && (
+									<Error message={props.errors.allowancesArray} />
 								)}
-							</FormInputContainer>
+							</FormInputContainer> */}
+							<FieldArray
+								name="allowancesArray"
+								render={({ remove, push }) => (
+									<>
+										<div className="mt-5">
+											{props?.values?.allowancesArray?.map((unit, index) => (
+												<Fragment key={index}>
+													<FormInputContainer
+														name={`Enter the allowances that are included in the contract sum, if applicable. List (${
+															index + 1
+														})`}>
+														<FormInputPlain
+															type={"text"}
+															onChange={props.handleChange}
+															name={`allowancesArray[${index}]`}
+															value={props?.values?.allowancesArray[index]}
+															placeholder="Enter the alternates to this project."
+														/>
+													</FormInputContainer>
+												</Fragment>
+											))}
+											<div className="mt-4">
+												<button
+													type="button"
+													disabled={
+														props?.values?.allowancesArray?.length === 5
+															? true
+															: false
+													}
+													className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+													onClick={() => push("")}>
+													ADD MORE ALLOWANCE
+												</button>
+											</div>
+										</div>
+									</>
+								)}></FieldArray>
 							<div className="flex flex-col gap-3">
 								<h2 className="font-bold border-b w-full border-b-gray-400 pb-1">
-									Enter the modifications to the Project’s plans and
-									specifications including any noted value engineering items, if
-									applicable.
+									Add the required units and enter their pricing
 								</h2>
 
 								<FieldArray
@@ -81,7 +116,7 @@ const FormThree = (props) => {
 									render={({ remove, push }) => (
 										<>
 											<div className="mt-5">
-												{props?.values?.units.map((unit, index) => (
+												{props?.values?.units?.map((unit, index) => (
 													<Fragment key={index}>
 														<FormInputContainer name={`Unit ${index + 1}`}>
 															<FormInput
@@ -97,6 +132,9 @@ const FormThree = (props) => {
 												<div className="mt-4">
 													<button
 														type="button"
+														disabled={
+															props?.values?.units?.length === 9 ? true : false
+														}
 														className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
 														onClick={() => push({ unit: "" })}>
 														ADD MORE UNITS
