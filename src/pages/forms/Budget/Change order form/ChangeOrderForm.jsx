@@ -78,29 +78,6 @@ const ChangeOrderForm = ({ id, filled }) => {
 		},
 	});
 
-	/***
-	 * : "",
-			: "",
-			: "",
-			: "",
-			: "",
-			: "",
-			: "",
-			: "",
-			: "0",
-			: "0",
-			: "",
-			: "",
-			persons: [
-				{
-					database: "",
-					name: "",
-				},
-			],
-	 * 
-	 * 
-	 */
-
 	useEffect(() => {
 		if (!a?.data) {
 			return;

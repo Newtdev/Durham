@@ -107,7 +107,7 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 							</p>
 
 							<div className="flex gap-4 mb-4">
-								<div>
+								<div className="mt-1">
 									<p>
 										______________________________________________________________
 									</p>
@@ -119,11 +119,12 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 									</p>
 								</div>
 								<div>
-									<p>_____________________</p>
 									<p>
-										<span className={`${nottoBeHighlighted}`}>
+										<span
+											className={`${nottoBeHighlighted} inline-block border-b border-black`}>
 											{moment(formDetails?.chairmanSign).format("MMMM D, YYYY")}
 										</span>
+										<p>Date</p>
 									</p>
 								</div>
 							</div>
@@ -134,7 +135,7 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 							</p>
 
 							<div className="flex gap-4 mb-6">
-								<div>
+								<div className="mt-1">
 									<p>
 										______________________________________________________________
 									</p>
@@ -146,13 +147,14 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 									</p>
 								</div>
 								<div>
-									<p>_____________________</p>
 									<p>
-										<span className={`${nottoBeHighlighted}`}>
+										<span
+											className={`${nottoBeHighlighted} inline-block border-b border-black`}>
 											{moment(formDetails?.chiefFinanceSign).format(
 												"MMMM D, YYYY"
 											)}
 										</span>
+										<p>Date</p>
 									</p>
 								</div>
 							</div>

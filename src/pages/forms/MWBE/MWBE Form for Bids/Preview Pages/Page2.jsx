@@ -53,7 +53,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 							</thead>
 
 							<tbody>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[0] ? "" : companies[0]?.companyName}
 									</td>
@@ -72,7 +72,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[0]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[1] ? "" : companies[1]?.companyName}
 									</td>
@@ -91,7 +91,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[1]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[2] ? "" : companies[2]?.companyName}
 									</td>
@@ -110,7 +110,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[2]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[3] ? "" : companies[3]?.companyName}
 									</td>
@@ -129,7 +129,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[3]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[4] ? "" : companies[4]?.companyName}
 									</td>
@@ -148,7 +148,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[4]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[5] ? "" : companies[5]?.companyName}
 									</td>
@@ -167,7 +167,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[5]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[6] ? "" : companies[6]?.companyName}
 									</td>
@@ -186,7 +186,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 											: currency(companies[6]?.contractAmount).format()}
 									</td>
 								</tr>
-								<tr className={`${nottoBeHighlighted} `}>
+								<tr className={`${nottoBeHighlighted} border-b border-black`}>
 									<td className={`${nottoBeHighlighted} text-left pl-1`}>
 										{!companies[7] ? "" : companies[7]?.companyName}
 									</td>

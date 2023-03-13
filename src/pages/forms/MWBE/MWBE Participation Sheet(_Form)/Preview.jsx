@@ -70,6 +70,7 @@ export const RenderTotal = ({ formDetails, data, color }) => {
 			for (const object of a) {
 				sum += Number(object.companyContractAmount);
 			}
+			console.log(sum);
 			return sum;
 		},
 		[data]
@@ -270,10 +271,10 @@ const MWBEParticipation = () => {
 													<th className="border border-black border-collapse">
 														Description of Work
 													</th>
-													<th className="border border-black border-collapse">
+													<th className="border border-black border-collapse w-14">
 														MBE
 													</th>
-													<th className="border border-black border-collapse">
+													<th className="border border-black border-collapse w-14">
 														WBE
 													</th>
 													<th className="border border-black border-collapse">
@@ -293,22 +294,26 @@ const MWBEParticipation = () => {
 													color={nottoBeHighlighted}
 												/>
 
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<th className="border border-black border-collapse"></th>
-													<th className="border border-black border-collapse font-bold">
-														Total Amount
-													</th>
-													<th className="border border-black border-collapse font-bold">
-														Total <br /> Percentage
-													</th>
-												</tr>
-												<RenderTotal
-													formDetails={formDetails}
-													data={slicedFunct(contractors, 0, 10)}
-												/>
+												{contractors?.length <= 10 ? (
+													<>
+														<tr>
+															<td></td>
+															<td></td>
+															<td></td>
+															<th className="border border-black border-collapse"></th>
+															<th className="border border-black border-collapse font-bold">
+																Total Amount
+															</th>
+															<th className="border border-black border-collapse font-bold">
+																Total <br /> Percentage
+															</th>
+														</tr>
+														<RenderTotal
+															formDetails={formDetails}
+															data={slicedFunct(contractors, 0, 10)}
+														/>
+													</>
+												) : null}
 											</tbody>
 										</table>
 									</div>

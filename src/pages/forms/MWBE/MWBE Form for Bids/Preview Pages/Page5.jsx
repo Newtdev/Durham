@@ -20,7 +20,7 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 						items-center">
 							Affidavit of{" "}
 							<span
-								className={`${nottoBeHighlighted} border-b border-black inline-block w-[90%]`}>
+								className={`${nottoBeHighlighted} border-b border-black inline-block w-[88%]`}>
 								Durham Public Schools Board of Education
 							</span>
 						</p>
@@ -30,14 +30,12 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 							I hereby certify that it is our intent to perform 100% of the work
 							required for the{" "}
 							<span className="">
-								<span
-									className={`${nottoBeHighlighted} inline-block w-[14.8rem] border-b border-black`}>
-									{project?.name}
-								</span>{" "}
+								<span className={`${nottoBeHighlighted} inline-block `}></span>{" "}
 								<span className="flex items-center">
 									<span
-										className={`mt-7 inline-block w-[90%] border-t text-center border-black`}>
+										className={`mt-7 inline-block relative w-[90%] border-t text-center border-black`}>
 										<p>(Name of Project)</p>
+										<p className="absolute left-0 -top-5">{project?.name}</p>
 									</span>
 									<p>contract.</p>
 								</span>
@@ -97,19 +95,19 @@ const PageFive = ({ formDetails, project, nottoBeHighlighted }) => {
 
 						<div>
 							<div className="h-24 w-24 rounded-full flex items-center justify-center border border-black mb-4 ml-14">
-								<p className="text-sm">SEAL</p>
+								<p className="text-sm calibri-font">SEAL</p>
 							</div>
 
 							<div className="text-[9.9pt]">
-								<p className="mb-3">
+								<p className="mb-1">
 									State of ____________________________________, County of
-									_______________________________________________
+									_____________________________________
 								</p>
-								<p className="mb-3">
+								<p className="mb-1">
 									Subscribed and sworn to before me this _________ day of
 									__________________ 20____
 								</p>
-								<p className="mb-3">Notary Public ________________________</p>
+								<p className="mb-1">Notary Public ________________________</p>
 								<p>My commission expires __________________</p>
 							</div>
 						</div>
