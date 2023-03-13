@@ -58,6 +58,11 @@ const FormTwo = (props) => {
                       type="radio"
                       value="Initial"
                       name="sexualOffenderOption"
+                      checked={
+                        props.values.sexualOffenderOption === "Initial"
+                          ? true
+                          : false
+                      }
                       onChange={props.handleChange}
                       className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
                     />
@@ -74,6 +79,11 @@ const FormTwo = (props) => {
                       type="radio"
                       value="Supplemental"
                       name="sexualOffenderOption"
+                      checked={
+                        props.values.sexualOffenderOption === "Supplemental"
+                          ? true
+                          : false
+                      }
                       onChange={props.handleChange}
                       className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
                     />
@@ -90,6 +100,11 @@ const FormTwo = (props) => {
                       type="radio"
                       value="Annual"
                       name="sexualOffenderOption"
+                      checked={
+                        props.values.sexualOffenderOption === "Annual"
+                          ? true
+                          : false
+                      }
                       onChange={props.handleChange}
                       className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
                     />

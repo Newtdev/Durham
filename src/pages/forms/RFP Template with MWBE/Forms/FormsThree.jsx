@@ -193,6 +193,7 @@ const FormThree = (props) => {
                   value="Yes"
                   name="attachment"
                   onChange={props.handleChange}
+                  checked={props.values.attachment === "Yes" ? true : false}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                 />
                 <label
@@ -208,6 +209,7 @@ const FormThree = (props) => {
                   type="radio"
                   value="No"
                   name="attachment"
+                  checked={props.values.attachment === "No" ? true : false}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                   onChange={props.handleChange}
                 />
