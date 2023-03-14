@@ -14,7 +14,7 @@ const PageOne = ({
 			<div>
 				{/* Page 1 */}
 
-				<div className=" h-full pt-[1in] ml-[1in] mr-[1in] mb-[0.1in]">
+				<div className=" h-[10.5in] pt-[1in] ml-[1in] mr-[1in] mb-[0.1in]  relative overflow-y-hidden">
 					<div className="h-full flex flex-col justify-between ">
 						<div>
 							<div className="text-center mb-4">
@@ -189,7 +189,7 @@ const PageOne = ({
 							</div>
 						</div>
 
-						<div className="flex justify-between items-end text-[8pt] mt-6 h-10 ">
+						<div className="flex justify-between items-end text-[8pt] mt-6 h-10  absolute bottom-0 w-full">
 							<p className="text-[8pt]">
 								Section C, Owner-Contractor Agreement
 							</p>

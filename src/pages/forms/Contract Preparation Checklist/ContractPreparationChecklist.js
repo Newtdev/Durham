@@ -58,8 +58,8 @@ const ContractPreparationCheckList = ({ id, filled }) => {
 		}
 		formik.setFieldValue("contractType", a?.data?.form_fields?.contractType);
 		formik.setFieldValue(
-			"signedDate",
-			handleSavedDate(a?.data?.form_fields?.signedDate)
+			"signDate",
+			handleSavedDate(a?.data?.form_fields?.signDate)
 		);
 	}, [a?.data]);
 

@@ -12,6 +12,7 @@ import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import DownLoadForm from "../Lundsford/Download";
 import moment from "moment/moment";
 import { prev } from "./reducer";
+import { useEffect } from "react";
 
 const Preview = () => {
 	const dispatch = useDispatch();
@@ -31,9 +32,18 @@ const Preview = () => {
 	// console.log(form_fields);
 
 	const handleChange = (e) => {
-		console.log({ [e.target.name]: e.target.value });
 		setChecked({ ...checked, [e.target.name]: e.target.value });
+		// localStorage.setItem("check", {
+		// 	[e.target.name]: e.target.value,
+		// });
 	};
+
+	useEffect(() => {
+		if (!localStorage.getItem("check")) {
+			return;
+		}
+		setChecked(localStorage.getItem("check"));
+	}, []);
 	const downloadComponent = useRef();
 
 	const props = {
