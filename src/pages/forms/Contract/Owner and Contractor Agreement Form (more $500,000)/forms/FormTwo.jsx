@@ -9,6 +9,22 @@ import { prevStep } from "../reducer";
 import { FieldArray } from "formik";
 import { Fragment } from "react";
 
+export const CloseIcon = () => {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 20 20"
+			fill="currentColor"
+			className="w-5 h-5">
+			<path
+				fillRule="evenodd"
+				d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+};
+
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
 
@@ -111,39 +127,46 @@ const FormTwo = (props) => {
 									<>
 										<div className="mt-5">
 											{props?.values?.modificationArray?.map((unit, index) => (
-												<Fragment key={index}>
-													<FormInputContainer name="Modifications">
-														<FormInputPlain
-															type={"text"}
-															onChange={props.handleChange}
-															name={`modificationArray[${index}].modification`}
-															placeholder="Modifications"
-															value={
-																props?.values?.modificationArray[index]
-																	.modification
-															}
-														/>
-													</FormInputContainer>
+												<div key={index}>
+													<div className="relative">
+														<FormInputContainer name="Modifications">
+															<div
+																className="w-10 absolute top-1 -right-5 cursor-pointer"
+																onClick={() => remove(index)}>
+																<CloseIcon />
+															</div>
+															<FormInputPlain
+																type={"text"}
+																onChange={props.handleChange}
+																name={`modificationArray[${index}].modification`}
+																placeholder="Modifications"
+																value={
+																	props?.values?.modificationArray[index]
+																		.modification
+																}
+															/>
+														</FormInputContainer>
 
-													<FormInputContainer name="Total Amount for Modifications">
-														<FormInputPlain
-															type={"text"}
-															onChange={props.handleChange}
-															name={`modificationArray[${index}].modificationAmount`}
-															value={
-																props?.values?.modificationArray[index]
-																	.modificationAmount
-															}
-															placeholder="Total amount for modification"
-														/>
-														{props.errors.modificationAmount &&
-															props.touched.modificationAmount && (
-																<Error
-																	message={props.errors.modificationAmount}
-																/>
-															)}
-													</FormInputContainer>
-												</Fragment>
+														<FormInputContainer name="Total Amount for Modifications">
+															<FormInputPlain
+																type={"text"}
+																onChange={props.handleChange}
+																name={`modificationArray[${index}].modificationAmount`}
+																value={
+																	props?.values?.modificationArray[index]
+																		.modificationAmount
+																}
+																placeholder="Total amount for modification"
+															/>
+															{props.errors.modificationAmount &&
+																props.touched.modificationAmount && (
+																	<Error
+																		message={props.errors.modificationAmount}
+																	/>
+																)}
+														</FormInputContainer>
+													</div>
+												</div>
 											))}
 											<div className="mt-4">
 												<button
