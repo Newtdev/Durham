@@ -71,7 +71,10 @@ const ProposalForm = ({ id, filled }) => {
 			return;
 		} else {
 			Formik.setFieldValue("userType", a?.data?.form_fields?.userType);
-			Formik.setFieldValue("signedPerson", a?.data?.form_fields?.signedPerson);
+			Formik.setFieldValue(
+				"signedContractPerson",
+				a?.data?.form_fields?.signedContractPerson
+			);
 			Formik.setFieldValue("position", a?.data?.form_fields?.position);
 			// Formik.setFieldValue("overhead", a?.data?.form_fields?.overhead);
 			// Formik.setFieldValue("profit", a?.data?.form_fields?.profit);

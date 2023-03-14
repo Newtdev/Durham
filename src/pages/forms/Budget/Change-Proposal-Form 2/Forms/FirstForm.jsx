@@ -64,7 +64,7 @@ const SelectDurham = ({ props, index }) => {
 	return (
 		<>
 			<FormSelect
-				value={props.values?.signedPerson}
+				value={props.values?.signedContractPerson}
 				name="Select the Owner's representative"
 				id="signedContractPerson"
 				error={props.errors.signedContractPerson}
