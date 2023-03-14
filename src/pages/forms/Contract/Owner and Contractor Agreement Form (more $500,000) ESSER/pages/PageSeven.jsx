@@ -174,9 +174,11 @@ const PageSeven = ({ formDetails, durham, nottoBeHighlighted, vendor }) => {
 										<p>_____________________</p>
 										<p>
 											<span className={`${nottoBeHighlighted}`}>
-												{moment(formDetails?.chairmanSign).format(
-													"MMMM D, YYYY"
-												)}
+												{!formDetails?.chairmanSign
+													? ""
+													: moment(formDetails?.chairmanSign).format(
+															"MMMM D, YYYY"
+													  )}
 											</span>
 										</p>
 									</div>

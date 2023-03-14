@@ -2,7 +2,7 @@ import moment from "moment";
 
 const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 	return (
-		<div className=" pt-2  text-black text-[11pt] leading-[1.3] h-[11in]">
+		<div className=" pt-2  text-black text-[11pt] leading-[1.3] h-[11in] ">
 			<div>
 				{/* Page 4 */}
 				<div className="h-[10in] flex flex-col justify-between  mx-[1in] mt-[0.5in]">
@@ -98,15 +98,17 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 									<p>_____________________</p>
 									<p>
 										<span className={`${nottoBeHighlighted}`}>
-											{moment(formDetails?.chiefFinanceSign).format(
-												"MMMM D, YYYY"
-											)}
+											{!formDetails?.chiefFinanceSign
+												? ""
+												: moment(formDetails?.chiefFinanceSign).format(
+														"MMMM D, YYYY"
+												  )}
 										</span>
 									</p>
 								</div>
 							</div>
 
-							<div className="border-4 border-gray-300 p-2">
+							<div className="border-4 border-gray-300 p-2 w-1/2">
 								<div className="flex gap-12">
 									<p>Endorsement:</p>
 									<div>
@@ -121,8 +123,8 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 										</p>
 										<p>Executive Director</p>
 										<p>
-											Durham Public Schools{" "}
-											<span className="ml-12">Building services</span>
+											Durham Public Schools <br />
+											<span>Building services</span>
 										</p>
 									</div>
 								</div>
@@ -130,10 +132,17 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 						</div>
 
 						{/* Page 5 */}
-						<p className="mb-4">
+						<p className="mb-4 mt-3">
 							This contract was approved by the Board on the{" "}
-							<span className={`${nottoBeHighlighted}`}>
-								{moment(formDetails?.boardApprovalDate).format("MMMM D, YYYY")}
+							<span
+								className={`${nottoBeHighlighted} inline-block border-b border-black ${
+									!formDetails?.boardApprovalDate ? "w-24" : ""
+								}`}>
+								{!formDetails?.boardApprovalDate
+									? ""
+									: moment(formDetails?.boardApprovalDate).format(
+											"MMMM D, YYYY"
+									  )}
 							</span>
 						</p>
 						<p className="mb-8">
@@ -170,19 +179,34 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 						</p>
 						<p className="mb-8 text-justify">
 							Witness my hand and notarial seal this{" "}
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`inline-block border-b border-black ${nottoBeHighlighted} ${
+									!formDetails?.notarySealDate ? "w-4" : ""
+								}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("Do")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("Do")}
 							</span>{" "}
 							day of{" "}
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`inline-block border-b border-black ${nottoBeHighlighted} ${
+									!formDetails?.notarySealDate ? "w-10" : ""
+								}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("MMMM, ")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("MMMM, ")}
 							</span>
 							, 20
-							<span className={`${nottoBeHighlighted}`}>
+							<span
+								className={`inline-block border-b border-black ${nottoBeHighlighted} ${
+									!formDetails?.notarySealDate ? "w-10" : ""
+								}`}>
 								{" "}
-								{moment(formDetails?.notarySealDate).format("YY")}
+								{!formDetails?.notarySealDate
+									? ""
+									: moment(formDetails?.notarySealDate).format("YY")}
 							</span>
 							.
 						</p>
@@ -195,7 +219,7 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 						</div>
 					</div>
 					<p>My commission expires:___________</p>
-					<div className="flex justify-between mt-72 pt-12 mb-4 text-[8pt]">
+					<div className="flex justify-between mt-48 pt-12 mb-4 text-[8pt]">
 						<p>Section C, Owner-Contractor Agreement</p>
 						<p>C-8</p>
 					</div>

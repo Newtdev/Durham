@@ -59,22 +59,27 @@ const PageOne = ({
 									Durham Public Schools Board of Education
 								</span>{" "}
 								(herein referred to as the "Owner"), whose mailing address is{" "}
-								{/* <span className={`${nottoBeHighlighted}`}>
-								Durham Public Schools 511 Cleveland Street, Durham, NC 27702
-							</span>{" "} */}
+								<span className={`${nottoBeHighlighted}`}>
+									511 Cleveland Street, Durham, NC 27702
+								</span>{" "}
 								and{" "}
 								<span className={`${nottoBeHighlighted} border-b border-black`}>
 									{!vendor[0] ? "" : vendor[0]?.company_name}
 								</span>
 								. (herein referred {"  "} to {"  "}as the "Contractor"), whose
 								mailing address is{" "}
-								<span className={`${nottoBeHighlighted} border-b border-black`}>
-									{`${!vendor[0] ? "" : vendor[0]?.street}, ${
-										!vendor[0] ? "" : vendor[0]?.city
-									}, ${!vendor[0] ? "" : vendor[0]?.state}, ${
-										!vendor[0] ? "" : vendor[0]?.zip_code
-									}`}
-								</span>
+								{vendor[0] ? (
+									<span
+										className={`${nottoBeHighlighted} border-b border-black`}>
+										{`${!vendor[0] ? "" : vendor[0]?.street + "," || ""} ${
+											+"," + !vendor[0] ? "" : vendor[0]?.city || ""
+										} ${!vendor[0] ? "" : vendor[0]?.state + "," || ""} ${
+											!vendor[0] ? "" : vendor[0]?.zip_code || ""
+										}`}
+									</span>
+								) : (
+									""
+								)}
 								. Correspondence, submittals, and notices relating to or
 								required under this Contract shall be sent in writing to the
 								above addresses; unless either party is notified in writing by
@@ -88,7 +93,7 @@ const PageOne = ({
 								Owner to obtain the services of the Contractor in connection
 								with the new construction of{" "}
 								<span className={`${nottoBeHighlighted} border-b border-black`}>
-									{formDetails?.contractor}
+									{formDetails?.construction}
 								</span>{" "}
 								(hereinafter referred to as the "Project" or the "Work"); and
 							</p>
@@ -184,7 +189,7 @@ const PageOne = ({
 							</div>
 						</div>
 
-						<div className="flex justify-between mt-14 text-[8pt]">
+						<div className="flex justify-between mt-10 text-[8pt]">
 							<p className="text-[8pt]">
 								Section C, Owner-Contractor Agreement
 							</p>
