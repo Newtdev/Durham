@@ -7,6 +7,7 @@ import { FieldArray } from "formik";
 import React, { Fragment } from "react";
 import { FormInputPlain, FormInput } from "../../../components";
 import { prevStep } from "../reducer";
+import { CloseIcon } from "./FormTwo";
 
 const FormThree = (props) => {
 	const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const FormThree = (props) => {
 
 					{/* Progress */}
 					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-						<div className="bg-[#2F5461] h-2.5 w-1/2"></div>
+						<div className="bg-[#2F5461] h-2.5 w-[75%]"></div>
 					</div>
 
 					<div className="mx-6 mb-12">
@@ -76,18 +77,25 @@ const FormThree = (props) => {
 										<div className="mt-5">
 											{props?.values?.allowancesArray?.map((unit, index) => (
 												<Fragment key={index}>
-													<FormInputContainer
-														name={`Enter the allowances that are included in the contract sum, if applicable. List (${
-															index + 1
-														})`}>
-														<FormInputPlain
-															type={"text"}
-															onChange={props.handleChange}
-															name={`allowancesArray[${index}]`}
-															value={props?.values?.allowancesArray[index]}
-															placeholder="Enter the alternates to this project."
-														/>
-													</FormInputContainer>
+													<div className="relative">
+														<FormInputContainer
+															name={`Enter the allowances that are included in the contract sum, if applicable. List (${
+																index + 1
+															})`}>
+															<div
+																className="w-10 absolute -right-6 cursor-pointer"
+																onClick={() => remove(index)}>
+																<CloseIcon />
+															</div>
+															<FormInputPlain
+																type={"text"}
+																onChange={props.handleChange}
+																name={`allowancesArray[${index}]`}
+																value={props?.values?.allowancesArray[index]}
+																placeholder="Enter the alternates to this project."
+															/>
+														</FormInputContainer>
+													</div>
 												</Fragment>
 											))}
 											<div className="mt-4">
@@ -118,15 +126,22 @@ const FormThree = (props) => {
 											<div className="mt-5">
 												{props?.values?.units?.map((unit, index) => (
 													<Fragment key={index}>
-														<FormInputContainer name={`Unit ${index + 1}`}>
-															<FormInput
-																type={"number"}
-																onChange={props.handleChange}
-																name={`units[${index}].unit`}
-																value={props?.values?.units[index].unit}
-																placeholder="0.0"
-															/>
-														</FormInputContainer>
+														<div
+															className="w-10 absolute right-0 cursor-pointer"
+															onClick={() => remove(index)}>
+															<CloseIcon />
+														</div>
+														<div>
+															<FormInputContainer name={`Unit ${index + 1}`}>
+																<FormInput
+																	type={"number"}
+																	onChange={props.handleChange}
+																	name={`units[${index}].unit`}
+																	value={props?.values?.units[index].unit}
+																	placeholder="0.0"
+																/>
+															</FormInputContainer>
+														</div>
 													</Fragment>
 												))}
 												<div className="mt-4">
@@ -151,7 +166,7 @@ const FormThree = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Cancel"
+							name="Back"
 							onClick={() => dispatch(prevStep(2))}
 						/>
 						<DashboardButton

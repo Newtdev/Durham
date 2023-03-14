@@ -10,8 +10,9 @@ const PageSix = () => {
 			<div>
 				<div className="ml-[54px]">
 					<p className="text-justify">
-						with the requirements of 37 CFR Part 401, “Rights to Inventions Made
-						by Nonprofit Organizations and Small Business Firms Under Government
+						under that “funding agreement,” Contractor agrees to comply with the
+						requirements of 37 CFR Part 401, “Rights to Inventions Made by
+						Nonprofit Organizations and Small Business Firms Under Government
 						Grants, Contracts and Cooperative Agreements,” and any implementing
 						regulations issued by the awarding agency.
 					</p>

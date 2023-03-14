@@ -70,7 +70,7 @@ const Experience = (props) => {
 				</div>
 				{/* Progress */}
 				<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+					<div className="bg-[#2F5461] h-2.5 w-full"></div>
 				</div>
 				<div className="px-4">
 					<FormInputContainer name="How many projects and number of prior years of demonstrable experience are necessary for the statement of qualification?">
@@ -108,7 +108,7 @@ const Experience = (props) => {
 				<div className="flex justify-end gap-8 pr-4">
 					<ButtonWhiteBG
 						width="w-[100px]"
-						name="cancel"
+						name="Back"
 						onClick={() => dispatch(prevChoiceStep(2))}
 					/>
 					<DashboardButton

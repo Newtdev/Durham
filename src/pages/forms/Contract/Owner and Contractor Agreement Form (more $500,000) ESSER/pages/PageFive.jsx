@@ -115,8 +115,7 @@ const PageFive = () => {
 							under 37 CFR §401.2 (a) and Contractor wishes to enter into a
 							contract with a small business firm or nonprofit organization
 							regarding the substitution of parties, assignment or performance
-							of experimental, developmental, or research work under that
-							“funding agreement,” Contractor agrees to comply
+							of experimental,developmental, or research work
 						</p>
 					</div>
 				</div>
