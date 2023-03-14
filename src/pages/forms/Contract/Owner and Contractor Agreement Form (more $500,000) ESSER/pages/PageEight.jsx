@@ -97,15 +97,15 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 							</p>
 						</div>
 						<div>
-							<p>_____________________</p>
 							<p>
-								<span className={`${nottoBeHighlighted}`}>
+								<span className={`${nottoBeHighlighted} border-b border-black`}>
 									{!formDetails?.chiefFinanceSign
 										? ""
 										: moment(formDetails?.chiefFinanceSign).format(
 												"MMMM D, YYYY"
 										  )}
 								</span>
+								<p>Date</p>
 							</p>
 						</div>
 					</div>
@@ -134,15 +134,34 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 				</div>
 
 				{/* Page 5 */}
-				<p className="mb-4 mt-3">
+				<p className="mb-4 mt-2">
 					This contract was approved by the Board on the{" "}
 					<span
-						className={`${nottoBeHighlighted} inline-block border-b border-black ${
-							!formDetails?.boardApprovalDate ? "w-24" : ""
+						className={`${nottoBeHighlighted} border-b border-black inline-block ${
+							!formDetails?.boardApprovalDate ? "w-4" : ""
 						}`}>
 						{!formDetails?.boardApprovalDate
 							? ""
-							: moment(formDetails?.boardApprovalDate).format("MMMM D, YYYY")}
+							: moment(formDetails?.boardApprovalDate).format("Do")}
+					</span>{" "}
+					day of{" "}
+					<span
+						className={`${nottoBeHighlighted} border-b border-black inline-block ${
+							!formDetails?.boardApprovalDate ? "w-10" : ""
+						}`}>
+						{" "}
+						{!formDetails?.boardApprovalDate
+							? ""
+							: moment(formDetails?.boardApprovalDate).format("MMMM, ")}
+					</span>{" "}
+					<span
+						className={`${nottoBeHighlighted} border-b border-black inline-block ${
+							!formDetails?.boardApprovalDate ? "w-10" : ""
+						}`}>
+						{" "}
+						{!formDetails?.boardApprovalDate
+							? ""
+							: moment(formDetails?.boardApprovalDate).format("YYYY")}
 					</span>
 				</p>
 				<p className="mb-8">

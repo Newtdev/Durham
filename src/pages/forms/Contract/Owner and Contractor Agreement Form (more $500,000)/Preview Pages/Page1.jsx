@@ -3,7 +3,7 @@ import { YearsInWord } from "../../../../../shared-component";
 
 export const PageWrapper = ({ children, num }) => {
 	return (
-		<div className=" pb-4 text-black   text-[11pt] leading-[1.3] h-[11in] ">
+		<div className=" pb-4 text-black   text-[11pt] leading-[1.25] h-[11in] ">
 			<div>
 				{/* Page 1 */}
 

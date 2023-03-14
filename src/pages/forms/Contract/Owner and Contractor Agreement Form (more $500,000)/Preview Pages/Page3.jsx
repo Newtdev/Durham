@@ -114,7 +114,9 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 								The Contract Sum includes the value engineering items and other
 								contract modifications noted in Section 2.3 above that total{" "}
 								<span className={`${nottoBeHighlighted}`}>
-									{Total(modificationTotal)}
+									{!modificationTotal || modificationTotal.length < 1
+										? "N/A"
+										: Total(modificationTotal)}
 								</span>
 								.
 							</p>

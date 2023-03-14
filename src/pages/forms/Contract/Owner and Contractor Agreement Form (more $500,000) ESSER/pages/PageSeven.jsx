@@ -167,20 +167,21 @@ const PageSeven = ({ formDetails, durham, nottoBeHighlighted, vendor }) => {
 								</p>
 							</div>
 							<div>
-								<p>_____________________</p>
 								<p>
-									<span className={`${nottoBeHighlighted}`}>
+									<span
+										className={`${nottoBeHighlighted} border-b border-black`}>
 										{!formDetails?.chairmanSign
 											? ""
 											: moment(formDetails?.chairmanSign).format(
 													"MMMM D, YYYY"
 											  )}
 									</span>
+									<p>Date</p>
 								</p>
 							</div>
 						</div>
 
-						<p className="mb-8">
+						<p className="">
 							This instrument has been pre-audited in the manner required by the
 							School Budget and Fiscal Control Act.
 						</p>

@@ -131,7 +131,9 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 								contract modifications noted in Section 2.3 above that total{" "}
 								<span className={`${nottoBeHighlighted}`}>
 									{/* total */}
-									{Total(modificationTotal)}
+									{!modificationTotal || modificationTotal.length < 1
+										? "N/A"
+										: Total(modificationTotal)}
 								</span>
 								.
 							</p>
