@@ -30,7 +30,7 @@ const Preview = () => {
 	const formID = useSelector(project_document_id);
 
 	const [awardee, setAwardee] = useState([]);
-	const [showPage, setShowPage] = useState(true);
+	const [showPage, setShowPage] = useState(false);
 
 	// console.log(form_fields);
 	const dispatch = useDispatch();

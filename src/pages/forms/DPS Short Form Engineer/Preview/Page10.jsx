@@ -15,8 +15,11 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 
 					<div className="grid grid-cols-4 gap-4 mb-8">
 						<div className="col-span-3">
-							<p className="border-b border-black">
-								<span className={`${nottoBeHighlighted}`}>
+							<p>
+								_______________________________________________________________________
+							</p>
+							<p>
+								<span className={`${nottoBeHighlighted} `}>
 									{durham?.director_of_construction_and_sustainability?.name}
 								</span>
 								, Director of Construction and Sustainability
@@ -43,7 +46,10 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 
 					<div className="grid grid-cols-4 gap-4 mb-6">
 						<div className="col-span-3">
-							<p className="border-b border-black">
+							<p>
+								_______________________________________________________________________
+							</p>
+							<p>
 								<span className={`${nottoBeHighlighted}`}>
 									{durham?.chief_finance_officer?.name}
 								</span>
