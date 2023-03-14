@@ -154,7 +154,7 @@ const FormTwo = (props) => {
                               value={
                                 props?.values?.location[index]?.projectAddress
                               }
-                              name={`location.${[index]}.projectAddress`}
+                              name="projectAddress"
                               id={`location.${[index]}.projectAddress`}
                               onChange={props.handleChange}
                               type="text"
@@ -169,7 +169,7 @@ const FormTwo = (props) => {
                                   props.values.location[index].projectState
                                 }
                                 name="projectState"
-                                id={`location.${[index]}.projectState`}
+                                // id={`location.${[index]}.projectState`}
                                 onChange={props.handleChange}
                               >
                                 <option
