@@ -20,7 +20,7 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 				</div>
 			</div>
 			<div className="mt-8">
-				<p className="ml-[40px] mb-8">
+				<p className="ml-[50px] mb-8">
 					IN WITNESS WHEREOF, the parties to this agreement have hereunder set
 					their respective hands on the day and year first above written.
 				</p>

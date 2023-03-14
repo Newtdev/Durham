@@ -132,7 +132,7 @@ const PageSeven = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							of energy resources, riots, war, or events of similar nature. Any
 							party experiencing such an event shall give as prompt notice as
 							possible under the circumstances and such protection from
-							liability shall last only for
+							liability shall last
 						</span>
 					</p>
 				</div>

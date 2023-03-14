@@ -63,16 +63,16 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 			</div>
 			<p className="mb-4 text-center font-bold">AGREEMENT</p>
 			<div className="flex ml-4 ">
+				<p>2.</p>
 				<div className=" ml-7">
 					<p>
 						<span className="underline underline-offset-2">
 							TERMS OF SERVICE
 						</span>
-						.
 					</p>
 					<div className="mb-2 flex mt-1">
 						<span>a.</span>
-						<span className="ml-2 text-justify">
+						<span className="ml-3 text-justify">
 							Contractor shall, in performing services under this Agreement,
 							exercise the highest degree of care and perform such services in
 							an expert fashion. The services to be performed are described in
@@ -82,7 +82,7 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					</div>
 					<div className="mb-2 flex  ">
 						<span>b.</span>
-						<span className="ml-2 text-justify">
+						<span className="ml-3 text-justify">
 							Contractor shall maintain such supplies, equipment and employees
 							as are necessary to perform of the services provided for herein.
 							Contractor warrants its services and warrants that the contracted
@@ -106,7 +106,7 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							sufficiently protect Contractor and DPS BOE from any and all
 							potential claims or damages, including but not limited to Worker’s
 							Compensation, Comprehensive General and Contractual Liability
-							Insurance in no event less than the amount of
+							Insurance in no event less than the
 						</span>
 					</div>
 				</div>

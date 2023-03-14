@@ -3,24 +3,24 @@ const PageThree = () => {
 		<div className="pt-24" style={{ margin: "0.5in 1in", height: "10in" }}>
 			<div className="mb-2 flex pl-20">
 				<span className="text-justify">
-					under the United States copyright laws as the same may be amended from
-					time to time, and are and shall be the sole and exclusive property of
-					DPS BOE. To the extent (if any) that, notwithstanding the foregoing,
-					Contractor retains such rights, Contractor shall and does hereby
-					assign exclusively and irrevocably to DPS BOE the copyright in said
-					materials and all rights there under, including but not limited to all
-					rights to reproduce the work in copies, to prepare derivative works
-					based thereupon, and to distribute copies of the work by sale or other
-					transfer, and all rights to authorize others to do so. Contractor
-					represents and warrants that all materials delivered to DPS BOE shall
-					be original work of Contractor (and its employees, if any), and not of
-					any independent contractor. Contractor agrees during its work for DPS
-					BOE and thereafter to execute any documents and papers and to render
-					to DPS BOE or its designee all assistance reasonably necessary to
-					establish, perfect, or preserve such rights. To the extent any
-					Proprietary IP of Contractor is contained in such works, Contractor
-					grants to DPS BOE or its designee the rights noted in subparagraph j
-					above.
+					“work made for hire” under the United States copyright laws as the
+					same may be amended from time to time, and are and shall be the sole
+					and exclusive property of DPS BOE. To the extent (if any) that,
+					notwithstanding the foregoing, Contractor retains such rights,
+					Contractor shall and does hereby assign exclusively and irrevocably to
+					DPS BOE the copyright in said materials and all rights there under,
+					including but not limited to all rights to reproduce the work in
+					copies, to prepare derivative works based thereupon, and to distribute
+					copies of the work by sale or other transfer, and all rights to
+					authorize others to do so. Contractor represents and warrants that all
+					materials delivered to DPS BOE shall be original work of Contractor
+					(and its employees, if any), and not of any independent contractor.
+					Contractor agrees during its work for DPS BOE and thereafter to
+					execute any documents and papers and to render to DPS BOE or its
+					designee all assistance reasonably necessary to establish, perfect, or
+					preserve such rights. To the extent any Proprietary IP of Contractor
+					is contained in such works, Contractor grants to DPS BOE or its
+					designee the rights noted in subparagraph j above.
 				</span>
 			</div>
 			<div className="mb-2 flex pl-14">
@@ -70,7 +70,7 @@ const PageThree = () => {
 					all Inventions described in subparagraph m. above, including all
 					patent rights, trademarks and copyrights in such Inventions, and any
 					patent applications filed and/or patent rights granted thereon in the
-					United States and any foreign
+					United States and any
 				</span>
 			</div>
 			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">

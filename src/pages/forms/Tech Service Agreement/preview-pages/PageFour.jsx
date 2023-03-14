@@ -6,14 +6,14 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 		<div className="pt-20" style={{ margin: "0.5in 1in", height: "10in" }}>
 			<div className="mb-2 flex">
 				<span className="pl-20 text-justify mt-4">
-					country. During Contractor’s work with DPS and thereafter, Contractor
-					agrees to execute any patent documents or papers relating to such
-					developments as well as any documents and papers DPS BOE may consider
-					necessary or helpful in obtaining or maintaining said patents during
-					the prosecution of patent applications thereon or the conduct of any
-					litigation or other proceeding in connection therewith. All expenses
-					incident to such applications, litigation or proceedings shall be the
-					sole responsibility of DPS.
+					foreign country. During Contractor’s work with DPS and thereafter,
+					Contractor agrees to execute any patent documents or papers relating
+					to such developments as well as any documents and papers DPS BOE may
+					consider necessary or helpful in obtaining or maintaining said patents
+					during the prosecution of patent applications thereon or the conduct
+					of any litigation or other proceeding in connection therewith. All
+					expenses incident to such applications, litigation or proceedings
+					shall be the sole responsibility of DPS.
 				</span>
 			</div>
 			<div className="mb-2 flex pl-11">
@@ -109,7 +109,6 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 								{moment(form_fields?.endDate).format("MMMM D, YYYY ")}{" "}
 							</span>
 							unless terminated earlier as provided herein. The parties may
-							renew
 							{/* parties may
                           renew this Agreement only by separate written
                           agreement or addendum hereto, which must be executed

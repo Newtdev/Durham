@@ -5,9 +5,9 @@ const PageNine = () => {
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span className="">
-							board. For purposes of this provision, “immediate family” means
-							spouse, parent, child, brother, sister, grandparent, or
-							grandchild, and includes step, half, and in-law relationships.
+							employed by the board. For purposes of this provision, “immediate
+							family” means spouse, parent, child, brother, sister, grandparent,
+							or grandchild, and includes step, half, and in-law relationships.
 							Should Contractor become aware of any family relationship covered
 							by this provision or should such a family relationship arise at
 							any time during the term of this Agreement, Contractor shall
@@ -117,7 +117,7 @@ const PageNine = () => {
 							include at a minimum checks of the State Sex Offender and Public
 							Protection Registration Program, the State Sexually Violent
 							Predator Registration Program, and the National Sex Offender
-							Registry (“the Registries”). For Contractor’s
+							Registry
 						</span>
 					</p>
 				</div>

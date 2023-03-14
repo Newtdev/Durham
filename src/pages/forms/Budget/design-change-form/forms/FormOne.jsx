@@ -92,7 +92,7 @@ const FormOne = (props) => {
 
 							<FormInputContainer name="Enter file number">
 								<FormInputPlain
-									type={"number"}
+									type={"text"}
 									value={props?.values?.file}
 									onChange={props.handleChange}
 									name="file"
@@ -153,7 +153,12 @@ const FormOne = (props) => {
 								values={props?.values?.amountEffect}
 								error={props.errors.amountEffect}
 								touched={props.touched.amountEffect}
-								onChange={props.handleChange}>
+								onChange={(e) => {
+									if (props?.values?.amountEffect === "No change") {
+										props?.setFieldValue("amount", "");
+									}
+									props?.setFieldValue("amountEffect", e.target.value);
+								}}>
 								<option value="">Select</option>
 								{amountEffect?.map((amountEffect, index) => {
 									return (
@@ -164,17 +169,19 @@ const FormOne = (props) => {
 								})}
 							</FormSelect>
 
-							<FormInputContainer name="Amount">
-								<FormInput
-									onChange={props.handleChange}
-									name="amount"
-									placeholder={"0.0"}
-									value={props?.values?.amount}
-								/>
-								{props.errors.amount && props.touched.amount && (
-									<Error message={props.errors.amount} />
-								)}
-							</FormInputContainer>
+							{props?.values?.amountEffect !== "No change" ? (
+								<FormInputContainer name="Amount">
+									<FormInput
+										onChange={props.handleChange}
+										name="amount"
+										placeholder={"0.0"}
+										value={props?.values?.amount}
+									/>
+									{props.errors.amount && props.touched.amount && (
+										<Error message={props.errors.amount} />
+									)}
+								</FormInputContainer>
+							) : null}
 
 							<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
 								<h2 className="text-sm font-medium">New Contract Sum</h2>

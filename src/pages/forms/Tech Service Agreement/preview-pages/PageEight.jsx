@@ -6,9 +6,9 @@ const PageEight = () => {
 					<p className="text-justify pl-7">
 						<span>
 							{" "}
-							the duration of the event of such force majeure. In the event a
-							school facility is damaged by fire, weather, or by events of a
-							similar nature to those described in this paragraph and this
+							only for the duration of the event of such force majeure. In the
+							event a school facility is damaged by fire, weather, or by events
+							of a similar nature to those described in this paragraph and this
 							substantially prevents DPS's use of Contractor's service, DPS
 							shall have the option of suspending payments due under the
 							Agreement for the time period use is substantially prevented or
@@ -127,8 +127,7 @@ const PageEight = () => {
 							directors, or trustees and none of its employees who will directly
 							provide services under this Agreement are immediate family members
 							of any member of the Durham Public Schools Board of Education or
-							of any principal or central office staff administrator employed by
-							the
+							of any principal or central office staff administrator
 						</span>
 					</p>
 				</div>

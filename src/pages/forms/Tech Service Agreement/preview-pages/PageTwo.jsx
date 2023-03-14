@@ -3,9 +3,9 @@ const PageTwo = () => {
 		<div className="" style={{ margin: "1in" }}>
 			<div className="flex mb-2">
 				<span className="pl-[4.5rem] text-justify ">
-					$1,000,000 for each occurrence with an insurer having a “Best
-					Policyholders” rating of B+ or better. DPS BOE shall be added as an
-					additional insured on the Certificate of Insurance. Copies of
+					amount of $1,000,000 for each occurrence with an insurer having a
+					“Best Policyholders” rating of B+ or better. DPS BOE shall be added as
+					an additional insured on the Certificate of Insurance. Copies of
 					certificates of insurance shall be provided to DPS and shall include
 					the following:
 				</span>
@@ -95,7 +95,7 @@ const PageTwo = () => {
 					materials developed by Contractor in connection with Contractor’s work
 					for DPS, including but not limited to computer programs, listings,
 					designs, specifications, flow charts and other documentation, are to
-					be considered “work made for hire”
+					be considered
 				</span>
 			</div>
 			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">

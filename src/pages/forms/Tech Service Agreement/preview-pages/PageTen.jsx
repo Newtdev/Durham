@@ -7,50 +7,51 @@ const PageTen = () => {
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span className="">
-							convenience only, all of the required registry checks may be
-							completed at no cost by accessing the United States Department of
-							Justice Sex Offender Public Website at no cost by accessing the
-							United States Department of Justice Sex Offender Public Website at
-							http://www.nsopw.gov/. Contractor shall provide certification on
-							the Sexual Offender Registry Check Certification Form that the
-							registry checks were conducted on each of its contractual
-							personnel providing services or delivering goods under this
-							Agreement prior to the commencement of such services or the
-							delivery of such goods. Contractor shall conduct a current initial
-							check of the registries (a check done more than 30 days prior to
-							the date of this Agreement shall not satisfy this contractual
-							obligation). In addition, Contractor agrees to conduct the
-							registry checks and provide a supplemental certification form
-							before any additional contractual personnel are used to deliver
-							goods or provide services pursuant to this Agreement. Contractor
-							further agrees to conduct annual registry checks of all
-							contractual personnel and provide annual certifications at each
-							anniversary date of this Agreement. Contractor shall not assign
-							any individual to deliver goods or provide services pursuant to
-							this Agreement if said individual appears on any of the listed
-							registries. Contractor agrees that it will maintain all records
-							and documents necessary to demonstrate that it has conducted a
-							thorough check of the registries as to each contractual personnel,
-							and agrees to provide such records and documents to DPS upon
-							request. Contractor specifically acknowledges that DPS retains the
-							right to audit these records to ensure compliance with this
-							section at any time in DPS’s sole discretion. Failure to comply
-							with the terms of this provision shall be deemed a material breach
-							of the Agreement. In addition, DPS may conduct additional criminal
-							records checks at DPS’s expense. If DPS exercises this right to
-							conduct additional criminal records checks, Contractor agrees to
-							provide within seven (7) days of request the full name, date of
-							birth, state of residency for the past ten years, and any
-							additional information requested by DPS for all contractual
-							personnel who may deliver goods or perform services under this
-							Agreement. Contractor further agrees that it has an ongoing
-							obligation to provide DPS with the name of any new contractual
-							personnel who may deliver goods or provide services under the
-							Agreement. DPS reserves the right to prohibit any contractual
-							personnel of Contractor from delivering goods or providing
-							services under this Agreement if DPS determines, in its sole
-							discretion, that such contractual personnel may pose a threat to
-							the safety or well-being of students, school personnel or others.
+							(“the Registries”). For Contractor’s convenience only, all of the
+							required registry checks may be completed at no cost by accessing
+							the United States Department of Justice Sex Offender Public
+							Website at no cost by accessing the United States Department of
+							Justice Sex Offender Public Website at http://www.nsopw.gov/.
+							Contractor shall provide certification on the Sexual Offender
+							Registry Check Certification Form that the registry checks were
+							conducted on each of its contractual personnel providing services
+							or delivering goods under this Agreement prior to the commencement
+							of such services or the delivery of such goods. Contractor shall
+							conduct a current initial check of the registries (a check done
+							more than 30 days prior to the date of this Agreement shall not
+							satisfy this contractual obligation). In addition, Contractor
+							agrees to conduct the registry checks and provide a supplemental
+							certification form before any additional contractual personnel are
+							used to deliver goods or provide services pursuant to this
+							Agreement. Contractor further agrees to conduct annual registry
+							checks of all contractual personnel and provide annual
+							certifications at each anniversary date of this Agreement.
+							Contractor shall not assign any individual to deliver goods or
+							provide services pursuant to this Agreement if said individual
+							appears on any of the listed registries. Contractor agrees that it
+							will maintain all records and documents necessary to demonstrate
+							that it has conducted a thorough check of the registries as to
+							each contractual personnel, and agrees to provide such records and
+							documents to DPS upon request. Contractor specifically
+							acknowledges that DPS retains the right to audit these records to
+							ensure compliance with this section at any time in DPS’s sole
+							discretion. Failure to comply with the terms of this provision
+							shall be deemed a material breach of the Agreement. In addition,
+							DPS may conduct additional criminal records checks at DPS’s
+							expense. If DPS exercises this right to conduct additional
+							criminal records checks, Contractor agrees to provide within seven
+							(7) days of request the full name, date of birth, state of
+							residency for the past ten years, and any additional information
+							requested by DPS for all contractual personnel who may deliver
+							goods or perform services under this Agreement. Contractor further
+							agrees that it has an ongoing obligation to provide DPS with the
+							name of any new contractual personnel who may deliver goods or
+							provide services under the Agreement. DPS reserves the right to
+							prohibit any contractual personnel of Contractor from delivering
+							goods or providing services under this Agreement if DPS
+							determines, in its sole discretion, that such contractual
+							personnel may pose a threat to the safety or well-being of
+							students, school personnel or others.
 						</span>
 					</p>
 				</div>

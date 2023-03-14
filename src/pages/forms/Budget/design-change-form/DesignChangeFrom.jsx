@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { setResult } from "../../../../shared-component";
+import { handleSavedDate, setResult } from "../../../../shared-component";
 import { DesignChangeFrom } from "../../../../shared-component/slug";
 import { ModalOverlay } from "../../../../ui";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
@@ -103,6 +103,18 @@ const DesignChangeOrderForm = ({ id, filled }) => {
 		formik.setFieldValue("originalSum", a?.data?.form_fields.originalSum);
 		formik.setFieldValue("description", a?.data?.form_fields.description);
 		formik.setFieldValue("number", a?.data?.form_fields.number);
+		formik.setFieldValue(
+			"creatingDate",
+			handleSavedDate(a?.data?.form_fields.creatingDate)
+		);
+		formik.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields.completionDate)
+		);
+		formik.setFieldValue(
+			"signDate",
+			handleSavedDate(a?.data?.form_fields.signDate)
+		);
 	}, [a?.data]);
 
 	if (!filled) {

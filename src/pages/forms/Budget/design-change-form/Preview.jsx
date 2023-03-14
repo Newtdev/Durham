@@ -245,9 +245,11 @@ const Preview = () => {
 															</span>{" "}
 															<span className={`${nottoBeHighlighted}`}>
 																<span></span>
-																{!forms_fields?.amountEffect
+																{!forms_fields?.amount
 																	? ""
-																	: currency(forms_fields?.amount).format()}
+																	: currency(
+																			forms_fields?.amount || ""
+																	  ).format()}
 															</span>{" "}
 															to the Contract Sum and{" "}
 															<span className={`${nottoBeHighlighted}`}>

@@ -4,7 +4,7 @@ const PageFive = () => {
 			<div className=" pl-10">
 				<p className="text-justify">
 					<span className="">
-						this Agreement only by separate written agreement or addendum
+						renew this Agreement only by separate written agreement or addendum
 						hereto, which must be executed by both parties.
 					</span>
 				</p>
