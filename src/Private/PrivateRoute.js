@@ -54,56 +54,56 @@ import "react-quill/dist/quill.snow.css";
 // export default Resolved;
 
 const RichTextComp = ({ text, setText }) => {
-  const reactQuillRef = React.useRef();
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
+	const reactQuillRef = React.useRef();
+	const modules = {
+		toolbar: [
+			[{ header: [1, 2, false] }],
+			["bold", "italic", "underline", "strike", "blockquote"],
+			[
+				{ list: "ordered" },
+				{ list: "bullet" },
+				{ indent: "-1" },
+				{ indent: "+1" },
+			],
+			["link", "image"],
+			["clean"],
+		],
+	};
 
-  // const checkCharacterCount = (event) => {
-  //   const unprivilegedEditor = reactQuillRef.current.unprivilegedEditor;
-  //   if (unprivilegedEditor.getLength() > 500 && event.key !== "Backspace")
-  //     event.preventDefault();
-  // };
+	// const checkCharacterCount = (event) => {
+	//   const unprivilegedEditor = reactQuillRef.current.unprivilegedEditor;
+	//   if (unprivilegedEditor.getLength() > 500 && event.key !== "Backspace")
+	//     event.preventDefault();
+	// };
 
-  const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
+	const formats = [
+		"header",
+		"bold",
+		"italic",
+		"underline",
+		"strike",
+		"blockquote",
+		"list",
+		"bullet",
+		"indent",
+		"link",
+		"image",
+	];
 
-  // console.log(htmlencode(text));
-  return (
-    <ReactQuill
-      // onKeyDown={checkCharacterCount}
-      // ref={reactQuillRef}
-      modules={modules}
-      formats={formats}
-      theme="snow"
-      value={text}
-      onChange={setText}
-      style={{ height: "8rem" }}
-      placeholder="Maximum of 500 Words"
-    />
-  );
+	// console.log(htmlencode(text));
+	return (
+		<ReactQuill
+			// onKeyDown={checkCharacterCount}
+			// ref={reactQuillRef}
+			modules={modules}
+			formats={formats}
+			theme="snow"
+			value={text}
+			onChange={setText}
+			style={{ height: "8rem" }}
+			placeholder="Maximum of 500 Words"
+		/>
+	);
 };
 
 export default RichTextComp;
