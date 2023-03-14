@@ -86,11 +86,11 @@ const FormThree = (props) => {
       console.log(a?.data?.form_fields);
       // 	he?.decode("a");
     }
-    let b;
+    let scope;
     if (a?.data?.form_fields?.proposalScope) {
-      b = he?.decode(a?.data?.form_fields?.proposalScope);
+      scope = he?.decode(a?.data?.form_fields?.proposalScope);
     }
-    setText(b);
+    setText(scope);
     // }
   }, [a?.data]);
 
@@ -294,7 +294,7 @@ const FormThree = (props) => {
           <div className="flex justify-end gap-8 pr-4">
             <ButtonWhiteBG
               width="w-[100px]"
-              name="Previous"
+              name="Back"
               onClick={() => dispatch(prevStep(2))}
             />
             <DashboardButton
