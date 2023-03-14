@@ -198,7 +198,6 @@ export const setResult = (values) => {
   for (const object of Object.entries(values)) {
     sum = [...sum, { field_name: object[0], field_value: object[1] }];
   }
-  console.log(sum);
   return sum;
 };
 

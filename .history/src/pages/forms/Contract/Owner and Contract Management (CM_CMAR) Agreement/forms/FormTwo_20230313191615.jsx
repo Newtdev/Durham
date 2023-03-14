@@ -9,23 +9,6 @@ import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { prevStep } from "../reducer";
 
-export const CloseIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        fillRule="evenodd"
-        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-};
-
 const FormTwo = (props) => {
   const dispatch = useDispatch();
   const states = useSelector(getList);
@@ -139,12 +122,6 @@ const FormTwo = (props) => {
 
                       <div>
                         <div>
-                          <div
-                            className="w-10 ml-auto mt-1 cursor-pointer"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            <CloseIcon />
-                          </div>
                           <div className="grid grid-cols-3 gap-x-4">
                             <FormInputContainer name="">
                               <FormSelect
@@ -247,7 +224,6 @@ const FormTwo = (props) => {
                       }
                       className={`text-white text-sm font-semibold px-4 hover:bg-blue-800 bg-[#693B79] transition-all focus:outline-none text-center rounded h-8`}
                       type="button"
-                      disabled={props.values.location.length >= 5}
                     >
                       ADD MORE LOCATION
                     </button>
