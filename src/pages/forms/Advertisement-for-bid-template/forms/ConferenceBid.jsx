@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { SelectDate } from "../../components";
+import {
+	DataListComponent,
+	GetState,
+} from "../../E-589C Affidavit Of Capital Improvement/Affidavit";
 import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { SelectTime } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
@@ -34,22 +38,22 @@ const ConferenceBid = (props) => {
 		name: "conferenceAddress",
 		placeholder: "Street",
 	};
-	const conferenceState = {
-		value: props.values.conferenceState,
-		name: "conferenceState",
-		onChange: props.handleChange,
-	};
-	const conferenceCity = {
-		value: props.values.conferenceCity,
-		onChange: props.handleChange,
-		name: "conferenceCity",
-	};
+	// const conferenceState = {
+	// 	value: props.values.conferenceState,
+	// 	name: "conferenceState",
+	// 	onChange: props.handleChange,
+	// };
+	// const conferenceCity = {
+	// 	value: props.values.conferenceCity,
+	// 	onChange: props.handleChange,
+	// 	name: "conferenceCity",
+	// };
 
-	const conferenceZipCode = {
-		value: props.values.conferenceZipCode,
-		name: "conferenceZipCode",
-		onChange: props.handleChange,
-	};
+	// const conferenceZipCode = {
+	// 	value: props.values.conferenceZipCode,
+	// 	name: "conferenceZipCode",
+	// 	onChange: props.handleChange,
+	// };
 
 	function CheckState() {
 		if (!props.values.conferenceState) {
@@ -58,8 +62,11 @@ const ConferenceBid = (props) => {
 		let stat = Object.values(states)?.find(
 			(state) => state.name === props.values.conferenceState
 		);
+		if (!stat) {
+			return;
+		}
 
-		return Object.keys(stat.cities)?.map((cur, id) => {
+		return Object.keys(stat?.cities)?.map((cur, id) => {
 			return (
 				<option key={id} value={cur}>
 					{cur}
@@ -76,7 +83,10 @@ const ConferenceBid = (props) => {
 			(state) => state.name === props.values.conferenceState
 		);
 		const zipcode = city?.find((cities) => cities);
-		return zipcode.cities[props.values.conferenceCity]?.map(
+		if (!zipcode) {
+			return;
+		}
+		return zipcode?.cities[props.values.conferenceCity]?.map(
 			(zipcode, index) => {
 				return (
 					<option key={index} value={zipcode}>
@@ -146,7 +156,7 @@ const ConferenceBid = (props) => {
 							)}
 					</div>
 					<div className="grid grid-cols-3 gap-x-4">
-						<FormInputContainer name="">
+						{/* <FormInputContainer name="">
 							<FormSelect {...conferenceState}>
 								<option value="">Select State</option>
 								{Object.entries(states).map((cur, index) => {
@@ -161,9 +171,35 @@ const ConferenceBid = (props) => {
 								props.touched.conferenceState && (
 									<Error message={props.errors.conferenceState} />
 								)}
-						</FormInputContainer>
+						</FormInputContainer> */}
+						<DataListComponent
+							name="State"
+							inputname="conferenceState"
+							value={props.values.conferenceState}
+							handleChange={props.handleChange}
+							fn={() => GetState(states)}
+							placeholder="State"
+						/>
+						<DataListComponent
+							name="City"
+							inputname="conferenceCity"
+							value={props.values.conferenceCity}
+							handleChange={props.handleChange}
+							fn={() => CheckState()}
+							placeholder="City"
+						/>
+						<DataListComponent
+							name="Zip code"
+							inputname="conferenceZipCode"
+							value={props.values.conferenceZipCode}
+							handleChange={props.handleChange}
+							fn={() => {
+								CheckZipCode();
+							}}
+							placeholder="Zip code"
+						/>
 
-						<FormInputContainer name="">
+						{/* <FormInputContainer name="">
 							<FormSelect {...conferenceCity}>
 								<option value="">Select City</option>
 								{CheckState()}
@@ -172,9 +208,9 @@ const ConferenceBid = (props) => {
 							{props.errors.conferenceCity && props.touched.conferenceCity && (
 								<Error message={props.errors.conferenceCity} />
 							)}
-						</FormInputContainer>
+						</FormInputContainer> */}
 
-						<FormInputContainer name="">
+						{/* <FormInputContainer name="">
 							<FormSelect {...conferenceZipCode}>
 								<option value="">Select zipcode</option>
 								{CheckZipCode()}
@@ -184,7 +220,7 @@ const ConferenceBid = (props) => {
 								props.touched.conferenceZipCode && (
 									<Error message={props.errors.conferenceZipCode} />
 								)}
-						</FormInputContainer>
+						</FormInputContainer> */}
 					</div>
 
 					<FormInputContainer name="The presence of the prime bidders is:">

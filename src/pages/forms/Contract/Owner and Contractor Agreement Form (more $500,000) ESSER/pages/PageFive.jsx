@@ -10,14 +10,13 @@ const PageFive = () => {
 			<div>
 				<p className="text-justify ml-[58px]">
 					{" "}
-					to Contractor, for convenience, if the Owner believes, in its sole
-					discretion that it is in the best interest of the Owner to do so. The
-					Contractor will be compensated for work performed and accepted and
-					goods accepted by the Owner as of the termination date if the
-					Agreement is terminated for convenience of the Owner. The award of
-					this Agreement is not exclusive and the Owner reserves the right to
-					purchase goods and services from other vendors when it is in the best
-					interest of the Owner.
+					that it is in the best interest of the Owner to do so. The Contractor
+					will be compensated for work performed and accepted and goods accepted
+					by the Owner as of the termination date if the Agreement is terminated
+					for convenience of the Owner. The award of this Agreement is not
+					exclusive and the Owner reserves the right to purchase goods and
+					services from other vendors when it is in the best interest of the
+					Owner.
 				</p>
 				<div className="flex gap-8">
 					<p>13.3</p>
@@ -115,7 +114,8 @@ const PageFive = () => {
 							under 37 CFR §401.2 (a) and Contractor wishes to enter into a
 							contract with a small business firm or nonprofit organization
 							regarding the substitution of parties, assignment or performance
-							of experimental,developmental, or research work
+							of experimental, developmental, or research work under that
+							“funding agreement,” Contractor agrees to
 						</p>
 					</div>
 				</div>

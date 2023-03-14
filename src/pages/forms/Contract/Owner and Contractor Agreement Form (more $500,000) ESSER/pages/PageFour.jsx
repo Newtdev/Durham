@@ -134,7 +134,9 @@ const PageFour = ({ nottoBeHighlighted, formDetails }) => {
 								specified by this Agreement and/or an IPPA; (2) make any
 								payments owed; or (3) otherwise perform in accordance with the
 								Agreement and/or the IPPA. The Owner also reserves the right to
-								terminate the Agreement immediately, with written notice
+								terminate the Agreement immediately, with written notice to
+								Contractor, for convenience, if the Owner believes, in its sole
+								discretion
 							</p>
 						</div>
 					</div>
