@@ -90,7 +90,7 @@ const FormTwo = (props) => {
 								<div className="flex flex-col">
 									<FormInputPlain
 										type={"text"}
-										value={props?.address}
+										value={props?.values?.address}
 										onChange={props.handleChange}
 										name="address"
 										placeholder={"Address"}

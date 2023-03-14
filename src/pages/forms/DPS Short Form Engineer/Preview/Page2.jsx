@@ -125,12 +125,12 @@ const PageTwo = ({ formsDetails, vendor, nottoBeHighlighted }) => {
 										<div className="ml-10">
 											<p>Superintendent</p>
 											<p>Durham Public Schools</p>
-											<p className="border-b border-black w-48">
+											<p className="">
 												<span className={`${nottoBeHighlighted}`}>
 													{formsDetails?.address}
 												</span>
 											</p>
-											<p className="border-b border-black w-48">
+											<p className="">
 												<span className={`${nottoBeHighlighted}`}>
 													{console.log(formsDetails)}
 													{`${formsDetails?.city} 

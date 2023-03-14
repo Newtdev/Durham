@@ -4,7 +4,7 @@ const PageTwelve = () => {
 			<div>
 				{/* Page 12 */}
 				<div className="m-[1in]">
-					<p className="text-center text-xs">
+					<p className="text-center ">
 						Exhibit A - Proposal and Scope of Services
 					</p>
 				</div>
