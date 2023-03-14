@@ -253,7 +253,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 								Date:{" "}
 								<span
 									className={`${nottoBeHighlighted} border-b inline-block border-black ${
-										!formDetails?.ownerRepDate ? "w-10" : ""
+										!formDetails?.ownerRepDate ? "w-12" : ""
 									}`}>
 									{!formDetails?.ownerRepDate
 										? ""
