@@ -441,11 +441,11 @@ const ChangeOrderForm = () => {
 													<div>
 														<p
 															className={`${
-																designlength > 19
+																designlength > 25
 																	? "mt-5"
 																	: designlength === 0
 																	? "mt-4"
-																	: designlength <= 19
+																	: designlength <= 25
 																	? ""
 																	: "mt-4"
 															}`}>
@@ -461,11 +461,11 @@ const ChangeOrderForm = () => {
 													<div>
 														<p
 															className={`border-b border-black ${
-																designlength > 19
+																designlength > 25
 																	? "mt-5"
 																	: designlength === 0
 																	? "mt-4"
-																	: designlength <= 19
+																	: designlength <= 25
 																	? ""
 																	: "mt-4"
 															}`}>
@@ -489,11 +489,11 @@ const ChangeOrderForm = () => {
 														<br />
 														<p
 															className={`border-t border-black ${
-																designlength > 19
+																designlength > 25
 																	? "mt-9"
 																	: designlength === 0
 																	? ""
-																	: designlength <= 19
+																	: designlength <= 25
 																	? ""
 																	: ""
 															}`}>
@@ -534,11 +534,11 @@ const ChangeOrderForm = () => {
 												<div>
 													<p
 														className={`${nottoBeHighlighted} border-b border-black ${
-															contractorlength > 17
+															contractorlength > 25
 																? "mt-9"
 																: contractorlength === 0
 																? ""
-																: contractorlength <= 17
+																: contractorlength <= 25
 																? ""
 																: ""
 														}`}>
@@ -554,11 +554,11 @@ const ChangeOrderForm = () => {
 													<br />
 													<p
 														className={`border-b border-black ${
-															contractorlength > 17
+															contractorlength > 25
 																? "mt-9"
 																: contractorlength === 0
 																? ""
-																: contractorlength <= 17
+																: contractorlength <= 35
 																? ""
 																: ""
 														}`}></p>
@@ -570,11 +570,11 @@ const ChangeOrderForm = () => {
 													<br />
 													<p
 														className={`border-b border-black ${
-															contractorlength > 17
+															contractorlength > 25
 																? "mt-9"
 																: contractorlength === 0
 																? ""
-																: contractorlength <= 17
+																: contractorlength <= 25
 																? ""
 																: ""
 														}`}></p>
@@ -592,16 +592,7 @@ const ChangeOrderForm = () => {
 													</p>
 												</div>
 												<div>
-													<p
-														className={`${
-															schoollength > 17
-																? "mt-4"
-																: schoollength === 0
-																? ""
-																: schoollength <= 17
-																? ""
-																: ""
-														}`}>
+													<p className={``}>
 														<span className={`${nottoBeHighlighted}`}>
 															{manager?.name}
 														</span>
@@ -612,31 +603,14 @@ const ChangeOrderForm = () => {
 												</div>
 												<div>
 													<br />
-													<p
-														className={`border-b border-black ${
-															schoollength > 17
-																? "mt-4"
-																: schoollength === 0
-																? ""
-																: schoollength <= 17
-																? ""
-																: ""
-														}`}></p>
+													<p className={`border-b border-black`}></p>
 													<p>
 														<i className="text-[7pt]">Signature</i>
 													</p>
 												</div>
 												<div>
 													<p
-														className={`${nottoBeHighlighted} border-b border-black ${
-															schoollength > 17
-																? "mt-4"
-																: schoollength === 0
-																? ""
-																: schoollength <= 17
-																? ""
-																: ""
-														}`}>
+														className={`${nottoBeHighlighted} border-b border-black `}>
 														{!forms_fields?.signDate
 															? ""
 															: moment(forms_fields?.signDate).format(

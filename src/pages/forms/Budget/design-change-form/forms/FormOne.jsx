@@ -155,7 +155,7 @@ const FormOne = (props) => {
 								touched={props.touched.amountEffect}
 								onChange={(e) => {
 									if (props?.values?.amountEffect === "No change") {
-										props?.setFieldValue("amount", "");
+										props?.setFieldValue("amount", " ");
 									}
 									props?.setFieldValue("amountEffect", e.target.value);
 								}}>
@@ -175,7 +175,11 @@ const FormOne = (props) => {
 										onChange={props.handleChange}
 										name="amount"
 										placeholder={"0.0"}
-										value={props?.values?.amount}
+										value={
+											!props?.values?.amountEffect !== "No change"
+												? props?.values?.amount
+												: ""
+										}
 									/>
 									{props.errors.amount && props.touched.amount && (
 										<Error message={props.errors.amount} />

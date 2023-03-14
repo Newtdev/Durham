@@ -3,7 +3,9 @@ import moment from "moment";
 
 const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 	return (
-		<div className="pt-20" style={{ margin: "0.5in 1in", height: "10in" }}>
+		<div
+			className="pt-20 leading-[1.18]"
+			style={{ margin: "0.5in 1in", height: "10in" }}>
 			<div className="mb-2 flex">
 				<span className="pl-20 text-justify mt-4">
 					foreign country. During Contractor’s work with DPS and thereafter,

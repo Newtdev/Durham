@@ -247,6 +247,8 @@ const Preview = () => {
 																<span></span>
 																{!forms_fields?.amount
 																	? ""
+																	: forms_fields?.amountEffect === "No change"
+																	? ""
 																	: currency(
 																			forms_fields?.amount || ""
 																	  ).format()}

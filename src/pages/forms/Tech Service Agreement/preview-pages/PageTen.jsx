@@ -1,7 +1,7 @@
 const PageTen = () => {
 	return (
 		<div
-			className="mt-96 pt-20"
+			className="mt-96 pt-20 leading-[1.18]"
 			style={{ margin: "1in", height: "10in", pageBreakAfter: "auto" }}>
 			<div className="flex ">
 				<div className=" ml-7">

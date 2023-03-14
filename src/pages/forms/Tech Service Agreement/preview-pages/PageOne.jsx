@@ -63,7 +63,7 @@ const PageOne = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 			</div>
 			<p className="mb-4 text-center font-bold">AGREEMENT</p>
 			<div className="flex ml-4 ">
-				<p>2.</p>
+				<p>1.</p>
 				<div className=" ml-7">
 					<p>
 						<span className="underline underline-offset-2">

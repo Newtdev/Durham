@@ -1,7 +1,7 @@
 const PageThree = () => {
 	return (
 		<div className="pt-24" style={{ margin: "0.5in 1in", height: "10in" }}>
-			<div className="mb-2 flex pl-20">
+			<div className=" flex pl-20">
 				<span className="text-justify">
 					“work made for hire” under the United States copyright laws as the
 					same may be amended from time to time, and are and shall be the sole
@@ -23,7 +23,7 @@ const PageThree = () => {
 					designee the rights noted in subparagraph j above.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-14">
+			<div className=" flex pl-14">
 				<span>i.</span>
 				<span className="ml-4 ">
 					Contractor agrees that no license or right is granted by DPS BOE to
@@ -34,7 +34,7 @@ const PageThree = () => {
 					Contractor, either during or after the term of this Agreement.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-14">
+			<div className=" flex pl-14">
 				<span>j.</span>
 				<span className="ml-4 ">
 					Notwithstanding anything to the contrary herein, Contractor and its
@@ -46,7 +46,7 @@ const PageThree = () => {
 					disclosure of any Proprietary IP of DPS BOE.
 				</span>
 			</div>
-			<div className="mb-2 flex pl-14">
+			<div className=" flex pl-14">
 				<span>k.</span>
 				<span className="ml-3 ">
 					Contractor agrees to communicate to DPS every Invention conceived,
@@ -62,7 +62,7 @@ const PageThree = () => {
 					improvements thereof and knowledge related thereto.
 				</span>
 			</div>{" "}
-			<div className="mb-2 flex pl-14">
+			<div className=" flex pl-14">
 				<span>l.</span>
 				<span className="ml-4 text-justify ">
 					Contractor agrees to assign and does hereby assign to DPS BOE or DPS
