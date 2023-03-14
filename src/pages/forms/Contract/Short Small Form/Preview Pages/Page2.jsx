@@ -1,10 +1,11 @@
-import { Footer } from "./Page1";
+import { SmallShortWrapper } from "./Page10";
 
 const PageTwo = () => {
 	return (
-		<div
-			className=" text-black  ml-[0.43in] mt-[1in] mr-[0.69in] pb-0 pt-36 text-[14.5px] flex flex-col justify-between "
-			style={{ height: "10.4in" }}>
+		// <div
+		// 	className=" text-black  ml-[0.43in] mt-[1in] mr-[0.69in] pb-0 pt-36 text-[14.5px] flex flex-col justify-between "
+		// 	style={{ height: "10.4in" }}>
+		<SmallShortWrapper num={2}>
 			<div>
 				{/* Page 2 */}
 				<div className="">
@@ -56,18 +57,12 @@ const PageTwo = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[31.4rem] flex flex-col justify-end">
+			<div className=" h-[31.4rem] flex flex-col justify-end mt-14">
 				<p className="font-extrabold text-black mb-3 text-center">
 					<b>SHORT FORM DESIGN CONSULTANT AGREEMENT</b>
 				</p>
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1  ml-auto">
-					<p>2</p>
-				</div>
 			</div>
-		</div>
+		</SmallShortWrapper>
 	);
 };
 

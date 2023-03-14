@@ -119,18 +119,27 @@ const PageTen = ({ durham, formDetails, vendor, nottoBeHighlighted }) => {
 
 					<p className="mb-8 text-justify">
 						Witness my hand and notarial seal this{" "}
-						<span className={`${nottoBeHighlighted}`}>
+						<span
+							className={`inline-block border-b border-black ${nottoBeHighlighted} ${
+								!formDetails?.notarySealDate ? "w-6" : ""
+							}`}>
 							{!formDetails?.notarySealDate
 								? ""
 								: moment(formDetails?.notarySealDate).format("Do")}
 						</span>{" "}
 						day of{" "}
-						<span className={`${nottoBeHighlighted}`}>
+						<span
+							className={` inline-block border-b border-black ${nottoBeHighlighted} ${nottoBeHighlighted} ${
+								!formDetails?.notarySealDate ? "w-10" : ""
+							}`}>
 							{!formDetails?.notarySealDate
 								? ""
 								: moment(formDetails?.notarySealDate).format("MMMM,")}
 						</span>
-						<span className={`${nottoBeHighlighted}`}>
+						<span
+							className={`inline-block border-b border-black ${nottoBeHighlighted} ${nottoBeHighlighted} ${
+								!formDetails?.notarySealDate ? "w-16" : ""
+							}`}>
 							{!formDetails?.notarySealDate
 								? ""
 								: moment(formDetails?.notarySealDate).format(" YYYY")}

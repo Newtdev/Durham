@@ -1,21 +1,24 @@
+import { SmallShortWrapper } from "./Page10";
+
 const PageFour = (props) => {
 	const editEmailAddress = () => {
 		return props?.form_fields?.ownerEmail;
 	};
 	return (
-		<div
-			className="text-black py-[0.8in] mt-[1in] px-[0.6in] leading-[1.1] text-[13.5px]"
-			style={{ height: "10.5in" }}>
-			<div>
+		// <div
+		// 	className="text-black py-[0.8in] mt-[1in] px-[0.6in] leading-[1.1] text-[13.5px]"
+		// 	style={{ height: "10.5in" }}>
+		<SmallShortWrapper num={4}>
+			<div className="leading-[1.1]">
 				{/* Page 4 */}
 				<div>
 					<div className="mb-10">
 						<div>
-							<div className="flex gap-12 mb-2 ml-[63px]">
+							<div className="flex gap-12 mb-1.5 ml-[63px]">
 								<div>
-									<div className="ml-3 mb-2 grid grid-cols-2">
+									<div className="ml-3 mb-1.5 grid grid-cols-2">
 										<div>
-											<div className="flex gap-[20px] mb-2">
+											<div className="flex gap-[20px] mb-1.5">
 												<p>d.</p>
 												<div>
 													<p>Automobile Liability (Symbol 1)</p>
@@ -32,7 +35,7 @@ const PageFour = (props) => {
 										</div>
 
 										<div>
-											<div className="mb-2">
+											<div className="mb-1.5">
 												<p>Combined Single Limit</p>
 												<p>$1,000,000 Each Accident</p>
 											</div>
@@ -53,7 +56,7 @@ const PageFour = (props) => {
 								</div>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>1.5.1</p>
 								<p className="text-justify">
 									A certificate of insurance documenting evidence of such
@@ -67,7 +70,7 @@ const PageFour = (props) => {
 									above and via email ("
 									<span className={`underline ${props?.nottoBeHighlighted}`}>
 										{editEmailAddress()}
-									</span>{" "}
+									</span>
 									") of the cancellation, non-renewal (without replacement), or
 									the material reduction of coverage or limits of any of the
 									policies. Upon notice of such cancellation, nonrenewal or
@@ -78,7 +81,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>1.5.2</p>
 								<p className="text-justify">
 									The Design Consultant shall deliver to the Owner a Certificate
@@ -88,7 +91,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>1.5.3</p>
 								<p className="text-justify">
 									The Owner, Durham Public Schools Board of Education, shall be
@@ -97,7 +100,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>1.5.4</p>
 								<p className="text-justify">
 									The Design Consultant shall maintain in force during the
@@ -107,7 +110,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>1.6</p>
 								<p className="text-justfy">
 									<span className="mr-3">QUALIFICATIONS:</span> All work shall
@@ -134,18 +137,18 @@ const PageFour = (props) => {
 
 					{/* Article 2 */}
 					<div>
-						<div className="text-center font-bold mb-2 -mt-6">
+						<div className="text-center font-bold mb-1.5 -mt-6">
 							<p className="mb-2">ARTICLE 2</p>
 							<p>BASIC SERVICES</p>
 						</div>
 
 						<div>
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>2.1</p>
 								<p className="underline">Scope of Services.</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>2.1.1</p>
 
 								<p className="text-justify">
@@ -158,7 +161,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>2.1.2</p>
 
 								<p className="text-justify">
@@ -169,7 +172,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>2.2</p>
 								<p className="underline">
 									Design Consultant's Professional Responsibility and Standard
@@ -177,7 +180,7 @@ const PageFour = (props) => {
 								</p>
 							</div>
 
-							<div className="flex gap-[35px] mb-2">
+							<div className="flex gap-[35px] mb-1.5">
 								<p>2.2.1</p>
 
 								<p className="text-justify">
@@ -208,15 +211,7 @@ const PageFour = (props) => {
 					</div>
 				</div>
 			</div>
-			<div className=" mt-12 overflow-hidden flex flex-col justify-end">
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1  ml-auto pr-2">
-					<p>4</p>
-				</div>
-			</div>
-		</div>
+		</SmallShortWrapper>
 	);
 };
 

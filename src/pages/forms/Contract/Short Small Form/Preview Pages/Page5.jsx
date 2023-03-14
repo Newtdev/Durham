@@ -1,13 +1,16 @@
+import { SmallShortWrapper } from "./Page10";
+
 const PageFive = () => {
 	return (
-		<div
-			className="text-black font11  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.13] text-[13.5px] "
-			style={{ height: "11in" }}>
-			<div>
+		// <div
+		// 	className="text-black font11  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.13] text-[13.5px] "
+		// 	style={{ height: "11in" }}>
+		<SmallShortWrapper num={5}>
+			<div className="leading-[1.1]">
 				{/* Page 5 */}
 				<div>
 					<div>
-						<div className="flex gap-[35px] mb-2">
+						<div className="flex gap-[35px] mb-1.5">
 							<p>2.2.2</p>
 
 							<p className="text-justify">
@@ -19,7 +22,7 @@ const PageFive = () => {
 							</p>
 						</div>
 
-						<div className="flex gap-[35px] mb-2">
+						<div className="flex gap-[35px] mb-1.5">
 							<p>2.2.3</p>
 
 							<p className="text-justify">
@@ -35,7 +38,7 @@ const PageFive = () => {
 							</p>
 						</div>
 
-						<div className="flex gap-[35px] mb-2">
+						<div className="flex gap-[35px] mb-1.5">
 							<p>2.2.4</p>
 
 							<p className="text-justify">
@@ -57,7 +60,7 @@ const PageFive = () => {
 							</p>
 						</div>
 
-						<div className="flex gap-[35px] mb-2">
+						<div className="flex gap-[35px] mb-1.5">
 							<p>2.2.5</p>
 
 							<p className="text-justify">
@@ -68,11 +71,11 @@ const PageFive = () => {
 							</p>
 						</div>
 
-						<div className="flex gap-[35px] mb-2">
+						<div className="flex gap-[35px] mb-1.5">
 							<p>2.2.6</p>
 
 							<div className="text-justify">
-								<p className="mb-2">
+								<p className="mb-1.5">
 									With each Design Phase submittal of the Design Consultant to
 									the Owner, the Design Consultant shall make the following
 									statement in writing:
@@ -94,7 +97,7 @@ const PageFive = () => {
 						</div>
 
 						<div>
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>3.1</p>
 								<p className="text-justify">
 									If any Additional Services are authorized in advance by the
@@ -119,7 +122,7 @@ const PageFive = () => {
 						</div>
 
 						<div>
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>4.1</p>
 								<p className="text-justify">
 									If (a) the Owner abandons the Project, or (b) the Owner has
@@ -137,7 +140,7 @@ const PageFive = () => {
 								</p>
 							</div>
 
-							<div className="flex gap-12 mb-2">
+							<div className="flex gap-12 mb-1.5">
 								<p>4.2</p>
 								<p className="text-justify">
 									If the Design Consultant refuses or fails, except in cases for
@@ -165,22 +168,14 @@ const PageFive = () => {
 									under this Agreement shall be the amount which is equitable
 									under the circumstances. If the Owner and the Design
 									Consultant are unable to agree on the amount to be paid under
-									the foregoing sentence,
+									the
 								</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className=" h-[2.5rem]  flex flex-col justify-end">
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1  ml-auto">
-					<p>5</p>
-				</div>
-			</div>
-		</div>
+		</SmallShortWrapper>
 	);
 };
 

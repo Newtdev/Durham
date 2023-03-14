@@ -1,11 +1,26 @@
+import { SmallShortWrapper } from "./Page10";
+
 const PageNine = () => {
 	return (
-		<div
-			className="text-black font11  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.13]"
-			style={{ height: "10in" }}>
+		// <div
+		// 	className="text-black font11  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.13]"
+		// 	style={{ height: "10in" }}>
+		<SmallShortWrapper num={9}>
 			<div>
 				{/* Page 9 */}
 				<div>
+					<div className="flex gap-9 mb-2">
+						<p>6.17</p>
+						<p className="text-justify">
+							Anti-Nepotism. The Design Consultant warrants that, to the best of
+							its knowledge and in the exercise of due diligence, none of its
+							corporate officers, directors, or trustees and none of its
+							employees who will directly provide services under this Agreement
+							are immediate family members of any member of the Durham Public
+							Schools Board of Education or of any principal or central office
+							staff administrator
+						</p>
+					</div>
 					<div className="ml-[63px] mt-0 mb-2">
 						<p className="text-justify">
 							employed by the Board. For purposes of this provision, purposes of
@@ -59,15 +74,7 @@ const PageNine = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[16.2rem] -mt-6  flex flex-col justify-end">
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1 ml-auto">
-					<p>9</p>
-				</div>
-			</div>
-		</div>
+		</SmallShortWrapper>
 	);
 };
 

@@ -1,9 +1,12 @@
+import { SmallShortWrapper } from "./Page10";
+
 const PageSeven = () => {
 	return (
-		<div
-			className="text-black text-[13.5px]  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.1]"
-			style={{ height: "11in" }}>
-			<div>
+		// <div
+		// 	className="text-black text-[13.5px]  py-[0.8in] mt-[1in] px-[0.6in] leading-[1.1]"
+		// 	style={{ height: "11in" }}>
+		<SmallShortWrapper num={7}>
+			<div className="leading-[1.06]">
 				{/* Page 7 */}
 				<div>
 					<div className="flex gap-12 mb-1.5">
@@ -152,15 +155,7 @@ const PageSeven = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" h-[2.2rem] mt-6  flex flex-col justify-end">
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1 ml-auto">
-					<p>7</p>
-				</div>
-			</div>
-		</div>
+		</SmallShortWrapper>
 	);
 };
 

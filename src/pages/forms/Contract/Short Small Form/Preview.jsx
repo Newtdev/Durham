@@ -31,11 +31,11 @@ const ShortSmall = () => {
 	const [highlighted, setHighlighed] = useState(false);
 	const [showPage, setShowPage] = useState(false);
 	const [awardee, setAwardee] = useState([]);
-	const form_fields = useSelector(fields);
 	const [a] = UseFetchFilledFormDetails(formID);
 	let formData = a?.data;
 	const vendors = formData?.vendors;
 	const project = formData?.project;
+	const form_fields = formData?.form_fields;
 	const durham_profile = formData?.durham_profile;
 
 	const props = {

@@ -132,7 +132,6 @@ const PageTwo = ({ formsDetails, vendor, nottoBeHighlighted }) => {
 											</p>
 											<p className="">
 												<span className={`${nottoBeHighlighted}`}>
-													{console.log(formsDetails)}
 													{`${formsDetails?.city} 
 												${formsDetails?.state + ","} ${formsDetails?.zipCode}`}
 												</span>
