@@ -96,10 +96,10 @@ const PageTen = (props) => {
 						<div>
 							<p className="border-b border-black">
 								<span className={`inline-block ${props?.nottoBeHighlighted}`}>
-									{!props?.form_fields?.signData
+									{!props?.form_fields?.signDate
 										? ""
-										: moment(props?.form_fields?.signData).format(
-												"MMMM, D,YYYY"
+										: moment(props?.form_fields?.signDate).format(
+												"MMMM D, YYYY"
 										  )}
 								</span>
 							</p>
@@ -108,14 +108,6 @@ const PageTen = (props) => {
 					</div>
 				</div>
 			</div>
-			{/* <div className=" h-[27.5rem] -mt-6 flex flex-col justify-end">
-				<div>
-					<p className="text-[10px]">DCA (short form - $100K) 12-15-2020</p>
-				</div>
-				<div className="w-1 ml-auto">
-					<p>10</p>
-				</div>
-			</div> */}
 		</SmallShortWrapper>
 	);
 };

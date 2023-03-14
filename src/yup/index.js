@@ -416,5 +416,5 @@ export const MWBEFormSchema = Yup.object().shape({
 export const ShortSmallFormDesignSchema = Yup.object().shape({
 	agreementDate: Yup.string().required("Field is required"),
 	ownerEmail: Yup.string().required("Field is required"),
-	signDate: Yup.string().required("Field is required"),
+	// signDate: Yup.string().required("Field is required"),
 });
