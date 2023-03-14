@@ -145,17 +145,36 @@ const FormTwo = (props) => {
                           >
                             <CloseIcon />
                           </div>
-
-                          <div className="flex flex-col my-5">
-                            <label className="text-sm text-gray-900 mb-1">
+                          {/* <div className="flex flex-col mb-5">
+                            <label
+                              for="default-radio-1"
+                              className="text-base text-gray-900 mb-1"
+                            >
                               Address
                             </label>
                             <input
                               value={
                                 props.values.location[index].projectAddress
                               }
-                              name="projectAddress"
+                              onChange={props.handleChange}
                               id={`location.${[index]}.projectAddress`}
+                              placeholder="Street"
+                              name="projectAddress"
+                              className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
+                            />
+                            {props.errors.projectAddress &&
+                              props.touched.projectAddress && (
+                                <Error message={props.errors.projectAddress} />
+                              )}
+                          </div> */}
+                          <div className="flex flex-col my-5">
+                            <label className="text-sm text-gray-900 mb-1">
+                              Company Address
+                            </label>
+                            <input
+                              value={props.values.projectAddress}
+                              name="projectAddress"
+                              // id="projectAddress"
                               onChange={props.handleChange}
                               type="text"
                               placeholder="Street"

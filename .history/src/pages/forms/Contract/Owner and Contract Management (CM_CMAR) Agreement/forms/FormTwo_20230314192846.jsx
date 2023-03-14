@@ -148,12 +148,10 @@ const FormTwo = (props) => {
 
                           <div className="flex flex-col my-5">
                             <label className="text-sm text-gray-900 mb-1">
-                              Address
+                              Company Address
                             </label>
                             <input
-                              value={
-                                props.values.location[index].projectAddress
-                              }
+                              value={props.values.projectAddress}
                               name="projectAddress"
                               id={`location.${[index]}.projectAddress`}
                               onChange={props.handleChange}
