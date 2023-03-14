@@ -5,7 +5,7 @@ import { parseDynamicInput } from "../../../../../shared-component";
 
 const Page4 = (props) => {
   const data = parseDynamicInput(props?.form_fields?.location);
-  // console.log(data);
+  console.log(data);
   return (
     <Wrapper>
       <div>
@@ -53,6 +53,14 @@ const Page4 = (props) => {
         </p>
         {data?.map((location, index) => (
           <div className="mb-1">
+            {/* <p class="fp f15">
+              <span class="fgh">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span className={`fgh ${props?.nottoBeHighlighted} `}>
+                  {`${location.projectAddress}`}
+                </span>
+              </span>
+            </p> */}
             <p class="fp f15 ">
               <span class="fgh">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
