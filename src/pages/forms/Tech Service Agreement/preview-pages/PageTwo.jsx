@@ -2,7 +2,7 @@ const PageTwo = () => {
 	return (
 		<div className="" style={{ margin: "1in" }}>
 			<div className="flex mb-2">
-				<span className="pl-20 text-justify ">
+				<span className="pl-[4.5rem] text-justify ">
 					$1,000,000 for each occurrence with an insurer having a “Best
 					Policyholders” rating of B+ or better. DPS BOE shall be added as an
 					additional insured on the Certificate of Insurance. Copies of
@@ -98,7 +98,7 @@ const PageTwo = () => {
 					be considered “work made for hire”
 				</span>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>2</p>
 			</div>

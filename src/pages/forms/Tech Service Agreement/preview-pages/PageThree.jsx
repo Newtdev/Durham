@@ -73,7 +73,7 @@ const PageThree = () => {
 					United States and any foreign
 				</span>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>3</p>
 			</div>

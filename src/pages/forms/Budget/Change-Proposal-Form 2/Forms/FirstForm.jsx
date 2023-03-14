@@ -66,14 +66,14 @@ const SelectDurham = ({ props, index }) => {
 			<FormSelect
 				value={props.values?.signedPerson}
 				name="Select the Owner's representative"
-				id="signedPerson"
-				error={props.errors.signedPerson}
-				touched={props.touched.signedPerson}
+				id="signedContractPerson"
+				error={props.errors.signedContractPerson}
+				touched={props.touched.signedContractPerson}
 				onChange={(e) => {
 					props?.setFieldValue("signedContractPerson", e.target.value);
 					props?.setFieldValue("position", e.target.selectedOptions[0].id);
 				}}>
-				{!props?.values?.signedPerson ? (
+				{!props?.values?.signedContractPerson ? (
 					<option value="">Select Durham Profile</option>
 				) : (
 					<option value={props?.values?.signedContractPerson}>

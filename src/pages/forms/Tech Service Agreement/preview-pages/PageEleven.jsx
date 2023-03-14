@@ -2,10 +2,10 @@ import moment from "moment";
 
 const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 	const durham = !formData?.durham_profile ? "" : formData.durham_profile;
-	const vendor = !awardee[0] ? "" : awardee[0];
+	const vendor = !awardee ? "" : !awardee[0] ? "" : awardee[0];
 	return (
-		<div style={{ margin: "1in" }}>
-			<div className="flex mb-2 mt-96 pt-20 ">
+		<div style={{ margin: "1in", paddingTop: "1in" }}>
+			<div className="flex mb-2  ">
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span>
@@ -78,7 +78,9 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 						</span>
 
 						<span className={`${nottoBeHighlighted}`}>
-							{moment(form_fields.signedDate).format("MMMM D, YYYY ")}
+							{!form_fields?.signedDate
+								? ""
+								: moment(form_fields?.signedDate).format("MMMM D, YYYY ")}
 						</span>
 					</p>
 					<span className="block ">
@@ -89,7 +91,7 @@ const PageEleven = ({ formData, nottoBeHighlighted, awardee, form_fields }) => {
 						<span className="ml-[170px]">Date</span>
 					</p>
 				</div>
-				<div className="w-full flex items-start justify-center mt-40 pt-1">
+				<div className="w-full flex items-start justify-center mt-40 pt-1 courier-font text-[10pt]">
 					{/* PAGE ONE ENDS HERE */}
 					<span>11</span>
 				</div>

@@ -31,6 +31,9 @@ html {
 .narrow-font {
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+.courier-font {
+	font-family: "Courier New", Courier, monospace;
+}
 
 /* @media print {
 	body.printableArea {

@@ -171,7 +171,7 @@ const PageFour = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 						</div>
 					</div>
 
-					<div className="flex justify-between mt-12">
+					<div className="flex justify-between mt-12 text-[8pt]">
 						<p className="text-[10px]">Section C, Owner-Contractor Agreement</p>
 						<p>C-4</p>
 					</div>
