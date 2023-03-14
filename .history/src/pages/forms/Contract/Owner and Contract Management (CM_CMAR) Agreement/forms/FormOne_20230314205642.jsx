@@ -127,14 +127,14 @@ const FormOne = (props) => {
   };
 
   function CheckState() {
-    if (!props.values.conferenceState) {
+    if (!props.values.conferenceStateA) {
       return;
     }
     if (!states) {
       return;
     }
     let stat = Object.values(states)?.find(
-      (state) => state.name === props.values.conferenceState
+      (state) => state.name === props.values.conferenceStateA
     );
     if (!stat) {
       return;
@@ -150,18 +150,18 @@ const FormOne = (props) => {
   }
 
   function CheckZipCode() {
-    if (!props.values.conferenceCity) {
+    if (!props.values.conferenceCityA) {
       return;
     }
     if (!states) {
       return;
     }
     const city = Object.values(states)?.filter(
-      (state) => state.name === props.values.conferenceState
+      (state) => state.name === props.values.conferenceStateA
     );
 
     const zipcode = city?.find((cities) => cities);
-    return zipcode?.cities[props.values.conferenceCity]?.map(
+    return zipcode?.cities[props.values.conferenceCityA]?.map(
       (zipcode, index) => {
         return (
           <option key={index} value={zipcode}>

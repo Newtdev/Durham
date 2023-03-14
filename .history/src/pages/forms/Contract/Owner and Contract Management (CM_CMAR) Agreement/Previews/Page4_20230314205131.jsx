@@ -5,7 +5,7 @@ import { parseDynamicInput } from "../../../../../shared-component";
 
 const Page4 = (props) => {
   const data = parseDynamicInput(props?.form_fields?.location);
-  // console.log(data);
+  console.log(data);
   return (
     <Wrapper>
       <div>

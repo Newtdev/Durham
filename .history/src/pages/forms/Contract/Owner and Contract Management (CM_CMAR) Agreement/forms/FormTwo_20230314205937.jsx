@@ -34,15 +34,15 @@ const FormTwo = (props) => {
   const dispatch = useDispatch();
   const states = useSelector(getList);
 
-  function CheckState(index) {
-    if (!props.values.location[index].projectState) {
+  function CheckState() {
+    if (!props.values.conferenceStateA) {
       return;
     }
     if (!states) {
       return;
     }
     let stat = Object.values(states)?.find(
-      (state) => state.name === props.values.location[index].projectState
+      (state) => state.name === props.values.conferenceStateA
     );
     if (!stat) {
       return;
@@ -57,19 +57,19 @@ const FormTwo = (props) => {
     });
   }
 
-  function CheckZipCode(index) {
-    if (!props.values.location[index].projectCity) {
+  function CheckZipCode() {
+    if (!props.values.conferenceCityA) {
       return;
     }
     if (!states) {
       return;
     }
     const city = Object.values(states)?.filter(
-      (state) => state.name === props.values.location[index].projectState
+      (state) => state.name === props.values.conferenceStateA
     );
 
     const zipcode = city?.find((cities) => cities);
-    return zipcode?.cities[props.values.location[index].projectCity]?.map(
+    return zipcode?.cities[props.values.conferenceCityA]?.map(
       (zipcode, index) => {
         return (
           <option key={index} value={zipcode}>
@@ -198,7 +198,7 @@ const FormTwo = (props) => {
                                 handleChange={props.handleChange}
                                 id={`location.${[index]}.projectCity`}
                                 placeholder="City"
-                                fn={() => CheckState(index)}
+                                fn={() => CheckState()}
                               />
                             </div>
                             <div className="flex-1">
@@ -211,7 +211,7 @@ const FormTwo = (props) => {
                                 id={`location.${[index]}.projectZipCode`}
                                 handleChange={props.handleChange}
                                 placeholder="Zip code"
-                                fn={() => CheckZipCode(index)}
+                                fn={() => CheckZipCode()}
                               />
                             </div>
                           </div>
