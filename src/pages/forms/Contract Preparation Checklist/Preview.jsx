@@ -17,6 +17,7 @@ const Preview = () => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const [highlighted, setHighlighed] = useState(false);
+	const [checked, setChecked] = useState({});
 
 	const formID = useSelector(project_document_id);
 
@@ -29,6 +30,10 @@ const Preview = () => {
 	const durham = a?.data?.durham_profile;
 	// console.log(form_fields);
 
+	const handleChange = (e) => {
+		console.log({ [e.target.name]: e.target.value });
+		setChecked({ ...checked, [e.target.name]: e.target.value });
+	};
 	const downloadComponent = useRef();
 
 	const props = {
@@ -94,7 +99,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.one === "one" ? true : false}
+												name="one"
+												value="one"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -104,7 +112,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.two === "two" ? true : false}
+												name="two"
+												value="two"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -115,7 +126,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.three === "three" ? true : false}
+												name="three"
+												value="three"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -128,7 +142,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.four === "four" ? true : false}
+												name="four"
+												value="four"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -141,7 +158,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.five === "five" ? true : false}
+												name="five"
+												value="five"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -151,7 +171,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.six === "six" ? true : false}
+												name="six"
+												value="six"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -164,7 +187,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.seven === "seven" ? true : false}
+												name="seven"
+												value="seven"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -174,7 +200,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.eight === "eight" ? true : false}
+												name="eight"
+												value="eight"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -187,7 +216,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.nine === "nine" ? true : false}
+												name="nine"
+												value="nine"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -199,7 +231,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.ten === "ten" ? true : false}
+												name="ten"
+												value="ten"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -209,7 +244,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.eleven === "eleven" ? true : false}
+												name="eleven"
+												value="eleven"
 												class="h-full w-full bg-gray-100 "
 											/>
 										</div>
@@ -219,7 +257,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.twelve === "twelve" ? true : false}
+												name="twelve"
+												value="twelve"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -229,7 +270,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.thirteen === "thirteen" ? true : false}
+												name="thirteen"
+												value="thirteen"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -242,7 +286,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.fourteen === "fourteen" ? true : false}
+												name="fourteen"
+												value="fourteen"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -252,7 +299,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.fifteen === "fifteen" ? true : false}
+												name="fifteen"
+												value="fifteen"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -262,7 +312,10 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={checked.sixteen === "sixteen" ? true : false}
+												name="sixteen"
+												value="sixteen"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -272,7 +325,12 @@ const Preview = () => {
 										<div className="h-8 w-8 border-2 border-red-500 flex justify-center items-center">
 											<input
 												type="checkbox"
-												value=""
+												onChange={handleChange}
+												checked={
+													checked.seventeen === "seventeen" ? true : false
+												}
+												name="seventeen"
+												value="seventeen"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -280,7 +338,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="flex gap-4">
+								<div className="flex items-center mt-16 gap-4">
 									<div>
 										<p
 											className={`w-[30rem] border-b border-black ${nottoBeHighlighted}`}>
@@ -291,7 +349,9 @@ const Preview = () => {
 									</div>
 									<div>
 										<p
-											className={`inline-block w-24 border-b border-black ${nottoBeHighlighted}`}>
+											className={` w-24 border-b border-black ${nottoBeHighlighted} ${
+												!form_fields?.signDate ? "mt-5" : ""
+											}`}>
 											{!form_fields?.signDate
 												? ""
 												: moment(form_fields?.signDate).format("MMMM D, YYYY")}

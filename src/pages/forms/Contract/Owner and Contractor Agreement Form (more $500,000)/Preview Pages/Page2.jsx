@@ -76,7 +76,8 @@ const PageTwo = ({ formDetails, vendors, nottoBeHighlighted }) => {
 									<p className="ml-[22px]">
 										<span className={`${nottoBeHighlighted}`}>
 											{/* {pra} */}
-											{!modifications ? (
+
+											{!modifications || modifications.length < 1 ? (
 												"N/A"
 											) : (
 												<ListObject data={modifications} />
@@ -93,7 +94,11 @@ const PageTwo = ({ formDetails, vendors, nottoBeHighlighted }) => {
 										in the Contract Sum in Section 5.1 below:
 									</p>
 									<p className="ml-[22px]">
-										{!allowances ? "N/A" : <List data={allowances} />}
+										{!allowances || allowances.length < 1 ? (
+											"N/A"
+										) : (
+											<List data={allowances} />
+										)}
 									</p>
 								</div>
 							</div>
