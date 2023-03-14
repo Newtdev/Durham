@@ -101,6 +101,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
           projectState: "",
           projectCity: "",
           projectZipCode: "",
+          projectAddress: "",
         },
       ],
     },
@@ -119,7 +120,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
     },
   });
 
-  console.log(formik.values);
+  // console.log(formik.values);
 
   useEffect(() => {
     (async function () {

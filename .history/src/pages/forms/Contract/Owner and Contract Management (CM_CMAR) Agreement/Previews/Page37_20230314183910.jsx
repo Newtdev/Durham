@@ -166,9 +166,9 @@ const Page37 = (props) => {
             established for final completion of the Project, the CM shall pay or
             Owner will retain from the compensation otherwise to be paid to the
             CM the sum of{" "}
-            <span className={`${props?.nottoBeHighlighted} `}>{`${currency(
-              props?.form_fields?.finalAmount
-            ).format()}`}</span>{" "}
+            <span
+              className={`${props?.nottoBeHighlighted} `}
+            >{`$${props?.form_fields?.finalAmount}`}</span>{" "}
             as final completion liquidated damages. &nbsp;This amount is agreed
             upon as a reasonable and proper measure of damages the Owner will
             sustain due to the delay in the completion of all remedial work, the

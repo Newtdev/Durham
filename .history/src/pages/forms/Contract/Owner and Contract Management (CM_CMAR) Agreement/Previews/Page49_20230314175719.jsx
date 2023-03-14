@@ -171,7 +171,7 @@ const Page49 = (props) => {
         <p class="fp f15 f17 p-[1.5rem]" style={{ textDecoration: "none" }}>
           <span class="f3">
             <span className={`${props.nottoBeHighlighted}`}>
-              {` ${props?.form_fields?.conferenceState}, ${props?.form_fields?.conferenceCity} ${props?.form_fields?.conferenceZipCode}`}
+              {` ${props?.form_fields?.conferenceAddress?.city}, ${props?.form_fields?.conferenceAddress?.state} ${props?.form_fields?.conferenceAddress?.zip_code}`}
             </span>
           </span>
         </p>

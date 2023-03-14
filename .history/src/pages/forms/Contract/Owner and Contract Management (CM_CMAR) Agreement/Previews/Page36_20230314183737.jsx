@@ -299,9 +299,9 @@ const Page36 = (props) => {
               props?.form_fields?.constructionAmount
             )}`}</span>
             dollars (
-            <span className={`${props?.nottoBeHighlighted} `}>{`${currency(
-              props?.form_fields?.constructionAmount
-            ).format()}`}</span>
+            <span
+              className={`${props?.nottoBeHighlighted} `}
+            >{`$${props?.form_fields?.constructionAmount}`}</span>
             ). &nbsp;In the event there are changes in the work that require an
             adjustment in the CM&rsquo;s construction/post-construction fee, the
             fee adjustment shall be based upon{" "}
