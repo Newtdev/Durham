@@ -99,7 +99,7 @@ const FormTwo = (props) => {
                     {}
                     <input
                       // {...projectName}
-                      value={props.values.projectName}
+                      // value={props.values.projectName}
                       onChange={props.handleChange}
                       name="projectName"
                       placeholder="Project Name"
@@ -111,7 +111,7 @@ const FormTwo = (props) => {
                     )}
                   </div>
 
-                  {props?.values?.location?.map((cur, index) => (
+                  {props?.values?.location.map((cur, index) => (
                     <Fragment key={index}>
                       <div className="">
                         <p className="text-gray-600 font-bold text-lg mb-1">
@@ -125,9 +125,7 @@ const FormTwo = (props) => {
                           <div className="grid grid-cols-3 gap-x-4">
                             <FormInputContainer name="">
                               <FormSelect
-                                value={
-                                  props.values.location[index].projectState
-                                }
+                                value=""
                                 name="projectState"
                                 id={`location.${[index]}.projectState`}
                                 onChange={props.handleChange}
@@ -158,7 +156,7 @@ const FormTwo = (props) => {
 
                             <FormInputContainer name="">
                               <FormSelect
-                                value={props.values.location[index].projectCity}
+                                value=""
                                 name="projectCity"
                                 id={`location.${[index]}.projectCity`}
                                 onChange={props.handleChange}

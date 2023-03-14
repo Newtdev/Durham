@@ -111,7 +111,7 @@ const FormTwo = (props) => {
                     )}
                   </div>
 
-                  {props?.values?.location?.map((cur, index) => (
+                  {props?.values?.location.map((cur, index) => (
                     <Fragment key={index}>
                       <div className="">
                         <p className="text-gray-600 font-bold text-lg mb-1">

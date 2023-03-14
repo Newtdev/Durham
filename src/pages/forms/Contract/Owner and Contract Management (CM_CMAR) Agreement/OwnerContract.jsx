@@ -8,7 +8,7 @@ import { ModalOverlay } from "../../../../ui";
 import { OwnerContractManageMent } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../../reducer";
+import { modal } from "../../reducer";
 import FormFour from "./forms/FormFour";
 import FormOne from "./forms/FormOne";
 import FormThree from "./forms/FormThree";
@@ -32,13 +32,32 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
   const formID = useSelector(project_document_id);
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   const [a] = UseFetchFilledFormDetails(formID);
+  const handleResult = (res) => {
+    let dynamic = [];
+    let b = [];
+
+    if (!res) return null;
+
+    Object.entries(res).forEach((d, i) => {
+      if (Array.isArray(d[1])) {
+        dynamic = [
+          ...dynamic,
+          { field_name: d[0], field_value: JSON.stringify(d[1]) },
+        ];
+      } else {
+        b = [...b, { field_name: d[0], field_value: d[1] }];
+      }
+    });
+    return [...b, ...dynamic];
+  };
 
   const HandleSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
     const response = await fillProjectDocument({
       project_document_id: formID,
       // form_fields: handleResultWithArray(values),
-      form_fields: setResult(values),
+      // form_fields: setResult(values),
+      form_fields: handleResult(values),
     });
     if (response) {
       if (response?.error) {
@@ -85,6 +104,7 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
         },
       ],
     },
+
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
       if (pages === 1) {
@@ -98,6 +118,8 @@ const OwnerContractorManagementForm = ({ id, filled }) => {
       }
     },
   });
+
+  console.log(formik.values);
 
   useEffect(() => {
     (async function () {
