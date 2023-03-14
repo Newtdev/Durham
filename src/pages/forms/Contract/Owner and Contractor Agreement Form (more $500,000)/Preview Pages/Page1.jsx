@@ -1,5 +1,4 @@
 import moment from "moment";
-import { Children } from "react";
 import { YearsInWord } from "../../../../../shared-component";
 
 export const PageWrapper = ({ children, num }) => {

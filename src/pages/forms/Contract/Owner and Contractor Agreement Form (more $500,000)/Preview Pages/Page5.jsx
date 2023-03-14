@@ -7,7 +7,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 		// 	<div>
 		// 		{/* Page 5 */}
 		// 		<div className="m-[1in]  flex flex-col justify-between">
-		<PageWrapper>
+		<PageWrapper num={5}>
 			<div>
 				<div className="border-4 border-gray-300 p-2 mb-4 w-1/2">
 					<div className="flex gap-12">
