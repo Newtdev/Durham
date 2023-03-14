@@ -216,7 +216,7 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="State"
-                                inputname={`location.${[index]}.projectState`}
+                                inputname="projectState"
                                 value={
                                   props.values.location[index].projectState
                                 }
@@ -229,7 +229,7 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="City"
-                                inputname={`location.${[index]}.projectCity`}
+                                inputname="projectCity"
                                 value={props.values.location[index].projectCity}
                                 handleChange={props.handleChange}
                                 id={`location.${[index]}.projectCity`}
@@ -240,7 +240,7 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="Zip code"
-                                inputname={`location.${[index]}.projectZipCode`}
+                                inputname="projectZipCode"
                                 value={
                                   props.values.location[index].projectZipCode
                                 }

@@ -43,7 +43,7 @@ const Page4 = (props) => {
             locations are as follows:
           </span>
         </p>
-        <p class="fp f15" style={{ marginBottom: "0.25rem" }}>
+        <p class="fp f15 mb-1">
           <span class="fgh">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className={`fgh ${props?.nottoBeHighlighted} `}>
