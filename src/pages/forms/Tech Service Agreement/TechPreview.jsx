@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import {
@@ -35,7 +34,7 @@ const TechPreview = (data) => {
 	const formID = useSelector(project_document_id);
 	const [a] = UseFetchFilledFormDetails(formID);
 	const [awardee, setAwardee] = useState([]);
-	const [showPage, setShowPage] = useState(true);
+	const [showPage, setShowPage] = useState(false);
 	const [highlighted, setHighlighed] = useState(false);
 	let formData = a?.data;
 	const vendors = formData?.vendors;
@@ -59,7 +58,9 @@ const TechPreview = (data) => {
 		if (!vendors || !form_fields?.addressCopy) {
 			return;
 		}
-		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
+		const data = vendors?.filter(
+			(cur) => cur.company_name === form_fields.addressCopy
+		);
 		if (!data) {
 			setAwardee(vendors[0]);
 		} else {

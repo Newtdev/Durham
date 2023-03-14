@@ -16,24 +16,21 @@ import Logo from "../../../../assets/formlogo.png";
 import LogoOne from "../../../../assets/Durham.png";
 import { prevStep } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { trucateText } from "../../../../shared-component";
+import { parseDynamicInput, trucateText } from "../../../../shared-component";
 
 const ToApprove = ({ name, nottoBeHighlighted }) => {
 	if (!name) {
 		return null;
 	}
-	return name?.map((person, i) => {
+	const approvalPerson = parseDynamicInput(name);
+	return approvalPerson?.map((person, i) => {
 		return (
 			<div key={i} className="grid grid-cols-4 gap-4 mb-3">
 				<div>
 					<p>
-						<span className={`${nottoBeHighlighted}`}>
-							Durham Public Schools
-						</span>
+						<span className={`${nottoBeHighlighted}`}>{person?.database}</span>
 					</p>
-					<p className="border-t border-black">
-						<i className="text-[7pt]">Durham Public Schools</i>
-					</p>
+					<p className="border-t border-black"></p>
 				</div>
 				<div>
 					<p>
@@ -107,8 +104,8 @@ const ChangeOrderForm = () => {
 		// close: closeDownload,
 	};
 	const school = "Durham Public Schools";
-	const design = "NOT VALID UNTIL SIGNED BY DESIGNER";
-	const contractorlength = design.length;
+	const design = undefined;
+	const contractorlength = design;
 	// const contractorlength = awardee?.contractor?.company_name?.length;
 	const designlength = awardee?.design?.company_name?.length;
 	const schoollength = school?.length;
@@ -526,9 +523,9 @@ const ChangeOrderForm = () => {
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
 													<p>
-														{/* {awardee?.contractor?.company_name || ""} */}
-														NOT VALID UNTIL SIGNED BY DESIGNER
-														<span className={`${nottoBeHighlighted}`}></span>
+														{awardee?.contractor?.company_name || ""}
+														<span
+															className={`inline-block ${nottoBeHighlighted}`}></span>
 													</p>
 													<p className="border-t border-black ">
 														<i className="text-[7pt]">Contractor</i>
@@ -575,7 +572,7 @@ const ChangeOrderForm = () => {
 														className={`border-b border-black ${
 															contractorlength > 25
 																? "mt-4"
-																: contractorlength === 0
+																: contractorlength < 1
 																? ""
 																: contractorlength <= 25
 																? ""
@@ -625,10 +622,10 @@ const ChangeOrderForm = () => {
 													</p>
 												</div>
 											</div>
-											{/* <ToApprove
+											<ToApprove
 												name={forms_fields?.persons}
 												nottoBeHighlighted={nottoBeHighlighted}
-											/> */}
+											/>
 
 											<div className="grid grid-cols-4 gap-4">
 												<div>

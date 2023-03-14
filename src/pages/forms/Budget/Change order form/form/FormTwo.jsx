@@ -333,7 +333,7 @@ const FormTwo = (props) => {
 												className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
 												type="button"
 												disabled={
-													props?.values?.persons.length < 1 ? true : false
+													props?.values?.persons?.length === 3 ? true : false
 												}
 												onClick={() =>
 													push({

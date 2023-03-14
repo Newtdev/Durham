@@ -13,7 +13,7 @@ const Forms = (props) => {
 	const dispatch = useDispatch();
 	const formID = useSelector(project_document_id);
 	const response = useFetchFilledFormQuery(formID);
-	const [length, setLength] = useState(0);
+	const [vendor, setVendor] = useState([]);
 
 	const creationDate = {
 		...props,
@@ -84,19 +84,11 @@ const Forms = (props) => {
 	};
 
 	useEffect(() => {
-		if (!response?.data?.data) {
+		if (!response?.data) {
 			return;
 		}
-		setLength(response?.data?.data?.vendors.length);
-		// console.log(response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('calculatePayment',response?.data?.data?.form_fields.calculatePayment)
-		// props.setFieldValue('allowablePayment',response?.data?.data?.form_fields.allowablePayment)
-		// props.setFieldValue('reimburseObligation',response?.data?.data?.form_fields.reimburseObligation)
-		// props.setFieldValue('providerCompensation',response?.data?.data?.form_fields.providerCompensation)
-		// props.setFieldValue('signedDocument',response?.data?.data?.form_fields.signedDocument)
-		// props.setFieldValue('providerInvoice',response?.data?.data?.form_fields.providerInvoice)
-		// props.setFieldValue('type',response?.data?.data?.form_fields.type)
-	}, [response?.data?.data]);
+		setVendor(response?.data?.data?.vendors);
+	}, [response?.data]);
 
 	return (
 		<div>
@@ -126,26 +118,28 @@ const Forms = (props) => {
 						</div>
 
 						<div className="mx-6 mt-4 mb-12">
-							{console.log(length)}
-							{length < 2 ? null : (
-								<FormInputContainer name="With whom are you entering into the agreement?">
-									<FormSelect {...addressCopy}>
-										{!props.values.addressCopy ? (
-											<option>Select</option>
-										) : (
-											<option value={props.values.addressCopy}>
-												{props.values.addressCopy}
-											</option>
-										)}
-										<option value="Design Consultant">Design Consultant</option>
+							<FormInputContainer name="With whom are you entering into the agreement?">
+								<FormSelect {...addressCopy}>
+									{!props.values.addressCopy ? (
+										<option>Select</option>
+									) : (
+										<option value={props.values.addressCopy}>
+											{props.values.addressCopy}
+										</option>
+									)}
+									{vendor?.map((d, i) => {
+										return (
+											<option value={d?.company_name}>{d?.company_name}</option>
+										);
+									})}
+									{/* <option value="Design Consultant">Design Consultant</option>
 										<option value="Contractor">Contractor</option>
 										<option value="Engineering">Engineering</option>
 										<option value="Construction Manager">
 											Construction Manager
-										</option>
-									</FormSelect>
-								</FormInputContainer>
-							)}
+										</option> */}
+								</FormSelect>
+							</FormInputContainer>
 							<FormInputContainer name="When does the agreement go into effect?">
 								<SelectDate {...creationDate} />
 								{props.errors.creationDate && props.touched.creationDate && (
