@@ -140,7 +140,7 @@ const FormTwo = (props) => {
                       <div>
                         <div>
                           <div
-                            className="w-10 ml-auto mt-1 cursor-pointer"
+                            className="w-10 ml-auto cursor-pointer"
                             onClick={() => arrayHelpers.remove(index)}
                           >
                             <CloseIcon />
@@ -247,7 +247,6 @@ const FormTwo = (props) => {
                       }
                       className={`text-white text-sm font-semibold px-4 hover:bg-blue-800 bg-[#693B79] transition-all focus:outline-none text-center rounded h-8`}
                       type="button"
-                      disabled={props.values.location.length >= 5}
                     >
                       ADD MORE LOCATION
                     </button>
