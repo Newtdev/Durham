@@ -7,7 +7,7 @@ import {
 	useFillProjectDocumentMutation,
 } from "../../../features/services/api";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
-import { setResult } from "../../../shared-component";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import { notice_of_award_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { NoticeofAwardSchema } from "../../../yup";
@@ -68,9 +68,24 @@ const NoticeOfAwardConsultant = ({ id, filled }) => {
 		if (!a?.data) {
 			return;
 		}
-		formik.setFieldValue("amount", a?.data?.form_fields.amount);
-		formik.setFieldValue("services", a?.data?.form_fields.services);
-		formik.setFieldValue("email", a?.data?.form_fields.email);
+		formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+		formik.setFieldValue("services", a?.data?.form_fields?.services);
+		formik.setFieldValue("email", a?.data?.form_fields?.email);
+		formik.setFieldValue(
+			"creationDate",
+			handleSavedDate(a?.data?.form_fields?.creationDate)
+		);
+		formik.setFieldValue(
+			"deliveryDate",
+			handleSavedDate(a?.data?.form_fields?.deliveryDate)
+		);
+		formik.setFieldValue("recipientCopy", a?.data?.form_fields?.recipientCopy);
+		formik.setFieldValue("position", a?.data?.form_fields?.position);
+		formik.setFieldValue("recipientName", a?.data?.form_fields?.recipientName);
+		formik.setFieldValue(
+			"recipientTitle",
+			a?.data?.form_fields?.recipientTitle
+		);
 		formik.setFieldValue("approval", a?.data?.form_fields.approval);
 	}, [a?.data]);
 

@@ -28,7 +28,7 @@ import { prevStep } from "./reducer";
 
 const Preview = () => {
 	const formID = useSelector(project_document_id);
-	const form_fields = useSelector(fields);
+
 	const [awardee, setAwardee] = useState([]);
 	const [showPage, setShowPage] = useState(true);
 
@@ -43,10 +43,11 @@ const Preview = () => {
 	const vendors = a?.data?.vendors;
 	const projectInfo = a?.data?.project;
 	const durham = a?.data?.durham_profile;
+	const form_fields = a?.data?.form_fields;
 
 	const props = {
 		component: downloadComponent,
-		name: "DPS ENGINEERING CONSULTANT SERVICES AGREEMENT",
+		name: "DPS SHORT FORM ENGINEER -ENGINEERING CONTRACT",
 		show: !show ? "hidden" : "block",
 		// stepDefault: stepChoiceDefault,
 		// close: closeDownload,

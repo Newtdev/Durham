@@ -21,7 +21,6 @@ const TableRow = ({ form, nottoBeHighlighted }) => {
 		return;
 	}
 	return form.map((d, i) => {
-		console.log(d);
 		return (
 			<tr className="text-xs">
 				<td

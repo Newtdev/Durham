@@ -47,7 +47,6 @@ const ThirdForm = (props) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				console.log("submitted");
 				dispatch(nextChoiceStep(4));
 			}
 		}

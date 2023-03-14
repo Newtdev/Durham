@@ -78,42 +78,44 @@ const CertificateOfSubstantial = ({ id, filled }) => {
 
 	useEffect(() => {
 		if (!a?.data) {
-			formik.setFieldValue(
-				"purposeOfContract",
-				a?.data?.form_fields?.purposeOfContract
-			);
-			formik.setFieldValue(
-				"involvedInProject",
-				a?.data?.form_fields?.involvedInProject
-			);
-			formik.setFieldValue(
-				"areasCompleted",
-				a?.data?.form_fields?.areasCompleted
-			);
-			formik.setFieldValue("costOfWork", a?.data?.form_fields?.costOfWork);
-			formik.setFieldValue("position", a?.data?.form_fields?.position);
-			formik.setFieldValue("owner", a?.data?.form_fields?.owner);
-			formik.setFieldValue(
-				"responsibility",
-				a?.data?.form_fields?.responsibility
-			);
-			formik.setFieldValue(
-				"estimatedCost",
-				a?.data?.form_fields?.estimatedCost
-			);
-			formik.setFieldValue(
-				"contractEffectDate",
-				handleSavedDate(a?.data?.form_fields?.contractEffectDate)
-			);
-			formik.setFieldValue(
-				"workCompletionDate",
-				a?.data?.form_fields?.workCompletionDate
-			);
-			formik.setFieldValue(
-				"signedDate",
-				handleSavedDate(a?.data?.form_fields?.signedDate)
-			);
+			return;
 		}
+		formik.setFieldValue(
+			"purposeOfContract",
+			a?.data?.form_fields?.purposeOfContract
+		);
+		formik.setFieldValue(
+			"involvedInProject",
+			a?.data?.form_fields?.involvedInProject
+		);
+		formik.setFieldValue(
+			"areasCompleted",
+			a?.data?.form_fields?.areasCompleted
+		);
+		formik.setFieldValue("costOfWork", a?.data?.form_fields?.costOfWork);
+		formik.setFieldValue("position", a?.data?.form_fields?.position);
+		formik.setFieldValue("owner", a?.data?.form_fields?.owner);
+		formik.setFieldValue(
+			"responsibility",
+			a?.data?.form_fields?.responsibility
+		);
+		formik.setFieldValue("estimatedCost", a?.data?.form_fields?.estimatedCost);
+		formik.setFieldValue(
+			"contractEffectDate",
+			handleSavedDate(a?.data?.form_fields?.contractEffectDate)
+		);
+		formik.setFieldValue(
+			"workCompletionDate",
+			a?.data?.form_fields?.workCompletionDate
+		);
+		formik.setFieldValue(
+			"signedDate",
+			handleSavedDate(a?.data?.form_fields?.signedDate)
+		);
+		formik.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields?.completionDate)
+		);
 	}, [a?.data]);
 
 	if (!filled) {

@@ -1,8 +1,10 @@
 import { useFormik } from "formik";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
-import { setResult } from "../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import { notice_of_intent_consultant } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { NoticeConsultant } from "../../../yup";
@@ -20,6 +22,7 @@ const NoticeOfIntentConsultant = ({ id, filled }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -57,6 +60,27 @@ const NoticeOfIntentConsultant = ({ id, filled }) => {
 		isLoading,
 	};
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+
+		formik.setFieldValue("approval", a?.data?.form_fields.approval);
+
+		formik.setFieldValue("projectAmount", a?.data?.form_fields.projectAmount);
+		formik.setFieldValue(
+			"creationDate",
+			handleSavedDate(a?.data?.form_fields.creationDate)
+		);
+		formik.setFieldValue(
+			"approvalDate",
+			handleSavedDate(a?.data?.form_fields.approvalDate)
+		);
+		formik.setFieldValue(
+			"deliveryDate",
+			handleSavedDate(a?.data?.form_fields.deliveryDate)
+		);
+	}, [a?.data]);
 	if (!filled) {
 		return (
 			<ModalOverlay show={id === notice_of_intent_consultant && show}>

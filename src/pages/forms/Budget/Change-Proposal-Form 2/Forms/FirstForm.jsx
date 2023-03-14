@@ -10,7 +10,7 @@ import SelectDate, { FormInputPlain, FormSelect } from "../../../components";
 import { FormInputContainer } from "../../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../../reducer";
 
-const AddNewRep = (props) => {
+const AddNewRep = ({ props }) => {
 	return (
 		<div>
 			<FormInputContainer name="">
@@ -19,8 +19,11 @@ const AddNewRep = (props) => {
 				</label>
 				<FormInputPlain
 					type={"text"}
-					onChange={props.handleChange}
-					name="signedPerson"
+					onChange={(e) =>
+						props.setFieldValue("signedContractPerson", e.target.value)
+					}
+					name="signedContractPerson"
+					value={props?.values?.signedContractPerson}
 					placeholder={"Enter Owner’s Representative Title"}
 				/>
 			</FormInputContainer>
@@ -47,7 +50,7 @@ const SelectDurham = ({ props, index }) => {
 
 	useEffect(() => {
 		if (!durhamProfile) {
-			return null;
+			return;
 		}
 
 		const data = durhamProfile?.filter(
@@ -67,14 +70,14 @@ const SelectDurham = ({ props, index }) => {
 				error={props.errors.signedPerson}
 				touched={props.touched.signedPerson}
 				onChange={(e) => {
-					props?.setFieldValue("signedPerson", e.target.value);
+					props?.setFieldValue("signedContractPerson", e.target.value);
 					props?.setFieldValue("position", e.target.selectedOptions[0].id);
 				}}>
 				{!props?.values?.signedPerson ? (
 					<option value="">Select Durham Profile</option>
 				) : (
-					<option value={props?.values?.signedPerson}>
-						{props?.values?.signedPerson}
+					<option value={props?.values?.signedContractPerson}>
+						{props?.values?.signedContractPerson}
 					</option>
 				)}
 				{durhamNames?.map((dt, i) => {
@@ -106,25 +109,25 @@ const SelectProjectManager = ({ props, index }) => {
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {
-		return null;
+		return;
 	}
 	return (
 		<>
 			<FormSelect
-				value={props.values.signedPerson}
+				value={props.values.signedContractPerson}
 				name="Select the Owner's representative"
-				id="signedPerson"
-				error={props.errors.signedPerson}
-				touched={props.touched.signedPerson}
+				id="signedContractPerson"
+				error={props.errors.signedContractPerson}
+				touched={props.touched.signedContractPerson}
 				onChange={(e) => {
-					props?.setFieldValue("signedPerson", e.target.value);
+					props?.setFieldValue("signedContractPerson", e.target.value);
 					props?.setFieldValue("position", "Project Manager");
 				}}>
-				{!props?.values?.signedPerson ? (
+				{!props?.values?.signedContractPerson ? (
 					<option value="">Select Project Manager</option>
 				) : (
-					<option value={props?.values?.signedPerson}>
-						{props?.values?.signedPerson}
+					<option value={props?.values?.signedContractPerson}>
+						{props?.values?.signedContractPerson}
 					</option>
 				)}
 				{Profile?.map((dt, i) => {

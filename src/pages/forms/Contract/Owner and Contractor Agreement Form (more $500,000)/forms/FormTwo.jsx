@@ -50,7 +50,7 @@ const FormTwo = (props) => {
 
 					{/* Progress */}
 					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-						<div className="bg-[#2F5461] h-2.5 w-1/2"></div>
+						<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
 					</div>
 
 					<div className="mx-6 mb-12">
@@ -134,7 +134,7 @@ const FormTwo = (props) => {
 																props?.values?.modificationArray[index]
 																	.modificationAmount
 															}
-															placeholder="Hereinafter referred to as the 'Project' or 'Work'"
+															placeholder="Total amount for modification"
 														/>
 														{props.errors.modificationAmount &&
 															props.touched.modificationAmount && (
@@ -170,7 +170,7 @@ const FormTwo = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Cancel"
+							name="back"
 							onClick={() => dispatch(prevStep(1))}
 						/>
 						<DashboardButton

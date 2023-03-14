@@ -71,7 +71,6 @@ const CCPRequisitionForm = ({ id, filled }) => {
 			} else if (pages === 2) {
 				dispatch(nextStep(3));
 			} else if (pages === 3) {
-				dispatch(saveFormField(values));
 				// HandleSubmit(values);
 			}
 		},

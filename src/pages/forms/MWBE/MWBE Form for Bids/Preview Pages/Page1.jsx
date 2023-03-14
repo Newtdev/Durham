@@ -1,3 +1,4 @@
+import currency from "currency.js";
 import moment from "moment";
 
 const PageOne = ({ formDetails, nottoBeHighlighted }) => {
@@ -12,7 +13,7 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 							The total value of minority business contracting will be ($ ){" "}
 							<span
 								className={`${nottoBeHighlighted} inline-block border-b border-black`}>
-								{formDetails?.totalValue}
+								{currency(formDetails?.totalValue, { symbol: "" }).format()}
 							</span>
 							.
 						</p>

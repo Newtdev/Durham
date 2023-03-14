@@ -28,7 +28,6 @@ const ProposalForm = ({ id, filled }) => {
 		initialValues: {
 			userType: "",
 			affectedDate: "",
-			signedPerson: "",
 			position: "",
 			overhead: 10,
 			sale: 6.75,
@@ -40,6 +39,7 @@ const ProposalForm = ({ id, filled }) => {
 			bonds: 1.5,
 
 			signedDate: "",
+			signedContractPerson: "",
 			contract: "",
 			contractor: "",
 			proposal: "",
@@ -67,49 +67,49 @@ const ProposalForm = ({ id, filled }) => {
 	});
 
 	useEffect(() => {
-		if (!a?.data) {
+		if (!a?.data?.length < 1) {
 			return;
+		} else {
+			Formik.setFieldValue("userType", a?.data?.form_fields?.userType);
+			Formik.setFieldValue("signedPerson", a?.data?.form_fields?.signedPerson);
+			Formik.setFieldValue("position", a?.data?.form_fields?.position);
+			// Formik.setFieldValue("overhead", a?.data?.form_fields?.overhead);
+			// Formik.setFieldValue("profit", a?.data?.form_fields?.profit);
+			// Formik.setFieldValue("allowable", a?.data?.form_fields?.allowable);
+			// Formik.setFieldValue(
+			// 	"overhead_exprimental",
+			// 	a?.data?.form_fields?.overhead_exprimental
+			// );
+			// Formik.setFieldValue(
+			// 	"profit_subcontractor",
+			// 	a?.data?.form_fields?.profit_subcontractor
+			// );
+			// Formik.setFieldValue("bonds", a?.data?.form_fields?.bonds);
+			Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
+			Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
+			Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
+			Formik.setFieldValue("numberDays", a?.data?.form_fields?.numberDays);
+			Formik.setFieldValue("material", a?.data?.form_fields?.material);
+			Formik.setFieldValue("shipping", a?.data?.form_fields?.shipping);
+			Formik.setFieldValue("hours", a?.data?.form_fields?.hours);
+			Formik.setFieldValue(
+				"affectedDate",
+				handleSavedDate(a?.data?.form_fields?.affectedDate)
+			);
+			Formik.setFieldValue(
+				"signedDate",
+				handleSavedDate(a?.data?.form_fields?.signedDate)
+			);
+			Formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+			Formik.setFieldValue("Tamount", a?.data?.form_fields?.Tamount);
+			Formik.setFieldValue("Thours", a?.data?.form_fields?.Thours);
+			Formik.setFieldValue("rental", a?.data?.form_fields?.rental);
+			Formik.setFieldValue(
+				"subcontractors",
+				a?.data?.form_fields?.subcontractors
+			);
+			// Formik.setFieldValue("items", a?.data?.form_fields?.items);
 		}
-
-		Formik.setFieldValue("userType", a?.data?.form_fields.userType);
-		Formik.setFieldValue("signedPerson", a?.data?.form_fields.signedPerson);
-		Formik.setFieldValue("position", a?.data?.form_fields.position);
-		Formik.setFieldValue("overhead", a?.data?.form_fields.overhead);
-		Formik.setFieldValue("profit", a?.data?.form_fields.profit);
-		Formik.setFieldValue("allowable", a?.data?.form_fields.allowable);
-		Formik.setFieldValue(
-			"overhead_exprimental",
-			a?.data?.form_fields.overhead_exprimental
-		);
-		Formik.setFieldValue(
-			"profit_subcontractor",
-			a?.data?.form_fields.profit_subcontractor
-		);
-		Formik.setFieldValue("bonds", a?.data?.form_fields.bonds);
-		Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
-		Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
-		Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
-		Formik.setFieldValue("numberDays", a?.data?.form_fields?.numberDays);
-		Formik.setFieldValue("material", a?.data?.form_fields?.material);
-		Formik.setFieldValue("shipping", a?.data?.form_fields?.shipping);
-		Formik.setFieldValue("hours", a?.data?.form_fields?.hours);
-		Formik.setFieldValue(
-			"affectedDate",
-			handleSavedDate(a?.data?.form_fields?.affectedDate)
-		);
-		Formik.setFieldValue(
-			"signedDate",
-			handleSavedDate(a?.data?.form_fields?.signedDate)
-		);
-		Formik.setFieldValue("amount", a?.data?.form_fields?.amount);
-		Formik.setFieldValue("Tamount", a?.data?.form_fields?.Tamount);
-		Formik.setFieldValue("Thours", a?.data?.form_fields?.Thours);
-		Formik.setFieldValue("rental", a?.data?.form_fields?.rental);
-		Formik.setFieldValue(
-			"subcontractors",
-			a?.data?.form_fields?.subcontractors
-		);
-		Formik.setFieldValue("items", a?.data?.form_fields?.items);
 	}, [a?.data]);
 
 	if (!filled) {

@@ -47,7 +47,6 @@ export const HandleSubTotal = (...val) => {
 
 		let sum = 0;
 		for (let i of val) {
-			console.log(i);
 			sum = sum += Number(i);
 		}
 		return sum;

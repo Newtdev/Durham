@@ -97,8 +97,15 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 							<div className="flex justify-between mb-4">
 								<p>
 									Date:{" "}
-									<span className={`${nottoBeHighlighted}`}>
-										{moment(formDetails?.ownerRepDate).format("MMMM D, YYYY")}
+									<span
+										className={`${nottoBeHighlighted} border-b inline-block border-black ${
+											!formDetails?.ownerRepDate ? "w-12" : ""
+										}`}>
+										{!formDetails?.ownerRepDate
+											? ""
+											: moment(formDetails?.ownerRepDate).format(
+													"MMMM D, YYYY"
+											  )}
 									</span>
 								</p>
 								<p>

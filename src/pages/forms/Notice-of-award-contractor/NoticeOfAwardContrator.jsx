@@ -10,7 +10,7 @@ import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSl
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { toast } from "react-toastify";
 import { nextStep, page } from "./reducer";
-import { setResult } from "../../../shared-component";
+import { handleSavedDate, setResult } from "../../../shared-component";
 import { useEffect } from "react";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -70,6 +70,7 @@ const NoticeOfAwardContrator = ({ id, filled }) => {
 			"contractorContact",
 			a?.data?.form_fields.contractorContact
 		);
+
 		formik.setFieldValue("email", a?.data?.form_fields.email);
 		formik.setFieldValue("phone", a?.data?.form_fields.phone);
 		formik.setFieldValue("recipientCopy", a?.data?.form_fields.recipientCopy);
@@ -77,6 +78,14 @@ const NoticeOfAwardContrator = ({ id, filled }) => {
 		formik.setFieldValue("recipientName", a?.data?.form_fields.recipientName);
 		formik.setFieldValue("recipientTitle", a?.data?.form_fields.recipientTitle);
 		formik.setFieldValue("sendersName", a?.data?.form_fields.sendersName);
+		formik.setFieldValue(
+			"creationDate",
+			handleSavedDate(a?.data?.form_fields.creationDate)
+		);
+		formik.setFieldValue(
+			"approvalDate",
+			handleSavedDate(a?.data?.form_fields.approvalDate)
+		);
 	}, [a?.data]);
 
 	const formProps = {
