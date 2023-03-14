@@ -169,7 +169,9 @@ const PageSeven = ({ formDetails, durham, nottoBeHighlighted, vendor }) => {
 							<div>
 								<p>
 									<span
-										className={`${nottoBeHighlighted} border-b border-black`}>
+										className={`${nottoBeHighlighted} inline-block border-b border-black ${
+											!formDetails?.chairmanSign ? "w-16 mt-3.5" : ""
+										} `}>
 										{!formDetails?.chairmanSign
 											? ""
 											: moment(formDetails?.chairmanSign).format(

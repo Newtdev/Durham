@@ -98,7 +98,10 @@ const PageEight = ({ formDetails, durham, vendor, nottoBeHighlighted }) => {
 						</div>
 						<div>
 							<p>
-								<span className={`${nottoBeHighlighted} border-b border-black`}>
+								<span
+									className={`${nottoBeHighlighted} inline-block border-b border-black ${
+										!formDetails?.chiefFinanceSign ? "w-16 mt-3.5" : ""
+									}`}>
 									{!formDetails?.chiefFinanceSign
 										? ""
 										: moment(formDetails?.chiefFinanceSign).format(
