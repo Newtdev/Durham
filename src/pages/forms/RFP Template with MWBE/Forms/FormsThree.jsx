@@ -86,7 +86,10 @@ const FormThree = (props) => {
       console.log(a?.data?.form_fields);
       // 	he?.decode("a");
     }
-    const b = he?.decode(a?.data?.form_fields?.proposalScope);
+    let b;
+    if (a?.data?.form_fields?.proposalScope) {
+      b = he?.decode(a?.data?.form_fields?.proposalScope);
+    }
     setText(b);
     // }
   }, [a?.data]);
@@ -105,7 +108,7 @@ const FormThree = (props) => {
             e.preventDefault();
             HandleSubmit({
               ...props?.values,
-              proposalScope: htmlencode(text),
+              proposalScope: htmlencode(text) || "",
             });
           }}
         >
@@ -186,12 +189,12 @@ const FormThree = (props) => {
                     {props?.values?.items?.map((item, index) => (
                       <Fragment key={index}>
                         <FormInputContainer>
-                          {/* <div
+                          <div
                             className="w-10 ml-auto mt-1 cursor-pointer"
                             onClick={() => remove(index)}
                           >
                             <CloseIcon />
-                          </div> */}
+                          </div>
                           <FormInputPlain
                             type={"text"}
                             onChange={props.handleChange}
@@ -203,15 +206,18 @@ const FormThree = (props) => {
                       </Fragment>
                     ))}
                     <div className="mt-4">
-                      <p className="text-sm text-[#a1a4aa]">
+                      <h2 className="font-bold border-b w-full border-b-gray-400 pb-1 mb-2">
                         What items should the Vendor include in their RFP
                         responses? Enter the items in the order that the vendor
                         has to set up.
-                      </p>
+                      </h2>
                       <button
                         type="button"
                         className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
                         onClick={() => push({ item: "" })}
+                        disabled={
+                          props?.values?.items?.length > 4 ? true : false
+                        }
                       >
                         ADD ITEMS
                       </button>
