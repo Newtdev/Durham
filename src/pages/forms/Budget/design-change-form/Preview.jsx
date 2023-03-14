@@ -106,6 +106,7 @@ const Preview = () => {
 		// stepDefault,
 		// close: closeDownload,
 	};
+
 	const companynameLength = awardee?.design?.company_name?.length;
 
 	return (
@@ -481,14 +482,14 @@ const Preview = () => {
 													<p
 														className={`border-b border-black ${
 															companynameLength > 19
-																? "pb-2"
+																? "mb-2"
 																: companynameLength === 0
-																? "mt-3.5"
+																? ""
 																: ""
 														}`}>
 														<span
 															className={`${nottoBeHighlighted} text-[9pt]`}>
-															{`${awardee?.design?.company_name || ""}`}
+															{`${awardee?.design?.company_name}`}
 														</span>
 													</p>
 													<p>
@@ -498,10 +499,12 @@ const Preview = () => {
 												<div>
 													<p
 														className={`border-b border-black text-[9pt] ${
-															companynameLength > 19
-																? "pb-2"
+															companynameLength > 25
+																? "mt-4"
 																: companynameLength === 0
-																? "mt-3.5"
+																? "mt-0.5"
+																: companynameLength <= 25
+																? "mt-0.5"
 																: ""
 														}`}>
 														<span className={`${nottoBeHighlighted} `}>
@@ -523,11 +526,11 @@ const Preview = () => {
 
 													<p
 														className={`${
-															companynameLength > 19
-																? "mt-9"
+															companynameLength > 25
+																? "mt-7"
 																: companynameLength === 0
 																? "mt-3.5"
-																: companynameLength <= 19
+																: companynameLength <= 25
 																? "mt-3.5"
 																: ""
 														} border-t border-black`}>
@@ -540,11 +543,11 @@ const Preview = () => {
 													</p>
 													<p
 														className={`${
-															companynameLength > 19
-																? "mt-9"
+															companynameLength > 25
+																? "mt-7"
 																: companynameLength === 0
 																? "mt-3.5"
-																: companynameLength <= 19
+																: companynameLength <= 25
 																? "mt-3.5"
 																: ""
 														} border-t border-black`}>
@@ -581,10 +584,14 @@ const Preview = () => {
 												</div>
 												<div>
 													<p
-														className={`${nottoBeHighlighted} border-b border-black pb-2 text-[9pt]`}>
-														{moment(forms_fields?.signDate).format(
-															"MMMM D, YYYY"
-														)}
+														className={`${nottoBeHighlighted} border-b border-black pb-2 text-[9pt]  ${
+															!forms_fields?.signDate ? "mt-4" : ""
+														}`}>
+														{!forms_fields?.signDate
+															? ""
+															: moment(forms_fields?.signDate).format(
+																	"MMMM D, YYYY"
+															  )}
 													</p>
 													<p>
 														<i className="text-[7pt]">Date</i>
