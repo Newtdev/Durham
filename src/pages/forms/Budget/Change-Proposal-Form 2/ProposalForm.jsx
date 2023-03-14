@@ -76,18 +76,6 @@ const ProposalForm = ({ id, filled }) => {
 				a?.data?.form_fields?.signedContractPerson
 			);
 			Formik.setFieldValue("position", a?.data?.form_fields?.position);
-			// Formik.setFieldValue("overhead", a?.data?.form_fields?.overhead);
-			// Formik.setFieldValue("profit", a?.data?.form_fields?.profit);
-			// Formik.setFieldValue("allowable", a?.data?.form_fields?.allowable);
-			// Formik.setFieldValue(
-			// 	"overhead_exprimental",
-			// 	a?.data?.form_fields?.overhead_exprimental
-			// );
-			// Formik.setFieldValue(
-			// 	"profit_subcontractor",
-			// 	a?.data?.form_fields?.profit_subcontractor
-			// );
-			// Formik.setFieldValue("bonds", a?.data?.form_fields?.bonds);
 			Formik.setFieldValue("contract", a?.data?.form_fields?.contract);
 			Formik.setFieldValue("contractor", a?.data?.form_fields?.contractor);
 			Formik.setFieldValue("proposal", a?.data?.form_fields?.proposal);
@@ -111,7 +99,6 @@ const ProposalForm = ({ id, filled }) => {
 				"subcontractors",
 				a?.data?.form_fields?.subcontractors
 			);
-			// Formik.setFieldValue("items", a?.data?.form_fields?.items);
 		}
 	}, [a?.data]);
 

@@ -242,7 +242,7 @@ const FirstForm = (props) => {
 								<Error message={props.errors.proposal} />
 							)}
 						</div>
-						<div className="flex flex-col mb-5">
+						{/* <div className="flex flex-col mb-5">
 							<label className="text-sm text-gray-900 my-1">
 								Enter the contractor number.
 							</label>
@@ -257,7 +257,7 @@ const FirstForm = (props) => {
 							{props.errors.contractor && props.touched.contractor && (
 								<Error message={props.errors.contractor} />
 							)}
-						</div>
+						</div> */}
 						<label className="text-sm text-gray-900 mb-1">
 							Enter the number of days requested for time extensions and
 							affected date.
