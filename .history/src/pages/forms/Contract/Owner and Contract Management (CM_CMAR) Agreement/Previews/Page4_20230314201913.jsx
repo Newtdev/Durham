@@ -43,7 +43,7 @@ const Page4 = (props) => {
             locations are as follows:
           </span>
         </p>
-        <p class="fp f15" style={{ marginBottom: "0.25rem" }}>
+        <p class="fp f15">
           <span class="fgh">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className={`fgh ${props?.nottoBeHighlighted} `}>
@@ -52,7 +52,7 @@ const Page4 = (props) => {
           </span>
         </p>
         {data?.map((location, index) => (
-          <div className="mb-1">
+          <div className="mb-2">
             <p class="fp f15">
               <span class="fgh">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

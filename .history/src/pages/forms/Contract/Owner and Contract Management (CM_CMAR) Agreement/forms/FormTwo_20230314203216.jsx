@@ -229,7 +229,9 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="City"
-                                inputname={`location.${[index]}.projectCity`}
+                                inputname={
+                                  props.values.location[index].projectCity
+                                }
                                 value={props.values.location[index].projectCity}
                                 handleChange={props.handleChange}
                                 id={`location.${[index]}.projectCity`}

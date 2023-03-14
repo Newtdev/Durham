@@ -34,57 +34,15 @@ const FormTwo = (props) => {
   const dispatch = useDispatch();
   const states = useSelector(getList);
 
-  // function CheckState(index) {
-  //   if (!props.values.location[index].projectState) {
-  //     return;
-  //   }
-  //   let stat = Object.values(states)?.find(
-  //     (state) => state.name === props.values.location[index].projectState
-  //   );
-
-  //   return Object.keys(stat.cities)?.map((cur, id) => {
-  //     return (
-  //       <option key={id} value={cur}>
-  //         {cur}
-  //       </option>
-  //     );
-  //   });
-  // }
-
-  // function CheckZipCode(index) {
-  //   if (!props.values.location[index].projectCity) {
-  //     return;
-  //   }
-  //   const city = Object.values(states)?.filter(
-  //     (state) => state.name === props.values.location[index].projectState
-  //   );
-  //   const zipcode = city?.find((cities) => cities);
-  //   return zipcode.cities[props.values.location[index].projectCity]?.map(
-  //     (zipcode, index) => {
-  //       return (
-  //         <option key={index} value={zipcode}>
-  //           {zipcode}
-  //         </option>
-  //       );
-  //     }
-  //   );
-  // }
-
-  function CheckState() {
-    if (!props.values.conferenceStateA) {
-      return;
-    }
-    if (!states) {
+  function CheckState(index) {
+    if (!props.values.location[index].projectState) {
       return;
     }
     let stat = Object.values(states)?.find(
-      (state) => state.name === props.values.conferenceStateA
+      (state) => state.name === props.values.location[index].projectState
     );
-    if (!stat) {
-      return;
-    }
 
-    return Object.keys(stat?.cities)?.map((cur, id) => {
+    return Object.keys(stat.cities)?.map((cur, id) => {
       return (
         <option key={id} value={cur}>
           {cur}
@@ -93,19 +51,15 @@ const FormTwo = (props) => {
     });
   }
 
-  function CheckZipCode() {
-    if (!props.values.conferenceCityA) {
-      return;
-    }
-    if (!states) {
+  function CheckZipCode(index) {
+    if (!props.values.location[index].projectCity) {
       return;
     }
     const city = Object.values(states)?.filter(
-      (state) => state.name === props.values.conferenceStateA
+      (state) => state.name === props.values.location[index].projectState
     );
-
     const zipcode = city?.find((cities) => cities);
-    return zipcode?.cities[props.values.conferenceCityA]?.map(
+    return zipcode.cities[props.values.location[index].projectCity]?.map(
       (zipcode, index) => {
         return (
           <option key={index} value={zipcode}>
@@ -216,12 +170,11 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="State"
-                                inputname={`location.${[index]}.projectState`}
+                                inputname="projectState"
                                 value={
                                   props.values.location[index].projectState
                                 }
                                 handleChange={props.handleChange}
-                                id={`location.${[index]}.projectState`}
                                 fn={() => GetState(states)}
                                 placeholder="State"
                               />
@@ -229,10 +182,9 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="City"
-                                inputname={`location.${[index]}.projectCity`}
+                                inputname="projectCity"
                                 value={props.values.location[index].projectCity}
                                 handleChange={props.handleChange}
-                                id={`location.${[index]}.projectCity`}
                                 placeholder="City"
                                 fn={() => CheckState()}
                               />
@@ -240,18 +192,17 @@ const FormTwo = (props) => {
                             <div className="flex-1">
                               <DataListComponent
                                 name="Zip code"
-                                inputname={`location.${[index]}.projectZipCode`}
+                                inputname="projectZipCode"
                                 value={
                                   props.values.location[index].projectZipCode
                                 }
-                                id={`location.${[index]}.projectZipCode`}
                                 handleChange={props.handleChange}
                                 placeholder="Zip code"
                                 fn={() => CheckZipCode()}
                               />
                             </div>
                           </div>
-                          {/* <div className="grid grid-cols-3 gap-x-4">
+                          <div className="grid grid-cols-3 gap-x-4">
                             <FormInputContainer name="">
                               <FormSelect
                                 value={
@@ -336,7 +287,7 @@ const FormTwo = (props) => {
                                   />
                                 )}
                             </FormInputContainer>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     </Fragment>
