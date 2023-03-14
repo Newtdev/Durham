@@ -154,7 +154,7 @@ const FormTwo = (props) => {
                               value={
                                 props?.values?.location[index]?.projectAddress
                               }
-                              name={`location.${[index]}.projectAddress`}
+                              name="projectAddress"
                               id={`location.${[index]}.projectAddress`}
                               onChange={props.handleChange}
                               type="text"
@@ -168,7 +168,7 @@ const FormTwo = (props) => {
                                 value={
                                   props.values.location[index].projectState
                                 }
-                                // name="projectState"
+                                name="projectState"
                                 id={`location.${[index]}.projectState`}
                                 onChange={props.handleChange}
                               >
@@ -199,7 +199,7 @@ const FormTwo = (props) => {
                             <FormInputContainer name="">
                               <FormSelect
                                 value={props.values.location[index].projectCity}
-                                // name="projectCity"
+                                name="projectCity"
                                 id={`location.${[index]}.projectCity`}
                                 onChange={props.handleChange}
                               >
@@ -225,7 +225,7 @@ const FormTwo = (props) => {
                                 value={
                                   props.values.location[index].projectZipCode
                                 }
-                                // name="projectZipCode"
+                                name="projectZipCode"
                                 id={`location.${[index]}.projectZipCode`}
                                 onChange={props.handleChange}
                               >
