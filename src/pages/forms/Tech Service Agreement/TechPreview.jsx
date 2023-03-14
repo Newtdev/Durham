@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import DownLoadForm from "../Lundsford/Download";
 // import { prevStep, selectForm, stepDefault } from "../Lundsford/lundsFormslice";
 // print: (iframe: HTMLIframeElement) => {
@@ -33,10 +36,10 @@ const TechPreview = (data) => {
 	const [a] = UseFetchFilledFormDetails(formID);
 	const [awardee, setAwardee] = useState([]);
 	const [showPage, setShowPage] = useState(true);
-	const form_fields = useSelector(fields);
 	const [highlighted, setHighlighed] = useState(false);
 	let formData = a?.data;
 	const vendors = formData?.vendors;
+	const form_fields = formData?.form_fields;
 
 	const props = {
 		component: downloadComponent,
@@ -54,11 +57,14 @@ const TechPreview = (data) => {
 
 	useEffect(() => {
 		if (!vendors || !form_fields?.addressCopy) {
-			setAwardee(vendors);
 			return;
 		}
 		const data = vendors?.filter((cur) => cur.role === form_fields.addressCopy);
-		setAwardee(data);
+		if (!data) {
+			setAwardee(vendors[0]);
+		} else {
+			setAwardee(data);
+		}
 	}, [vendors, form_fields]);
 
 	const pageProps = {
@@ -123,7 +129,10 @@ const TechPreview = (data) => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(techPrevStep())}
+							onClick={() => {
+								dispatch(techPrevStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							onClick={() => {

@@ -107,7 +107,9 @@ const ChangeOrderForm = () => {
 		// close: closeDownload,
 	};
 	const school = "Durham Public Schools";
-	const contractorlength = awardee?.contractor?.company_name?.length;
+	const design = "NOT VALID UNTIL SIGNED BY DESIGNER";
+	const contractorlength = design.length;
+	// const contractorlength = awardee?.contractor?.company_name?.length;
 	const designlength = awardee?.design?.company_name?.length;
 	const schoollength = school?.length;
 	return (
@@ -524,7 +526,8 @@ const ChangeOrderForm = () => {
 											<div className="grid grid-cols-4 gap-4 mb-3">
 												<div>
 													<p>
-														{awardee?.contractor?.company_name || ""}
+														{/* {awardee?.contractor?.company_name || ""} */}
+														NOT VALID UNTIL SIGNED BY DESIGNER
 														<span className={`${nottoBeHighlighted}`}></span>
 													</p>
 													<p className="border-t border-black ">
@@ -535,7 +538,7 @@ const ChangeOrderForm = () => {
 													<p
 														className={`${nottoBeHighlighted} border-b border-black ${
 															contractorlength > 25
-																? "mt-9"
+																? "mt-4"
 																: contractorlength === 0
 																? ""
 																: contractorlength <= 25
@@ -555,7 +558,7 @@ const ChangeOrderForm = () => {
 													<p
 														className={`border-b border-black ${
 															contractorlength > 25
-																? "mt-9"
+																? "mt-4"
 																: contractorlength === 0
 																? ""
 																: contractorlength <= 35
@@ -571,7 +574,7 @@ const ChangeOrderForm = () => {
 													<p
 														className={`border-b border-black ${
 															contractorlength > 25
-																? "mt-9"
+																? "mt-4"
 																: contractorlength === 0
 																? ""
 																: contractorlength <= 25

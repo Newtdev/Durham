@@ -33,7 +33,7 @@ const TechService = ({ id, filled }) => {
 					position: toast.POSITION.TOP_CENTER,
 				});
 			} else {
-				dispatch(techNextStep());
+				dispatch(techNextStep(2));
 			}
 		}
 	};
@@ -63,6 +63,10 @@ const TechService = ({ id, filled }) => {
 		Formik.setFieldValue(
 			"startDate",
 			handleSavedDate(a?.data?.form_fields.startDate)
+		);
+		Formik.setFieldValue(
+			"creationDate",
+			handleSavedDate(a?.data?.form_fields.creationDate)
 		);
 		Formik.setFieldValue(
 			"endDate",

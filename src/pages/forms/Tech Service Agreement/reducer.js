@@ -7,11 +7,11 @@ const TechServiceSlice = createSlice({
 		techStep: 1,
 	},
 	reducers: {
-		techNextStep: (state) => {
-			state.techStep += 1;
+		techNextStep: (state, action) => {
+			state.techStep = action.payload;
 		},
-		techPrevStep: (state) => {
-			state.techStep -= 1;
+		techPrevStep: (state, action) => {
+			state.techStep = action.payload;
 		},
 		techStepDefault: (state) => {
 			state.techStep = 1;
