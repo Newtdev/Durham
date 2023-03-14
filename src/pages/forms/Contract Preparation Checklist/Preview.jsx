@@ -338,7 +338,7 @@ const Preview = () => {
 									</div>
 								</div>
 
-								<div className="flex gap-4">
+								<div className="flex items-center mt-16 gap-4">
 									<div>
 										<p
 											className={`w-[30rem] border-b border-black ${nottoBeHighlighted}`}>
@@ -349,7 +349,9 @@ const Preview = () => {
 									</div>
 									<div>
 										<p
-											className={`inline-block w-24 border-b border-black ${nottoBeHighlighted}`}>
+											className={` w-24 border-b border-black ${nottoBeHighlighted} ${
+												!form_fields?.signDate ? "mt-5" : ""
+											}`}>
 											{!form_fields?.signDate
 												? ""
 												: moment(form_fields?.signDate).format("MMMM D, YYYY")}
