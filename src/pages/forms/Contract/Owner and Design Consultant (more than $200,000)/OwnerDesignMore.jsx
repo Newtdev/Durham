@@ -9,7 +9,7 @@ import { OwnerDesignConsultantMoreSlug } from "../../../../shared-component/slug
 import { ModalOverlay } from "../../../../ui";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../../reducer";
+import { modal } from "../../reducer";
 import FormOne from "./forms/FormOne";
 import FormTwo from "./forms/FormTwo";
 import FormThree from "./forms/FormThree";
@@ -32,8 +32,7 @@ const OwnerDesignMore = ({ id, filled }) => {
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResultWithArray(values).form_fields,
-      dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+      form_fields: handleResultWithArray(values),
     });
     if (response) {
       if (response?.error) {
@@ -60,18 +59,25 @@ const OwnerDesignMore = ({ id, filled }) => {
       state: "",
       city: "",
       zipCode: "",
+      serviceCompensation: "",
       schematicCompletionDate: "",
       constructionCompletionDate: "",
       noticeDate: "",
       substantialCompletionDate: "",
+      schematicPhase: 10,
+      narrativePhase: 5,
+      developmentPhase: 20,
+      constructionContractPhase: 30,
+      negotiationPhase: 5,
+      constructionPhase: 25,
+      constructionServicesPhase: 5,
+      maxCost: 0,
     },
     // validationSchema: OwnerContractManageMent,
     onSubmit: (values) => {
       if (pages === 1) {
-        // console.log(values);
         dispatch(nextStep(2));
       } else if (pages === 2) {
-        // console.log(values);
         dispatch(nextStep(3));
       } else if (pages === 3) {
         dispatch(nextStep(4));
@@ -80,8 +86,6 @@ const OwnerDesignMore = ({ id, filled }) => {
       } else if (pages === 5) {
         dispatch(nextStep(6));
       } else if (pages === 6) {
-        // console.log(values);
-        dispatch(saveFormField(values));
         HandleSubmit(values);
       }
     },
@@ -101,14 +105,13 @@ const OwnerDesignMore = ({ id, filled }) => {
       <ModalOverlay show={id === OwnerDesignConsultantMoreSlug && show}>
         <FormikProvider value={formik}>
           {/* <form onSubmit={formik.handleSubmit}> */}
-          {/* {pages === 1 && <FormOne {...formik} />}
+          {pages === 1 && <FormOne {...formik} />}
           {pages === 2 && <FormTwo {...formik} />}
           {pages === 3 && <FormThree {...formik} />}
           {pages === 4 && <FormFour {...formik} />}
           {pages === 5 && <FormFive {...formik} />}
           {pages === 6 && <FormSix {...props} />}
-          {pages === 7 && <Preview />} */}
-          <Preview />
+          {pages === 7 && <Preview />}
           {/* </form> */}
         </FormikProvider>
       </ModalOverlay>

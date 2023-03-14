@@ -1,7 +1,7 @@
 const PageEight = () => {
 	return (
 		<div className="mt-96 pt-24" style={{ margin: "1in", height: "10in" }}>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<div className="ml-5">
 					<p className="text-justify pl-7">
 						<span>
@@ -18,7 +18,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>15.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -31,7 +31,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>16.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -48,7 +48,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>17.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -67,7 +67,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>18.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -92,7 +92,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>19.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -114,7 +114,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex mb-1">
 				<p>20.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -133,7 +133,7 @@ const PageEight = () => {
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>8</p>
 			</div>

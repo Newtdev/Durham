@@ -162,7 +162,7 @@ const PageTwo = ({ formDetails, vendors, nottoBeHighlighted }) => {
 						{/* ARTICLE 4 */}
 					</div>
 
-					<div className="flex justify-between mt-2 ">
+					<div className="flex justify-between mt-2 text-[8pt]">
 						<p className="text-[10px]">Section C, Owner-Contractor Agreement</p>
 						<p>C-2</p>
 					</div>

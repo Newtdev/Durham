@@ -29,6 +29,7 @@ export const DurhamsApi = createApi({
 		"school",
 		"profile",
 		"duplicate-project",
+		"document",
 	],
 	endpoints: (builder) => ({
 		userLogin: builder.mutation({
@@ -664,7 +665,7 @@ export const DurhamsApi = createApi({
 					body: formInfo,
 				};
 			},
-			// invalidatesTags: ["projects", 'dashboard'],
+			invalidatesTags: ["document"],
 			transformResponse: (response) => response,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
@@ -687,7 +688,7 @@ export const DurhamsApi = createApi({
 					// throw error
 				}
 			},
-			// providesTags: ["projects", 'dashboard'],
+			providesTags: ["document"],
 			// transformResponse: (response) => response.data,
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),

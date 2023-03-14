@@ -46,8 +46,8 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 								{" "}
 								{!formDetails?.boardApprovalDate
 									? ""
-									: moment(formDetails?.boardApprovalDate).format("MMMM ")}
-							</span>
+									: moment(formDetails?.boardApprovalDate).format("MMMM, ")}
+							</span>{" "}
 							<span
 								className={`${nottoBeHighlighted} border-b border-black inline-block ${
 									!formDetails?.boardApprovalDate ? "w-10" : ""
@@ -133,7 +133,7 @@ const PageFive = ({ formDetails, vendor, nottoBeHighlighted, durham }) => {
 						<p>My commission expires:___________</p>
 					</div>
 
-					<div className="flex justify-between items-end h-[33vh] ">
+					<div className="flex justify-between items-end h-[33vh] text-[8pt] ">
 						<p className="text-[10px]">Section C, Owner-Contractor Agreement</p>
 						<p>C-5</p>
 					</div>

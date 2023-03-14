@@ -122,7 +122,7 @@ const PageNine = () => {
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>9</p>
 			</div>

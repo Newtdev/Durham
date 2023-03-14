@@ -249,7 +249,7 @@ const PageThree = ({ formDetails, nottoBeHighlighted }) => {
 						</div>
 					</div>
 
-					<div className="flex justify-between mt-4">
+					<div className="flex justify-between mt-4 text-[8pt]">
 						<p className="text-[10px]">Section C, Owner-Contractor Agreement</p>
 						<p>C-3</p>
 					</div>

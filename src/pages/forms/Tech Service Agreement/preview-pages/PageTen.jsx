@@ -3,7 +3,7 @@ const PageTen = () => {
 		<div
 			className="mt-96 pt-20"
 			style={{ margin: "1in", height: "10in", pageBreakAfter: "auto" }}>
-			<div className="flex mb-2">
+			<div className="flex ">
 				<div className=" ml-7">
 					<p className="text-justify pl-5">
 						<span className="">
@@ -78,7 +78,7 @@ const PageTen = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex mb-2">
+			<div className="flex">
 				<p>27.</p>
 				<div className=" ml-7">
 					<p className="text-justify">
@@ -95,7 +95,7 @@ const PageTen = () => {
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>10</p>
 			</div>

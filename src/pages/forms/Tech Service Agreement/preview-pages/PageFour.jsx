@@ -82,7 +82,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							shall not exceed{" "}
 							<span className="font-bold">
 								<span className={`${nottoBeHighlighted}`}>
-									{currency(form_fields.amount).format()}
+									{currency(form_fields?.amount).format()}
 								</span>
 							</span>{" "}
 							for the period of this contract without prior written consent of
@@ -102,11 +102,11 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 							{" "}
 							This Agreement shall be for the time period between{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{moment(form_fields.startDate).format("MMMM D, YYYY ")}
+								{moment(form_fields?.startDate).format("MMMM D, YYYY ")}
 							</span>{" "}
 							and{" "}
 							<span className={`${nottoBeHighlighted}`}>
-								{moment(form_fields.endDate).format("MMMM D, YYYY ")}{" "}
+								{moment(form_fields?.endDate).format("MMMM D, YYYY ")}{" "}
 							</span>
 							unless terminated earlier as provided herein. The parties may
 							renew
@@ -118,7 +118,7 @@ const PageFour = ({ formData, form_fields, nottoBeHighlighted, awardee }) => {
 					</p>
 				</div>
 			</div>
-			<div className="w-full flex items-center justify-center mt-8">
+			<div className="w-full flex items-center justify-center mt-2 courier-font text-[10pt]">
 				{/* PAGE ONE ENDS HERE */}
 				<p>4</p>
 			</div>
