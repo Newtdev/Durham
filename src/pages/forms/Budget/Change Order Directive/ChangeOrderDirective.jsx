@@ -45,9 +45,9 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 	const formik = useFormik({
 		initialValues: {
 			triggered: "",
-			maxPrice: false,
-			unitPrice: false,
-			exceed: false,
+			maxPrice: "",
+			unitPrice: "",
+			exceed: "",
 			exceedAmount: "",
 			price: "",
 			amount: "",
@@ -78,9 +78,9 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 		}
 
 		formik.setFieldValue("triggered", a?.data?.form_fields.triggered);
-		formik.setFieldValue("maxPrice", a?.data?.form_fields.maxPrice);
-		formik.setFieldValue("unitPrice", a?.data?.form_fields.unitPrice);
-		formik.setFieldValue("exceed", a?.data?.form_fields.exceed);
+		// formik.setFieldValue("maxPrice", a?.data?.form_fields.maxPrice);
+		// formik.setFieldValue("unitPrice", a?.data?.form_fields.unitPrice);
+		// formik.setFieldValue("exceed", a?.data?.form_fields.exceed);
 		formik.setFieldValue("exceedAmount", a?.data?.form_fields.exceedAmount);
 		formik.setFieldValue("price", a?.data?.form_fields.price);
 		formik.setFieldValue("amount", a?.data?.form_fields.amount);
@@ -98,6 +98,7 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 		formik.setFieldValue("position", a?.data?.form_fields.position);
 		formik.setFieldValue("contractTime", a?.data?.form_fields.contractTime);
 	}, [a?.data]);
+
 	if (!filled) {
 		return (
 			<ModalOverlay show={id === ChangeOrderDirective && show}>
