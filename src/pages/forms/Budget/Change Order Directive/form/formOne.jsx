@@ -105,7 +105,13 @@ const FormOne = (props) => {
 										value={props?.values?.maxPrice}
 										name="maxPrice"
 										checked={props?.values?.maxPrice}
-										onChange={props.handleChange}
+										onChange={(e) => {
+											if (e.target.checked) {
+												props.setFieldValue("maxPrice", e.target.checked);
+												props.setFieldValue("amount", "");
+											}
+											props.setFieldValue("maxPrice", e.target.checked);
+										}}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
 									/>
 									<label
@@ -122,7 +128,13 @@ const FormOne = (props) => {
 										name="unitPrice"
 										checked={props?.values?.unitPrice}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={props?.handleChange}
+										onChange={(e) => {
+											if (e.target.checked) {
+												props.setFieldValue("unitPrice", e.target.checked);
+												props.setFieldValue("price", "");
+											}
+											props.setFieldValue("unitPrice", e.target.checked);
+										}}
 									/>
 									<label
 										for="default-checkbox-2"
@@ -138,7 +150,13 @@ const FormOne = (props) => {
 										checked={props?.values?.exceed}
 										name="exceed"
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={props?.handleChange}
+										onChange={(e) => {
+											if (e.target.checked) {
+												props.setFieldValue("exceed", e.target.checked);
+												props.setFieldValue("exceedAmount", "");
+											}
+											props.setFieldValue("exceed", e.target.checked);
+										}}
 									/>
 									<label
 										for="default-checkbox-3"
@@ -151,22 +169,24 @@ const FormOne = (props) => {
 								)}
 							</div>
 
-							<FormInputContainer name={"Amount (Lump Sum Increase)"}>
-								<div className="w-full">
-									<FormInputPlain
-										type={"number"}
-										onChange={props.handleChange}
-										name="amount"
-										placeholder={"$0.00"}
-										value={
-											!props?.values?.maxPrice ? "" : props?.values?.amount
-										}
-									/>
-									{props.errors.amount && props.touched.amount && (
-										<Error message={props.errors.amount} />
-									)}
-								</div>
-							</FormInputContainer>
+							{props?.values?.maxPrice ? (
+								<FormInputContainer name={"Amount (Lump Sum Increase)"}>
+									<div className="w-full">
+										<FormInputPlain
+											type={"number"}
+											onChange={props.handleChange}
+											name="amount"
+											placeholder={"$0.00"}
+											value={
+												props?.values?.maxPrice ? props?.values?.amount : ""
+											}
+										/>
+										{props.errors.amount && props.touched.amount && (
+											<Error message={props.errors.amount} />
+										)}
+									</div>
+								</FormInputContainer>
+							) : null}
 
 							{props?.values?.unitPrice ? (
 								<FormInputContainer name={`Unit price ${value}`}>

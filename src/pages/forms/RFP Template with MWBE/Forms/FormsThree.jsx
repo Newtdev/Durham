@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import RichTextComp from "../../../../Private/PrivateRoute";
-import { setResult, htmlencode } from "../../../../shared-component";
+import {
+  setResult,
+  htmlencode,
+  handleResultWithArray,
+} from "../../../../shared-component";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
@@ -15,10 +19,7 @@ import { nextStep, prevStep } from "../reducer";
 import { FieldArray } from "formik";
 import { Fragment } from "react";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import {
-  parseDynamicInput,
-  handleResultWithArray,
-} from "../../../../shared-component";
+import { parseDynamicInput } from "../../../../shared-component";
 
 import he from "he";
 
