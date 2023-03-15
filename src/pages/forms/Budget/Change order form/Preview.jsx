@@ -170,7 +170,7 @@ const ChangeOrderForm = () => {
 												<i className="text-end">Change Order No:</i>
 											</p>
 											<span className={`${nottoBeHighlighted} ml-[2.5rem]`}>
-												{forms_fields?.number}
+												{forms_fields?.orderNumber}
 											</span>
 										</div>
 										<div className="flex ">
@@ -178,7 +178,7 @@ const ChangeOrderForm = () => {
 												<i>Date:</i>
 											</p>
 											<span className={`${nottoBeHighlighted} ml-[2.5rem]`}>
-												{moment(forms_fields?.creatingDate).format(
+												{moment(forms_fields?.orderCreatingDate).format(
 													"MMMM D, YYYY"
 												)}
 											</span>
@@ -216,7 +216,7 @@ const ChangeOrderForm = () => {
 
 												<p>
 													<span className={`${nottoBeHighlighted} text-[9pt]`}>
-														{trucateText(forms_fields?.description, 50)}
+														{trucateText(forms_fields?.orderDescription, 50)}
 													</span>
 												</p>
 											</div>
@@ -265,26 +265,29 @@ const ChangeOrderForm = () => {
 														<div className="text-center border-r border-r-gray-300 text-[9pt] font-thin">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
-																	{currency(forms_fields?.originalSum).format()}
+																	{currency(
+																		forms_fields?.orderOriginalSum
+																	).format()}
 																</span>
 															</p>
 														</div>
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
-																	{currency(forms_fields?.netSum).format()}
+																	{currency(forms_fields?.orderNetSum).format()}
 																</span>
 															</p>
 														</div>
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span>
-																	{forms_fields?.amountEffect === "Increased"
+																	{forms_fields?.orderAmountEffect ===
+																	"Increased"
 																		? "+"
 																		: "-"}
 																</span>
 																<span className={`${nottoBeHighlighted}`}>
-																	{currency(forms_fields?.amount).format()}
+																	{currency(forms_fields?.orderAmount).format()}
 																</span>
 															</p>
 														</div>
@@ -292,10 +295,10 @@ const ChangeOrderForm = () => {
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
 																	{CalculateAmount(
-																		forms_fields?.originalSum,
-																		forms_fields?.netSum,
-																		forms_fields?.amount,
-																		forms_fields?.amountEffect
+																		forms_fields?.orderOriginalSum,
+																		forms_fields?.orderNetSum,
+																		forms_fields?.orderAmount,
+																		forms_fields?.orderAmountEffect
 																	)}
 																</span>
 															</p>
@@ -354,23 +357,23 @@ const ChangeOrderForm = () => {
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
-																	{moment(forms_fields?.completionDate).format(
-																		"MMMM D, YYYY"
-																	)}
+																	{moment(
+																		forms_fields?.orderCompletionDate
+																	).format("MMMM D, YYYY")}
 																</span>
 															</p>
 														</div>
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
-																	{forms_fields?.priorChangeDays} days
+																	{forms_fields?.orderPriorChangeDays} days
 																</span>
 															</p>
 														</div>
 														<div className=" text-center border-r border-r-gray-300">
 															<p>
 																<span className={`${nottoBeHighlighted}`}>
-																	{forms_fields?.changeDays}
+																	{forms_fields?.orderChangeDays}
 																</span>{" "}
 																Calendar Days
 															</p>
@@ -379,9 +382,9 @@ const ChangeOrderForm = () => {
 															<p className="">
 																<span className={`${nottoBeHighlighted}`}>
 																	{AddDate(
-																		forms_fields?.completionDate,
-																		forms_fields?.priorChangeDays,
-																		forms_fields?.changeDays
+																		forms_fields?.orderCompletionDate,
+																		forms_fields?.orderPriorChangeDays,
+																		forms_fields?.orderChangeDays
 																	)}
 																</span>
 															</p>
@@ -433,9 +436,8 @@ const ChangeOrderForm = () => {
 											NOT VALID UNTIL SIGNED BY DESIGNER (IF APPLICABLE),
 											CONTRACTOR, AND OWNER
 										</p>
-
 										<div>
-											{forms_fields?.approval === "Approved" ? (
+											{forms_fields?.orderApproval === "Yes" ? (
 												<div className="grid grid-cols-4 gap-4 mb-3">
 													<div>
 														<p
@@ -532,13 +534,15 @@ const ChangeOrderForm = () => {
 													</p>
 												</div>
 												<div>
+													<br />
+
 													<p
-														className={`${nottoBeHighlighted} border-b border-black ${
+														className={`${nottoBeHighlighted}  border-b border-black ${
 															contractorlength > 25
 																? "mt-4"
-																: contractorlength === 0
+																: contractorlength < 1
 																? ""
-																: contractorlength <= 25
+																: contractorlength <= 35
 																? ""
 																: ""
 														}`}>
@@ -556,7 +560,7 @@ const ChangeOrderForm = () => {
 														className={`border-b border-black ${
 															contractorlength > 25
 																? "mt-4"
-																: contractorlength === 0
+																: contractorlength < 1
 																? ""
 																: contractorlength <= 35
 																? ""
