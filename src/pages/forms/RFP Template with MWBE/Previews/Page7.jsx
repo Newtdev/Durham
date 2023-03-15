@@ -76,7 +76,7 @@ const Page7 = (props) => {
             and other similar fees. Vendor shall not invoice for any amounts not
             specifically allowed for in this RFP.{" "}
           </span>
-          {props?.form_fields?.attachFileYesOrNo === "Yes" && (
+          {props?.form_fields?.attachmentOcm === "Yes" && (
             <span class={`c22 c80 c68 ${props?.nottoBeHighlighted}`}>
               Complete ATTACHMENT C: PRICING FORM and include in Proposal.
             </span>
