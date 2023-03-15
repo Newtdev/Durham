@@ -156,14 +156,12 @@ const Preview = () => {
                 {showPage && <Page16 />}
                 {showPage && <Page17 />}
                 {showPage && <Page18 />}
-                {/* <Page19 {...pageProps} /> */}
-                {/* <Page20 {...pageProps} /> */}
 
                 {showPage && <Page19 />}
                 {showPage && <Page20 />}
                 {showPage && <Page21 />}
                 {showPage && <ExtraPage />}
-                {pageProps?.form_fields?.attachment === "Yes" ? (
+                {pageProps?.form_fields?.attachmentOcm === "Yes" ? (
                   <Page22 {...pageProps} />
                 ) : null}
                 {showPage && <Page23 />}
@@ -172,7 +170,6 @@ const Preview = () => {
                 {showPage && <Page27 />}
                 {showPage && <Page28 />}
                 {showPage && <Page29 />}
-                <Page30 {...pageProps} />
                 {showPage && <Page30 />}
               </body>
             </div>

@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import RichTextComp from "../../../../Private/PrivateRoute";
 import {
-  setResult,
   htmlencode,
   handleResultWithArray,
 } from "../../../../shared-component";
@@ -19,7 +18,6 @@ import { nextStep, prevStep } from "../reducer";
 import { FieldArray } from "formik";
 import { Fragment } from "react";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
-import { parseDynamicInput } from "../../../../shared-component";
 
 import he from "he";
 
@@ -56,15 +54,6 @@ const FormThree = (props) => {
     error: props.errors.prototypeNotUtilized,
     touched: props.touched.prototypeNotUtilized,
   };
-
-  // const proposalScope = {
-  //   value: props.values.proposalScope,
-  //   onChange: props.handleChange,
-  //   id: "proposalScope",
-  //   error: props.errors.proposalScope,
-  //   touched: props.touched.proposalScope,
-  //   placeholder: "Proposal Scope",
-  // };
 
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
@@ -193,23 +182,6 @@ const FormThree = (props) => {
                         </FormInputContainer>
                       </Fragment>
                     ))}
-                    {/* <div className="mt-4">
-                      <h2 className="font-bold border-b w-full border-b-gray-400 pb-1 mb-2">
-                        What items should the Vendor include in their RFP
-                        responses? Enter the items in the order that the vendor
-                        has to set up.
-                      </h2>
-                      <button
-                        type="button"
-                        className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
-                        onClick={() => push({ item: "" })}
-                        disabled={
-                          props?.values?.items?.length > 9 ? true : false
-                        }
-                      >
-                        ADD ITEMS
-                      </button>
-                    </div> */}
                   </div>
                   <button
                     type="button"
@@ -233,9 +205,9 @@ const FormThree = (props) => {
                   id="default-radio-1"
                   type="radio"
                   value="Yes"
-                  name="attachment"
+                  name="attachmentOcm"
                   onChange={props.handleChange}
-                  checked={props.values.attachment === "Yes" ? true : false}
+                  checked={props.values.attachmentOcm === "Yes" ? true : false}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                 />
                 <label
@@ -250,8 +222,8 @@ const FormThree = (props) => {
                   id="default-radio-2"
                   type="radio"
                   value="No"
-                  name="attachment"
-                  checked={props.values.attachment === "No" ? true : false}
+                  name="attachmentOcm"
+                  checked={props.values.attachmentOcm === "No" ? true : false}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                   onChange={props.handleChange}
                 />
