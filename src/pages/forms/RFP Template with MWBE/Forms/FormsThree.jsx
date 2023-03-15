@@ -39,6 +39,27 @@ export const CloseIcon = () => {
 };
 
 const FormThree = (props) => {
+  const handleResult = (res) => {
+    let dynamic = [];
+    let b = [];
+
+    if (!res) return null;
+
+    Object.entries(res).forEach((d, i) => {
+      if (Array.isArray(d[1])) {
+        dynamic = [
+          ...dynamic,
+          { field_name: d[0], field_value: JSON.stringify(d[1]) },
+        ];
+      } else {
+        b = [...b, { field_name: d[0], field_value: d[1] }];
+      }
+    });
+
+    console.log([...b, ...dynamic]);
+    return [...b, ...dynamic];
+  };
+
   const [text, setText] = React.useState();
   const dispatch = useDispatch();
   const formID = useSelector(project_document_id);
@@ -50,15 +71,19 @@ const FormThree = (props) => {
     value:
       "Digital submissions through the Interactive Purchasing System (IPS) is preferred. Submission type, online or hard copy, will not affect proposal scoring. If submitting a hard copy, please submit 1 copy.",
     onChange: props.handleChange,
-    id: "prototypeNotUtilized ",
+    id: "prototypeNotUtilized",
     error: props.errors.prototypeNotUtilized,
     touched: props.touched.prototypeNotUtilized,
   };
 
   const HandleSubmit = async (values) => {
+    console.log(values);
+    localStorage.setItem("attachFileYesOrNo", values.attachmentOcm);
+
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResultWithArray(values),
+      // form_fields: handleResultWithArray(values),
+      form_fields: handleResult(values),
     });
 
     if (response) {
@@ -71,6 +96,9 @@ const FormThree = (props) => {
       }
     }
   };
+
+  const ocmAttachment = localStorage.getItem("attachFileYesOrNo");
+  // console.log(ocmAttachment);
 
   useEffect(() => {
     if (!a?.data) {
@@ -205,10 +233,10 @@ const FormThree = (props) => {
                   id="default-radio-1"
                   type="radio"
                   value="Yes"
-                  name="attachFileYesOrNo"
+                  name="attachmentOcm"
                   onChange={props.handleChange}
                   checked={
-                    props.values.attachFileYesOrNo === "Yes" ? true : false
+                    props?.values?.attachmentOcm === "Yes" ? true : false
                   }
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                 />
@@ -224,10 +252,8 @@ const FormThree = (props) => {
                   id="default-radio-2"
                   type="radio"
                   value="No"
-                  name="attachFileYesOrNo"
-                  checked={
-                    props.values.attachFileYesOrNo === "No" ? true : false
-                  }
+                  name="attachmentOcm"
+                  checked={props?.values?.attachmentOcm === "No" ? true : false}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                   onChange={props.handleChange}
                 />
