@@ -161,7 +161,7 @@ const Preview = () => {
                 {showPage && <Page20 />}
                 {showPage && <Page21 />}
                 {showPage && <ExtraPage />}
-                {pageProps?.form_fields?.attachmentOcm === "Yes" ? (
+                {pageProps?.form_fields?.attachFileYesOrNo === "Yes" ? (
                   <Page22 {...pageProps} />
                 ) : null}
                 {showPage && <Page23 />}
