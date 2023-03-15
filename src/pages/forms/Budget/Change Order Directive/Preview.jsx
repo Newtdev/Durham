@@ -142,12 +142,17 @@ const Change = () => {
 														type="checkbox"
 														name="lump"
 														id="lump"
-														checked={form_fields?.maxPrice ? true : false}
+														disabled
+														checked={
+															form_fields?.maxPrice === "0" ? false : true
+														}
 													/>
 													<label htmlFor="lump">
 														Lump Sum increase of{" "}
 														<span className={`${nottoBeHighlighted}`}>
-															{currency(form_fields?.amount).format()}
+															{form_fields?.maxPrice === "0"
+																? ""
+																: currency(form_fields?.amount).format()}
 														</span>
 													</label>
 												</div>
@@ -156,17 +161,25 @@ const Change = () => {
 														type="checkbox"
 														name="lump"
 														id="lump"
-														checked={form_fields?.unitPrice ? true : false}
+														disabled
+														checked={
+															form_fields?.unitPrice === "0" ? false : true
+														}
 													/>
+													{console.log(form_fields)}
 													<label htmlFor="lump">
 														Unit Price of{" "}
 														<span className={`${nottoBeHighlighted}`}>
-															{currency(form_fields?.price).format()}
+															{form_fields?.unitPrice === "0"
+																? ""
+																: currency(form_fields?.price).format()}
 														</span>{" "}
 														per{" "}
 														<span className={`${nottoBeHighlighted}`}>
 															{!form_fields
 																? "0"
+																: form_fields?.unitPrice === "0"
+																? ""
 																: form_fields?.contractTimePerHour}
 														</span>
 													</label>
@@ -177,12 +190,15 @@ const Change = () => {
 														type="checkbox"
 														name="lump"
 														id="lump"
-														checked={form_fields?.exceed ? true : false}
+														disabled
+														checked={form_fields?.exceed === "0" ? false : true}
 													/>
 													<label htmlFor="lump">
 														Not to Exceed{" "}
 														<span className={`${nottoBeHighlighted}`}>
-															{currency(form_fields?.exceedAmount).format()}
+															{form_fields?.exceed === "0"
+																? ""
+																: currency(form_fields?.exceedAmount).format()}
 														</span>
 													</label>
 												</div>

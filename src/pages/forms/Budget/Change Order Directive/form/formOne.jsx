@@ -102,12 +102,10 @@ const FormOne = (props) => {
 									<input
 										id="default-checkbox-1"
 										type="checkbox"
-										value="Lump Sum increase"
+										value={props?.values?.maxPrice}
 										name="maxPrice"
-										// checked={props?.values?.maxPrice ? true : false}
-										onChange={(e) =>
-											props.setFieldValue("maxPrice", e.target.value)
-										}
+										checked={props?.values?.maxPrice}
+										onChange={props.handleChange}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
 									/>
 									<label
@@ -120,13 +118,11 @@ const FormOne = (props) => {
 									<input
 										id="default-checkbox-2"
 										type="checkbox"
-										value="Unit Price"
+										value={props?.values?.unitPrice}
 										name="unitPrice"
-										// checked={props?.values?.unitPrice ? true : false}
+										checked={props?.values?.unitPrice}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={(e) =>
-											props.setFieldValue("unitPrice", e.target.value)
-										}
+										onChange={props?.handleChange}
 									/>
 									<label
 										for="default-checkbox-2"
@@ -138,13 +134,11 @@ const FormOne = (props) => {
 									<input
 										id="default-checkbox-2"
 										type="checkbox"
-										value="Not to exceed"
-										// checked={props?.values?.exceed ? true : false}
+										value={props?.values?.exceed}
+										checked={props?.values?.exceed}
 										name="exceed"
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-										onChange={(e) => {
-											props?.setFieldValue("exceed", e.target.value);
-										}}
+										onChange={props?.handleChange}
 									/>
 									<label
 										for="default-checkbox-3"

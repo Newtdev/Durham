@@ -7,6 +7,7 @@ import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import {
 	handleResultWithArray,
 	handleSavedDate,
+	parseDynamicInput,
 	setResult,
 } from "../../../../shared-component";
 import { ChangeOrder } from "../../../../shared-component/slug";
@@ -106,6 +107,10 @@ const ChangeOrderForm = ({ id, filled }) => {
 		);
 		formik.setFieldValue("changeDays", a?.data?.form_fields?.changeDays);
 		formik.setFieldValue("approval", a?.data?.form_fields?.approval);
+		formik.setFieldValue(
+			"persons",
+			parseDynamicInput(a?.data?.form_fields?.persons)
+		);
 	}, [a?.data]);
 
 	const props = {

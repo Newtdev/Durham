@@ -9,7 +9,9 @@ import { modal, saveFormField } from "../../reducer";
 import Preview from "./Preview";
 import { nextStep, page } from "./reducer";
 import FormOne from "./form/formOne";
-import { setResult } from "../../../../shared-component";
+import { handleSavedDate, setResult } from "../../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { useEffect } from "react";
 
 const ChangeOrderDirectiveForm = ({ id, filled }) => {
 	const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 
 	const formID = useSelector(project_document_id);
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		console.log(values);
@@ -42,9 +45,9 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 	const formik = useFormik({
 		initialValues: {
 			triggered: "",
-			maxPrice: "",
-			unitPrice: "",
-			exceed: "",
+			maxPrice: false,
+			unitPrice: false,
+			exceed: false,
 			exceedAmount: "",
 			price: "",
 			amount: "",
@@ -58,8 +61,6 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 		// validationSchema: ChangeOrderDirectiveSchema,
 		onSubmit: (values) => {
 			if (pages === 1) {
-				// dispatch(nextStep(2));
-				// dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
 		},
@@ -70,6 +71,33 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 		isLoading,
 	};
 	// return <ModalOverlay show={true}>
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+
+		formik.setFieldValue("triggered", a?.data?.form_fields.triggered);
+		formik.setFieldValue("maxPrice", a?.data?.form_fields.maxPrice);
+		formik.setFieldValue("unitPrice", a?.data?.form_fields.unitPrice);
+		formik.setFieldValue("exceed", a?.data?.form_fields.exceed);
+		formik.setFieldValue("exceedAmount", a?.data?.form_fields.exceedAmount);
+		formik.setFieldValue("price", a?.data?.form_fields.price);
+		formik.setFieldValue("amount", a?.data?.form_fields.amount);
+		formik.setFieldValue("netSum", a?.data?.form_fields.netSum);
+		formik.setFieldValue(
+			"signDate",
+			handleSavedDate(a?.data?.form_fields.signDate)
+		);
+		formik.setFieldValue(
+			"contractTimePerHour",
+			a?.data?.form_fields.contractTimePerHour
+		);
+		formik.setFieldValue("ownerDatabase", a?.data?.form_fields.ownerDatabase);
+		formik.setFieldValue("ownerName", a?.data?.form_fields.ownerName);
+		formik.setFieldValue("position", a?.data?.form_fields.position);
+		formik.setFieldValue("contractTime", a?.data?.form_fields.contractTime);
+	}, [a?.data]);
 	if (!filled) {
 		return (
 			<ModalOverlay show={id === ChangeOrderDirective && show}>
