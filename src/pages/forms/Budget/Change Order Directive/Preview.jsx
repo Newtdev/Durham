@@ -277,6 +277,7 @@ const Change = () => {
 
 													<div>
 														<p className=" border-b border-black">
+															{!form_fields?.signDate ? <br /> : null}
 															<span className={`${nottoBeHighlighted}`}>
 																{!form_fields?.signDate
 																	? ""
