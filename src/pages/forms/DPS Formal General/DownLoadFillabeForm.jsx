@@ -29,6 +29,21 @@ const DownLoadFillabeForm = ({
     // bodyClass: "printableArea",
   });
 
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch("DPSFillable.pdf").then((response) => {
+      response.blob().then((blob) => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "DPSFillable.pdf";
+        alink.click();
+      });
+    });
+  };
+
   return (
     <div
       className={`${show} relative w-full max-w-md h-screen md:h-auto mx-auto mt-14`}
@@ -58,11 +73,12 @@ const DownLoadFillabeForm = ({
             type="button"
             width="w-[360px]"
             onClick={() => {
-              dispatch(closeDownload());
-              dispatch(slugIdDefault());
-              dispatch(documentDefault());
-              dispatch(stepDefault());
-              dispatch(close());
+              // dispatch(closeDownload());
+              // dispatch(slugIdDefault());
+              // dispatch(documentDefault());
+              // dispatch(stepDefault());
+              // dispatch(close());
+              onButtonClick();
             }}
           />
 

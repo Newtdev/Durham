@@ -33,10 +33,29 @@ const RFPTemplate = ({ id, filled }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   const [a] = UseFetchFilledFormDetails(formID);
 
+  const handleResult = (res) => {
+    let dynamic = [];
+    let b = [];
+
+    if (!res) return null;
+
+    Object.entries(res).forEach((d, i) => {
+      if (Array.isArray(d[1])) {
+        dynamic = [
+          ...dynamic,
+          { field_name: d[0], field_value: JSON.stringify(d[1]) },
+        ];
+      } else {
+        b = [...b, { field_name: d[0], field_value: d[1] }];
+      }
+    });
+    return [...b, ...dynamic];
+  };
+
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: setResult(values),
+      form_fields: handleResult(values),
 
       // form_fields: handleResultWithArray(values).form_fields,
       // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
@@ -81,10 +100,14 @@ const RFPTemplate = ({ id, filled }) => {
       validityPeriod: "",
       attachment: "",
       text: "",
-      // items: "",
       items: [
         {
           item: "",
+        },
+      ],
+      location: [
+        {
+          projectAddress: "",
         },
       ],
     },
