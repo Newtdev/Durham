@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../../features/services/api";
 import RichTextComp from "../../../../Private/PrivateRoute";
-import { setResult, htmlencode } from "../../../../shared-component";
+import {
+	setResult,
+	htmlencode,
+	handleResultWithArray,
+} from "../../../../shared-component";
 import { ButtonWhiteBG, Error } from "../../../../ui";
 import { Close, DashboardButton } from "../../../Dashboard/Components";
 import { OverviewTextarea } from "../../../Dashboard/Overview-dashboard/OverviewComponents";
@@ -23,38 +27,37 @@ import {
 import he from "he";
 
 export const CloseIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        fillRule="evenodd"
-        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 20 20"
+			fill="currentColor"
+			className="w-5 h-5">
+			<path
+				fillRule="evenodd"
+				d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
 };
 
 const FormThree = (props) => {
-  const [text, setText] = React.useState();
-  const dispatch = useDispatch();
-  const formID = useSelector(project_document_id);
+	const [text, setText] = React.useState();
+	const dispatch = useDispatch();
+	const formID = useSelector(project_document_id);
 
-  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
-  const [a] = UseFetchFilledFormDetails(formID);
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
-  const prototypeNotUtilized = {
-    value:
-      "Digital submissions through the Interactive Purchasing System (IPS) is preferred. Submission type, online or hard copy, will not affect proposal scoring. If submitting a hard copy, please submit 1 copy.",
-    onChange: props.handleChange,
-    id: "prototypeNotUtilized ",
-    error: props.errors.prototypeNotUtilized,
-    touched: props.touched.prototypeNotUtilized,
-  };
+	const prototypeNotUtilized = {
+		value:
+			"Digital submissions through the Interactive Purchasing System (IPS) is preferred. Submission type, online or hard copy, will not affect proposal scoring. If submitting a hard copy, please submit 1 copy.",
+		onChange: props.handleChange,
+		id: "prototypeNotUtilized ",
+		error: props.errors.prototypeNotUtilized,
+		touched: props.touched.prototypeNotUtilized,
+	};
 
   // const proposalScope = {
   //   value: props.values.proposalScope,
@@ -71,16 +74,17 @@ const FormThree = (props) => {
       form_fields: handleResultWithArray(values),
     });
 
-    if (response) {
-      if (response?.error) {
-        toast.error(response?.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        dispatch(nextStep(4));
-      }
-    }
-  };
+
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				dispatch(nextStep(4));
+			}
+		}
+	};
 
   useEffect(() => {
     if (!a?.data) {
@@ -99,13 +103,13 @@ const FormThree = (props) => {
     // }
   }, [a?.data]);
 
-  return (
-    <div>
-      <div
-        className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal content */}
+
+	return (
+		<div>
+			<div
+				className="relative w-full max-w-md h-screen md:h-auto mx-auto mt-14"
+				onClick={(e) => e.stopPropagation()}>
+				{/* Modal content */}
 
         <form
           className="relative w-[600px] bg-white rounded-lg shadow py-4"
@@ -134,31 +138,32 @@ const FormThree = (props) => {
             </button>
           </div>
 
-          {/* Progress */}
-          <div className="w-full bg-[#89A5AF] h-2.5 my-4">
-            <div className="bg-[#2F5461] h-2.5 w-[100%]"></div>
-          </div>
 
-          <div className="mx-6 mb-12 flex flex-col gap-2">
-            <div className="flex flex-col">
-              <label className="text-base text-gray-900 mb-1">
-                Modify the information below if the prototype is not utilized
-              </label>
-              <OverviewTextarea {...prototypeNotUtilized} />
-            </div>
+					{/* Progress */}
+					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
+						<div className="bg-[#2F5461] h-2.5 w-[100%]"></div>
+					</div>
 
-            <FormInputContainer name="Enter the offer's validity period if it is other than 120 days from the date of proposal opening.">
-              <FormInputPlain
-                type={"text"}
-                onChange={props.handleChange}
-                name="validityPeriod"
-                placeholder={"validityPeriod"}
-                value={props.values.validityPeriod}
-              />
-              {props.errors.validityPeriod && props.touched.validityPeriod && (
-                <Error message={props.errors.validityPeriod} />
-              )}
-            </FormInputContainer>
+					<div className="mx-6 mb-12 flex flex-col gap-2">
+						<div className="flex flex-col">
+							<label className="text-base text-gray-900 mb-1">
+								Modify the information below if the prototype is not utilized
+							</label>
+							<OverviewTextarea {...prototypeNotUtilized} />
+						</div>
+
+						<FormInputContainer name="Enter the offer's validity period if it is other than 120 days from the date of proposal opening.">
+							<FormInputPlain
+								type={"text"}
+								onChange={props.handleChange}
+								name="validityPeriod"
+								placeholder={"validityPeriod"}
+								value={props.values.validityPeriod}
+							/>
+							{props.errors.validityPeriod && props.touched.validityPeriod && (
+								<Error message={props.errors.validityPeriod} />
+							)}
+						</FormInputContainer>
 
             <FieldArray
               name="items"
@@ -222,76 +227,75 @@ const FormThree = (props) => {
               )}
             ></FieldArray>
 
-            <div className="flex flex-col gap-3">
-              <h2 className="text-sm text-gray-600 font-semibold">
-                Does Attachment C(Pricing Form) needs to be included in
-                Proposal?
-              </h2>
-              <div className="flex gap-3 items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value="Yes"
-                  name="attachment"
-                  onChange={props.handleChange}
-                  checked={props.values.attachment === "Yes" ? true : false}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                />
-                <label
-                  for="default-radio-1"
-                  className="text-base text-gray-900"
-                >
-                  Yes
-                </label>
-              </div>
-              <div className="flex gap-3 items-center">
-                <input
-                  id="default-radio-2"
-                  type="radio"
-                  value="No"
-                  name="attachment"
-                  checked={props.values.attachment === "No" ? true : false}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                  onChange={props.handleChange}
-                />
-                <label
-                  for="default-radio-2"
-                  className="text-base text-gray-900"
-                >
-                  No
-                </label>
-              </div>
-            </div>
 
-            <div className="flex flex-col">
-              <label className="text-base text-gray-900 mb-1">
-                Enter the Proposal Scope
-              </label>
-              <div className="h-36">
-                <RichTextComp text={text} setText={(val) => setText(val)} />
-              </div>
-            </div>
-          </div>
+						<div className="flex flex-col gap-3">
+							<h2 className="text-sm text-gray-600 font-semibold">
+								Does Attachment C(Pricing Form) needs to be included in
+								Proposal?
+							</h2>
+							<div className="flex gap-3 items-center">
+								<input
+									id="default-radio-1"
+									type="radio"
+									value="Yes"
+									name="attachment"
+									onChange={props.handleChange}
+									checked={props.values.attachment === "Yes" ? true : false}
+									className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+								/>
+								<label
+									for="default-radio-1"
+									className="text-base text-gray-900">
+									Yes
+								</label>
+							</div>
+							<div className="flex gap-3 items-center">
+								<input
+									id="default-radio-2"
+									type="radio"
+									value="No"
+									name="attachment"
+									checked={props.values.attachment === "No" ? true : false}
+									className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+									onChange={props.handleChange}
+								/>
+								<label
+									for="default-radio-2"
+									className="text-base text-gray-900">
+									No
+								</label>
+							</div>
+						</div>
 
-          {/* Buttons */}
-          <div className="flex justify-end gap-8 pr-4">
-            <ButtonWhiteBG
-              width="w-[100px]"
-              name="Back"
-              onClick={() => dispatch(prevStep(2))}
-            />
-            <DashboardButton
-              hidden
-              name="NEXT"
-              type="submit"
-              width="w-[77px]"
-              loading={isLoading}
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+						<div className="flex flex-col">
+							<label className="text-base text-gray-900 mb-1">
+								Enter the Proposal Scope
+							</label>
+							<div className="h-36">
+								<RichTextComp text={text} setText={(val) => setText(val)} />
+							</div>
+						</div>
+					</div>
+
+					{/* Buttons */}
+					<div className="flex justify-end gap-8 pr-4">
+						<ButtonWhiteBG
+							width="w-[100px]"
+							name="Back"
+							onClick={() => dispatch(prevStep(2))}
+						/>
+						<DashboardButton
+							hidden
+							name="NEXT"
+							type="submit"
+							width="w-[77px]"
+							loading={isLoading}
+						/>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default FormThree;

@@ -50,18 +50,18 @@ const ChangeOrderForm = ({ id, filled }) => {
 	// const show = useSelector(modal);
 	const formik = useFormik({
 		initialValues: {
-			number: "",
-			creatingDate: "",
-			description: "",
-			originalSum: "",
-			netSum: "",
-			amountEffect: "",
-			amount: "",
-			completionDate: "",
-			priorChangeDays: "0",
-			changeDays: "0",
-			signDate: "",
-			approval: "",
+			orderNumber: "",
+			orderCreatingDate: "",
+			orderDescription: "",
+			orderOriginalSum: "",
+			orderNetSum: "",
+			orderAmountEffect: "",
+			orderAmount: "",
+			orderCompletionDate: "",
+			orderPriorChangeDays: "0",
+			orderChangeDays: "0",
+			orderSignDate: "",
+			orderApproval: "",
 			persons: [
 				{
 					database: "",
@@ -71,6 +71,7 @@ const ChangeOrderForm = ({ id, filled }) => {
 		},
 		// validationSchema: ChangeOrderSchema[pages - 1],
 		onSubmit: (values) => {
+			console.log(values);
 			if (pages === 1) {
 				dispatch(nextStep(2));
 			} else if (pages === 2) {
@@ -83,30 +84,42 @@ const ChangeOrderForm = ({ id, filled }) => {
 		if (!a?.data) {
 			return;
 		}
-		formik.setFieldValue("number", a?.data?.form_fields?.number);
+		formik.setFieldValue("orderNumber", a?.data?.form_fields?.orderNumber);
 		formik.setFieldValue(
-			"creatingDate",
-			handleSavedDate(a?.data?.form_fields?.creatingDate)
+			"orderCreatingDate",
+			handleSavedDate(a?.data?.form_fields?.orderCreatingDate)
 		);
 		formik.setFieldValue(
-			"completionDate",
-			handleSavedDate(a?.data?.form_fields?.completionDate)
+			"orderCompletionDate",
+			handleSavedDate(a?.data?.form_fields?.orderCompletionDate)
 		);
 		formik.setFieldValue(
 			"signDate",
 			handleSavedDate(a?.data?.form_fields?.signDate)
 		);
-		formik.setFieldValue("description", a?.data?.form_fields?.description);
-		formik.setFieldValue("originalSum", a?.data?.form_fields?.originalSum);
-		formik.setFieldValue("netSum", a?.data?.form_fields?.netSum);
-		formik.setFieldValue("amountEffect", a?.data?.form_fields?.amountEffect);
-		formik.setFieldValue("amount", a?.data?.form_fields?.amount);
+		formik.setFieldValue(
+			"orderDescription",
+			a?.data?.form_fields?.orderDescription
+		);
+		formik.setFieldValue(
+			"orderOriginalSum",
+			a?.data?.form_fields?.orderOriginalSum
+		);
+		formik.setFieldValue("orderNetSum", a?.data?.form_fields?.orderNetSum);
+		formik.setFieldValue(
+			"orderAmountEffect",
+			a?.data?.form_fields?.orderAmountEffect
+		);
+		formik.setFieldValue("orderAmount", a?.data?.form_fields?.orderAmount);
 		formik.setFieldValue(
 			"priorChangeDays",
 			a?.data?.form_fields?.priorChangeDays
 		);
-		formik.setFieldValue("changeDays", a?.data?.form_fields?.changeDays);
-		formik.setFieldValue("approval", a?.data?.form_fields?.approval);
+		formik.setFieldValue(
+			"orderChangeDays",
+			a?.data?.form_fields?.orderChangeDays
+		);
+		formik.setFieldValue("orderApproval", a?.data?.form_fields?.orderApproval);
 		formik.setFieldValue(
 			"persons",
 			parseDynamicInput(a?.data?.form_fields?.persons)

@@ -95,29 +95,29 @@ const FormTwo = (props) => {
 
 	const completionDate = {
 		...props,
-		value: props.values.completionDate,
+		value: props.values.orderCompletionDate,
 		onChange: props.handleChange,
-		name: "completionDate",
-		error: props.errors.completionDate,
-		touched: props.touched.completionDate,
+		name: "orderCompletionDate",
+		error: props.errors.orderCompletionDate,
+		touched: props.touched.orderCompletionDate,
 		placeholder: "Select date",
 		//    prevPage
 	};
 
 	const signDate = {
 		...props,
-		value: props.values.signDate,
+		value: props.values.orderSignDate,
 		onChange: props.handleChange,
-		name: "signDate",
-		error: props.errors.signDate,
-		touched: props.touched.signDate,
+		name: "orderSignDate",
+		error: props.errors.orderSignDate,
+		touched: props.touched.orderSignDate,
 		placeholder: "Select date",
 		//    prevPage
 	};
 
 	const approval = [
-		{ value: "Approved", label: "Approved" },
-		{ value: "Not Approved", label: "Not Approved" },
+		{ value: "Yes", label: "Yes" },
+		{ value: "No ", label: "No" },
 	];
 
 	const database = [
@@ -175,9 +175,9 @@ const FormTwo = (props) => {
 									<FormInputPlain
 										type={"text"}
 										onChange={props.handleChange}
-										name="priorChangeDays"
+										name="orderPriorChangeDays"
 										placeholder={"Enter Number of Days"}
-										value={props?.values?.priorChangeDays}
+										value={props?.values?.orderPriorChangeDays}
 									/>
 									{props.errors.priorChangeDays &&
 										props.touched.priorChangeDays && (
@@ -189,9 +189,9 @@ const FormTwo = (props) => {
 									<FormInputPlain
 										type={"text"}
 										onChange={props.handleChange}
-										name="changeDays"
+										name="orderChangeDays"
 										placeholder={"Enter Number of Days"}
-										value={props?.values?.changeDays}
+										value={props?.values?.orderChangeDays}
 									/>
 									{props.errors.changeDays && props.touched.changeDays && (
 										<Error message={props.errors.changeDays} />
@@ -206,9 +206,9 @@ const FormTwo = (props) => {
 							</h2>
 							<span className="text-sm font-bold">
 								{AddDate(
-									props?.values?.completionDate,
-									props?.values?.priorChangeDays,
-									props?.values?.changeDays
+									props?.values?.orderCompletionDate,
+									props?.values?.orderPriorChangeDays,
+									props?.values?.orderChangeDays
 								)}
 							</span>
 						</div>
@@ -221,23 +221,23 @@ const FormTwo = (props) => {
 						</FormInputContainer>
 
 						<FormSelect
-							value={props?.values?.approval}
+							value={props?.values?.orderApproval}
 							name="Does this form require the approval of the design consultant?"
-							id="approval"
-							error={props.errors.approval}
-							touched={props.touched.approval}
+							id="orderApproval"
+							error={props.errors.orderApproval}
+							touched={props.touched.orderApproval}
 							onChange={props.handleChange}>
-							{!props?.values?.approval ? (
+							{!props?.values?.orderApproval ? (
 								<option>select</option>
 							) : (
-								<option value={props?.values?.approval}>
-									{props?.values?.approval}
+								<option value={props?.values?.orderApproval}>
+									{props?.values?.orderApproval}
 								</option>
 							)}
 							{approval?.map((approval, index) => {
 								return (
 									<option key={index} value={approval.value}>
-										{approval.value}
+										{approval.label}
 									</option>
 								);
 							})}

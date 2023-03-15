@@ -26,11 +26,11 @@ const FormOne = (props) => {
 
 	const creatingDate = {
 		...props,
-		value: props.values.creatingDate,
+		value: props.values.orderCreatingDate,
 		onChange: props.handleChange,
-		name: "creatingDate",
-		error: props.errors.creatingDate,
-		touched: props.touched.creatingDate,
+		name: "orderCreatingDate",
+		error: props.errors.orderCreatingDate,
+		touched: props.touched.orderCreatingDate,
 		placeholder: "Select date",
 		//    prevPage
 	};
@@ -75,9 +75,9 @@ const FormOne = (props) => {
 							<FormInputContainer name="Enter the Change order Number">
 								<FormInputPlain
 									type={"text"}
-									value={props?.values?.number}
+									value={props?.values?.orderNumber}
 									onChange={props.handleChange}
-									name="number"
+									name="orderNumber"
 									placeholder={"Enter the Change order Number."}
 								/>
 								{props.errors.number && props.touched.number && (
@@ -96,9 +96,9 @@ const FormOne = (props) => {
 								<FormTextArea
 									type={"text"}
 									onChange={props.handleChange}
-									value={props?.values?.description}
+									value={props?.values?.orderDescription}
 									name="Enter the description of the change"
-									id="description"
+									id="orderDescription"
 									placeholder={"Description must not be more than 50 words."}
 								/>
 								{props.errors.description && props.touched.description && (
@@ -112,8 +112,8 @@ const FormOne = (props) => {
 										<FormInputPlain
 											type={"text"}
 											onChange={props.handleChange}
-											name="originalSum"
-											value={props?.values?.originalSum}
+											name="orderOriginalSum"
+											value={props?.values?.orderOriginalSum}
 											placeholder={"Original Contract Sum."}
 										/>
 										{props.errors.originalSum && props.touched.originalSum && (
@@ -124,8 +124,8 @@ const FormOne = (props) => {
 										<FormInputPlain
 											type={"text"}
 											onChange={props.handleChange}
-											value={props?.values?.netSum}
-											name="netSum"
+											value={props?.values?.orderNetSum}
+											name="orderNetSum"
 											placeholder={"Net Sum of Prior Change Order(s)"}
 										/>
 										{props.errors.netSum && props.touched.netSum && (
@@ -136,13 +136,19 @@ const FormOne = (props) => {
 							</FormInputContainer>
 
 							<FormSelect
-								value={props.values.amountEffect}
+								value={props.values.orderAmountEffect}
 								name="How does this change order's amount affect the original contract sum?"
-								id="amountEffect"
-								values={props?.values?.amountEffect}
-								error={props.errors.amountEffect}
-								touched={props.touched.amountEffect}
-								onChange={props.handleChange}>
+								id="orderAmountEffect"
+								values={props?.values?.orderAmountEffect}
+								error={props.errors.orderAmountEffect}
+								touched={props.touched.orderAmountEffect}
+								onChange={(e) => {
+									if (e.target.value === "No change") {
+										props.setFieldValue("orderAmount", "");
+										props.setFieldValue("orderAmountEffect", e.target.value);
+									}
+									props.setFieldValue("orderAmountEffect", e.target.value);
+								}}>
 								<option value="">Select</option>
 								{amountEffect?.map((amountEffect, index) => {
 									return (
@@ -156,24 +162,23 @@ const FormOne = (props) => {
 							<FormInputContainer name="Amount">
 								<FormInput
 									onChange={props.handleChange}
-									name="amount"
+									name="orderAmount"
 									placeholder={"0.0"}
-									value={props?.values?.amount}
+									value={props?.values?.orderAmount}
 								/>
 								{props.errors.amount && props.touched.amount && (
 									<Error message={props.errors.amount} />
 								)}
 							</FormInputContainer>
-
 							<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
 								<h2 className="text-sm font-medium">New Contract Sum</h2>
 
 								<span className="text-sm font-bold">
 									{CalculateAmount(
-										props?.values?.originalSum,
-										props?.values?.netSum,
-										props?.values?.amount,
-										props?.values?.amountEffect
+										props?.values?.orderOriginalSum,
+										props?.values?.orderNetSum,
+										props?.values?.orderAmount,
+										props?.values?.orderAmountEffect
 									)}
 								</span>
 							</div>
