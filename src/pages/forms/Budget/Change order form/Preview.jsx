@@ -23,10 +23,9 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 		return null;
 	}
 	const approvalPerson = parseDynamicInput(name?.persons);
-
 	return (
 		<table className="w-full border border-white  text-center  border-separate border-spacing-y-6 ">
-			{name?.approval === "Yes" ? (
+			{name?.orderApproval === "Yes" ? (
 				<tr>
 					<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
 						<p>

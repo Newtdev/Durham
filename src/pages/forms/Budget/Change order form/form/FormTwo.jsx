@@ -323,13 +323,25 @@ const FormTwo = (props) => {
 
 															{props?.values?.persons?.[index].database ===
 															"Add New" ? (
-																<FormInputPlain
-																	type={"text"}
-																	onChange={props.handleChange}
-																	name={`persons[${index}].name`}
-																	value={props?.values?.persons?.[index].name}
-																	placeholder={"Name"}
-																/>
+																<FormInputContainer name="">
+																	<FormInputPlain
+																		type={"text"}
+																		onChange={props.handleChange}
+																		name={`persons[${index}].name`}
+																		value={props?.values?.persons?.[index].name}
+																		placeholder={"Name"}
+																	/>
+																	<br />
+																	<FormInputPlain
+																		type={"text"}
+																		onChange={props.handleChange}
+																		name={`persons[${index}].position`}
+																		value={
+																			props?.values?.persons?.[index].position
+																		}
+																		placeholder={"Name"}
+																	/>
+																</FormInputContainer>
 															) : null}
 															{props.errors.amount && props.touched.amount && (
 																<Error message={props.errors.amount} />
