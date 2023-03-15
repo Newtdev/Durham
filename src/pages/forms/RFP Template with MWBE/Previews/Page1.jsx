@@ -275,9 +275,14 @@ const Page1 = (props) => {
             }}
           >
             <span className={`inline-block mr-2`}>
-              {moment(props?.form_fields?.submissionTime).format("h:mma")} on
+              {moment(props?.form_fields?.proposalSubmissionTime).format(
+                "h:mma"
+              )}{" "}
+              on
             </span>
-            {moment(props?.form_fields?.submissionDate).format("MMMM Do YYYY ")}
+            {moment(props?.form_fields?.proposalSubmissionDate).format(
+              "MMMM Do YYYY "
+            )}
           </span>
           {/* <span class="c89 c68">1:00pm on March 18</span>
         <span class="c85 c68">th</span>

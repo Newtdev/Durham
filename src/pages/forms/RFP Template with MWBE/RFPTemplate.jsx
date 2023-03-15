@@ -17,8 +17,8 @@ import Preview from "./Preview";
 import { handleSavedDate, setResult } from "../../../shared-component";
 // import { RFPTemplatewithMWBESchema } from "../../../yup";
 import {
-  handleResultWithArray,
   parseDynamicInput,
+  handleResultWithArray,
 } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -33,32 +33,31 @@ const RFPTemplate = ({ id, filled }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   const [a] = UseFetchFilledFormDetails(formID);
 
-  const handleResult = (res) => {
+  const handleResultWithArray = (res) => {
     let dynamic = [];
-    let b = [];
+    let sum = [];
 
     if (!res) return null;
 
+    const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
+
     Object.entries(res).forEach((d, i) => {
       if (Array.isArray(d[1])) {
-        dynamic = [
-          ...dynamic,
-          { field_name: d[0], field_value: JSON.stringify(d[1]) },
-        ];
-      } else {
-        b = [...b, { field_name: d[0], field_value: d[1] }];
+        dynamic = [{ field_name: d[0], field_value: JSON.stringify(d[1]) }];
       }
+      sum = [...sum, { field_name: d[0], field_value: d[1] }];
+
+      sum.splice(a, 1);
     });
-    return [...b, ...dynamic];
+
+    return [...sum, ...dynamic];
   };
 
   const HandleSubmit = async (values) => {
+    console.log(values);
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: handleResult(values),
-
-      // form_fields: handleResultWithArray(values).form_fields,
-      // dynamic_inputs: handleResultWithArray(values).dynamic_inputs,
+      form_fields: handleResultWithArray(values),
     });
 
     if (response) {
@@ -77,6 +76,7 @@ const RFPTemplate = ({ id, filled }) => {
       bidderName: "",
       rfpNumber: "",
       personName: "",
+      OcmProposalScope: "",
       contractType: "",
       issueDate: "",
       proposalDate: "",
@@ -95,19 +95,12 @@ const RFPTemplate = ({ id, filled }) => {
       zipCode: "",
       date: "",
       time: "",
-      //   prototypeNotUtilized: "",
-      proposalScope: "",
       validityPeriod: "",
       attachment: "",
-      text: "",
+      // text: "",
       items: [
         {
           item: "",
-        },
-      ],
-      location: [
-        {
-          projectAddress: "",
         },
       ],
     },
@@ -118,7 +111,7 @@ const RFPTemplate = ({ id, filled }) => {
       } else if (pages === 2) {
         dispatch(nextStep(3));
       } else if (pages === 3) {
-        HandleSubmit(values);
+        // HandleSubmit(values);
       }
     },
   });

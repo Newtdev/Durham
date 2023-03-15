@@ -6,9 +6,9 @@ import he from "he";
 const Page11 = (props) => {
   const [proposalScope, setProposalScope] = useState("");
   useEffect(() => {
-    const proposal = props?.form_fields?.proposalScope;
+    const proposal = props?.form_fields?.OcmProposalScope;
     setProposalScope(proposal);
-  }, [props?.form_fields?.proposalScope]);
+  }, [props?.form_fields?.OcmProposalScope]);
   let encodedProposalScope = "";
   if (proposalScope) {
     encodedProposalScope = he.decode(proposalScope);
@@ -29,7 +29,7 @@ const Page11 = (props) => {
         <p class="c38" id="h.1hmsyys">
           <span class="c89 c68">6.0 PROPOSAL SCOPE</span>
         </p>
-        <section className="mt-4 proposalScope">
+        <section className={`mt-4 proposalScope ${props.nottoBeHighlighted}`}>
           {proposalScope && (
             <div
               className="proposalScope"

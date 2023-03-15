@@ -159,7 +159,11 @@ const Page6 = () => {
             consideration the degree to which Vendors have proposed or failed to
             propose solutions that will satisfy the Department&rsquo;s needs as
             described in the Request for Proposal. &nbsp;Except as specifically
-            stated in the Request for
+            stated in the Request for Proposal, no one requirement shall
+            automatically disqualify a Vendor from consideration. &nbsp;However,
+            failure to comply with any single requirement may result in the
+            Department exercising its discretion to reject a proposal in its
+            entirety.
           </span>
         </p>
       </div>

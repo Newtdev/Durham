@@ -14,10 +14,10 @@ const Page8 = () => {
       // className="border border-black"
     >
       <>
-        <p class="c4">
+        {/* <p class="c4">
           <span class="c21"></span>
-        </p>
-        <p class="c143 c23">
+        </p> */}
+        {/* <p class="c143 c23">
           <span class="c22">
             the services provided are substantially similar in scope to
           </span>
@@ -29,7 +29,7 @@ const Page8 = () => {
           <span class="c21">
             be considered in the evaluation of the proposal. &nbsp;
           </span>
-        </p>
+        </p> */}
         <p class="c143 c23 c12">
           <span class="c21"></span>
         </p>

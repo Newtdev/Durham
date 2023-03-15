@@ -46,7 +46,7 @@ const Page3 = (props) => {
             class={`c89  ${props?.nottoBeHighlighted}`}
             style={{ fontSize: "10pt" }}
           >
-            {moment(props?.form_fields?.submissionDate).format("MMMM, D YYYY ")}
+            {moment(props?.form_fields?.submissionDate).format("MMMM D, YYYY ")}
 
             <span className={`inline-block`}>
               at {moment(props?.form_fields?.submissionTime).format("hh:mma")}{" "}

@@ -93,10 +93,10 @@ const Preview = () => {
 
   const items = form_fields?.items || "";
   if (items) {
-    console.log(JSON.parse(items));
+    // console.log(JSON.parse(items));
   }
 
-  console.log(pageProps);
+  // console.log(pageProps);
 
   return (
     <div>
@@ -156,13 +156,16 @@ const Preview = () => {
                 {showPage && <Page16 />}
                 {showPage && <Page17 />}
                 {showPage && <Page18 />}
+                {/* <Page19 {...pageProps} /> */}
+                {/* <Page20 {...pageProps} /> */}
+
                 {showPage && <Page19 />}
                 {showPage && <Page20 />}
                 {showPage && <Page21 />}
                 {showPage && <ExtraPage />}
-                {pageProps?.form_fields?.attachment === "Yes"
-                  ? showPage && <Page22 />
-                  : null}
+                {pageProps?.form_fields?.attachment === "Yes" ? (
+                  <Page22 {...pageProps} />
+                ) : null}
                 {showPage && <Page23 />}
                 {showPage && <Page24 />}
                 {showPage && <Page25 />}

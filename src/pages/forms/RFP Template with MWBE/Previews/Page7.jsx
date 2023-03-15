@@ -14,12 +14,12 @@ const Page7 = (props) => {
     >
       <div>
         <p class="c23 c208">
-          <span class="c21">
+          {/* <span class="c21">
             Proposal, no one requirement shall automatically disqualify a Vendor
             from consideration. &nbsp;However, failure to comply with any single
             requirement may result in the Department exercising its discretion
             to reject a proposal in its entirety.
-          </span>
+          </span> */}
         </p>
         <p class="c208 c23 c12">
           <span class="c51"></span>
@@ -77,12 +77,11 @@ const Page7 = (props) => {
             specifically allowed for in this RFP.{" "}
           </span>
           {props?.form_fields?.attachment === "Yes" && (
-            <span class="c22 c80 c68">
+            <span class={`c22 c80 c68 ${props?.nottoBeHighlighted}`}>
               Complete ATTACHMENT C: PRICING FORM and include in Proposal.
-              <span className={`${props?.nottoBeHighlighted}`}>
-                {" "}
-                {/* {props?.form_fields?.attachment} */}
-              </span>
+              {/* <span className={`${props?.nottoBeHighlighted}`}> */}{" "}
+              {/* {props?.form_fields?.attachment} */}
+              {/* </span> */}
             </span>
           )}
           {/* <span class="c21">.</span> */}
@@ -234,6 +233,17 @@ const Page7 = (props) => {
           <span class="c22 c80">
             &nbsp;herein. &nbsp;Durham Public Schools may contact these users to
             determine{" "}
+          </span>
+          <span class="c22">
+            the services provided are substantially similar in scope to
+          </span>
+          <span class="c22 c80">
+            &nbsp;those proposed herein and Vendor&rsquo;s performance has been
+            satisfactory. &nbsp;The informatio
+          </span>
+          <span class="c22">n obtained may </span>
+          <span class="c21">
+            be considered in the evaluation of the proposal. &nbsp;
           </span>
         </p>
       </div>
