@@ -29,6 +29,31 @@ const DownLoadFillabeForm = ({
     // bodyClass: "printableArea",
   });
 
+  const PDF_FILE_URL = "https://durham-sigma.vercel.app/BidManual.pdf";
+
+  const downloadFileAtURL = (url, filename) => {
+    const aTag = document.createElement("a");
+    aTag.href = url;
+    aTag.setAttribute("download", filename);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+  };
+
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch("BidManual.pdf").then((response) => {
+      response.blob().then((blob) => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "BidManual.pdf";
+        alink.click();
+      });
+    });
+  };
   return (
     <div
       className={`${show} relative w-full max-w-md h-screen md:h-auto mx-auto mt-14`}
@@ -58,11 +83,13 @@ const DownLoadFillabeForm = ({
             type="button"
             width="w-[360px]"
             onClick={() => {
-              dispatch(closeDownload());
-              dispatch(slugIdDefault());
-              dispatch(documentDefault());
-              dispatch(stepDefault());
-              dispatch(close());
+              // onButtonClick();
+              downloadFileAtURL(PDF_FILE_URL, "BidManual.pdf");
+              // dispatch(closeDownload());
+              // dispatch(slugIdDefault());
+              // dispatch(documentDefault());
+              // dispatch(stepDefault());
+              // dispatch(close());
             }}
           />
 

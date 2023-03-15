@@ -135,20 +135,6 @@ const FormThree = (props) => {
           </div>
 
           <div className="mx-6 mb-12 flex flex-col gap-2">
-            {/* <div className="flex flex-col gap-1">
-              <FormTextArea
-                onChange={props.handleChange}
-                name="Modify the information below if the prototype is not utilized."
-                id="prototype"
-                value={
-                  "Digital submissions through the Interactive Purchasing System (IPS) is preferred. Submission type, online or hard copy, will not affect proposal scoring. If submitting a hard copy, please submit 1 copy."
-                }
-              />
-              {props.errors.prototype && props.touched.prototype && (
-                <Error message={props.errors.prototype} />
-              )}
-            </div> */}
-
             <div className="flex flex-col">
               <label className="text-base text-gray-900 mb-1">
                 Modify the information below if the prototype is not utilized
@@ -199,6 +185,7 @@ const FormThree = (props) => {
                             type={"text"}
                             onChange={props.handleChange}
                             name={`items[${index}].item`}
+                            id={`items[${index}].item`}
                             value={props?.values?.items[index].item}
                             placeholder={`Item ${index + 1}`}
                           />
@@ -268,17 +255,6 @@ const FormThree = (props) => {
               </div>
             </div>
 
-            {/* <div className="flex flex-col gap-1">
-              <FormTextArea
-                onChange={props.handleChange}
-                id="proposalScope"
-                placeholder={"Proposal Scope"}
-                name="Enter the Proposal Scope"
-              />
-              {props.errors.proposalScope && props.touched.proposalScope && (
-                <Error message={props.errors.proposalScope} />
-              )}
-            </div> */}
             <div className="flex flex-col">
               <label className="text-base text-gray-900 mb-1">
                 Enter the Proposal Scope
@@ -286,7 +262,6 @@ const FormThree = (props) => {
               <div className="h-36">
                 <RichTextComp text={text} setText={(val) => setText(val)} />
               </div>
-              {/* <OverviewTextarea {...proposalScope} /> */}
             </div>
           </div>
 
