@@ -18,7 +18,7 @@ const Preview = () => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const [highlighted, setHighlighed] = useState(false);
-	const [checked, setChecked] = useState({});
+	const [checked, setChecked] = useState(null);
 
 	const formID = useSelector(project_document_id);
 
@@ -32,10 +32,8 @@ const Preview = () => {
 	// console.log(form_fields);
 
 	const handleChange = (e) => {
-		setChecked({ ...checked, [e.target.name]: e.target.value });
-		// localStorage.setItem("check", {
-		// 	[e.target.name]: e.target.value,
-		// });
+		console.log({ ...checked, [e.target.name]: e.target.checked });
+		setChecked({ ...checked, [e.target.name]: e.target.checked });
 	};
 
 	useEffect(() => {
@@ -110,7 +108,6 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.one === "one" ? true : false}
 												name="one"
 												value="one"
 												class="h-full w-full bg-gray-100"
@@ -389,8 +386,10 @@ const Preview = () => {
 							type="submit"
 							width="w-[198px]"
 							onClick={() => {
-								setHighlighed(true);
-								dispatch(showDownload());
+								// localStorage.setItem("checkedData", JSON.stringify(checked));
+								console.log(checked);
+								// setHighlighed(true);
+								// dispatch(showDownload());
 							}}
 						/>
 					</div>

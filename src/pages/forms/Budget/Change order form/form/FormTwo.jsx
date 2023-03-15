@@ -38,6 +38,13 @@ const SelectDurham = ({ props, index }) => {
 					name={`persons[${index}].name`}
 					placeholder={"Select name"}
 					value={props?.values?.persons?.[index].name}>
+					{!props?.values?.persons?.[index].name ? (
+						<option>Select</option>
+					) : (
+						<option value={props?.values?.persons?.[index].name}>
+							{props?.values?.persons?.[index].name}
+						</option>
+					)}
 					{[
 						...durhamProfile?.filter(
 							(cur) =>
@@ -46,9 +53,11 @@ const SelectDurham = ({ props, index }) => {
 						),
 					]?.map((dt, i) => {
 						return (
-							<option id={dt.name} value={dt?.value}>
-								{dt.value}
-							</option>
+							<>
+								<option id={dt.name} value={dt?.value}>
+									{dt.value}
+								</option>
+							</>
 						);
 					})}
 				</select>
