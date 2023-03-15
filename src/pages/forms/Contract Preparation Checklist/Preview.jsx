@@ -18,7 +18,7 @@ const Preview = () => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const [highlighted, setHighlighed] = useState(false);
-	const [checked, setChecked] = useState(null);
+	const [checked, setChecked] = useState({});
 
 	const formID = useSelector(project_document_id);
 
@@ -37,10 +37,12 @@ const Preview = () => {
 	};
 
 	useEffect(() => {
-		if (!localStorage.getItem("check")) {
+		console.log(JSON.parse(localStorage.getItem("checkedData")));
+		if (!localStorage.getItem("checkedData")) {
 			return;
 		}
-		setChecked(localStorage.getItem("check"));
+		setChecked(JSON.parse(localStorage.getItem("checkedData")));
+		console.log(JSON.parse(localStorage.getItem("checkedData")));
 	}, []);
 	const downloadComponent = useRef();
 
@@ -109,7 +111,8 @@ const Preview = () => {
 												type="checkbox"
 												onChange={handleChange}
 												name="one"
-												value="one"
+												checked={checked?.one}
+												value={checked?.one}
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -120,9 +123,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.two === "two" ? true : false}
 												name="two"
-												value="two"
+												checked={checked?.two}
+												value={checked?.two}
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -134,9 +137,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.three === "three" ? true : false}
+												checked={checked?.three}
+												value={checked?.three}
 												name="three"
-												value="three"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -150,9 +153,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.four === "four" ? true : false}
+												checked={checked?.four}
+												value={checked?.four}
 												name="four"
-												value="four"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -166,9 +169,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.five === "five" ? true : false}
 												name="five"
-												value="five"
+												checked={checked?.five}
+												value={checked?.five}
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -179,9 +182,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.six === "six" ? true : false}
+												checked={checked?.six}
+												value={checked?.six}
 												name="six"
-												value="six"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -195,9 +198,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.seven === "seven" ? true : false}
+												checked={checked?.seven}
+												value={checked?.seven}
 												name="seven"
-												value="seven"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -208,9 +211,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.eight === "eight" ? true : false}
+												checked={checked?.eight}
+												value={checked?.eight}
 												name="eight"
-												value="eight"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -224,9 +227,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.nine === "nine" ? true : false}
+												checked={checked?.nine}
+												value={checked?.nine}
 												name="nine"
-												value="nine"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -239,9 +242,9 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.ten === "ten" ? true : false}
+												checked={checked?.ten}
+												value={checked?.ten}
 												name="ten"
-												value="ten"
 												class="h-full w-full bg-gray-100"
 											/>
 										</div>
@@ -252,7 +255,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.eleven === "eleven" ? true : false}
+												checked={checked.eleven}
 												name="eleven"
 												value="eleven"
 												class="h-full w-full bg-gray-100 "
@@ -265,7 +268,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.twelve === "twelve" ? true : false}
+												checked={checked.twelve}
 												name="twelve"
 												value="twelve"
 												class="h-full w-full bg-gray-100"
@@ -278,7 +281,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.thirteen === "thirteen" ? true : false}
+												checked={checked.thirteen}
 												name="thirteen"
 												value="thirteen"
 												class="h-full w-full bg-gray-100"
@@ -294,7 +297,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.fourteen === "fourteen" ? true : false}
+												checked={checked.fourteen}
 												name="fourteen"
 												value="fourteen"
 												class="h-full w-full bg-gray-100"
@@ -307,7 +310,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.fifteen === "fifteen" ? true : false}
+												checked={checked.fifteen}
 												name="fifteen"
 												value="fifteen"
 												class="h-full w-full bg-gray-100"
@@ -320,7 +323,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked.sixteen === "sixteen" ? true : false}
+												checked={checked.sixteen}
 												name="sixteen"
 												value="sixteen"
 												class="h-full w-full bg-gray-100"
@@ -333,9 +336,7 @@ const Preview = () => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={
-													checked.seventeen === "seventeen" ? true : false
-												}
+												checked={checked.seventeen}
 												name="seventeen"
 												value="seventeen"
 												class="h-full w-full bg-gray-100"
@@ -386,10 +387,9 @@ const Preview = () => {
 							type="submit"
 							width="w-[198px]"
 							onClick={() => {
-								// localStorage.setItem("checkedData", JSON.stringify(checked));
-								console.log(checked);
-								// setHighlighed(true);
-								// dispatch(showDownload());
+								localStorage.setItem("checkedData", JSON.stringify(checked));
+								setHighlighed(true);
+								dispatch(showDownload());
 							}}
 						/>
 					</div>
