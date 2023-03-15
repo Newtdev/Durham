@@ -138,7 +138,8 @@ const Change = () => {
 													or Guaranteed Maximum Price is:
 												</p>
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													{form_fields?.maxPrice !== "0" ? (
+													{form_fields?.maxPrice !== "0" &&
+													form_fields?.maxPrice ? (
 														<span className="inline-block"> &#10003;</span>
 													) : (
 														<input
@@ -159,7 +160,8 @@ const Change = () => {
 													</label>
 												</div>
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													{form_fields?.unitPrice !== "0" ? (
+													{form_fields?.unitPrice !== "0" &&
+													form_fields?.unitPrice ? (
 														<span className="inline-block"> &#10003;</span>
 													) : (
 														<input
@@ -197,7 +199,8 @@ const Change = () => {
 												</div>
 
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													{form_fields?.exceed !== "0" ? (
+													{form_fields?.exceed !== "0" &&
+													form_fields?.exceed ? (
 														<span className="inline-block"> &#10003;</span>
 													) : (
 														<input
