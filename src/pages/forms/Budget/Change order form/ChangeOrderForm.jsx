@@ -66,12 +66,12 @@ const ChangeOrderForm = ({ id, filled }) => {
 				{
 					database: "",
 					name: "",
+					position: "",
 				},
 			],
 		},
 		// validationSchema: ChangeOrderSchema[pages - 1],
 		onSubmit: (values) => {
-			console.log(values);
 			if (pages === 1) {
 				dispatch(nextStep(2));
 			} else if (pages === 2) {

@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { OverviewTextarea } from "../../../../Dashboard/Overview-dashboard/OverviewComponents";
-import { getList } from "../../../Advertisement-for-bid-template/reducer";
 import SelectDate, { FormTextArea, FormInput } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";

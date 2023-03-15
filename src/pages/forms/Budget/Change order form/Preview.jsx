@@ -18,45 +18,366 @@ import { prevStep } from "./reducer";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import { parseDynamicInput, trucateText } from "../../../../shared-component";
 
-const ToApprove = ({ name, nottoBeHighlighted }) => {
+const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
+	console.log(vendors);
+
 	if (!name) {
 		return null;
 	}
 	const approvalPerson = parseDynamicInput(name);
-	return approvalPerson?.map((person, i) => {
-		return (
-			<div key={i} className="grid grid-cols-4 gap-4 mb-3">
-				<div>
+	// positionlength > 19
+	// 	? "mt-9"
+	// 	: designlength === 0
+	// 	? ""
+	// 	: designlength <= 19
+	// 	? ""
+	// 	: "";
+	return (
+		<table className="w-full border border-white  text-center  border-separate border-spacing-y-6 ">
+			<tr>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
 					<p>
-						<span className={`${nottoBeHighlighted}`}>{person?.database}</span>
+						<p>
+							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
+								{vendors?.design?.company_name}
+							</span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Designer</i>
+						</p>
 					</p>
-					<p className="border-t border-black"></p>
-				</div>
-				<div>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
 					<p>
-						<span className={`${nottoBeHighlighted}`}>{person?.name}</span>
+						<p>
+							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
+								{vendors?.design?.first_name + " " + vendors?.design?.last_name}
+							</span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">By</i>
+						</p>
 					</p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">By</i>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+					<div className="">
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+						</p>
+					</div>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+					<div>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
+					<p>
+						<p>
+							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
+								{vendors?.contractor?.company_name}
+							</span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Contractor</i>
+						</p>
 					</p>
-				</div>
-				<div>
-					<br />
-					<p></p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">Signature</i>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
+					<p>
+						<p>
+							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
+								{!vendors?.contractor
+									? ""
+									: vendors?.contractor?.first_name + " " + !vendors?.contractor
+									? ""
+									: vendors?.contractor?.last_name}
+							</span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">By</i>
+						</p>
 					</p>
-				</div>
-				<div>
-					<br />
-					<p></p>
-					<p className=" border-t border-black">
-						<i className="text-[7pt]">Date</i>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+					<div className="">
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+						</p>
+					</div>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+					<div>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
+					<p>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">
+								Dps Project Manager
+							</i>
+						</p>
 					</p>
-				</div>
-			</div>
-		);
-	});
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
+					<p>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">By</i>
+						</p>
+					</p>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+					<div className="">
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+						</p>
+					</div>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+					<div>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+						</p>
+					</div>
+				</td>
+			</tr>
+			{approvalPerson?.map((person, i) => {
+				const positionlength = person?.position?.length;
+
+				return (
+					<tr>
+						<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse ">
+							<p>
+								<p>
+									<span
+										className={`inline-block text-left ${nottoBeHighlighted} `}>
+										{person?.position}
+									</span>
+								</p>
+								<p className="">
+									<i className="text-[7pt]"></i>
+								</p>
+							</p>
+						</td>
+						<td className="w-1"></td>
+						<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
+							<p>
+								<p>
+									<span
+										className={`inline-block text-left ${nottoBeHighlighted} `}>
+										{person?.name}
+									</span>
+								</p>
+								<p className="">
+									<i className="text-[7pt] absolute -bottom-3.5">By</i>
+								</p>
+							</p>
+						</td>
+						<td className="w-1"></td>
+						<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+							<div className="">
+								<p>
+									<span
+										className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+								</p>
+								<p className="">
+									<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+								</p>
+							</div>
+						</td>
+						<td className="w-1"></td>
+						<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+							<div>
+								<p>
+									<span
+										className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+								</p>
+								<p className="">
+									<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+								</p>
+							</div>
+						</td>
+					</tr>
+				);
+			})}
+			<tr>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
+					<p>
+						<p>
+							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
+								Durham Public Schools
+							</span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">
+								Durham Public School
+							</i>
+						</p>
+					</p>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
+					<p>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">By</i>
+						</p>
+					</p>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+					<div className="">
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+						</p>
+					</div>
+				</td>
+				<td className="w-1"></td>
+				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+					<div>
+						<p>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+						</p>
+						<p className="">
+							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+	);
+
+	{
+		/* 
+			<tr>
+				<td
+					className={`${
+						forms?.items ? nottoBeHighlighted : ""
+					} border border-black border-collapse text-[8pt] py-[0.5px] text-[8pt] py-[0.5px]`}>
+					{!data ? "" : !data[0] ? "" : data[0].quantity}
+				</td>
+				
+			</tr> */
+	}
+
+	{
+		/* <tr className="text-xs">
+			
+				
+			</tr> */
+	}
+
+	// <div key={i} className="grid grid-cols-4 gap-4 mb-3">
+	// 	<div className="relative">
+	// 		<p>
+	// 			<span
+	// 				className={`${nottoBeHighlighted} ${
+	// 					positionlength > 25
+	// 						? "text-[7pt]"
+	// 						: positionlength === 0
+	// 						? ""
+	// 						: positionlength <= 19
+	// 						? ""
+	// 						: ""
+	// 				}`}>
+	// 				{person?.position}
+	// 			</span>
+	// 		</p>
+	// 		<p className="border-t border-black"></p>
+	// 	</div>
+	// 	<div>
+	// 		<p>
+	// 			{console.log(positionlength > 25)}
+	// 			<span
+	// 				className={`inline-block ${nottoBeHighlighted} ${
+	// 					positionlength > 25
+	// 						? "text-[7pt]"
+	// 						: positionlength === 0
+	// 						? "bg-red-900"
+	// 						: positionlength <= 19
+	// 						? "bg-red-900"
+	// 						: "bg-red-900"
+	// 				}`}>
+	// 				{person?.name}
+	// 			</span>
+	// 		</p>
+	// 		<p className=" border-t border-black">
+	// 			<i className="text-[7pt]">By</i>
+	// 		</p>
+	// 	</div>
+	// 	<div>
+	// 		<br />
+	// 		<p></p>
+	// 		<p className=" border-t border-black">
+	// 			<i className="text-[7pt]">Signature</i>
+	// 		</p>
+	// 	</div>
+	// 	<div>
+	// 		<br />
+	// 		<p></p>
+	// 		<p className=" border-t border-black">
+	// 			<i className="text-[7pt]">Date</i>
+	// 		</p>
+	// 	</div>
+	// </div>
 };
 
 const ChangeOrderForm = () => {
@@ -70,6 +391,7 @@ const ChangeOrderForm = () => {
 	let formData = a?.data;
 
 	const vendors = formData?.vendors;
+	console.log(vendors);
 	const project = formData?.project;
 	const manager = formData?.project_manager;
 	const forms_fields = formData?.form_fields;
@@ -81,6 +403,7 @@ const ChangeOrderForm = () => {
 			return;
 		}
 		vendors?.forEach((cur) => {
+			console.log(cur);
 			if (
 				cur.role === "Design Consultant" ||
 				cur.role === "Engineering Consultant"
@@ -88,6 +411,7 @@ const ChangeOrderForm = () => {
 				setAwardee((prev) => {
 					return { ...prev, design: cur };
 				});
+				console.log(cur);
 			} else if (cur.role === "Contractor") {
 				setAwardee((prev) => {
 					return { ...prev, contractor: cur };
@@ -437,230 +761,11 @@ const ChangeOrderForm = () => {
 											CONTRACTOR, AND OWNER
 										</p>
 										<div>
-											{forms_fields?.orderApproval === "Yes" ? (
-												<div className="grid grid-cols-4 gap-4 mb-3">
-													<div>
-														<p
-															className={`${
-																designlength > 25
-																	? "mt-5"
-																	: designlength === 0
-																	? "mt-4"
-																	: designlength <= 25
-																	? ""
-																	: "mt-4"
-															}`}>
-															<span className={`${nottoBeHighlighted}`}>
-																{awardee?.design?.company_name}
-															</span>
-														</p>
-														<p className="border-t border-black">
-															<i className="text-[7pt]">Designer</i>
-														</p>
-													</div>
-
-													<div>
-														<p
-															className={`border-b border-black ${
-																designlength > 25
-																	? "mt-5"
-																	: designlength === 0
-																	? "mt-4"
-																	: designlength <= 25
-																	? ""
-																	: "mt-4"
-															}`}>
-															<span className={`${nottoBeHighlighted}`}>
-																{`${awardee?.design?.first_name || ""} ${
-																	awardee?.design?.last_name || ""
-																}`}
-															</span>
-														</p>
-
-														<p>
-															<i>
-																<span className="text-[7pt] ">By</span>
-															</i>
-														</p>
-													</div>
-													<div>
-														<p>
-															<span></span>
-														</p>
-														<br />
-														<p
-															className={`border-t border-black ${
-																designlength > 25
-																	? "mt-9"
-																	: designlength === 0
-																	? ""
-																	: designlength <= 25
-																	? ""
-																	: ""
-															}`}>
-															<i className="text-[7pt]">Signature</i>
-														</p>
-													</div>
-													<div>
-														<p>
-															<span></span>
-														</p>
-														<br />
-														<p
-															className={`border-t border-black ${
-																designlength > 19
-																	? "mt-9"
-																	: designlength === 0
-																	? ""
-																	: designlength <= 19
-																	? ""
-																	: ""
-															}`}>
-															<i className="text-[7pt]">Date</i>
-														</p>
-													</div>
-												</div>
-											) : null}
-
-											<div className="grid grid-cols-4 gap-4 mb-3">
-												<div>
-													<p>
-														{awardee?.contractor?.company_name || ""}
-														<span
-															className={`inline-block ${nottoBeHighlighted}`}></span>
-													</p>
-													<p className="border-t border-black ">
-														<i className="text-[7pt]">Contractor</i>
-													</p>
-												</div>
-												<div>
-													<br />
-
-													<p
-														className={`${nottoBeHighlighted}  border-b border-black ${
-															contractorlength > 25
-																? "mt-4"
-																: contractorlength < 1
-																? ""
-																: contractorlength <= 35
-																? ""
-																: ""
-														}`}>
-														{`${awardee?.contractor?.first_name || ""} ${
-															awardee?.contractor?.last_name || ""
-														}`}
-													</p>
-													<p>
-														<i className="text-[7pt]">By</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p
-														className={`border-b border-black ${
-															contractorlength > 25
-																? "mt-4"
-																: contractorlength < 1
-																? ""
-																: contractorlength <= 35
-																? ""
-																: ""
-														}`}></p>
-													<p>
-														<i className="text-[7pt]">Signature</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p
-														className={`border-b border-black ${
-															contractorlength > 25
-																? "mt-4"
-																: contractorlength < 1
-																? ""
-																: contractorlength <= 25
-																? ""
-																: ""
-														}`}></p>
-													<p>
-														<i className="text-[7pt]">Date</i>
-													</p>
-												</div>
-											</div>
-
-											<div className="grid grid-cols-4 gap-4 mb-3">
-												<div>
-													<p className="border-b border-black">{school}</p>
-													<p>
-														<i className="text-[7pt]">DPS Project Manager</i>
-													</p>
-												</div>
-												<div>
-													<p className={``}>
-														<span className={`${nottoBeHighlighted}`}>
-															{manager?.name}
-														</span>
-													</p>
-													<p className="border-t border-black">
-														<i className="text-[7pt]">By</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p className={`border-b border-black`}></p>
-													<p>
-														<i className="text-[7pt]">Signature</i>
-													</p>
-												</div>
-												<div>
-													<p
-														className={`${nottoBeHighlighted} border-b border-black `}>
-														{!forms_fields?.signDate
-															? ""
-															: moment(forms_fields?.signDate).format(
-																	"MMMM D, YYYY"
-															  )}
-													</p>
-													<p>
-														<i className="text-[7pt]">Date</i>
-													</p>
-												</div>
-											</div>
 											<ToApprove
 												name={forms_fields?.persons}
+												vendors={awardee}
 												nottoBeHighlighted={nottoBeHighlighted}
 											/>
-
-											<div className="grid grid-cols-4 gap-4">
-												<div>
-													<br />
-													<p></p>
-													<p className=" border-t border-black">
-														<i className="text-[7pt]">Durham Public Schools</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p></p>
-													<p className=" border-t border-black">
-														<i className="text-[7pt]">By</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p></p>
-													<p className=" border-t border-black">
-														<i className="text-[7pt]">Signature</i>
-													</p>
-												</div>
-												<div>
-													<br />
-													<p></p>
-													<p className=" border-t border-black">
-														<i className="text-[7pt]">Date</i>
-													</p>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>

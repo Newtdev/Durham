@@ -23,15 +23,12 @@ const ChangeOrderDirectiveForm = ({ id, filled }) => {
 	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
-		console.log(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
 			form_fields: setResult(values),
 		});
 		if (response) {
-			console.log("response: ", response);
 			if (response?.error) {
-				console.log("response?.error: ", response?.error);
 				toast.error(response?.message, {
 					position: toast.POSITION.TOP_CENTER,
 				});

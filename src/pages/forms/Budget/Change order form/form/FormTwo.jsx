@@ -24,24 +24,40 @@ const SelectDurham = ({ props, index }) => {
 	return (
 		<>
 			<label className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center">
-				<input
+				<select
 					className="bg-gray-50 borde text-gray-900 text-sm rounded-sm focus:outline-none block w-full px-1 py-2"
 					list="browsers"
-					id="browser"
 					type={"text"}
-					onChange={props.handleChange}
+					onChange={(e) => {
+						props?.setFieldValue(`persons[${index}].name`, e.target.value);
+						props?.setFieldValue(
+							`persons[${index}].position`,
+							e.target.selectedOptions[0].id
+						);
+					}}
 					name={`persons[${index}].name`}
-					placeholder={"Select  name"}
-					value={props?.values?.persons?.[index].name}
-				/>
+					placeholder={"Select name"}
+					value={props?.values?.persons?.[index].name}>
+					{[
+						...durhamProfile?.filter(
+							(cur) =>
+								cur.slug !==
+								"construction_capital_planning_project_managers_phone_number"
+						),
+					]?.map((dt, i) => {
+						return (
+							<option id={dt.name} value={dt?.value}>
+								{dt.value}
+							</option>
+						);
+					})}
+				</select>
 				{/* <Icon /> */}
 			</label>
 
-			<datalist id="browsers">
-				{durhamProfile?.map((dt, i) => {
-					return <option value={dt?.value}></option>;
-				})}
-			</datalist>
+			{/* <datalist id="browsers" onChange={(e) => console.log(e)}>
+				
+			</datalist> */}
 		</>
 	);
 };
@@ -60,7 +76,13 @@ const SelectProjectManager = ({ props, index }) => {
 					list="name"
 					id="browser"
 					type={"text"}
-					onChange={props.handleChange}
+					onChange={(e) => {
+						props?.setFieldValue(
+							`persons[${index}].position`,
+							"Product manager"
+						);
+						props?.setFieldValue(`persons[${index}].name`, e.target.value);
+					}}
 					name={`persons[${index}].name`}
 					placeholder={"Select  name"}
 					value={props?.values?.persons?.[index].name}
@@ -267,7 +289,7 @@ const FormTwo = (props) => {
 													<div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
 														<FormSelect
 															value={props?.values?.persons[index].database}
-															name="How does this change order's amount affect the original contract sum?"
+															name="Select database"
 															id={`persons[${index}].database`}
 															error={props.errors.database}
 															touched={props.touched.database}
