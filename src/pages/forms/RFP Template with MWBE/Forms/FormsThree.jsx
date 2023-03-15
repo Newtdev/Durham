@@ -171,14 +171,6 @@ const FormThree = (props) => {
                       responses? Enter the items in the order that the vendor
                       has to set up.
                     </h2>
-                    <button
-                      type="button"
-                      className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
-                      onClick={() => push({ item: "" })}
-                      disabled={props?.values?.items?.length > 9 ? true : false}
-                    >
-                      ADD ITEMS
-                    </button>
                   </div>
                   <div>
                     {props?.values?.items?.map((item, index) => (
@@ -219,6 +211,14 @@ const FormThree = (props) => {
                       </button>
                     </div> */}
                   </div>
+                  <button
+                    type="button"
+                    className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+                    onClick={() => push({ item: "" })}
+                    disabled={props?.values?.items?.length > 9 ? true : false}
+                  >
+                    ADD ITEMS
+                  </button>
                 </>
               )}
             ></FieldArray>
