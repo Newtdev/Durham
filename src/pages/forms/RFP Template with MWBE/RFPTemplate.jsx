@@ -2,24 +2,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FormikProvider, useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { RFPTemplateWithMWBESlug } from "../../../shared-component/slug";
 import { ModalOverlay } from "../../../ui";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../Advertisement-for-bid-template/reducer";
-import { modal, saveFormField } from "../reducer";
+import { modal } from "../reducer";
 import FormOne from "./Forms/FormsOne";
 import FormTwo from "./Forms/FormsTwo";
 import FormThree from "./Forms/FormsThree";
 import { nextStep, page } from "./reducer";
 import Preview from "./Preview";
-import { handleSavedDate, setResult } from "../../../shared-component";
+import { handleSavedDate } from "../../../shared-component";
 // import { RFPTemplatewithMWBESchema } from "../../../yup";
-import {
-  parseDynamicInput,
-  handleResultWithArray,
-} from "../../../shared-component";
+import { parseDynamicInput } from "../../../shared-component";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const RFPTemplate = ({ id, filled }) => {
@@ -33,50 +29,13 @@ const RFPTemplate = ({ id, filled }) => {
   const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
   const [a] = UseFetchFilledFormDetails(formID);
 
-  const handleResultWithArray = (res) => {
-    let dynamic = [];
-    let sum = [];
-
-    if (!res) return null;
-
-    const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
-
-    Object.entries(res).forEach((d, i) => {
-      if (Array.isArray(d[1])) {
-        dynamic = [{ field_name: d[0], field_value: JSON.stringify(d[1]) }];
-      }
-      sum = [...sum, { field_name: d[0], field_value: d[1] }];
-
-      sum.splice(a, 1);
-    });
-
-    return [...sum, ...dynamic];
-  };
-
-  const HandleSubmit = async (values) => {
-    console.log(values);
-    const response = await fillProjectDocument({
-      project_document_id: formID,
-      form_fields: handleResultWithArray(values),
-    });
-
-    if (response) {
-      if (response?.error) {
-        toast.error(response?.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        dispatch(nextStep(4));
-      }
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       bidderName: "",
       rfpNumber: "",
       personName: "",
       OcmProposalScope: "",
+      attachmentOcm: "",
       contractType: "",
       issueDate: "",
       proposalDate: "",
@@ -88,6 +47,7 @@ const RFPTemplate = ({ id, filled }) => {
       submissionTime: "",
       answerTime: "",
       bidOpeningTime: "",
+      attachFileYesOrNo: "rr",
       proposalSubmissionTime: "",
       street: "",
       state: "",
@@ -96,8 +56,6 @@ const RFPTemplate = ({ id, filled }) => {
       date: "",
       time: "",
       validityPeriod: "",
-      attachment: "",
-      // text: "",
       items: [
         {
           item: "",
@@ -111,7 +69,6 @@ const RFPTemplate = ({ id, filled }) => {
       } else if (pages === 2) {
         dispatch(nextStep(3));
       } else if (pages === 3) {
-        // HandleSubmit(values);
       }
     },
   });
@@ -185,7 +142,7 @@ const RFPTemplate = ({ id, filled }) => {
     );
     formik.setFieldValue("proposalScope", a?.data?.form_fields.proposalScope);
     formik.setFieldValue("validityPeriod", a?.data?.form_fields.validityPeriod);
-    formik.setFieldValue("attachment", a?.data?.form_fields.attachment);
+    formik.setFieldValue("attachmentOcm", a?.data?.form_fields.attachmentOcm);
     formik.setFieldValue(
       "items",
       parseDynamicInput(a?.data?.form_fields?.items)
@@ -213,17 +170,6 @@ const RFPTemplate = ({ id, filled }) => {
       <Preview />
     </ModalOverlay>
   );
-
-  // return (
-  //   <ModalOverlay show={id === RFPTemplateWithMWBESlug && show}>
-  //     <FormikProvider value={formik}>
-  //       {pages === 1 && <FormOne {...formik} />}
-  //       {pages === 2 && <FormTwo {...formik} />}
-  //       {pages === 3 && <FormThree {...props} />}
-  //       {pages === 4 && <Preview />}
-  //     </FormikProvider>
-  //   </ModalOverlay>
-  // );
 };
 
 export default RFPTemplate;
