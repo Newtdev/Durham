@@ -7,6 +7,10 @@ import { FormInputContainer } from "../../Notice-of-intent-consultant/Forms";
 import { SelectTime } from "../../Notice-to-Proceed/Forms";
 import { closeModal } from "../../reducer";
 import { prevStep } from "../reducer";
+import {
+  DataListComponent,
+  GetState,
+} from "../../E-589C Affidavit Of Capital Improvement/Affidavit";
 
 const FormTwo = (props) => {
   const dispatch = useDispatch();
@@ -163,35 +167,21 @@ const FormTwo = (props) => {
     //    prevPage
   };
 
-  const state = {
-    value: props.values.state,
-    name: "",
-    id: "state",
-    onChange: props.handleChange,
-  };
-  const city = {
-    value: props.values.city,
-    onChange: props.handleChange,
-    name: "",
-    id: "city",
-  };
-
-  const zipCode = {
-    value: props.values.zipCode,
-    name: "",
-    id: "zipCode",
-    onChange: props.handleChange,
-  };
-
   function CheckState() {
     if (!props.values.state) {
+      return;
+    }
+    if (!states) {
       return;
     }
     let stat = Object.values(states)?.find(
       (state) => state.name === props.values.state
     );
+    if (!stat) {
+      return;
+    }
 
-    return Object.keys(stat.cities)?.map((cur, id) => {
+    return Object.keys(stat?.cities)?.map((cur, id) => {
       return (
         <option key={id} value={cur}>
           {cur}
@@ -204,11 +194,15 @@ const FormTwo = (props) => {
     if (!props.values.city) {
       return;
     }
+    if (!states) {
+      return;
+    }
     const city = Object.values(states)?.filter(
       (state) => state.name === props.values.state
     );
+
     const zipcode = city?.find((cities) => cities);
-    return zipcode.cities[props.values.city]?.map((zipcode, index) => {
+    return zipcode?.cities[props.values.city]?.map((zipcode, index) => {
       return (
         <option key={index} value={zipcode}>
           {zipcode}
@@ -339,66 +333,60 @@ const FormTwo = (props) => {
               <div className="flex justify-between items-center bg-[#89A5AF] py-2 px-1 rounded-t-lg">
                 <h2>Enter the Pre-Bid Meeting details</h2>
               </div>
+
               <div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
-                <FormInputContainer name="Location">
-                  <FormInputPlain
+                <div className="flex flex-col mb-5">
+                  <label
+                    for="default-radio-1"
+                    className="text-base text-gray-900 mb-1"
+                  >
+                    Location
+                  </label>
+                  <input
                     type={"text"}
                     onChange={props.handleChange}
                     name="street"
                     placeholder={"Street"}
                     value={props.values.street}
+                    className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                   />
-                  {props.errors.street && props.touched.street && (
-                    <Error message={props.errors.street} />
-                  )}
-                </FormInputContainer>
-
-                <div className="grid grid-cols-3 gap-x-4">
-                  <FormInputContainer name="">
-                    <FormSelect {...state}>
-                      <option value={state.value}>
-                        {state.value || "Select State"}
-                      </option>
-                      {!states
-                        ? null
-                        : Object.entries(states).map((cur, index) => {
-                            return (
-                              <option key={index} value={cur[1].name}>
-                                {cur[1].name}
-                              </option>
-                            );
-                          })}
-                    </FormSelect>
-                    {props.errors.state && props.touched.state && (
-                      <Error message={props.errors.state} />
+                  {props.errors.conferenceAddress &&
+                    props.touched.conferenceAddress && (
+                      <Error message={props.errors.conferenceAddress} />
                     )}
-                  </FormInputContainer>
+                </div>
 
-                  <FormInputContainer name="">
-                    <FormSelect {...city}>
-                      <option value={city.value}>
-                        {city.value || "Select City"}
-                      </option>
-                      {CheckState()}
-                    </FormSelect>
-
-                    {props.errors.city && props.touched.city && (
-                      <Error message={props.errors.city} />
-                    )}
-                  </FormInputContainer>
-
-                  <FormInputContainer name="">
-                    <FormSelect {...zipCode}>
-                      <option value={zipCode.value}>
-                        {zipCode.value || "Select ZipCode"}
-                      </option>
-                      {CheckZipCode()}
-                    </FormSelect>
-
-                    {props.errors.zipCode && props.touched.zipCode && (
-                      <Error message={props.errors.zipCode} />
-                    )}
-                  </FormInputContainer>
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="State"
+                      inputname="state"
+                      value={props.values.state}
+                      handleChange={props.handleChange}
+                      fn={() => GetState(states)}
+                      placeholder="State"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="City"
+                      inputname="city"
+                      value={props.values.city}
+                      handleChange={props.handleChange}
+                      placeholder="City"
+                      fn={() => CheckState()}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="Zip code"
+                      inputname="zipCode"
+                      value={props.values.zipCode}
+                      handleChange={props.handleChange}
+                      placeholder="Zip code"
+                      fn={() => CheckZipCode()}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex gap-2 mt-3 justify-center w-full items-end">
