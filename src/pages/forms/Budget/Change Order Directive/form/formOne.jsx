@@ -158,7 +158,9 @@ const FormOne = (props) => {
 										onChange={props.handleChange}
 										name="amount"
 										placeholder={"$0.00"}
-										value={props?.values?.amount}
+										value={
+											!props?.values?.maxPrice ? "" : props?.values?.amount
+										}
 									/>
 									{props.errors.amount && props.touched.amount && (
 										<Error message={props.errors.amount} />
@@ -175,7 +177,9 @@ const FormOne = (props) => {
 												onChange={props.handleChange}
 												name="price"
 												placeholder={"$0.00"}
-												value={props?.values?.price}
+												value={
+													!props?.values?.unitPrice ? "" : props?.values?.price
+												}
 											/>
 										</div>
 
@@ -185,7 +189,11 @@ const FormOne = (props) => {
 												onChange={props.handleChange}
 												name="contractTimePerHour"
 												placeholder={"per hour, day...."}
-												value={props?.values?.contractTimePerHour}
+												value={
+													!props?.values?.unitPrice
+														? ""
+														: props?.values?.contractTimePerHour
+												}
 											/>
 											{props.errors.contractTimePerHour &&
 												props.touched.contractTimePerHour && (

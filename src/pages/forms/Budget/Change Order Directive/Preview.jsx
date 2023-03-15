@@ -138,15 +138,17 @@ const Change = () => {
 													or Guaranteed Maximum Price is:
 												</p>
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													<input
-														type="checkbox"
-														name="lump"
-														id="lump"
-														disabled
-														checked={
-															form_fields?.maxPrice === "0" ? false : true
-														}
-													/>
+													{form_fields?.maxPrice !== "0" ? (
+														<span className="inline-block"> &#10003;</span>
+													) : (
+														<input
+															type="checkbox"
+															name="lump"
+															id="lump"
+															disabled
+														/>
+													)}
+
 													<label htmlFor="lump">
 														Lump Sum increase of{" "}
 														<span className={`${nottoBeHighlighted}`}>
@@ -157,7 +159,17 @@ const Change = () => {
 													</label>
 												</div>
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													<input
+													{form_fields?.unitPrice !== "0" ? (
+														<span className="inline-block"> &#10003;</span>
+													) : (
+														<input
+															type="checkbox"
+															name="lump"
+															id="lump"
+															disabled
+														/>
+													)}
+													{/* <input
 														type="checkbox"
 														name="lump"
 														id="lump"
@@ -165,8 +177,7 @@ const Change = () => {
 														checked={
 															form_fields?.unitPrice === "0" ? false : true
 														}
-													/>
-													{console.log(form_fields)}
+													/> */}
 													<label htmlFor="lump">
 														Unit Price of{" "}
 														<span className={`${nottoBeHighlighted}`}>
@@ -186,13 +197,16 @@ const Change = () => {
 												</div>
 
 												<div className="flex items-center gap-1 mb-2 Times-font">
-													<input
-														type="checkbox"
-														name="lump"
-														id="lump"
-														disabled
-														checked={form_fields?.exceed === "0" ? false : true}
-													/>
+													{form_fields?.exceed !== "0" ? (
+														<span className="inline-block"> &#10003;</span>
+													) : (
+														<input
+															type="checkbox"
+															name="lump"
+															id="lump"
+															disabled
+														/>
+													)}
 													<label htmlFor="lump">
 														Not to Exceed{" "}
 														<span className={`${nottoBeHighlighted}`}>
@@ -261,9 +275,11 @@ const Change = () => {
 													<div>
 														<p className=" border-b border-black">
 															<span className={`${nottoBeHighlighted}`}>
-																{moment(form_fields?.signDate).format(
-																	"MMMM D, YYYY"
-																)}
+																{!form_fields?.signDate
+																	? ""
+																	: moment(form_fields?.signDate).format(
+																			"MMMM D, YYYY"
+																	  )}
 															</span>
 														</p>
 														<p className="font-bold">DATE</p>
