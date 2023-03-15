@@ -205,9 +205,11 @@ const FormThree = (props) => {
                   id="default-radio-1"
                   type="radio"
                   value="Yes"
-                  name="attachmentOcm"
+                  name="attachFileYesOrNo"
                   onChange={props.handleChange}
-                  checked={props.values.attachmentOcm === "Yes" ? true : false}
+                  checked={
+                    props.values.attachFileYesOrNo === "Yes" ? true : false
+                  }
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                 />
                 <label
@@ -222,8 +224,10 @@ const FormThree = (props) => {
                   id="default-radio-2"
                   type="radio"
                   value="No"
-                  name="attachmentOcm"
-                  checked={props.values.attachmentOcm === "No" ? true : false}
+                  name="attachFileYesOrNo"
+                  checked={
+                    props.values.attachFileYesOrNo === "No" ? true : false
+                  }
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
                   onChange={props.handleChange}
                 />

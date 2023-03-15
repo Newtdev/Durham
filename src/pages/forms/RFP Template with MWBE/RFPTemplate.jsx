@@ -47,7 +47,7 @@ const RFPTemplate = ({ id, filled }) => {
       submissionTime: "",
       answerTime: "",
       bidOpeningTime: "",
-      attachFileYesOrNo: "rr",
+      attachFileYesOrNo: "",
       proposalSubmissionTime: "",
       street: "",
       state: "",
@@ -142,7 +142,10 @@ const RFPTemplate = ({ id, filled }) => {
     );
     formik.setFieldValue("proposalScope", a?.data?.form_fields.proposalScope);
     formik.setFieldValue("validityPeriod", a?.data?.form_fields.validityPeriod);
-    formik.setFieldValue("attachmentOcm", a?.data?.form_fields.attachmentOcm);
+    formik.setFieldValue(
+      "attachFileYesOrNo",
+      a?.data?.form_fields.attachFileYesOrNo
+    );
     formik.setFieldValue(
       "items",
       parseDynamicInput(a?.data?.form_fields?.items)
