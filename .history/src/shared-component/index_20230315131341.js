@@ -334,6 +334,7 @@ export const handleResultWithArray = (res) => {
       dynamic = [{ field_name: d[0], field_value: JSON.stringify(d[1]) }];
     }
     sum = [...sum, { field_name: d[0], field_value: d[1] }];
+    console.log(sum);
 
     sum.splice(a, 1);
   });

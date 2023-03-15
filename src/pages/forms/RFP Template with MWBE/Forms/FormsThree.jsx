@@ -15,6 +15,11 @@ import { nextStep, prevStep } from "../reducer";
 import { FieldArray } from "formik";
 import { Fragment } from "react";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import {
+  parseDynamicInput,
+  handleResultWithArray,
+} from "../../../../shared-component";
+
 import he from "he";
 
 export const CloseIcon = () => {
@@ -51,19 +56,19 @@ const FormThree = (props) => {
     touched: props.touched.prototypeNotUtilized,
   };
 
-  const proposalScope = {
-    value: props.values.proposalScope,
-    onChange: props.handleChange,
-    id: "proposalScope",
-    error: props.errors.proposalScope,
-    touched: props.touched.proposalScope,
-    placeholder: "Proposal Scope",
-  };
+  // const proposalScope = {
+  //   value: props.values.proposalScope,
+  //   onChange: props.handleChange,
+  //   id: "proposalScope",
+  //   error: props.errors.proposalScope,
+  //   touched: props.touched.proposalScope,
+  //   placeholder: "Proposal Scope",
+  // };
 
   const HandleSubmit = async (values) => {
     const response = await fillProjectDocument({
       project_document_id: formID,
-      form_fields: setResult(values),
+      form_fields: handleResultWithArray(values),
     });
 
     if (response) {
@@ -82,13 +87,13 @@ const FormThree = (props) => {
       return;
     } else if (!a?.data?.form_fields || a?.data?.form_fields.length < 1) {
       return;
-    } else if (!a?.data?.form_fields?.proposalScope) {
+    } else if (!a?.data?.form_fields?.OcmProposalScope) {
       console.log(a?.data?.form_fields);
       // 	he?.decode("a");
     }
     let scope;
-    if (a?.data?.form_fields?.proposalScope) {
-      scope = he?.decode(a?.data?.form_fields?.proposalScope);
+    if (a?.data?.form_fields?.OcmProposalScope) {
+      scope = he?.decode(a?.data?.form_fields?.OcmProposalScope);
     }
     setText(scope);
     // }
@@ -108,7 +113,7 @@ const FormThree = (props) => {
             e.preventDefault();
             HandleSubmit({
               ...props?.values,
-              proposalScope: htmlencode(text) || "",
+              OcmProposalScope: htmlencode(text) || "",
             });
           }}
         >
@@ -154,18 +159,6 @@ const FormThree = (props) => {
                 <Error message={props.errors.validityPeriod} />
               )}
             </FormInputContainer>
-
-            {/* <FormInputContainer name="What items should the Vendor include in their RFP responses? Enter the items in the order that the vendor has to set up.">
-              <FormInputPlain
-                type={"text"}
-                onChange={props.handleChange}
-                name="items"
-                placeholder={"items"}
-              />
-              {props.errors.items && props.touched.items && (
-                <Error message={props.errors.items} />
-              )}
-            </FormInputContainer> */}
 
             <FieldArray
               name="items"

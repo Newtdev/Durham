@@ -198,7 +198,7 @@ export const setResult = (values) => {
   for (const object of Object.entries(values)) {
     sum = [...sum, { field_name: object[0], field_value: object[1] }];
   }
-  // console.log(sum);
+  console.log(sum);
   return sum;
 };
 
@@ -325,11 +325,11 @@ export const handleResultWithArray = (res) => {
 
   if (!res) return null;
 
-  // console.log(res);
-
   const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
 
   Object.entries(res).forEach((d, i) => {
+    console.log(d);
+
     if (Array.isArray(d[1])) {
       dynamic = [{ field_name: d[0], field_value: JSON.stringify(d[1]) }];
     }
@@ -337,7 +337,6 @@ export const handleResultWithArray = (res) => {
 
     sum.splice(a, 1);
   });
-  // console.log([...sum, ...dynamic]);
 
   return [...sum, ...dynamic];
 };

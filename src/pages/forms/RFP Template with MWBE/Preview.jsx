@@ -93,10 +93,10 @@ const Preview = () => {
 
   const items = form_fields?.items || "";
   if (items) {
-    console.log(JSON.parse(items));
+    // console.log(JSON.parse(items));
   }
 
-  console.log(pageProps);
+  // console.log(pageProps);
 
   return (
     <div>

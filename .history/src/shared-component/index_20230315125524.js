@@ -325,8 +325,6 @@ export const handleResultWithArray = (res) => {
 
   if (!res) return null;
 
-  // console.log(res);
-
   const a = Object.entries(res).findIndex((a) => Array.isArray(a[1]));
 
   Object.entries(res).forEach((d, i) => {
@@ -337,7 +335,6 @@ export const handleResultWithArray = (res) => {
 
     sum.splice(a, 1);
   });
-  // console.log([...sum, ...dynamic]);
 
   return [...sum, ...dynamic];
 };
