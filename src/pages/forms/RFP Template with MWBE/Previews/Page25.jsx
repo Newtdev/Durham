@@ -1,7 +1,7 @@
 import React from "react";
 import "./PagesStyle.css";
 
-const Page25 = () => {
+const Page25 = ({ attachment }) => {
   return (
     <div
       style={{
@@ -361,7 +361,7 @@ const Page25 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>27</p>
+          <p>{attachment === "Yes" ? "27" : "26"}</p>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import "./PagesStyle.css";
 import { Footer } from "./Page1";
 import image3 from "../images/image3.jpg";
 
-const Page29 = () => {
+const Page29 = ({ attachment }) => {
   return (
     <div
       style={{
@@ -264,7 +264,7 @@ const Page29 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>30</p>
+          <p>{attachment === "Yes" ? "30" : "29"}</p>
         </div>
       </div>
     </div>

@@ -56,7 +56,7 @@ const FormThree = (props) => {
       }
     });
 
-    console.log([...b, ...dynamic]);
+    // console.log([...b, ...dynamic]);
     return [...b, ...dynamic];
   };
 
