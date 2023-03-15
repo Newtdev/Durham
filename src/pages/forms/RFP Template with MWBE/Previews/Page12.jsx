@@ -87,7 +87,9 @@ const Page12 = (props) => {
             <td class="c31" colspan="1" rowspan="1">
               <p class="c3 c17 my-1">
                 <span class={`c53  ${props?.nottoBeHighlighted}`}>
-                  {moment(props?.form_fields?.submissionDate).format("MMMM D ")}
+                  {moment(props?.form_fields?.submissionDate).format(
+                    "MMMM D, "
+                  )}
 
                   <span className={`inline-block`}>
                     {" "}
@@ -113,7 +115,7 @@ const Page12 = (props) => {
             <td class="c31" colspan="1" rowspan="1">
               <p class="c3 c17 my-1">
                 <span class={`c53  ${props?.nottoBeHighlighted}`}>
-                  {moment(props?.form_fields?.answerDate).format("MMMM D ")}
+                  {moment(props?.form_fields?.answerDate).format("MMMM D, ")}
 
                   <span className={`inline-block`}>
                     {moment(props?.form_fields?.answerTime).format("hh:mm a")}{" "}
@@ -146,7 +148,7 @@ const Page12 = (props) => {
               <p class="c3 c17 my-1">
                 <span class="c66 c68">
                   <span class={`c53  ${props?.nottoBeHighlighted}`}>
-                    {moment(props?.form_fields?.date).format("MMMM D ")}
+                    {moment(props?.form_fields?.date).format("MMMM D, ")}
 
                     <span className={`inline-block`}>
                       {moment(props?.form_fields?.time).format("hh:mm a")}{" "}
@@ -170,7 +172,7 @@ const Page12 = (props) => {
             <td class="c31" colspan="1" rowspan="1">
               <p class="c3 c17 my-1">
                 <span class={`c66  ${props?.nottoBeHighlighted}`}>
-                  {moment(props?.form_fields?.proposalDate).format("MMMM D ")}
+                  {moment(props?.form_fields?.proposalDate).format("MMMM D, ")}
 
                   <span className={`inline-block`}>
                     {moment(props?.form_fields?.proposalTime).format("hh:mm a")}{" "}
@@ -202,7 +204,9 @@ const Page12 = (props) => {
             <td class="c31" colspan="1" rowspan="1">
               <p class="c3 c17 my-1">
                 <span class={`c66  ${props?.nottoBeHighlighted}`}>
-                  {moment(props?.form_fields?.bidOpeningDate).format("MMMM D ")}
+                  {moment(props?.form_fields?.bidOpeningDate).format(
+                    "MMMM D, "
+                  )}
 
                   <span className={`inline-block`}>
                     {moment(props?.form_fields?.bidOpeningTime).format(

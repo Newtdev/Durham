@@ -172,6 +172,7 @@ const Preview = () => {
                 {showPage && <Page27 />}
                 {showPage && <Page28 />}
                 {showPage && <Page29 />}
+                <Page30 {...pageProps} />
                 {showPage && <Page30 />}
               </body>
             </div>

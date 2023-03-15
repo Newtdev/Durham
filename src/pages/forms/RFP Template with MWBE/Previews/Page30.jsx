@@ -51,27 +51,34 @@ const Page30 = () => {
         <p class="c23 mb-4 flex ml-4 items-center">
           <span class="c47 c22">
             I hereby certify that it is our intent to perform 100% of the work
-            required for the
+            required for the __________________________
           </span>
         </p>
-        <div className="ml-4">
+        <p class="c23 flex ml-4 items-center">
+          <span class="c47 c22">
+            __________________________________________________________________________________
+          </span>{" "}
+          <span class="c47 c22">contract</span>
+        </p>
+        {/* <div className="ml-4">
           <hr className="border-black"></hr>
         </div>
-        <div className="ml-4 mr-[5.25rem] mt-6">
-          <hr className="border-black"></hr>
+        <div className="ml-4 mr-[5.25rem] mt-6 flex ">
+          <hr className="border-black"></hr>{" "}
+          <span class="c47 c22">contract</span>
         </div>
-        <p class="c23 c193">
+        {/* <p class="c23 c193">
           <span class="c47 c22" style={{ marginLeft: "0.5rem" }}>
             contract.
           </span>
-        </p>
+        </p> */}
         <p
           class="c276"
           style={{
             display: "flex",
-            justifyContent: "center",
+            // justifyContent: "center",
             alignItems: "center",
-            marginLeft: "0",
+            marginLeft: "12rem",
           }}
         >
           <span class="c81 c83 c80 c107">(Name of Project)</span>
