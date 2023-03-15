@@ -97,6 +97,8 @@ const Preview = () => {
   }
 
   // console.log(pageProps);
+  const attachment = form_fields?.attachmentOcm;
+  // console.log(attachment);
 
   return (
     <div>
@@ -164,13 +166,13 @@ const Preview = () => {
                 {pageProps?.form_fields?.attachmentOcm === "Yes" ? (
                   <Page22 {...pageProps} />
                 ) : null}
-                {showPage && <Page23 />}
-                {showPage && <Page24 />}
-                {showPage && <Page25 />}
-                {showPage && <Page27 />}
-                {showPage && <Page28 />}
-                {showPage && <Page29 />}
-                {showPage && <Page30 />}
+                {showPage && <Page23 attachment={attachment} />}
+                {showPage && <Page24 attachment={attachment} />}
+                {showPage && <Page25 attachment={attachment} />}
+                {showPage && <Page27 attachment={attachment} />}
+                {showPage && <Page28 attachment={attachment} />}
+                {showPage && <Page29 attachment={attachment} />}
+                {showPage && <Page30 attachment={attachment} />}
               </body>
             </div>
           </div>

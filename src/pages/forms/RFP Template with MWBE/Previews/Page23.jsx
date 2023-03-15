@@ -1,7 +1,9 @@
 import React from "react";
 import { Footer } from "./Page1";
 
-const Page23 = () => {
+const Page23 = ({ attachment }) => {
+  console.log(attachment);
+
   return (
     <div
       style={{
@@ -229,7 +231,7 @@ const Page23 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>25</p>
+          <p>{attachment === "Yes" ? "25" : "24"}</p>
         </div>
       </div>
     </div>

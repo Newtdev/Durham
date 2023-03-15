@@ -2,7 +2,7 @@ import React from "react";
 import "./PagesStyle.css";
 import { Footer } from "./Page1";
 
-const Page27 = () => {
+const Page27 = ({ attachment }) => {
   return (
     <div
       style={{
@@ -277,7 +277,7 @@ const Page27 = () => {
           <p className="text-[10px]"></p>
         </div>
         <div className="w-1  mx-auto">
-          <p>28</p>
+          <p>{attachment === "Yes" ? "28" : "27"}</p>
         </div>
       </div>
     </div>
