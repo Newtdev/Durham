@@ -6,7 +6,7 @@ const Page19 = () => {
   return (
     <div
       style={{
-        margin: "1in 30pt 3rem 72pt",
+        margin: "1in 30pt 3rem 60pt",
         paddingTop: "3rem",
         height: "10.7in",
       }}
@@ -146,7 +146,7 @@ const Page19 = () => {
             </span>
           </li>
 
-          <li class="c201 c23 c106 flex ml-24">
+          <li class="c201 c23 flex ml-24">
             <span className="mr-4">b)</span>
             <span class="c21">
               <span class="c21">

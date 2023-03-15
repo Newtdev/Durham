@@ -48,7 +48,7 @@ const Page30 = () => {
         >
           <span class="c81 c83 c80 c107">(Name of Bidder)</span>
         </p>
-        <p class="c23 mb-4 flex justify-center items-center">
+        <p class="c23 mb-4 flex ml-4 items-center">
           <span class="c47 c22">
             I hereby certify that it is our intent to perform 100% of the work
             required for the

@@ -164,6 +164,21 @@ const FormThree = (props) => {
               name="items"
               render={({ remove, push }) => (
                 <>
+                  <div className="mt-4">
+                    <h2 className="font-bold border-b w-full border-b-gray-400 pb-1 mb-2">
+                      What items should the Vendor include in their RFP
+                      responses? Enter the items in the order that the vendor
+                      has to set up.
+                    </h2>
+                    <button
+                      type="button"
+                      className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
+                      onClick={() => push({ item: "" })}
+                      disabled={props?.values?.items?.length > 9 ? true : false}
+                    >
+                      ADD ITEMS
+                    </button>
+                  </div>
                   <div>
                     {props?.values?.items?.map((item, index) => (
                       <Fragment key={index}>
@@ -185,7 +200,7 @@ const FormThree = (props) => {
                         </FormInputContainer>
                       </Fragment>
                     ))}
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                       <h2 className="font-bold border-b w-full border-b-gray-400 pb-1 mb-2">
                         What items should the Vendor include in their RFP
                         responses? Enter the items in the order that the vendor
@@ -196,12 +211,12 @@ const FormThree = (props) => {
                         className="bg-[#693B79] w-fit text-white font-bold px-3 py-1"
                         onClick={() => push({ item: "" })}
                         disabled={
-                          props?.values?.items?.length > 4 ? true : false
+                          props?.values?.items?.length > 9 ? true : false
                         }
                       >
                         ADD ITEMS
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </>
               )}

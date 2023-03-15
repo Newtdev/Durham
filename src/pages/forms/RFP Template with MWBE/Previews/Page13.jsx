@@ -13,9 +13,9 @@ const Page13 = () => {
       className=" flex flex-col justify-between h-full "
     >
       <div>
-        <p class="c17 c12 c60">
+        {/* <p class="c17 c12 c60">
           <span class="c51"></span>
-        </p>
+        </p> */}
         <hr style={{ pageBreakBefore: "always", display: "none" }} />
         <p class="c3 c23 c12" id="h.41mghml">
           <span class="c51"></span>
