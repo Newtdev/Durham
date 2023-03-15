@@ -100,11 +100,8 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 					<p>
 						<p>
 							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
-								{!vendors?.contractor
-									? ""
-									: vendors?.contractor?.first_name + " " + !vendors?.contractor
-									? ""
-									: vendors?.contractor?.last_name}
+								{vendors?.contractor?.first_name || ""}{" "}
+								{vendors?.contractor?.last_name || ""}
 							</span>
 						</p>
 						<p className="">
@@ -251,26 +248,6 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 		</table>
 	);
 
-	{
-		/* 
-			<tr>
-				<td
-					className={`${
-						forms?.items ? nottoBeHighlighted : ""
-					} border border-black border-collapse text-[8pt] py-[0.5px] text-[8pt] py-[0.5px]`}>
-					{!data ? "" : !data[0] ? "" : data[0].quantity}
-				</td>
-				
-			</tr> */
-	}
-
-	{
-		/* <tr className="text-xs">
-			
-				
-			</tr> */
-	}
-
 	// <div key={i} className="grid grid-cols-4 gap-4 mb-3">
 	// 	<div className="relative">
 	// 		<p>
@@ -337,7 +314,6 @@ const ChangeOrderForm = () => {
 	let formData = a?.data;
 
 	const vendors = formData?.vendors;
-	console.log(vendors);
 	const project = formData?.project;
 	const manager = formData?.project_manager;
 	const forms_fields = formData?.form_fields;
@@ -349,7 +325,6 @@ const ChangeOrderForm = () => {
 			return;
 		}
 		vendors?.forEach((cur) => {
-			console.log(cur);
 			if (
 				cur.role === "Design Consultant" ||
 				cur.role === "Engineering Consultant"
@@ -357,7 +332,6 @@ const ChangeOrderForm = () => {
 				setAwardee((prev) => {
 					return { ...prev, design: cur };
 				});
-				console.log(cur);
 			} else if (cur.role === "Contractor") {
 				setAwardee((prev) => {
 					return { ...prev, contractor: cur };

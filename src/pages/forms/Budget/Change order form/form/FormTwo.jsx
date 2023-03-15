@@ -271,7 +271,6 @@ const FormTwo = (props) => {
 															New approval person {index + 1}
 														</h2>
 														<button
-															disabled={index === 0 ? true : false}
 															onClick={() => remove(index)}
 															type="button"
 															className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -339,7 +338,7 @@ const FormTwo = (props) => {
 																		value={
 																			props?.values?.persons?.[index].position
 																		}
-																		placeholder={"Name"}
+																		placeholder={"Title"}
 																	/>
 																</FormInputContainer>
 															) : null}
@@ -368,7 +367,7 @@ const FormTwo = (props) => {
 														name: "",
 													})
 												}>
-												ADD NEW A PERSON FOR APPROVAL
+												ADD A PERSON FOR APPROVAL
 											</button>
 										</div>
 									</div>
