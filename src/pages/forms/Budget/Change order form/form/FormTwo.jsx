@@ -79,12 +79,12 @@ const SelectProjectManager = ({ props, index }) => {
 					onChange={(e) => {
 						props?.setFieldValue(
 							`persons[${index}].position`,
-							"Product manager"
+							"Project manager"
 						);
 						props?.setFieldValue(`persons[${index}].name`, e.target.value);
 					}}
 					name={`persons[${index}].name`}
-					placeholder={"Select  name"}
+					placeholder={"Select name"}
 					value={props?.values?.persons?.[index].name}
 				/>
 				{/* <Icon /> */}
@@ -234,13 +234,6 @@ const FormTwo = (props) => {
 								)}
 							</span>
 						</div>
-
-						<FormInputContainer name="When does the project manager sign this form?">
-							<SelectDate {...signDate} />
-							{props.errors.signDate && props.touched.signDate && (
-								<Error message={props.errors.signDate} />
-							)}
-						</FormInputContainer>
 
 						<FormSelect
 							value={props?.values?.orderApproval}

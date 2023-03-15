@@ -19,72 +19,70 @@ import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
 import { parseDynamicInput, trucateText } from "../../../../shared-component";
 
 const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
-	console.log(vendors);
-
 	if (!name) {
 		return null;
 	}
-	const approvalPerson = parseDynamicInput(name);
-	// positionlength > 19
-	// 	? "mt-9"
-	// 	: designlength === 0
-	// 	? ""
-	// 	: designlength <= 19
-	// 	? ""
-	// 	: "";
+	const approvalPerson = parseDynamicInput(name?.persons);
+
 	return (
 		<table className="w-full border border-white  text-center  border-separate border-spacing-y-6 ">
-			<tr>
-				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
-					<p>
+			{name?.approval === "Yes" ? (
+				<tr>
+					<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
 						<p>
-							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
-								{vendors?.design?.company_name}
-							</span>
+							<p>
+								<span
+									className={`inline-block text-left ${nottoBeHighlighted} `}>
+									{vendors?.design?.company_name}
+								</span>
+							</p>
+							<p className="">
+								<i className="text-[7pt] absolute -bottom-3.5">Designer</i>
+							</p>
 						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">Designer</i>
-						</p>
-					</p>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
-					<p>
+					</td>
+					<td className="w-1"></td>
+					<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
 						<p>
-							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
-								{vendors?.design?.first_name + " " + vendors?.design?.last_name}
-							</span>
+							<p>
+								<span
+									className={`inline-block text-left ${nottoBeHighlighted} `}>
+									{vendors?.design?.first_name +
+										" " +
+										vendors?.design?.last_name}
+								</span>
+							</p>
+							<p className="">
+								<i className="text-[7pt] absolute -bottom-3.5">By</i>
+							</p>
 						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">By</i>
-						</p>
-					</p>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
-					<div className="">
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
-						</p>
-					</div>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
-					<div>
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
-						</p>
-					</div>
-				</td>
-			</tr>
+					</td>
+					<td className="w-1"></td>
+					<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
+						<div className="">
+							<p>
+								<span
+									className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
+							</p>
+							<p className="">
+								<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
+							</p>
+						</div>
+					</td>
+					<td className="w-1"></td>
+					<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
+						<div>
+							<p>
+								<span
+									className={`inline-block text-left ${nottoBeHighlighted} `}></span>
+							</p>
+							<p className="">
+								<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
+							</p>
+						</div>
+					</td>
+				</tr>
+			) : null}
 			<tr>
 				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
 					<p>
@@ -140,63 +138,11 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
-					<p>
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">
-								Dps Project Manager
-							</i>
-						</p>
-					</p>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
-					<p>
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">By</i>
-						</p>
-					</p>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%] mx-2 text-left border-black border-collapse relative">
-					<div className="">
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} border-red-900 `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5">Signature</i>
-						</p>
-					</div>
-				</td>
-				<td className="w-1"></td>
-				<td className="text-[8pt] border-b w-[25%s] text-left border-black border-collapse relative">
-					<div>
-						<p>
-							<span
-								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
-						</p>
-						<p className="">
-							<i className="text-[7pt] absolute -bottom-3.5 ">Date</i>
-						</p>
-					</div>
-				</td>
-			</tr>
-			{approvalPerson?.map((person, i) => {
-				const positionlength = person?.position?.length;
 
+			{approvalPerson?.map((person, i) => {
 				return (
 					<tr>
-						<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse ">
+						<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse relative">
 							<p>
 								<p>
 									<span
@@ -205,7 +151,9 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 									</span>
 								</p>
 								<p className="">
-									<i className="text-[7pt]"></i>
+									<i className="text-[7pt] absolute -bottom-3.5">
+										Durham Public School
+									</i>
 								</p>
 							</p>
 						</td>
@@ -254,9 +202,8 @@ const ToApprove = ({ name, nottoBeHighlighted, vendors }) => {
 				<td className="text-[8pt] border-b w-[25%] text-left border-black border-collapse  relative">
 					<p>
 						<p>
-							<span className={`inline-block text-left ${nottoBeHighlighted} `}>
-								Durham Public Schools
-							</span>
+							<span
+								className={`inline-block text-left ${nottoBeHighlighted} `}></span>
 						</p>
 						<p className="">
 							<i className="text-[7pt] absolute -bottom-3.5">
@@ -762,7 +709,7 @@ const ChangeOrderForm = () => {
 										</p>
 										<div>
 											<ToApprove
-												name={forms_fields?.persons}
+												name={forms_fields}
 												vendors={awardee}
 												nottoBeHighlighted={nottoBeHighlighted}
 											/>
