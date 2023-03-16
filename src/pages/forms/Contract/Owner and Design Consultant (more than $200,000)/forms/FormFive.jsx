@@ -7,12 +7,44 @@ import { FormInputPlain, FormInput } from "../../../components";
 import { prevStep } from "../reducer";
 import { useState } from "react";
 import Component, { HandleMultiplication, HandleTotal } from "../Component";
+import currency from "currency.js";
 
 const FormFive = (props) => {
 	const dispatch = useDispatch();
 	const [edit, setEdit] = useState(false);
 
 	// A is the percentage ____ while B is basic service compensation
+	const designNarrativePhase = HandleTotal(
+		props?.values?.narrativePhase,
+		props?.values?.serviceCompensation
+	);
+
+	const schematicPhase = HandleTotal(
+		props?.values?.schematicPhase,
+		props?.values?.serviceCompensation
+	);
+
+	const developmentPhase = HandleTotal(
+		props?.values?.developmentPhase,
+		props?.values?.serviceCompensation
+	);
+
+	const negotiationsPhase = HandleTotal(
+		props?.values?.negotiationPhase,
+		props?.values?.serviceCompensation
+	);
+	const constructionContractPhase = HandleTotal(
+		props?.values?.constructionContractPhase,
+		props?.values?.serviceCompensation
+	);
+	const constructionPhase = HandleTotal(
+		props?.values?.constructionPhase,
+		props?.values?.serviceCompensation
+	);
+	const constructionServicePhase = HandleTotal(
+		props?.values?.constructionServicesPhase,
+		props?.values?.serviceCompensation
+	);
 
 	return (
 		<div>
@@ -104,10 +136,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.narrativePhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(designNarrativePhase).format()}` || "0.00"}
 									</p>
 								</div>
 
@@ -133,10 +162,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.schematicPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(schematicPhase).format()}` || "0.00"}
 									</p>
 								</div>
 
@@ -162,10 +188,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.developmentPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(developmentPhase).format()}` || "0.00"}
 									</p>
 								</div>
 
@@ -190,11 +213,11 @@ const FormFive = (props) => {
 											)}
 										</p>
 									</div>
+
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.constructionContractPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{console.log(constructionContractPhase)}
+										{`${currency(constructionContractPhase).format()}` ||
+											"0.00"}
 									</p>
 								</div>
 
@@ -222,10 +245,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.negotiationPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(negotiationsPhase).format()}` || "0.00"}
 									</p>
 								</div>
 
@@ -251,10 +271,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.constructionPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(constructionPhase).format()}` || "0.00"}
 									</p>
 								</div>
 
@@ -280,10 +297,7 @@ const FormFive = (props) => {
 										</p>
 									</div>
 									<p className="text-[#693B79] font-bold">
-										{`$${HandleTotal(
-											props?.values?.constructionServicesPhase,
-											props?.values?.serviceCompensation
-										)}` || "0.00"}
+										{`${currency(constructionServicePhase).format()}` || "0.00"}
 									</p>
 								</div>
 								<button
