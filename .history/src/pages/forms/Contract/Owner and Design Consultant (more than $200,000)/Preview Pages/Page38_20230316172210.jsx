@@ -111,8 +111,8 @@ const OwnerDesignMore = (props) => {
                   fontSize: "10pt",
                   fontFamily: "Arial",
                   position: "relative",
-                  bottom: "1.7rem",
-                  left: "-0.5rem",
+                  bottom: "1.5rem",
+                  left: "0",
                   width: "7rem",
                 }}
               >
@@ -258,16 +258,16 @@ const OwnerDesignMore = (props) => {
         </p>
         <p class="uj34 uj44">
           <span class="uj3">Witness my hand and notarial seal this </span>
-          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+          <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
             {moment(props?.form_fields?.notarySealDate).format("Do")}{" "}
           </span>{" "}
           <span class="uj3">&nbsp;day of </span>
-          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+          <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
             {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
           </span>
           <span class="uj5 uj3">
-            ,&nbsp;
-            <span class={`uj3 ${props.nottoBeHighlighted}`}>
+            ,
+            <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
               {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
             </span>
             .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
