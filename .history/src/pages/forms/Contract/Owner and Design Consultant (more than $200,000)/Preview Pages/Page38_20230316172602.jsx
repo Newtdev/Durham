@@ -266,7 +266,7 @@ const OwnerDesignMore = (props) => {
             {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
           </span>
           <span class="uj5 uj3">
-            ,&nbsp;
+            ,
             <span class={`uj3 ${props.nottoBeHighlighted}`}>
               {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
             </span>

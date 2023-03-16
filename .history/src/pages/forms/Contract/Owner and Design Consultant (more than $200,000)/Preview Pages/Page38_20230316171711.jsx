@@ -100,19 +100,14 @@ const OwnerDesignMore = (props) => {
               </p>
             </td>
             <td class="uj75" colspan="1" rowspan="2">
-              <p class="uj34 uj41">
-                <span class="uj5 uj3"></span>
-              </p>
-            </td>
-            <td class="uj80" colspan="1" rowspan="1">
               <span
                 class={`${props?.nottoBeHighlighted} inline-block`}
                 style={{
                   fontSize: "10pt",
                   fontFamily: "Arial",
-                  position: "relative",
-                  bottom: "1.7rem",
-                  left: "-0.5rem",
+                  position: "absolute",
+                  bottom: "15rem",
+                  left: "5rem",
                   width: "7rem",
                 }}
               >
@@ -127,6 +122,12 @@ const OwnerDesignMore = (props) => {
                   {moment(props?.form_fields?.signDate).format("YYYY")}
                 </span>
               </span>
+
+              <p class="uj34 uj41">
+                <span class="uj5 uj3"></span>
+              </p>
+            </td>
+            <td class="uj80" colspan="1" rowspan="1">
               <p class="uj34">
                 <span class="uj5 uj3">Date</span>
               </p>
@@ -258,16 +259,16 @@ const OwnerDesignMore = (props) => {
         </p>
         <p class="uj34 uj44">
           <span class="uj3">Witness my hand and notarial seal this </span>
-          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+          <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
             {moment(props?.form_fields?.notarySealDate).format("Do")}{" "}
           </span>{" "}
           <span class="uj3">&nbsp;day of </span>
-          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+          <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
             {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
           </span>
           <span class="uj5 uj3">
-            ,&nbsp;
-            <span class={`uj3 ${props.nottoBeHighlighted}`}>
+            ,
+            <span class={`uj3 uj13 ${props.nottoBeHighlighted}`}>
               {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
             </span>
             .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
