@@ -528,7 +528,10 @@ const ChangeOrderForm = () => {
 																	{forms_fields?.orderAmountEffect ===
 																	"Increased"
 																		? "+"
-																		: "-"}
+																		: forms_fields?.orderAmountEffect ===
+																		  "Decreased"
+																		? "-"
+																		: ""}
 																</span>
 																<span className={`${nottoBeHighlighted}`}>
 																	{currency(forms_fields?.orderAmount).format()}

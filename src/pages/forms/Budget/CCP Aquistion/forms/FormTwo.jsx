@@ -165,6 +165,7 @@ const FormTwo = (props) => {
 										props.setFieldValue("vendor", "");
 									} else {
 										setShow(true);
+
 										props.setFieldValue("vendor", e.target.value);
 									}
 								}}>

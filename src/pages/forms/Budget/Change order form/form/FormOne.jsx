@@ -157,17 +157,19 @@ const FormOne = (props) => {
 								})}
 							</FormSelect>
 
-							<FormInputContainer name="Amount">
-								<FormInput
-									onChange={props.handleChange}
-									name="orderAmount"
-									placeholder={"0.0"}
-									value={props?.values?.orderAmount}
-								/>
-								{props.errors.amount && props.touched.amount && (
-									<Error message={props.errors.amount} />
-								)}
-							</FormInputContainer>
+							{props?.values?.orderAmountEffect !== "No change" ? (
+								<FormInputContainer name="Amount">
+									<FormInput
+										onChange={props.handleChange}
+										name="orderAmount"
+										placeholder={"0.0"}
+										value={props?.values?.orderAmount}
+									/>
+									{props.errors.amount && props.touched.amount && (
+										<Error message={props.errors.amount} />
+									)}
+								</FormInputContainer>
+							) : null}
 							<div className="flex flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg">
 								<h2 className="text-sm font-medium">New Contract Sum</h2>
 

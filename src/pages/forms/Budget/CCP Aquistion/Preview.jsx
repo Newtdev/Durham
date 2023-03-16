@@ -239,7 +239,9 @@ const Preview = () => {
 												<p>NAME:</p>
 												<p className="border border-black ml-5 p-1 w-[17rem]">
 													<span className={`${nottoBeHighlighted}`}>
-														{forms?.vendor}
+														{!forms?.companyName
+															? forms?.vendor
+															: forms?.companyName}
 													</span>
 												</p>
 											</div>
@@ -577,7 +579,7 @@ const Preview = () => {
 													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-[8pt] h-[15px] h-[15px] text-right pr-1`}>
 												{!data
-													? "0.0"
+													? ""
 													: !data[4]
 													? ""
 													: currency(
@@ -928,12 +930,20 @@ const Preview = () => {
 															If applicable enter, NC <br />
 															SALES TAX @{" "}
 															<span className={`${nottoBeHighlighted}`}>
-																{forms?.ccptax}%
+																{forms?.ccpsalesTax === "NO"
+																	? ""
+																	: forms?.ccptax}
+																%
 															</span>
 														</p>
-														<p className=" border-2 border-black p-1 text-right w-28">
+														<p
+															className={`border-2 border-black text-right w-28 ${
+																forms?.ccpsalesTax === "NO" ? "py-3" : "p-1"
+															}`}>
 															<span className={`${nottoBeHighlighted}`}>
-																{currency(taxPercentage).format()}
+																{forms?.ccpsalesTax === "NO"
+																	? ""
+																	: currency(taxPercentage).format()}
 															</span>
 														</p>
 													</div>

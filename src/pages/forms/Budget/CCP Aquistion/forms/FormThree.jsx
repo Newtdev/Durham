@@ -10,7 +10,10 @@ import { Fragment, useMemo, useState } from "react";
 import currency from "currency.js";
 import { project_document_id } from "../../../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../../../features/services/api";
-import { handleResultWithArray } from "../../../../../shared-component";
+import {
+	handleResultWithArray,
+	setResult,
+} from "../../../../../shared-component";
 import { toast } from "react-toastify";
 import Component from "../../Change-Proposal-Form 2/Component";
 
@@ -44,14 +47,14 @@ export const GrandTotals = (a, b = 0, c, d = "NO") => {
 	}, [a, b, c, d]);
 };
 
-export const TaxPercentage = (a, b) => {
+export const TaxPercentage = (a, b, c) => {
 	return useMemo(() => {
 		if (!a) {
-			return;
+			return "";
 		}
 		let subTotals = subTotal(a);
 		// let percentage = 4.75 / 100;
-		if (!b) {
+		if (!b || b === undefined) {
 			return "";
 		} else {
 			let newPercentage = Number(b) / 100;
@@ -79,16 +82,11 @@ const FormThree = (props) => {
 	const handleClick = (props) => {
 		setFocus(true);
 	};
-	// const CalculatePercentage = (a, b) => {
-	// 	return useMemo(() => {
-	// 		return ((Number(a) / Number(b)) * 100).toFixed(2);
-	// 	}, [a, b]);
-	// };
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: handleResultWithArray({
+			form_fields: setResult({
 				ccpsubtotal: subtotal,
 				ccpgrandTotal: grandTotal,
 				...values,
@@ -312,7 +310,6 @@ const FormThree = (props) => {
 								placeholder={"$ 0.00"}
 								value={props?.values?.ccpshippingCost}
 							/>
-							{console.log("soidnsingd", props?.values?.ccpshippingCost)}
 							{props.errors.ccpshippingCost &&
 								props.touched.ccpshippingCost && (
 									<Error message={props.errors.ccpshippingCost} />
@@ -391,13 +388,18 @@ const FormThree = (props) => {
 								</div>
 							</div>
 						</FormInputContainer> */}
-
 						<div
 							className={`${
-								props?.values?.ccpsalesTax === "NO" ? "hidden" : "flex"
-							} flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg`}>
+								props?.values?.ccpsalesTax === "NO" ||
+								!props?.values?.ccpsalesTax
+									? "hidden"
+									: "flex"
+							} flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg bg-red-900`}>
 							<h2 className="text-sm font-medium">Sales Tax Total</h2>
-							<span className="text-sm font-bold">
+							<span
+								className={`${
+									props?.values?.ccpsalesTax === "NO" ? "hidden" : "flex"
+								} text-sm font-bold`}>
 								{currency(
 									TaxPercentage(props?.values?.items, props?.values?.ccptax)
 								).format()}
@@ -408,7 +410,6 @@ const FormThree = (props) => {
 							<h2 className="text-sm font-medium">Grand Total</h2>
 							<span className="text-sm font-bold">
 								{/* {currency(props?.values?.items).format()} */}
-								{console.log("shippingcost:", props?.values?.ccpshippingCost)}
 								{GrandTotals(
 									props?.values?.items,
 									props?.values?.ccpshippingCost,
