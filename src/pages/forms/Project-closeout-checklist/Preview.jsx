@@ -147,9 +147,9 @@ const ProjectCloseOutPreview = (data) => {
 											School:{" "}
 											<span
 												className={`inline-block border-b border-black ${
-													!project?.school ? "w-[8.5rem]" : ""
+													!project?.school?.name ? "w-[8.5rem]" : ""
 												}`}>
-												{project?.school}
+												{project?.school?.name}
 											</span>
 										</p>
 									</div>
@@ -160,7 +160,8 @@ const ProjectCloseOutPreview = (data) => {
 												Contractor:{" "}
 												<span
 													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
-													{!vendors ? "" : vendors[0]?.company_name}
+													Tebodin Middle East Company
+													{/* {!vendors ? "" : vendors[0]?.company_name} */}
 												</span>
 											</p>
 										</div>
@@ -601,9 +602,11 @@ const ProjectCloseOutPreview = (data) => {
 											Date
 											<span className="inline-block w-32 border-b border-black flex justify-end -mt-1">
 												<span className={`inline-block ${nottoBeHighlighted}`}>
-													{moment(form_fields?.signedDate).format(
-														"MMMM D, YYYY "
-													)}
+													{!form_fields?.signedDate
+														? ""
+														: moment(form_fields?.signedDate).format(
+																"MMMM D, YYYY "
+														  )}
 												</span>
 												{/* <span>_________________________________</span> */}
 											</span>
