@@ -225,9 +225,9 @@ const Preview = () => {
 										</div>
 									</div>
 
-									<div className="flex justify-between items-center  mb-4">
+									<div className="flex justify-between items-center   mb-4">
 										<div>
-											<div className="flex gap-2 items-end mb-2 mt-6">
+											<div className="flex gap-2 items-end mb-1 mt-7">
 												<p>VENDOR #:</p>
 												<p className="border border-black p-1 w-[16.7rem]">
 													<span className={`${nottoBeHighlighted}`}>
@@ -260,8 +260,8 @@ const Preview = () => {
 											</div>
 										</div>
 
-										<div className=" mt-1 flex flex-col justify-between">
-											<div className="flex gap-2 items-center justify-center">
+										<div className=" mt-0.5 flex flex-col justify-between ">
+											<div className="flex gap-2 items-center justify-center ">
 												<p>SHIPPING #:</p>
 												<p className="border border-black p-1 w-[13.5rem]">
 													{forms?.street ? (
@@ -333,31 +333,31 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-[8pt] py-[0.5px]`}>
 												{!data ? "" : !data[0] ? "" : data[0].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[0] ? "" : data[0].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[0] ? "" : data[0].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[0] ? "" : data[0].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
 													? 0
 													: !data[0]
@@ -367,11 +367,11 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[0]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[0]?.quantity,
@@ -385,31 +385,31 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[1] ? "" : data[1].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[1] ? "" : data[1].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[1] ? "" : data[1].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[1] ? "" : data[1].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
 													? 0
 													: !data[1]
@@ -419,11 +419,11 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[1]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[1]?.quantity,
@@ -437,45 +437,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[2] ? "" : data[2].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[2] ? "" : data[2].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[2] ? "" : data[2].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[2] ? "" : data[2].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[2]
-													? "0.00"
+													? ""
 													: currency(data[2]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[2]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[2]?.quantity,
@@ -489,45 +489,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[3] ? "" : data[3].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[3] ? "" : data[3].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[3] ? "" : data[3].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[3] ? "" : data[3].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[3]
-													? "0.00"
+													? ""
 													: currency(data[3]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[3]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[3]?.quantity,
@@ -541,45 +541,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[4] ? "" : data[4].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[4] ? "" : data[4].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[4] ? "" : data[4].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[4] ? "" : data[4].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[4]
-													? "0.00"
+													? ""
 													: currency(data[4]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] h-[15px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? "0.0"
 													: !data[4]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[4]?.quantity,
@@ -593,45 +593,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[5] ? "" : data[5].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[5] ? "" : data[5].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[5] ? "" : data[5].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[5] ? "" : data[5].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[5]
-													? "0.00"
+													? ""
 													: currency(data[5]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[5]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[5]?.quantity,
@@ -645,45 +645,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[6] ? "" : data[6].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[6] ? "" : data[6].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[6] ? "" : data[6].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[6] ? "" : data[6].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[6]
-													? "0.00"
+													? ""
 													: currency(data[6]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[6]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[6]?.quantity,
@@ -696,45 +696,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[7] ? "" : data[7].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[7] ? "" : data[7].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[7] ? "" : data[7].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[7] ? "" : data[7].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[7]
-													? "0.00"
+													? ""
 													: currency(data[7]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[7]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[7]?.quantity,
@@ -748,45 +748,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[8] ? "" : data[8].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[8] ? "" : data[8].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[8] ? "" : data[8].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[8] ? "" : data[8].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[8]
-													? "0.00"
+													? ""
 													: currency(data[8]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[8]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[8]?.quantity,
@@ -800,45 +800,45 @@ const Preview = () => {
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[9] ? "" : data[9].quantity}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[9] ? "" : data[9].unit}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]`}>
 												{!data ? "" : !data[9] ? "" : data[9].stockNumber}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												}  border border-black border-collapse text-[8pt] py-[0.5px] text-left pl-2`}>
+												}  border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-left pl-2`}>
 												{!data ? "" : !data[9] ? "" : data[9].description}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px]  text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px]  text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[9]
-													? "0.00"
+													? ""
 													: currency(data[9]?.unitPrice || 0).format()}
 											</td>
 											<td
 												className={`${
 													forms?.items ? nottoBeHighlighted : ""
-												} border border-black border-collapse text-[8pt] py-[0.5px] text-right pr-1`}>
+												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? "0.00"
+													? ""
 													: !data[9]
-													? "0.00"
+													? ""
 													: currency(
 															CalculateTotal(
 																data[9]?.quantity,
@@ -908,8 +908,7 @@ const Preview = () => {
 														<p>SUB-TOTAL</p>
 														<p className=" border-2 border-black p-1 text-right w-28">
 															<span className={`${nottoBeHighlighted}`}>
-																{currency(forms?.ccpsubtotal).format() ||
-																	"0.00"}
+																{currency(forms?.ccpsubtotal).format() || ""}
 															</span>
 														</p>
 													</div>

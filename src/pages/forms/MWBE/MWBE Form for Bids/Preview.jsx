@@ -20,7 +20,7 @@ import DownLoadForm from "../../Lundsford/Download";
 const MWBEBids = () => {
 	const formID = useSelector(project_document_id);
 	const dispatch = useDispatch();
-	const [awardee, setAwardee] = useState([]);
+	const [checked, setChecked] = useState({});
 	const [highlighted, setHighlighed] = useState(false);
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
@@ -35,7 +35,9 @@ const MWBEBids = () => {
 		name: "MWBE Form for Bids",
 		show: show ? "block" : "hidden",
 	};
-
+	const onChange = (e) => {
+		setChecked({ ...checked, [e.target.name]: e.target.checked });
+	};
 	return (
 		<div>
 			<div>
@@ -66,6 +68,8 @@ const MWBEBids = () => {
 							<PageOne
 								formDetails={formDetails}
 								nottoBeHighlighted={nottoBeHighlighted}
+								checked={checked}
+								onChange={onChange}
 							/>
 							<PageTwo
 								formDetails={formDetails}

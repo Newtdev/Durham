@@ -6,12 +6,13 @@ import { nextStep, prevStep } from "../reducer";
 import { FormSelect, FormInputPlain } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { FieldArray } from "formik";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import currency from "currency.js";
 import { project_document_id } from "../../../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../../../features/services/api";
 import { handleResultWithArray } from "../../../../../shared-component";
 import { toast } from "react-toastify";
+import Component from "../../Change-Proposal-Form 2/Component";
 
 export const CalculateTotal = (a, b) => {
 	if (!a || !b) {
@@ -63,6 +64,7 @@ const FormThree = (props) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [Focus, setFocus] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -74,7 +76,9 @@ const FormThree = (props) => {
 	);
 
 	const subtotal = subTotal(props?.values?.items);
-
+	const handleClick = (props) => {
+		setFocus(true);
+	};
 	// const CalculatePercentage = (a, b) => {
 	// 	return useMemo(() => {
 	// 		return ((Number(a) / Number(b)) * 100).toFixed(2);
@@ -332,25 +336,60 @@ const FormThree = (props) => {
 							</FormSelect>
 						</FormInputContainer>
 
-						{props?.values?.ccpsalesTax === "YES" ? (
-							<FormInputContainer name="">
-								<div className="flex justify-center items-center">
-									<FormInputPlain
-										type={"text"}
-										onChange={props.handleChange}
-										name="ccptax"
-										placeholder={"@ 4.75%"}
-										value={props?.values?.ccptax}
-									/>
-									{props.errors.ccpsalesTax && props.touched.ccpsalesTax && (
-										<Error message={props.errors.ccpsalesTax} />
+						<div
+							className={`flex flex-col gap-2 px-6 py-2 bg-[#F3F4F6] rounded-lg ${
+								props?.values?.ccpsalesTax === "YES" ? "block" : "hidden"
+							}`}>
+							<div className="flex items-center justify-between">
+								<p className=" w-[70%]">Sales Tax Percentage</p>
+								<p className=" w-[10%]">
+									{Focus ? (
+										<Component
+											value={props?.values?.ccptax}
+											id="ccptax"
+											onChange={(e) =>
+												props?.setFieldValue("ccptax", e.target.value)
+											}
+										/>
+									) : (
+										`${props?.values?.ccptax}%`
 									)}
-									<div className="w-12 text-2xl text-gray-500 text-center">
-										%
-									</div>
+								</p>
+							</div>
+
+							{/* <p className="text-[#693B79] font-bold">
+								{`${TaxPercentage(
+									props?.values?.items,
+									props?.values?.ccptax
+								)}` || "0.00"}
+							</p> */}
+							<div className="my-4">
+								<button
+									className={`text-white text-md hover:bg-blue-600 hover:text-white focus:ring-4 bg-[#693B79] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-4 py-2 flex items-center justify-center `}
+									type="button"
+									onClick={() => handleClick("one")}>
+									EDIT PERCENTAGE
+								</button>
+							</div>
+						</div>
+						{/* <FormInputContainer name="">
+						 	{/* <div className="flex justify-center items-center"> 
+								<FormInputPlain
+						 			type={"text"}
+									onChange={props.handleChange}
+									name="ccptax"
+									placeholder={"@ 4.75%"}
+									value={props?.values?.ccptax
+								/>
+								{props.errors.ccpsalesTax && props.touched.ccpsalesTax && (
+									<Error message={props.errors.ccpsalesTax} />
+								)}
+								<div className="w-12 text-2xl text-gray-500 text-center">
+									%
 								</div>
-							</FormInputContainer>
-						) : null}
+							</div>
+						</FormInputContainer> */}
+
 						<div
 							className={`${
 								props?.values?.ccpsalesTax === "NO" ? "hidden" : "flex"

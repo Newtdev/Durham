@@ -35,7 +35,7 @@ export const ShortSmallFormDesign =
 	"Short-Small-Form-Design-Consultant-Agreement";
 export const AffidavitSlug = "E-589CI-Affidavit-of-Capital-Improvement";
 export const ChangeOrderDirective = "Change-Order-Directive";
-export const ProposalSlug = "Capital-Proposal-Form";
+export const ProposalSlug = "Change-Proposal-Form";
 export const ChangeOrder = "Change-Order-Form";
 export const DesignChangeFrom = "Design-Phase-Change-Order";
 export const DPSShortFormEngineer =

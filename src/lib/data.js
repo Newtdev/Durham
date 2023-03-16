@@ -163,7 +163,7 @@ export const documents = [
 			{ id: 30, name: "Change Order Form" },
 			{ id: 31, name: "Change Proposal Form" },
 			{ id: 32, name: "Design Phase Change Order" },
-			{ id: 33, name: "OK to Change Template" },
+			// { id: 33, name: "OK to Change Template" },
 		],
 	},
 	{
@@ -674,13 +674,13 @@ export const EditDocumentData = {
 			name: "edit",
 			type: "Budget",
 		},
-		{
-			id: 36,
-			document_name: "OK to Template",
-			identifier: "OK-to-Template",
-			name: "edit",
-			type: "Budget",
-		},
+		// {
+		// 	id: 36,
+		// 	document_name: "OK to Template",
+		// 	identifier: "OK-to-Template",
+		// 	name: "edit",
+		// 	type: "Budget",
+		// },
 	],
 };
 // export const EditDocument = [
