@@ -6,11 +6,11 @@ const ProjectCloseoutStep = createSlice({
 		step: 0,
 	},
 	reducers: {
-		next: (state) => {
-			state.step += 1;
+		next: (state, action) => {
+			state.step = action.payload;
 		},
-		prev: (state) => {
-			state.step -= 1;
+		prev: (state, action) => {
+			state.step = action.payload;
 		},
 		stepDefault: (state) => {
 			state.step = 0;

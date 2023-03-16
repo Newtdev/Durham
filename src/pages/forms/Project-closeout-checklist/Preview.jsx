@@ -6,7 +6,7 @@ import LogoOne from "../../../assets/Durham.png";
 import DownLoadForm from "../Lundsford/Download";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	closeModal,
 	fields,
@@ -16,10 +16,16 @@ import {
 } from "../reducer";
 import moment from "moment/moment";
 import { prev, stepDefault } from "./reducer";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { handleSavedDate, setResult } from "../../../shared-component";
+import { toast } from "react-toastify";
 
-const ProjectCloseOutPreview = () => {
+const ProjectCloseOutPreview = (data) => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
@@ -39,6 +45,46 @@ const ProjectCloseOutPreview = () => {
 		show: show ? "block" : "hidden",
 		stepDefault,
 	};
+	const [checked, setChecked] = useState({});
+
+	const handleChange = (e) => {
+		setChecked({ ...checked, [e.target.name]: e.target.checked });
+	};
+
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+
+	const HandleSubmit = async (values) => {
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: setResult({ ...data?.values, ...values }),
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				// dispatch(next(4));
+			}
+		}
+	};
+
+	useEffect(() => {
+		const list = JSON.parse(localStorage.getItem("closeoutlist"));
+		if (!a?.data || !list) {
+			return;
+		}
+		setChecked(list);
+
+		data.setFieldValue(
+			"completionDate",
+			handleSavedDate(a?.data?.form_fields.completionDate)
+		);
+		data.setFieldValue(
+			"signDate",
+			handleSavedDate(a?.data?.form_fields.signDate)
+		);
+	}, [a?.data]);
 
 	return (
 		<div>
@@ -67,9 +113,9 @@ const ProjectCloseOutPreview = () => {
 							<Close />
 						</button>
 					</div>
-					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] text-[10pt]">
+					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] ">
 						<div
-							className="bg-white px-24 pt-3 pb-4 text-black arial-font  "
+							className="bg-white px-24 pt-3 pb-4 text-black arial-font text-[10pt]  "
 							ref={downloadComponent}>
 							<div>
 								<img
@@ -77,7 +123,7 @@ const ProjectCloseOutPreview = () => {
 									alt="logo"
 									className="h-24 object-cover  -ml-6"
 								/>
-								<h1 className="font-bold underline underline-offset-2 text-center mb-4 text-[14pt]">
+								<h1 className="font-bold underline underline-offset-2 text-center mb-4 text-[14pt] helvitica-font">
 									PROJECT CLOSE-OUT DOCUMENTATION CHECKLIST
 								</h1>
 								<div className="mb-2">
@@ -95,7 +141,7 @@ const ProjectCloseOutPreview = () => {
 											<p>
 												Project No:{" "}
 												<span
-													className={` ${nottoBeHighlighted} inline-block border-b border-black w-36`}>
+													className={` ${nottoBeHighlighted} inline-block border-b border-black w-[12.5rem]`}>
 													{!project ? "" : project?.number}
 												</span>
 											</p>
@@ -105,8 +151,11 @@ const ProjectCloseOutPreview = () => {
 									<div className="mb-3 flex justify-between items-center">
 										<p>
 											School:{" "}
-											<span className="inline-block border-b border-black">
-												Durham Public Schools{" "}
+											<span
+												className={`inline-block border-b border-black ${
+													!project?.schools ? "w-[8.5rem]" : ""
+												}`}>
+												{project?.schools}
 											</span>
 										</p>
 									</div>
@@ -121,7 +170,7 @@ const ProjectCloseOutPreview = () => {
 												</span>
 											</p>
 										</div>
-										<div className="ml-[49px]">
+										<div className="mr-[3.5rem]">
 											<p>
 												Substantial Completion Date:{" "}
 												<span
@@ -135,7 +184,7 @@ const ProjectCloseOutPreview = () => {
 									</div>
 								</div>
 
-								<p className="mb-3 text-justify leading-[1.1] text-[9pt] ">
+								<p className="mb-3 text-justify leading-[1.1] text-[9pt] helvitica-font">
 									NOTE: When all of the following documents have been completed
 									and received, this checklist should be completed. Copies of
 									documents should accompany the final application for payment
@@ -145,9 +194,17 @@ const ProjectCloseOutPreview = () => {
 								</p>
 
 								{/* Lists */}
-								<div className="mb-6 leading-[1.1] w-full">
-									<div className="flex ">
+								<div className="mb-6 leading-[1.2] w-full">
+									<div className="flex item-center">
 										<p className={``}>
+											<input
+												type="checkbox"
+												onChange={handleChange}
+												checked={checked?.one}
+												value={checked?.one}
+												name="one"
+												class="h-3 w-3 bg-gray-100"
+											/>
 											<span>{"__1.*"}</span>
 										</p>
 										<p className="ml-4">
@@ -159,6 +216,14 @@ const ProjectCloseOutPreview = () => {
 										className={`flex ${
 											form_fields?.two ? nottoBeHighlighted : ""
 										}`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.two}
+											value={checked?.two}
+											name="two"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__2.*"}</span>
 										</p>
@@ -172,6 +237,14 @@ const ProjectCloseOutPreview = () => {
 										className={`flex ${
 											form_fields?.three ? nottoBeHighlighted : ""
 										}`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.three}
+											value={checked?.three}
+											name="three"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__3."}</span>
 										</p>
@@ -181,6 +254,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className="flex">
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.four}
+											value={checked?.four}
+											name="four"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__4.**"}</span>
 										</p>
@@ -188,6 +269,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className="flex">
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.five}
+											value={checked?.five}
+											name="five"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className="">
 											<span>{"__5.**"}</span>
 										</p>
@@ -198,6 +287,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className="flex">
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.six}
+											value={checked?.six}
+											name="six"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__6.**"}</span>
 										</p>
@@ -208,6 +305,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className="flex">
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.seven}
+											value={checked?.seven}
+											name="seven"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__7.**"}</span>
 										</p>
@@ -219,6 +324,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className="flex">
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.eight}
+											value={checked?.eight}
+											name="eight"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={` `}>
 											<span>{"__8.**"}</span>
 										</p>
@@ -228,6 +341,14 @@ const ProjectCloseOutPreview = () => {
 										</p>
 									</div>
 									<div className={`flex`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.nine}
+											value={checked?.nine}
+											name="nine"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__9.**"}</span>
 										</p>
@@ -237,6 +358,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 									<div className={`flex `}>
 										<p className={``}>
+											<input
+												type="checkbox"
+												onChange={handleChange}
+												checked={checked?.ten}
+												value={checked?.ten}
+												name="ten"
+												class="h-3 w-3 bg-gray-100"
+											/>
 											<span>{"__10.*"}</span>
 										</p>
 										<p className={`text-justify ml-2`}>
@@ -246,6 +375,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 									<div className={`flex`}>
 										<p className={``}>
+											<input
+												type="checkbox"
+												onChange={handleChange}
+												checked={checked?.eleven}
+												value={checked?.eleven}
+												name="eleven"
+												class="h-3 w-3 bg-gray-100"
+											/>
 											<span>{"__11.**"}</span>
 										</p>
 										<p className={`ml-0.5 text-justify`}>
@@ -253,6 +390,14 @@ const ProjectCloseOutPreview = () => {
 										</p>
 									</div>
 									<div className={`flex`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.twelve}
+											value={checked?.twelve}
+											name="twelve"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__12.**"}</span>
 										</p>
@@ -263,6 +408,14 @@ const ProjectCloseOutPreview = () => {
 										</p>
 									</div>
 									<div className={`flex `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.thirteen}
+											value={checked?.thirteen}
+											name="thirteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__13.**"}</span>
 										</p>
@@ -273,6 +426,14 @@ const ProjectCloseOutPreview = () => {
 										</p>
 									</div>
 									<div className={`flex`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.fourteen}
+											value={checked?.fourteen}
+											name="fourteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__14.**"}</span>
 										</p>
@@ -284,6 +445,14 @@ const ProjectCloseOutPreview = () => {
 										</p>
 									</div>
 									<div className={`flex`}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.fifteen}
+											value={checked?.fifteen}
+											name="fifteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__15.**"}</span>
 										</p>
@@ -294,6 +463,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 
 									<div className={`flex `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.sixteen}
+											value={checked?.sixteen}
+											name="sixteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__16.*"}</span>
 										</p>
@@ -305,6 +482,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.seventeen}
+											value={checked?.seventeen}
+											name="seventeen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__17.*"}</span>
 										</p>
@@ -317,6 +502,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex 
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.eighteen}
+											value={checked?.eighteen}
+											name="eighteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__18.*"}</span>
 										</p>
@@ -328,6 +521,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex 
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.nineteen}
+											value={checked?.nineteen}
+											name="nineteen"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p>
 											<span>{"__19.*"}</span>
 										</p>
@@ -342,6 +543,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.twenty}
+											value={checked?.twenty}
+											name="twenty"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__20.*"}</span>
 										</p>
@@ -355,6 +564,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.twentyOne}
+											value={checked?.twentyOne}
+											name="twentyOne"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p className={``}>
 											<span>{"__21.*"}</span>
 										</p>
@@ -367,6 +584,14 @@ const ProjectCloseOutPreview = () => {
 									<div
 										className={`flex 
                     `}>
+										<input
+											type="checkbox"
+											onChange={handleChange}
+											checked={checked?.twentyTwo}
+											value={checked?.twentyTwo}
+											name="twentyTwo"
+											class="h-3 w-3 bg-gray-100"
+										/>
 										<p>__22.</p>
 										<p className={`  ml-3 text-justify`}>
 											2-CD’s record drawing files
@@ -374,13 +599,14 @@ const ProjectCloseOutPreview = () => {
 									</div>
 								</div>
 
-								<div className=" pt-[1in] h-[10in] ">
-									<div className="mb-3">
+								<div className=" pt-[0.1in] ">
+									<div className="mb-3 flex">
 										<span>Project Manager's Signature</span>
-										<span className=" underline underline-offset-1">
-											_________________Date_______
-											<span className="">
-												<span className={` ${nottoBeHighlighted}`}>
+										<span className="ml-2 flex">
+											<span className="inline-block w-60 border-b border-black mb-0.5"></span>
+											Date
+											<span className="inline-block w-32 border-b border-black flex justify-end -mt-1">
+												<span className={`inline-block ${nottoBeHighlighted}`}>
 													{moment(form_fields?.signedDate).format(
 														"MMMM D, YYYY "
 													)}
@@ -398,7 +624,7 @@ const ProjectCloseOutPreview = () => {
 										**copy of document kept in project accounting notebook
 									</p>
 
-									<p className="text-[9pt] flex mt-[7.6in]">
+									<p className="text-[10pt] flex mt-[3.5rem] calibri-font">
 										R:\01 Administration\04 Document & Form Templates\06
 										Project\10 Project Closeout\Project Closeout Checklist -
 										T20160317.doc
@@ -412,7 +638,10 @@ const ProjectCloseOutPreview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prev(3))}
+							onClick={() => {
+								dispatch(selectFilled(false));
+								dispatch(prev(0));
+							}}
 						/>
 						<DashboardButton
 							hidden
@@ -420,6 +649,8 @@ const ProjectCloseOutPreview = () => {
 							type="button"
 							width="w-[198px]"
 							onClick={() => {
+								localStorage.setItem("closeoutlist", JSON.stringify(checked));
+								HandleSubmit(checked);
 								setHighlighted(true);
 								dispatch(showDownload());
 							}}

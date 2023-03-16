@@ -160,7 +160,8 @@ const Preview = () => {
 												<p className="">BUDGET CODE:</p>
 												<p className="border border-black p-1 w-[10.9rem] flex justify-end">
 													<span
-														className={`${nottoBeHighlighted} text-[10.9pt]`}>
+														className={`${nottoBeHighlighted} text-[10.9pt]
+														${!forms?.budgetCode ? "inline-block py-2" : ""}`}>
 														{forms?.budgetCode}
 													</span>
 												</p>
@@ -168,7 +169,10 @@ const Preview = () => {
 											<div className="flex gap-2 items-end mb-2">
 												<p>COMMODITY CODE:</p>
 												<p className="border border-black p-1 w-[9rem] flex justify-end">
-													<span className={`${nottoBeHighlighted}`}>
+													<span
+														className={`${nottoBeHighlighted} ${
+															!forms?.commodityCode ? "inline-block py-2" : ""
+														}`}>
 														{forms?.commodityCode}
 													</span>
 												</p>
@@ -188,13 +192,21 @@ const Preview = () => {
 											<div className="border-t border-l border-t-black border-l-black pt-1 pl-1 ml-36">
 												<p>Requisition/Work Order #:</p>
 												<p className="border border-black p-1 flex justify-end w-36">
-													<span className={`${nottoBeHighlighted}`}>
+													<span
+														className={`${nottoBeHighlighted} ${
+															!forms?.requisitionOrder
+																? "inline-block py-2"
+																: ""
+														}`}>
 														{forms?.requisitionOrder}
 													</span>
 												</p>
 												<p>P.O. #:</p>
 												<p className="border flex justify-end border-black p-1 mb-3 w-36">
-													<span className={`${nottoBeHighlighted}`}>
+													<span
+														className={`${nottoBeHighlighted} ${
+															!forms?.po ? "inline-block py-2" : ""
+														}`}>
 														{forms?.po}
 													</span>
 												</p>
@@ -213,7 +225,7 @@ const Preview = () => {
 										</div>
 									</div>
 
-									<div className="flex justify-between">
+									<div className="flex justify-between items-center  mb-4">
 										<div>
 											<div className="flex gap-2 items-end mb-2 mt-6">
 												<p>VENDOR #:</p>
@@ -248,8 +260,8 @@ const Preview = () => {
 											</div>
 										</div>
 
-										<div className="mb-4 mt-1">
-											<div className="flex gap-2 items-center justify-center mb-[4.2rem] ">
+										<div className=" mt-1 flex flex-col justify-between">
+											<div className="flex gap-2 items-center justify-center">
 												<p>SHIPPING #:</p>
 												<p className="border border-black p-1 w-[13.5rem]">
 													{forms?.street ? (
@@ -264,13 +276,13 @@ const Preview = () => {
 												</p>
 											</div>
 
-											<div>
+											<div className="mt-16">
 												<p>SHIP TO: DURHAM PUBLIC SCHOOLS</p>
 												<p>SCHOOL/DEPT. NAME:</p>
-												<p className="border border-black p-1">
-													<span className={`${nottoBeHighlighted}`}>
-														{forms?.location}
-													</span>
+												<p
+													className={`${nottoBeHighlighted} border border-black p-1 w-72`}
+													style={{ wordWrap: "break-word" }}>
+													{forms?.location}
 												</p>
 											</div>
 										</div>
@@ -851,8 +863,7 @@ const Preview = () => {
 													<p>Project Manager:</p>
 													<p className="flex flex-col justify-center items-center">
 														{!forms?.signDate ? (
-															<span
-																className={`block w-24 h-4 bg-red-900`}></span>
+															<span className={`block w-24 h-4 `}></span>
 														) : (
 															<span className={`${nottoBeHighlighted}`}>
 																{moment(forms?.signDate).format(
@@ -860,25 +871,25 @@ const Preview = () => {
 																)}
 															</span>
 														)}
-														<span className="inline-block my-2">Date</span>
+														<span className="inline-block mt-3 mb-4">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-9 h-14 pl-2 pr-2 border-b border-b-blue-300 text-[10.9pt]">
 													<p>Business Manager:</p>
 													<p className="flex justify-start items-start w-16 ">
-														<span className="inline-block my-2">Date</span>
+														<span className="inline-block mt-1">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-9 h-14  pl-2 pr-2 border-b border-b-blue-300 text-[10.9pt]">
 													<p>Director of Construction and Sustainability</p>
 													<p className="flex justify-start items-start w-16 ">
-														<span className="inline-block my-2">Date</span>
+														<span className="inline-block mt-1">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between pt-8 h-14 pl-2 pr-2 border-b border-b-blue-300 pt-9 text-[10.9pt]">
 													<p>Executive Director Building Services</p>
 													<p className="flex justify-start items-start w-16 ">
-														<span className="inline-block my-2">Date</span>
+														<span className="inline-block mt-1">Date</span>
 													</p>
 												</div>
 												<div className="flex justify-between h-10 pt-5 pb-[4px] pl-2 text-[10.9pt]">

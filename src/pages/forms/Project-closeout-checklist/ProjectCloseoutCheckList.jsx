@@ -46,20 +46,12 @@ const ProjectCloseoutCheckList = ({ id, filled }) => {
 			signDate: "",
 		},
 
-		validationSchema: ProjectCloseOutSchema,
 		onSubmit: (values) => {
 			if (pages === 0) {
 				dispatch(next(1));
-			} else if (pages === 1) {
-				dispatch(next(2));
-			} else if (pages === 2) {
-				dispatch(next(3));
-			} else if (pages === 3) {
-				dispatch(saveFormField(values));
-
-				HandleSubmit(values);
-				formik.handleReset();
 			}
+
+			// HandleSubmit(values);
 		},
 	});
 
@@ -70,17 +62,15 @@ const ProjectCloseoutCheckList = ({ id, filled }) => {
 	if (!filled) {
 		return (
 			<ModalOverlay show={id === project_closeout_checklist && show}>
-				{pages === 0 && <GeneralInformation {...formik} />}
-				{pages === 1 && <CheckList {...formik} />}
-				{pages === 2 && <CheckListTwo {...formik} />}
-				{pages === 3 && <CheckListThree {...props} />}
-				{pages === 4 && <ProjectCloseOutPreview />}
+				{pages === 0 && <GeneralInformation {...props} />}
+
+				{pages === 1 && <ProjectCloseOutPreview {...props} />}
 			</ModalOverlay>
 		);
 	}
 	return (
 		<ModalOverlay show={id === project_closeout_checklist && show}>
-			<ProjectCloseOutPreview />
+			<ProjectCloseOutPreview {...props} />
 		</ModalOverlay>
 	);
 };
