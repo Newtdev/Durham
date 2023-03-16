@@ -160,8 +160,7 @@ const ProjectCloseOutPreview = (data) => {
 												Contractor:{" "}
 												<span
 													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
-													Tebodin Middle East Company
-													{/* {!vendors ? "" : vendors[0]?.company_name} */}
+													{!vendors ? "" : vendors[0]?.company_name}
 												</span>
 											</p>
 										</div>
@@ -602,9 +601,10 @@ const ProjectCloseOutPreview = (data) => {
 											Date
 											<span className="inline-block w-32 border-b border-black flex justify-end -mt-1">
 												<span className={`inline-block ${nottoBeHighlighted}`}>
-													{!form_fields?.signedDate
+													{" "}
+													{!form_fields?.signDate
 														? ""
-														: moment(form_fields?.signedDate).format(
+														: moment(form_fields?.signDate).format(
 																"MMMM D, YYYY "
 														  )}
 												</span>
