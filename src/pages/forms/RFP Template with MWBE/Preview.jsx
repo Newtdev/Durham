@@ -114,7 +114,7 @@ const Preview = () => {
           <div className="flex justify-between items-baseline border-b border-b-gray-200 rounded-lg py-3 z-50 bg-white ">
             <div className="ml-6">
               <h3 className="text-lg font-bold text-gray-900">
-                RFT Template with MWBE
+                RFP Template with MWBE
               </h3>
               <p className="text-base text-gray-700">Preview Document</p>
             </div>
