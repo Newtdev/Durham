@@ -7,10 +7,6 @@ import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { FormInputPlain, FormSelect } from "../../../components";
 import { useGetVendorsQuery } from "../../../../../features/services/api";
-import {
-  DataListComponent,
-  GetState,
-} from "../../../E-589C Affidavit Of Capital Improvement/Affidavit";
 
 const FormOne = (props) => {
   const dispatch = useDispatch();
@@ -387,6 +383,18 @@ const FormOne = (props) => {
                       placeholder="Zip code"
                       fn={() => CheckZipCode()}
                     />
+                  </div>
+                </div>
+
+                <div className="flex gap-2 mt-3 justify-center w-full items-end">
+                  <div className="w-full">
+                    <SelectDate {...date} />
+                    {props.errors.date && props.touched.date && (
+                      <Error message={props.errors.date} />
+                    )}
+                  </div>
+                  <div className="w-full">
+                    <SelectTime {...time} />
                   </div>
                 </div>
               </div>

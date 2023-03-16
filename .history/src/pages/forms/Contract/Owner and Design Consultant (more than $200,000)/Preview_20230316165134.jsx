@@ -154,6 +154,7 @@ const Preview = () => {
                 {showPage && <PageNineteen />}
                 {showPage && <PageTwenty />}
                 {showPage && <PageTwentyOne />}
+
                 <PageTwentyTwo {...pageProps} />
                 <PageTwentyThree {...pageProps} />
                 <PageTwentyFour {...pageProps} />
@@ -170,6 +171,7 @@ const Preview = () => {
                 {showPage && <PageThirtyFive />}
                 {showPage && <PageThirtySix />}
                 {showPage && <PageThirtySeven />}
+
                 <PageThirtyEight {...pageProps} />
                 <PageThirtyNine {...pageProps} />
               </body>

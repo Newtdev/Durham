@@ -389,6 +389,18 @@ const FormOne = (props) => {
                     />
                   </div>
                 </div>
+
+                {/* <div className="flex gap-2 mt-3 justify-center w-full items-end">
+                  <div className="w-full">
+                    <SelectDate {...date} />
+                    {props.errors.date && props.touched.date && (
+                      <Error message={props.errors.date} />
+                    )}
+                  </div>
+                  <div className="w-full">
+                    <SelectTime {...time} />
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -154,22 +154,23 @@ const Preview = () => {
                 {showPage && <PageNineteen />}
                 {showPage && <PageTwenty />}
                 {showPage && <PageTwentyOne />}
+
                 <PageTwentyTwo {...pageProps} />
                 <PageTwentyThree {...pageProps} />
                 <PageTwentyFour {...pageProps} />
                 <PageTwentyFive {...pageProps} />
                 <PageTwentySix {...pageProps} />
-                {showPage && <PageTwentySeven />}
+                <PageTwentySeven {...pageProps} />
                 <PageTwentyEight {...pageProps} />
-                {showPage && <PageTwentyNine />}
+                <PageTwentyNine {...pageProps} />
                 <PageThirty {...pageProps} />
-                {showPage && <PageThirtyOne />}
-                {showPage && <PageThirtyTwo />}
-                {showPage && <PageThirtyThree />}
-                {showPage && <PageThirtyFour />}
-                {showPage && <PageThirtyFive />}
-                {showPage && <PageThirtySix />}
-                {showPage && <PageThirtySeven />}
+                <PageThirtyOne {...pageProps} />
+                <PageThirtyTwo {...pageProps} />
+                <PageThirtyThree {...pageProps} />
+                <PageThirtyFour {...pageProps} />
+                <PageThirtyFive {...pageProps} />
+                <PageThirtySix {...pageProps} />
+                <PageThirtySeven {...pageProps} />
                 <PageThirtyEight {...pageProps} />
                 <PageThirtyNine {...pageProps} />
               </body>

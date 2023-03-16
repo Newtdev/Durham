@@ -7,10 +7,6 @@ import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { FormInputPlain, FormSelect } from "../../../components";
 import { useGetVendorsQuery } from "../../../../../features/services/api";
-import {
-  DataListComponent,
-  GetState,
-} from "../../../E-589C Affidavit Of Capital Improvement/Affidavit";
 
 const FormOne = (props) => {
   const dispatch = useDispatch();
@@ -53,55 +49,15 @@ const FormOne = (props) => {
     //    prevPage
   };
 
-  //   function CheckState() {
-  //     if (!props.values.state) {
-  //       return;
-  //     }
-  //     let stat = Object.values(states)?.find(
-  //       (state) => state.name === props.values.state
-  //     );
-
-  //     return Object.keys(stat.cities)?.map((cur, id) => {
-  //       return (
-  //         <option key={id} value={cur}>
-  //           {cur}
-  //         </option>
-  //       );
-  //     });
-  //   }
-
-  //   function CheckZipCode() {
-  //     if (!props.values.city) {
-  //       return;
-  //     }
-  //     const city = Object.values(states)?.filter(
-  //       (state) => state.name === props.values.state
-  //     );
-  //     const zipcode = city?.find((cities) => cities);
-  //     return zipcode.cities[props.values.city]?.map((zipcode, index) => {
-  //       return (
-  //         <option key={index} value={zipcode}>
-  //           {zipcode}
-  //         </option>
-  //       );
-  //     });
-  //   }
-
   function CheckState() {
     if (!props.values.state) {
-      return;
-    }
-    if (!states) {
       return;
     }
     let stat = Object.values(states)?.find(
       (state) => state.name === props.values.state
     );
-    if (!stat) {
-      return;
-    }
 
-    return Object.keys(stat?.cities)?.map((cur, id) => {
+    return Object.keys(stat.cities)?.map((cur, id) => {
       return (
         <option key={id} value={cur}>
           {cur}
@@ -114,15 +70,11 @@ const FormOne = (props) => {
     if (!props.values.city) {
       return;
     }
-    if (!states) {
-      return;
-    }
     const city = Object.values(states)?.filter(
       (state) => state.name === props.values.state
     );
-
     const zipcode = city?.find((cities) => cities);
-    return zipcode?.cities[props.values.city]?.map((zipcode, index) => {
+    return zipcode.cities[props.values.city]?.map((zipcode, index) => {
       return (
         <option key={index} value={zipcode}>
           {zipcode}
@@ -387,6 +339,18 @@ const FormOne = (props) => {
                       placeholder="Zip code"
                       fn={() => CheckZipCode()}
                     />
+                  </div>
+                </div>
+
+                <div className="flex gap-2 mt-3 justify-center w-full items-end">
+                  <div className="w-full">
+                    <SelectDate {...date} />
+                    {props.errors.date && props.touched.date && (
+                      <Error message={props.errors.date} />
+                    )}
+                  </div>
+                  <div className="w-full">
+                    <SelectTime {...time} />
                   </div>
                 </div>
               </div>
