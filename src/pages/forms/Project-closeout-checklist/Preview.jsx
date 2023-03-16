@@ -48,7 +48,10 @@ const ProjectCloseOutPreview = (data) => {
 	const [checked, setChecked] = useState({});
 
 	const handleChange = (e) => {
-		setChecked({ ...checked, [e.target.name]: e.target.checked });
+		setChecked({
+			...checked,
+			[e.target.name]: e.target.checked,
+		});
 	};
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
@@ -71,19 +74,10 @@ const ProjectCloseOutPreview = (data) => {
 
 	useEffect(() => {
 		const list = JSON.parse(localStorage.getItem("closeoutlist"));
-		if (!a?.data || !list) {
+		if (!list) {
 			return;
 		}
 		setChecked(list);
-
-		data.setFieldValue(
-			"completionDate",
-			handleSavedDate(a?.data?.form_fields.completionDate)
-		);
-		data.setFieldValue(
-			"signDate",
-			handleSavedDate(a?.data?.form_fields.signDate)
-		);
 	}, [a?.data]);
 
 	return (
@@ -137,7 +131,7 @@ const ProjectCloseOutPreview = (data) => {
 												</span>
 											</p>
 										</div>
-										<div className=" w-[20.5rem]">
+										<div className=" w-[19.2rem]">
 											<p>
 												Project No:{" "}
 												<span
@@ -153,9 +147,9 @@ const ProjectCloseOutPreview = (data) => {
 											School:{" "}
 											<span
 												className={`inline-block border-b border-black ${
-													!project?.schools ? "w-[8.5rem]" : ""
+													!project?.school ? "w-[8.5rem]" : ""
 												}`}>
-												{project?.schools}
+												{project?.school}
 											</span>
 										</p>
 									</div>
