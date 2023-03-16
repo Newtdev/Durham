@@ -243,7 +243,7 @@ export const DurhamsApi = createApi({
 		fetchVendors: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `vendors?search=${queryValue}&limit=6&page=${page}`,
+					url: `vendors?search=${queryValue}&limit=1000&page=${page}`,
 					method: "GET",
 				};
 			},

@@ -10,7 +10,7 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../../Dashboard/project-dashboard/ReducerSlice";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PageTwo from "./Preview Pages/Page2";
 import PageThree from "./Preview Pages/Page3";
 import PageFour from "./Preview Pages/Page4";
@@ -35,6 +35,7 @@ const MWBEBids = () => {
 		name: "MWBE Form for Bids",
 		show: show ? "block" : "hidden",
 	};
+
 	const onChange = (e) => {
 		setChecked({ ...checked, [e.target.name]: e.target.checked });
 	};

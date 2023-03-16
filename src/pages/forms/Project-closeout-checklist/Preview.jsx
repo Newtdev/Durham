@@ -46,6 +46,7 @@ const ProjectCloseOutPreview = (data) => {
 		stepDefault,
 	};
 	const [checked, setChecked] = useState({});
+	const [awardee, setAwardee] = useState([]);
 
 	const handleChange = (e) => {
 		setChecked({
@@ -79,6 +80,16 @@ const ProjectCloseOutPreview = (data) => {
 		}
 		setChecked(list);
 	}, [a?.data]);
+
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		const data = vendors?.filter((cur) => {
+			return cur.role === "Contractor";
+		});
+		setAwardee(data);
+	}, [vendors]);
 
 	return (
 		<div>
@@ -160,7 +171,7 @@ const ProjectCloseOutPreview = (data) => {
 												Contractor:{" "}
 												<span
 													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
-													{!vendors ? "" : vendors[0]?.company_name}
+													{!awardee ? "" : awardee[0]?.company_name}
 												</span>
 											</p>
 										</div>
