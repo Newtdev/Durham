@@ -86,9 +86,10 @@ const FormThree = (props) => {
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: setResult({
+			form_fields: handleResultWithArray({
 				ccpsubtotal: subtotal,
 				ccpgrandTotal: grandTotal,
+				costOfShipping: values?.ccpshippingCost,
 				...values,
 			}),
 		});

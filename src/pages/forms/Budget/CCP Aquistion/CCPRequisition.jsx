@@ -36,6 +36,7 @@ const CCPRequisitionForm = ({ id, filled }) => {
 			requisitionOrder: "",
 			po: "",
 			attached: "",
+			costOfShipping: "",
 			signDate: "",
 			vendor: "",
 			vendorId: "",
@@ -44,7 +45,6 @@ const CCPRequisitionForm = ({ id, filled }) => {
 			addressStreet: "",
 			addressState: "",
 			addressZipCode: "",
-			ccpshippingCost: "",
 			ccpsalesTax: "NO",
 			ccptax: "4.75",
 			name: "",
@@ -98,7 +98,7 @@ const CCPRequisitionForm = ({ id, filled }) => {
 		formik.setFieldValue("ccpsalesTax", a?.data?.form_fields.ccpsalesTax);
 		formik.setFieldValue(
 			"ccpshippingCost",
-			a?.data?.form_fields.ccpshippingCost
+			a?.data?.form_fields.costOfShipping
 		);
 		formik.setFieldValue(
 			"addressZipCode",

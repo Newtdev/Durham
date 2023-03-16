@@ -921,7 +921,7 @@ const Preview = () => {
 														</p>
 														<p className="border-2 border-black p-1 text-right w-28">
 															<span className={`${nottoBeHighlighted}`}>
-																{currency(forms?.ccpshippingCost).format()}
+																{currency(forms?.costOfShipping).format()}
 															</span>
 														</p>
 													</div>
