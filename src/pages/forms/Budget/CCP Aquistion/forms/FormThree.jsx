@@ -32,7 +32,7 @@ export const subTotal = (a) => {
 	return quantitySum;
 };
 
-export const GrandTotals = (a, b, c, d) => {
+export const GrandTotals = (a, b = 0, c, d = "NO") => {
 	return useMemo(() => {
 		// subtotal, shipping, sales total
 		let subTotals = subTotal(a);
@@ -116,6 +116,7 @@ const FormThree = (props) => {
 					className="relative w-[600px] bg-white rounded-lg shadow py-4"
 					onSubmit={(e) => {
 						e.preventDefault();
+						// console.log(props.values);
 						HandleSubmit(props.values);
 					}}>
 					<div className="flex justify-between items-baseline mx-6">
@@ -311,6 +312,7 @@ const FormThree = (props) => {
 								placeholder={"$ 0.00"}
 								value={props?.values?.ccpshippingCost}
 							/>
+							{console.log("soidnsingd", props?.values?.ccpshippingCost)}
 							{props.errors.ccpshippingCost &&
 								props.touched.ccpshippingCost && (
 									<Error message={props.errors.ccpshippingCost} />
@@ -331,8 +333,8 @@ const FormThree = (props) => {
 										{props?.values?.ccpsalesTax}
 									</option>
 								)}
-								<option value="YES">Yes</option>
-								<option value="NO">No</option>
+								<option value="YES">YES</option>
+								<option value="NO">NO</option>
 							</FormSelect>
 						</FormInputContainer>
 
@@ -396,7 +398,9 @@ const FormThree = (props) => {
 							} flex-col w-full bg-[#F3F4F6] mt-3 py-2 px-2 rounded-lg`}>
 							<h2 className="text-sm font-medium">Sales Tax Total</h2>
 							<span className="text-sm font-bold">
-								${TaxPercentage(props?.values?.items, props?.values?.ccptax)}
+								{currency(
+									TaxPercentage(props?.values?.items, props?.values?.ccptax)
+								).format()}
 							</span>
 						</div>
 
@@ -404,6 +408,7 @@ const FormThree = (props) => {
 							<h2 className="text-sm font-medium">Grand Total</h2>
 							<span className="text-sm font-bold">
 								{/* {currency(props?.values?.items).format()} */}
+								{console.log("shippingcost:", props?.values?.ccpshippingCost)}
 								{GrandTotals(
 									props?.values?.items,
 									props?.values?.ccpshippingCost,
@@ -418,7 +423,7 @@ const FormThree = (props) => {
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="Previous"
+							name="Back"
 							onClick={() => dispatch(prevStep(2))}
 						/>
 						<DashboardButton

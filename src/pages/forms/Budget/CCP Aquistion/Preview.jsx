@@ -359,9 +359,9 @@ const Preview = () => {
 													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? 0
+													? ""
 													: !data[0]
-													? 0
+													? ""
 													: currency(data[0]?.unitPrice || 0).format()}
 											</td>
 											<td
@@ -411,10 +411,10 @@ const Preview = () => {
 													forms?.items ? nottoBeHighlighted : ""
 												} border border-black border-collapse text-[8pt] h-[15px] py-[0.5px] text-right pr-1`}>
 												{!data
-													? 0
+													? ""
 													: !data[1]
-													? 0
-													: currency(data[1]?.unitPrice || 0).format()}
+													? ""
+													: currency(data[1]?.unitPrice || "").format()}
 											</td>
 											<td
 												className={`${
@@ -466,7 +466,7 @@ const Preview = () => {
 													? ""
 													: !data[2]
 													? ""
-													: currency(data[2]?.unitPrice || 0).format()}
+													: currency(data[2]?.unitPrice || "").format()}
 											</td>
 											<td
 												className={`${
