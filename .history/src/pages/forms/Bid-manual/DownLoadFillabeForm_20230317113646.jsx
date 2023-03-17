@@ -5,7 +5,8 @@ import {
   documentDefault,
   slugIdDefault,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { closeDownload } from "../reducer";
+import { useReactToPrint } from "react-to-print";
+import { closeDownload, savedResponse } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -19,10 +20,20 @@ const DownLoadFillabeForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  // const formID = useSelector(project_document_id);
   const formID = useSelector(project_document_id);
   const [a] = UseFetchFilledFormDetails(formID);
+  // useFetchFilledFormQuery(formID);
+  const content = useSelector(savedResponse);
+  const { project } = content || "";
 
   const projectName = a?.data?.project?.name;
+
+  const handlePrint = useReactToPrint({
+    content: () => component.current,
+    documentTitle: name,
+    // bodyClass: "printableArea",
+  });
 
   const PDF_FILE_URL = "https://durham-sigma.vercel.app/BidManual.pdf";
 
@@ -79,7 +90,13 @@ const DownLoadFillabeForm = ({
             type="button"
             width="w-[360px]"
             onClick={() => {
-              downloadFileAtURL(PDF_FILE_URL, "Bid Manual.pdf");
+              // onButtonClick();
+              downloadFileAtURL(PDF_FILE_URL, "BidManual.pdf");
+              // dispatch(closeDownload());
+              // dispatch(slugIdDefault());
+              // dispatch(documentDefault());
+              // dispatch(stepDefault());
+              // dispatch(close());
             }}
           />
 

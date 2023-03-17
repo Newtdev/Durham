@@ -5,7 +5,8 @@ import {
   documentDefault,
   slugIdDefault,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { closeDownload } from "../reducer";
+import { useReactToPrint } from "react-to-print";
+import { closeDownload, savedResponse } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -19,8 +20,11 @@ const DownLoadFillabeForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  // const formID = useSelector(project_document_id);
   const formID = useSelector(project_document_id);
   const [a] = UseFetchFilledFormDetails(formID);
+  // useFetchFilledFormQuery(formID);
+  // const content = useSelector(savedResponse);
 
   const projectName = a?.data?.project?.name;
 

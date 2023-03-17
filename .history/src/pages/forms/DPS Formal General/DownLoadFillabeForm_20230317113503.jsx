@@ -5,7 +5,8 @@ import {
   documentDefault,
   slugIdDefault,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { closeDownload } from "../reducer";
+import { useReactToPrint } from "react-to-print";
+import { closeDownload, savedResponse } from "../reducer";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -22,9 +23,19 @@ const DownLoadFillabeForm = ({
   const formID = useSelector(project_document_id);
   const [a] = UseFetchFilledFormDetails(formID);
 
+  // useFetchFilledFormQuery(formID);
+  const content = useSelector(savedResponse);
+  const { project } = content || "";
+
   const projectName = a?.data?.project?.name;
 
-  const PDF_FILE_URL = "https://durham-sigma.vercel.app/BidManual.pdf";
+  // const handlePrint = useReactToPrint({
+  //   content: () => component.current,
+  //   documentTitle: name,
+  //   // bodyClass: "printableArea",
+  // });
+
+  const PDF_FILE_URL = "https://durham-sigma.vercel.app/DPSFillable.pdf";
 
   const downloadFileAtURL = (url, filename) => {
     const aTag = document.createElement("a");
@@ -37,18 +48,19 @@ const DownLoadFillabeForm = ({
 
   // const onButtonClick = () => {
   //   // using Java Script method to get PDF file
-  //   fetch("BidManual.pdf").then((response) => {
+  //   fetch("DPSFillable.pdf").then((response) => {
   //     response.blob().then((blob) => {
   //       // Creating new object of PDF file
   //       const fileURL = window.URL.createObjectURL(blob);
   //       // Setting various property values
   //       let alink = document.createElement("a");
   //       alink.href = fileURL;
-  //       alink.download = "BidManual.pdf";
+  //       alink.download = "DPSFillable.pdf";
   //       alink.click();
   //     });
   //   });
   // };
+
   return (
     <div
       className={`${show} relative w-full max-w-md h-screen md:h-auto mx-auto mt-14`}
@@ -65,7 +77,7 @@ const DownLoadFillabeForm = ({
           </h3>
           <p className="mt-6 text-base text-gray-700">
             Congratulations! You have successfully created the{" "}
-            <span>Bid Manual</span> for{" "}
+            <span>DPS Formal General Conditions - 1-17-20</span> for{" "}
             {/* <span>{!project ? "" : project?.name}</span>. */}
             <span>{projectName}</span>.
           </p>
@@ -79,7 +91,16 @@ const DownLoadFillabeForm = ({
             type="button"
             width="w-[360px]"
             onClick={() => {
-              downloadFileAtURL(PDF_FILE_URL, "Bid Manual.pdf");
+              // dispatch(closeDownload());
+              // dispatch(slugIdDefault());
+              // dispatch(documentDefault());
+              // dispatch(stepDefault());
+              // dispatch(close());
+              // onButtonClick();
+              downloadFileAtURL(
+                PDF_FILE_URL,
+                "DPS Formal General Conditions.pdf"
+              );
             }}
           />
 
