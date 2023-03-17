@@ -83,7 +83,7 @@ const DownLoadFillabeForm = ({
             onClick={() => {
               downloadFileAtURL(
                 PDF_FILE_URL,
-                "DPSFormalGeneralConditions-1-17-20.pdf"
+                "DPS Formal General Conditions.pdf"
               );
             }}
           />
