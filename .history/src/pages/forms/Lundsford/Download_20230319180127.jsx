@@ -15,13 +15,14 @@ const DownLoadForm = ({
   stepDefault,
   close,
   remove,
+  project,
 }) => {
   const dispatch = useDispatch();
 
   // const formID = useSelector(project_document_id);
   // useFetchFilledFormQuery(formID);
   const content = useSelector(savedResponse);
-  const { project } = content || "";
+  //   const { project } = content || "";
 
   const handlePrint = useReactToPrint({
     content: () => component.current,

@@ -73,6 +73,8 @@ const Forms = () => {
       }
     }
     setPage(1);
+
+    console.log(filteredForms);
   };
 
   const handleChange = (e, p) => {

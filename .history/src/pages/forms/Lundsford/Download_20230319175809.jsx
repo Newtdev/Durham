@@ -15,6 +15,7 @@ const DownLoadForm = ({
   stepDefault,
   close,
   remove,
+  project,
 }) => {
   const dispatch = useDispatch();
 

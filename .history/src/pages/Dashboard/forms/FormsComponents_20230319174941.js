@@ -41,7 +41,14 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
               className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[65%] flex items-center justify-start gap-3"
             >
               <img src={frame} alt="icon" />
-              <span className="overflow-hidden text-ellipsis">{title}</span>
+              <span
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {title}
+              </span>
             </li>
             <li
               // scope="row"

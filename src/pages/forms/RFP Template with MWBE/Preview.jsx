@@ -6,7 +6,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { closeModal, fields, openDownload, showDownload } from "../reducer";
 import { useDispatch, useSelector } from "react-redux";
-import DownLoadForm from "../Lundsford/Download";
+import DownLoadForm from "./Download";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
@@ -67,6 +67,7 @@ const Preview = () => {
     name: "RFP Template with MWBE",
     show: !show ? "hidden" : "block",
     stepDefault,
+    project,
   };
 
   const nottoBeHighlighted = !highlighted
