@@ -67,12 +67,12 @@ const Forms = () => {
           .includes(searchTerm.toLowerCase());
       });
       setFilteredForms(searchResult);
-
       if (searchResult.length < 1) {
         setFilteredForms(FormsArray);
       }
     }
-    setPage(1);
+
+    console.log(filteredForms);
   };
 
   const handleChange = (e, p) => {

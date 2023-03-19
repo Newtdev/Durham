@@ -5,7 +5,7 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { closeModal, fields, openDownload, showDownload } from "../reducer";
 import { useDispatch, useSelector } from "react-redux";
-import DownLoadForm from "../Lundsford/Download";
+import DownLoadForm from "./Download";
 import {
   project_document_id,
   selectFilled,
@@ -51,6 +51,7 @@ const Preview = () => {
     name: "Owner and Design Consultant (less than $200,000)",
     show: !show ? "hidden" : "block",
     stepDefault,
+    project,
   };
 
   const nottoBeHighlighted = !highlighted

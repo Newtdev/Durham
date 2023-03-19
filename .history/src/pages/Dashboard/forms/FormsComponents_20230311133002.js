@@ -28,6 +28,50 @@ export function FormsDownloadButton({
 
 export function TableBody({ skip, perPage, dataArray, onDownload }) {
   return (
+    // <table
+    //   className=" border-separate w-full"
+    //   style={{ borderCollapse: "separate", borderSpacing: "0 15px" }}
+    // >
+    //   <tbody className="w-full text-base font-medium">
+    //     {dataArray.slice(skip, skip + perPage).map((manager, index) => {
+    //       const { id, title, category, downloadLink } = manager;
+    //       return (
+    //         <tr
+    //           key={id}
+    //           className="border-b border-black bg-white rounded-lg h-16"
+    //         >
+    //           <td
+    //             // scope="row"
+    //             className="py-4 px-4 font-normal capitalize text-gray-900 whitespace-nowrap w-[50%]"
+    //           >
+    //             {title}
+    //           </td>
+    //           <td
+    //             // scope="row"
+    //             className="py-4 px-4 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%]"
+    //           >
+    //             {category}
+    //           </td>
+    //           <td className="py-4 px-4 flex items-center justify-start gap-3">
+    //             <Link
+    //               className="w-4 cursor-pointer"
+    //               target="_blank"
+    //               to={`/${downloadLink}`}
+    //               download
+    //             >
+    //               <span onClick={() => onDownload(title)}>
+    //                 <FormsDownloadButton name="Download" />
+    //               </span>
+    //             </Link>
+    //           </td>
+    //           {/* <td>
+    //             <button type="submit" >Download</button>
+    //           </td> */}
+    //         </tr>
+    //       );
+    //     })}
+    //   </tbody>
+    // </table>
     <section className="w-full text-base font-medium overflow-hidden ">
       {dataArray.slice(skip, skip + perPage).map((manager, index) => {
         const { id, title, category, downloadLink } = manager;
@@ -38,14 +82,14 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
           >
             <li
               // scope="row"
-              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[65%] flex items-center justify-start gap-3"
+              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[50%] flex items-center justify-start gap-3"
             >
               <img src={frame} alt="icon" />
-              <span className="overflow-hidden text-ellipsis">{title}</span>
+              {title}
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right"
+              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
             >
               {category}
             </li>

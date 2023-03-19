@@ -15,13 +15,14 @@ const DownLoadForm = ({
   stepDefault,
   close,
   remove,
+  project,
 }) => {
   const dispatch = useDispatch();
 
   // const formID = useSelector(project_document_id);
   // useFetchFilledFormQuery(formID);
   const content = useSelector(savedResponse);
-  const { project } = content || "";
+  // const { project } = content || "";
 
   const handlePrint = useReactToPrint({
     content: () => component.current,
@@ -45,8 +46,7 @@ const DownLoadForm = ({
           </h3>
           <p className="mt-6 text-base text-gray-700">
             Congratulations! You have successfully created the{" "}
-            <span>{name}</span> for <span>{!project ? "" : project?.name}</span>
-            .
+            <span>{name}</span> for <span>{project?.name}</span>.
           </p>
         </div>
 

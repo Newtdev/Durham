@@ -38,14 +38,14 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
           >
             <li
               // scope="row"
-              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[65%] flex items-center justify-start gap-3"
+              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[50%] flex items-center justify-start gap-3 md:break-words"
             >
               <img src={frame} alt="icon" />
-              <span className="overflow-hidden text-ellipsis">{title}</span>
+              {title}
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right"
+              className="md:py-4 md:px-4 pl-32 font-normal capitalize text-[#693B79] whitespace-nowrap w-[35%] lg:text-center md:text-right"
             >
               {category}
             </li>
