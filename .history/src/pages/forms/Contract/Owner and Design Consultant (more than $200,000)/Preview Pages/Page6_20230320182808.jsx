@@ -4,17 +4,16 @@ import Wrapper from "./Wrapper";
 
 const OwnerDesignMore = () => {
   return (
+
     <Wrapper>
       {/* Page 6 */}
-      <div>
-        <div className="uj3 uj11 ml-[3.9rem] ">
-          Construction Documents. &nbsp;All consultants who will perform
-          services required by this Agreement shall execute an agreement with
-          the Design Consultant with terms not inconsistent with this Agreement.
+                < div >
+                  <div className="uj3 uj11 ml-[3.9rem]">
+          Construction
+              Documents. &nbsp;All consultants who will perform services
+              required by this Agreement shall execute an agreement with the
+              Design Consultant with terms not inconsistent with this Agreement.
         </div>
-        <p class="uj36 uj41">
-          <span class="uj1"></span>
-        </p>
         <ol class="uj7 lst-kix_list_22-2f" start="6">
           <li class="uj11 uj24 li-bullet-1">
             <span class="uj5 uj3">
@@ -144,7 +143,7 @@ const OwnerDesignMore = () => {
         <p class="uj2">
           <span class="uj5 uj3"></span>
         </p>
-      </div>
+      </>
       <Footer page={6} />
     </Wrapper>
   );

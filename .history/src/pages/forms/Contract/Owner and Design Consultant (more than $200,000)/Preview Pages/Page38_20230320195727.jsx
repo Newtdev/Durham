@@ -141,13 +141,11 @@ const OwnerDesignMore = (props) => {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         </p>
-        <div className="uj15 w-60">
+        <div className="uj15">
           <p class="">
             <span class="uj5 uj3">
-              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span
-                className={`${props.nottoBeHighlighted} inline-block text-right`}
-              >
+              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span className={`${props.nottoBeHighlighted}`}>
                 {
                   props?.durham_profile
                     ?.executive_director_durham_public_schools_building_services
@@ -156,21 +154,18 @@ const OwnerDesignMore = (props) => {
               </span>
             </span>
           </p>
-          <p class="inline-block text-right">
+          <p class="">
             <span class="uj5 uj3">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp; Executive Director &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;Executive Director &nbsp;
             </span>
           </p>
           <p class="" id="h.2et92p0">
             <span class="uj5 uj3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Durham Public
+              Schools &nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Durham Public Schools
-              &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              Building Services
+              &nbsp; &nbsp;Building Services
             </span>
           </p>
         </div>
@@ -276,25 +271,17 @@ const OwnerDesignMore = (props) => {
               {moment(props?.form_fields?.notarySealDate).format("Do")}{" "}
             </span>
           ) : (
-            <span>___</span>
+            <span></span>
           )}{" "}
           <span class="uj3">&nbsp;day of </span>
-          {props?.form_fields?.notarySealDate ? (
-            <span class={`uj3 ${props.nottoBeHighlighted}`}>
-              {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
-            </span>
-          ) : (
-            <span>___________</span>
-          )}
+          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+            {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
+          </span>
           <span class="uj5 uj3">
             ,&nbsp;
-            {props?.form_fields?.notarySealDate ? (
-              <span class={`uj3 ${props.nottoBeHighlighted}`}>
-                {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
-              </span>
-            ) : (
-              <span>_______</span>
-            )}
+            <span class={`uj3 ${props.nottoBeHighlighted}`}>
+              {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
+            </span>
             .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         </p>

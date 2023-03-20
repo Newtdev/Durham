@@ -91,7 +91,7 @@ const OwnerDesignMore = (props) => {
             specifically designated:
           </span>
         </p>
-        {/* <p class="uj10">
+        <p class="uj10">
           <span class="uj5 uj3 uj8">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Geotechnical
           </span>
@@ -100,11 +100,11 @@ const OwnerDesignMore = (props) => {
           <span class="uj5 uj3 uj8">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surveying
           </span>
-        </p> */}
+        </p>
         {services?.map((service, index) => (
           <p class="uj10">
             <span class={`uj3 uj8 uj51 ${props?.nottoBeHighlighted}`}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.{index + 1}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.{index + 3}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {service.service}
             </span>
@@ -195,14 +195,14 @@ const OwnerDesignMore = (props) => {
         <p class="uj2 uj22">
           <span class="uj5 uj3"></span>
         </p>
-        <ol class="uj7 lst-kix_list_20-2e" start="5">
+        {/* <ol class="uj7 lst-kix_list_20-2e" start="5">
           <li class="uj11 uj24 li-bullet-1">
             <span class="uj5 uj3">
               Providing acoustical services by an individual or firm with
               specific expertise in acoustics for an elementary school project.
             </span>
           </li>
-        </ol>
+        </ol> */}
         <p class="uj2 uj22">
           <span class="uj5 uj3"></span>
         </p>

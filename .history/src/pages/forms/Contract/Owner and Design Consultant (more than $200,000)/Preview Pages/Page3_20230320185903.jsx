@@ -183,9 +183,7 @@ const OwnerDesignMore = (props) => {
               </span>{" "}
               students. The school will be built at{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
-                  ? `${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`
-                  : "N/A"}
+                {`${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`}
               </span>{" "}
               in Durham County.
             </span>

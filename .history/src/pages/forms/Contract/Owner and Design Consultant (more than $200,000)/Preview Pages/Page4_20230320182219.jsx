@@ -4,16 +4,16 @@ import moment from "moment";
 import { parseDynamicInput } from "../../../../../shared-component";
 
 const OwnerDesignMore = (props) => {
-  // const consultants = parseDynamicInput(props?.form_fields?.consultants);
-  // console.log(consultants);
+  const consultants = parseDynamicInput(props?.form_fields?.consultants);
+  console.log(consultants);
 
-  // const structural = consultants?.find(
-  //   (consultant) => consultant.consultantHired === "Structural"
-  // );
+  const structural = consultants?.find(
+    (consultant) => consultant.consultantHired === "Structural"
+  );
 
-  // const plumbing = consultants?.find(
-  //   (consultant) => consultant.consultantHired === "Plumbing"
-  // );
+  const plumbing = consultants?.find(
+    (consultant) => consultant.consultantHired === "Plumbing"
+  );
 
   return (
     <div
@@ -224,7 +224,7 @@ const OwnerDesignMore = (props) => {
         <p class="uj2 uj14">
           <span class="uj5 uj3"></span>
         </p>
-        {/* <p class="uj10">
+        <p class="uj10">
           <span class="uj5 uj3 uj8">
             Structural: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className={`${props.nottoBeHighlighted}`}>
@@ -239,7 +239,7 @@ const OwnerDesignMore = (props) => {
               {plumbing?.selectedField}
             </span>
           </span>
-        </p> */}
+        </p>
       </div>
       <Footer page={4} />
     </div>

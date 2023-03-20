@@ -4,8 +4,6 @@ import Wrapper from "./Wrapper";
 import moment from "moment";
 
 const OwnerDesignMore = (props) => {
-  console.log(props?.form_fields?.newSchool);
-
   return (
     <div
       class="flex flex-col justify-between "
@@ -137,20 +135,20 @@ const OwnerDesignMore = (props) => {
           <li class="uj4 li-bullet-0">
             <span class="uj5 uj3 uj8">
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.schoolName
                   : "N/A"}
               </span>
               &nbsp;school with enrollment of{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.studentNumber
                   : "N/A"}
               </span>{" "}
               students, the approximate square footage for the facility would be
               approximately{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.squareFootage
                   : "N/A"}
               </span>{" "}
@@ -177,15 +175,13 @@ const OwnerDesignMore = (props) => {
             </span>
             <span class="uj5 uj3 uj8">
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.accomodateNumber
                   : "N/A"}
               </span>{" "}
               students. The school will be built at{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
-                  ? `${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`
-                  : "N/A"}
+                {`${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`}
               </span>{" "}
               in Durham County.
             </span>

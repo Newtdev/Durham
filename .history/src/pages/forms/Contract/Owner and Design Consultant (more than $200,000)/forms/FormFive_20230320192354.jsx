@@ -124,7 +124,7 @@ const FormFive = (props) => {
                       {edit === true ? (
                         <Component
                           props={props}
-                          value={props?.values?.narrativePhase}
+                          value={designNarrativePhase}
                           id="narrativePhase"
                           onChange={(e) =>
                             props?.setFieldValue(
