@@ -70,12 +70,7 @@ const OwnerDesignMore = (props) => {
             School Budget and Fiscal Control Act.
           </span>
         </p>
-        <p class="uj28">
-          <span class="uj5 uj49"></span>
-        </p>
-        <p class="uj28">
-          <span class="uj5 uj49"></span>
-        </p>
+
         <p class="uj44 uj41 uj81">
           <span class="uj5 uj49"></span>
         </p>
@@ -301,14 +296,6 @@ const OwnerDesignMore = (props) => {
         <p class="uj28 uj61">
           <span class="uj5 uj3"></span>
         </p>
-        <div>
-          <p class="uj34 uj44">
-            <span class="uj5 uj3">My commission expires:_______</span>
-          </p>
-          <p class="uj28">
-            <span class="uj5 uj49 uj8"></span>
-          </p>
-        </div>
       </div>
       <Footer page={38} />
     </Wrapper>
