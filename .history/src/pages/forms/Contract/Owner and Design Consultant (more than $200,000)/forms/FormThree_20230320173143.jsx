@@ -87,8 +87,7 @@ const FormThree = (props) => {
                                       .consultantHired
                                   }
                                 >
-                                  {props?.values?.consultants[index]
-                                    .consultantHired || "Select Consultant"}
+                                  Select Consultant
                                 </option>
                                 <option value="Structural">Structural</option>
                                 <option value="Plumbing">Plumbing</option>

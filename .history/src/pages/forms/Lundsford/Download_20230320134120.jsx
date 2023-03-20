@@ -26,8 +26,7 @@ const DownLoadForm = ({
   const content = useSelector(savedResponse);
   const [a] = UseFetchFilledFormDetails(formID);
 
-  // const projectName = a?.data?.project?.name;
-  // console.log(projectName?.name);
+  const projectName = a?.data?.project?.name;
   // const { project } = content || "";
 
   const handlePrint = useReactToPrint({
@@ -52,7 +51,7 @@ const DownLoadForm = ({
           </h3>
           <p className="mt-6 text-base text-gray-700">
             Congratulations! You have successfully created the{" "}
-            <span>{name}</span> for <span>{project?.name}</span>.
+            <span>{name}</span> for <span>{projectName?.name}</span>.
           </p>
         </div>
 

@@ -41,7 +41,6 @@ const Login = () => {
         // 	navigate("/dashboard");
         // }
         // navigate(savedURL);
-        navigate("/dashboard");
         // dispatch(userInfo(localStorage.getItem('durham_token')));
       }
     } catch (error) {

@@ -71,25 +71,14 @@ const FormThree = (props) => {
                             </div>
                             <div className="flex flex-col gap-4 px-3 pt-3 border border-[#9CA3AF]">
                               <FormSelect
-                                value={
-                                  props?.values?.consultants[index]
-                                    .consultantHired
-                                }
+                                value={props.values.consultantHired}
                                 name="Select the consultants hired at the Design Consultant' s expense."
                                 id={`consultants[${index}].consultantHired`}
                                 error={props.errors.consultantHired}
                                 touched={props.touched.consultantHired}
                                 onChange={props.handleChange}
                               >
-                                <option
-                                  value={
-                                    props?.values?.consultants[index]
-                                      .consultantHired
-                                  }
-                                >
-                                  {props?.values?.consultants[index]
-                                    .consultantHired || "Select Consultant"}
-                                </option>
+                                <option value="">Select Consultant</option>
                                 <option value="Structural">Structural</option>
                                 <option value="Plumbing">Plumbing</option>
                                 <option value="Mechanical">Mechanical</option>

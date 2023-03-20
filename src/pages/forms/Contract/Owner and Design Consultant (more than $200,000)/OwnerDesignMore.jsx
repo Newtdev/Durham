@@ -102,6 +102,7 @@ const OwnerDesignMore = ({ id, filled }) => {
       constructionPhase: 25,
       constructionServicesPhase: 5,
       maxCost: 0,
+      ccap: "",
       services: [
         {
           service: "",
@@ -162,6 +163,10 @@ const OwnerDesignMore = ({ id, filled }) => {
       handleSavedDate(a?.data?.form_fields?.substantialCompletionDate)
     );
     formik.setFieldValue(
+      "ownerDeadline",
+      handleSavedDate(a?.data?.form_fields?.ownerDeadline)
+    );
+    formik.setFieldValue(
       "noticeDate",
       handleSavedDate(a?.data?.form_fields?.noticeDate)
     );
@@ -170,8 +175,13 @@ const OwnerDesignMore = ({ id, filled }) => {
       a?.data?.form_fields?.projectObjective
     );
     formik.setFieldValue("newSchool", a?.data?.form_fields?.newSchool);
+    formik.setFieldValue("percentage", a?.data?.form_fields?.percentage);
     formik.setFieldValue("schoolName", a?.data?.form_fields?.schoolName);
     formik.setFieldValue("studentNumber", a?.data?.form_fields?.studentNumber);
+    formik.setFieldValue(
+      "serviceCompensation",
+      a?.data?.form_fields?.serviceCompensation
+    );
     formik.setFieldValue(
       "accomodateNumber",
       a?.data?.form_fields?.accomodateNumber
@@ -181,8 +191,8 @@ const OwnerDesignMore = ({ id, filled }) => {
     formik.setFieldValue("city", a?.data?.form_fields?.city);
     formik.setFieldValue("state", a?.data?.form_fields?.state);
     formik.setFieldValue("zipCode", a?.data?.form_fields?.zipCode);
-
     formik.setFieldValue("maxCost", a?.data?.form_fields?.maxCost);
+    formik.setFieldValue("ccap", a?.data?.form_fields?.ccap);
     formik.setFieldValue(
       "services",
       parseDynamicInput(a?.data?.form_fields?.services)
