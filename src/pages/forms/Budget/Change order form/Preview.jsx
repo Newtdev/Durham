@@ -438,8 +438,8 @@ const ChangeOrderForm = () => {
 
 										<div className="border-y-2 border-y-black bg-gray-200 ml-6">
 											<p className="font-bold">
-												<span className="font-extrabold">T</span>
-												<span className="font-thin text-[9pt]">HE</span>{" "}
+												<span className="font-extrabold"></span>
+												<span className="font-thin text-[9pt]"></span> THE
 												CONTRACT IS CHANGED AS FOLLOWS:
 											</p>
 										</div>
