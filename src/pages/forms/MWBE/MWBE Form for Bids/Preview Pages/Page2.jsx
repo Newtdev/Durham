@@ -1,21 +1,12 @@
 import currency from "currency.js";
 import moment from "moment";
-import { parseDynamicInput } from "../../../../../shared-component";
+import {
+	limitDescription,
+	parseDynamicInput,
+} from "../../../../../shared-component";
 
 const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 	const companies = parseDynamicInput(formDetails?.mwbeInfo) || [];
-
-	const limitDescription = (data) => {
-		if (!data) {
-			return;
-		}
-		const descriptionLength = data?.split(" ");
-		const desc =
-			descriptionLength.length <= 2
-				? data
-				: descriptionLength.slice(-2).join(" ");
-		return desc;
-	};
 
 	return (
 		<div className="pt-8 pb-4 text-black text-[11pt] leading-[1.3] h-[10.5in]">

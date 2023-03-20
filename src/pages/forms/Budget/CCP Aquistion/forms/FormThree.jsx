@@ -306,7 +306,6 @@ const FormThree = (props) => {
 										return "";
 									} else {
 										// return e.target.value
-										console.log(e.target.value);
 										props.setFieldValue("ccpshippingCost", e.target.value);
 									}
 								}}
