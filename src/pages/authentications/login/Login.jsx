@@ -39,8 +39,9 @@ const Login = () => {
 				localStorage.setItem("durham_token", JSON.stringify(response.data));
 				if (!savedURL) {
 					navigate("/dashboard");
+				} else {
+					navigate(savedURL);
 				}
-				navigate(savedURL);
 				// dispatch(userInfo(localStorage.getItem('durham_token')));
 			}
 		} catch (error) {
