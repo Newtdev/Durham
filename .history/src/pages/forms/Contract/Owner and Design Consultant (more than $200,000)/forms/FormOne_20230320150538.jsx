@@ -138,7 +138,7 @@ const FormOne = (props) => {
                       id="default-radio-1"
                       type="radio"
                       value="Yes"
-                      checked={props.values.newSchool === "Yes" ? true : false}
+                      checked={props.value === "Yes"}
                       name="newSchool"
                       onChange={props.handleChange}
                       className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
@@ -155,7 +155,6 @@ const FormOne = (props) => {
                       id="default-radio-2"
                       type="radio"
                       value="No"
-                      checked={props.values.newSchool === "No" ? true : false}
                       name="newSchool"
                       className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
                       onChange={props.handleChange}

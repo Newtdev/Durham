@@ -37,11 +37,10 @@ const Login = () => {
         });
       } else {
         localStorage.setItem("durham_token", JSON.stringify(response.data));
-        if (!savedURL) {
-          navigate("/dashboard");
-        } else {
-          navigate(savedURL);
-        }
+        // if (!savedURL) {
+        // 	navigate("/dashboard");
+        // }
+        // navigate(savedURL);
         // dispatch(userInfo(localStorage.getItem('durham_token')));
       }
     } catch (error) {

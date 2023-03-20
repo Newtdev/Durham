@@ -26,8 +26,8 @@ const DownLoadForm = ({
   const content = useSelector(savedResponse);
   const [a] = UseFetchFilledFormDetails(formID);
 
-  // const projectName = a?.data?.project?.name;
-  // console.log(projectName?.name);
+  const projectName = a?.data?.project?.name;
+  console.log(projectName);
   // const { project } = content || "";
 
   const handlePrint = useReactToPrint({

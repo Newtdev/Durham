@@ -81,15 +81,7 @@ const FormThree = (props) => {
                                 touched={props.touched.consultantHired}
                                 onChange={props.handleChange}
                               >
-                                <option
-                                  value={
-                                    props?.values?.consultants[index]
-                                      .consultantHired
-                                  }
-                                >
-                                  {props?.values?.consultants[index]
-                                    .consultantHired || "Select Consultant"}
-                                </option>
+                                <option value="">Select Consultant</option>
                                 <option value="Structural">Structural</option>
                                 <option value="Plumbing">Plumbing</option>
                                 <option value="Mechanical">Mechanical</option>
