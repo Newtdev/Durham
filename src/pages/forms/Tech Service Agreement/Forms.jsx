@@ -116,6 +116,7 @@ const Forms = (props) => {
 								<Close />
 							</button>
 						</div>
+						<div className="bg-[#2F5461] h-2.5 w-[100%]"></div>
 
 						<div className="mx-6 mt-4 mb-12">
 							<FormInputContainer name="With whom are you entering into the agreement?">

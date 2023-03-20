@@ -46,7 +46,7 @@ const SecondForm = (props) => {
 					</button>
 				</div>
 				{/* Progress */}
-				<hr />
+				<div className="bg-[#2F5461] h-2.5 w-[66.3%]"></div>
 				<div className="mx-6 mb-3">
 					<div className=" my-3">
 						<div className=" border-spacing-10 bg-gray-50 rounded-md p-1">

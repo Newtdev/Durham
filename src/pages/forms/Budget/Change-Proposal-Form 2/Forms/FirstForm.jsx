@@ -207,7 +207,8 @@ const FirstForm = (props) => {
 					</button>
 				</div>
 				{/* Progress */}
-				<hr />
+				<div className="bg-[#2F5461] h-2.5 w-[33.3%]"></div>
+
 				<div className="mx-6 mb-12">
 					<div className=" mt-3 ml-2">
 						<div className="flex flex-col my-5">

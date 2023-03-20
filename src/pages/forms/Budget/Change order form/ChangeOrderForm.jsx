@@ -16,6 +16,7 @@ import { ChangeOrderSchema } from "../../../../yup";
 import { project_document_id } from "../../../Dashboard/project-dashboard/ReducerSlice";
 import { getStates } from "../../Advertisement-for-bid-template/reducer";
 import { modal, saveFormField } from "../../reducer";
+import { handleResult } from "../../RFP Template with MWBE/Forms/FormsThree";
 import FormOne from "./form/FormOne";
 import FormTwo from "./form/FormTwo";
 import Preview from "./Preview";
@@ -34,7 +35,7 @@ const ChangeOrderForm = ({ id, filled }) => {
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: handleResultWithArray(values),
+			form_fields: handleResult(values),
 		});
 		if (response) {
 			if (response?.error) {
