@@ -258,7 +258,11 @@ const FormOne = (props) => {
                         <DataListComponent
                           name="State"
                           inputname="state"
-                          value={props?.values?.state}
+                          value={
+                            props?.values?.newSchool === "Yes"
+                              ? props?.values?.state
+                              : ""
+                          }
                           handleChange={props.handleChange}
                           fn={() => GetState(states)}
                           placeholder="State"
@@ -268,7 +272,11 @@ const FormOne = (props) => {
                         <DataListComponent
                           name="City"
                           inputname="city"
-                          value={props?.values?.city}
+                          value={
+                            props?.values?.newSchool === "Yes"
+                              ? props?.values?.city
+                              : ""
+                          }
                           handleChange={props.handleChange}
                           placeholder="City"
                           fn={() => CheckState()}
@@ -278,7 +286,11 @@ const FormOne = (props) => {
                         <DataListComponent
                           name="Zip code"
                           inputname="zipCode"
-                          value={props?.values?.zipCode}
+                          value={
+                            props?.values?.newSchool === "Yes"
+                              ? props?.values?.zipCode
+                              : ""
+                          }
                           handleChange={props.handleChange}
                           placeholder="Zip code"
                           fn={() => CheckZipCode()}
