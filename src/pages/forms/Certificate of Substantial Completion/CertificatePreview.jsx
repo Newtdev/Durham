@@ -17,7 +17,11 @@ import {
 	project_document_id,
 	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
-import { doConvert, trucateText } from "../../../shared-component";
+import {
+	doConvert,
+	limitDescription,
+	trucateText,
+} from "../../../shared-component";
 import PageTwo from "./PageTwo";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
@@ -159,7 +163,8 @@ const CertificatePreview = () => {
 												className={` ${nottoBeHighlighted}  border border-black pl-[1rem] text-[12.5px]`}>
 												Contract for:{" "}
 												<i>
-													{!form_fields ? "" : form_fields?.purposeOfContract}{" "}
+													{/* {!form_fields ? "" : form_fields?.purposeOfContract}{" "} */}
+													{limitDescription(form_fields?.purposeOfContract)}
 												</i>
 											</td>
 											<td className="border border-black pl-[1rem] text-[12.5px]">

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { YearsInWord } from "../../../../../shared-component";
+import { limitDescription, YearsInWord } from "../../../../../shared-component";
 
 export const PageWrapper = ({ children, num }) => {
 	return (
@@ -116,7 +116,7 @@ const PageOne = ({
 					to obtain the services of the Contractor in connection with the new
 					construction of{" "}
 					<span className={`${nottoBeHighlighted} border-b border-black`}>
-						{formDetails?.construction}
+						{limitDescription(formDetails?.construction)}
 					</span>{" "}
 					(hereinafter referred to as the "Project" or the "Work"); and
 				</p>

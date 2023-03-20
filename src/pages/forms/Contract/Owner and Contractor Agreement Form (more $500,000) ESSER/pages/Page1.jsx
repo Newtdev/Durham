@@ -1,5 +1,5 @@
 import moment from "moment";
-import { YearsInWord } from "../../../../../shared-component";
+import { limitDescription, YearsInWord } from "../../../../../shared-component";
 import { PageWrapper } from "../../Owner and Contractor Agreement Form (more $500,000)/Preview Pages/Page1";
 
 const PageOne = ({
@@ -94,7 +94,7 @@ const PageOne = ({
 					to obtain the services of the Contractor in connection with the new
 					construction of{" "}
 					<span className={`${nottoBeHighlighted} border-b border-black`}>
-						{formDetails?.construction}
+						{limitDescription(formDetails?.construction)}
 					</span>{" "}
 					(hereinafter referred to as the "Project" or the "Work"); and
 				</p>
