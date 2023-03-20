@@ -16,6 +16,7 @@ import { prevStep } from "./reducer";
 import { CalculateAmount } from "../Change order form/form/FormOne";
 import { AddDate } from "../Change order form/form/FormTwo";
 import { UseFetchFilledFormDetails } from "../../../../hooks/useFetchFilled";
+import { trucateText } from "../../../../shared-component";
 
 // const ToApprove = ({ name, nottoBeHighlighted }) => {
 // 	return name?.map((person, i) => {
@@ -234,7 +235,8 @@ const Preview = () => {
 														<span>
 															<span
 																className={`${nottoBeHighlighted} break-word narrow-font text-[10pt]`}>
-																{forms_fields?.description + "."}{" "}
+																{trucateText(forms_fields?.description, 15) +
+																	". "}
 															</span>
 															<span>
 																{forms_fields?.amountEffect === "Increased"

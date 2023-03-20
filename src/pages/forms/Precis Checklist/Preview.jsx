@@ -5,7 +5,10 @@ import { ButtonWhiteBG } from "../../../ui";
 import { Close, DashboardButton } from "../../Dashboard/Components";
 import { useFetchFilledFormQuery } from "../../../features/services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
 import {
 	closeDownload,
 	closeModal,
@@ -15,24 +18,21 @@ import {
 } from "../reducer";
 import { prevChoiceStep, stepChoiceDefault } from "./Reducer";
 import DownLoadForm from "../Lundsford/Download";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
 const Preview = () => {
-	// const formID = useSelector(project_document_id);
+	const formID = useSelector(project_document_id);
+	const [a] = UseFetchFilledFormDetails(formID);
 	const show = useSelector(openDownload);
 
 	const downloadComponent = useRef();
-	const form_fields = useSelector(fields);
-	console.log(form_fields);
+	const form_fields = a?.data?.form_fields;
 
-	// const content = useFetchFilledFormQuery(formID);
-	// const formsDetails = !content?.data ? "" : content?.data?.data;
 	const dispatch = useDispatch();
-	// const fields = !formsDetails?.form_fields ? "" : formsDetails?.form_fields;
 	const props = {
 		component: downloadComponent,
 		name: "Precis Folders for Projects",
 		show: show ? "block" : "hidden",
-		stepChoiceDefault,
 		close: closeDownload,
 	};
 	return (
@@ -78,7 +78,11 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.precis ? true : false}
+												checked={
+													form_fields?.precis || form_fields?.precis === "1"
+														? true
+														: false
+												}
 												type="checkbox"
 												value=""
 												class="h-6 w-6 border-[3px] border-gray-400 bg-gray-100"
@@ -92,7 +96,11 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.bidTab ? true : false}
+												checked={
+													form_fields?.bidTab || form_fields?.bidTab === "1"
+														? true
+														: false
+												}
 												type="checkbox"
 												value=""
 												class="h-6 w-6 border-[3px] border-gray-400 bg-gray-100"
@@ -106,7 +114,11 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.contract ? true : false}
+												checked={
+													form_fields?.contract || form_fields?.contract === "1"
+														? true
+														: false
+												}
 												type="checkbox"
 												value=""
 												class="h-6 w-6 border-[3px] border-gray-400 bg-gray-100"
@@ -120,7 +132,12 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.participation ? true : false}
+												checked={
+													form_fields?.participation |
+													(form_fields?.participation === "1")
+														? true
+														: false
+												}
 												type="checkbox"
 												value=""
 												class="h-6 w-6 border-[3px] border-gray-400 bg-gray-100"
@@ -134,7 +151,12 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.affidavits ? true : false}
+												checked={
+													form_fields?.affidavits |
+													(form_fields?.affidavits === "1")
+														? true
+														: false
+												}
 												// checked={fields.affidavits ? true : false}
 												type="checkbox"
 												value=""
@@ -149,7 +171,11 @@ const Preview = () => {
 									<div className="flex border-b border-b-gray-200 h-8">
 										<div className="w-8 h-full flex justify-center items-center">
 											<input
-												checked={form_fields.plan ? true : false}
+												checked={
+													form_fields?.plan | (form_fields?.plan === "1")
+														? true
+														: false
+												}
 												// checked={fields.plan ? true : false}
 												type="checkbox"
 												value=""
@@ -167,7 +193,12 @@ const Preview = () => {
 												// checked={
 												// 	fields.presentation === "presentation" ? true : false
 												// }
-												checked={form_fields.presentation ? true : false}
+												checked={
+													form_fields?.presentation |
+													(form_fields?.presentation === "1")
+														? true
+														: false
+												}
 												type="checkbox"
 												value=""
 												class="h-6 w-6 border-[3px] border-gray-400 bg-gray-100"
@@ -187,7 +218,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevChoiceStep(0))}
+							onClick={() => {
+								dispatch(prevChoiceStep(0));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

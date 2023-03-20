@@ -127,7 +127,7 @@ const Compensation = (props) => {
 
 				{/* Progress */}
 				<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+					<div className="bg-[#2F5461] h-2.5 w-[66.3%]"></div>
 				</div>
 				<div className="px-4">
 					<div className="flex flex-col mb-5">
@@ -250,7 +250,7 @@ const Compensation = (props) => {
 				<div className="flex justify-end gap-8 pr-4">
 					<ButtonWhiteBG
 						width="w-[100px]"
-						name="cancel"
+						name="Back"
 						onClick={() => dispatch(prevChoiceStep(0))}
 					/>
 					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />

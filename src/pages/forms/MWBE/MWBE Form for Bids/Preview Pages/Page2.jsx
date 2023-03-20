@@ -4,7 +4,19 @@ import { parseDynamicInput } from "../../../../../shared-component";
 
 const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 	const companies = parseDynamicInput(formDetails?.mwbeInfo) || [];
-	// console.log(companies);
+
+	const limitDescription = (data) => {
+		if (!data) {
+			return;
+		}
+		const descriptionLength = data?.split(" ");
+		const desc =
+			descriptionLength.length <= 2
+				? data
+				: descriptionLength.slice(-2).join(" ");
+		return desc;
+	};
+
 	return (
 		<div className="pt-8 pb-4 text-black text-[11pt] leading-[1.3] h-[10.5in]">
 			<div>
@@ -62,7 +74,8 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[0] ? "" : companies[0]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[0] ? "" : companies[0]?.workDescription}
+										{/* {!companies[0] ? "" : companies[0]?.workDescription} */}
+										{limitDescription(companies[0]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -81,7 +94,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[1] ? "" : companies[1]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[1] ? "" : companies[1]?.workDescription}
+										{limitDescription(companies[1]?.workDescription)}{" "}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -100,7 +113,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[2] ? "" : companies[2]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[2] ? "" : companies[2]?.workDescription}
+										{limitDescription(companies[2]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -119,7 +132,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[3] ? "" : companies[3]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[3] ? "" : companies[3]?.workDescription}
+										{limitDescription(companies[3]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -138,7 +151,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[4] ? "" : companies[4]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[4] ? "" : companies[4]?.workDescription}
+										{limitDescription(companies[4]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -157,7 +170,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[5] ? "" : companies[5]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[5] ? "" : companies[5]?.workDescription}
+										{limitDescription(companies[5]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -176,7 +189,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[6] ? "" : companies[6]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[6] ? "" : companies[6]?.workDescription}
+										{limitDescription(companies[6]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -195,7 +208,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[7] ? "" : companies[7]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[7] ? "" : companies[7]?.workDescription}
+										{limitDescription(companies[7]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies
@@ -214,7 +227,7 @@ const PageTwo = ({ formDetails, nottoBeHighlighted }) => {
 									</td>
 									<td>{!companies[8] ? "" : companies[8]?.mwbeCategory}</td>
 									<td className="border border-black border-collapse text-left pl-1">
-										{!companies[8] ? "" : companies[8]?.workDescription}
+										{limitDescription(companies[8]?.workDescription)}
 									</td>
 									<td className="border border-black border-collapse text-right pr-1">
 										{!companies

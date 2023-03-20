@@ -153,7 +153,7 @@ const ProjectInformation = () => {
 		error: errors.name,
 		touched: touched.name,
 		onChange: handleChange,
-		placeholder: "Enter Product Name",
+		placeholder: "Enter Project Name",
 	};
 	const project_number = {
 		name: "Project Number",
@@ -172,7 +172,7 @@ const ProjectInformation = () => {
 		error: errors.description,
 		touched: touched.description,
 		onChange: handleChange,
-		placeholder: "Enter Product Description",
+		placeholder: "Enter Project Description",
 	};
 	const project_street = {
 		name: "Project Location (Street)",
@@ -217,7 +217,7 @@ const ProjectInformation = () => {
 		error: errors.project_manager_id,
 		touched: touched.project_manager_id,
 		onChange: handleChange,
-		placeholder: "Enter Product Manager",
+		placeholder: "Enter Project Manager",
 	};
 	const school = {
 		name: "School/Dept Name",

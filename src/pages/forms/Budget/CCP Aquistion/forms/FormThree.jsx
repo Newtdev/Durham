@@ -16,6 +16,7 @@ import {
 } from "../../../../../shared-component";
 import { toast } from "react-toastify";
 import Component from "../../Change-Proposal-Form 2/Component";
+import { handleResult } from "../../../RFP Template with MWBE/Forms/FormsThree";
 
 export const CalculateTotal = (a, b) => {
 	if (!a || !b) {
@@ -84,9 +85,10 @@ const FormThree = (props) => {
 	};
 
 	const HandleSubmit = async (values) => {
+		console.log(values);
 		const response = await fillProjectDocument({
 			project_document_id: formID,
-			form_fields: handleResultWithArray({
+			form_fields: handleResult({
 				ccpsubtotal: subtotal,
 				ccpgrandTotal: grandTotal,
 				costOfShipping: values?.ccpshippingCost,
@@ -304,6 +306,7 @@ const FormThree = (props) => {
 										return "";
 									} else {
 										// return e.target.value
+										console.log(e.target.value);
 										props.setFieldValue("ccpshippingCost", e.target.value);
 									}
 								}}

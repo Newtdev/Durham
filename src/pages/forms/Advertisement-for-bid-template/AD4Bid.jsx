@@ -16,7 +16,6 @@ import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import { handleSavedDate, setResult } from "../../../shared-component";
 import Experience from "./forms/Experience";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
-import { values } from "pdf-lib";
 
 const AdvertisementBid = ({ id, filled }) => {
 	const dispatch = useDispatch();

@@ -19,7 +19,7 @@ export const PreciseListComponent = ({
 				onChange={onChange}
 				value={value}
 				name={name}
-				checked={value ? true : false}
+				checked={value}
 				className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300"
 			/>
 			<label for="default-radio-1" className="ml-2 text-base text-gray-900">

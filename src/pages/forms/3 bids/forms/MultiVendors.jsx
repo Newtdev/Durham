@@ -50,7 +50,7 @@ const MultiVendors = (props) => {
 				</div>
 				{/* Progress */}
 				<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+					<div className="bg-[#2F5461] h-2.5 w-[100%]"></div>
 				</div>
 				<div className="mx-6 mb-3">
 					<p className="text-base text-[#693B79]">
@@ -62,7 +62,7 @@ const MultiVendors = (props) => {
 							render={({ remove, push }) => (
 								<>
 									<div className="mt-5">
-										{props?.values?.information.map((cur, index) => (
+										{props?.values?.information?.map((cur, index) => (
 											<Fragment key={index}>
 												<VendorsInfo
 													data={props}
@@ -88,7 +88,7 @@ const MultiVendors = (props) => {
 												className={`text-white text-sm font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
 												type="button"
 												disabled={
-													props?.values.information.length === 4 ? true : false
+													props?.values.information?.length === 4 ? true : false
 												}>
 												ADD VENDOR
 											</button>
@@ -102,14 +102,14 @@ const MultiVendors = (props) => {
 				<div className="flex justify-end gap-8 pr-4">
 					<ButtonWhiteBG
 						width="w-[100px]"
-						name="Cancel"
+						name="Back"
 						onClick={() => dispatch(prevChoiceStep(0))}
 					/>
 					<button
-						disabled={props?.values.information.length < 3 ? true : false}
+						disabled={props?.values.information?.length < 3 ? true : false}
 						className={`text-white text-sm font-normal w-[77px] hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
 						type="submit">
-						NEXT
+						{!props?.isLoading ? "NEXT" : "Loading..."}
 					</button>
 					{/* <DashboardButton
 						hidden

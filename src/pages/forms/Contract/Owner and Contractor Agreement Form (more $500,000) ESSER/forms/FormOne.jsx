@@ -89,7 +89,7 @@ const FormOne = (props) => {
 									onChange={props.handleChange}
 									name="construction"
 									value={props?.values?.construction}
-									placeholder="Hereinafter referred to as the 'Project' or 'Work'"
+									placeholder="Not more than one or two words"
 								/>
 								{props.errors.construction && props.touched.construction && (
 									<Error message={props.errors.construction} />
