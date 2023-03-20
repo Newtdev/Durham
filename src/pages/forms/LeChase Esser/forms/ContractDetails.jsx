@@ -77,7 +77,7 @@ const ContractDetails = (props) => {
 				</div>
 				{/* Progress */}
 				<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-					<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+					<div className="bg-[#2F5461] h-2.5 w-[33.3%]"></div>
 				</div>
 				<div className="px-4">
 					<FormInputContainer name="Who is the provider?">

@@ -10,15 +10,17 @@ import { toast } from "react-toastify";
 import { project_document_id } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
 import BidInfo from "./forms/BidInfo";
-import VendorsInfo from "./forms/VendorsInfo";
 import MultiVendors from "./forms/MultiVendors";
 import Preview from "./Preview";
 import { getStates } from "../Advertisement-for-bid-template/reducer";
 import { nextChoiceStep, page } from "./Reducer";
-import { modal, saveFormField } from "../reducer";
+import { modal } from "../reducer";
 import { Bidschema } from "../../../yup";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { handleSavedDate, parseDynamicInput } from "../../../shared-component";
+import { handleResult } from "../RFP Template with MWBE/Forms/FormsThree";
 
-const Bids = ({ id }) => {
+const Bids = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(page);
 	const show = useSelector(modal);
@@ -26,34 +28,13 @@ const Bids = ({ id }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
-		const param = Object.entries(values);
-		param.forEach((cur, index) => {});
-		// const val = Object.values(values);
-
-		let response;
-		// console.log(values);
-		// const response = await fillProjectDocument({
-		// 	project_document_id: formID,
-		// 	// form_fields: [
-		// 	// 	{ field_name: param[0], field_value: val[0] },
-		// 	// 	{ field_name: param[1], field_value: val[1] },
-		// 	// 	{ field_name: param[2], field_value: val[2] },
-		// 	// 	{ field_name: param[3], field_value: val[3] },
-		// 	// 	{ field_name: param[4], field_value: val[4] },
-		// 	// 	{ field_name: param[5], field_value: val[5] },
-		// 	// 	{ field_name: param[6], field_value: val[6] },
-		// 	// 	{ field_name: param[7], field_value: val[7] },
-		// 	// 	{ field_name: param[8], field_value: val[8] },
-		// 	// 	{ field_name: param[9], field_value: val[9] },
-		// 	// 	{ field_name: param[10], field_value: val[10] },
-		// 	// 	{ field_name: param[11], field_value: val[11] },
-		// 	// 	{ field_name: param[12], field_value: val[12] },
-		// 	// 	{ field_name: param[13], field_value: val[13] },
-		// 	// 	{ field_name: param[14], field_value: val[14] },
-		// 	// ],
-		// });
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: handleResult(values),
+		});
 		if (response) {
 			if (response?.error) {
 				toast.error(response?.message, {
@@ -87,15 +68,11 @@ const Bids = ({ id }) => {
 				},
 			],
 		},
-		validationSchema: Bidschema[pages],
 
 		onSubmit: (values) => {
 			if (pages === 0) {
 				dispatch(nextChoiceStep(1));
 			} else if (pages === 1) {
-				dispatch(saveFormField(values));
-
-				dispatch(nextChoiceStep(2));
 				HandleSubmit(values);
 			}
 		},
@@ -108,17 +85,41 @@ const Bids = ({ id }) => {
 		})();
 	}, [dispatch]);
 
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		Formik.setFieldValue(
+			"selectDate",
+			handleSavedDate(a?.data?.form_fields?.selectDate)
+		);
+		Formik.setFieldValue("input", a?.data?.form_fields?.input);
+		Formik.setFieldValue("services", a?.data?.form_fields?.services);
+		Formik.setFieldValue("addVendor", a?.data?.form_fields?.addVendor);
+		Formik.setFieldValue(
+			"information",
+			parseDynamicInput(a?.data?.form_fields?.information)
+		);
+	}, [a?.data]);
+
 	const props = {
 		...Formik,
 		isLoading,
 	};
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === Vendor3BidSlug && show}>
+				<FormikProvider value={Formik}>
+					{pages === 0 && <BidInfo {...Formik} />}
+					{pages === 1 && <MultiVendors {...props} />}
+					{pages === 2 && <Preview {...Formik} />}
+				</FormikProvider>
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === Vendor3BidSlug && show}>
-			<FormikProvider value={Formik}>
-				{pages === 0 && <BidInfo {...Formik} />}
-				{pages === 1 && <MultiVendors {...props} />}
-				{pages === 2 && <Preview {...Formik} />}
-			</FormikProvider>
+			<Preview {...Formik} />
 		</ModalOverlay>
 	);
 };

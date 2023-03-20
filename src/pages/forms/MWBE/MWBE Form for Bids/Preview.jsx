@@ -21,6 +21,7 @@ const MWBEBids = () => {
 	const formID = useSelector(project_document_id);
 	const dispatch = useDispatch();
 	const [checked, setChecked] = useState({});
+
 	const [highlighted, setHighlighed] = useState(false);
 	const show = useSelector(openDownload);
 	const downloadComponent = useRef();
@@ -36,9 +37,19 @@ const MWBEBids = () => {
 		show: show ? "block" : "hidden",
 	};
 
-	const onChange = (e) => {
+	const handleChange = (e) => {
 		setChecked({ ...checked, [e.target.name]: e.target.checked });
 	};
+
+	useEffect(() => {
+		const mwbeChecked = JSON.parse(
+			localStorage.getItem(`${projectDetails?.name}-mwbe`)
+		);
+		if (!mwbeChecked) {
+			return;
+		}
+		setChecked(mwbeChecked);
+	}, [projectDetails?.name]);
 	return (
 		<div>
 			<div>
@@ -70,7 +81,7 @@ const MWBEBids = () => {
 								formDetails={formDetails}
 								nottoBeHighlighted={nottoBeHighlighted}
 								checked={checked}
-								onChange={onChange}
+								handleChange={handleChange}
 							/>
 							<PageTwo
 								formDetails={formDetails}
@@ -108,6 +119,11 @@ const MWBEBids = () => {
 							type="submit"
 							width="w-[198px]"
 							onClick={() => {
+								localStorage.setItem(
+									`${projectDetails?.name}-mwbe`,
+									JSON.stringify(checked)
+								);
+
 								dispatch(showDownload());
 								setHighlighed(true);
 							}}

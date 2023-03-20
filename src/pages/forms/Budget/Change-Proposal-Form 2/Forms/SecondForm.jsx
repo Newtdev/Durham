@@ -57,7 +57,7 @@ const SecondForm = (props) => {
 										type="button"
 										className="text-gray-900 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 										data-modal-toggle="small-modal">
-										<Close />
+										{/* <Close /> */}
 									</button>
 								}>
 								<div className="flex flex-col rounded-md bg-white px-1">
@@ -181,7 +181,7 @@ const SecondForm = (props) => {
 										type="button"
 										className="text-gray-900 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
 										data-modal-toggle="small-modal">
-										<Close />
+										{/* <Close /> */}
 									</button>
 								}>
 								<div className="flex flex-col rounded-md bg-white px-1">
@@ -373,7 +373,7 @@ const SecondForm = (props) => {
 				<div className="flex justify-end gap-8 pr-4 ">
 					<ButtonWhiteBG
 						width="w-[100px]"
-						name="Cancel"
+						name="back"
 						onClick={() => dispatch(prevChoiceStep(1))}
 					/>
 					<DashboardButton hidden name="NEXT" type="submit" width="w-[77px]" />

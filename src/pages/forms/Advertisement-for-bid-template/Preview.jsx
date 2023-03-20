@@ -91,7 +91,7 @@ const PageTwo = ({ form_fields, nottoBeHighlighted, project }) => {
 						{!form_fields ? "" : form_fields.manager_email_address}
 					</p>
 				</div>{" "}
-				<div className="mb-10 flex justify-start items-end">
+				<div className="mb-10 flex justify-start items-end text-[10pt]">
 					<span className="">Advertisement for bids</span>
 					<span className=" inline-block ml-24 text-center">00 11 13-1</span>
 					<span> </span>
@@ -324,8 +324,8 @@ const Preview = () => {
 								</div>
 
 								<div className="mt-10 flex justify-start">
-									<span className="">Advertisement for bids</span>
-									<span className=" inline-block ml-24 text-center">
+									<span className="text-[10pt]">Advertisement for bids</span>
+									<span className="text-[10pt] inline-block ml-24 text-center">
 										00 11 13-1
 									</span>
 									<span> </span>

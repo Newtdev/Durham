@@ -72,13 +72,13 @@ const ContractPreparationCheckList = ({ id, filled }) => {
 			<ModalOverlay show={id === ContractPreparationForm && show}>
 				{pages === 0 ? <GeneralInformation {...props} /> : null}
 
-				{pages === 1 ? <Preview /> : null}
+				{pages === 1 ? <Preview c /> : null}
 			</ModalOverlay>
 		);
 	}
 	return (
 		<ModalOverlay show={id === ContractPreparationForm && show}>
-			<Preview />
+			<Preview Formik={formik} />
 		</ModalOverlay>
 	);
 };

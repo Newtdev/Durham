@@ -244,7 +244,7 @@ const FormTwo = (props) => {
 																			props?.values?.mwbeInfo[index]
 																				.workDescription
 																		}
-																		placeholder={"Edit Work Description	"}
+																		placeholder={"Not more than two words"}
 																	/>
 																	{props.errors.workDescription &&
 																		props.touched.workDescription && (

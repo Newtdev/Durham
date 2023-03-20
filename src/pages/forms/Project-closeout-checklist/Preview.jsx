@@ -74,7 +74,9 @@ const ProjectCloseOutPreview = (data) => {
 	};
 
 	useEffect(() => {
-		const list = JSON.parse(localStorage.getItem("closeoutlist"));
+		const list = JSON.parse(
+			localStorage.getItem(`${project?.name}-project-closeout`)
+		);
 		if (!list) {
 			return;
 		}
@@ -205,9 +207,9 @@ const ProjectCloseOutPreview = (data) => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked?.one}
-												value={checked?.one}
-												name="one"
+												checked={checked?.One}
+												value={checked?.One}
+												name="One"
 												class="h-3 w-3 bg-gray-100"
 											/>
 											<span>{"__1.*"}</span>
@@ -224,9 +226,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.two}
-											value={checked?.two}
-											name="two"
+											checked={checked?.Two}
+											value={checked?.Two}
+											name="Two"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -245,9 +247,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.three}
-											value={checked?.three}
-											name="three"
+											checked={checked?.Three}
+											value={checked?.Three}
+											name="Three"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -262,9 +264,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.four}
-											value={checked?.four}
-											name="four"
+											checked={checked?.Four}
+											value={checked?.Four}
+											name="Four"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -277,9 +279,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.five}
-											value={checked?.five}
-											name="five"
+											checked={checked?.Five}
+											value={checked?.Five}
+											name="Five"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className="">
@@ -295,9 +297,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.six}
-											value={checked?.six}
-											name="six"
+											checked={checked?.Six}
+											value={checked?.Six}
+											name="Six"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -313,9 +315,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.seven}
-											value={checked?.seven}
-											name="seven"
+											checked={checked?.Seven}
+											value={checked?.Seven}
+											name="Seven"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -332,9 +334,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.eight}
-											value={checked?.eight}
-											name="eight"
+											checked={checked?.Eight}
+											value={checked?.Eight}
+											name="Eight"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={` `}>
@@ -349,9 +351,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.nine}
-											value={checked?.nine}
-											name="nine"
+											checked={checked?.Nine}
+											value={checked?.Nine}
+											name="Nine"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -366,9 +368,9 @@ const ProjectCloseOutPreview = (data) => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked?.ten}
-												value={checked?.ten}
-												name="ten"
+												checked={checked?.Ten}
+												value={checked?.Ten}
+												name="Ten"
 												class="h-3 w-3 bg-gray-100"
 											/>
 											<span>{"__10.*"}</span>
@@ -383,9 +385,9 @@ const ProjectCloseOutPreview = (data) => {
 											<input
 												type="checkbox"
 												onChange={handleChange}
-												checked={checked?.eleven}
-												value={checked?.eleven}
-												name="eleven"
+												checked={checked?.Eleven}
+												value={checked?.Eleven}
+												name="Eleven"
 												class="h-3 w-3 bg-gray-100"
 											/>
 											<span>{"__11.**"}</span>
@@ -398,9 +400,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.twelve}
-											value={checked?.twelve}
-											name="twelve"
+											checked={checked?.Twelve}
+											value={checked?.Twelve}
+											name="Twelve"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -416,9 +418,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.thirteen}
-											value={checked?.thirteen}
-											name="thirteen"
+											checked={checked?.Thirteen}
+											value={checked?.Thirteen}
+											name="Thirteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -434,9 +436,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.fourteen}
-											value={checked?.fourteen}
-											name="fourteen"
+											checked={checked?.Fourteen}
+											value={checked?.Fourteen}
+											name="Fourteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -453,9 +455,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.fifteen}
-											value={checked?.fifteen}
-											name="fifteen"
+											checked={checked?.Fifteen}
+											value={checked?.Fifteen}
+											name="Fifteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -471,9 +473,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.sixteen}
-											value={checked?.sixteen}
-											name="sixteen"
+											checked={checked?.Sixteen}
+											value={checked?.Sixteen}
+											name="Sixteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -490,9 +492,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.seventeen}
-											value={checked?.seventeen}
-											name="seventeen"
+											checked={checked?.Seventeen}
+											value={checked?.Seventeen}
+											name="Seventeen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -510,9 +512,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.eighteen}
-											value={checked?.eighteen}
-											name="eighteen"
+											checked={checked?.Eighteen}
+											value={checked?.Eighteen}
+											name="Eighteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -529,9 +531,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.nineteen}
-											value={checked?.nineteen}
-											name="nineteen"
+											checked={checked?.Nineteen}
+											value={checked?.Nineteen}
+											name="Nineteen"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p>
@@ -551,9 +553,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.twenty}
-											value={checked?.twenty}
-											name="twenty"
+											checked={checked?.Twenty}
+											value={checked?.Twenty}
+											name="Twenty"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -572,9 +574,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.twentyOne}
-											value={checked?.twentyOne}
-											name="twentyOne"
+											checked={checked?.TwentyOne}
+											value={checked?.TwentyOne}
+											name="TwentyOne"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p className={``}>
@@ -592,9 +594,9 @@ const ProjectCloseOutPreview = (data) => {
 										<input
 											type="checkbox"
 											onChange={handleChange}
-											checked={checked?.twentyTwo}
-											value={checked?.twentyTwo}
-											name="twentyTwo"
+											checked={checked?.TwentyTwo}
+											value={checked?.TwentyTwo}
+											name="TwentyTwo"
 											class="h-3 w-3 bg-gray-100"
 										/>
 										<p>__22.</p>
@@ -657,7 +659,10 @@ const ProjectCloseOutPreview = (data) => {
 							type="button"
 							width="w-[198px]"
 							onClick={() => {
-								localStorage.setItem("closeoutlist", JSON.stringify(checked));
+								localStorage.setItem(
+									`${project?.name}-project-closeout`,
+									JSON.stringify(checked)
+								);
 								HandleSubmit(checked);
 								setHighlighted(true);
 								dispatch(showDownload());

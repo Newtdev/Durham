@@ -25,7 +25,7 @@ const PageOne = ({ vendor, project, nottoBeHighlighted }) => {
 						Project
 					</p>
 
-					<div className="h-[31rem]  text-[12pt] mt-auto flex items-end justify-center">
+					<div className="h-[28.5rem]  text-[12pt] mt-auto flex items-end justify-center">
 						1
 					</div>
 				</div>

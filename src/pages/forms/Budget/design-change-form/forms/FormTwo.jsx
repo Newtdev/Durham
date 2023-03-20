@@ -1,24 +1,14 @@
-import { FieldArray } from "formik";
-import { Fragment, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
-import { getList } from "../../../Advertisement-for-bid-template/reducer";
-import SelectDate, {
-	FormSelect,
-	FormInputPlain,
-	FormInput,
-	FormTextArea,
-} from "../../../components";
+import SelectDate, { FormSelect, FormInputPlain } from "../../../components";
 import { FormInputContainer } from "../../../Notice-of-intent-consultant/Forms";
 import { closeModal } from "../../../reducer";
 import { prevStep } from "../reducer";
 
-import moment from "moment";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
-	useFetchProjectManagerQuery,
 } from "../../../../../features/services/api";
 import { AddDate } from "../../Change order form/form/FormTwo";
 
@@ -46,8 +36,20 @@ const SelectDurham = ({ props }) => {
 			</label>
 
 			<datalist id="browsers">
-				{durhamProfile?.map((dt, i) => {
-					return <option value={dt?.value}></option>;
+				{[
+					...durhamProfile?.filter(
+						(cur) =>
+							cur.slug !==
+							"construction_capital_planning_project_managers_phone_number"
+					),
+				]?.map((dt, i) => {
+					return (
+						<>
+							<option id={dt.name} value={dt?.value}>
+								{dt.value}
+							</option>
+						</>
+					);
 				})}
 			</datalist>
 		</>
@@ -171,7 +173,7 @@ const FormTwo = (props) => {
 										type={"text"}
 										onChange={props.handleChange}
 										name="priorChangeDays"
-										placeholder={"Enter Number of Days"}
+										placeholder={"Not more than 10 words"}
 										value={props?.values?.priorChangeDays}
 									/>
 									{props.errors.priorChangeDays &&

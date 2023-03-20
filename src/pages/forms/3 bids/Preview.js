@@ -8,6 +8,12 @@ import { closeModal, fields, showDownload } from "../reducer";
 import currency from "currency.js";
 import moment from "moment";
 import DownLoadForm from "../Lundsford/Download";
+import {
+	project_document_id,
+	selectFilled,
+} from "../../Dashboard/project-dashboard/ReducerSlice";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
+import { parseDynamicInput } from "../../../shared-component";
 
 const RenderBidList = ({ vendor_four, nottoBeHighlighted }) => {
 	if (!vendor_four) {
@@ -101,19 +107,22 @@ const RenderInfoList = ({ vendor_four, nottoBeHighlighted }) => {
 };
 
 const Preview = () => {
-	const details = useSelector(fields);
 	const dispatch = useDispatch();
 	const downloadComponent = useRef();
 	const [show, setShowModal] = useState(false);
 	const [highlighted, setHighlighted] = useState(false);
+	const formID = useSelector(project_document_id);
 
+	const [a] = UseFetchFilledFormDetails(formID);
+	const details = a?.data?.form_fields;
+	const vendors = parseDynamicInput(details?.information);
 	const description = !details ? "" : details?.services || "";
 	const quantity = !details ? "" : details?.input || "";
-	const vendor_one = !details ? "" : details?.information[0];
-	const vendor_two = !details ? "" : details?.information[1];
-	const vendor_three = !details ? "" : details?.information[2];
-	const vendor_four = !details ? "" : details?.information[3];
-	const date = !details ? "" : details.selectDate;
+	const vendor_one = !vendors ? "" : vendors[0];
+	const vendor_two = !vendors ? "" : vendors[1];
+	const vendor_three = !vendors ? "" : vendors[2];
+	const vendor_four = !vendors ? "" : vendors[3];
+	const date = details?.selectDate || "";
 
 	const props = {
 		component: downloadComponent,
@@ -365,9 +374,13 @@ const Preview = () => {
 										</div>
 										<div className="">
 											<p className="w-36 border-b border-black">
-												<span className={`${nottoBeHighlighted} `}>
-													{moment(date).format("MMMM D, YYYY ")}
-												</span>
+												{!date ? (
+													""
+												) : (
+													<span className={`${nottoBeHighlighted} `}>
+														{moment(date).format("MMMM D, YYYY ")}
+													</span>
+												)}
 											</p>
 											<p className="text-sm">Date</p>
 										</div>
@@ -389,7 +402,10 @@ const Preview = () => {
 						<ButtonWhiteBG
 							width="w-[171px]"
 							name="Edit document"
-							onClick={() => dispatch(prevChoiceStep(1))}
+							onClick={() => {
+								dispatch(prevChoiceStep(1));
+								dispatch(selectFilled(false));
+							}}
 						/>
 						<DashboardButton
 							hidden

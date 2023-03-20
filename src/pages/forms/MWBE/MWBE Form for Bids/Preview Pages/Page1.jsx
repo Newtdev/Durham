@@ -1,7 +1,12 @@
 import currency from "currency.js";
 import moment from "moment";
 
-const PageOne = ({ formDetails, nottoBeHighlighted }) => {
+const PageOne = ({
+	formDetails,
+	nottoBeHighlighted,
+	checked,
+	handleChange,
+}) => {
 	// console.log(formDetails);
 	return (
 		<div className=" pb-4 text-black text-[10pt] h-[10.5in] leading-[1.2] ">
@@ -56,7 +61,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeOne"
+										value={checked.mwbeOne}
+										checked={checked.mwbeOne}
 										id="one"
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -83,7 +91,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F3</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeTwo"
+										value={checked.mwbeTwo}
+										checked={checked.mwbeTwo}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -103,7 +114,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F4</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeThree"
+										value={checked.mwbeThree}
+										checked={checked.mwbeThree}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -121,7 +135,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F5</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeFour"
+										value={checked.mwbeFour}
+										checked={checked.mwbeFour}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -141,7 +158,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F6</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeFive"
+										value={checked.mwbeFive}
+										checked={checked.mwbeFive}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -158,7 +178,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F7</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeSix"
+										value={checked.mwbeSix}
+										checked={checked.mwbeSix}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -176,7 +199,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F8</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeSeven"
+										value={checked.mwbeSeven}
+										checked={checked.mwbeSeven}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -203,7 +229,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F9</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeEight"
+										value={checked.mwbeEight}
+										checked={checked.mwbeEight}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -225,7 +254,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F10</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeNine"
+										value={checked.mwbeNine}
+										checked={checked.mwbeNine}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>
@@ -245,7 +277,10 @@ const PageOne = ({ formDetails, nottoBeHighlighted }) => {
 									{/* <span className="bg-yellow-500">F11</span> */}
 									<input
 										type="checkbox"
-										name=""
+										onChange={handleChange}
+										name="mwbeTen"
+										value={checked.mwbeTen}
+										checked={checked.mwbeTen}
 										id=""
 										className="text-transparent checked:text-transparent  border-0 rounded-md focus:ring-0 h-3 w-3  shadow flex justify-center "
 									/>

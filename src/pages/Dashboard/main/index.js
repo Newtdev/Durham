@@ -52,127 +52,23 @@ const Modal = ({ show }) => {
 	);
 };
 
-const Dashboard = () => {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const data = JSON.parse(localStorage.getItem("durham_token"));
-
-	// const onInactivityChange = () => {};
-	// const onIdleModal = () => {};
-	// const onActive = () => {
-	// 	console.log("active");
-	// };
-	// const onIdle = () => {
-	// 	console.log("idle");
-	// };
-	// const idleTimer = useIdleTimer({
-	// 	onActive,
-	// 	onIdle,
-	// 	timeout: 2000,
-	// 	throttle: 500,
-	// });
-
-	useEffect(() => {
-		// console.log(idleTimer());
-		if (!data) {
-			navigate("/");
-		}
-		dispatch(userInfo(data));
-	}, [dispatch, data, navigate]);
-
-	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			<Routes>
-				<Route path="/" index element={<ProjectDashboard />} />
-				<Route path="/add-new-project" element={<ProjectFormsController />} />
-				<Route path="/edit-project" element={<EditProjectDashboard />} />
-				<Route path="/forms" element={<OwnerContractorManagementForm />} />
-				<Route path="/product-manager" element={<ProjectManager />}></Route>
-				<Route path="/vendors" element={<Vendors />}></Route>
-				<Route path="/schools" element={<SchoolInformation />}></Route>
-				<Route path="/settings" element={<Settings />} />
-				<Route path="/settings/durhams-profile" element={<DurhamSettings />} />
-				<Route path="/settings/profile" element={<ProfileSettings />} />
-				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
-				<Route path="/project-details/:id" element={<ProjectDetails />} />
-				<Route path="/forms-download" element={<Forms />}></Route>
-			</Routes>
-		</Suspense>
-	);
-};
-
-export default Dashboard;
-// =======
+// const Dashboard = () => {
 // 	const navigate = useNavigate();
 // 	const dispatch = useDispatch();
-// 	// const [show, setShow] = useState(false);
 // 	const data = JSON.parse(localStorage.getItem("durham_token"));
 
 // 	// const onInactivityChange = () => {};
 // 	// const onIdleModal = () => {};
 
-// 	// const onIdle = () => {
-// 	// 	setShow(true);
-// 	// };
 // 	// const idleTimer = useIdleTimer({
-// 	// 	onIdle,
-// 	// 	timeout: 1800000,
-// 	// 	throttle: 500,
-// 	// });
-// 	// const {
-// 	// 	start,
-// 	// 	reset,
-// 	// 	activate,
-// 	// 	pause,
-// 	// 	resume,
-// 	// 	isIdle,
-// 	// 	isPrompted,
-// 	// 	isLeader,
-// 	// 	isLastActiveTab,
-// 	// 	getTabId,
-// 	// 	getRemainingTime,
-// 	// 	getElapsedTime,
-// 	// 	getLastIdleTime,
-// 	// 	getLastActiveTime,
-// 	// 	getIdleTime,
-// 	// 	getTotalIdleTime,
-// 	// 	getActiveTime,
-// 	// 	getTotalActiveTime,
-// 	// } = useIdleTimer({
-// 	// 	onIdle,
 // 	// 	onActive,
-// 	// 	timeout: 1000 * 60 * 20,
-// 	// 	promptBeforeIdle: 0,
-// 	// 	events: [
-// 	// 		"mousemove",
-// 	// 		"keydown",
-// 	// 		"wheel",
-// 	// 		"DOMMouseScroll",
-// 	// 		"mousewheel",
-// 	// 		"mousedown",
-// 	// 		"touchstart",
-// 	// 		"touchmove",
-// 	// 		"MSPointerDown",
-// 	// 		"MSPointerMove",
-// 	// 		"visibilitychange",
-// 	// 		"focus",
-// 	// 	],
-// 	// 	immediateEvents: [],
-// 	// 	debounce: 0,
-// 	// 	throttle: 0,
-// 	// 	eventsThrottle: 200,
-// 	// 	element: document,
-// 	// 	startOnMount: true,
-// 	// 	startManually: false,
-// 	// 	stopOnIdle: false,
-// 	// 	crossTab: false,
-// 	// 	name: "idle-timer",
-// 	// 	syncTimers: 0,
-// 	// 	leaderElection: false,
+// 	// 	onIdle,
+// 	// 	timeout: 2000,
+// 	// 	throttle: 500,
 // 	// });
 
 // 	useEffect(() => {
-// 		// console.log(idleTimer);
+// 		// console.log(idleTimer());
 // 		if (!data) {
 // 			navigate("/");
 // 		}
@@ -181,8 +77,6 @@ export default Dashboard;
 
 // 	return (
 // 		<Suspense fallback={<div>Loading...</div>}>
-// 			{/* <Modal show={show} /> */}
-
 // 			<Routes>
 // 				<Route path="/" index element={<ProjectDashboard />} />
 // 				<Route path="/add-new-project" element={<ProjectFormsController />} />
@@ -196,9 +90,93 @@ export default Dashboard;
 // 				<Route path="/settings/profile" element={<ProfileSettings />} />
 // 				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
 // 				<Route path="/project-details/:id" element={<ProjectDetails />} />
+// 				<Route path="/forms-download" element={<Forms />}></Route>
 // 			</Routes>
 // 		</Suspense>
 // 	);
 // };
 
 // export default Dashboard;
+// =======
+const Dashboard = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const [show, setShow] = useState(false);
+	const data = JSON.parse(localStorage.getItem("durham_token"));
+
+	// const onInactivityChange = () => {};
+	// const onIdleModal = () => {};
+
+	// const onActive = () => {
+	// 	console.log("active");
+	// };
+
+	const onIdle = () => {
+		setShow(true);
+		sessionStorage.setItem("storedSessionUrl", window?.location?.pathname);
+	};
+
+	useIdleTimer({
+		onIdle,
+		// onActive,
+		timeout: 79200000,
+		promptBeforeIdle: 0,
+		events: [
+			"mousemove",
+			"keydown",
+			"wheel",
+			"DOMMouseScroll",
+			"mousewheel",
+			"mousedown",
+			"touchstart",
+			"touchmove",
+			"MSPointerDown",
+			"MSPointerMove",
+			"visibilitychange",
+			"focus",
+		],
+		immediateEvents: [],
+		debounce: 0,
+		throttle: 0,
+		eventsThrottle: 200,
+		element: document,
+		startOnMount: true,
+		startManually: false,
+		stopOnIdle: false,
+		crossTab: false,
+		name: "idle-timer",
+		syncTimers: 0,
+		leaderElection: false,
+	});
+
+	useEffect(() => {
+		// console.log(idleTimer);
+		if (!data) {
+			navigate("/");
+		}
+		dispatch(userInfo(data));
+	}, [dispatch, data, navigate]);
+
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<Modal show={show} />
+
+			<Routes>
+				<Route path="/" index element={<ProjectDashboard />} />
+				<Route path="/add-new-project" element={<ProjectFormsController />} />
+				<Route path="/edit-project" element={<EditProjectDashboard />} />
+				<Route path="/forms" element={<OwnerContractorManagementForm />} />
+				<Route path="/product-manager" element={<ProjectManager />}></Route>
+				<Route path="/vendors" element={<Vendors />}></Route>
+				<Route path="/schools" element={<SchoolInformation />}></Route>
+				<Route path="/settings" element={<Settings />} />
+				<Route path="/settings/durhams-profile" element={<DurhamSettings />} />
+				<Route path="/settings/profile" element={<ProfileSettings />} />
+				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
+				<Route path="/project-details/:id" element={<ProjectDetails />} />
+			</Routes>
+		</Suspense>
+	);
+};
+
+export default Dashboard;

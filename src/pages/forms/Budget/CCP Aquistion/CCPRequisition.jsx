@@ -98,7 +98,7 @@ const CCPRequisitionForm = ({ id, filled }) => {
 		formik.setFieldValue("ccpsalesTax", a?.data?.form_fields.ccpsalesTax);
 		formik.setFieldValue(
 			"ccpshippingCost",
-			a?.data?.form_fields.costOfShipping
+			a?.data?.form_fields.ccpshippingCost
 		);
 		formik.setFieldValue(
 			"addressZipCode",

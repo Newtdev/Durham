@@ -13,8 +13,9 @@ import { choiceStep, getStates, nextChoiceStep } from "./Reducer";
 import PrecisFolder from "./Form";
 import Preview from "./Preview";
 import { setResult } from "../../../shared-component";
+import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 
-const PFForProjects = ({ id }) => {
+const PFForProjects = ({ id, filled }) => {
 	const dispatch = useDispatch();
 	const pages = useSelector(choiceStep);
 	const show = useSelector(modal);
@@ -22,6 +23,7 @@ const PFForProjects = ({ id }) => {
 	const formID = useSelector(project_document_id);
 
 	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [a] = UseFetchFilledFormDetails(formID);
 
 	const HandleSubmit = async (values) => {
 		const response = await fillProjectDocument({
@@ -53,15 +55,8 @@ const PFForProjects = ({ id }) => {
 
 		onSubmit: (values) => {
 			if (pages === 0) {
-				dispatch(saveFormField(values));
 				HandleSubmit(values);
 			}
-			// if (pages === 0) {
-			// 	dispatch(nextChoiceStep(1));
-			// } else if (pages === 1) {
-			// 	dispatch(saveFormField(values));
-
-			// }
 		},
 	});
 
@@ -69,11 +64,48 @@ const PFForProjects = ({ id }) => {
 		...Formik,
 		isLoading,
 	};
+
+	useEffect(() => {
+		if (!a?.data) {
+			return;
+		}
+		console.log(a?.data?.form_fields?.precis === "1");
+		Formik.setFieldValue(
+			"precis",
+			a?.data?.form_fields?.precis === "1" ? true : false
+		);
+		Formik.setFieldValue(
+			"contract",
+			a?.data?.form_fields?.contract === "1" ? true : false
+		);
+		Formik.setFieldValue(
+			"participation",
+			a?.data?.form_fields?.participation === "1" ? true : false
+		);
+		Formik.setFieldValue(
+			"affidavits",
+			a?.data?.form_fields?.affidavits === "1" ? true : false
+		);
+		Formik.setFieldValue(
+			"plan",
+			a?.data?.form_fields?.plan === "1" ? true : false
+		);
+		Formik.setFieldValue(
+			"presentation",
+			a?.data?.form_fields?.presentation === "1" ? true : false
+		);
+	}, [a?.data]);
+	if (!filled) {
+		return (
+			<ModalOverlay show={id === precise_checkList && show}>
+				{pages === 0 && <PrecisFolder {...props} />}
+				{pages === 1 && <Preview {...Formik} />}
+			</ModalOverlay>
+		);
+	}
 	return (
 		<ModalOverlay show={id === precise_checkList && show}>
-			{pages === 0 && <PrecisFolder {...Formik} />}
-			{pages === 1 && <Preview {...Formik} />}
-			{/* {pages === 1 && <VendorsInfo {...Formik} />} */}
+			<Preview {...Formik} />
 		</ModalOverlay>
 	);
 };

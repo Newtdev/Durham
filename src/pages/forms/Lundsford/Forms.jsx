@@ -20,15 +20,15 @@ const Forms = (props) => {
 	} = props;
 	const formID = useSelector(project_document_id);
 	const [a] = UseFetchFilledFormDetails(formID);
-	const [length, setLength] = useState(0);
+	const [vendor, setVendor] = useState([]);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!a?.data) {
 			return;
 		}
-		setLength(a?.data?.vendors.length);
-	}, [a.data]);
+		setVendor(a?.data);
+	}, [a?.data]);
 
 	const addressCopy = {
 		value: addressValue,
@@ -66,28 +66,29 @@ const Forms = (props) => {
 
 					{/* Progress */}
 					<div className="w-full bg-[#89A5AF] h-2.5 my-4">
-						<div className="bg-[#2F5461] h-2.5 w-[50%]"></div>
+						<div className="bg-[#2F5461] h-2.5 w-[100%]"></div>
 					</div>
 
 					<div className="mx-6 mb-12">
 						<div className="mt-6">
-							{length > 1 ? (
-								<FormInputContainer name="For whom is this form being created?">
-									<FormSelect {...addressCopy}>
-										{!addressValue ? (
-											<option>Select</option>
-										) : (
-											<option value={addressValue}>{addressValue}</option>
-										)}
-										<option value="Design Consultant">Design Consultant</option>
-										<option value="Contractor">Contractor</option>
-										<option value="Engineering">Engineering</option>
-										<option value="Construction Manager">
-											Construction Manager
+							<FormInputContainer name="Who is the provider?">
+								<FormSelect {...addressCopy}>
+									{!props.values?.addressCopy ? (
+										<option>Select</option>
+									) : (
+										<option value={props.values?.addressCopy}>
+											{props.values?.addressCopy}
 										</option>
-									</FormSelect>
-								</FormInputContainer>
-							) : null}
+									)}
+									{vendor?.vendors?.map((d, i) => {
+										return (
+											<option key={d?.id} value={d?.company_name}>
+												{d?.company_name}
+											</option>
+										);
+									})}
+								</FormSelect>
+							</FormInputContainer>
 						</div>
 						<small className="text-gray-900 font-medium">
 							To Specify the type of check, check the relevant option.

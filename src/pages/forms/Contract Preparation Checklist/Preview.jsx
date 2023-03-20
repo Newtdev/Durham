@@ -13,8 +13,11 @@ import DownLoadForm from "../Lundsford/Download";
 import moment from "moment/moment";
 import { prev } from "./reducer";
 import { useEffect } from "react";
+import { useFillProjectDocumentMutation } from "../../../features/services/api";
+import { setResult } from "../../../shared-component";
+import { toast } from "react-toastify";
 
-const Preview = () => {
+const Preview = ({ Formik }) => {
 	const dispatch = useDispatch();
 	const show = useSelector(openDownload);
 	const [highlighted, setHighlighed] = useState(false);
@@ -28,22 +31,39 @@ const Preview = () => {
 
 	const project = a?.data?.project;
 	const form_fields = a?.data?.form_fields;
-	const durham = a?.data?.durham_profile;
+	const durham = a?.data?.project_manager;
 	// console.log(form_fields);
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+
+	const HandleSubmit = async (values) => {
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: setResult(values),
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				// dispatch(next(1));
+			}
+		}
+	};
 
 	const handleChange = (e) => {
-		console.log({ ...checked, [e.target.name]: e.target.checked });
 		setChecked({ ...checked, [e.target.name]: e.target.checked });
 	};
 
 	useEffect(() => {
-		console.log(JSON.parse(localStorage.getItem("checkedData")));
-		if (!localStorage.getItem("checkedData")) {
+		if (!localStorage.getItem(`${project?.name}-contract-preparation`)) {
 			return;
 		}
-		setChecked(JSON.parse(localStorage.getItem("checkedData")));
-		console.log(JSON.parse(localStorage.getItem("checkedData")));
-	}, []);
+		setChecked(
+			JSON.parse(localStorage.getItem(`${project?.name}-contract-preparation`))
+		);
+	}, [project?.name]);
+
 	const downloadComponent = useRef();
 
 	const props = {
@@ -350,8 +370,7 @@ const Preview = () => {
 									<div>
 										<p
 											className={`w-[30rem] border-b border-black ${nottoBeHighlighted}`}>
-											{durham?.construction_capital_planning_project_manager
-												?.name || ""}
+											{durham?.name || ""}
 										</p>
 										<p className="text-sm font-bold">Project Manager</p>
 									</div>
@@ -387,7 +406,11 @@ const Preview = () => {
 							type="submit"
 							width="w-[198px]"
 							onClick={() => {
-								localStorage.setItem("checkedData", JSON.stringify(checked));
+								localStorage.setItem(
+									`${project?.name}-contract-preparation`,
+									JSON.stringify(checked)
+								);
+								HandleSubmit(checked);
 								setHighlighed(true);
 								dispatch(showDownload());
 							}}
