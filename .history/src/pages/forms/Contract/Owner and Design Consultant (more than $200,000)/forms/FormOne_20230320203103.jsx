@@ -278,7 +278,11 @@ const FormOne = (props) => {
                         <DataListComponent
                           name="Zip code"
                           inputname="zipCode"
-                          value={props?.values?.zipCode}
+                          value={
+                            props?.values?.newSchool === "Yes"
+                              ? props?.values?.zipCode
+                              : ""
+                          }
                           handleChange={props.handleChange}
                           placeholder="Zip code"
                           fn={() => CheckZipCode()}

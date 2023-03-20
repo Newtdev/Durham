@@ -175,119 +175,145 @@ const FormOne = (props) => {
                   <Error message={props.errors.newSchool} />
                 )}
               </div>
-              {props.values.newSchool === "Yes" && (
-                <>
-                  <FormInputContainer name="School Name">
-                    <FormInputPlain
-                      type={"text"}
-                      onChange={props.handleChange}
-                      value={props?.values?.schoolName}
-                      name="schoolName"
-                      placeholder="Enter School Name"
+              <FormInputContainer name="School Name">
+                <FormInputPlain
+                  type={"text"}
+                  onChange={props.handleChange}
+                  value={
+                    props?.values?.newSchool === "Yes"
+                      ? props?.values?.schoolName
+                      : ""
+                  }
+                  name="schoolName"
+                  placeholder="Enter School Name"
+                />
+                {props.errors.schoolName && props.touched.schoolName && (
+                  <Error message={props.errors.schoolName} />
+                )}
+              </FormInputContainer>
+
+              <FormInputContainer name="How many Students have enrolled in the School?">
+                <FormInputPlain
+                  type={"number"}
+                  onChange={props.handleChange}
+                  name="studentNumber"
+                  value={
+                    props?.values?.newSchool === "Yes"
+                      ? props?.values?.studentNumber
+                      : ""
+                  }
+                  placeholder="Input Text"
+                />
+                {props.errors.studentNumber && props.touched.studentNumber && (
+                  <Error message={props.errors.studentNumber} />
+                )}
+              </FormInputContainer>
+
+              <FormInputContainer name="Approximate maximum square footage for the facility">
+                <FormInputPlain
+                  type={"text"}
+                  onChange={props.handleChange}
+                  name="squareFootage"
+                  value={
+                    props?.values?.newSchool === "Yes"
+                      ? props?.values?.squareFootage
+                      : ""
+                  }
+                  placeholder="Square Feet"
+                />
+                {props.errors.squareFootage && props.touched.squareFootage && (
+                  <Error message={props.errors.squareFootage} />
+                )}
+              </FormInputContainer>
+
+              <FormInputContainer name="The school designed can accomodate students upto">
+                <FormInputPlain
+                  type={"text"}
+                  onChange={props.handleChange}
+                  value={
+                    props?.values?.newSchool === "Yes"
+                      ? props?.values?.accomodateNumber
+                      : ""
+                  }
+                  name="accomodateNumber"
+                  placeholder="Input Text"
+                />
+                {props.errors.accomodateNumber &&
+                  props.touched.accomodateNumber && (
+                    <Error message={props.errors.accomodateNumber} />
+                  )}
+              </FormInputContainer>
+
+              <div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
+                <div className="flex flex-col mb-5">
+                  <label
+                    for="default-radio-1"
+                    className="text-base text-gray-900 mb-1"
+                  >
+                    Where is the school built?
+                  </label>
+                  <input
+                    type={"text"}
+                    onChange={props.handleChange}
+                    name="street"
+                    placeholder={"Street"}
+                    value={
+                      props?.values?.newSchool === "Yes"
+                        ? props?.values?.street
+                        : ""
+                    }
+                    className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
+                  />
+                  {props.errors.street && props.touched.street && (
+                    <Error message={props.errors.street} />
+                  )}
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="State"
+                      inputname="state"
+                      value={
+                        props?.values?.newSchool === "Yes"
+                          ? props?.values?.state
+                          : ""
+                      }
+                      handleChange={props.handleChange}
+                      fn={() => GetState(states)}
+                      placeholder="State"
                     />
-                    {props.errors.schoolName && props.touched.schoolName && (
-                      <Error message={props.errors.schoolName} />
-                    )}
-                  </FormInputContainer>
-
-                  <FormInputContainer name="How many Students have enrolled in the School?">
-                    <FormInputPlain
-                      type={"number"}
-                      onChange={props.handleChange}
-                      name="studentNumber"
-                      value={props?.values?.studentNumber}
-                      placeholder="Input Text"
-                    />
-                    {props.errors.studentNumber &&
-                      props.touched.studentNumber && (
-                        <Error message={props.errors.studentNumber} />
-                      )}
-                  </FormInputContainer>
-
-                  <FormInputContainer name="Approximate maximum square footage for the facility">
-                    <FormInputPlain
-                      type={"text"}
-                      onChange={props.handleChange}
-                      name="squareFootage"
-                      value={props?.values?.squareFootage}
-                      placeholder="Square Feet"
-                    />
-                    {props.errors.squareFootage &&
-                      props.touched.squareFootage && (
-                        <Error message={props.errors.squareFootage} />
-                      )}
-                  </FormInputContainer>
-
-                  <FormInputContainer name="The school designed can accomodate students upto">
-                    <FormInputPlain
-                      type={"text"}
-                      onChange={props.handleChange}
-                      value={props?.values?.accomodateNumber}
-                      name="accomodateNumber"
-                      placeholder="Input Text"
-                    />
-                    {props.errors.accomodateNumber &&
-                      props.touched.accomodateNumber && (
-                        <Error message={props.errors.accomodateNumber} />
-                      )}
-                  </FormInputContainer>
-
-                  <div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
-                    <div className="flex flex-col mb-5">
-                      <label
-                        for="default-radio-1"
-                        className="text-base text-gray-900 mb-1"
-                      >
-                        Where is the school built?
-                      </label>
-                      <input
-                        type={"text"}
-                        onChange={props.handleChange}
-                        name="street"
-                        placeholder={"Street"}
-                        value={props?.values?.street}
-                        className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
-                      />
-                      {props.errors.street && props.touched.street && (
-                        <Error message={props.errors.street} />
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <div className="flex-1">
-                        <DataListComponent
-                          name="State"
-                          inputname="state"
-                          value={props?.values?.state}
-                          handleChange={props.handleChange}
-                          fn={() => GetState(states)}
-                          placeholder="State"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <DataListComponent
-                          name="City"
-                          inputname="city"
-                          value={props?.values?.city}
-                          handleChange={props.handleChange}
-                          placeholder="City"
-                          fn={() => CheckState()}
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <DataListComponent
-                          name="Zip code"
-                          inputname="zipCode"
-                          value={props?.values?.zipCode}
-                          handleChange={props.handleChange}
-                          placeholder="Zip code"
-                          fn={() => CheckZipCode()}
-                        />
-                      </div>
-                    </div>
                   </div>
-                </>
-              )}
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="City"
+                      inputname="city"
+                      value={
+                        props?.values?.newSchool === "Yes"
+                          ? props?.values?.city
+                          : ""
+                      }
+                      handleChange={props.handleChange}
+                      placeholder="City"
+                      fn={() => CheckState()}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <DataListComponent
+                      name="Zip code"
+                      inputname="zipCode"
+                      value={
+                        props?.values?.newSchool === "Yes"
+                          ? props?.values?.zipCode
+                          : ""
+                      }
+                      handleChange={props.handleChange}
+                      placeholder="Zip code"
+                      fn={() => CheckZipCode()}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
