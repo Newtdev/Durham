@@ -143,14 +143,14 @@ const OwnerDesignMore = (props) => {
               </span>
               &nbsp;school with enrollment of{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.studentNumber
                   : "N/A"}
               </span>{" "}
               students, the approximate square footage for the facility would be
               approximately{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.squareFootage
                   : "N/A"}
               </span>{" "}
@@ -177,15 +177,13 @@ const OwnerDesignMore = (props) => {
             </span>
             <span class="uj5 uj3 uj8">
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
+                {props?.form_fields?.newSchool === "No"
                   ? props?.form_fields?.accomodateNumber
                   : "N/A"}
               </span>{" "}
               students. The school will be built at{" "}
               <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-                {props?.form_fields?.newSchool === "Yes"
-                  ? `${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`
-                  : "N/A"}
+                {`${props?.form_fields?.street} ${props?.form_fields?.city}, ${props?.form_fields?.state} ${props?.form_fields?.zipCode}`}
               </span>{" "}
               in Durham County.
             </span>

@@ -144,7 +144,7 @@ const OwnerDesignMore = (props) => {
         <div className="uj15 w-60">
           <p class="">
             <span class="uj5 uj3">
-              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span
                 className={`${props.nottoBeHighlighted} inline-block text-right`}
               >
@@ -159,8 +159,8 @@ const OwnerDesignMore = (props) => {
           <p class="inline-block text-right">
             <span class="uj5 uj3">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp; Executive Director &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              Executive Director &nbsp;
             </span>
           </p>
           <p class="" id="h.2et92p0">
@@ -168,9 +168,7 @@ const OwnerDesignMore = (props) => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
               &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Durham Public Schools
               &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              Building Services
+              &nbsp; &nbsp; &nbsp;Building Services
             </span>
           </p>
         </div>

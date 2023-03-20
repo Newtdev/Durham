@@ -225,8 +225,7 @@ const OwnerDesignMore = (props) => {
             <span class="uj5 uj3">
               The Design Consultant shall include normal structural, plumbing,
               mechanical, electrical and other engineering services necessary to
-              produce a reasonably complete and accurate set of
-            </span>
+              produce 
           </li>
         </ol>
         <p class="uj28 uj32">

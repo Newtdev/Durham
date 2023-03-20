@@ -195,14 +195,14 @@ const OwnerDesignMore = (props) => {
         <p class="uj2 uj22">
           <span class="uj5 uj3"></span>
         </p>
-        <ol class="uj7 lst-kix_list_20-2e" start="5">
+        {/* <ol class="uj7 lst-kix_list_20-2e" start="5">
           <li class="uj11 uj24 li-bullet-1">
             <span class="uj5 uj3">
               Providing acoustical services by an individual or firm with
               specific expertise in acoustics for an elementary school project.
             </span>
           </li>
-        </ol>
+        </ol> */}
         <p class="uj2 uj22">
           <span class="uj5 uj3"></span>
         </p>

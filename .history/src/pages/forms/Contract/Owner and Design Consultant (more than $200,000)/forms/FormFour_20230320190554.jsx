@@ -60,7 +60,7 @@ const FormFour = (props) => {
           <div className="mx-6 mb-12">
             <div className="mt-3 ml-2 flex flex-col gap-3 ">
               <div className="flex flex-col my-4">
-                <label className="text-sm text-gray-600 mb-1">
+                <label className="text-base text-gray-900 mb-1">
                   Enter the Design, Construction, and Equipment Budget.
                 </label>
                 <div className="relative w-full">

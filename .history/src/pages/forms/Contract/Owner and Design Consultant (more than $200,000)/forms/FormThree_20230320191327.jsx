@@ -54,7 +54,7 @@ const FormThree = (props) => {
                   <>
                     <div className="mt-4">
                       <h2 className="font-bold border-b w-full border-b-gray-400 pb-1 mb-2">
-                        Select Consultants Hired.
+                        Enter any services the owner provides.
                       </h2>
                     </div>
                     <div className="flex flex-col gap-3 mt-5">
@@ -138,7 +138,7 @@ const FormThree = (props) => {
                             })
                           }
                         >
-                          ADD CONSULTANTS
+                          ADD MORE ITEMS
                         </button>
                       </div>
                     </div>

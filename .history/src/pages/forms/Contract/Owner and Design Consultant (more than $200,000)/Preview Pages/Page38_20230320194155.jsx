@@ -110,22 +110,20 @@ const OwnerDesignMore = (props) => {
                   width: "7rem",
                 }}
               >
-                {props?.form_fields?.signDate ? (
+                {!props?.form_fields?.signDate ? (
                   <>
-                    <span>
-                      {moment(props?.form_fields?.signDate).format("MMMM")}
-                    </span>{" "}
-                    <span style={{}}>
-                      {moment(props?.form_fields?.signDate).format("DD")}
-                    </span>
-                    ,{" "}
-                    <span>
-                      {moment(props?.form_fields?.signDate).format("YYYY")}
-                    </span>
+                     <span>
+                 {moment(props?.form_fields?.signDate).format("MMMM")}
+               </span>{" "}
+               <span style={{}}>
+                 {moment(props?.form_fields?.signDate).format("DD")}
+               </span>
+               ,{" "}
+               <span
+                 {moment(props?.form_fields?.signDate).format("YYYY")}
+               </span>
                   </>
-                ) : (
-                  <span></span>
-                )}
+               ) : <span></span>}
               </span>
               <p
                 class="uj34"
@@ -141,13 +139,11 @@ const OwnerDesignMore = (props) => {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         </p>
-        <div className="uj15 w-60">
+        <div className="uj15">
           <p class="">
             <span class="uj5 uj3">
-              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span
-                className={`${props.nottoBeHighlighted} inline-block text-right`}
-              >
+              Endorsement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span className={`${props.nottoBeHighlighted}`}>
                 {
                   props?.durham_profile
                     ?.executive_director_durham_public_schools_building_services
@@ -156,21 +152,18 @@ const OwnerDesignMore = (props) => {
               </span>
             </span>
           </p>
-          <p class="inline-block text-right">
+          <p class="">
             <span class="uj5 uj3">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp; Executive Director &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;Executive Director &nbsp;
             </span>
           </p>
           <p class="" id="h.2et92p0">
             <span class="uj5 uj3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Durham Public
+              Schools &nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Durham Public Schools
-              &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp; &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              Building Services
+              &nbsp; &nbsp;Building Services
             </span>
           </p>
         </div>
@@ -194,16 +187,11 @@ const OwnerDesignMore = (props) => {
             This contract was approved by the Board on the{" "}
           </span>
           <span class={`uj49 uj51 uj8 ${props.nottoBeHighlighted}`}>
-            {props?.form_fields?.approveDate ? (
-              <>
-                {moment(props?.form_fields?.approveDate).format("Do")} day of{" "}
-                {moment(props?.form_fields?.approveDate).format("MMMM")},{" "}
-                {moment(props?.form_fields?.approveDate).format("YYYY")}
-              </>
-            ) : (
-              <span></span>
-            )}
-            <span></span>
+            <span>
+              {moment(props?.form_fields?.approveDate).format("Do")} day of{" "}
+              {moment(props?.form_fields?.approveDate).format("MMMM")},{" "}
+              {moment(props?.form_fields?.approveDate).format("YYYY")}
+            </span>
           </span>
           <span class="uj3 uj51">.</span>
         </p>
@@ -271,30 +259,18 @@ const OwnerDesignMore = (props) => {
         </p>
         <p class="uj34 uj44">
           <span class="uj3">Witness my hand and notarial seal this </span>
-          {props?.form_fields?.notarySealDate ? (
-            <span class={`uj3 ${props.nottoBeHighlighted}`}>
-              {moment(props?.form_fields?.notarySealDate).format("Do")}{" "}
-            </span>
-          ) : (
-            <span>___</span>
-          )}{" "}
+          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+            {moment(props?.form_fields?.notarySealDate).format("Do")}{" "}
+          </span>{" "}
           <span class="uj3">&nbsp;day of </span>
-          {props?.form_fields?.notarySealDate ? (
-            <span class={`uj3 ${props.nottoBeHighlighted}`}>
-              {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
-            </span>
-          ) : (
-            <span>___________</span>
-          )}
+          <span class={`uj3 ${props.nottoBeHighlighted}`}>
+            {moment(props?.form_fields?.notarySealDate).format("MMMM")}{" "}
+          </span>
           <span class="uj5 uj3">
             ,&nbsp;
-            {props?.form_fields?.notarySealDate ? (
-              <span class={`uj3 ${props.nottoBeHighlighted}`}>
-                {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
-              </span>
-            ) : (
-              <span>_______</span>
-            )}
+            <span class={`uj3 ${props.nottoBeHighlighted}`}>
+              {moment(props?.form_fields?.notarySealDate).format("YYYY")}{" "}
+            </span>
             .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         </p>

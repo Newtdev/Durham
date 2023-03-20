@@ -225,7 +225,10 @@ const OwnerDesignMore = (props) => {
             <span class="uj5 uj3">
               The Design Consultant shall include normal structural, plumbing,
               mechanical, electrical and other engineering services necessary to
-              produce a reasonably complete and accurate set of
+              produce a reasonably complete and accurate set of Construction
+              Documents. &nbsp;All consultants who will perform services
+              required by this Agreement shall execute an agreement with the
+              Design Consultant with terms not inconsistent with this Agreement.
             </span>
           </li>
         </ol>

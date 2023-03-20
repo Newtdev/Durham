@@ -242,6 +242,59 @@ const FormOne = (props) => {
                   )}
               </FormInputContainer>
 
+              {/* <FormInputContainer name="Where is the school built?">
+								<div className="flex flex-col mb-4">
+									<FormInputPlain
+										type={"text"}
+										onChange={props.handleChange}
+										value={props?.values?.street}
+										name="street"
+										placeholder={"Street"}
+									/>
+									{props.errors.street && props.touched.street && (
+										<Error message={props.errors.street} />
+									)}
+								</div>
+								<div className="flex gap-2 justify-center items-end">
+									<FormSelect
+										value={props.values.state}
+										id="state"
+										error={props.errors.state}
+										touched={props.touched.state}
+										onChange={props.handleChange}>
+										<option value="">Select State</option>
+										{!states
+											? null
+											: Object.entries(states).map((cur, index) => {
+													return (
+														<option key={index} value={cur[1].name}>
+															{cur[1].name}
+														</option>
+													);
+											  })}
+									</FormSelect>
+
+									<FormSelect
+										value={props.values.city}
+										id="city"
+										error={props.errors.city}
+										touched={props.touched.city}
+										onChange={props.handleChange}>
+										<option value="">Select City</option>
+										{CheckState()}
+									</FormSelect>
+
+									<FormSelect
+										id="zipCode"
+										value={props.values.zipCode}
+										error={props.errors.zipCode}
+										touched={props.touched.zipCode}
+										onChange={props.handleChange}>
+										<option value="">Select zipcode</option>
+										{CheckZipCode()}
+									</FormSelect>
+								</div>
+							</FormInputContainer> */}
               <div className="flex flex-col px-3 py-3 border border-[#9CA3AF]">
                 <div className="flex flex-col mb-5">
                   <label
@@ -255,11 +308,7 @@ const FormOne = (props) => {
                     onChange={props.handleChange}
                     name="street"
                     placeholder={"Street"}
-                    value={
-                      props?.values?.newSchool === "Yes"
-                        ? props?.values?.street
-                        : ""
-                    }
+                    value={props.values.street}
                     className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-sm hover:outline-[#3B6979] hover:border-[#3B6979] w-full p-2 flex items-center "
                   />
                   {props.errors.street && props.touched.street && (
@@ -272,11 +321,7 @@ const FormOne = (props) => {
                     <DataListComponent
                       name="State"
                       inputname="state"
-                      value={
-                        props?.values?.newSchool === "Yes"
-                          ? props?.values?.state
-                          : ""
-                      }
+                      value={props.values.state}
                       handleChange={props.handleChange}
                       fn={() => GetState(states)}
                       placeholder="State"
@@ -286,11 +331,7 @@ const FormOne = (props) => {
                     <DataListComponent
                       name="City"
                       inputname="city"
-                      value={
-                        props?.values?.newSchool === "Yes"
-                          ? props?.values?.city
-                          : ""
-                      }
+                      value={props.values.city}
                       handleChange={props.handleChange}
                       placeholder="City"
                       fn={() => CheckState()}
@@ -300,11 +341,7 @@ const FormOne = (props) => {
                     <DataListComponent
                       name="Zip code"
                       inputname="zipCode"
-                      value={
-                        props?.values?.newSchool === "Yes"
-                          ? props?.values?.zipCode
-                          : ""
-                      }
+                      value={props.values.zipCode}
                       handleChange={props.handleChange}
                       placeholder="Zip code"
                       fn={() => CheckZipCode()}
