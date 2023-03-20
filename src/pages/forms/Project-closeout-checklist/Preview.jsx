@@ -8,17 +8,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import {
-  closeModal,
-  fields,
-  openDownload,
-  savedResponse,
-  showDownload,
+	closeModal,
+	fields,
+	openDownload,
+	savedResponse,
+	showDownload,
 } from "../reducer";
 import moment from "moment/moment";
 import { prev, stepDefault } from "./reducer";
 import {
-  project_document_id,
-  selectFilled,
+	project_document_id,
+	selectFilled,
 } from "../../Dashboard/project-dashboard/ReducerSlice";
 import { UseFetchFilledFormDetails } from "../../../hooks/useFetchFilled";
 import { useFillProjectDocumentMutation } from "../../../features/services/api";
@@ -26,53 +26,53 @@ import { handleSavedDate, setResult } from "../../../shared-component";
 import { toast } from "react-toastify";
 
 const ProjectCloseOutPreview = (data) => {
-  const dispatch = useDispatch();
-  const show = useSelector(openDownload);
-  const downloadComponent = useRef();
-  const [highlighted, setHighlighted] = useState();
+	const dispatch = useDispatch();
+	const show = useSelector(openDownload);
+	const downloadComponent = useRef();
+	const [highlighted, setHighlighted] = useState();
 
-  const formID = useSelector(project_document_id);
+	const formID = useSelector(project_document_id);
 
-  const [a] = UseFetchFilledFormDetails(formID);
-  const vendors = a?.data?.vendors;
-  const project = a?.data?.project;
-  const form_fields = a?.data?.form_fields;
-  const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
+	const [a] = UseFetchFilledFormDetails(formID);
+	const vendors = a?.data?.vendors;
+	const project = a?.data?.project;
+	const form_fields = a?.data?.form_fields;
+	const nottoBeHighlighted = !highlighted ? "bg-yellow-300" : "bg-white";
 
-  const props = {
-    component: downloadComponent,
-    name: "Project Close-out Documentation Checklist",
-    show: show ? "block" : "hidden",
-    stepDefault,
-    project,
-  };
-  const [checked, setChecked] = useState({});
-  const [awardee, setAwardee] = useState([]);
+	const props = {
+		component: downloadComponent,
+		name: "Project Close-out Documentation Checklist",
+		show: show ? "block" : "hidden",
+		stepDefault,
+		project,
+	};
+	const [checked, setChecked] = useState({});
+	const [awardee, setAwardee] = useState([]);
 
-  const handleChange = (e) => {
-    setChecked({
-      ...checked,
-      [e.target.name]: e.target.checked,
-    });
-  };
+	const handleChange = (e) => {
+		setChecked({
+			...checked,
+			[e.target.name]: e.target.checked,
+		});
+	};
 
-  const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
+	const [fillProjectDocument, { isLoading }] = useFillProjectDocumentMutation();
 
-  const HandleSubmit = async (values) => {
-    const response = await fillProjectDocument({
-      project_document_id: formID,
-      form_fields: setResult({ ...data?.values, ...values }),
-    });
-    if (response) {
-      if (response?.error) {
-        toast.error(response?.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        // dispatch(next(4));
-      }
-    }
-  };
+	const HandleSubmit = async (values) => {
+		const response = await fillProjectDocument({
+			project_document_id: formID,
+			form_fields: setResult({ ...data?.values, ...values }),
+		});
+		if (response) {
+			if (response?.error) {
+				toast.error(response?.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			} else {
+				// dispatch(next(4));
+			}
+		}
+	};
 
 	useEffect(() => {
 		const list = JSON.parse(
@@ -84,130 +84,122 @@ const ProjectCloseOutPreview = (data) => {
 		setChecked(list);
 	}, [a?.data]);
 
-  useEffect(() => {
-    if (!vendors) {
-      return;
-    }
-    const data = vendors?.filter((cur) => {
-      return cur.role === "Contractor";
-    });
-    setAwardee(data);
-  }, [vendors]);
+	useEffect(() => {
+		if (!vendors) {
+			return;
+		}
+		const data = vendors?.filter((cur) => {
+			return cur.role === "Contractor";
+		});
+		setAwardee(data);
+	}, [vendors]);
 
-  return (
-    <div>
-      <DownLoadForm {...props} />
+	return (
+		<div>
+			<DownLoadForm {...props} />
 
-      <div>
-        {/* Modal content */}
-        <div
-          className={`${
-            !show ? "block" : "hidden"
-          } relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}
-        >
-          {" "}
-          {/* Header */}
-          <div className="flex justify-between items-baseline border-b border-b-gray-200 py-3">
-            <div className="ml-6">
-              <h3 className="text-lg  text-gray-900">
-                Project Closeout Checklist
-              </h3>
-              <p className="text-base text-gray-700">Preview Document</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => dispatch(closeModal())}
-              className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
-              data-modal-toggle="small-modal"
-            >
-              <Close />
-            </button>
-          </div>
-          <div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] ">
-            <div
-              className="bg-white px-24 pt-3 pb-4 text-black arial-font text-[10pt]  "
-              ref={downloadComponent}
-            >
-              <div>
-                <img
-                  src={LogoOne}
-                  alt="logo"
-                  className="h-24 object-cover  -ml-6"
-                />
-                <h1 className="font-bold underline underline-offset-2 text-center mb-4 text-[14pt] helvitica-font">
-                  PROJECT CLOSE-OUT DOCUMENTATION CHECKLIST
-                </h1>
-                <div className="mb-2">
-                  <div className="flex justify-between items-center mb-3">
-                    <div>
-                      <p>
-                        Project:{" "}
-                        <span
-                          className={` ${nottoBeHighlighted} inline-block border-b border-black`}
-                        >
-                          {!project ? "" : project?.name}
-                        </span>
-                      </p>
-                    </div>
-                    <div className=" w-[19.2rem]">
-                      <p>
-                        Project No:{" "}
-                        <span
-                          className={` ${nottoBeHighlighted} inline-block border-b border-black w-[12.5rem]`}
-                        >
-                          {!project ? "" : project?.number}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+			<div>
+				{/* Modal content */}
+				<div
+					className={`${
+						!show ? "block" : "hidden"
+					} relative w-[80%] max-w-[60rem] mx-auto bg-white rounded-lg shadow mt-14`}>
+					{" "}
+					{/* Header */}
+					<div className="flex justify-between items-baseline border-b border-b-gray-200 py-3">
+						<div className="ml-6">
+							<h3 className="text-lg  text-gray-900">
+								Project Closeout Checklist
+							</h3>
+							<p className="text-base text-gray-700">Preview Document</p>
+						</div>
+						<button
+							type="button"
+							onClick={() => dispatch(closeModal())}
+							className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center mr-6"
+							data-modal-toggle="small-modal">
+							<Close />
+						</button>
+					</div>
+					<div className="overflow-y-scroll mx-auto mt-6 mb-10 w-[95%]  h-[380px] ">
+						<div
+							className="bg-white px-24 pt-3 pb-4 text-black arial-font text-[10pt]  "
+							ref={downloadComponent}>
+							<div>
+								<img
+									src={LogoOne}
+									alt="logo"
+									className="h-24 object-cover  -ml-6"
+								/>
+								<h1 className="font-bold underline underline-offset-2 text-center mb-4 text-[14pt] helvitica-font">
+									PROJECT CLOSE-OUT DOCUMENTATION CHECKLIST
+								</h1>
+								<div className="mb-2">
+									<div className="flex justify-between items-center mb-3">
+										<div>
+											<p>
+												Project:{" "}
+												<span
+													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
+													{!project ? "" : project?.name}
+												</span>
+											</p>
+										</div>
+										<div className=" w-[19.2rem]">
+											<p>
+												Project No:{" "}
+												<span
+													className={` ${nottoBeHighlighted} inline-block border-b border-black w-[12.5rem]`}>
+													{!project ? "" : project?.number}
+												</span>
+											</p>
+										</div>
+									</div>
 
-                  <div className="mb-3 flex justify-between items-center">
-                    <p>
-                      School:{" "}
-                      <span
-                        className={`inline-block border-b border-black ${
-                          !project?.school?.name ? "w-[8.5rem]" : ""
-                        }`}
-                      >
-                        {project?.school?.name}
-                      </span>
-                    </p>
-                  </div>
+									<div className="mb-3 flex justify-between items-center">
+										<p>
+											School:{" "}
+											<span
+												className={`inline-block border-b border-black ${
+													!project?.school?.name ? "w-[8.5rem]" : ""
+												}`}>
+												{project?.school?.name}
+											</span>
+										</p>
+									</div>
 
-                  <div className="flex justify-between items-center mb-3">
-                    <div>
-                      <p>
-                        Contractor:{" "}
-                        <span
-                          className={` ${nottoBeHighlighted} inline-block border-b border-black`}
-                        >
-                          {!awardee ? "" : awardee[0]?.company_name}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="mr-[3.5rem]">
-                      <p>
-                        Substantial Completion Date:{" "}
-                        <span
-                          className={` ${nottoBeHighlighted} inline-block border-b border-black`}
-                        >
-                          {moment(form_fields?.completionDate).format(
-                            "MMMM D, YYYY "
-                          )}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+									<div className="flex justify-between items-center mb-3">
+										<div>
+											<p>
+												Contractor:{" "}
+												<span
+													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
+													{!awardee ? "" : awardee[0]?.company_name}
+												</span>
+											</p>
+										</div>
+										<div className="mr-[3.5rem]">
+											<p>
+												Substantial Completion Date:{" "}
+												<span
+													className={` ${nottoBeHighlighted} inline-block border-b border-black`}>
+													{moment(form_fields?.completionDate).format(
+														"MMMM D, YYYY "
+													)}
+												</span>
+											</p>
+										</div>
+									</div>
+								</div>
 
-                <p className="mb-3 text-justify leading-[1.1] text-[9pt] helvitica-font">
-                  NOTE: When all of the following documents have been completed
-                  and received, this checklist should be completed. Copies of
-                  documents should accompany the final application for payment
-                  as noted below by asterisks. The original checklist and
-                  original documents should be filed in the project’s close-out
-                  file when completed.
-                </p>
+								<p className="mb-3 text-justify leading-[1.1] text-[9pt] helvitica-font">
+									NOTE: When all of the following documents have been completed
+									and received, this checklist should be completed. Copies of
+									documents should accompany the final application for payment
+									as noted below by asterisks. The original checklist and
+									original documents should be filed in the project’s close-out
+									file when completed.
+								</p>
 
 								{/* Lists */}
 								<div className="mb-6 leading-[1.2] w-full">
@@ -615,38 +607,32 @@ const ProjectCloseOutPreview = (data) => {
 									</div>
 								</div>
 
-                <div className=" pt-[0.1in] ">
-                  <div className="mb-3 flex">
-                    <span>Project Manager's Signature</span>
-                    <span className="ml-2 flex">
-                      <span className="inline-block w-60 border-b border-black mb-0.5"></span>
-                      Date
-                      <span className="inline-block w-32 border-b border-black flex justify-end -mt-1">
-                        <span className={`inline-block ${nottoBeHighlighted}`}>
-                          {" "}
-                          {!form_fields?.signDate
-                            ? ""
-                            : moment(form_fields?.signDate).format(
-                                "MMMM D, YYYY "
-                              )}
-                        </span>
-                        {/* <span>_________________________________</span> */}
-                      </span>
-                    </span>
-                  </div>
+								<div className=" pt-[0.1in] ">
+									<div className="mb-3 flex">
+										<span>Project Manager's Signature</span>
+										<span className="ml-2 flex">
+											<span className="inline-block w-60 border-b border-black mb-0.5"></span>
+											Date
+											<span className="inline-block w-32 border-b border-black flex justify-end -mt-1">
+												<span className={`inline-block ${nottoBeHighlighted}`}>
+													{" "}
+													{!form_fields?.signDate
+														? ""
+														: moment(form_fields?.signDate).format(
+																"MMMM D, YYYY "
+														  )}
+												</span>
+												{/* <span>_________________________________</span> */}
+											</span>
+										</span>
+									</div>
 
-                  <p className="leading-[1]">
-                    *copy of cover document only to be attached with copy of
-                    checklist to final application for payment and
-                  </p>
-                  <p className="mb-10">
-                    **copy of document kept in project accounting notebook
-                  </p>
-
-									<p className="text-[10pt] flex mt-[3.5rem] calibri-font">
-										R:\01 Administration\04 Document & Form Templates\06
-										Project\10 Project Closeout\Project Closeout Checklist -
-										T20160317.doc
+									<p className="leading-[1]">
+										*copy of cover document only to be attached with copy of
+										checklist to final application for payment and
+									</p>
+									<p className="mb-10">
+										**copy of document kept in project accounting notebook
 									</p>
 								</div>
 							</div>

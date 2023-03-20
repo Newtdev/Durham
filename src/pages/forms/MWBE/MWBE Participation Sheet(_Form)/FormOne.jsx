@@ -241,7 +241,7 @@ const FormOne = (props) => {
 																			}
 																			name="Enter the description of the work"
 																			id={`contractors[${index}].description`}
-																			placeholder="Enter the description of the work"
+																			placeholder="Not more than two words"
 																			onBlur={() =>
 																				props.setFieldTouched(
 																					`contractors.${index}.description`,

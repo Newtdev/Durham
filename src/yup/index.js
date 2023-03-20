@@ -228,7 +228,7 @@ export const EESSERContractSchema = [
 		providerInvoice: Yup.string().required(
 			"Invoice receiver field is required"
 		),
-		signedDocument: Yup.string().required("Date field is required"),
+		// signedDocument: Yup.string().required("Date field is required"),
 	}),
 	Yup.object({
 		type: "",

@@ -110,7 +110,7 @@ const FormOne = (props) => {
 									value={props?.values?.description}
 									name="Enter the description of the change"
 									id="description"
-									placeholder={"Enter the description of the change."}
+									placeholder={"Not more than 10 words"}
 								/>
 								{props.errors.description && props.touched.description && (
 									<Error message={props.errors.description} />
