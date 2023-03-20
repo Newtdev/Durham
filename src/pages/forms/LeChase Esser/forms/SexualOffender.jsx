@@ -108,7 +108,7 @@ const SexualOffender = ({
 					<div className="flex justify-end gap-8 pr-4">
 						<ButtonWhiteBG
 							width="w-[100px]"
-							name="cancel"
+							name="back"
 							onClick={() => dispatch(prevChoiceStep(1))}
 						/>
 						<DashboardButton

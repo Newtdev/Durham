@@ -39,9 +39,12 @@ const PageSix = ({ form_fields, content, nottoBeHighlighted }) => {
 					<div>
 						<p className="mb-0 border-b border-black ">
 							<span className={`inline-block w-full ${nottoBeHighlighted}`}>
-								{!form_fields?.signedDate
+								\{" "}
+								{!form_fields?.signedDocument
 									? ""
-									: moment(form_fields?.signedDate).format(" MMMM Do YYYY ")}
+									: moment(form_fields?.signedDocument).format(
+											" MMMM D, YYYY "
+									  )}
 							</span>
 						</p>
 						<span>Date</span>

@@ -82,7 +82,7 @@ const ContractDetails = (props) => {
 				<div className="px-4">
 					<FormInputContainer name="Who is the provider?">
 						<FormSelect {...addressCopy}>
-							{!props.values.addressCopy ? (
+							{!props?.values?.addressCopy ? (
 								<option>Select</option>
 							) : (
 								<option value={props.values.addressCopy}>
