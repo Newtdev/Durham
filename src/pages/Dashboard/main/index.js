@@ -174,6 +174,7 @@ const Dashboard = () => {
 				<Route path="/settings/profile" element={<ProfileSettings />} />
 				<Route path="/add-new-project/preview" element={<ProjectPreview />} />
 				<Route path="/project-details/:id" element={<ProjectDetails />} />
+				<Route path="/forms-download" element={<Forms />}></Route>
 			</Routes>
 		</Suspense>
 	);
