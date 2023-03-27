@@ -24,7 +24,9 @@ const DownLoadFillabeForm = ({
 
   const projectName = a?.data?.project?.name;
 
-  const PDF_FILE_URL = "https://durham-sigma.vercel.app/BidManual.pdf";
+  const PDF_FILE_URL = 
+  // "https://durham-sigma.vercel.app/BidManual.pdf";
+  "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Bid_Manual_Original_o6d1jd//v1679950180/Bid_Manual_Original_o6d1jd.pdf";
 
   const downloadFileAtURL = (url, filename) => {
     const aTag = document.createElement("a");
