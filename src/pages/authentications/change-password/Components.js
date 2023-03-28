@@ -20,6 +20,7 @@ export function ForgetPasswordModal({ close }) {
 			if (response?.error) {
 				toast.error(response?.error?.message, {
 					position: toast.POSITION.TOP_CENTER,
+
 				});
 				// setShowSuccess(false)
 			} else if (response?.data) {
@@ -64,6 +65,7 @@ export function ForgetPasswordModal({ close }) {
 
 	if (showSuccessModal) {
 		return <AuthSuccessModal {...successProps} />;
+		
 	}
 
 	return (

@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
 import { Spinner } from "../../../assets";
 import download from "../../../assets/download.svg";
 import success from "../../../assets/success.svg";
 import frame from "../../../assets/Frame.svg";
-import sort from "../../../assets/sort.svg";
 
 export function FormsDownloadButton({
   name,
-  width,
   hidden,
   type,
   onClick,
@@ -27,9 +24,7 @@ export function FormsDownloadButton({
 }
 
 export function TableBody({ skip, perPage, dataArray, onDownload }) {
-  const PDF_FILE_URL =
-    "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:DPS_fillable_w3adoq//v1679949337/DPS_fillable_w3adoq.pdf";
-  const downloadFileAtURL = (url, filename) => {
+    const downloadFileAtURL = (url, filename) => {
     const aTag = document.createElement("a");
     aTag.href = url;
     aTag.setAttribute("download", filename);
@@ -55,20 +50,19 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
             </li>
             <li
               // scope="row"
-              className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right"
+              className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right mr-auto"
             >
               {category}
             </li>
-            <li className="py-4 px-4 flex items-center justify-start gap-3 ">
-             
-                <span onClick={() => {
-              downloadFileAtURL(
-                PDF_FILE_URL,
-                `${title}`
-              );
-            }}>
-                  <FormsDownloadButton name="Download" />
-                </span>
+            <li className="py-4 px-4 flex items-center justify-start gap-3 w-[15%]">
+              <span 
+                onClick={() => {
+                  console.log(downloadLink);
+                  downloadFileAtURL(downloadLink, title);
+                }}
+              >
+                <FormsDownloadButton name="Download" />
+              </span>
             </li>
           </ul>
         );
