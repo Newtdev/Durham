@@ -102,7 +102,7 @@ const OwnerDesignMore = (props) => {
           </p>
           <p class="uj36">
             <span class={`uj1 ${props.nottoBeHighlighted}`}>
-              {props?.awardee[0]?.company_name}
+              {props?.awardee[0]?.company_name || ""}
             </span>
           </p>
           <p class="uj36 uj41">
@@ -197,7 +197,7 @@ const OwnerDesignMore = (props) => {
                 <span className={`${props.nottoBeHighlighted}`}>
                   {moment(props?.form_fields?.agreementDate).format(
                     "MMMM D, YYYY"
-                  )}
+                  ) || ""}
                 </span>
               </span>
             </span>

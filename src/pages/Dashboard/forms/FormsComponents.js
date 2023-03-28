@@ -27,6 +27,16 @@ export function FormsDownloadButton({
 }
 
 export function TableBody({ skip, perPage, dataArray, onDownload }) {
+  const PDF_FILE_URL =
+    "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:DPS_fillable_w3adoq//v1679949337/DPS_fillable_w3adoq.pdf";
+  const downloadFileAtURL = (url, filename) => {
+    const aTag = document.createElement("a");
+    aTag.href = url;
+    aTag.setAttribute("download", filename);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+  };
   return (
     <section className="w-full text-base font-medium overflow-hidden ">
       {dataArray.slice(skip, skip + perPage).map((manager, index) => {
@@ -50,27 +60,16 @@ export function TableBody({ skip, perPage, dataArray, onDownload }) {
               {category}
             </li>
             <li className="py-4 px-4 flex items-center justify-start gap-3 ">
-              <a
-                className="w-4 cursor-pointer"
-                href={`${downloadLink}`}
-                download
-                // target="_blank"
-                // download
-                // onClick={(e) => e.preventDefault()}
-              >
-                {/* <a
-                className="w-4 cursor-pointer"
-                href={`${downloadLink}`}
-                download
-              > */}
-                <span onClick={() => onDownload(title)}>
+             
+                <span onClick={() => {
+              downloadFileAtURL(
+                PDF_FILE_URL,
+                `${title}`
+              );
+            }}>
                   <FormsDownloadButton name="Download" />
                 </span>
-              </a>
             </li>
-            {/* <td>
-                <button type="submit" >Download</button>
-              </td> */}
           </ul>
         );
       })}
@@ -92,39 +91,14 @@ export function SuccessModal({ close, dashboard, fileName }) {
             <h3 className="text-lg font-bold text-gray-900 text-center">
               Download Successful
             </h3>
-            {/* <button
-              type="button"
-              onClick={close}
-              className="text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-              data-modal-toggle="small-modal"
-            >
-              <Close />
-            </button> */}
           </div>
           <div className="py-3 px-5">
             <p className="text-base text-gray-600 text-center">
               Congratulations! You have successfully downloaded. {`${fileName}`}
             </p>
-            {/* <p className="text-base text-gray-600"></p> */}
           </div>
 
           {/* Buttons */}
-          {/* <div className="mt-12 mr-5 flex gap-4 justify-end">
-            <DashboardButton
-              name="PROCEED"
-              hidden
-              width="78px"
-              onClick={close}
-            />
-          </div> */}
-          {/* <div className="mt-12 mr-5 flex gap-4 justify-end">
-            <DashboardButton
-              name="GO TO DASHBOARD"
-              hidden
-              width="78px"
-              onClick={close}
-            />
-          </div> */}
           <div className="mt-8 mr-5 flex justify-center items-center w-full">
             <button
               className="bg-[#3B6979] text-white text-base py-2 px-[170px] rounded"
@@ -164,12 +138,6 @@ export function Filter({ onChange, params }) {
           <option value="notice letters">Notice Letters</option>
           <option value="project closeout">Project Closeout</option>
         </select>
-
-        {/* <p className="text-[#3b6979] text-base text-center mt-1 mr-2">
-          {params === "My Projects" || params === ""
-            ? "My Projects"
-            : "All Projects"}
-        </p> */}
       </div>
     </div>
   );
