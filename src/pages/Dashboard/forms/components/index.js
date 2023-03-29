@@ -4,7 +4,7 @@ export const FormsArray = [
     title: "Capital Project Request Form(Original)",
     category: "budgets",
     downloadLink:
-      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:CapitalProjectRequestForm_ic9dhf//v1680029517/Durham/CapitalProjectRequestForm_ic9dhf.pdf",
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Capital_Project_Request_Form_cqaiq4//v1680084853/Durham/Capital_Project_Request_Form_cqaiq4.pdf",
   },
   {
     id: 2,
@@ -158,16 +158,15 @@ export const FormsArray = [
     id: 23,
     category: "Notice Letters",
     title: "Notice of Award - Consultant(Original)",
+    downloadLink: "#",
+  },
+  {
+    id: 24,
+    category: "Notice Letters",
+    title: "Notice of Award - Contractor(Original)",
     downloadLink:
       "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Notice_of_Award_-_Contractor_Original_xpunxr//v1680039399/Durham/Notice_of_Award_-_Contractor_Original_xpunxr.pdf",
   },
-  // {
-  //   id: 24,
-  //   category: "Notice Letters",
-  //   title: "Notice of Award - Contractor(Original)",
-  //   downloadLink:
-  //     "https://durhamapp.000webhostapp.com/pdfs/Notice of Award - Contractor(Original).docx",
-  // },
   {
     id: 25,
     category: "Notice Letters",
@@ -205,7 +204,7 @@ export const FormsArray = [
   },
   {
     id: 30,
-    title: "Contract Preparation Checklist - TMP20180502RB.xlsx (Original)",
+    title: "Contract Preparation Checklist - TMP20180502RB (Original)",
     category: "procurements",
     downloadLink:
       "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Contract_Preparation_Checklist_-_TMP20180502RB_fxfcb3//v1680029517/Durham/Contract_Preparation_Checklist_-_TMP20180502RB_fxfcb3.pdf",

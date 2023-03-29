@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { DashboardNav, DashboardButton, PageHeader } from "../Components";
 import { FormsArray } from "./components/index";
-import { TableBody, SuccessModal, Filter } from "./FormsComponents";
+import { SuccessModal, Filter } from "./FormsComponents";
 import { ModalOverlay } from "../../../ui";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "../../../assets/searchIcon.svg";
 import { SubmitButton } from "../../../ui";
+import { FormsDownloadButton } from "./FormsComponents";
+import frame from "../../../assets/Frame.svg";
+import { downloadFileAtURL } from "./FormsComponents";
 
 const Forms = () => {
   const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [fileName, setFileName] = useState("");
-  // const [params, setParams] = useState("");
   const [filteredForms, setFilteredForms] = useState([...FormsArray]);
   const [searchTerm, setSearchTerm] = useState(false);
 
@@ -31,7 +33,6 @@ const Forms = () => {
   const skip = page * PER_PAGE - PER_PAGE;
 
   const filterHandler = (e) => {
-    // setParams(e.target.value);
     const filteredArray = FormsArray.filter(
       (form) => form.category.toLowerCase() === e.target.value
     );
@@ -45,14 +46,6 @@ const Forms = () => {
   const onDownload = (fileName) => {
     setShowModal(true);
     setFileName(fileName);
-  };
-
-  const FormsDownloadProps = {
-    dataArray: filteredForms,
-    pages,
-    perPage: PER_PAGE,
-    skip,
-    onDownload,
   };
 
   const searchHandler = (e) => {
@@ -89,31 +82,21 @@ const Forms = () => {
         <div className="container mx-auto px-4 lg:px-24">
           <div className="flex gap-4 flex-col md:flex-row md:justify-between items-center">
             <PageHeader name="Forms" />
-            <a
-              href="https://durhamapp.000webhostapp.com/pdfs/All%20Forms.zip"
-              download
-            >
+            <a href="#" download>
               <DashboardButton
                 onClick={() => {
                   onDownload("All Forms");
                 }}
                 name="DOWNLOAD ALL"
                 width="w-[197px]"
-                // onClick={() => setShowModal(true)}
               />
             </a>
           </div>
           <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center mt-4 mb-6">
             <div className="flex flex-col items-center justify-center gap-6">
-              {/* <!-- Sort --> */}
-              {/* <Sort /> */}
-
               {/* <!-- Filter --> */}
               <Filter onChange={filterHandler} />
             </div>
-            {/* <!-- Sort --> */}
-            {/* <Sort/> */}
-
             {/* <!-- Search --> */}
             <form
               className="flex flex-row justify-center items-center gap-4"
@@ -137,13 +120,46 @@ const Forms = () => {
                 </div>
               </div>
               <SubmitButton name="search" />
-              {/* <ButtonWhiteBG name="search" onClick={submit} /> */}
             </form>
           </div>
           {/* <!-- Table --> */}
           <div className="overflow-x-auto relative rounded-lg  ">
             <table className="w-full text-sm text-left text-gray-900">
-              <TableBody {...FormsDownloadProps}></TableBody>
+              <section className="w-full text-base font-medium overflow-hidden ">
+                {filteredForms
+                  .slice(skip, skip + PER_PAGE)
+                  .map((manager, index) => {
+                    const { id, title, category, downloadLink } = manager;
+                    return (
+                      <ul
+                        key={id}
+                        className="border border-[#D8E1E4] bg-white rounded-lg h-16 flex justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
+                      >
+                        <li className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[65%] flex items-center justify-start gap-3">
+                          <img src={frame} alt="icon" />
+                          <span className="overflow-hidden text-ellipsis">
+                            {title}
+                          </span>
+                        </li>
+                        <li className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right mr-auto">
+                          {category}
+                        </li>
+                        <li className="py-4 px-4 flex items-center justify-start gap-3">
+                          <div className="w-4 cursor-pointer">
+                            <span
+                              onClick={() => {
+                                downloadFileAtURL(downloadLink, title);
+                                onDownload(title);
+                              }}
+                            >
+                              <FormsDownloadButton name="Download" />
+                            </span>
+                          </div>
+                        </li>
+                      </ul>
+                    );
+                  })}
+              </section>
             </table>
           </div>
           {/* pagination */}
