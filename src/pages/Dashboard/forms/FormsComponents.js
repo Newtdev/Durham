@@ -1,20 +1,13 @@
 import { Spinner } from "../../../assets";
 import download from "../../../assets/download.svg";
 import success from "../../../assets/success.svg";
-import frame from "../../../assets/Frame.svg";
 
-export function FormsDownloadButton({
-  name,
-  hidden,
-  type,
-  onClick,
-  loading,
-}) {
+export function FormsDownloadButton({ name, hidden, type, onClick, loading }) {
   return (
     <button
       disabled={!loading ? false : true}
       onClick={onClick}
-      className={`text-white w-[140px] text-xs font-normal hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
+      className={`text-white w-[140px] hover:bg-blue-800 hover:text-white focus:ring-4 bg-[#3B6979] transition-all focus:outline-none focus:ring-blue-300 hover:border text-center border-[#3B6979] font-bold rounded-md text-sm px-5 py-2.5 flex items-center justify-center `}
       type={type}
     >
       {loading && <Spinner />} {loading ? "Loading..." : name}
@@ -23,53 +16,14 @@ export function FormsDownloadButton({
   );
 }
 
-export function TableBody({ skip, perPage, dataArray, onDownload }) {
-    const downloadFileAtURL = (url, filename) => {
-    const aTag = document.createElement("a");
-    aTag.href = url;
-    aTag.setAttribute("download", filename);
-    document.body.appendChild(aTag);
-    aTag.click();
-    aTag.remove();
-  };
-  return (
-    <section className="w-full text-base font-medium overflow-hidden ">
-      {dataArray.slice(skip, skip + perPage).map((manager, index) => {
-        const { id, title, category, downloadLink } = manager;
-        return (
-          <ul
-            key={id}
-            className="border border-[#D8E1E4] bg-white rounded-lg h-16 flex justify-between items-center mb-4 w-full flex-nowrap pr-[7.5rem]"
-          >
-            <li
-              // scope="row"
-              className="py-4 px-2 font-normal capitalize text-gray-900 whitespace-nowrap w-[65%] flex items-center justify-start gap-3"
-            >
-              <img src={frame} alt="icon" />
-              <span className="overflow-hidden text-ellipsis">{title}</span>
-            </li>
-            <li
-              // scope="row"
-              className="md:py-4 md:px-4  font-normal capitalize text-[#693B79] whitespace-nowrap w-[20%] lg:text-center md:text-right mr-auto"
-            >
-              {category}
-            </li>
-            <li className="py-4 px-4 flex items-center justify-start gap-3 w-[15%]">
-              <span 
-                onClick={() => {
-                  console.log(downloadLink);
-                  downloadFileAtURL(downloadLink, title);
-                }}
-              >
-                <FormsDownloadButton name="Download" />
-              </span>
-            </li>
-          </ul>
-        );
-      })}
-    </section>
-  );
-}
+export const downloadFileAtURL = (url, filename) => {
+  const aTag = document.createElement("a");
+  aTag.href = url;
+  aTag.setAttribute("download", filename);
+  document.body.appendChild(aTag);
+  aTag.click();
+  aTag.remove();
+};
 
 export function SuccessModal({ close, dashboard, fileName }) {
   return (
@@ -115,7 +69,7 @@ export function SuccessModal({ close, dashboard, fileName }) {
   );
 }
 
-export function Filter({ onChange, params }) {
+export function Filter({ onChange }) {
   return (
     <div className="flex items-center justify-center">
       <p className="mr-4 font-bold text-gray-700 mt-6">View</p>
