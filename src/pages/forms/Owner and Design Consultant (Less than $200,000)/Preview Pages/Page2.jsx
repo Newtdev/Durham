@@ -48,7 +48,7 @@ const Page2 = (props) => {
           style={{ fontSize: "10pt", fontFamily: "Arial" }}
         >
           {" "}
-          {props?.awardee[0]?.company_name}
+          {!props.awardee ? "" : props?.awardee[0]?.company_name}
         </span>
         <span class="p1">
           , located at{" "}
@@ -57,10 +57,11 @@ const Page2 = (props) => {
             style={{ fontSize: "10pt", fontFamily: "Arial" }}
           >
             {" "}
-            <span>{props?.awardee[0]?.street},</span>{" "}
+            <span>{!props.awardee ? "" : props?.awardee[0]?.street},</span>{" "}
             <span>
-              {props?.awardee[0]?.city}, {props?.awardee[0]?.state},{" "}
-              {props?.awardee[0]?.zip_code}
+              {!props.awardee ? "" : props?.awardee[0]?.city},{" "}
+              {!props.awardee ? "" : props?.awardee[0]?.state},{" "}
+              {!props.awardee ? "" : props?.awardee[0]?.zip_code}
             </span>
           </span>{" "}
           (hereinafter, the &ldquo;Engineer&rdquo;). &nbsp;The Agreement is for
@@ -193,7 +194,10 @@ const Page2 = (props) => {
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "10pt", fontFamily: "Arial" }}
           >
-            {props?.durham_profile?.director_of_design_and_construction?.name}
+            {!props.durham_profile
+              ? ""
+              : props?.durham_profile?.director_of_design_and_construction
+                  ?.name}
           </span>
         </span>
       </p>

@@ -76,7 +76,7 @@ const OwnerDesignMore = (props) => {
           </span>
           <span class="uj3 uj8">
             <span className={`${props?.nottoBeHighlighted} uj3 uj8`}>
-              {props?.form_fields?.percentage}
+              {!props.form_fields ? "" : props?.form_fields?.percentage}
             </span>
           </span>
           <span class="uj5 uj3">

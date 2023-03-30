@@ -27,7 +27,7 @@ const Page1 = (props) => {
           <span class={`c81 c80 c148 c98 c96`}>
             Bidder:{" "}
             <span className={`${props?.nottoBeHighlighted}`}>
-              {props?.form_fields?.bidderName}
+              {!props.form_fields ? "" : props?.form_fields?.bidderName}
             </span>
           </span>
         </p>
@@ -59,13 +59,14 @@ const Page1 = (props) => {
               <p class="c182" style={{ fontSize: "10pt" }}>
                 {/* <span class="c68 c89">RFP# 179-2122-621-LF-SOLAR</span> */}
                 <span class={`c89 ${props?.nottoBeHighlighted}`}>
-                  {props?.form_fields?.rfpNumber}
+                  {!props.form_fields ? "" : props?.form_fields?.rfpNumber}
                 </span>
               </p>
               <p class="c163">
                 {/* <span class="c81 c80 c92">Attn: Tanita Nicholson</span> */}
                 <span class={`c81 c80 c92 ${props?.nottoBeHighlighted}`}>
-                  Attn:{props?.form_fields?.personName}
+                  Attn:
+                  {!props.form_fields ? "" : props?.form_fields?.personName}
                 </span>
               </p>
               <p class="c163">
@@ -85,7 +86,7 @@ const Page1 = (props) => {
               <p class="c182" style={{ fontSize: "10pt" }}>
                 {/* <span class="c89 c68">RFP# 179-2122-621-LF-SOLAR</span> */}
                 <span class={`c89 ${props?.nottoBeHighlighted}`}>
-                  {props?.form_fields?.rfpNumber}
+                  {!props.form_fields ? "" : props?.form_fields?.rfpNumber}
                 </span>
               </p>
               <p class="c15 z-50" style={{ zIndex: "5" }}>
@@ -123,7 +124,7 @@ const Page1 = (props) => {
               <p class="c15">
                 <span class={`c26 ${props?.nottoBeHighlighted}`}>
                   <span className="mr-2 font-bold">Attn:</span>{" "}
-                  {props?.form_fields?.personName}
+                  {!props.form_fields ? "" : props?.form_fields?.personName}
                 </span>
               </p>
               <p class="c129 font-extrabold" style={{ fontSize: "10pt" }}>
@@ -159,7 +160,7 @@ const Page1 = (props) => {
               <p class="c3 mt-1" style={{ fontSize: "10pt" }}>
                 <span class="c45 c98 ">Contract Type: &nbsp;</span>
                 <span class={`c98 c45 c130 ${props?.nottoBeHighlighted}`}>
-                  {props?.form_fields?.contractType}
+                  {!props.form_fields ? "" : props?.form_fields?.contractType}
                 </span>
                 <span class="c24">
                   &nbsp;using various funds; when using Federal Funds Durham

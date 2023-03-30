@@ -88,7 +88,7 @@ const Page1 = (props) => {
       <p class="p2">
         <span class={`c38 ${props?.nottoBeHighlighted}`}>
           {" "}
-          {props?.awardee[0]?.company_name}
+          {!props.awardee ? "" : props?.awardee[0]?.company_name}
         </span>
       </p>
       <p class="p2 p12">

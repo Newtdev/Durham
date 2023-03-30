@@ -89,20 +89,22 @@ const Page13 = (props) => {
           <span
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "12pt", fontFamily: "Arial" }}
-          >{`${props?.awardee[0]?.first_name} ${props?.awardee[0]?.last_name}`}</span>{" "}
+          >{`${!props.awardee ? "" : props?.awardee[0]?.first_name} ${
+            !props.awardee ? "" : props?.awardee[0]?.last_name
+          }`}</span>{" "}
           (insert name),{" "}
           <span
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "12pt", fontFamily: "Arial" }}
           >
-            {props?.awardee[0]?.title}
+            {!props.awardee ? "" : props?.awardee[0]?.title}
           </span>{" "}
           (insert title) of{" "}
           <span
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "12pt", fontFamily: "Arial" }}
           >
-            {props?.awardee[0]?.company_name}
+            {!props.awardee ? "" : props?.awardee[0]?.company_name}
           </span>{" "}
           (insert company name) hereby certify that I have performed all of the
           required sexual offender registry checks required under this Agreement
@@ -211,7 +213,9 @@ const Page13 = (props) => {
               class={`border-b border-b-black inline-block text-center leading-5 ${props?.nottoBeHighlighted}`}
               style={{ fontSize: "10pt", fontFamily: "Arial", width: "15rem" }}
             >
-              {`${props?.awardee[0]?.first_name} ${props?.awardee[0]?.last_name}`}
+              {`${!props.awardee ? "" : props?.awardee[0]?.first_name} ${
+                !props.awardee ? "" : props?.awardee[0]?.last_name
+              }`}
             </span>
             <span>(print name)</span>
           </span>
@@ -232,7 +236,7 @@ const Page13 = (props) => {
               class={`border-b border-b-black inline-block text-center leading-5 ${props?.nottoBeHighlighted}`}
               style={{ fontSize: "10pt", fontFamily: "Arial", width: "15rem" }}
             >
-              <span>{props?.awardee[0]?.title}</span>
+              <span>{!props.awardee ? "" : props?.awardee[0]?.title}</span>
             </span>
             <span>(title)</span>
           </span>

@@ -79,17 +79,19 @@ const OwnerDesignMore = (props) => {
             <div className="col-span-3">
               <p className="uj34 uj44 uj61 uj82 col-span-2">
                 <span className={`uj3 ${props.nottoBeHighlighted}`}>
-                  {props?.awardee[0]?.company_name}{" "}
+                  {!props.awardee ? "" : props?.awardee[0]?.company_name}{" "}
                 </span>
               </p>
               <p className="uj34 uj44 uj61 uj82 col-span-2">
                 <span className={`uj3 ${props.nottoBeHighlighted}`}>
-                  {props?.awardee[0]?.address}{" "}
+                  {!props.awardee ? "" : props?.awardee[0]?.address}{" "}
                 </span>
               </p>
               <p className="uj34 uj44 uj61 uj82 col-span-2">
                 <span className={`uj3 ${props.nottoBeHighlighted}`}>
-                  {`${props?.awardee[0]?.city}, ${props?.awardee[0]?.state} ${props?.awardee[0]?.zip_code}`}{" "}
+                  {`${!props.awardee ? "" : props?.awardee[0]?.city}, ${
+                    !props.awardee ? "" : props?.awardee[0]?.state
+                  } ${!props.awardee ? "" : props?.awardee[0]?.zip_code}`}{" "}
                 </span>
               </p>
               {/* <p className="uj34 uj44 uj61 uj82 col-span-2">

@@ -130,7 +130,9 @@ const Page1 = (props) => {
               &ldquo;CM&rdquo;):{" "}
               {ConstructionManager ? (
                 <span className={`${props.nottoBeHighlighted}`}>
-                  {ConstructionManager?.company_name}
+                  {!ConstructionManager
+                    ? ""
+                    : ConstructionManager?.company_name}
                 </span>
               ) : (
                 <span></span>
@@ -166,7 +168,7 @@ const Page1 = (props) => {
           <p class="fp f15">
             <span class="f0">
               <span className={`fgh ${props?.nottoBeHighlighted}`}>
-                {props?.form_fields?.projectName}
+                {!props.form_fields ? "" : props?.form_fields?.projectName}
               </span>
             </span>
           </p>

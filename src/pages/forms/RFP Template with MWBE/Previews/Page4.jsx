@@ -70,7 +70,7 @@ const Page4 = (props) => {
               </p>
               <p class="c27">
                 <span class={`c89 ${props?.nottoBeHighlighted}`}>
-                  {props?.form_fields?.rfpNumber}
+                  {!props.form_fields ? "" : props?.form_fields?.rfpNumber}
                 </span>
               </p>
               <p class="c74 c23">
@@ -78,7 +78,8 @@ const Page4 = (props) => {
               </p>
               <p class="c74 c23">
                 <span class={`c53 ${props?.nottoBeHighlighted}`}>
-                  Attn:&nbsp;{props?.form_fields?.personName}
+                  Attn:&nbsp;
+                  {!props.form_fields ? "" : props?.form_fields?.personName}
                 </span>
               </p>
               <p class="c74 c23">

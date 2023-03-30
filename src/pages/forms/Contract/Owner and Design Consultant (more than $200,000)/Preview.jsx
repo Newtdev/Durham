@@ -97,8 +97,6 @@ const Preview = () => {
     durham_profile,
   };
 
-  console.log(pageProps);
-
   return (
     <div>
       <DownLoadForm {...props} />
