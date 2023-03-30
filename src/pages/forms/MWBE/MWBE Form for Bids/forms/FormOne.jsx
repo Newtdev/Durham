@@ -8,6 +8,7 @@ import { FormInputPlain, FormSelect } from "../../../components";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
 } from "../../../../../features/services/api";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -95,7 +96,7 @@ const SelectDurham = ({ props, index }) => {
 	);
 };
 const SelectProjectManager = ({ props, index }) => {
-	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {

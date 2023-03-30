@@ -2,7 +2,10 @@ import { FieldArray } from "formik";
 import { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useFetchVendorsQuery } from "../../../../../features/services/api";
+import {
+	useFetchVendorsQuery,
+	useGetVendorsQuery,
+} from "../../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
 import {
@@ -17,7 +20,7 @@ import { prevStep } from "../reducer";
 
 const FormTwo = (props) => {
 	const dispatch = useDispatch();
-	const vendors = useFetchVendorsQuery({ queryValue: "" });
+	const vendors = useGetVendorsQuery({ queryValue: "" });
 	const [focus, setFocus] = useState(false);
 	const [index, setIndex] = useState(null);
 

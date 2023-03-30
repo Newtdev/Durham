@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
 } from "../../../../../features/services/api";
 import { ButtonWhiteBG, Error } from "../../../../../ui";
 import { Close, DashboardButton } from "../../../../Dashboard/Components";
@@ -105,7 +106,7 @@ const SelectDurham = ({ props, index }) => {
 	);
 };
 const SelectProjectManager = ({ props, index }) => {
-	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {

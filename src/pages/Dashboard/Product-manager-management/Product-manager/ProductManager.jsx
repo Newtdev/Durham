@@ -109,7 +109,7 @@ const ProductManager = () => {
 			<main className="pt-6 bg-[#fafafa] h-screen overflow-y-hidden">
 				<div className="container mx-auto px-4 lg:px-24">
 					<div className="flex gap-4 flex-col md:flex-row md:justify-between items-center">
-						<PageHeader name="Project Manager" />
+						<PageHeader name="Project Managers" />
 						<DashboardButton
 							name="ADD NEW PROJECT MANAGER"
 							width="w-[290px]"

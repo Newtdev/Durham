@@ -9,6 +9,7 @@ import { ButtonWhiteBG, Error } from "../../../../../ui";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
 } from "../../../../../features/services/api";
 
 const FormOne = (props) => {
@@ -16,7 +17,7 @@ const FormOne = (props) => {
 	const [value] = useState("");
 	const [show, setShow] = useState(false);
 	const durham = useFetchDurhamQuery();
-	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 
 	const MergetDetails = () => {
 		const durham_profile = durham?.currentData;

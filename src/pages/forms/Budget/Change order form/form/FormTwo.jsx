@@ -12,6 +12,7 @@ import moment from "moment";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
 } from "../../../../../features/services/api";
 
 const SelectDurham = ({ props, index }) => {
@@ -71,7 +72,7 @@ const SelectDurham = ({ props, index }) => {
 	);
 };
 const SelectProjectManager = ({ props, index }) => {
-	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {

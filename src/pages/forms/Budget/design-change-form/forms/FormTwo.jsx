@@ -9,6 +9,7 @@ import { prevStep } from "../reducer";
 import {
 	useFetchAllProjectManagerQuery,
 	useFetchDurhamQuery,
+	useGetAllProjectManagerQuery,
 } from "../../../../../features/services/api";
 import { AddDate } from "../../Change order form/form/FormTwo";
 
@@ -56,7 +57,7 @@ const SelectDurham = ({ props }) => {
 	);
 };
 const SelectProjectManager = ({ props }) => {
-	const projectManager = useFetchAllProjectManagerQuery({ queryValue: "" });
+	const projectManager = useGetAllProjectManagerQuery({ queryValue: "" });
 	const Profile = projectManager?.currentData?.data?.data;
 
 	if (!Profile) {

@@ -139,7 +139,7 @@ export const DurhamsApi = createApi({
 		fetchAllProjectManager: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `project-managers?search=${queryValue}&limit=5000&page=${page}`,
+					url: `project-managers?search=${queryValue}&limit=10&page=${page}`,
 
 					method: "GET",
 				};
@@ -149,8 +149,7 @@ export const DurhamsApi = createApi({
 		getAllProjectManager: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `project-managers?search=${queryValue}&limit=200&page=${page}`,
-
+					url: `project-managers?search=${queryValue}&limit=5000&page=${page}`,
 					method: "GET",
 				};
 			},
@@ -254,7 +253,7 @@ export const DurhamsApi = createApi({
 		getVendors: builder.query({
 			query: ({ queryValue }) => {
 				return {
-					url: `vendors?search=${queryValue}&limit=200`,
+					url: `vendors?search=${queryValue}&limit=5000`,
 					method: "GET",
 				};
 			},
