@@ -125,7 +125,12 @@ const Page9 = (props) => {
                 <span
                   class={`${props?.nottoBeHighlighted}`}
                   style={{ fontSize: "10pt", fontFamily: "Arial" }}
-                >{`${props?.durham_profile?.director_of_construction_and_sustainability?.name}`}</span>
+                >{`${
+                  !props.durham_profile
+                    ? ""
+                    : props?.durham_profile
+                        ?.director_of_construction_and_sustainability?.name
+                }`}</span>
                 , Director of Construction and Sustainability
               </span>
             </p>
@@ -202,7 +207,11 @@ const Page9 = (props) => {
                 <span
                   class={`${props?.nottoBeHighlighted}`}
                   style={{ fontSize: "10pt", fontFamily: "Arial" }}
-                >{`${props?.durham_profile?.chief_finance_officer?.name}`}</span>
+                >{`${
+                  !props.durham_profile
+                    ? ""
+                    : props?.durham_profile?.chief_finance_officer?.name
+                }`}</span>
                 , Chief Finance Officer, Durham Public Schools
               </span>
             </p>
@@ -274,10 +283,10 @@ const Page9 = (props) => {
             }}
           >
             {" "}
-            {
-              props?.durham_profile
-                ?.construction_capital_planning_project_manager?.name
-            }
+            {!props.durham_profile
+              ? ""
+              : props?.durham_profile
+                  ?.construction_capital_planning_project_manager?.name}
           </span>
         </p>
         <p className=" text-right">
@@ -303,7 +312,7 @@ const Page9 = (props) => {
             class={`${props?.nottoBeHighlighted}`}
             style={{ fontSize: "10pt", fontFamily: "Arial" }}
           >
-            {props?.awardee[0]?.company_name}
+            {!props.awardee ? "" : props?.awardee[0]?.company_name}
           </span>
         </span>
       </p>

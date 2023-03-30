@@ -102,7 +102,7 @@ const OwnerDesignMore = (props) => {
           </p>
           <p class="uj36">
             <span class={`uj1 ${props.nottoBeHighlighted}`}>
-              {props?.awardee[0]?.company_name || ""}
+              {!props.awardee ? "" : props?.awardee[0]?.company_name}
             </span>
           </p>
           <p class="uj36 uj41">
@@ -160,7 +160,7 @@ const OwnerDesignMore = (props) => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROJECT:{" "}
               <span>
                 <span className={`${props.nottoBeHighlighted}`}>
-                  {props?.projectDetails?.name}
+                  {!props.projectDetails ? "" : props?.projectDetails?.name}
                 </span>
               </span>
             </span>
@@ -181,7 +181,7 @@ const OwnerDesignMore = (props) => {
               PROJECT NO:{" "}
               <span>
                 <span className={`${props.nottoBeHighlighted}`}>
-                  {props?.projectDetails?.number}
+                  {!props.projectDetails ? "" : props?.projectDetails?.number}
                 </span>
               </span>
             </span>

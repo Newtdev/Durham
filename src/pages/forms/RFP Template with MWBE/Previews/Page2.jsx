@@ -178,7 +178,7 @@ const Page2 = (props) => {
             Offer valid for at least 120 days from date of proposal opening,
             unless otherwise stated here: &nbsp;
             <span className={` ${props?.nottoBeHighlighted}`}>
-              {props?.form_fields?.validityPeriod}
+              {!props.form_fields ? "" : props?.form_fields?.validityPeriod}
             </span>{" "}
             days. &nbsp; After this time, any withdrawal of offer shall be made
             in writing, effective upon receipt by the agency issuing this RFP.

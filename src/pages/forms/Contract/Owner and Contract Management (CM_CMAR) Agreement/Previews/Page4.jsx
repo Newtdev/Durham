@@ -47,7 +47,7 @@ const Page4 = (props) => {
           <span class="fgh">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className={`fgh ${props?.nottoBeHighlighted} `}>
-              {props?.form_fields?.projectName}
+              {!props.form_fields ? "" : props?.form_fields?.projectName}
             </span>
           </span>
         </p>

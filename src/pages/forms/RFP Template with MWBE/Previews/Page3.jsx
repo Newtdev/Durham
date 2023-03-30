@@ -64,7 +64,7 @@ const Page3 = (props) => {
             class={`c89 ${props?.nottoBeHighlighted}`}
             style={{ fontSize: "10pt" }}
           >
-            {props?.form_fields?.rfpNumber}
+            {!props.form_fields ? "" : props?.form_fields?.rfpNumber}
           </span>
           <span class="c89">&nbsp;</span>
           <span class="c80 c45">as the subject for the email. &nbsp;</span>

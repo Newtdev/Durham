@@ -53,9 +53,11 @@ const Page51 = (props) => {
             </p>
             <p class="fp">
               <span class="f35 f3 ">
-                <span
-                  className={` ${props?.nottoBeHighlighted} `}
-                >{`${props?.durham_profile?.chairdps_board_of_education?.name}`}</span>
+                <span className={` ${props?.nottoBeHighlighted} `}>{`${
+                  !props.durham_profile
+                    ? ""
+                    : props?.durham_profile?.chairdps_board_of_education?.name
+                }`}</span>
               </span>
             </p>
             <p class="fp f2">
@@ -125,9 +127,11 @@ const Page51 = (props) => {
             <p class="fp f2">
               <span class="f0">
                 <span class="f0">
-                  <span
-                    className={`${props?.nottoBeHighlighted} `}
-                  >{`${props?.durham_profile?.chief_finance_officer?.name}`}</span>
+                  <span className={`${props?.nottoBeHighlighted} `}>{`${
+                    !props.durham_profile
+                      ? ""
+                      : props?.durham_profile?.chief_finance_officer?.name
+                  }`}</span>
                 </span>
                 , Finance Officer
               </span>

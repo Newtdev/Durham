@@ -136,7 +136,7 @@ const Page12 = (props) => {
               <span class="c48">906 Scott King Rd.</span>
             </p> */}
               <p className={`c3 c17 ${props?.nottoBeHighlighted} mb-2`}>
-                {props?.form_fields?.street}
+                {!props.form_fields ? "" : props?.form_fields?.street}
               </p>
             </td>
             <td class="c87" colspan="1" rowspan="1">

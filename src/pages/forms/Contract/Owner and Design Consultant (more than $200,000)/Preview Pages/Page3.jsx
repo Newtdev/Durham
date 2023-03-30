@@ -4,8 +4,6 @@ import Wrapper from "./Wrapper";
 import moment from "moment";
 
 const OwnerDesignMore = (props) => {
-  console.log(props?.form_fields?.newSchool);
-
   return (
     <div
       class="flex flex-col justify-between "
@@ -57,7 +55,7 @@ const OwnerDesignMore = (props) => {
           <span class="uj38" style={{ fontFamily: "Arial" }}>
             &nbsp;{" "}
             <span class={`${props.nottoBeHighlighted}`}>
-              {props?.awardee[0]?.company_name}
+              {!props.awardee ? "" : props?.awardee[0]?.company_name}
             </span>
             , f
           </span>
@@ -121,7 +119,9 @@ const OwnerDesignMore = (props) => {
               . &nbsp;The objective is to design and construct a{" "}
             </span>
             <span class={`uj5 uj3 uj8 ${props.nottoBeHighlighted}`}>
-              {props?.form_fields?.projectObjective}
+              {!props.projectObjective
+                ? ""
+                : props?.form_fields?.projectObjective}
             </span>
           </li>
         </ol>

@@ -187,7 +187,6 @@ const ProjectDashboard = () => {
     }
   };
 
-  console.log(documentsID);
 
   return (
     <section>

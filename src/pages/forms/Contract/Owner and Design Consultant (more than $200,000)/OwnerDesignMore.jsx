@@ -132,7 +132,6 @@ const OwnerDesignMore = ({ id, filled }) => {
     if (!a?.data) {
       return;
     }
-    console.log(a?.data);
     formik.setFieldValue(
       "agreementDate",
       handleSavedDate(a?.data?.form_fields?.agreementDate)
