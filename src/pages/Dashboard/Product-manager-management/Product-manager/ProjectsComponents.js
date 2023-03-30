@@ -291,7 +291,6 @@ export function AddPojectsManagerModal({ close }) {
 		// const response = await supabase.from("project_manager").insert([values]);
 
 		if (response) {
-			console.log(response);
 			if (response.error) {
 				close();
 				toast.error(response?.error?.message, {

@@ -107,7 +107,9 @@ const FormThree = (props) => {
 					</button>
 				</div>
 				{/* Progress */}
-				<hr />
+				<div className="w-full bg-[#89A5AF] h-2.5 my-4">
+					<div className="bg-[#2F5461] h-2.5 w-[33.3%]"></div>
+				</div>
 				<div className="mx-6 mb-12">
 					<div className=" mt-3 ml-2">
 						<FormInputContainer name="Select Lessee/Tenant/Real Property Contractor">

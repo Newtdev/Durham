@@ -10,7 +10,7 @@ import { userInfo } from "../../auth";
 export const DurhamsApi = createApi({
 	reducerPath: "durham",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://durham.cfcing.org/api/",
+		baseUrl: "https://dsapi.concisetc.com/api/",
 		prepareHeaders: (headers, { getState }) => {
 			const token = getState().loginReducer.accessToken;
 			if (token) {
@@ -139,7 +139,7 @@ export const DurhamsApi = createApi({
 		fetchAllProjectManager: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `project-managers?search=${queryValue}&limit=10&page=${page}`,
+					url: `project-managers?search=${queryValue}&limit=5000&page=${page}`,
 
 					method: "GET",
 				};
@@ -243,7 +243,7 @@ export const DurhamsApi = createApi({
 		fetchVendors: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `vendors?search=${queryValue}&limit=1000&page=${page}`,
+					url: `vendors?search=${queryValue}&limit=10&page=${page}`,
 					method: "GET",
 				};
 			},

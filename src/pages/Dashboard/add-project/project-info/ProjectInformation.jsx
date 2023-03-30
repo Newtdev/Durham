@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
 	useAddProjectsMutation,
-	useFetchAllProjectManagerQuery,
 	useFetchSchoolQuery,
 	useGetAllProjectManagerQuery,
 	useUpdateProjectsMutation,
@@ -27,7 +26,7 @@ import {
 } from "../../Overview-dashboard/OverviewComponents";
 import { nextForm, saveID } from "../reducer";
 
-const ProjectInformation = () => {
+const ProjectInformation = (props) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -48,7 +47,7 @@ const ProjectInformation = () => {
 	const states = useSelector(getList);
 
 	function CheckState() {
-		if (!values?.state) {
+		if (!props.values?.state) {
 			return;
 		}
 		if (!states) {
@@ -56,7 +55,7 @@ const ProjectInformation = () => {
 		}
 
 		let stat = Object.values(states)?.find(
-			(state) => state?.name === values?.state
+			(state) => state?.name === props.values?.state
 		);
 
 		return !stat
@@ -71,19 +70,21 @@ const ProjectInformation = () => {
 	}
 
 	function CheckZipCode() {
-		if (!values.city) {
+		if (!props.values.city) {
 			return;
 		}
 		const city = !states
 			? ""
-			: Object.values(states)?.filter((state) => state.name === values.state);
+			: Object.values(states)?.filter(
+					(state) => state.name === props.values.state
+			  );
 		if (!city) {
 			return;
 		}
 		const zipcode = city?.find((cities) => cities);
 		return !zipcode
 			? ""
-			: zipcode.cities[values.city]?.map((zipcode, index) => {
+			: zipcode.cities[props.values.city]?.map((zipcode, index) => {
 					return (
 						<option key={index} value={zipcode}>
 							{zipcode}
@@ -123,64 +124,64 @@ const ProjectInformation = () => {
 		}
 	}
 
-	const { values, errors, touched, handleChange, handleSubmit, setValues } =
-		useFormik({
-			initialValues: {
-				project_manager_id: "",
-				name: "",
-				number: "",
-				location: "",
-				state: "",
-				city: "",
-				zip_code: "",
-				description: "",
-				school_id: "",
-			},
-			validationSchema: AddProjectInformation,
-			onSubmit: (values) => {
-				if (!details) {
-					HandleRequest(values);
-				} else {
-					HandleEditRequest(values);
-				}
-			},
-		});
+	// const { values, errors, touched, handleChange, handleSubmit, setValues } =
+	// 	useFormik({
+	// 		initialValues: {
+	// 			project_manager_id: "",
+	// 			name: "",
+	// 			number: "",
+	// 			location: "",
+	// 			state: "",
+	// 			city: "",
+	// 			zip_code: "",
+	// 			description: "",
+	// 			school_id: "",
+	// 		},
+	// 		validationSchema: AddProjectInformation,
+	// 		onSubmit: (values) => {
+	// 			if (!details) {
+	// 				HandleRequest(values);
+	// 			} else {
+	// 				HandleEditRequest(values);
+	// 			}
+	// 		},
+	// 	});
 
 	const project_name = {
 		name: "Project Name",
 		id: "name",
-		value: values.name,
-		error: errors.name,
-		touched: touched.name,
-		onChange: handleChange,
+		value: props.values?.name,
+		error: props.errors?.name,
+		touched: props.touched.name,
+		onChange: props.handleChange,
 		placeholder: "Enter Project Name",
 	};
 	const project_number = {
 		name: "Project Number",
 		id: "number",
-		value: values.number,
-		error: errors.number,
-		touched: touched.number,
-		onChange: handleChange,
+		value: props.values.number,
+		error: props.errors.number,
+		touched: props.touched.number,
+		onChange: props.handleChange,
 		placeholder: "Enter Project Number",
 	};
 
 	const project_description = {
 		name: "Project Description",
 		id: "description",
-		value: values.description,
-		error: errors.description,
-		touched: touched.description,
-		onChange: handleChange,
+		value: props.values.description,
+		error: props.errors.description,
+		touched: props.touched.description,
+		onChange: props.handleChange,
 		placeholder: "Enter Project Description",
 	};
 	const project_street = {
 		name: "Project Location (Street)",
 		id: "location",
-		value: values.location,
-		error: errors.location,
-		touched: touched.location,
-		onChange: handleChange,
+		value: props.values.location,
+		error: props.errors.location,
+		touched: props.touched.location,
+		onChange: props.handleChange,
 		placeholder: "Enter street",
 	};
 	// const project_state = {
@@ -213,30 +214,70 @@ const ProjectInformation = () => {
 	const project_manager = {
 		name: "Project Manager",
 		id: "project_manager_id",
-		value: values.project_manager_id,
-		error: errors.project_manager_id,
-		touched: touched.project_manager_id,
-		onChange: handleChange,
+		value: props.values.project_manager_id,
+		error: props.errors.project_manager_id,
+		touched: props.touched.project_manager_id,
+		onChange: props.handleChange,
 		placeholder: "Enter Project Manager",
 	};
 	const school = {
 		name: "School/Dept Name",
 		id: "school_id",
-		value: values.school_id,
-		error: errors.school_id,
-		touched: touched.school_id,
-		onChange: handleChange,
+		value: props.values.school_id,
+		error: props.errors.school_id,
+		touched: props.touched.school_id,
+		onChange: props.handleChange,
 		placeholder: "Select School/Dept",
 	};
 	useEffect(() => {
 		if (!details) {
 			return;
 		}
-		setValues({ ...details, description: details?.description });
+		props.setValues({ ...details, description: details?.description });
 	}, [details]);
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				const {
+					city,
+					description,
+					location,
+					name,
+					number,
+					project_manager_id,
+					school_id,
+					state,
+					zip_code,
+				} = props.values;
+				if (!details) {
+					HandleRequest({
+						city,
+						description,
+						location,
+						name,
+						number,
+						project_manager_id,
+						school_id,
+						state,
+						zip_code,
+					});
+				} else {
+					HandleEditRequest({
+						city,
+						description,
+						location,
+						name,
+						number,
+						project_manager_id,
+						school_id,
+						state,
+						zip_code,
+						id: getId(),
+					});
+				}
+			}}>
 			<div className="bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8">
 				{/* Header */}
 				<div className="mb-6">
@@ -272,8 +313,8 @@ const ProjectInformation = () => {
 											<input
 												list="states"
 												name={`state`}
-												value={values.state}
-												onChange={handleChange}
+												value={props.values.state}
+												onChange={props.handleChange}
 												placeholder="Select State"
 												className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 											/>
@@ -293,8 +334,8 @@ const ProjectInformation = () => {
 											<input
 												list="city"
 												name={`city`}
-												value={values.city}
-												onChange={handleChange}
+												value={props.values.city}
+												onChange={props.handleChange}
 												placeholder="Select city"
 												className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 											/>
@@ -304,8 +345,8 @@ const ProjectInformation = () => {
 											<input
 												list="zip_code"
 												name={`zip_code`}
-												value={values.zip_code}
-												onChange={handleChange}
+												value={props.values.zip_code}
+												onChange={props.handleChange}
 												placeholder="Select Zip Code"
 												className={`bg-white border border-gray-400 text-gray-500 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2`}
 											/>

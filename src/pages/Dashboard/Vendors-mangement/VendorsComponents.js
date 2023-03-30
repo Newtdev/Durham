@@ -32,6 +32,7 @@ export const VendorsHeader = [
 export function VendorTableBody({ dataArray, onDelete, onEdit }) {
 	return (
 		<tbody className="text-xs h-[2rem] font-medium overflow-y-auto ">
+			{console.log(dataArray)}
 			{dataArray?.map((vendor, index) => {
 				const {
 					id,

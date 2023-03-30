@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./pages/Dashboard/main";
 import "react-toastify/dist/ReactToastify.css";
-import RichTextComp from "./Private/PrivateRoute";
 
 const Login = lazy(() => import("./pages/authentications/login/"));
 const Signup = lazy(() => import("./pages/authentications/sign-up"));

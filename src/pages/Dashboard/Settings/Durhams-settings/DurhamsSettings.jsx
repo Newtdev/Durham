@@ -13,42 +13,31 @@ import { FullPageLoader } from "../../../../ui";
 
 const DurhamSettings = () => {
 	let a = {
-		chairdps_board_of_education: "",
-		construction_interim_director: "",
-		business_Manager: "",
-		project_manager: "",
-		project_manager_phone: "",
-		director_construction: "",
-		director_design: "",
-		director_durham: "",
+		chair_dps_board_of_education: "",
 		chief_finance_officer: "",
+		construction_capital_planning_interim_executive_director: "",
+		construction_capital_planning_business_manager: "",
+		construction_capital_planning_project_manager: "",
+		construction_capital_planning_project_managers_phone_number: "",
+		director_of_construction_and_sustainability: "",
+		director_of_design_and_construction: "",
+		executive_director_durham_public_schools_building_services: "",
 	};
 	const [values, setValue] = useState(a);
-	const [target, setTarget] = useState("");
+	const [target, setTarget] = useState({});
 	const [updateDurhamDetails, { isLoading }] = useUpdateDurhamDetailsMutation();
 
 	const dispatch = useDispatch();
 	const result = useFetchDurhamQuery();
 
 	useEffect(() => {
-		console.log(result?.data);
+		let data = {};
 		if (!result?.data) {
 			return;
 		}
-		setValue({
-			chairdps_board_of_education: !result?.data[0]
-				? ""
-				: result?.data[0].value,
-			construction_interim_director: !result?.data[1]
-				? ""
-				: result?.data[1].value,
-			business_Manager: !result?.data[2] ? "" : result?.data[2]?.value,
-			project_manager: !result?.data[3] ? "" : result?.data[3].value,
-			project_manager_phone: !result?.data[4] ? "" : result?.data[4].value,
-			director_construction: !result?.data[5] ? "" : result?.data[5].value,
-			director_design: !result?.data[6] ? "" : result?.data[6].value,
-			director_durham: !result?.data[7] ? "" : result?.data[7].value,
-			chief_finance_officer: !result?.data[8] ? "" : result?.data[8].value,
+		result.data?.forEach((item, i) => {
+			data = { ...data, [result.data[i].slug]: result.data[i].value };
+			setValue(data);
 		});
 	}, [dispatch, result]);
 
@@ -75,12 +64,6 @@ const DurhamSettings = () => {
 		setValue((prev) => {
 			return { ...prev, [name]: value };
 		});
-		// if (!value) {
-		// 	toast.error("Field is required", {
-		// 		position: toast.POSITION.TOP_CENTER,
-		// 	});
-		// } else {
-		// }
 	};
 
 	const onSubmit = (e) => {
@@ -88,26 +71,24 @@ const DurhamSettings = () => {
 		if (target) {
 			Object.entries(target).forEach((cur) => {
 				const [name, value] = [cur[0], cur[1]];
-				console.log({ name, value });
 				HandleRequest({ name, value });
 			});
 		}
 	};
 
-	console.log(values?.chairdps_board_of_education);
 	const props = {
 		chair_board_education: {
 			indx: 0,
-			value: values.chairdps_board_of_education,
-			name: "Chair,DPS Board of Education",
-			id: "chairdps_board_of_education",
-			placeholder: "Enter firstname and last name",
+			value: values?.chair_dps_board_of_education,
+			name: "Chair, DPS Board of Education",
+			id: "chair_dps_board_of_education",
+			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		chief_finance_officer: {
 			indx: 1,
-			value: values.chief_finance_officer,
+			value: values?.chief_finance_officer,
 			name: "Chief Finance Officer",
 			id: "chief_finance_officer",
 			placeholder: "Enter first name and last name",
@@ -116,63 +97,64 @@ const DurhamSettings = () => {
 		},
 		construction_interim_director: {
 			indx: 2,
-			value: values.construction_interim_director,
+			value: values?.construction_capital_planning_interim_executive_director,
 			name: "Construction & Capital Planning Interim Executive Director",
-			id: "construction_interim_director",
+			id: "construction_capital_planning_interim_executive_director",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		business_Manager: {
 			indx: 3,
-			value: values.business_Manager,
+			value: values?.construction_capital_planning_business_manager,
 			name: "Construction & Capital Planning Business Manager",
-			id: "business_Manager",
+			id: "construction_capital_planning_business_manager",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		project_manager: {
 			indx: 4,
-			value: values.project_manager,
+			value: values?.construction_capital_planning_project_manager,
 			name: " Construction & Capital Planning Project Manager",
-			id: "project_manager",
+			id: "construction_capital_planning_project_manager",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		project_manager_phone: {
 			indx: 5,
-			value: values.project_manager_phone,
+			value:
+				values?.construction_capital_planning_project_managers_phone_number,
 			name: "Construction & Capital Planning Project Manager's Phone Number",
-			id: "project_manager_phone",
+			id: "construction_capital_planning_project_managers_phone_number",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		director_construction: {
 			indx: 6,
-			value: values.director_construction,
+			value: values?.director_of_construction_and_sustainability,
 			name: " Director of Construction and Sustainability",
-			id: "director_construction",
+			id: "director_of_construction_and_sustainability",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		director_design: {
 			indx: 7,
-			value: values.director_design,
+			value: values?.director_of_design_and_construction,
 			name: " Director of Design and Construction",
-			id: "director_design",
+			id: "director_of_design_and_construction",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,
 		},
 		director_durham: {
 			indx: 8,
-			value: values.director_durham,
+			value: values?.executive_director_durham_public_schools_building_services,
 			name: " Executive Director Durham Public Schools Building Services",
-			id: "director_durham",
+			id: "executive_director_durham_public_schools_building_services",
 			placeholder: "Enter first name and last name",
 			onChange,
 			onSubmit,

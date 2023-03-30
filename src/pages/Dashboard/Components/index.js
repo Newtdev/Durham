@@ -291,6 +291,7 @@ export function Paginations(props) {
 	const handleChange = (e, value) => {
 		getPage(value);
 	};
+
 	if (data?.data?.last_page === 1 || !data?.data?.last_page) {
 		return null;
 	}
@@ -299,6 +300,7 @@ export function Paginations(props) {
 		<nav
 			className="mb-4 flex justify-center items-center pt-4"
 			aria-label="Table navigation">
+			{console.log(page)}
 			<Pagination
 				count={data?.data?.last_page}
 				page={page}

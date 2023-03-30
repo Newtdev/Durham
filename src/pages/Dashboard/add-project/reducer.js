@@ -4,7 +4,7 @@ import { state } from "../../../lib/data";
 const AddProjectSlice = createSlice({
 	name: "add-products",
 	initialState: {
-		projectForm: 2,
+		projectForm: 0,
 		form_id: null,
 		vendorID: [],
 		delete: false,

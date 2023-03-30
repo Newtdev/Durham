@@ -12,7 +12,7 @@ export const UseFetchFilledFormDetails = (id) => {
 				return;
 			}
 			const response = await fetch(
-				`https://durham.cfcing.org/api/projects/forms/${id}`,
+				`https://dsapi.concisetc.com/api/projects/forms/${id}`,
 				{
 					headers: {
 						"Content-Type": "application/json",
