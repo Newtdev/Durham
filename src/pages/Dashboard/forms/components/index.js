@@ -39,14 +39,14 @@ export const FormsArray = [
     title: "Design Phase Change Order (Consultant) (Original)",
     category: "budgets",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Design Phase Change Order (Consultant) (Original).doc",
+      "#",
   },
   {
     id: 7,
     title: "OK to Pay Template(Original)",
     category: "budgets",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/OK to Pay Template(Original).xlsx",
+      "#",
   },
   {
     id: 8,
@@ -96,22 +96,19 @@ export const FormsArray = [
       "Owner and Contractor Agreement Form (more $500,000) - ESSER(Original)",
     category: "contracts",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000) - ESSER(Original).docx",
-  },
+"#"  },
   {
     id: 15,
     title: "Owner and Contractor Agreement Form (more $500,000)(Original)",
     category: "contracts",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Owner and Contractor Agreement Form (more $500,000)(Original).docx",
-  },
+"#"  },
   {
     id: 16,
     title: "Owner and Design Consultant (less than $200,000)(Original)",
     category: "contracts",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Owner and Design Consultant (less than $200,000)(Original).docx",
-  },
+"#"  },
   {
     id: 17,
     title: "Owner and Design Consultant (more $200,000)(Original)",
@@ -186,15 +183,13 @@ export const FormsArray = [
     title: "00 11 13 - Advertisement for Bid Template(Original)",
     category: "procurements",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/00 11 13 - Advertisement for Bid Template(Original).docx",
-  },
+"#"  },
   {
     id: 28,
     title: "3 bids(Original)",
     category: "procurements",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/3 bids(Original).pdf",
-  },
+"#"  },
   {
     id: 29,
     title: "Bid Manual(Original)",
@@ -214,8 +209,7 @@ export const FormsArray = [
     title: "Determination of Apparent Low Bidder - Contractor(Original)",
     category: "procurements",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Determination of Apparent Low Bidder - Contractor(Original).docx",
-  },
+"#"  },
   {
     id: 32,
     title: "DPS Formal General Conditions - 1-17-20(Original)",
@@ -228,8 +222,7 @@ export const FormsArray = [
     title: "E-589CI Affidavit of Capital Improvement(Original)",
     category: "procurements",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/E-589CI Affidavit of Capital Improvement(Original).pdf",
-  },
+"#"  },
   {
     id: 34,
     title: "Precis Checklist (Original)",
@@ -256,6 +249,5 @@ export const FormsArray = [
     title: "Punchlist and Substantial Agreement(Original)",
     category: "project closeout",
     downloadLink:
-      "https://durhamapp.000webhostapp.com/pdfs/Punchlist and Substantial Agreement(Original).docx",
-  },
+"#"  },
 ];
