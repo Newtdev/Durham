@@ -39,14 +39,13 @@ export const FormsArray = [
     title: "Design Phase Change Order (Consultant) (Original)",
     category: "budgets",
     downloadLink:
-      "#",
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Design_Phase_Change_Order_Consultant_-Original_t9mra9//v1680287033/Durham/Design_Phase_Change_Order_Consultant_-Original_t9mra9.pdf",
   },
   {
     id: 7,
     title: "OK to Pay Template(Original)",
     category: "budgets",
-    downloadLink:
-      "#",
+    downloadLink: "#",
   },
   {
     id: 8,
@@ -96,19 +95,22 @@ export const FormsArray = [
       "Owner and Contractor Agreement Form (more $500,000) - ESSER(Original)",
     category: "contracts",
     downloadLink:
-"#"  },
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Owner_and_Contractor_Agreement_Form_more__500_000_-_ESSER_mipkaw//v1680287033/Durham/Owner_and_Contractor_Agreement_Form_more__500_000_-_ESSER_mipkaw.pdf",
+  },
   {
     id: 15,
     title: "Owner and Contractor Agreement Form (more $500,000)(Original)",
     category: "contracts",
     downloadLink:
-"#"  },
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Owner_and_Contractor_Agreement_Form_more__500_000_oew9mg//v1680287033/Durham/Owner_and_Contractor_Agreement_Form_more__500_000_oew9mg.pdf",
+  },
   {
     id: 16,
     title: "Owner and Design Consultant (less than $200,000)(Original)",
     category: "contracts",
     downloadLink:
-"#"  },
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Owner_and_Design_Consultant_less_than__200_000_yfkbrn//v1680287033/Durham/Owner_and_Design_Consultant_less_than__200_000_yfkbrn.pdf",
+  },
   {
     id: 17,
     title: "Owner and Design Consultant (more $200,000)(Original)",
@@ -183,13 +185,14 @@ export const FormsArray = [
     title: "00 11 13 - Advertisement for Bid Template(Original)",
     category: "procurements",
     downloadLink:
-"#"  },
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:00_11_13_-_Advertisement_for_Bid_Template_Original_nnd2dz//v1680287034/Durham/00_11_13_-_Advertisement_for_Bid_Template_Original_nnd2dz.pdf",
+  },
   {
     id: 28,
     title: "3 bids(Original)",
     category: "procurements",
-    downloadLink:
-"#"  },
+    downloadLink: "#",
+  },
   {
     id: 29,
     title: "Bid Manual(Original)",
@@ -208,8 +211,8 @@ export const FormsArray = [
     id: 31,
     title: "Determination of Apparent Low Bidder - Contractor(Original)",
     category: "procurements",
-    downloadLink:
-"#"  },
+    downloadLink: "#",
+  },
   {
     id: 32,
     title: "DPS Formal General Conditions - 1-17-20(Original)",
@@ -221,8 +224,8 @@ export const FormsArray = [
     id: 33,
     title: "E-589CI Affidavit of Capital Improvement(Original)",
     category: "procurements",
-    downloadLink:
-"#"  },
+    downloadLink: "#",
+  },
   {
     id: 34,
     title: "Precis Checklist (Original)",
@@ -248,6 +251,6 @@ export const FormsArray = [
     id: 37,
     title: "Punchlist and Substantial Agreement(Original)",
     category: "project closeout",
-    downloadLink:
-"#"  },
+    downloadLink: "#",
+  },
 ];
