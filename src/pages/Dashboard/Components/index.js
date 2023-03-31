@@ -37,7 +37,7 @@ export function DashboardNav() {
 					{ id: 1, name: "Dashboard", link: "" },
 					{
 						id: 3,
-						name: "Projects Managers",
+						name: "Project Managers",
 						link: "product-manager",
 					},
 					{ id: 4, name: "Vendors", link: "vendors" },

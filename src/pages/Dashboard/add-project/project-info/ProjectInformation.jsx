@@ -264,18 +264,7 @@ const ProjectInformation = (props) => {
 						zip_code,
 					});
 				} else {
-					HandleEditRequest({
-						city,
-						description,
-						location,
-						name,
-						number,
-						project_manager_id,
-						school_id,
-						state,
-						zip_code,
-						id: getId(),
-					});
+					HandleEditRequest(props.values);
 				}
 			}}>
 			<div className="bg-white border border-gray-100 rounded-lg w-full px-6 pt-8 pb-8 mb-8">

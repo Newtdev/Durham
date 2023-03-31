@@ -99,7 +99,6 @@ const VendorInformationComponents = ({
 	title,
 }) => {
 	const dispatch = useDispatch();
-
 	useEffect(() => {
 		(async function () {
 			const response = await (await fetch("/states.json")).json();
@@ -121,7 +120,6 @@ const VendorInformationComponents = ({
 		initialValues,
 		validateOnChange: true,
 		validationSchema: AddVendorsSchema,
-
 		onSubmit,
 	});
 
@@ -254,9 +252,9 @@ const VendorInformationComponents = ({
 	}
 
 	const HandleClose = () => {
-		close();
 		handleReset();
 		onSuccessClose();
+		close();
 	};
 
 	return (
@@ -410,7 +408,7 @@ export function AddVendor({ close }) {
 			const response = await addVendor({ ...value });
 
 			if (response) {
-				close();
+				// close();
 
 				if (response?.error) {
 					close();
@@ -418,12 +416,14 @@ export function AddVendor({ close }) {
 						position: toast.POSITION.TOP_CENTER,
 					});
 					// setShowSuccess(false)
-				} else if (response?.data) {
+				} else {
 					setSuccess(true);
 					// onSuccess show the modal and ask the manager to login
 				}
 			}
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const vendorInfo = {
@@ -499,7 +499,15 @@ export function SuccessModal({ close, reset, name }) {
 
 					{/* Buttons */}
 					<div className="mt-12 mr-5 flex gap-4 justify-end">
-						<DashboardButton name="PROCEED" hidden width="78px" />
+						<DashboardButton
+							name="PROCEED"
+							hidden
+							width="78px"
+							onClick={() => {
+								close();
+								reset();
+							}}
+						/>
 					</div>
 				</div>
 			</div>

@@ -190,7 +190,6 @@ const ProjectFormsController = () => {
 			{ id: 0, numb: 1, name: "Overview" },
 			{ id: 1, numb: 2, name: "Awardee Information" },
 			{ id: 2, numb: 3, name: "Select forms" },
-			{ id: 3, numb: 4, name: "Preview" },
 		].map(({ id, name, numb }) => {
 			const activeLink = active === id ? "text-gray-900" : "text-gray-400";
 			return (

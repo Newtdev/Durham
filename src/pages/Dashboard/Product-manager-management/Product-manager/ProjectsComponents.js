@@ -207,14 +207,17 @@ const ProductManagerForm = ({
 	}, [setValues, data]);
 
 	const HandleClose = () => {
-		close();
 		handleReset();
+		setValues({ email: "", last_name: "", first_name: "", phone: "" });
+		close();
 	};
 
 	const CloseReset = () => {
+		setValues({ email: "", last_name: "", first_name: "", phone: "" });
+		handleReset();
+
 		close();
 		removeShow();
-		handleReset();
 	};
 
 	if (show) {

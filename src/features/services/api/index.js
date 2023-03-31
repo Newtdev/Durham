@@ -12,7 +12,12 @@ export const DurhamsApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://dsapi.concisetc.com/api/",
 		prepareHeaders: (headers, { getState }) => {
-			const token = getState().loginReducer.accessToken;
+			const getTokenFromLocalStorage = JSON.parse(
+				localStorage.getItem("durham_token")
+			);
+			const token =
+				getState().loginReducer.accessToken ??
+				getTokenFromLocalStorage?.authorization?.token;
 			if (token) {
 				headers.set("authorization", `Bearer ${token}`);
 			}

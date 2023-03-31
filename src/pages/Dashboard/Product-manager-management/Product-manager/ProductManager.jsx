@@ -1,7 +1,6 @@
 import {
 	DashboardNav,
 	DashboardButton,
-	Sort,
 	Search,
 	TableHeader,
 	TableBody,
