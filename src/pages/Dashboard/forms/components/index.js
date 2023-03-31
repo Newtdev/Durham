@@ -42,12 +42,6 @@ export const FormsArray = [
       "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:Design_Phase_Change_Order_Consultant_-Original_t9mra9//v1680287033/Durham/Design_Phase_Change_Order_Consultant_-Original_t9mra9.pdf",
   },
   {
-    id: 7,
-    title: "OK to Pay Template(Original)",
-    category: "budgets",
-    downloadLink: "#",
-  },
-  {
     id: 8,
     title: "Attachment A Lunsford Act Form(Original)",
     category: "contracts",
