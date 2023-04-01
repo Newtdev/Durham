@@ -247,6 +247,7 @@ const EditDocument = ({ documents, getData }) => {
 
 	const [formData, setFormData] = useState(init);
 	const [mergedData, setMergedData] = useState(init);
+
 	// EXTRACTING THE UNSELETED DOCUMENT FROM THE LIST OF DOCUMENT.
 	const unAssignedDocument = (edit, saved) => {
 		return edit?.filter(
@@ -300,7 +301,7 @@ const EditDocument = ({ documents, getData }) => {
 				),
 				Notice_Letter: unAssignedDocument(
 					EditDocumentData?.Notice_Letters,
-					documents?.Notice_letters
+					documents?.Notice_Letters
 				),
 				Procurement: unAssignedDocument(
 					EditDocumentData?.Procurement,
@@ -318,6 +319,7 @@ const EditDocument = ({ documents, getData }) => {
 		if (!formData) {
 			return;
 		}
+
 		setMergedData(() => {
 			return {
 				Budget: mergedDocuments(documents?.Budget, formData.Budget),
@@ -327,7 +329,7 @@ const EditDocument = ({ documents, getData }) => {
 					formData?.MWBE_Forms
 				),
 				Notice_Letters: mergedDocuments(
-					documents?.Notice_letters,
+					documents?.Notice_Letters,
 					formData?.Notice_Letter
 				),
 				Procurement: mergedDocuments(

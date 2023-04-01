@@ -3,6 +3,7 @@ import ErrorIcon from "../assets/error.svg";
 // import ErrorIcon from "../assets/error.svg";
 import SuccessIcon from "../assets/successIcon.svg";
 import DeleteIcon from "../assets/deleteIcon.svg";
+import { DashboardButton } from "../pages/Dashboard/Components";
 
 // REUSABLE INPUT COMP
 export function Input(props) {
@@ -318,6 +319,27 @@ export const FullPageLoader = () => {
 					fill="#3B6979"
 				/>
 			</svg>
+		</div>
+	);
+};
+
+export const TableLoaderComponent = ({ apiResponse }) => {
+	return (
+		<div className="h-80 flex flex-col items-center justify-center">
+			<div className="w-full flex justify-center items-center text-lg">
+				{apiResponse.isFetching ? <p>Fetching requested data...</p> : null}
+				{apiResponse?.isError ? <p> {apiResponse?.error?.message}</p> : null}
+			</div>
+			<div className="mt-3">
+				{apiResponse?.isError ? (
+					<DashboardButton
+						name="Reload"
+						hidden
+						width="w-full"
+						onClick={() => apiResponse?.refetch()}
+					/>
+				) : null}
+			</div>
 		</div>
 	);
 };

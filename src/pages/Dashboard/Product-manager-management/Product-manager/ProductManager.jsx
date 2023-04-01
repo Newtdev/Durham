@@ -12,7 +12,11 @@ import {
 	DeleteProjectModal,
 	EditPojectsManagerModal,
 } from "./ProjectsComponents";
-import { FullPageLoader, ModalOverlay } from "../../../../ui";
+import {
+	FullPageLoader,
+	ModalOverlay,
+	TableLoaderComponent,
+} from "../../../../ui";
 import { useState } from "react";
 import { ProductHeader, productContent } from "./ProjectsComponents";
 import {
@@ -99,7 +103,7 @@ const ProductManager = () => {
 
 	return (
 		<section>
-			{!response?.data && <FullPageLoader />}
+			{response?.isLoading && <FullPageLoader />}
 			<article>
 				{/* <!-- Navbar --> */}
 				<DashboardNav />
@@ -124,10 +128,14 @@ const ProductManager = () => {
 					</div>
 					{/* <!-- Table --> */}
 					<div className="overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 ">
-						<table className="w-full text-sm text-left text-gray-900">
-							<TableHeader dataArray={ProductHeader}></TableHeader>
-							<TableBody {...ProductManagerProps}></TableBody>
-						</table>
+						{response.isSuccess && !response.isFetching ? (
+							<table className="w-full text-sm text-left text-gray-900">
+								<TableHeader dataArray={ProductHeader}></TableHeader>
+								<TableBody {...ProductManagerProps}></TableBody>
+							</table>
+						) : (
+							<TableLoaderComponent apiResponse={response} />
+						)}
 					</div>
 					{/* pagination */}
 					<Paginations {...paginationProps} />

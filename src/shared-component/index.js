@@ -1,6 +1,5 @@
 import moment from "moment";
 import { PDFDocument } from "pdf-lib";
-import { string } from "yup";
 
 export const fetchData = () => {
 	const durhamProfile = JSON.parse(localStorage.getItem("DurhamProfiles"));
