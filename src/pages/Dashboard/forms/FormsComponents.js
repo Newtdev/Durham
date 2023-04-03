@@ -25,6 +25,20 @@ export const downloadFileAtURL = (url, filename) => {
   aTag.remove();
 };
 
+export const coverntFiletoBlobAndDownload = async (file, name) => {
+  const blob = await fetch(file).then((r) => r.blob());
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.download = name; // add custom extension here
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+  // Remove "a" tag from the body
+  a.remove();
+};
+
 export function SuccessModal({ close, dashboard, fileName }) {
   return (
     <article>
