@@ -220,7 +220,7 @@ export const FormsArray = [
     title: "E-589CI Affidavit of Capital Improvement (Original)",
     category: "procurements",
     downloadLink:
-      "https://asset.cloudinary.com/emmatobiloba/375fe236545b3c4ebca2c6887fbdc92a",
+      "https://res.cloudinary.com/emmatobiloba/image/upload//fl_attachment:E-589CI_Affidavit_of_Capital_Improvement_qyjfup//v1680551106/Durham/E-589CI_Affidavit_of_Capital_Improvement_qyjfup.pdf",
   },
   {
     id: 34,
