@@ -128,7 +128,7 @@ export function SupportModal({ close }) {
               </a>
             </p>
             <p className="text-base text-gray-600 text-center">
-              Phone no:{" "}
+              Phone Number:{" "}
               <a
                 className="ml-1 hover:text-[#3B6979] cursor-pointer"
                 href="tel:9257275161"
@@ -147,14 +147,6 @@ export function SupportModal({ close }) {
               BACK
             </button>
           </div>
-          {/* <div className="my-4 mr-5 flex justify-center items-center w-full">
-            <button
-              className="border border-[#3B6979] font-semibold text-[#3B6979] text-base py-2 px-28 rounded"
-              onClick={dashboard}
-            >
-              GO TO DASHBOARD
-            </button>
-          </div> */}
         </div>
       </div>
     </article>

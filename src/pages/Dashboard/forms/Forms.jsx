@@ -9,7 +9,7 @@ import SearchIcon from "../../../assets/searchIcon.svg";
 import { SubmitButton } from "../../../ui";
 import { FormsDownloadButton } from "./FormsComponents";
 import frame from "../../../assets/Frame.svg";
-import { downloadFileAtURL } from "./FormsComponents";
+import { coverntFiletoBlobAndDownload } from "./FormsComponents";
 
 const Forms = () => {
   const [page, setPage] = useState(1);
@@ -148,7 +148,10 @@ const Forms = () => {
                           <div className="w-4 cursor-pointer">
                             <span
                               onClick={() => {
-                                downloadFileAtURL(downloadLink, title);
+                                coverntFiletoBlobAndDownload(
+                                  downloadLink,
+                                  title
+                                );
                                 onDownload(title);
                               }}
                             >
