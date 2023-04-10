@@ -144,7 +144,9 @@ export const DurhamsApi = createApi({
 		fetchAllProjectManager: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `project-managers?search=${queryValue}&limit=10&page=${page}`,
+					url: `project-managers?search=${queryValue}&limit=10&page=${
+						queryValue ? null : page
+					}`,
 
 					method: "GET",
 				};
@@ -247,7 +249,9 @@ export const DurhamsApi = createApi({
 		fetchVendors: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `vendors?search=${queryValue}&limit=10&page=${page}`,
+					url: `vendors?search=${queryValue}&limit=10&page=${
+						queryValue ? null : page
+					}`,
 					method: "GET",
 				};
 			},
@@ -454,7 +458,9 @@ export const DurhamsApi = createApi({
 		fetchProjects: builder.query({
 			query: ({ query, page, params }) => {
 				return {
-					url: `projects?search=${query}&limit=10&page=${page}&filter=${params}`,
+					url: `projects?search=${query}&limit=10&page=${
+						query ? null : page
+					}&filter=${params}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -570,7 +576,9 @@ export const DurhamsApi = createApi({
 		fetchAllSchool: builder.query({
 			query: ({ queryValue, page }) => {
 				return {
-					url: `schools?search=${queryValue}&limit=10&page=${page}`,
+					url: `schools?search=${queryValue}&limit=10&page=${
+						queryValue ? null : page
+					}`,
 					headers: {
 						Accept: "application/json",
 					},
@@ -728,340 +736,6 @@ export const DurhamsApi = createApi({
 			transformErrorResponse: (response, meta, arg) => response.data,
 		}),
 	}),
-
-	// fetchSingleProject: builder.query({
-	//   query: (id) => {
-	//     return {
-	//       url: `projects/${id}`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "GET",
-	//     };
-	//   },
-	//   async onQueryStarted(id, { dispatch, queryFulfilled }) {
-	//     try {
-	//       const { data } = await queryFulfilled;
-	//       dispatch(addNewProject(data.data));
-	//     } catch (error) {
-	//       // throw error
-	//     }
-	//   },
-	//   // providesTags: ["projects", 'dashboard'],
-	//   // transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// addProjectDocument: builder.mutation({
-	//   query: (info) => {
-	//     return {
-	//       url: "projects/add-document",
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "POST",
-	//       body: info,
-	//     };
-	//   },
-	//   invalidatesTags: ["projects", "dashboard"],
-	//   transformResponse: (response) => response,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// fillProjectDocument: builder.mutation({
-	//   query: (formInfo) => {
-	//     console.log(formInfo);
-	//     return {
-	//       url: "projects/fill-form",
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "POST",
-	//       body: formInfo,
-	//     };
-	//   },
-	//   // invalidatesTags: ["projects", 'dashboard'],
-	//   transformResponse: (response) => response,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// fetchFilledForm: builder.query({
-	//   query: (id) => {
-	//     return {
-	//       url: `projects/forms/${id}`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "GET",
-	//     };
-	//   },
-	//   async onQueryStarted(id, { dispatch, queryFulfilled }) {
-	//     try {
-	//       const { data } = await queryFulfilled;
-	//       dispatch(getFormResponse(data.data));
-	//     } catch (error) {
-	//       // throw error
-	//     }
-	//   },
-	//   // providesTags: ["projects", 'dashboard'],
-	//   // transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// addProjectVendor: builder.mutation({
-	// 	query: (info) => {
-	// 		return {
-	// 			url: "projects/add-vendor",
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "POST",
-	// 			body: info,
-	// 		};
-	// 	},
-	// 	invalidatesTags: ["projects", 'dashboard'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// addProjectDocument: builder.mutation({
-	// 	query: (info) => {
-	// 		return {
-	// 			url: "projects/add-document",
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "POST",
-	// 			body: info,
-	// 		};
-	// 	},
-	// 	invalidatesTags: ["projects", 'dashboard'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// fillProjectDocument: builder.mutation({
-	// 	query: (formInfo) => {
-	// 		return {
-	// 			url: "projects/fill-form",
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "POST",
-	// 			body: formInfo,
-	// 		};
-	// 	},
-	// 	// invalidatesTags: ["projects", 'dashboard'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// fetchFilledForm: builder.query({
-	// 	query: (id) => {
-	// 		return {
-	// 			url: `projects/forms/${id}`,
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "GET",
-
-	// 		};
-	// 	},
-	// 	// async onQueryStarted(id,{dispatch, queryFulfilled}) {
-
-	// 	// 	try {
-	// 	// 		const { data } = await queryFulfilled;
-	// 	// 		dispatch(getFormResponse(data.data))
-	// 	// 	} catch (error) {
-	// 	// 		// throw error
-
-	// 	// 	}
-	// 	// },
-	// 	 providesTags: ["projects", 'dashboard'],
-	// 	// // transformResponse: (response) => response.data,
-	// 	// transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// // ADD SCHOOL
-	// addSchool: builder.mutation({
-	// 	query: (info) => {
-	// 		return {
-	// 			url: "schools",
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "POST",
-	// 			body: info,
-	// 		};
-	// 	},
-	// 	invalidatesTags: ["projects",'school'],
-	// 	transformResponse: (response) => response.data,
-	// 	transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// updateSchool: builder.mutation({
-	// 	query: ({id,...info}) => {
-	// 		return {
-	// 			url: `schools/${id}`,
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "PUT",
-	// 			body: info,
-	// 		};
-	// 	},
-	// 	invalidatesTags: ["projects",'school'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response,
-	// }),
-	// fetchAllSchool: builder.query({
-	// 	query: ({ queryValue, page }) => {
-	// 		return {
-	// 			url: `schools?search=${queryValue}&limit=10&page=${page}`,
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "GET",
-
-	// 		};
-	// 	},
-	// 	providesTags: ["projects",'school'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response,
-	// }),
-	// fetchSchool: builder.query({
-	// 	query: () => {
-	// 		return {
-	// 			url: `schools?limit=200`,
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			method: "GET",
-
-	// 		};
-	// 	},
-	// 	providesTags: ["projects",'school'],
-	// 	transformResponse: (response) => response,
-	// 	transformErrorResponse: (response, meta, arg) => response,
-	// }),
-
-	// UpdateProfile: builder.mutation({
-	// 	query: ({ id, ...info }) => {
-	// 		return {
-	// 			url: `update-profile`,
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 			},
-	// 			body:info,
-	// 			method: "PUT",
-
-	// 		};
-	// 	},
-	// 	invalidatesTags: ["profile"],
-	// 	transformResponse: (response) => response.data,
-	// 	transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-
-	// ADD SCHOOL
-	// addSchool: builder.mutation({
-	//   query: (info) => {
-	//     return {
-	//       url: "schools",
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "POST",
-	//       body: info,
-	//     };
-	//   },
-	//   invalidatesTags: ["projects", "school"],
-	//   transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// updateSchool: builder.mutation({
-	//   query: ({ id, ...info }) => {
-	//     return {
-	//       url: `schools/${id}`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "PUT",
-	//       body: info,
-	//     };
-	//   },
-	//   invalidatesTags: ["projects", "school"],
-	//   transformResponse: (response) => response,
-	//   transformErrorResponse: (response, meta, arg) => response,
-	// }),
-	// fetchAllSchool: builder.query({
-	//   query: ({ queryValue, page }) => {
-	//     return {
-	//       url: `schools?search=${queryValue}&limit=10&page=${page}`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "GET",
-	//     };
-	//   },
-	//   providesTags: ["projects", "school"],
-	//   transformResponse: (response) => response,
-	//   transformErrorResponse: (response, meta, arg) => response,
-	// }),
-	// DeleteSchool: builder.mutation({
-	//   query: (id) => {
-	//     return {
-	//       url: `schools/${id}`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       method: "DELETE",
-	//     };
-	//   },
-	//   invalidatesTags: ["projects", "school"],
-	//   transformResponse: (response) => response,
-	//   transformErrorResponse: (response, meta, arg) => response,
-	// }),
-	// UpdateProfile: builder.mutation({
-	//   query: ({ id, ...info }) => {
-	//     return {
-	//       url: `update-profile`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       body: info,
-	//       method: "PUT",
-	//     };
-	//   },
-	//   invalidatesTags: ["profile"],
-	//   transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// UpdatePassword: builder.mutation({
-	//   query: (info) => {
-	//     return {
-	//       url: `change-password`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       body: info,
-	//       method: "POST",
-	//     };
-	//   },
-	//   invalidatesTags: ["profile"],
-	//   transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// }),
-	// uploadProfilePhoto: builder.mutation({
-	//   query: (info) => {
-	//     return {
-	//       url: `project-manager/photo`,
-	//       headers: {
-	//         Accept: "application/json",
-	//       },
-	//       body: info,
-	//       method: "POST",
-	//     };
-	//   },
-	//   invalidatesTags: ["profile-image"],
-	//   transformResponse: (response) => response.data,
-	//   transformErrorResponse: (response, meta, arg) => response.data,
-	// })
 });
 
 export const {

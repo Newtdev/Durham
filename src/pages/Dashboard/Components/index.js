@@ -300,7 +300,6 @@ export function Paginations(props) {
 		<nav
 			className="mb-4 flex justify-center items-center pt-4"
 			aria-label="Table navigation">
-			{console.log(page)}
 			<Pagination
 				count={data?.data?.last_page}
 				page={page}

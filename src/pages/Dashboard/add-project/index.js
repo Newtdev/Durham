@@ -13,7 +13,7 @@ import {
 	setProjectInfoDefault,
 } from "../Overview-dashboard/editReducer";
 import ProjectInformation from "./project-info";
-import { getForm, nextForm, setDefault } from "./reducer";
+import { getForm, nextForm, resetDocToProject, setDefault } from "./reducer";
 import AwardeeInformation from "./awardee-info/AwardeeInformation";
 import {
 	useAddProjectDocumentMutation,
@@ -44,7 +44,6 @@ const ProjectFormsController = () => {
 	const [editVendor, data] = useEditVendorMutation();
 
 	async function HandleRequest(values) {
-		console.log(values);
 		const response = await addProjectVendor({
 			project_id: getId(),
 			vendors: values,
@@ -55,6 +54,7 @@ const ProjectFormsController = () => {
 			});
 		} else if (response?.data) {
 			// error alert
+			dispatch(resetDocToProject());
 			dispatch(nextForm(2));
 			toast.error(response?.message, {
 				position: toast.POSITION.TOP_CENTER,

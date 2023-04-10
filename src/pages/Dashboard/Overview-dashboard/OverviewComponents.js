@@ -62,12 +62,12 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 									e.stopPropagation();
 									onDelete(id);
 								}}
-								disabled={userRole !== "admin" ? true : false}>
+								disabled={userRole !== "super" ? true : false}>
 								<img className="w-full" src={Delete} alt="delete" />
 							</button>
 							<button
 								className="w-4 cursor-pointer"
-								disabled={userRole !== "admin" ? true : false}
+								disabled={userRole !== "super" ? true : false}
 								onClick={(e) => {
 									e.stopPropagation();
 									onEdit(project);
@@ -218,6 +218,17 @@ export function AwardeeInfo(props) {
 		error: projectError.secretary,
 		touched: projectTouched.secretary,
 	};
+
+	const vendorID = {
+		name: "Vendor Id",
+		id: `project_vendors.${index}.vendor_id`,
+		placeholder: "Enter vendor id",
+		onChange: handleChange,
+		value: values.project_vendors[index].vendor_id,
+		error: projectError.vendor_id,
+		touched: projectTouched.vendor_id,
+	};
+
 	function CheckState() {
 		if (!values.project_vendors[index].state) {
 			return;
@@ -260,7 +271,6 @@ export function AwardeeInfo(props) {
 	}
 
 	const filterData = () => {
-		console.log(props.data.values.project_vendors[index]);
 		if (!toFilter) {
 			return null;
 		}
@@ -368,6 +378,11 @@ export function AwardeeInfo(props) {
 						<div>
 							<OverviewInput {...consultant_name} />
 						</div>
+						{props.data.values.project_vendors[index].type === "new" ? (
+							<div>
+								<OverviewInput {...vendorID} />
+							</div>
+						) : null}
 						<div>
 							<OverviewInput {...consultant_address} />
 						</div>
@@ -508,7 +523,8 @@ export function CompanyRep({ data }) {
 
 export function DashboardSelect(props) {
 	// const { name, error, touched } = props;
-	const { id, value, children, onChange, name, error, touched } = props;
+	const { id, value, children, onChange, name, error, touched, disabled } =
+		props;
 	return (
 		<div className="mb-4 w-full">
 			<Label
@@ -521,7 +537,8 @@ export function DashboardSelect(props) {
 				className=" cursor-pointer bg-white border border-gray-400 text-gray-900 text-sm rounded focus:outline-[#3B6979] focus:border-[#3B6979] block w-full p-2.5"
 				name={id}
 				type="text"
-				value={value}>
+				value={value}
+				disabled={disabled}>
 				{children}
 			</select>
 			{error && touched && <Error message={error} />}

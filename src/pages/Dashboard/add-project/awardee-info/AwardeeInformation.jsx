@@ -70,6 +70,7 @@ const AwardeeInformation = (props) => {
 								<button
 									onClick={() =>
 										arrayHelpers.push({
+											vendor_id: "",
 											role: "",
 											type: "",
 											// awardee: "",

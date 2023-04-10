@@ -276,7 +276,6 @@ const ProjectDashboard = () => {
 									});
 								}}
 								type="button"
-								disabled={userRole === "admin" ? false : true}
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
 								<Pen />
 								<span>edit</span>
@@ -287,22 +286,24 @@ const ProjectDashboard = () => {
 								type="submit"
 								className="uppercase text-white text-center text-base w-[152px] bg-[#3B6979] hover:bg-blue-800 font-bold rounded h-8 transition-all flex gap-2 items-center justify-center">
 								<LoadingArrow />
-								{result.isLoading && (
+								{result.isLoading ? (
 									<span className="text-xs">Duplicating...</span>
+								) : (
+									<span>Duplicate</span>
 								)}
-								{!result.isLoading && <span>Duplicate</span>}
 							</button>
 
-							<button
-								onClick={() => {
-									dispatch(onDelete());
-								}}
-								type="submit"
-								disabled={userRole === "admin" ? false : true}
-								className="uppercase text-[#ef4444] text-center text-base w-[152px] hover:bg-blue-800 font-semibold rounded h-8 transition-all flex gap-2 items-center justify-center">
-								<img src={RedDelete} alt="Delete" />
-								<span>Delete</span>
-							</button>
+							{userRole === "super" ? (
+								<button
+									onClick={() => {
+										dispatch(onDelete());
+									}}
+									type="submit"
+									className="uppercase text-[#ef4444] text-center text-base w-[152px] hover:bg-blue-800 font-semibold rounded h-8 transition-all flex gap-2 items-center justify-center">
+									<img src={RedDelete} alt="Delete" />
+									<span>Delete</span>
+								</button>
+							) : null}
 						</div>
 					</div>
 

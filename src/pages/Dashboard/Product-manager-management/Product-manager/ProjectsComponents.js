@@ -2,11 +2,12 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { role } from "../../../../features/auth";
 import {
 	useAddProjectManagerMutation,
 	useUpdateProductManagerDetailsMutation,
 } from "../../../../features/services/api";
-import { ButtonRedBG, ButtonWhiteBG } from "../../../../ui";
+import { ButtonRedBG, ButtonWhiteBG, Label, Select } from "../../../../ui";
 import { AddProjectSchema } from "../../../../yup";
 import { Close, DashboardButton, DashboardInput } from "../../Components";
 import { save_project_manager } from "../projectManagerSlice";
@@ -158,6 +159,7 @@ const ProductManagerForm = ({
 			last_name: "",
 			email: "",
 			phone: "",
+			role: "",
 		},
 		validationSchema: AddProjectSchema,
 		onSubmit,
@@ -199,6 +201,14 @@ const ProductManagerForm = ({
 			error: errors.phone,
 			touched: touched.phone,
 		},
+		role: {
+			name: "Select Role",
+			id: "role",
+			value: values.role,
+			onChange: handleChange,
+			error: errors.role,
+			touched: touched.role,
+		},
 	};
 
 	useEffect(() => {
@@ -208,12 +218,24 @@ const ProductManagerForm = ({
 
 	const HandleClose = () => {
 		handleReset();
-		setValues({ email: "", last_name: "", first_name: "", phone: "" });
+		setValues({
+			email: "",
+			last_name: "",
+			first_name: "",
+			phone: "",
+			role: "",
+		});
 		close();
 	};
 
 	const CloseReset = () => {
-		setValues({ email: "", last_name: "", first_name: "", phone: "" });
+		setValues({
+			email: "",
+			last_name: "",
+			first_name: "",
+			phone: "",
+			role: "",
+		});
 		handleReset();
 
 		close();
@@ -257,6 +279,23 @@ const ProductManagerForm = ({
 						</div>
 						<div>
 							<DashboardInput {...props.number} />
+						</div>
+						<div>
+							<Label
+								name={"Select Role"}
+								styles="block mb-2 text-sm font-medium text-gray-900"
+							/>
+							<Select {...role}>
+								{!values.role ? (
+									<option>Select role</option>
+								) : (
+									<option value={values.role}>
+										{values.role === "ordinary" ? "Project manager" : "super"}
+									</option>
+								)}
+								<option value="super">Super</option>
+								<option value="ordinary">Project manager</option>
+							</Select>
 						</div>
 
 						{/* Buttons */}

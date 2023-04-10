@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { state } from "../../../lib/data";
 
 const AddProjectSlice = createSlice({
 	name: "add-products",
@@ -51,6 +50,9 @@ const AddProjectSlice = createSlice({
 		RemoveNewDocToProject: (state, action) => {
 			state.addNewDoc.splice(action.payload, 1);
 		},
+		resetDocToProject: (state) => {
+			state.addNewDoc = [];
+		},
 	},
 });
 
@@ -66,6 +68,7 @@ export const { deleteDocument } = AddProjectSlice.actions;
 export const { getActiveFormDetails } = AddProjectSlice.actions;
 export const { addNewDocToProject } = AddProjectSlice.actions;
 export const { RemoveNewDocToProject } = AddProjectSlice.actions;
+export const { resetDocToProject } = AddProjectSlice.actions;
 
 // SELECT THE TOKEN AND USER
 export const getForm = (state) => state.AddProjectReducer.projectForm;

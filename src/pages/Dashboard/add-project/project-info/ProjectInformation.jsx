@@ -9,6 +9,7 @@ import {
 	useGetAllProjectManagerQuery,
 	useUpdateProjectsMutation,
 } from "../../../../features/services/api";
+import useUserRole from "../../../../hooks/useUserRole";
 import { getId, SaveToLocalStorage } from "../../../../shared-component";
 import { ButtonWhiteBG } from "../../../../ui";
 import { AddProjectInformation } from "../../../../yup";
@@ -29,6 +30,7 @@ import { nextForm, saveID } from "../reducer";
 const ProjectInformation = (props) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { userRole } = useUserRole();
 
 	const [addProjects, { isLoading }] = useAddProjectsMutation();
 	const response = useGetAllProjectManagerQuery({ queryValue: "" });
@@ -219,6 +221,7 @@ const ProjectInformation = (props) => {
 		touched: props.touched.project_manager_id,
 		onChange: props.handleChange,
 		placeholder: "Enter Project Manager",
+		disabled: userRole !== "super" ? true : false,
 	};
 	const school = {
 		name: "School/Dept Name",

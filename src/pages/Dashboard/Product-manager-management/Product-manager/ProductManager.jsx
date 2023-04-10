@@ -115,7 +115,7 @@ const ProductManager = () => {
 				<div className="container mx-auto px-4 lg:px-24">
 					<div className="flex gap-4 flex-col md:flex-row md:justify-between items-center">
 						<PageHeader name="Project Managers" />
-						{userRole === "admin" ? (
+						{userRole === "super" ? (
 							<DashboardButton
 								name="ADD NEW PROJECT MANAGER"
 								width="w-[290px]"
