@@ -327,7 +327,11 @@ export const TableLoaderComponent = ({ apiResponse }) => {
 	return (
 		<div className="h-80 flex flex-col items-center justify-center">
 			<div className="w-full flex justify-center items-center text-lg">
-				{apiResponse.isFetching ? <p>Fetching requested data...</p> : null}
+				{apiResponse.isFetching ? (
+					<div>
+						<Spinner color="text-gray-600" width="w-12" height="h-12" />
+					</div>
+				) : null}
 				{apiResponse?.isError ? <p> {apiResponse?.error?.message}</p> : null}
 			</div>
 			<div className="mt-3">

@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-import { FullPageLoader, ModalOverlay } from "../../../ui";
+import {
+	FullPageLoader,
+	ModalOverlay,
+	TableLoaderComponent,
+} from "../../../ui";
 import {
 	DashboardButton,
 	DashboardNav,
@@ -120,7 +124,7 @@ const SchoolInformation = () => {
 
 	return (
 		<section className="h-full ">
-			{!apiResponse?.data && <FullPageLoader />}
+			{apiResponse?.isLoading && <FullPageLoader />}
 			<article>
 				{/* <!-- Navbar --> */}
 				<DashboardNav />
@@ -143,18 +147,31 @@ const SchoolInformation = () => {
 						<Search {...searchProps} />
 					</div>
 					{/* <!-- Table --> */}
+					{/* 
+					
+					
+					
+					
+					*/}
 					<div className="overflow-x-auto relative shadow rounded-lg border-solid border border-gray-100 mb-6 h-full">
-						<table className="w-full text-sm text-left text-gray-900">
-							<TableHeader dataArray={VendorsHeader} />
-							<VendorTableBody
-								dataArray={apiResponse?.currentData?.data?.data}
-								onDelete={onDelete}
-								onEdit={onEdit}
-							/>
-						</table>
+						{apiResponse.isSuccess && !apiResponse.isFetching ? (
+							<table className="w-full text-sm text-left text-gray-900">
+								<TableHeader dataArray={VendorsHeader} />
+								<VendorTableBody
+									dataArray={apiResponse?.currentData?.data?.data}
+									onDelete={onDelete}
+									onEdit={onEdit}
+								/>
+							</table>
+						) : (
+							<TableLoaderComponent apiResponse={apiResponse} />
+						)}
 					</div>
 					{/* PAGINATION */}
-					<Paginations {...paginationProps} />
+
+					{apiResponse.isSuccess && !apiResponse.isFetching ? (
+						<Paginations {...paginationProps} />
+					) : null}
 				</div>
 			</main>
 
