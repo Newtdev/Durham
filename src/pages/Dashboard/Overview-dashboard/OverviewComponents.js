@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Delete from "../../../assets/delete.svg";
 import Edit from "../../../assets/edit.svg";
 import { useGetVendorsQuery } from "../../../features/services/api";
+import useUserRole from "../../../hooks/useUserRole";
 import { SaveToLocalStorage } from "../../../shared-component";
 import { Label, Error, Textarea } from "../../../ui";
 import {
@@ -17,6 +18,7 @@ import { saveID, setDefault } from "../add-project/reducer";
 export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { userRole } = useUserRole();
 
 	return (
 		<tbody className="text-xs text-[#000000] bg-white font-medium">
@@ -52,23 +54,26 @@ export function OverviewTableBody({ dataArray, onDelete, onEdit }) {
 						<td className="py-4 px-4 whitespace-nowrap">
 							{moment(created_at).format("MMM DD, YYYY")}
 						</td>
+
 						<td className="py-4 px-4 flex items-center justify-start gap-3">
-							<span
+							<button
 								className="w-4 cursor-pointer"
 								onClick={(e) => {
 									e.stopPropagation();
 									onDelete(id);
-								}}>
+								}}
+								disabled={userRole !== "admin" ? true : false}>
 								<img className="w-full" src={Delete} alt="delete" />
-							</span>
-							<span
+							</button>
+							<button
 								className="w-4 cursor-pointer"
+								disabled={userRole !== "admin" ? true : false}
 								onClick={(e) => {
 									e.stopPropagation();
 									onEdit(project);
 								}}>
 								<img className="w-full" src={Edit} alt="edit" />
-							</span>
+							</button>
 						</td>
 					</tr>
 				);
@@ -134,6 +139,7 @@ export function AwardeeInfo(props) {
 	const dispatch = useDispatch();
 	const states = useSelector(getList);
 	const [toFilter, setFilter] = useState(false);
+	const [companyType, setCompanyType] = useState("old");
 	// const details = useSelector(projectData);
 
 	// role: "",
@@ -254,6 +260,7 @@ export function AwardeeInfo(props) {
 	}
 
 	const filterData = () => {
+		console.log(props.data.values.project_vendors[index]);
 		if (!toFilter) {
 			return null;
 		}
@@ -262,7 +269,7 @@ export function AwardeeInfo(props) {
 				props.data.values.project_vendors[index].vendor_id = cur?.vendor_id;
 				// setFieldValue(`	props.data.values.project_vendors[index].first_name`, 'Jahn')
 				props.data.values.project_vendors[index].first_name = cur?.first_name;
-				props.data.values.project_vendors[index].type = "old";
+				props.data.values.project_vendors[index].type = companyType;
 				props.data.values.project_vendors[index].last_name = cur?.last_name;
 
 				props.data.values.project_vendors[index].title = cur?.title;
@@ -323,12 +330,14 @@ export function AwardeeInfo(props) {
 									value={values.project_vendors[index].company_name}
 									onChange={(e) => {
 										if (e.target.value === "Add New Vendor") {
+											setCompanyType("new");
 											setFieldValue(`project_vendors.${index}.type`, "new");
 											setFieldValue(
 												`project_vendors.${index}.company_name`,
-												""
+												e.target.value
 											);
 										} else {
+											setCompanyType("old");
 											setFieldValue(
 												`project_vendors.${index}.company_name`,
 												e.target.value

@@ -450,7 +450,7 @@ export function SuccessModal({ close, reset, name }) {
 					</div>
 					<div className="py-3 px-5">
 						<p className="text-base text-gray-600">
-							School Added Successfully system
+							You've successfully added the new school ot the system
 						</p>
 					</div>
 

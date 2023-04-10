@@ -30,3 +30,4 @@ export const { userInfo } = loginSlice.actions;
 
 export const selectToken = (state) => state.loginReducer.accessToken;
 export const userDetails = (state) => state.loginReducer.user_data;
+export const role = (state) => state.loginReducer.user_data?.role;

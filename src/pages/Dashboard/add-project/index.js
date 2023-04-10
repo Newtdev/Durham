@@ -44,6 +44,7 @@ const ProjectFormsController = () => {
 	const [editVendor, data] = useEditVendorMutation();
 
 	async function HandleRequest(values) {
+		console.log(values);
 		const response = await addProjectVendor({
 			project_id: getId(),
 			vendors: values,
@@ -108,24 +109,16 @@ const ProjectFormsController = () => {
 		validationSchema: AddNewProjectSchema[steps],
 
 		onSubmit: (values) => {
-			switch (steps) {
-				case 0:
-					break;
-
-				default:
-					break;
-			}
-
-			if (steps === 1 && !getId()) {
-				const data = values.project_vendors;
+			if (steps === 1 && !params?.state) {
 				//MAKE REQUEST TO THE ADD PROJECT API AND GO TO THE NEXT PAGE.'
-				HandleRequest(data);
-			} else if (getId()) {
+				HandleRequest(values.project_vendors);
+			} else if (params?.state) {
 				const data = values?.project_vendors?.map((cur, index) => {
 					return { ...cur, type: "old" };
 				});
+				// console.log(data);
 				HandleRequest(data);
-				// HandleEditRequest(values.project_vendors[0])
+				// HandleEditRequest(values.project_vendors[0]);
 			}
 
 			if (steps === 2) {
@@ -134,7 +127,6 @@ const ProjectFormsController = () => {
 						selected.map((cur) => [cur["document_name"], cur])
 					).values(),
 				];
-
 				SubmitDocument(documentSelected);
 			}
 		},
@@ -243,7 +235,6 @@ const ProjectFormsController = () => {
 						<FormikProvider value={formik}>
 							{steps === 0 ? <ProjectInformation {...props} /> : null}
 							{steps === 1 ? <AwardeeInformation {...props} /> : null}
-
 							{steps === 2 ? (
 								<EditDocument documents={props.values?.project_documents} />
 							) : null}

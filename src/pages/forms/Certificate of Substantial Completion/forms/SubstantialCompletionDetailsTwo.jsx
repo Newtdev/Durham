@@ -78,7 +78,7 @@ const SubstantialCompletionDetailsTwo = (props) => {
 		touched: props.touched.responsibility,
 		name: "Enter the responsibilities of the Owner and Contractor for security, maintenance, heat, utilities, damage to the Work and insurance, if any?",
 		id: "responsibility",
-		placeholder: "Enter responsibility",
+		placeholder: "Responsibilty must not be more than 40 words",
 	};
 	const positions = {
 		value: props.values.position,

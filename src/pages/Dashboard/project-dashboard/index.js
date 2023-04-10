@@ -108,6 +108,7 @@ import {
 	BidManualSlug,
 } from "../../../shared-component/slug";
 import ContractPreparationCheckList from "../../forms/Contract Preparation Checklist";
+import useUserRole from "../../../hooks/useUserRole";
 // import OwnerDesignConsultantLessForm from "../../forms/Owner and Design Consultant (Less than $200,000)/OwnerDesignConsultantLess";
 
 const ProjectDashboard = () => {
@@ -119,6 +120,8 @@ const ProjectDashboard = () => {
 	const remove = useSelector(deleted);
 	const toggle = useSelector(historyToggle);
 	const filled = useSelector(isFilled);
+	const userRole = useUserRole();
+
 	const [deleteProject, { isLoading }] = useDeleteProjectMutation();
 	const [duplicateProject, result] = useDuplicateProjectMutation();
 	const awardee = !projectDetails?.project_vendors
@@ -192,8 +195,7 @@ const ProjectDashboard = () => {
 			<ModalOverlay show={remove}>
 				<div>
 					{/* Modal content */}
-					{!response?.data && <FullPageLoader />}
-
+					{(response?.isLoading || response.isFetching) && <FullPageLoader />}
 					<div className="relative w-full h-screen max-w-md pb-4 mx-auto bg-white rounded-lg shadow md:h-auto mt-14">
 						<div className="flex items-start justify-between px-6 py-3 border-b rounded-t">
 							<div>
@@ -274,6 +276,7 @@ const ProjectDashboard = () => {
 									});
 								}}
 								type="button"
+								disabled={userRole === "admin" ? false : true}
 								className="uppercase bg-white text-[#3b6979] font-semibold px-4 h-8 border border-[#3b6979] rounded hover:bg-gray-50 w-[102px] flex gap-2 items-center justify-center">
 								<Pen />
 								<span>edit</span>
@@ -295,6 +298,7 @@ const ProjectDashboard = () => {
 									dispatch(onDelete());
 								}}
 								type="submit"
+								disabled={userRole === "admin" ? false : true}
 								className="uppercase text-[#ef4444] text-center text-base w-[152px] hover:bg-blue-800 font-semibold rounded h-8 transition-all flex gap-2 items-center justify-center">
 								<img src={RedDelete} alt="Delete" />
 								<span>Delete</span>

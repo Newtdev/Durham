@@ -491,8 +491,7 @@ export function SuccessModal({ close, reset, name }) {
 					</div>
 					<div className="py-3 px-5">
 						<p className="text-base text-gray-600">
-							You’ve successfully added to Durham system. Please inform them to
-							check their email for their log in information.
+							You’ve successfully added a new vendor to the system.
 						</p>
 					</div>
 

@@ -18,7 +18,7 @@ import {
 	TableLoaderComponent,
 } from "../../../../ui";
 import { useState } from "react";
-import { ProductHeader, productContent } from "./ProjectsComponents";
+import { ProductHeader } from "./ProjectsComponents";
 import {
 	useDeleteProductManagerMutation,
 	useFetchAllProjectManagerQuery,
@@ -29,8 +29,10 @@ import {
 	setSearchManagerQuery,
 } from "../projectManagerSlice";
 import { useDispatch, useSelector } from "react-redux";
+import useUserRole from "../../../../hooks/useUserRole";
 
 const ProductManager = () => {
+	const { userRole } = useUserRole();
 	const [showModal, setShowModal] = useState(false);
 	const [tableButton, setTableButton] = useState({
 		delete: false,
@@ -113,11 +115,13 @@ const ProductManager = () => {
 				<div className="container mx-auto px-4 lg:px-24">
 					<div className="flex gap-4 flex-col md:flex-row md:justify-between items-center">
 						<PageHeader name="Project Managers" />
-						<DashboardButton
-							name="ADD NEW PROJECT MANAGER"
-							width="w-[290px]"
-							onClick={() => setShowModal(true)}
-						/>
+						{userRole === "admin" ? (
+							<DashboardButton
+								name="ADD NEW PROJECT MANAGER"
+								width="w-[290px]"
+								onClick={() => setShowModal(true)}
+							/>
+						) : null}
 					</div>
 					<div className="flex flex-col gap-3 md:flex-row md:justify-end md:items-center mt-4 mb-6">
 						{/* <!-- Sort --> */}
@@ -138,7 +142,9 @@ const ProductManager = () => {
 						)}
 					</div>
 					{/* pagination */}
-					<Paginations {...paginationProps} />
+					{response.isSuccess && !response.isFetching ? (
+						<Paginations {...paginationProps} />
+					) : null}
 				</div>
 			</main>
 
